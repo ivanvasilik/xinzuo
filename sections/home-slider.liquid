@@ -218,11 +218,19 @@
   }
 
   @media screen and (max-width: 1300px) {
-  .section-{{ section.id }} .home-slider.active {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    .section-{{ section.id }} .home-slider.active {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
   }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }} .home-slider.active {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
   }
 {% endstyle %}
 
