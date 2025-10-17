@@ -40,7 +40,7 @@
 
   <div
     class="border-style custom-section-content"
-    style="{% render 'border-override', settings: section.settings %}"
+    style="{% if section.settings.border != "top-solid" %}{% render 'border-override', settings: section.settings %}{% else %}border: 1px solid #333; border-radius: 40px 40px 0 0; background: #171717;{% endif %}"
   >
     {% if section.settings.toggle_overlay %}
       {% render 'overlay', settings: section.settings, layer: '0' %}

@@ -1,0 +1,117 @@
+{% style %}
+    .section-{{ section.id }} .footer-3 {
+        padding: 40px 64px 16px;
+        background: #171717;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .section-{{ section.id }} .footer-3 p {
+        margin: 0;
+        color: #86868b;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .footer-3 {
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            padding: 32px 32px 16px;
+        }
+
+        .section-{{ section.id }} .footer-3 p {
+            text-align: center;
+        }
+
+        .section-{{ section.id }} .payment-icons__list {
+            flex-wrap: unset;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
+    <div class="footer-3">
+        <p>{{ section.settings.copyright }}</p>
+        {% content_for 'blocks' %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Custom Footer3",
+    "tag": "footer",
+    "blocks": [
+        {
+            "type": "_divider"
+        },
+        {
+            "type": "@app"
+        },
+        {
+            "type": "button"
+        },
+        {
+            "type": "follow-on-shop"
+        },
+        {
+            "type": "group"
+        },
+        {
+            "type": "icon"
+        },
+        {
+            "type": "image"
+        },
+        {
+            "type": "menu"
+        },
+        {
+            "type": "payment-icons"
+        },
+        {
+            "type": "text"
+        },
+        {
+            "type": "logo"
+        },
+        {
+            "type": "jumbo-text"
+        },
+        {
+            "type": "social-links"
+        },
+        {
+            "type": "email-signup"
+        }
+    ],
+    "settings": [
+        {
+            "type": "text",
+            "id": "copyright",
+            "label": "Copyright"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Footer3",
+            "blocks": {
+                "menu": {
+                    "type": "group"
+                }
+            }
+        }
+    ]
+}
+{% endschema %}

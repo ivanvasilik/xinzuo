@@ -87,7 +87,280 @@
     class="menu-list"
     style="{% render 'menu-font-styles', settings: block_settings %}"
   >
-    {% assign class = 'overflow-menu' | append: color_scheme_classes %}
-    {% render 'overflow-list', class: class, ref: 'overflowMenu', children: children, minimum-items: 2, defer: true %}
+  {% for link in block_settings.menu.links %}
+    <li class="menu-list__list-item">
+      {% if link.title != "Logo" %}
+        <a
+          {% if link.links == blank %}
+            href="{{ link.url }}"
+          {% else %}
+            onclick="openMenu({{ forloop.index }})"
+          {% endif %}
+          data-skip-node-update="true"
+          class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
+          {%- if link.links != blank -%}
+            aria-controls="submenu-{{ forloop.index }}"
+            aria-haspopup="true"
+            aria-expanded="false"
+          {%- endif -%}
+          ref="menuitem"
+        >
+          <span class="menu-list__link-title">{{- link.title -}}</span>
+          {%- if link.links != blank -%}
+            <img src="{{ 'Frame_161.svg?v=1760489140' | file_url }}" width="100%" height="100%" alt="Dropdown">
+          {%- endif -%}
+        </a>
+      {% else %}
+        <a href="{{ link.url }}">
+          <span class="menu-list__link-title">
+            {% assign image = settings.logo %}
+            {%- if image -%}
+              <div class="logo-block__image-wrapper">
+                {{-
+                  image
+                  | image_url: width: 3840
+                  | image_tag:
+                    width: 35,
+                    height: 35,
+                    class: 'logo-block__image',
+                    alt: shop.name,
+                    sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
+                -}}
+              </div>
+            {%- endif -%}
+          </span>
+        </a>
+      {% endif %}
+      {%- if link.links != blank -%}
+        {% comment %} <div class="menu-list__submenu{{ color_scheme_classes }}">
+          <div
+            id="submenu-{{ forloop.index }}"
+            class="menu-list__submenu-inner"
+          >
+            {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
+            {% render 'mega-menu',
+              section: section,
+              parent_link: link,
+              id: list_id,
+              menu_content_type: menu_content_type,
+              content_aspect_ratio: ratio,
+              image_border_radius: image_border_radius
+            %}
+          </div>
+        </div> {% endcomment %}
+        <div id="submenu-{{ forloop.index }}" class="header-dropdown-back" onclick="closeMenu({{ forloop.index }})">
+          <div class="header-dropdown">
+            <div class="dropdown-header">
+              <div class="dropdown-header-left" onclick="closeMenu({{ forloop.index }})">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <g clip-path="url(#clip0_4030_59197)">
+                    <path d="M15.625 4.375L4.375 15.625" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.625 15.625L4.375 4.375" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4030_59197">
+                      <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <span>CLOSE</span>
+              </div>
+              <div class="dropdown-header-center"><a href="/">XINZUO</a></div>
+              <div class="dropdown-header-right">
+                {% render 'cart-drawer' %}
+                {% render 'search', style: 'default', class: 'custom-class' %}
+              </div>
+            </div>
+            <ul>
+              {% for sublink in link.links %}
+                <li class="menu-dropdown-list">
+                  <a href="{{ sublink.url }}" class="mega-dropdown">
+                    <span class="mega-dropdown-title">
+                      {{ sublink.title }}
+                    </span>
+                  </a>
+                  {% if sublink.links != blank %}
+                    <ul
+                      class="list-unstyled"
+                      {% if should_break_columns %}
+                        style="column-count: {{ column_span }};"
+                      {% endif %}
+                    >
+                      {% for childLink in sublink.links limit: 5 %}
+                        {% assign break_after_modulo = forloop.index | modulo: 10 %}
+                        <li
+                          {% if break_after_modulo == 0 and should_break_columns %}
+                            style="break-after: column;"
+                          {% endif %}
+                        >
+                          <a href="{{ childLink.url }}">
+                            <span class="mega-menu__link-title wrap-text">{{- childLink.title -}}</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                      {% if sublink.links.size > 5 %}
+                        <a href="{{ sublink.url }}">view all</a>
+                      {% endif %}
+                    </ul>
+                    {% if sublink.url contains "/collections/" %}
+                      {% assign collection_handle = sublink.url | split: "/" | last %}
+                      {% assign collection = collections[collection_handle] %}
+                      {% if collection.featured_image != blank %}
+                        <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ collection.title | escape }}">
+                      {% else %}
+                        {% assign firstimage = collection.products.first %}
+                        <img src="{{ firstimage.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ firstimage.title | escape }}">
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {%- endif -%}
+    </li>
+  {% endfor %}
+    {% comment %} {% assign class = 'overflow-menu' | append: color_scheme_classes %}
+    {% render 'overflow-list', class: class, ref: 'overflowMenu', children: children, minimum-items: 2, defer: false %} {% endcomment %}
   </div>
 </nav>
+
+{% style %}
+  .header-dropdown-back {
+    position: fixed;
+    width: calc(100vw - 10px);
+    height: 100vh;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(5px);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 1;
+  }
+
+  .header-dropdown {
+    width: calc(100vw - 10px);
+    background-color: #111111;
+    padding: 0 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .dropdown-header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
+    color: #f9f9f7;
+    cursor: pointer;
+  }
+
+  .dropdown-header-center {
+    font-family: "Sen";
+    font-weight: 500;
+    font-size: 22px;
+    color: #c1c4c7;
+  }
+
+  .dropdown-header-right {
+    display: flex;
+  }
+
+  .dropdown-header-right search-button {
+    margin: 0 !important;
+  }
+
+  .header-dropdown > ul {
+    display: flex;
+    padding: 48px 0;
+    list-style: none;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .header-dropdown > ul > li {
+    width: 25%;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .header-dropdown > ul > li:first-child {
+    border: none;
+  }
+
+  .header-dropdown > ul > li a {
+    display: block;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #56565b;
+    margin-bottom: 24px;
+  }
+
+  .header-dropdown > ul > li > a::after {
+    content: ".";
+    color: #CA322B;
+  }
+
+  .header-dropdown > ul > li ul li a {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
+    color: #c1c4c7;
+    margin-bottom: 17px;
+    width: fit-content;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .header-dropdown > ul > li ul li a::after {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+
+  .header-dropdown > ul > li ul li a:hover {
+    border-bottom: 1px solid grey;
+    left: 20px;
+  }
+
+  .header-dropdown > ul > li ul li a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .header-dropdown > ul > li img {
+    width: 100%;
+    margin-top: auto;
+  }
+{% endstyle %}
+
+<script>
+  const openMenu = (num) => {
+    const menu = document.querySelector(`#submenu-${num}`);
+    menu.style.maxHeight = '100vh';
+  }
+  const closeMenu = (num) => {
+    const menu = document.querySelector(`#submenu-${num}`);
+    menu.style.maxHeight = 0;
+  }
+</script>

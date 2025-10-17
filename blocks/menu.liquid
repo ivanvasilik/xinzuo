@@ -53,6 +53,7 @@
 
       <div class="details-content">
         {% if menu %}
+          <span class="menu-title">{{ heading | default: menu.title }}</span>
           <ul class="list-unstyled">
             {% for link in menu.links %}
               <li class="menu__item {{ block_settings.link_preset }}">

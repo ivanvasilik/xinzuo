@@ -1,0 +1,106 @@
+{% style %}
+    .section-{{ section.id }} {
+        background-color: #111111;
+        padding: 64px 16px;
+    }
+
+    .section-{{ section.id }} .quick-question {
+        max-width: 1280px;
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        border-radius: 16px;
+        background: linear-gradient(112deg, rgba(255, 255, 255, 0.03) 1.9%, rgba(255, 255, 255, 0.01) 98.1%);
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .quick-question h2 {
+        color: #F9F9F7;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        text-align: center;
+        margin: 0;
+        line-height: 135%;
+    }
+
+    .section-{{ section.id }} .quick-question .buttons {
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .quick-question button {
+        display: flex;
+        padding: 10px 20px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+    .section-{{ section.id }} .quick-question .quiz {
+        background-color: #CA322B;
+        color: white;
+    }
+
+    .section-{{ section.id }} .quick-question .most {
+        background-color: rgba(253, 62, 54, 0.05);
+        color: #F4AFAA;
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} {
+            padding: 32px 16px;
+        }
+
+        .section-{{ section.id }} .quick-question {
+            padding: 32px 16px;
+            gap: 32px;
+        }
+
+        .section-{{ section.id }} .quick-question h2 {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .quick-question button {
+            font-size: 14px;
+        }
+    }
+{% endstyle %}
+
+<section class="section-{{ section.id }}">
+    <div class="quick-question">
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="buttons">
+            <button class="quiz">TAKE QUICK QUIZ</button>
+            <button class="most">SEE CHEFS LOVE MOST</button>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Quick Question",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Quick Question"
+        }
+    ]   
+}
+{% endschema %}

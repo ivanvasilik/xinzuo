@@ -60,7 +60,7 @@
       on:click="/toggle"
     >
       <span class="svg-wrapper header-drawer-icon header-drawer-icon--open">
-        {{- 'icon-menu.svg' | inline_asset_content -}}
+        <img src="{{ 'menu-list.svg?v=1760486892' | file_url }}" width="100%" height="100%" alt="Menu List">
       </span>
       <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
         {{- 'icon-close.svg' | inline_asset_content -}}
@@ -667,8 +667,20 @@
 
   .header__icon--summary .header-drawer-icon {
     margin: auto;
-    width: var(--icon-size-xs);
-    height: var(--icon-size-xs);
+    width: auto;
+    height: 20px;
+    gap: 20px;
+  }
+
+  .header__icon--summary .header-drawer-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header__icon--summary .header-drawer-icon span {
+    font-size: 22px;
+    line-height: 150%;
+    font-weight: 500;
   }
 
   .header__drawer {

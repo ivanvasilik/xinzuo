@@ -22,7 +22,7 @@
         class: 'header__drawer--mobile',
         linklist: block_settings.menu,
         data_header_drawer_type: 'mobile-drawer'
-      %}
+      %} <span class="header-logo-name">XINZUO</span>
     </div>
 
   {% when 'navigation_bar' %}
@@ -186,6 +186,7 @@
     display: flex;
     min-height: var(--minimum-touch-target);
     align-items: center;
+    gap: 8px;
 
     &:hover,
     &:focus {

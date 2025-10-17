@@ -19,7 +19,8 @@
         aria-hidden="true"
         class="svg-wrapper"
       >
-        {{ 'icon-search.svg' | inline_asset_content }}
+        {% comment %} {{ 'icon-search.svg' | inline_asset_content }} {% endcomment %}
+        <img src="{{ 'MagnifyingGlass.svg?v=1760489139' | file_url }}" width="100%" height="100%" alt="Search Button">
       </span>
     </button>
   </search-button>

@@ -2,7 +2,7 @@
 
 {% liquid
   assign media_count = 0
-  if section.settings.image_1 != blank and section.settings.image_2 != blank
+  if section.settings.image_1 != blank
     assign media_width_desktop = 100 | divided_by: 2 | append: 'vw'
   else
     assign media_width_desktop = '100vw'
@@ -12,7 +12,6 @@
   assign widths = '832, 1200, 1600, 1920, 2560, 3840'
 
   assign has_image_1 = false
-  assign has_image_2 = false
   assign has_video_1 = false
   assign has_video_2 = false
   assign has_image = false
@@ -24,9 +23,6 @@
   if section.settings.image_1 != blank and media_type_1 == 'image'
     assign has_image_1 = true
   endif
-  if section.settings.image_2 != blank and media_type_2 == 'image'
-    assign has_image_2 = true
-  endif
   if section.settings.video_1 != blank and media_type_1 == 'video'
     assign has_video_1 = true
   endif
@@ -34,7 +30,7 @@
     assign has_video_2 = true
   endif
 
-  if has_image_1 or has_image_2
+  if has_image_1
     assign has_image = true
   endif
   if has_video_1 or has_video_2
@@ -113,22 +109,6 @@
     </div>
   {%- endif -%}
 
-  {%- if has_image_2 -%}
-    {% assign media_count = media_count | plus: 1 %}
-    {{
-      section.settings.image_2
-      | image_url: width: 3840
-      | image_tag:
-        width: section.settings.image_2.width,
-        widths: widths,
-        height: section.settings.image_2.height,
-        alt: section.settings.image_2.alt,
-        class: 'hero__image',
-        sizes: sizes,
-        fetchpriority: fetch_priority
-    }}
-  {%- endif -%}
-
   {%- if has_video_2 -%}
     {% assign media_count = media_count | plus: 1 %}
     <div class="hero__video-wrapper">
@@ -172,19 +152,6 @@
         width: section.settings.image_1.width,
         widths: widths,
         height: section.settings.image_1.height,
-        alt: '',
-        class: 'hero__image',
-        sizes: sizes
-    }}
-  {% endif %}
-  {% if has_image_2 %}
-    {{
-      section.settings.image_2
-      | image_url: width: 3840
-      | image_tag:
-        width: section.settings.image_2.width,
-        widths: widths,
-        height: section.settings.image_2.height,
         alt: '',
         class: 'hero__image',
         sizes: sizes
@@ -245,7 +212,7 @@
       ></a>
     {%- endif -%}
     <div
-      class="hero__media-wrapper"
+      class="hero__media-wrapper mobile:hidden"
       style="--hero-media-count: {{ media_count }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
     >
       {% liquid
@@ -255,6 +222,19 @@
       %}
       {{ media }}
     </div>
+    {% if section.settings.image_2 != blank %}
+      <div
+        class="hero__media-wrapper desktop:hidden"
+        style="--hero-media-count: {{ media_count }};"
+      >
+        {% liquid
+          if section.settings.toggle_overlay
+            render 'overlay', settings: section.settings
+          endif
+        %}
+        <img src="{{ section.settings.image_2 | img_url: 'master' }}" width="100%" height="100%" alt="Mobile background" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    {% endif %}
     <div
       class="
         hero__content-wrapper
@@ -476,7 +456,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "t:content.media"
+      "content": "Desktop"
     },
     {
       "type": "select",
@@ -508,35 +488,12 @@
     },
     {
       "type": "header",
-      "content": "t:content.media_2"
-    },
-    {
-      "type": "select",
-      "id": "media_type_2",
-      "label": "t:settings.type",
-      "options": [
-        {
-          "value": "image",
-          "label": "t:options.image"
-        },
-        {
-          "value": "video",
-          "label": "t:options.video"
-        }
-      ],
-      "default": "image"
+      "content": "Mobile"
     },
     {
       "type": "image_picker",
       "id": "image_2",
       "label": "t:settings.image",
-      "visible_if": "{{ section.settings.media_type_2 == 'image' }}"
-    },
-    {
-      "type": "video",
-      "id": "video_2",
-      "label": "t:settings.video",
-      "visible_if": "{{ section.settings.media_type_2 == 'video' }}"
     },
     {
       "type": "header",

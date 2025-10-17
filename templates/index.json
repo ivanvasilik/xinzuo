@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -15,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
+            "text": "<p>Sharp</p><p>Strong</p><p>Timeless</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -37,14 +38,53 @@
           },
           "blocks": {}
         },
+        "text_8iHdpq": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Every slice feels precise, every detail crafted with care.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_MXdgiP": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/John_Smith.svg",
+            "width": 156,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
         "button_H9gpTf": {
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Shop all",
+            "label": "EXPLORE PRODUCTS",
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "link",
+            "btn_icon": "below",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -55,26 +95,30 @@
       },
       "block_order": [
         "text_YLPk4p",
+        "text_8iHdpq",
+        "icon_MXdgiP",
         "button_H9gpTf"
       ],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "media_type_2": "image",
+        "image_1": "shopify://shop_images/hero-background-desktop.png",
+        "image_2": "shopify://shop_images/IMG_5941_1.png",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "space-between",
         "vertical_alignment": "flex-end",
         "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 24,
         "section_width": "page-width",
-        "section_height": "medium",
+        "section_height": "full-screen",
         "section_height_custom": 50,
         "color_scheme": "scheme-6",
-        "toggle_overlay": true,
+        "toggle_overlay": false,
         "overlay_color": "#12121266",
         "overlay_style": "solid",
         "gradient_direction": "to bottom",
@@ -82,6 +126,112 @@
         "reflection_opacity": 75,
         "padding-block-start": 100,
         "padding-block-end": 72
+      }
+    },
+    "customer_GD7Dyr": {
+      "type": "customer",
+      "blocks": {
+        "block_KAUNd9": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_1_1.png"
+          }
+        },
+        "block_kkUVp8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_2.png"
+          }
+        },
+        "block_k6iwgF": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_3.png"
+          }
+        },
+        "block_XLReiW": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_6.png"
+          }
+        },
+        "block_PfwktR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_7.png"
+          }
+        },
+        "block_etEYMz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Frame_892.png"
+          }
+        },
+        "block_VHaRwb": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Frame_891_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "block_KAUNd9",
+        "block_kkUVp8",
+        "block_k6iwgF",
+        "block_XLReiW",
+        "block_PfwktR",
+        "block_etEYMz",
+        "block_VHaRwb"
+      ],
+      "name": "Customers",
+      "settings": {
+        "heading": "Some of our Michelin Starred Chef Customers",
+        "background": "shopify://shop_images/5-B27-15PCS-_1.png"
+      }
+    },
+    "home_slider_g9dVGe": {
+      "type": "home-slider",
+      "blocks": {
+        "block_aKEQHW": {
+          "type": "block",
+          "settings": {
+            "collection_name": "SUPREME SERIES",
+            "collection": "frontpage"
+          }
+        },
+        "block_zBNGEX": {
+          "type": "block",
+          "settings": {
+            "collection_name": "RETRO SERIES",
+            "collection": "frontpage"
+          }
+        },
+        "block_rjVjr6": {
+          "type": "block",
+          "settings": {
+            "collection_name": "MO SERIES",
+            "collection": "frontpage"
+          }
+        },
+        "block_zj8Rr9": {
+          "type": "block",
+          "settings": {
+            "collection_name": "LAN SERIES",
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "block_aKEQHW",
+        "block_zBNGEX",
+        "block_rjVjr6",
+        "block_zj8Rr9"
+      ],
+      "name": "Home Slider",
+      "settings": {
+        "heading": "Meet",
+        "heading_color": "Xinzuo",
+        "color_scheme": "scheme-5"
       }
     },
     "product_list_fa6P9H": {
@@ -257,6 +407,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection": "all",
@@ -277,10 +428,432 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "quick_question_XyWDMB": {
+      "type": "quick-question",
+      "name": "Quick Question",
+      "settings": {
+        "heading": "Can’t decide which knife fits your style?"
+      }
+    },
+    "reviews_UMDUhc": {
+      "type": "reviews",
+      "blocks": {
+        "block_Ljni9A": {
+          "type": "block",
+          "settings": {
+            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
+            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
+            "customer": "Chef Daniel Richter",
+            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
+          }
+        },
+        "block_HigAQt": {
+          "type": "block",
+          "settings": {
+            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
+            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
+            "customer": "Chef Daniel Richter",
+            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
+          }
+        },
+        "block_L8cEcn": {
+          "type": "block",
+          "settings": {
+            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
+            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
+            "customer": "Chef Daniel Richter",
+            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
+          }
+        },
+        "block_iD89Hz": {
+          "type": "block",
+          "settings": {
+            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
+            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
+            "customer": "Chef Daniel Richter",
+            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
+          }
+        }
+      },
+      "block_order": [
+        "block_Ljni9A",
+        "block_HigAQt",
+        "block_L8cEcn",
+        "block_iD89Hz"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "heading": "Turning Everyday Moments Into Lasting Impressions."
+      }
+    },
+    "section_er3F6d": {
+      "type": "section",
+      "blocks": {
+        "text_C44Tze": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Where Curiosity Meets</h2><h2>Clear Answers.</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_wkHQKY": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>We’ve gathered the most asked questions here, so you can explore our collection with greater ease and lasting assurance.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_KdnW4B": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_pcXW9Y": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What makes Xinzuo knives stand apart from other kitchen knife brands?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_7EtcXB": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_7EtcXB"
+              ]
+            },
+            "accordion_row_6tQbnh": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are Xinzuo knives designed for professional chefs as well as home kitchens?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_g7yrea": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_g7yrea"
+              ]
+            },
+            "accordion_row_BCTefQ": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How should I properly care for my Xinzuo knife collection?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_4yTDmM": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_4yTDmM"
+              ]
+            },
+            "accordion_row_wRmVEU": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do Xinzuo products include a warranty, and what does it cover?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_HxKVBr": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_HxKVBr"
+              ]
+            },
+            "accordion_row_4Tg8BV": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How long does delivery of Xinzuo knives usually take?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_e7gcyQ": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_e7gcyQ"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_pcXW9Y",
+            "accordion_row_6tQbnh",
+            "accordion_row_BCTefQ",
+            "accordion_row_wRmVEU",
+            "accordion_row_4Tg8BV"
+          ]
+        },
+        "text_XaMgEF": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>still have any question, <a href=\"#\" title=\"#\">Contact Us</a></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_C44Tze",
+        "text_wkHQKY",
+        "accordion_KdnW4B",
+        "text_XaMgEF"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "img_with_text_geRLJH": {
+      "type": "img-with-text",
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "customer_GD7Dyr",
+    "home_slider_g9dVGe",
+    "product_list_fa6P9H",
+    "quick_question_XyWDMB",
+    "reviews_UMDUhc",
+    "section_er3F6d",
+    "img_with_text_geRLJH"
   ]
 }

@@ -1,5 +1,3 @@
-
-
 {% liquid
   assign order = 'logo,menu,localization,search,mobile_search,actions'
 
@@ -63,10 +61,6 @@
     render 'header-actions'
   endcapture
 
-  if shop.customer_accounts_enabled
-    assign search_class = 'mobile:hidden'
-  endif
-
   # Handle localization positioning
   if section.settings.localization_position == 'left'
     if section.settings.search_position == 'left'
@@ -92,7 +86,7 @@
     endif
   endif
   capture search
-    render 'search', style: search_style, class: search_class
+    render 'search', style: search_style
   endcapture
 
   # Skip mobile search under specific conditions:
@@ -101,13 +95,6 @@
   assign skip_mobile_search = false
   if shop.customer_accounts_enabled == false and section.settings.search_position == 'left' and search_style != 'none'
     assign skip_mobile_search = true
-  endif
-
-  if section.settings.search_row == 'bottom' or search_style != 'none' and skip_mobile_search == false
-    # Mobile search duplicate for when search is not in the right order for mobile layout
-    capture mobile_search
-      render 'search', class: 'desktop:hidden', style: search_style
-    endcapture
   endif
 
   assign show_language = section.settings.show_language
@@ -596,6 +583,7 @@
   .header__columns {
     --padding-block-start: var(--header-padding);
     --padding-block-end: var(--header-padding);
+    height: 100px;
   }
 
   .header:not(.header--compact) .header__row--bottom {
