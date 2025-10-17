@@ -131,7 +131,9 @@
   }
 
   .section-{{ section.id }} .home-slider.active {
-      display: block;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
   }
 
   .section-{{ section.id }} .swiper-buttons {
