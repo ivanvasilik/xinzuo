@@ -216,13 +216,13 @@
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   @media screen and (max-width: 1300px) {
-    .home-products-th {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  .section-{{ section.id }} .home-slider.active {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+  }
   }
 {% endstyle %}
 
