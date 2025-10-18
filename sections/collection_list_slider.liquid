@@ -56,11 +56,19 @@
         opacity: 0.5;
     }
 
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} h2 {
+            margin-bottom: 32px;
+            font-size: 36px;
+            padding: 0;
+        }
+        
         .section-{{ section.id }} .swiper-buttons {
             margin-top: 32px;
         }
+    }
 
+    @media screen and (max-width: 750px) {
         .section-{{ section.id }} .swiper-buttons div {
             width: 40px;
             height: 40px;
