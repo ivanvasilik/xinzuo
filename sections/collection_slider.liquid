@@ -127,7 +127,7 @@
         <span>{{ section.settings.heading }}</span>
     </div>
     <div class="collection-slider">
-        <div class="swiper">
+        <div class="collection-swiper">
             <div class="swiper-wrapper">
                 {% for product in section.settings.products %}
                     <div class="swiper-slide">
@@ -175,16 +175,16 @@
 </section>
 
 <script>
-    const swiper = new Swiper('.swiper', {
-        slidesPerView: 1.1,
+    const collectionswiper = new Swiper('.collection-swiper', {
+        slidesPerView: 1,
         spaceBetween: 10,
         breakpoints: {
             768: {
-                slidesPerView: 1.5,
+                slidesPerView: 1.6,
                 spaceBetween: 20,
             },
             1024: {
-                slidesPerView: 2.2,
+                slidesPerView: 2.6,
                 spaceBetween: 30,
             },
         },
