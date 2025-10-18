@@ -319,7 +319,17 @@
                             >
                               <span class="menu-drawer__menu-item-text wrap-text">MENU</span>
                               <span class="svg-wrapper icon-caret icon-caret--backward">
-                                {{- 'icon-caret.svg' | inline_asset_content -}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                  <g clip-path="url(#clip0_4030_5767)">
+                                    <path d="M6 3L11 8L6 13" stroke="#56565B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 3L11 8L6 13" stroke="black" stroke-opacity="0.2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_4030_5767">
+                                      <rect width="16" height="16" fill="white"/>
+                                    </clipPath>
+                                  </defs>
+                                </svg>
                               </span>
                               <span class="menu-drawer__menu-item-text wrap-text">{{ link.title | escape }}</span>
                             </button>
@@ -1085,7 +1095,6 @@
   .menu-drawer__back-button {
     display: flex;
     width: 100%;
-    padding: var(--padding-md) var(--padding-xl);
     border: none;
     align-items: center;
     color: var(--color-foreground);
@@ -1096,6 +1105,7 @@
     overflow-x: hidden;
     line-height: 1.2;
     box-shadow: none;
+    padding: 24px;
   }
 
   .menu-drawer__menu-item-text {
