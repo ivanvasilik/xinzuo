@@ -58,6 +58,7 @@
     margin: 0;
     margin-bottom: 54px;
     width: max-content;
+    line-height: 125%;
   }
 
   .section-{{ section.id }} .collection-info-div > h2:after {
@@ -186,6 +187,12 @@
 
     .section-{{ section.id }} .cw-collection {
         gap: 40px;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }} .collection-info-div > h2 {
+        font-size: 36px;
     }
   }
 {% endstyle %}
