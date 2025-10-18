@@ -99,6 +99,10 @@ header {
         color: #56565b;
     }
 
+    .menu-drawer__list-item--flat {
+        height: auto;
+    }
+
     .menu-drawer__list-item--flat > a {
         font-family: "Sen";
         font-weight: 400;
