@@ -117,10 +117,9 @@
     <div class="collection-slider">
         <div class="swiper">
             <div class="swiper-wrapper">
-                {% for block in section.blocks %}
-                    {% assign product = block.settings.product %}
+                {% for product in section.settings.products %}
                     <div class="swiper-slide">
-                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
+                        <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
                         <h2>{{ product.title }}</h2>
                         <div class="product-reviews"></div>
                         <div class="product-price">
@@ -199,6 +198,11 @@
             "label": "Header"
         },
         {
+            "type": "product_list",
+            "id": "products",
+            "label": "Products"
+        },
+        {
             "type": "color_scheme",
             "id": "color_scheme",
             "label": "t:settings.color_scheme",
@@ -223,19 +227,6 @@
             "step": 5,
             "unit": "px",
             "default": 80
-        }
-    ],
-    "blocks": [
-        {
-            "type": "block",
-            "name": "Block",
-            "settings": [
-                {
-                    "type": "product_list",
-                    "id": "image",
-                    "label": "Image"
-                }
-            ]
         }
     ],
     "presets": [
