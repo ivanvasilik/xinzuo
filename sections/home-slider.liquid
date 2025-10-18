@@ -263,7 +263,7 @@
       {% endfor %}
     </ul>
   </div>
-  {% for block in section.blocks %}
+  {% for block in section.blocks limit: 4 %}
     {% assign collection = block.settings.collection %}
     <div class="home-slider home-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
       {% for product in collection.products %}
