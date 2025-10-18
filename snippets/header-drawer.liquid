@@ -898,6 +898,9 @@
   .menu-drawer__menu--childlist:not(:has(.menu-drawer__animated-element)) {
     padding: 0;
     margin: 0 24px;
+  }
+
+  .menu-drawer__menu.has-submenu > * {
     border-left: 1px solid #56565B;
   }
 
@@ -1289,5 +1292,10 @@
 
   .menu-drawer__list-item--deep {
     height: auto !important;
+  }
+
+  .menu-drawer__menu.menu-drawer__menu--grandchildlist.details-content {
+    margin: 0 24px;
+    border-left: 1px solid #56565b;
   }
 {% endstylesheet %}
