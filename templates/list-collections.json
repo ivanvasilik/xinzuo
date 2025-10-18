@@ -236,7 +236,7 @@
       "name": "Collection Slider",
       "settings": {
         "title": "THIN. SHARP. POWERFUL",
-        "heading": "<p>The knives, <br/>People love most.</p>",
+        "heading": "<h2>The knives, <br/>People love most</h2>",
         "products": [
           "chef-knife-supreme-series",
           "chef-knife",
