@@ -54,6 +54,90 @@
         "color_scheme": "scheme-5"
       }
     },
+    "cw_collection_list_z96PNK": {
+      "type": "cw-collection-list",
+      "blocks": {
+        "block_kJJye3": {
+          "type": "block",
+          "settings": {
+            "collection": "supreme-series",
+            "image": "shopify://shop_images/04.png",
+            "image_position": "left",
+            "first_block_header": "Hardness",
+            "first_block_content": "56–58 HRC",
+            "first_block_footer": "easy sharpening",
+            "second_block_header": "German 1.4116 steel",
+            "second_block_content": "Premium Steel",
+            "second_block_footer": "proven durability",
+            "thrid_block_header": "Design",
+            "thrid_block_content": "Full Tang",
+            "thrid_block_footer": "comfort grip"
+          }
+        },
+        "block_f3DkPp": {
+          "type": "block",
+          "settings": {
+            "collection": "retro-series",
+            "image": "shopify://shop_images/03_723e214b-431d-4f52-9786-ea1992de1b98.png",
+            "image_position": "right",
+            "first_block_header": "Hardness",
+            "first_block_content": "58-60 HRC",
+            "first_block_footer": "sharper cutting",
+            "second_block_header": "Core",
+            "second_block_content": "10Cr15CoMoV",
+            "second_block_footer": "higher edge retention",
+            "thrid_block_header": "Design",
+            "thrid_block_content": "Retro-style",
+            "thrid_block_footer": "redwood with buffalo horn"
+          }
+        },
+        "block_JTa8cV": {
+          "type": "block",
+          "settings": {
+            "collection": "mo-series",
+            "image": "shopify://shop_images/03_e826fa8a-301c-4ff6-9f20-92db5084672c.png",
+            "image_position": "left",
+            "first_block_header": "Hardness",
+            "first_block_content": "60-62 HRC",
+            "first_block_footer": "high performance",
+            "second_block_header": "Damascus",
+            "second_block_content": "67 Layers",
+            "second_block_footer": "Strength & Beauty",
+            "thrid_block_header": "Handle",
+            "thrid_block_content": "Burnt White Oak",
+            "thrid_block_footer": "comfort and refined grip"
+          }
+        },
+        "block_QJTmc6": {
+          "type": "block",
+          "settings": {
+            "collection": "lan-series",
+            "image": "shopify://shop_images/03_d662372f-4811-40f9-b3a7-d11f31542a4a.png",
+            "image_position": "right",
+            "first_block_header": "Hardness",
+            "first_block_content": "62–64 HRC",
+            "first_block_footer": "extremely hard and sharp",
+            "second_block_header": "Layers",
+            "second_block_content": "73 Damascus",
+            "second_block_footer": "superior edge retention",
+            "thrid_block_header": "Handle",
+            "thrid_block_content": "Olive Wood",
+            "thrid_block_footer": "luxury craftsmanship"
+          }
+        }
+      },
+      "block_order": [
+        "block_kJJye3",
+        "block_f3DkPp",
+        "block_JTa8cV",
+        "block_QJTmc6"
+      ],
+      "name": "Custom Collection List",
+      "settings": {
+        "heading": "Explore Every Series",
+        "color_scheme": "scheme-5"
+      }
+    },
     "collection_list_Wfgh3m": {
       "type": "main-collection-list",
       "blocks": {
@@ -122,6 +206,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Collection list",
       "settings": {
         "layout_type": "grid",
@@ -145,6 +230,7 @@
   "order": [
     "collection_list_header_gy3FLh",
     "collection_list_slider_tLmmrb",
+    "cw_collection_list_z96PNK",
     "collection_list_Wfgh3m"
   ]
 }
