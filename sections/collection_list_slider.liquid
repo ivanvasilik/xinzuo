@@ -1,0 +1,48 @@
+{% style %}
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+</section>
+
+{% schema %}
+{
+    "name": "Collection List Slider",
+    "settings": [
+        {
+        "type": "text",
+        "id": "heading",
+        "label": "Slider Title"
+        },
+        {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:settings.color_scheme",
+        "default": "scheme-1"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection List Slider"
+        }
+    ]
+}
+{% endschema %}
