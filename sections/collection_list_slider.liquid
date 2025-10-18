@@ -29,6 +29,25 @@
         overflow: hidden;
         position: relative;
     }
+    
+    .section-{{ section.id }} .swiper-buttons {
+        display: flex;
+        margin-top: 64px;
+        padding: 0 32px 16px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div {
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-{{ section.id }} .swiper-buttons div[aria-disabled="true"] {
+        opacity: 0.5;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>

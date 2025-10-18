@@ -18,6 +18,14 @@
         "color_scheme": "scheme-5"
       }
     },
+    "collection_list_slider_tLmmrb": {
+      "type": "collection_list_slider",
+      "name": "Collection List Slider",
+      "settings": {
+        "heading": "Discover the difference",
+        "color_scheme": "scheme-5"
+      }
+    },
     "collection_list_Wfgh3m": {
       "type": "main-collection-list",
       "blocks": {
@@ -211,6 +219,7 @@
   },
   "order": [
     "collection_list_header_gy3FLh",
+    "collection_list_slider_tLmmrb",
     "collection_list_Wfgh3m"
   ]
 }
