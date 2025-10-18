@@ -1,0 +1,202 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding: 80px 0 48px;
+        overflow: hidden;
+    }
+    
+    .section-{{ section.id }} h2 {
+        padding: 32px;
+        max-width: 1200px;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #f9f9f7;
+        margin-bottom: 80px;
+    }
+
+    .section-{{ section.id }} h2:after {
+        content: ".";
+        color: #FD3E36;
+    }
+
+    .section-{{ section.id }} .swiper {
+        overflow: visible;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        transition: height 0.5s ease-in-out !important;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .section-{{ section.id }} .swiper-buttons {
+        display: flex;
+        margin-top: 64px;
+        padding: 0 32px 16px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div {
+        position: static;
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-{{ section.id }} .swiper-buttons div:after {
+        display: none;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div[aria-disabled="true"] {
+        opacity: 0.5;
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .swiper-buttons {
+            margin-top: 32px;
+        }
+
+        .section-{{ section.id }} .swiper-buttons div {
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <h2>{{ section.settings.heading }}</h2>
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="collection-slider collection-slider">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                    <div class="swiper-slide">
+                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
+                        <p>{{ block.settings.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="swiper-buttons">
+            <div class="swiper-button-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_4030_26868)">
+                        <path d="M15 19.5L7.5 12L15 4.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4030_26868">
+                            <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="swiper-button-next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_4030_26872)">
+                        <path d="M9 4.5L16.5 12L9 19.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4030_26872">
+                            <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1.1,
+        spaceBetween: 10,
+        breakpoints: {
+            768: {
+                slidesPerView: 1.5,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 2.2,
+                spaceBetween: 30,
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Collection List Slider",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Header"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Top Padding",
+            "min": 10,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "default": 80
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Bottom Padding",
+            "min": 10,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "default": 80
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection List Slider"
+        }
+    ]
+}
+{% endschema %}
