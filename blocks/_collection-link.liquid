@@ -46,7 +46,7 @@
 
 {% if image_only %}
   <a
-    href="{{ closest.collection.url }}"
+    href="/collections"
     class="collection-links__image"
     size="{{ section.settings.image_height }}"
     {% if onboarding %}
@@ -57,7 +57,7 @@
   </a>
 {% else %}
   <a
-    href="{{ closest.collection.url }}"
+    href="/collections"
     class="collection-links__link"
     ref="links[]"
     on:pointerenter="/select/{{ index }}"
