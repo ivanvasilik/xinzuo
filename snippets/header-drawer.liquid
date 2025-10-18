@@ -452,7 +452,7 @@
                                         {% else %}
                                           {% assign firstimage = collection.products.first %}
                                           <img src="{{ firstimage.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ firstimage.title | escape }}">
-                                        {% endif %}`
+                                        {% endif %}
                                         <ul
                                           class="menu-drawer__menu menu-drawer__menu--grandchildlist details-content{% if render_link_image %} menu-drawer__menu--grid{% endif %}"
                                           role="list"
