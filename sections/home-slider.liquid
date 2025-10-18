@@ -255,29 +255,6 @@
 </section>
 
 <script>
-  {% for block in section.blocks %}
-      const swiper_{{ forloop.index }} = new Swiper('.swiper-{{ forloop.index }}', {
-          slidesPerView: 1.1,
-          spaceBetween: 10,
-          breakpoints: {
-              768: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-              },
-              1024: {
-                  slidesPerView: 2.2,
-                  spaceBetween: 30,
-              },
-          },
-          navigation: {
-              nextEl: '.swiper-button-next-{{ forloop.index }}',
-              prevEl: '.swiper-button-prev-{{ forloop.index }}',
-          },
-      });
-  {% endfor %}
-</script>
-
-<script>
   const homeslider = (num) => {
     const homeCollections = document.querySelectorAll('.home-collection');
     const homeSliders = document.querySelectorAll('.home-slider');
