@@ -69,6 +69,38 @@ header {
     }
 }
 
+.menu-drawer__navigation {
+    .menu-drawer__list-item {
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 18px;
+        height: 50px;
+        color: #c1c4c7;
+    }
+
+    .menu-drawer__menu menu-drawer__menu--childlist > a {
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c1c4c7;
+    }
+
+    .menu-drawer__nav-buttons button {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 16px;
+        color: #56565b;
+    }
+
+    .menu-drawer__list-item--flat > a {
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 18px;
+        height: 50px;
+        color: #c1c4c7
+    }
+}
+
 .hero__content-wrapper {
     width: 35% !important;
     left: 7.5%;
