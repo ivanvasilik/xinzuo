@@ -86,7 +86,6 @@
     max-width: 1080px;
     padding: 0 32px;
     margin: auto;
-    gap: 56px;
   }
 
   .section-{{ section.id }} .product-info.active {
@@ -104,11 +103,13 @@
 
   .section-{{ section.id }} .collection-products ul {
     padding: 0;
-    margin: 0;
     border-bottom: 1px solid #86868b;
     display: flex;
     gap: 48px;
     list-style: none;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 56px;
   }
 
   .section-{{ section.id }} .collection-products ul li {
