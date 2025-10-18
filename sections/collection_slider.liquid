@@ -128,10 +128,12 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <div class="slider-header">
-        <p>{{ section.settings.title }}</p>
-        <span>{{ section.settings.heading }}</span>
-    </div>
+    {% if section.settings.show_header == true %}
+        <div class="slider-header">
+            <p>{{ section.settings.title }}</p>
+            <span>{{ section.settings.heading }}</span>
+        </div>
+    {% endif %}
     <div class="collection-slider">
         <div class="collection-swiper">
             <div class="swiper-wrapper">
@@ -214,6 +216,11 @@
             "type": "richtext",
             "id": "heading",
             "label": "Header"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_header",
+            "label": "Display Header"
         },
         {
             "type": "product_list",
