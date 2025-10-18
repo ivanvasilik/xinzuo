@@ -108,6 +108,7 @@
     border-bottom: 1px solid #86868b;
     display: flex;
     gap: 48px;
+    list-style: none;
   }
 
   .section-{{ section.id }} .collection-products ul li {
@@ -201,8 +202,12 @@
                 </div>
                 {% for product in collection.products %}
                     <div class="collection-description-span collection-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
-                        <span>{{ block.settings.description1 }}</span>
-                        <span>{{ block.settings.description2 }}</span>
+                        {% if product.description != blank %}
+                            <span>{{ product.description }}</span>
+                        {% else %}
+                            <span>{{ block.settings.description1 }}</span>
+                            <span>{{ block.settings.description2 }}</span>
+                        {% endif %}
                         <a>Learn more about {{ collection.title }}</a>
                     </div>
                 {% endfor %}
