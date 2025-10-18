@@ -289,12 +289,13 @@
                               on:click="header-drawer/back"
                               aria-label="{{ 'actions.back' | t }}"
                             >
+                              <span class="menu-drawer__menu-item-text wrap-text">MENU</span>
                               <span class="svg-wrapper icon-caret icon-caret--backward">
                                 {{- 'icon-caret.svg' | inline_asset_content -}}
                               </span>
                               <span class="menu-drawer__menu-item-text wrap-text">{{ link.title | escape }}</span>
                             </button>
-                            <button
+                            {% comment %} <button
                               class="button close-button menu-drawer__close-button"
                               type="button"
                               aria-label="{{ 'actions.close' | t }}"
@@ -303,7 +304,7 @@
                               <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
                                 {{- 'icon-close.svg' | inline_asset_content -}}
                               </span>
-                            </button>
+                            </button> {% endcomment %}
                           </div>
                           {% liquid
                             assign render_link_image = false
