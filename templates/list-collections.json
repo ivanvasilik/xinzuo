@@ -20,6 +20,34 @@
     },
     "collection_list_slider_tLmmrb": {
       "type": "collection_list_slider",
+      "blocks": {
+        "block_N8NbLP": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_588.png",
+            "description": "<p><strong>Master Craftsmanship</strong> – Every Xinzuo knife is forged with a balance of tradition and modern innovation, refined through years of dedication to the art of bladesmithing.</p>"
+          }
+        },
+        "block_aew4jN": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Step_9_Handle_Polishing.png",
+            "description": "<p><strong>Relentless Precision</strong> – From blade geometry to hand-polished edges, each detail is engineered for accuracy, ensuring consistent performance with every cut.</p>"
+          }
+        },
+        "block_dWkdxp": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_588.png",
+            "description": "<p><strong>Master Craftsmanship</strong> – Every Xinzuo knife is forged with a balance of tradition and modern innovation, refined through years of dedication to the art of bladesmithing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_N8NbLP",
+        "block_aew4jN",
+        "block_dWkdxp"
+      ],
       "name": "Collection List Slider",
       "settings": {
         "heading": "Discover the difference",
