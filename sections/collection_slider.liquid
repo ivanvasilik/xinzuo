@@ -3,8 +3,19 @@
         padding: 80px 0 48px;
         overflow: hidden;
     }
+
+    .section-{{ section.id }} .slider-header {
+        padding: 0 32px;
+    }
+
+    .section-{{ section.id }} .slider-header p {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 18px;
+        color: #c1c4c7;
+    }
     
-    .section-{{ section.id }} h2 {
+    .section-{{ section.id }} .slider-header h2 {
         padding: 32px;
         max-width: 1200px;
         font-family: "Sen";
@@ -13,7 +24,7 @@
         color: #f9f9f7;
     }
 
-    .section-{{ section.id }} h2:after {
+    .section-{{ section.id }} .slider-header h2:after {
         content: ".";
         color: #FD3E36;
     }
@@ -111,8 +122,10 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <p>{{ section.settings.title }}</p>
-    <span>{{ section.settings.heading }}</span>
+    <div class="slider-header">
+        <p>{{ section.settings.title }}</p>
+        <span>{{ section.settings.heading }}</span>
+    </div>
     <div class="collection-slider">
         <div class="swiper">
             <div class="swiper-wrapper">
