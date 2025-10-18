@@ -10,6 +10,7 @@
     color: #f9f9f7;
     max-width: 1200px;
     padding: 0 32px;
+    margin: auto;
     margin-bottom: 64px;
   }
 
@@ -37,6 +38,31 @@
 
   .section-{{ section.id }} .collection-info {
     width: 40%;
+    padding: 24px 32px;
+    gap: 54px;
+  }
+
+  .section-{{ section.id }} .collection-info > h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 48px;
+    color: #56565b;
+  }
+
+  .section-{{ section.id }} .collection-info-block p {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    color: #86868b;
+    padding-bottom: 24px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.20);
+  }
+
+  .section-{{ section.id }} .collection-info-block h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 48px;
+    color: #c1c4c7;
   }
 {% endstyle %}
 
