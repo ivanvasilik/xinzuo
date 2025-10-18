@@ -11,13 +11,12 @@
         font-weight: 600;
         font-size: 64px;
         color: #f9f9f7;
-        margin-bottom: 80px;
     }
 
-    /* .section-{{ section.id }} h2:after {
+    .section-{{ section.id }} h2:after {
         content: ".";
         color: #FD3E36;
-    } */
+    }
 
     .section-{{ section.id }} .swiper {
         overflow: visible;
@@ -113,7 +112,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <p>{{ section.settings.title }}</p>
-    <h2>{{ section.settings.heading }}</h2>
+    <span>{{ section.settings.heading }}</span>
     <div class="collection-slider">
         <div class="swiper">
             <div class="swiper-wrapper">
