@@ -146,7 +146,7 @@
         </div>
     {% endif %}
     <div class="collection-slider">
-        <div class="collection-swiper">
+        <div class="collection-swiper-{{ section.id }}">
             <div class="swiper-wrapper">
                 {% for product in section.settings.products %}
                     <div class="swiper-slide">
@@ -194,7 +194,7 @@
 </section>
 
 <script>
-    const collectionswiper = new Swiper('.collection-swiper', {
+    const collectionswiper_{{ section.id }} = new Swiper('.collection-swiper-{{ section.id }}', {
         slidesPerView: 1,
         spaceBetween: 10,
         breakpoints: {
