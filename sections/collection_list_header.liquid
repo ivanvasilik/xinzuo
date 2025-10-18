@@ -32,6 +32,26 @@
         color: #c1c4c7;
         margin: 0;
     }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .collection-list-title h2 {
+            font-size: 60px;
+        }
+
+        .section-{{ section.id }} .collection-list-title p {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .collection-list-title h2 {
+            font-size: 40px;
+        }
+
+        .section-{{ section.id }} .collection-list-title p {
+            font-size: 16px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
