@@ -118,25 +118,6 @@
       gap: 20px;
   }
 
-  .section-{{ section.id }} .swiper-buttons {
-      display: flex;
-      margin-top: 64px;
-      padding: 0 32px 16px;
-      gap: 16px;
-      justify-content: flex-end;
-  }
-
-  .section-{{ section.id }} .swiper-buttons div {
-      width: 48px;
-      height: 48px;
-      padding: 12px;
-      background: rgba(255, 255, 255, 0.05);
-  }
-
-  .section-{{ section.id }} .swiper-buttons div[aria-disabled="true"] {
-      opacity: 0.5;
-  }
-
   @media screen and (max-width: 1025px) {
     .section-{{ section.id }} img {
       height: 350px;
@@ -175,10 +156,6 @@
 
       .section-{{ section.id }} .home-menu-list ul {
           gap: 32px;
-      }
-
-      .section-{{ section.id }} .swiper-slide h2 {
-          font-size: 22px;
       }
 
       .section-{{ section.id }} .home-price span.prices {
