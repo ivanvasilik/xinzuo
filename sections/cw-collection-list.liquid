@@ -17,6 +17,27 @@
     content: ".";
     color: #FD3E36;
   }
+
+  .section-{{ section.id }} .cw-collection {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .section-{{ section.id }} .collection-image {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .section-{{ section.id }} .collection-image img {
+    width: 60%;
+  }
+
+  .section-{{ section.id }} .collection-info {
+    width: 40%;
+  }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -27,7 +48,7 @@
         {% assign collection = block.settings.collection %}
         <div class="cw-collection">
             <div class="collection-image">
-                {% if block.settings.image_position == left %}
+                {% if block.settings.image_position == "left" %}
                     {% if block.settings.image != blank %}
                         <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="{{ collection.title | escape }}">
                     {% else %}
