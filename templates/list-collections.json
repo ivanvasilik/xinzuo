@@ -72,8 +72,7 @@
             "third_block_header": "Design",
             "third_block_content": "Full Tang",
             "third_block_footer": "comfort grip",
-            "description1": "<p>The Supreme Series Chef Knife is a versatile all-rounder, perfect for chopping, slicing, dicing, mincing, and preparing ingredients for everyday cooking.</p>",
-            "description2": "<p>Balanced design with German steel ensures durability, easy sharpening, and dependable, reliable daily performance.</p>"
+            "description": "<p>The Supreme Series Chef Knife is a versatile all-rounder, perfect for chopping, slicing, dicing, mincing, and preparing ingredients for everyday cooking.<br/>Balanced design with German steel ensures durability, easy sharpening, and dependable, reliable daily performance.</p>"
           }
         },
         "block_f3DkPp": {
@@ -91,8 +90,7 @@
             "third_block_header": "Design",
             "third_block_content": "Retro-style",
             "third_block_footer": "redwood with buffalo horn",
-            "description1": "<p>The Retro Series Chef Knife delivers sharpness and Damascus beauty, excelling at slicing, chopping, dicing, and mincing with refined precision.</p>",
-            "description2": "<p>Premium Damascus steel core provides long-lasting edge retention, excellent balance, and a comfortable, artistic handle grip.</p>"
+            "description": "<p>The Retro Series Chef Knife delivers sharpness and Damascus beauty, excelling at slicing, chopping, dicing, and mincing with refined precision.<br/>Premium Damascus steel core provides long-lasting edge retention, excellent balance, and a comfortable, artistic handle grip.</p>"
           }
         },
         "block_JTa8cV": {
@@ -110,8 +108,7 @@
             "third_block_header": "Handle",
             "third_block_content": "Burnt White Oak",
             "third_block_footer": "comfort and refined grip",
-            "description1": "<p>The Mo Series Chef Knife blends 67-layer Damascus craftsmanship with precision, perfect for mastering slicing, chopping, and dicing tasks.</p>",
-            "description2": "<p>Refined oak and G10 handle pairs with premium Damascus edge for balance, sharpness, and durability.</p>"
+            "description": "<p>The Mo Series Chef Knife blends 67-layer Damascus craftsmanship with precision, perfect for mastering slicing, chopping, and dicing tasks.<br/>Refined oak and G10 handle pairs with premium Damascus edge for balance, sharpness, and durability.</p>"
           }
         },
         "block_QJTmc6": {
@@ -129,8 +126,7 @@
             "third_block_header": "Handle",
             "third_block_content": "Olive Wood",
             "third_block_footer": "luxury craftsmanship",
-            "description1": "<p>The Lan Series Chef Knife embodies luxury and performance, featuring powdered Damascus steel for hardness, effortless slicing, and edge retention.</p>",
-            "description2": "<p>Olive wood handle with copper rivets elevates comfort, artistry, and precision for passionate chefs and collectors.</p>"
+            "description": "<p>The Lan Series Chef Knife embodies luxury and performance, featuring powdered Damascus steel for hardness, effortless slicing, and edge retention.<br/>Olive wood handle with copper rivets elevates comfort, artistry, and precision for passionate chefs and collectors.</p>"
           }
         }
       },
