@@ -148,7 +148,8 @@
             %}
           </div>
         </div> {% endcomment %}
-        <div id="submenu-{{ forloop.index }}" class="header-dropdown-back" onclick="closeMenu({{ forloop.index }})">
+        <div id="submenu-{{ forloop.index }}" class="header-dropdown-all">
+          <div class="header-dropdown-back" onclick="closeMenu({{ forloop.index }})">
           <div class="header-dropdown">
             <div class="dropdown-header">
               <div class="dropdown-header-left" onclick="closeMenu({{ forloop.index }})">
@@ -249,16 +250,24 @@
 </nav>
 
 {% style %}
-  .header-dropdown-back {
+  .header-dropdown-all {
     position: fixed;
     width: 100vw;
     height: 100vh;
     left: 0;
     top: 0;
-    backdrop-filter: blur(5px);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+  }
+
+  .header-dropdown-all {
+    backdrop-filter: blur(5px);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
     z-index: 1;
   }
 
