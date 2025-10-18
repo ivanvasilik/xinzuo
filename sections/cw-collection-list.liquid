@@ -44,7 +44,13 @@
     gap: 54px;
   }
 
-  .section-{{ section.id }} .collection-info > h2 {
+  .section-{{ section.id }} .collection-info > div {
+    display: flex;
+    align-items: flex-end;
+    width: fit-content;
+  }
+
+  .section-{{ section.id }} .collection-info > div > h2 {
     font-family: "Sen";
     font-weight: 600;
     font-size: 48px;
@@ -55,11 +61,11 @@
     width: max-content;
   }
 
-  .section-{{ section.id }} .collection-info > h2:after {
+  .section-{{ section.id }} .collection-info > div > h2:after {
     content: ".";
   }
 
-  .section-{{ section.id }} .collection-info > div {
+  .section-{{ section.id }} .collection-info > div > div {
     display: flex;
     flex-direction: column;
     gap: 48px;
@@ -155,22 +161,24 @@
                         {% endif %}
                     {% endif %}
                     <div class="collection-info">
-                        <h2>{{ collection.title }}</h2>
                         <div>
-                            <div class="collection-info-block">
-                                <p>{{ block.settings.first_block_header }}</p>
-                                <h2>{{ block.settings.first_block_content }}</h2>
-                                <p>{{ block.settings.first_block_footer }}</p>
-                            </div>
-                            <div class="collection-info-block">
-                                <p>{{ block.settings.second_block_header }}</p>
-                                <h2>{{ block.settings.second_block_content }}</h2>
-                                <p>{{ block.settings.second_block_footer }}</p>
-                            </div>
-                            <div class="collection-info-block">
-                                <p>{{ block.settings.third_block_header }}</p>
-                                <h2>{{ block.settings.third_block_content }}</h2>
-                                <p>{{ block.settings.third_block_footer }}</p>
+                            <h2>{{ collection.title }}</h2>
+                            <div>
+                                <div class="collection-info-block">
+                                    <p>{{ block.settings.first_block_header }}</p>
+                                    <h2>{{ block.settings.first_block_content }}</h2>
+                                    <p>{{ block.settings.first_block_footer }}</p>
+                                </div>
+                                <div class="collection-info-block">
+                                    <p>{{ block.settings.second_block_header }}</p>
+                                    <h2>{{ block.settings.second_block_content }}</h2>
+                                    <p>{{ block.settings.second_block_footer }}</p>
+                                </div>
+                                <div class="collection-info-block">
+                                    <p>{{ block.settings.third_block_header }}</p>
+                                    <h2>{{ block.settings.third_block_content }}</h2>
+                                    <p>{{ block.settings.third_block_footer }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
