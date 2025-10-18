@@ -184,7 +184,7 @@
         <div class="collection-swiper">
             <div class="swiper-wrapper">
                 {% for product in section.settings.products %}
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" href="{{ product.url }}">
                         <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
                         <h2>{{ product.title }}</h2>
                         <div class="product-reviews"></div>
