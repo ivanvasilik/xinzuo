@@ -250,6 +250,38 @@
         "padding_top": 105,
         "padding_bottom": 65
       }
+    },
+    "complete_collection_GfJjwE": {
+      "type": "complete_collection",
+      "blocks": {
+        "block_pwGXfJ": {
+          "type": "block",
+          "settings": {
+            "heading": "XINZUO-X06",
+            "content": "Utility, Chef, and Santoku Knife Set",
+            "image": "shopify://shop_images/02_f0218d90-dacc-402b-aa19-e7c219e7fde1.png",
+            "image_position": "left"
+          }
+        },
+        "block_8kHkeq": {
+          "type": "block",
+          "settings": {
+            "heading": "XINZUO-B37",
+            "content": "Utility, Chef and Santoku  Knife Set",
+            "image": "shopify://shop_images/02_5c85fa05-0cea-4772-ad34-e79b4a33b2a5.png",
+            "image_position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "block_pwGXfJ",
+        "block_8kHkeq"
+      ],
+      "name": "Collection Complete",
+      "settings": {
+        "heading": "<h2>Complete</h2><h2>the Collection</h2>",
+        "color_scheme": "scheme-5"
+      }
     }
   },
   "order": [
@@ -257,6 +289,7 @@
     "collection_list_header_gy3FLh",
     "collection_list_slider_tLmmrb",
     "cw_collection_list_z96PNK",
-    "collection_slider_cDE76D"
+    "collection_slider_cDE76D",
+    "complete_collection_GfJjwE"
   ]
 }
