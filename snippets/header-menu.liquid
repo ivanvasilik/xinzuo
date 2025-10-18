@@ -381,12 +381,12 @@
     const menu = document.querySelector(`#submenu-${num}`);
     const back = document.querySelector(`#header-dropdown-back-${num}`);
     menu.style.maxHeight = '100vh';
-    back.style.display = 'none';
+    back.style.display = 'block';
   }
   const closeMenu = (num) => {
     const menu = document.querySelector(`#submenu-${num}`);
     const back = document.querySelector(`#header-dropdown-back-${num}`);
     menu.style.maxHeight = 0;
-    back.style.display = 'block';
+    back.style.display = 'none';
   }
 </script>
