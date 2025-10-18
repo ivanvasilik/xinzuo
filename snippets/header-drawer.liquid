@@ -102,7 +102,7 @@
             {% assign first_accordion_open = false %}
             {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
-              {% if link.title != "Logo" %}
+              {{ link.title }}
                 {% assign animation_index = animation_index | plus: 1 %}
                 <li
                   style="--menu-drawer-animation-index: {{ animation_index }};"
@@ -243,7 +243,6 @@
                     </a>
                   {% endif %}
                 </li>
-              {% endif %}
             {%- endfor -%}
           {% else %}
             {%- comment -%}
