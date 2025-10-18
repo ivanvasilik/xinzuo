@@ -749,8 +749,8 @@
                               </ul>
                             </div>
                           {% endif %} {% endcomment %}
-                          <div class="header-drawer-closediv" aria-expanded="true" on:click="header-drawer/back" aria-label="{{ 'actions.back' | t }}">
-                            <span class="header-drawer-closebtn">
+                          <div class="header-drawer-closediv">
+                            <span class="header-drawer-closebtn" aria-expanded="true" on:click="header-drawer/back" aria-label="{{ 'actions.back' | t }}">
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <g clip-path="url(#clip0_4030_5828)">
                                   <path d="M16.875 10H3.125" stroke="#56565B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -868,8 +868,8 @@
           </ul>
         </div>
       {% endif %}
-      <div class="header-drawer-closediv" aria-label="{{ 'actions.close' | t }}" on:click="/close">
-        <span class="header-drawer-closebtn">
+      <div class="header-drawer-closediv">
+        <span class="header-drawer-closebtn" aria-label="{{ 'actions.close' | t }}" on:click="/close">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <g clip-path="url(#clip0_4030_5828)">
               <path d="M16.875 10H3.125" stroke="#56565B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
