@@ -1,0 +1,48 @@
+{% style %}
+
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="collection-list-header">
+        <div class="collection-list-title">
+        <h2>{{ section.settings.header }}</h2>
+        <p>{{ section.settings.title }}</p>
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: true }}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Collection List Header",
+    "settings": [
+        {
+        "type": "text",
+        "id": "heading",
+        "label": "Header Title"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Header content"
+        },
+        {
+        "type": "video",
+        "id": "video",
+        "label": "Video"
+        },
+        {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:settings.color_scheme",
+        "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection List Header"
+        }
+    ]
+}
+{% endschema %}
