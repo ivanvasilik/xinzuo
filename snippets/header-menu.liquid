@@ -174,11 +174,19 @@
           <ul>
             {% for sublink in link.links %}
               <li class="menu-dropdown-list">
-                <a href="{{ sublink.url }}" class="mega-dropdown">
-                  <span class="mega-dropdown-title">
-                    {{ sublink.title }}
-                  </span>
-                </a>
+                {% if sublink.url contains '/collections/' %}
+                  <a href="/collections" class="mega-dropdown">
+                    <span class="mega-dropdown-title">
+                      {{ sublink.title }}
+                    </span>
+                  </a>
+                {% else %}
+                  <a href="{{ sublink.url }}" class="mega-dropdown">
+                    <span class="mega-dropdown-title">
+                      {{ sublink.title }}
+                    </span>
+                  </a>
+                {% endif %}
                 {% if sublink.links != blank %}
                   <ul
                     class="list-unstyled"
