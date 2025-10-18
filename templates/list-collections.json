@@ -9,6 +9,15 @@
  */
 {
   "sections": {
+    "collection_list_header_gy3FLh": {
+      "type": "collection_list_header",
+      "name": "Collection List Header",
+      "settings": {
+        "heading": "KNIVES",
+        "title": "",
+        "color_scheme": "scheme-5"
+      }
+    },
     "collection_list_Wfgh3m": {
       "type": "main-collection-list",
       "blocks": {
@@ -201,6 +210,7 @@
     }
   },
   "order": [
+    "collection_list_header_gy3FLh",
     "collection_list_Wfgh3m"
   ]
 }
