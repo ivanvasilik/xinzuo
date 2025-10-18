@@ -143,6 +143,10 @@
   }
 
   @media screen and (max-width: 1025px) {
+    .section-{{ section.id }} {
+        padding: 40px;
+    }
+
     .section-{{ section.id }} > h2 {
         font-size: 48px;
         margin-bottom: 36px;
@@ -153,7 +157,7 @@
     }
 
     .section-{{ section.id }} .collection-info-div > h2 {
-        font-size: 28px;
+        font-size: 24px;
         padding-bottom: 12px;
         margin-bottom: 24px;
     }
@@ -163,7 +167,7 @@
     }
 
     .section-{{ section.id }} .collection-info-block h2 {
-        font-size: 28px;
+        font-size: 24px;
     }
   }
 {% endstyle %}
