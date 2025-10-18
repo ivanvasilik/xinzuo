@@ -31,6 +31,13 @@
     {% render 'gap-style', value: section.settings.gap %}
   "
 >
+  <div class="collection-list-header">
+    <div class="collection-list-title">
+      <h2>{{ section.settings.header }}</h2>
+      <p>{{ section.settings.title }}</p>
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: true }}
+    </div>
+  </div>
   <div class="section-resource-list__content">
     {%- content_for 'blocks' -%}
   </div>
@@ -110,6 +117,21 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Header Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header content"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
     {
       "type": "collection_list",
       "id": "collection_list",
