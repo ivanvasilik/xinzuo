@@ -850,6 +850,24 @@
           </ul>
         </div>
       {% endif %}
+      <div class="header-drawer-closediv">
+        <span class="header-drawer-closebtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <g clip-path="url(#clip0_4030_5828)">
+              <path d="M16.875 10H3.125" stroke="#56565B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.875 10H3.125" stroke="black" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.75 4.375L3.125 10L8.75 15.625" stroke="#56565B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.75 4.375L3.125 10L8.75 15.625" stroke="black" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_4030_5828">
+                <rect width="20" height="20" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+          <span>GO BACK</span>
+        </span>
+      </div>
     </div>
     <div
       class="menu-drawer__backdrop"
@@ -1465,5 +1483,23 @@
     width: calc(100% - 24px);
     margin-left: 24px;
     padding: 16px 0 32px;
+  }
+
+  .header-drawer-closediv {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 12px 24px 32px;
+  }
+
+  .header-drawer-closebtn {
+    padding: 6px 0;
+    display: flex;
+    gap: 12px;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #56565b;
   }
 {% endstylesheet %}
