@@ -230,12 +230,35 @@
         "heading": "Explore Every Series",
         "color_scheme": "scheme-5"
       }
+    },
+    "collection_slider_cDE76D": {
+      "type": "collection_slider",
+      "blocks": {
+        "block_gPF3Lm": {
+          "type": "block",
+          "settings": {
+            "image": []
+          }
+        }
+      },
+      "block_order": [
+        "block_gPF3Lm"
+      ],
+      "name": "Collection Slider",
+      "settings": {
+        "title": "THIN. SHARP. POWERFUL",
+        "heading": "<p>The knives, <br/>People love most.</p>",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "collection_list_Wfgh3m",
     "collection_list_header_gy3FLh",
     "collection_list_slider_tLmmrb",
-    "cw_collection_list_z96PNK"
+    "cw_collection_list_z96PNK",
+    "collection_slider_cDE76D"
   ]
 }
