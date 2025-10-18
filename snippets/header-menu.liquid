@@ -203,7 +203,7 @@
                       {% endif %}
                     </ul>
                   {% endif %}
-                  {% assign collection_handle = link.url | split: "/" | last %}
+                  {% assign collection_handle = sublink.url | split: "/" | last %}
                   {% assign collection = collections[collection_handle] %}
                   {% if collection != blank %}
                     <ul
