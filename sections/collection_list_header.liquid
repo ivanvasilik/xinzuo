@@ -61,7 +61,7 @@
             <h2>{{ section.settings.heading }}</h2>
             <span>{{ section.settings.title }}</span>
         </div>
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: true }}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
     </div>
 </section>
 
