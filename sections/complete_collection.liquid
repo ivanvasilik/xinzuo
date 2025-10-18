@@ -1,9 +1,64 @@
 {% style %}
+    .section-{{ section.id }} {
+        padding: 64px 0;
+    }
+
+    .section-{{ section.id }} h2 {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 32px;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #f9f9f7;
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .section-{{ section.id }} .complete {
+        padding: 64px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-{{ section.id }} .complete img {
+        width: 60%;
+    }
+
+    .section-{{ section.id }} .collection-info {
+        width: 40%;
+        padding: 24px 32px;
+        max-width: 340px;
+    }
+
+    .section-{{ section.id }} .collection-info p {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 18px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .collection-info h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: #f9f9f7;
+        margin-bottom: 48px;
+    }
+
+    .section-{{ section.id }} .collection-info a {
+        display: flex;
+        gap: 12px;
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 16px;
+        color: #fd3e36
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <h2>{{ section.settings.heading }}</h2>
+    <span>{{ section.settings.heading }}</span>
     {% for block in section.blocks %}
         <div class="complete">
             {% if block.settings.image_position == "left" %}
@@ -60,7 +115,7 @@
     "name": "Collection Complete",
     "settings": [
         {
-            "type": "text",
+            "type": "richtext",
             "id": "heading",
             "label": "Header"
         },
