@@ -233,21 +233,18 @@
     },
     "collection_slider_cDE76D": {
       "type": "collection_slider",
-      "blocks": {
-        "block_gPF3Lm": {
-          "type": "block",
-          "settings": {
-            "image": []
-          }
-        }
-      },
-      "block_order": [
-        "block_gPF3Lm"
-      ],
       "name": "Collection Slider",
       "settings": {
         "title": "THIN. SHARP. POWERFUL",
         "heading": "<p>The knives, <br/>People love most.</p>",
+        "products": [
+          "chef-knife-supreme-series",
+          "chef-knife",
+          "paring-knife-supreme-series",
+          "paring-knife-supreme-series-2",
+          "paring-knife",
+          "product-x06-009"
+        ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
