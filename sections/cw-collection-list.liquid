@@ -218,8 +218,7 @@
                         {% if product.description != blank %}
                             <span>{{ product.description }}</span>
                         {% else %}
-                            <span>{{ block.settings.description1 }}</span>
-                            <span>{{ block.settings.description2 }}</span>
+                            <span>{{ block.settings.description }}</span>
                         {% endif %}
                         <a>Learn more about {{ collection.title }} ></a>
                     </div>
@@ -342,13 +341,8 @@
                 },
                 {
                     "type": "richtext",
-                    "id": "description1",
-                    "label": "Description1"
-                },
-                {
-                    "type": "richtext",
-                    "id": "description2",
-                    "label": "Description2"
+                    "id": "description",
+                    "label": "Description"
                 }
             ]
         }
