@@ -1,15 +1,43 @@
 {% style %}
+    .section-{{ section.id }} .collection-list-header {
+        padding: 32px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
 
+    .section-{{ section.id }} .collection-list-title {
+        padding: 0 32px;
+        max-width: 1200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    .section-{{ section.id }} .collection-list-title h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 80px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .collection-list-title p {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #c1c4c7;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="collection-list-header">
         <div class="collection-list-title">
-        <h2>{{ section.settings.header }}</h2>
-        <p>{{ section.settings.title }}</p>
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: true }}
+            <h2>{{ section.settings.heading }}</h2>
+            <p>{{ section.settings.title }}</p>
         </div>
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: true }}
     </div>
 </section>
 
