@@ -80,6 +80,27 @@
     color: #c1c4c7;
     margin: 0;
   }
+
+  .section-{{ section.id }} .collection-description {
+    width: 100%;
+    max-width: 1080px;
+    padding: 0 32px;
+    margin: auto;
+    gap: 56px;
+  }
+
+  .section-{{ section.id }} .product-info.active {
+    color: #f9f9f7;
+    border-bottom: 1.5px solid #f9f9f7;
+  }
+
+  .section-{{ section.id }} .collection-description {
+    display: none;
+  }
+
+  .section-{{ section.id }} .collection-description.active {
+    display: block;
+  }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -158,20 +179,40 @@
                 <div class="collection-products">
                     <ul>
                         {% for product in collection.products %}
-                            <li>{{ product.title }}</li>
+                            <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider({{ forloop.index }})">{{ product.title }}</li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="collection-description-span">
-                    <span>{{ block.settings.description1 }}</span>
-                    <span>{{ block.settings.description2 }}</span>
-                    <a>Learn more about {{ collection.title }}</a>
-                </div>
+                {% for product in collection.products %}
+                    <div class="collection-description-span collection-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+                        <span>{{ block.settings.description1 }}</span>
+                        <span>{{ block.settings.description2 }}</span>
+                        <a>Learn more about {{ collection.title }}</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     {% endfor %}
   </div>
 </section>
+
+<script>
+  const collectionslider = (num) => {
+    const products = document.querySelectorAll('.product-info');
+    const productInfos = document.querySelectorAll('.collection-description');
+    const product = document.querySelector(`.product-info-${num}`);
+    const productInfo = document.querySelector(`.collection-slider-${num}`);
+
+    products.forEach((product) => {
+      product.classList.remove('active');
+    });
+    productInfos.forEach((productInfo) => {
+      productInfo.classList.remove('active');
+    });
+    product.classList.add('active');
+    productInfo.classList.add('active');
+  };
+</script>
 
 {% schema %}
 {
