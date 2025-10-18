@@ -646,6 +646,18 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "img_with_text_QbKcBp": {
+      "type": "img-with-text",
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
     }
   },
   "order": [
@@ -656,6 +668,7 @@
     "collection_slider_cDE76D",
     "complete_collection_GfJjwE",
     "collection_slider2_etxd4G",
-    "section_N6Wm3B"
+    "section_N6Wm3B",
+    "img_with_text_QbKcBp"
   ]
 }
