@@ -363,10 +363,12 @@
                           >
                             {% assign first_accordion_open = false -%}
                             {%- for childlink in link.links -%}
+                              {% assign collection_handle = childlink.url | split: "/" | last %}
+                              {% assign collection = collections[collection_handle] %}
                               <li
                                 class="
                                   menu-drawer__list-item
-                                  {% if childlink.links != blank -%}
+                                  {% if childlink.links != blank or collection != blank -%}
                                     {% if block_settings.drawer_accordion -%} menu-drawer__list-item--deep{% else -%} menu-drawer__list-item--flat{%- endif -%}
                                   {%- endif -%}
                                   {% if block_settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}
@@ -377,8 +379,6 @@
                                     Simple links for links with no children (regardless of accordion setting), in menus with 3 levels of links
                                     This link is currently using --parent class style but --child would match the pattern on desktop
                                   {%- endcomment -%}
-                                  {% assign collection_handle = childlink.url | split: "/" | last %}
-                                  {% assign collection = collections[collection_handle] %}
                                   {% if collection == blank %}
                                     <a
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
