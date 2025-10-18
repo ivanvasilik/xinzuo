@@ -74,16 +74,25 @@
         color-{{ block_settings.color_scheme }}
       "
     >
-      <button
-        class="button button-unstyled close-button menu-drawer__close-button"
-        type="button"
-        aria-label="{{ 'actions.close' | t }}"
-        on:click="/close"
-      >
-        <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
-          {{- 'icon-close.svg' | inline_asset_content -}}
+      <div class="header-drawer-header">
+        <span class="header-drawer-close">
+          <button
+            class="button button-unstyled close-button menu-drawer__close-button"
+            type="button"
+            aria-label="{{ 'actions.close' | t }}"
+            on:click="/close"
+          >
+            <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+          <span>CLOSE</span>
         </span>
-      </button>
+        <span class="header-drawer-action">
+          {% render 'cart-drawer' %}
+          {% render 'search', style: 'default', class: 'custom-class' %}
+        </span>
+      </div>
       <nav
         class="menu-drawer__navigation"
         style="
@@ -282,6 +291,25 @@
                         style="--menu-drawer-animation-index: {{ animation_index }};"
                       >
                         <div class="menu-drawer__inner-submenu">
+                          <div class="header-drawer-header">
+                            <span class="header-drawer-close">
+                              <button
+                                class="button button-unstyled close-button menu-drawer__close-button"
+                                type="button"
+                                aria-label="{{ 'actions.close' | t }}"
+                                on:click="/close"
+                              >
+                                <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
+                                  {{- 'icon-close.svg' | inline_asset_content -}}
+                                </span>
+                              </button>
+                              <span>CLOSE</span>
+                            </span>
+                            <span class="header-drawer-action">
+                              {% render 'cart-drawer' %}
+                              {% render 'search', style: 'default', class: 'custom-class' %}
+                            </span>
+                          </div>
                           <div class="menu-drawer__nav-buttons">
                             <button
                               class="button menu-drawer__back-button focus-inset"
@@ -847,11 +875,8 @@
 
   .menu-drawer__menu.has-submenu,
   .menu-drawer__menu--childlist:not(:has(.menu-drawer__animated-element)) {
-    margin-block-end: var(--margin-xs);
-
-    @media screen and (min-width: 750px) {
-      margin-block-end: 2.5rem;
-    }
+    padding: 24px;
+    margin: 0;
   }
 
   .menu-drawer__list-item--divider {
@@ -1073,6 +1098,10 @@
   .menu-drawer__menu-item-text {
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: "Sen";
+    font-weight: 500;
+    font-size: 16px;
+    color: #56565b;
   }
 
   /** Styles when the country selector is hidden */
@@ -1118,7 +1147,7 @@
   }
 
   .menu-drawer__back-button > .svg-wrapper {
-    margin-right: var(--padding-md);
+    margin: 0 var(--padding-md);
     width: var(--icon-size-xs);
     height: var(--icon-size-xs);
   }
