@@ -95,6 +95,17 @@
 
   .section-{{ section.id }} .collection-description-span {
     display: none;
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 18px;
+    color: #86868b;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .section-{{ section.id }} .collection-description-span a {
+    color: #FD3E36;
   }
 
   .section-{{ section.id }} .collection-description-span.active {
@@ -210,7 +221,7 @@
                             <span>{{ block.settings.description1 }}</span>
                             <span>{{ block.settings.description2 }}</span>
                         {% endif %}
-                        <a>Learn more about {{ collection.title }}</a>
+                        <a>Learn more about {{ collection.title }} ></a>
                     </div>
                 {% endfor %}
             </div>
