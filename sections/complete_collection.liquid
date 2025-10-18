@@ -89,6 +89,20 @@
             margin-bottom: 32px;
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .complete {
+            display: block;
+        }
+
+        .section-{{ section.id }} .complete img {
+            width: 100%;
+        }
+
+        .section-{{ section.id }} .collection-info {
+            width: 100%;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
