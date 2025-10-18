@@ -530,7 +530,7 @@
                               </li>
                             {%- endfor -%}
                           </ul>
-                          {% liquid
+                          {% comment %} {% liquid
                             if eager_loading
                               if block_settings.menu_style == 'featured_collections'
                                 assign featured_collections = link.links | where: 'type', 'collection_link'
@@ -580,7 +580,7 @@
                                 {% endif %}
                               </ul>
                             </div>
-                          {% endif %}
+                          {% endif %} {% endcomment %}
                         </div>
                       </div>
                     </details>
