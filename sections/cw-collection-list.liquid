@@ -101,6 +101,18 @@
   .section-{{ section.id }} .collection-description-span.active {
     display: block; 
   }
+
+  .section-{{ section.id }} .collection-products ul {
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #86868b;
+    display: flex;
+    gap: 48px;
+  }
+
+  .section-{{ section.id }} .collection-products ul li {
+    padding: 16px 0;
+  }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
