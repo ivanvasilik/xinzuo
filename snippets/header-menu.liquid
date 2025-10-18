@@ -380,7 +380,7 @@
   const openMenu = (num) => {
     const menu = document.querySelector(`#submenu-${num}`);
     const back = document.querySelector(`#header-dropdown-back-${num}`);
-    menu.style.maxHeight = '100vh';
+    menu.style.maxHeight = menu.scrollHeight + 'px';
     back.style.display = 'block';
   }
   const closeMenu = (num) => {
