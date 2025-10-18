@@ -196,28 +196,28 @@
           "type": "block",
           "settings": {
             "collection_name": "SUPREME SERIES",
-            "collection": "frontpage"
+            "collection": "supreme-series"
           }
         },
         "block_zBNGEX": {
           "type": "block",
           "settings": {
             "collection_name": "RETRO SERIES",
-            "collection": "frontpage"
+            "collection": "retro-series"
           }
         },
         "block_rjVjr6": {
           "type": "block",
           "settings": {
             "collection_name": "MO SERIES",
-            "collection": "frontpage"
+            "collection": "mo-series"
           }
         },
         "block_zj8Rr9": {
           "type": "block",
           "settings": {
             "collection_name": "LAN SERIES",
-            "collection": "frontpage"
+            "collection": "lan-series"
           }
         }
       },
