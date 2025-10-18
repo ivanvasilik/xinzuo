@@ -283,18 +283,18 @@
         "color_scheme": "scheme-5"
       }
     },
-    "collection_slider_przYhX": {
-      "type": "collection_slider",
-      "name": "Collection Slider",
+    "collection_slider2_etxd4G": {
+      "type": "collection_slider2",
+      "name": "Collection Slider2",
       "settings": {
         "title": "",
         "heading": "",
         "show_header": false,
         "products": [
           "chef-knife",
-          "paring-knife-supreme-series",
+          "paring-knife-supreme-series-2",
           "product-x06-009",
-          "paring-knife-supreme-series-2"
+          "paring-knife"
         ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -309,6 +309,6 @@
     "cw_collection_list_z96PNK",
     "collection_slider_cDE76D",
     "complete_collection_GfJjwE",
-    "collection_slider_przYhX"
+    "collection_slider2_etxd4G"
   ]
 }
