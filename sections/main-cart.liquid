@@ -33,6 +33,8 @@
          endif
          assign progress_value = shipping_value | times: 100 | divided_by: credit_value
       -%}
+
+      {%- unless cart.empty? -%}
       <div class="drawer-progress-bar__wrapper">
         <p id="native-free-shipping-cta">{{ message }}</p>
         <span class="progress-bar">
@@ -44,6 +46,8 @@
           <span>$400</span>
         </span>
       </div>
+      {%- endunless -%}
+      
       <div class="cart-page__items">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
