@@ -325,6 +325,33 @@
                     </div>
                   {%- endif -%}
                   <div>
+                    {% if item.original_price != item.final_price %}
+                      <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
+                      <span>{{ item.final_price | money }}</span>
+                      <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+                      <s class="compare-at-price">
+                        {% if item.variant.compare_at_price > item.original_price %}
+                          {{ item.variant.compare_at_price | money }}
+                        {% else %}
+                          {{ item.original_price | money }}
+                        {% endif %}
+                      </s>
+                    {% else %}
+                      {% if item.variant.compare_at_price > item.original_price %}
+                        <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
+                      {% else %}
+                        <span class="visually-hidden">{{ 'content.price' | t }}</span>
+                      {% endif %}
+
+                      <span>{{ item.original_price | money }}</span>
+
+                      {% if item.variant.compare_at_price > item.original_price %}
+                        <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+                        <s class="compare-at-price">{{ item.variant.compare_at_price | money }}</s>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  <div>
                     <button
                       class="button button--tertiary cart-items__remove"
                       type="button"
