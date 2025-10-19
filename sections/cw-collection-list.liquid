@@ -373,7 +373,7 @@
         const collectionUlPrev_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelectorAll('.collection-products-ul-{{ forloop.index }}');
             ul_{{ forloop.index }}.scrollHeight -= 20;
-            console.log(ul_{{ forloop.index }}.scrollHeight);
+            console.log(ul_{{ forloop.index }});
         }
     {% endfor %}
 </script>
