@@ -450,16 +450,6 @@ footer {
             transform: translate(0, -50%);
         }
 
-        progress::-moz-progress-bar {
-            background: #CA322B33;
-        }
-        
-        progress::-webkit-progress-value {
-            background: #CA322B33;
-        }
-
-        progress::-webkit-progress-bar-value {
-            background: #CA322B33;
-        }
+        progress::-webkit-progress-bar{ background: rgba(0,0,0,0.05) !important; }
     }
 }
