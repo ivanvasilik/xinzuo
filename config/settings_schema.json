@@ -1826,11 +1826,21 @@
       },
       {
         "type": "range",
-        "id": "free_shipping_max_value",
-        "label": "Minimum amount",
-        "default": 125,
+        "id": "shipping_value",
+        "label": "Shipping amount",
+        "default": 280,
+        "min": 100,
+        "max": 400,
+        "step": 5,
+        "unit": "$"
+      },
+      {
+        "type": "range",
+        "id": "credit_value",
+        "label": "Credit amount",
+        "default": 400,
         "min": 0,
-        "max": 200,
+        "max": 500,
         "step": 5,
         "unit": "$"
       },
@@ -1838,13 +1848,19 @@
         "type": "richtext",
         "id": "shipping_message",
         "label": "Free Shipping Message",
-        "default": "<p>Spend {PRICE} more and receive Free Shipping!</p>",
+        "default": "<p>Add just {PRICE} more to unlock up to Free Delivery.</p>",
       },
       {
         "type": "richtext",
-        "id": "free_shipping_message",
+        "id": "credit_message",
+        "label": "Free Shipping Message",
+        "default": "<p>You've unlocked Free Delivery with your $282 order. Add just {PRICE} more to unlock up to $40 (10%) extra off.</p>",
+      },
+      {
+        "type": "richtext",
+        "id": "complete_message",
         "label": "Unlocked Free Shipping Message",
-        "default": "<p>Congrats! 🎉 You've unlocked Free Shipping.</p>",
+        "default": "<p>Congrats! You've unlocked up to $40 extra off.</p>",
       }
     ]
   },
