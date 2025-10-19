@@ -304,7 +304,7 @@
                         {% for product in collection.products %}
                             <li class="product-info product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
                         {% endfor %}
-                        <div class="collection-products-div1 collection-products-div1-{{ num }}">
+                        <div class="collection-products-div1 collection-products-div1-{{ num }}" onclick="collectionUlNext_{{ num }}()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                                 <g clip-path="url(#clip0_4235_8014)">
                                     <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -316,7 +316,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <div class="collection-products-div2 collection-products-div2-{{ num }}">
+                        <div class="collection-products-div2 collection-products-div2-{{ num }}" onclick="collectionUlPrev_{{ num }}()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                                 <g clip-path="url(#clip0_4235_8014)">
                                     <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -363,6 +363,18 @@
             product.classList.add('active');
             productInfo.classList.add('active');
         };
+
+        const collectionUlNext_{{ forloop.index }} = () => {
+            const ul_{{ forloop.index }} = document.querySelectorAll('.collection-products-ul-{{ forloop.index }}');
+            ul_{{ forloop.index }}.scrollHeight += 20;
+            console.log(ul{{ forloop.index }}.scrollHeight);
+        }
+
+        const collectionUlPrev_{{ forloop.index }} = () => {
+            const ul_{{ forloop.index }} = document.querySelectorAll('.collection-products-ul-{{ forloop.index }}');
+            ul_{{ forloop.index }}.scrollHeight -= 20;
+            console.log(ul{{ forloop.index }}.scrollHeight);
+        }
     {% endfor %}
 </script>
 
