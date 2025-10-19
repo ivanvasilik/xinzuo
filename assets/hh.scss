@@ -439,5 +439,15 @@ footer {
             width: 700px;
             accent-color: #CA322B;
         }
+
+        .shipping-value {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: blue;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+        }
     }
 }
