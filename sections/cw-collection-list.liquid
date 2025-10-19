@@ -376,6 +376,7 @@
         const btn_{{ forloop.index }}_width = btn_{{ forloop.index }}.offsetWidth;
 
         const changeBtn_{{ forloop.index }} = (value) => {
+            console.log(value);
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const prevBtn_{{ forloop.index }} = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const nextBtn_{{ forloop.index }} = document.querySelector('.collection-products-div2-{{ forloop.index }}');
