@@ -384,6 +384,14 @@
                 nextBtn.style.display = "none";
             }
             else { {% endcomment %}
+                if (ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + nextBtn.scrollWidth < 0) {
+                    ul_{{ forloop.index }}.style.transform = `translate(${-(ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + nextBtn.scrollWidth)}px)`;
+                    nextBtn.style.display = "none";
+                }
+                if (currentPosition > 0) {
+                    ul_{{ forloop.index }}.style.transform = `translate(0)`;
+                    prevBtn.style.display = "none";
+                }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
                 console.log(ul_{{ forloop.index }}.scrollWidth);
                 console.log(currentPosition);
@@ -397,6 +405,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 50}px)`;
             changeBtn_{{ forloop.index }}();
+            prevBtn.style.display = "none";
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
@@ -406,6 +415,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             changeBtn_{{ forloop.index }}();
+            nextBtn.style.display = "none";
         }
     {% endfor %}
 </script>
