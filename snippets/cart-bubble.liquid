@@ -34,8 +34,10 @@
     >
       {%- if limit == blank or cart.item_count < limit %}
         {{- cart.item_count -}}
-        Items
       {%- endif -%}
     </span>
+    {% if limit == blank or cart.item_count < limit %}
+      <span>Items</span>
+    {% endif %}
   </span>
 </div>
