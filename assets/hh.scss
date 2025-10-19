@@ -504,7 +504,13 @@ header-actions, .dropdown-header, .header-drawer-header {
         }
     }
 
-    .quantity-selector :is(.quantity-minus,.quantity-plus) {
-        width: auto;
+    @media screen and (max-width: 1025px) {
+        .quantity-selector :is(.quantity-minus,.quantity-plus) {
+            width: auto;
+        }
+
+        .cart-items__table-row {
+            grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) var(--cart-item-price-width);
+        }
     }
 }
