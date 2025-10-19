@@ -392,12 +392,11 @@
                     nextBtn.style.display = "none";
                 }
                 if (currentPosition > 0) {
-                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`;
+                    {% comment %} ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`; {% endcomment %}
                     prevBtn.style.display = "none";
                 }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
                 console.log(ul_{{ forloop.index }}.scrollWidth);
-                console.log(btn_{{ forloop.index }}_width);
                 console.log(currentPosition);
                 console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + btn_{{ forloop.index }}_width);
             {% comment %} } {% endcomment %}
