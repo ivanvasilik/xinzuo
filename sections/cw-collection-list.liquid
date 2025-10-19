@@ -273,7 +273,7 @@
             </div>
             <div class="collection-description">
                 {% assign num = forloop.index %}
-                <div class="collection-products-{{ num }}">
+                <div class="collection-products collection-products-{{ num }}">
                     <ul>
                         {% for product in collection.products %}
                             <li class="product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
@@ -281,7 +281,7 @@
                     </ul>
                 </div>
                 {% for product in collection.products %}
-                    <div class="collection-description-span-{{ num }} collection-slider-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+                    <div class="collection-description-span collection-description-span-{{ num }} collection-slider-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
                         {% if product.description != blank %}
                             <span>{{ product.description }}</span>
                         {% else %}
