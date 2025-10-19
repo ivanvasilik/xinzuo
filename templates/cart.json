@@ -60,8 +60,8 @@
       "settings": {
         "section_width": "page-width",
         "color_scheme": "scheme-5",
-        "padding-block-start": 24,
-        "padding-block-end": 0
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     },
     "product_list_NNFgcy": {
