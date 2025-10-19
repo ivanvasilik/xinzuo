@@ -53,7 +53,7 @@
       </div>
 
       {% unless cart.empty? %}
-        <div class="slider">
+        <div class="cart-slider">
             <div class="cart-swiper">
                 <div class="swiper-wrapper">
                     {% for product in section.settings.products %}
@@ -114,6 +114,9 @@
 </cart-items-component>
 
 {% style %}
+    .section-{{ section.id }} .cart-slider {
+        overflow: hidden;
+    }
     .section-{{ section.id }} .cart-swiper {
         overflow: visible;
     }
