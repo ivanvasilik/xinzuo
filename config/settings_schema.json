@@ -1854,7 +1854,7 @@
         "type": "richtext",
         "id": "credit_message",
         "label": "Free Shipping Message",
-        "default": "<p>You've unlocked Free Delivery with your $282 order. Add just {PRICE} more to unlock up to $40 (10%) extra off.</p>",
+        "default": "<p>You've unlocked Free Delivery with your $280 order. Add just {PRICE} more to unlock up to $40 (10%) extra off.</p>",
       },
       {
         "type": "richtext",
