@@ -398,7 +398,7 @@
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
                 console.log(ul_{{ forloop.index }}.scrollWidth);
                 console.log(currentPosition);
-                console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + btn_{{ forloop.index }}_width);
+                console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition - btn_{{ forloop.index }}_width);
             {% comment %} } {% endcomment %}
         }
 
@@ -423,7 +423,6 @@
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
-            console.log(currentPosition + 50);
             nextBtn.style.display = "flex";
             changeBtn_{{ forloop.index }}();
         }
