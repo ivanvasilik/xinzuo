@@ -441,13 +441,17 @@ footer {
         }
 
         .shipping-value {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background-color: blue;
-                position: absolute;
-                top: 50%;
-                transform: translate(0, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: blue;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        progress::-moz-progress-bar {
+            background: #CA322B33;
         }
     }
 }
