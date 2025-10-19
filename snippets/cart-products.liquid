@@ -391,7 +391,14 @@
                   </div>
                 </td>
               </tr>
-              <tr class="cart-product-mobile">
+              <tr
+                role="row"
+                class="cart-items__table-row{% if item.parent_relationship.parent != null %} cart-items__nested-line{% endif %}"
+                ref="cartItemRows[]"
+                data-parent-key="{{ item.parent_relationship.parent.key }}"
+                data-key="{{ item.key }}"
+                 class="cart-product-mobile"
+              >
                 <p>
                   <a
                     href="{{ item.url }}"
