@@ -158,6 +158,7 @@
     backdrop-filter: blur(2px);
     left: 0;
     display: none;
+    cursor: pointer;
   }
 
   .section-{{ section.id }} .collection-products-div2 {
@@ -170,6 +171,7 @@
     background: #212121;
     backdrop-filter: blur(2px);
     right: 0;
+    cursor: pointer;
   }
 
   @media screen and (max-width: 1025px) {
@@ -372,14 +374,20 @@
 
         const collectionUlNext_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            const currentPosition = ul_{{ forloop.index }}.style.transform;
-            ul_{{ forloop.index }}.style.transform = "translate(100px)";
+            const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
+            ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 20}px)`;
             console.log(ul_{{ forloop.index }}.scrollWidth, currentPosition);
+            prevBtn.style.display = "flex";
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            ul_{{ forloop.index }}.style.transform = "translate(100px)";
+            const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
+            ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 20}px)`;
             console.log(ul_{{ forloop.index }}.scrollWidth);
         }
     {% endfor %}
