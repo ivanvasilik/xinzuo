@@ -375,24 +375,21 @@
         const btn_{{ forloop.index }} = document.querySelector('.collection-products-div2');
         const btn_{{ forloop.index }}_width = btn_{{ forloop.index }}.offsetWidth;
 
-        const changeBtn_{{ forloop.index }} = () => {
+        const changeBtn_{{ forloop.index }} = (value) => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const prevBtn_{{ forloop.index }} = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const nextBtn_{{ forloop.index }} = document.querySelector('.collection-products-div2-{{ forloop.index }}');
-            let position;
-            if (ul_{{ forloop.index }}.style.transform != "") position = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
-            else position = 0;
             if (ul_{{ forloop.index }}.parentElement.offsetWidth > ul_{{ forloop.index }}.offsetWidth) {
                 prevBtn_{{ forloop.index }}.style.display = "none";
                 nextBtn_{{ forloop.index }}.style.display = "none";
             }
             else {
-                if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + position - btn_{{ forloop.index }}_width < 0) {
-                    console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + position - btn_{{ forloop.index }}_width);
+                if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + value - btn_{{ forloop.index }}_width < 0) {
+                    console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + value - btn_{{ forloop.index }}_width);
                     ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`;
                     nextBtn_{{ forloop.index }}.style.display = "none";
                 }
-                if (position > 0) {
+                if (value > 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(0)`;
                     prevBtn_{{ forloop.index }}.style.display = "none";
                     console.log("left");
@@ -409,7 +406,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 50}px)`;
             prevBtn_{{ forloop.index }}.style.display = "flex";
-            changeBtn_{{ forloop.index }}();
+            changeBtn_{{ forloop.index }}(currentPosition - 50);
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
@@ -421,7 +418,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             nextBtn_{{ forloop.index }}.style.display = "flex";
-            changeBtn_{{ forloop.index }}();
+            changeBtn_{{ forloop.index }}(currentPosition + 50);
         }
     {% endfor %}
 </script>
