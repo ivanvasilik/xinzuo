@@ -59,6 +59,12 @@
       },
       "settings": {
         "section_width": "page-width",
+        "products": [
+          "paring-knife-supreme-series",
+          "paring-knife-supreme-series-2",
+          "product-x06-009",
+          "chef-knife-supreme-series"
+        ],
         "color_scheme": "scheme-5",
         "padding-block-start": 64,
         "padding-block-end": 64
