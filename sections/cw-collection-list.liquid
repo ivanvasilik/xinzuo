@@ -373,13 +373,13 @@
         const collectionUlNext_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const currentPosition = ul_{{ forloop.index }}.style.transform;
-            ul_{{ forloop.index }}.scrollWidth += 20;
+            ul_{{ forloop.index }}.style.transform = "translate(100px)";
             console.log(ul_{{ forloop.index }}.scrollWidth, currentPosition);
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            ul_{{ forloop.index }}.scrollWidth -= 20;
+            ul_{{ forloop.index }}.style.transform = "translate(100px)";
             console.log(ul_{{ forloop.index }}.scrollWidth);
         }
     {% endfor %}
