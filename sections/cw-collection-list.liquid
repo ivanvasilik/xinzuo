@@ -417,6 +417,7 @@
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
+            console.log(currentPosition + 50)
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             nextBtn_{{ forloop.index }}.style.display = "flex";
             changeBtn_{{ forloop.index }}(currentPosition + 50);
