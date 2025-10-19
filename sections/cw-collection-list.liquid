@@ -136,6 +136,7 @@
     width: fit-content;
     margin: auto;
     transform: translate(0);
+    transition: transform 0.3s ease;
   }
 
   .section-{{ section.id }} .collection-products ul li {
@@ -376,7 +377,6 @@
         const btn_{{ forloop.index }}_width = btn_{{ forloop.index }}.offsetWidth;
 
         const changeBtn_{{ forloop.index }} = (value) => {
-            console.log(value);
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const prevBtn_{{ forloop.index }} = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const nextBtn_{{ forloop.index }} = document.querySelector('.collection-products-div2-{{ forloop.index }}');
@@ -386,14 +386,12 @@
             }
             else {
                 if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + value + btn_{{ forloop.index }}_width < 0) {
-                    console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + value + btn_{{ forloop.index }}_width);
                     ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`;
                     nextBtn_{{ forloop.index }}.style.display = "none";
                 }
                 if (value > 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(0)`;
                     prevBtn_{{ forloop.index }}.style.display = "none";
-                    console.log("left");
                 }
             }
         }
@@ -417,7 +415,6 @@
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
-            console.log(currentPosition)
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             nextBtn_{{ forloop.index }}.style.display = "flex";
             changeBtn_{{ forloop.index }}(currentPosition + 50);
