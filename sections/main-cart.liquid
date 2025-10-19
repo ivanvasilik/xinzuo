@@ -31,7 +31,7 @@
          else
           assign message = settings.complete_message
          endif
-         assign progress_value = shipping_value | times: 100 | divided_by: total_price
+         assign progress_value = shipping_value | times: 100 | divided_by: credit_value
       -%}
       <div class="drawer-progress-bar__wrapper">
         <p id="native-free-shipping-cta">{{ message }}</p>
