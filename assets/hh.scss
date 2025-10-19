@@ -426,16 +426,15 @@ footer {
                     font-size: 19px;
                 }
             }
+        }
+        .progress-bar {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
-            .progress-bar {
-                display: flex;
-                gap: 20px;
-                align-items: center;
-            }
-
-            #native-free-shipping-progress-bar {
-                width: 700px;
-            }
+        #native-free-shipping-progress-bar {
+            width: 700px;
         }
     }
 }
