@@ -384,8 +384,8 @@
                 nextBtn.style.display = "none";
             }
             else { {% endcomment %}
-                if (ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + nextBtn.scrollWidth < 0) {
-                    ul_{{ forloop.index }}.style.transform = `translate(${-(ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + nextBtn.scrollWidth)}px)`;
+                if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + nextBtn.scrollWidth < 0) {
+                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - (ul_{{ forloop.index }}.scrollWidth + nextBtn.scrollWidth)}px)`;
                     prevBtn.style.display = "none";
                 }
                 if (currentPosition > 0) {
