@@ -409,7 +409,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 50}px)`;
             changeBtn_{{ forloop.index }}();
-            prevBtn.style.display = "none";
+            prevBtn.style.display = "flex";
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
@@ -421,7 +421,7 @@
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             changeBtn_{{ forloop.index }}();
-            nextBtn.style.display = "none";
+            nextBtn.style.display = "flex";
         }
     {% endfor %}
 </script>
