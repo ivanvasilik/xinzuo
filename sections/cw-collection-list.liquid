@@ -372,8 +372,8 @@
             productInfo.classList.add('active');
         };
 
-        const ul_btn = document.querySelector('.collection-products-div2');
-        console.log(ul_btn.offsetWidth);
+        const btn_{{ forloop.index }} = document.querySelector('.collection-products-div2');
+        console.log(btn_{{ forloop.index }}.offsetWidth);
 
         const changeBtn_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
