@@ -142,6 +142,26 @@
     color: #86868b;
     cursor: pointer;
     white-space: nowrap;
+    position: relative;
+  }
+
+  .section-{{ section.id }} .collection-products ul div {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background: #212121;
+    backdrop-filter: blur(2px);
+  }
+
+  .section-{{ section.id }} .collection-products ul div:first-child {
+    left: 0;
+  }
+
+  .section-{{ section.id }} .collection-products ul div:last-child {
+    right: 0;
   }
 
   @media screen and (max-width: 1025px) {
