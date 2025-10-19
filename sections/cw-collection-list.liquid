@@ -382,7 +382,7 @@
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
-            if (ul_{{ forloop.index }}.parentElement.style.width <= ul_{{ forloop.index }}.style.width) {
+            if (ul_{{ forloop.index }}.parentElement.offsetWidth <= ul_{{ forloop.index }}.offsetWidth) {
                 prevBtn_{{ forloop.index }}.style.display = "none";
                 nextBtn_{{ forloop.index }}.style.display = "none";
             }
