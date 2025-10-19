@@ -149,7 +149,7 @@
                       {% endif %}
                     >
                       {% assign collection = item.product.collections | first %}
-                      {{- collection.title -}} - {{- item.product.title -}}
+                      {{- collection.title -}}&nbsp;-&nbsp;{{- item.product.title -}}
                     </a>
                   </p>
                   {% if item.product.vendor and block_settings.vendor %}
