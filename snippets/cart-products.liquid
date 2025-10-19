@@ -309,7 +309,7 @@
                   role="cell"
                   headers="productTotal"
                 >
-                  {%- liquid
+                  {% comment %} {%- liquid
                     if settings.currency_code_enabled_cart_items
                       assign price = item.final_line_price | money_with_currency
                       assign unit_price = item.unit_price | money_with_currency
@@ -323,7 +323,7 @@
                     <div class="cart-items__price-unit cart-secondary-typography">
                       {% render 'unit-price', price: unit_price, measurement: item.unit_price_measurement %}
                     </div>
-                  {%- endif -%}
+                  {%- endif -%} {% endcomment %}
                   <div>
                     {% if item.original_price != item.final_price %}
                       <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
