@@ -376,7 +376,9 @@
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
-            const currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
+            let currentPosition;
+            if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
+            else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 20}px)`;
             console.log(ul_{{ forloop.index }}.scrollWidth, currentPosition);
             prevBtn.style.display = "flex";
