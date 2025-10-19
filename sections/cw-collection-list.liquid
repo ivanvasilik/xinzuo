@@ -238,7 +238,7 @@
         {% assign collection = block.settings.collection %}
         <div class="cw-collection">
             <div class="collection-image" {% if block.settings.image_position == "right" %}style="flex-direction: row-reverse;"{% endif %}>
-                <div class="collection-info" {% if block.settings.image_position == "right" %}style="align-items: flex-end;"{% endif %}>
+                <div class="collection-info" {% if block.settings.image_position == "right" %}style="justify-content: flex-end;"{% endif %}>
                     <div class="collection-info-div">
                         <h2>{{ collection.title }}</h2>
                         <div>
