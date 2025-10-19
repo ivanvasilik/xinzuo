@@ -444,12 +444,10 @@ footer {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background-color: blue;
+            background-color: #f9f9f7;
             position: absolute;
             top: 50%;
             transform: translate(0, -50%);
         }
-
-        progress::-webkit-progress-bar{ background: rgba(0,0,0,0.05) !important; }
     }
 }
