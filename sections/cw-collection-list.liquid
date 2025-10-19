@@ -399,6 +399,8 @@
         }
 
         const collectionUlNext_{{ forloop.index }} = () => {
+            const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
@@ -409,6 +411,8 @@
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
+            const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
