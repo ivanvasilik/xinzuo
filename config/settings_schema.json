@@ -1819,6 +1819,32 @@
         "step": 1,
         "unit": "px",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Cart Drawer Free Shipping bar Settings"
+      },
+      {
+        "type": "range",
+        "id": "free_shipping_max_value",
+        "label": "Minimum amount",
+        "default": 125,
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "unit": "$"
+      },
+      {
+        "type": "richtext",
+        "id": "shipping_message",
+        "label": "Free Shipping Message",
+        "default": "<p>Spend {PRICE} more and receive Free Shipping!</p>",
+      },
+      {
+        "type": "richtext",
+        "id": "free_shipping_message",
+        "label": "Unlocked Free Shipping Message",
+        "default": "<p>Congrats! 🎉 You've unlocked Free Shipping.</p>",
       }
     ]
   },

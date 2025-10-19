@@ -15,7 +15,22 @@
       <div class="cart-page__title">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
-
+      {%- liquid 
+         assign message = settings.shipping_message
+         assign total_price = cart.total_price | divided_by: 100.00
+         assign balance = settings.free_shipping_max_value | minus: total_price
+         assign balance_txt = balance | times: 100.00 | money_with_currency
+         if balance <= 0
+           assign message = settings.free_shipping_message
+         else
+           assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+         endif
+      -%}
+      <div class="drawer-progress-bar__wrapper">
+        <p id="native-free-shipping-cta">{{ message }}</p>
+        <label class="progress-bar__value" htmlFor="native-free-shipping-progress-bar"><span class="hide">ADA</span></label>
+        <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.free_shipping_max_value }}"></progress>
+      </div>
       <div class="cart-page__items">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
