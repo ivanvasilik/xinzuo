@@ -412,6 +412,7 @@
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 50}px)`;
             changeBtn_{{ forloop.index }}();
             prevBtn.style.display = "flex";
+            console.log(currentPosition + 50);
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
