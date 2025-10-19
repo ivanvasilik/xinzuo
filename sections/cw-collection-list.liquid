@@ -387,12 +387,12 @@
                 nextBtn.style.display = "none";
             }
             else { {% endcomment %}
-                if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + btn_{{ forloop.index }}_width < 0) {
+                if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition - btn_{{ forloop.index }}_width < 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(0)`;
                     nextBtn.style.display = "none";
                 }
                 if (currentPosition > 0) {
-                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth + btn_{{ forloop.index }}_width}px)`;
+                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`;
                     prevBtn.style.display = "none";
                 }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
