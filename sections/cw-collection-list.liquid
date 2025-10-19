@@ -272,15 +272,16 @@
                 {% endif %}
             </div>
             <div class="collection-description">
-                <div class="collection-products">
+                {% assign num = forloop.index %}
+                <div class="collection-products-{{ num }}">
                     <ul>
                         {% for product in collection.products %}
-                            <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider({{ forloop.index }})">{{ product.title }}</li>
+                            <li class="product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% for product in collection.products %}
-                    <div class="collection-description-span collection-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+                    <div class="collection-description-span-{{ num }} collection-slider-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
                         {% if product.description != blank %}
                             <span>{{ product.description }}</span>
                         {% else %}
@@ -296,21 +297,23 @@
 </section>
 
 <script>
-  const collectionslider = (num) => {
-    const products = document.querySelectorAll('.product-info');
-    const productInfos = document.querySelectorAll('.collection-description-span');
-    const product = document.querySelector(`.product-info-${num}`);
-    const productInfo = document.querySelector(`.collection-slider-${num}`);
+    {% for block in section.blocks %}
+        const collectionslider_{{ forloop.index }} = (num) => {
+            const products = document.querySelectorAll('.product-info-{{ forloop.index }}');
+            const productInfos = document.querySelectorAll('.collection-description-span-{{ forloop.index }}');
+            const product = document.querySelector(`.product-info-{{ forloop.index }}-${num}`);
+            const productInfo = document.querySelector(`.collection-slider-{{ forloop.index }}-${num}`);
 
-    products.forEach((product) => {
-      product.classList.remove('active');
-    });
-    productInfos.forEach((productInfo) => {
-      productInfo.classList.remove('active');
-    });
-    product.classList.add('active');
-    productInfo.classList.add('active');
-  };
+            products.forEach((product) => {
+                product.classList.remove('active');
+            });
+            productInfos.forEach((productInfo) => {
+                productInfo.classList.remove('active');
+            });
+            product.classList.add('active');
+            productInfo.classList.add('active');
+        };
+    {% endfor %}
 </script>
 
 {% schema %}
