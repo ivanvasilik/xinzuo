@@ -52,58 +52,60 @@
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
+      {% unless cart.empty? %}
+        <div class="slider">
+            <div class="cart-swiper">
+                <div class="swiper-wrapper">
+                    {% for product in section.settings.products %}
+                        <a class="swiper-slide" href="{{ product.url }}">
+                            <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
+                            <h2>{{ product.title }}</h2>
+                            <div class="product-reviews"></div>
+                            <div class="product-price">
+                                <span class="prices">
+                                    <span class="sale-price">{{ product.price | money }}</span>
+                                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                                </span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="cart-swiper-buttons">
+                <div class="cart-swiper-button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <g clip-path="url(#clip0_4030_26868)">
+                            <path d="M15 19.5L7.5 12L15 4.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4030_26868">
+                                <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="cart-swiper-button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <g clip-path="url(#clip0_4030_26872)">
+                            <path d="M9 4.5L16.5 12L9 19.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4030_26872">
+                                <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+      {% endunless %}
+
       {%- unless cart.empty? -%}
         <div class="cart-page__summary">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
       
-      <div class="slider">
-          <div class="cart-swiper">
-              <div class="swiper-wrapper">
-                  {% for product in section.settings.products %}
-                      <a class="swiper-slide" href="{{ product.url }}">
-                          <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
-                          <h2>{{ product.title }}</h2>
-                          <div class="product-reviews"></div>
-                          <div class="product-price">
-                              <span class="prices">
-                                  <span class="sale-price">{{ product.price | money }}</span>
-                                  <span class="compare-price">{{ product.compare_at_price | money }}</span>
-                              </span>
-                          </div>
-                      </a>
-                  {% endfor %}
-              </div>
-          </div>
-          <div class="cart-swiper-buttons">
-              <div class="cart-swiper-button-prev">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <g clip-path="url(#clip0_4030_26868)">
-                          <path d="M15 19.5L7.5 12L15 4.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </g>
-                      <defs>
-                          <clipPath id="clip0_4030_26868">
-                              <rect width="24" height="24" fill="white"/>
-                          </clipPath>
-                      </defs>
-                  </svg>
-              </div>
-              <div class="cart-swiper-button-next">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <g clip-path="url(#clip0_4030_26872)">
-                          <path d="M9 4.5L16.5 12L9 19.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </g>
-                      <defs>
-                          <clipPath id="clip0_4030_26872">
-                              <rect width="24" height="24" fill="white"/>
-                          </clipPath>
-                      </defs>
-                  </svg>
-              </div>
-          </div>
-      </div>
-
       <div class="cart-page__more-blocks">
         {%- content_for 'blocks' -%}
       </div>
