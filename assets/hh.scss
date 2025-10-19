@@ -503,4 +503,8 @@ header-actions, .dropdown-header, .header-drawer-header {
             color: #86868b;
         }
     }
+
+    .quantity-selector :is(.quantity-minus,.quantity-plus) {
+        width: auto;
+    }
 }
