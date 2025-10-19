@@ -424,6 +424,7 @@
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
             changeBtn_{{ forloop.index }}();
             nextBtn.style.display = "flex";
+            console.log(currentPosition + 50);
         }
     {% endfor %}
 </script>
