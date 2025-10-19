@@ -399,6 +399,12 @@ footer {
     }
 }
 
+header-action {
+    .cart-bubble {
+        display: none;
+    }
+}
+
 .cart-items-component {
     .cart-page__title {
         h1 {
@@ -430,7 +436,7 @@ footer {
     }
     .drawer-progress-bar__wrapper {
         margin-bottom: 64px;
-        
+
         .progress-bar {
             display: flex;
             gap: 20px;
