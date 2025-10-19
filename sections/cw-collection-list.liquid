@@ -386,11 +386,11 @@
             else { {% endcomment %}
                 if (ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + nextBtn.scrollWidth < 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(${-(ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + nextBtn.scrollWidth)}px)`;
-                    nextBtn.style.display = "none";
+                    prevBtn.style.display = "none";
                 }
                 if (currentPosition > 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(0)`;
-                    prevBtn.style.display = "none";
+                    nextBtn.style.display = "none";
                 }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
                 console.log(ul_{{ forloop.index }}.scrollWidth);
