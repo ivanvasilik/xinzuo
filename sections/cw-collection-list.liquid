@@ -124,6 +124,7 @@
   .section-{{ section.id }} .collection-products {
     position: relative;
     margin-bottom: 56px;
+    overflow: hidden;
   }
 
   .section-{{ section.id }} .collection-products ul {
@@ -134,8 +135,7 @@
     list-style: none;
     width: fit-content;
     margin: auto;
-    max-width: 100%;
-    overflow: auto;
+    transform: translate(0);
   }
 
   .section-{{ section.id }} .collection-products ul li {
@@ -311,7 +311,7 @@
                             <li class="product-info product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
                         {% endfor %}
                     </ul>
-                    <div class="collection-products-div1 collection-products-div1-{{ num }}" onclick="collectionUlNext_{{ num }}()">
+                    <div class="collection-products-div1 collection-products-div1-{{ num }}" onclick="collectionUlPrev_{{ num }}()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                             <g clip-path="url(#clip0_4235_8014)">
                                 <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -323,7 +323,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="collection-products-div2 collection-products-div2-{{ num }}" onclick="collectionUlPrev_{{ num }}()">
+                    <div class="collection-products-div2 collection-products-div2-{{ num }}" onclick="collectionUlNext_{{ num }}()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                             <g clip-path="url(#clip0_4235_8014)">
                                 <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -372,14 +372,15 @@
 
         const collectionUlNext_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            ul_{{ forloop.index }}.scrollHeight += 20;
-            console.log(ul_{{ forloop.index }}.scrollHeight);
+            const currentPosition = ul_{{ forloop.index }}.style.transform;
+            ul_{{ forloop.index }}.scrollWidth += 20;
+            console.log(ul_{{ forloop.index }}.scrollWidth, currentPosition);
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            ul_{{ forloop.index }}.scrollHeight -= 20;
-            console.log(ul_{{ forloop.index }}.scrollHeight);
+            ul_{{ forloop.index }}.scrollWidth -= 20;
+            console.log(ul_{{ forloop.index }}.scrollWidth);
         }
     {% endfor %}
 </script>
