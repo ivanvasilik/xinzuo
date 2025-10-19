@@ -382,11 +382,11 @@
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
-            {% comment %} if (ul_{{ forloop.index }}.parentElement.style.width <= ul_{{ forloop.index }}.style.width) {
+            if (ul_{{ forloop.index }}.parentElement.style.width <= ul_{{ forloop.index }}.style.width) {
                 prevBtn_{{ forloop.index }}.style.display = "none";
                 nextBtn_{{ forloop.index }}.style.display = "none";
             }
-            else { {% endcomment %}
+            else {
                 if (-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition - btn_{{ forloop.index }}_width < 0) {
                     ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - btn_{{ forloop.index }}_width}px)`;
                     nextBtn_{{ forloop.index }}.style.display = "none";
@@ -399,7 +399,7 @@
                 console.log(ul_{{ forloop.index }}.scrollWidth);
                 console.log(currentPosition);
                 console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition - btn_{{ forloop.index }}_width);
-            {% comment %} } {% endcomment %}
+            }
         }
 
         const collectionUlNext_{{ forloop.index }} = () => {
@@ -422,7 +422,6 @@
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
-            console.log(currentPosition + 50);
             nextBtn_{{ forloop.index }}.style.display = "flex";
             changeBtn_{{ forloop.index }}();
         }
