@@ -372,10 +372,21 @@
             productInfo.classList.add('active');
         };
 
-        const collectionUlNext_{{ forloop.index }} = () => {
+        const changeBtn_{{ forloop.index }} = () {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
+            if (ul_{{ forloop.index }}.parentElement.style.width <= ul_{{ forloop.index }}.style.width) {
+                prevBtn.style.display = "none";
+                nextBtn.style.display = "none";
+            }
+            else {
+                console.log(ul_{{ forloop.index }}.style.width, ul_{{ forloop.index }}.style.scrollWidth);
+            }
+        }
+
+        const collectionUlNext_{{ forloop.index }} = () => {
+            const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
@@ -385,8 +396,6 @@
 
         const collectionUlPrev_{{ forloop.index }} = () => {
             const ul_{{ forloop.index }} = document.querySelector('.collection-products-ul-{{ forloop.index }}');
-            const prevBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
-            const nextBtn = document.querySelector('.collection-products-div1-{{ forloop.index }}');
             let currentPosition;
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
