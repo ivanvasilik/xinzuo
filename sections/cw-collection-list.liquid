@@ -394,7 +394,9 @@
                 }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
                 console.log(ul_{{ forloop.index }}.scrollWidth);
+                console.log(nextBtn.scrollWidth);
                 console.log(currentPosition);
+                console.log(-ul_{{ forloop.index }}.parentElement.offsetWidth + ul_{{ forloop.index }}.scrollWidth + currentPosition + nextBtn.scrollWidth);
             {% comment %} } {% endcomment %}
         }
 
