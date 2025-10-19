@@ -60,9 +60,9 @@
       
       <div class="slider">
           <div class="cart-swiper">
-              <div class="cart-swiper-wrapper">
+              <div class="swiper-wrapper">
                   {% for product in section.settings.products %}
-                      <a class="cart-swiper-slide" href="{{ product.url }}">
+                      <a class="swiper-slide" href="{{ product.url }}">
                           <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
                           <h2>{{ product.title }}</h2>
                           <div class="product-reviews"></div>
@@ -116,7 +116,7 @@
         overflow: visible;
     }
 
-    .section-{{ section.id }} .cart-swiper-slide {
+    .section-{{ section.id }} .swiper-slide {
         display: flex;
         flex-direction: column;
         justify-content: end;
@@ -125,7 +125,7 @@
         position: relative;
     }
 
-    .section-{{ section.id }} .cart-swiper-slide h2 {
+    .section-{{ section.id }} .swiper-slide h2 {
         padding: 24px 12px 0;
         margin: 0;
         font-family: "Sen";
@@ -134,13 +134,13 @@
         color: #c1c4c7;
     }
 
-    .section-{{ section.id }} .cart-swiper-slide img {
+    .section-{{ section.id }} .swiper-slide img {
         width: 100%;
         height: 400px;
         object-fit: cover;
     }
     
-    .section-{{ section.id }} .cart-swiper-buttons {
+    .section-{{ section.id }} .swiper-buttons {
         display: flex;
         margin-top: 64px;
         padding: 0 32px 16px;
