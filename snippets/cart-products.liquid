@@ -221,6 +221,9 @@
                     </ul>
                   {% endif %}
 
+                  <div>
+                    {{ item.product.description }}
+                  </div>
                   {% comment %} <div>
                     {% if item.original_price != item.final_price %}
                       <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
@@ -249,7 +252,7 @@
                     {% endif %}
                   </div> {% endcomment %}
                 </td>
-                <td
+                {% comment %} <td
                   class="cart-items__quantity"
                   role="cell"
                   headers="quantity"
@@ -280,7 +283,7 @@
                     {{- 'icon-delete.svg' | inline_asset_content -}}
                     <span class="visually-hidden">Remove</span>
                   </button>
-                </td>
+                </td> {% endcomment %}
                 <td
                   class="cart-items__error hidden"
                   role="cell"
@@ -320,6 +323,32 @@
                       {% render 'unit-price', price: unit_price, measurement: item.unit_price_measurement %}
                     </div>
                   {%- endif -%}
+                  <button
+                    class="button button--tertiary cart-items__remove"
+                    type="button"
+                    aria-label="{{ 'accessibility.remove_item' | t: title: item.title | escape }}"
+                    on:click="/onLineItemRemove/{{ item.index | plus: 1 }}"
+                    {% assign can_remove = item.instructions.can_remove | default: true, allow_false: true %}
+                    {% if can_remove == false %}
+                      hidden
+                    {% endif %}
+                  >
+                    {{- 'icon-delete.svg' | inline_asset_content -}}
+                    <span class="visually-hidden">Remove</span>
+                  </button>
+                  <div>
+                    {% assign can_update_quantity = item.instructions.can_update_quantity
+                      | default: true, allow_false: true
+                    %}
+                    {% render 'quantity-selector',
+                      product: item.product,
+                      in_cart_quantity: item.quantity,
+                      line_index: item.index,
+                      min: 0,
+                      class: 'cart-primary-typography',
+                      can_update_quantity: can_update_quantity
+                    %}
+                  </div>
                 </td>
               </tr>
             {% endfor %}
