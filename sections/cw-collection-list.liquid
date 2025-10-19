@@ -410,9 +410,9 @@
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition - 50}px)`;
-            changeBtn_{{ forloop.index }}();
+            console.log(currentPosition - 50);
             prevBtn.style.display = "flex";
-            console.log(currentPosition + 50);
+            changeBtn_{{ forloop.index }}();
         }
 
         const collectionUlPrev_{{ forloop.index }} = () => {
@@ -423,9 +423,9 @@
             if (ul_{{ forloop.index }}.style.transform != "") currentPosition = parseFloat(ul_{{ forloop.index }}.style.transform.match(/-?\d+\.?\d*/)[0]);
             else currentPosition = 0;
             ul_{{ forloop.index }}.style.transform = `translate(${currentPosition + 50}px)`;
-            changeBtn_{{ forloop.index }}();
-            nextBtn.style.display = "flex";
             console.log(currentPosition + 50);
+            nextBtn.style.display = "flex";
+            changeBtn_{{ forloop.index }}();
         }
     {% endfor %}
 </script>
