@@ -453,5 +453,9 @@ footer {
         progress::-moz-progress-bar {
             background: #CA322B33;
         }
+        
+        progress::-webkit-progress-value {
+            background: #CA322B33;
+        }
     }
 }
