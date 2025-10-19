@@ -389,7 +389,7 @@
                     nextBtn.style.display = "none";
                 }
                 if (currentPosition > 0) {
-                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth - nextBtn.scrollWidth}px)`;
+                    ul_{{ forloop.index }}.style.transform = `translate(${ul_{{ forloop.index }}.parentElement.offsetWidth - ul_{{ forloop.index }}.scrollWidth + nextBtn.scrollWidth}px)`;
                     prevBtn.style.display = "none";
                 }
                 console.log(ul_{{ forloop.index }}.parentElement.offsetWidth);
