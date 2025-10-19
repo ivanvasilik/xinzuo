@@ -18,17 +18,27 @@
       {%- liquid 
          assign message = settings.shipping_message
          assign total_price = cart.total_price | divided_by: 100.00
-         assign balance = settings.free_shipping_max_value | minus: total_price
-         assign balance_txt = balance | times: 100.00 | money_with_currency
-         if balance <= 0
-           assign message = settings.free_shipping_message
+         assign shipping_value = settings.shipping_value
+         assign credit_value = settings.credit_value
+         if total_price < shipping_value
+          assign balance = settings.shipping_value | minus: total_price
+          assign balance_txt = balance | times: 100.00 | money_with_currency
+          assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+         elsif total_price < credit_value
+          assign balance = settings.credit_value | minus: total_price
+          assign balance_txt = balance | times: 100.00 | money_with_currency
+          assign message = settings.credit_message | replace: '{PRICE}', balance_txt
          else
-           assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+          assign message = settings.complete_message
          endif
       -%}
       <div class="drawer-progress-bar__wrapper">
         <p id="native-free-shipping-cta">{{ message }}</p>
-        <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.free_shipping_max_value }}"></progress>
+        <span class="progress-bar">
+          <span>$0</span>
+          <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.free_shipping_max_value }}"></progress>
+          <span>$400</span>
+        </span>
       </div>
       <div class="cart-page__items">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
