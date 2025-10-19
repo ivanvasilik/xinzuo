@@ -276,7 +276,7 @@
                 <div class="collection-products collection-products-{{ num }}">
                     <ul>
                         {% for product in collection.products %}
-                            <li class="product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
+                            <li class="product-info product-info-{{ num }} product-info-{{ num }}-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="collectionslider_{{ num }}({{ forloop.index }})">{{ product.title }}</li>
                         {% endfor %}
                     </ul>
                 </div>
