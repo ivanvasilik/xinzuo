@@ -512,5 +512,13 @@ header-actions, .dropdown-header, .header-drawer-header {
         .cart-items__table-row {
             grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) var(--cart-item-price-width);
         }
+
+        .cart-items__details {
+            display: none;
+        }
+
+        .cart-product-mobile {
+            display: block;
+        }
     }
 }
