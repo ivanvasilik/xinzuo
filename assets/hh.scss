@@ -398,3 +398,29 @@ footer {
         }
     }
 }
+
+.cart-items-component {
+    .cart-page__title {
+        h1 {
+            align-items: baseline;
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 48px;
+            gap: 24px;
+            color: #f9f9f7;
+            @media screen and (max-width: 1025px) {
+                font-size: 28px;
+            }
+
+            span.cart-bubble__text {
+                font-family: "Sen";
+                font-weight: 600;
+                font-size: 22px;
+                color: #86868b;
+                @media screen and (max-width: 1025px) {
+                    font-size: 19px;
+                }
+            }
+        }
+    }
+}
