@@ -458,4 +458,48 @@ header-actions {
             transform: translate(0, -50%);
         }
     }
+
+    .cart-items__details.cart-primary-typography {
+        a {
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 22px;
+            color: #c1c4c7;
+            margin-bottom: 12px;
+        }
+
+        div {
+            font-family: "Albert Sans";
+            font-weight: 400;
+            font-size: 16px;
+            color: #86868b;
+        }
+    }
+
+    .cart-items__price.cart-secondary-typography {
+        s {
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 16px;
+            color: #86868b;
+        }
+
+        span {
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 22px;
+            color: #c1c4c7;
+        }
+
+        .quantity-selector {
+            border: none;
+        }
+
+        input {
+            font-family: "Sen";
+            font-weight: 400;
+            font-size: 16px;
+            color: #86868b;
+        }
+    }
 }
