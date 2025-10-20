@@ -412,6 +412,38 @@ header-actions, .dropdown-header, .header-drawer-header {
         .cart-bubble__background {
             display: none;
         }
+
+        .cart-bubble__text {
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 22px;
+            color: #86868b;
+        }
+
+        .cart-drawer__header {
+            p {
+                font-family: "Albert Sans";
+                font-weight: 400;
+                font-size: 16px;
+                color: #86868b;
+                line-height: 150%;
+            }
+
+            .progress-cart {
+                width: 100%;
+                accent-color: #CA322B;
+            }
+
+            .shipping-value {
+                position: absolute;
+                top: 50%;
+                transform: translate(0 -50%);
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: white;
+            }
+        }
     }
 }
 
