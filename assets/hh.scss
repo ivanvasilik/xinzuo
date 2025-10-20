@@ -520,5 +520,20 @@ header-actions, .dropdown-header, .header-drawer-header {
         .quantity-selector {
             height: 40px;
         }
+
+        .cart-items__table-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .cart-items__media {
+            width: 30%;
+        }
+
+        .cart-items__details {
+            width: 100%;
+            order: 1
+        }
     }
 }
