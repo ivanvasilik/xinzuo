@@ -404,7 +404,7 @@
     <div class="cart-swiper">
       <div class="swiper-wrapper">
         {% for product in section.settings.products %}
-          <a class="swiper-slide" href="{{ product.url }}">
+          <div class="swiper-slide">
             <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
             {% assign collection = product.collections | first %}
             <h2>{{- collection.title -}}&nbsp;-&nbsp;{{- product.title -}}</h2>
@@ -422,7 +422,7 @@
               product: product,
               add_to_cart_text: 'Add To Cart'
             %}
-          </a>
+          </div>
         {% endfor %}
       </div>
     </div>
