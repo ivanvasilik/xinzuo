@@ -247,6 +247,104 @@
   </div>
 </div>
 
+{% style %}
+  .cart-summary-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .cart-summary-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cart-summary-block-header {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #c1c4c7;
+  }
+
+  .cart-summary-coupons {
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #151515;
+  }
+
+  .cart-summary-coupon1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cart-summary-coupon1 span {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
+    color: #c1c4c7;
+  }
+
+  .cart-summary-coupon2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cart-summary-coupon2 span {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
+    color: #34a853;
+    padding: 12px 0;
+  }
+
+  .cart-summary-gift {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid #feb2af;
+    background: linear-gradient(0deg, rgba(253, 62, 54, 0.10) 0%, rgba(253, 62, 54, 0.10) 100%), #050505;
+  }
+
+  .cart-summary-gift div {
+    padding: 16px 0;
+  }
+
+  .cart-summary-gift h2 {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffd8d7;
+    margin-bottom: 10px;
+  }
+
+  .cart-summary-gift p {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: rbga(254, 178, 175, 0.5);
+    margin-bottom: 20px;
+  }
+
+  .cart-summary-gift span {
+    font-family: "Albert Sans";
+    font-weight: 500;
+    font-size: 14px;
+    color: #fe9f9b;
+  }
+
+  .cart-summary-gift img {
+    width: auto;
+    height: 100%;
+  }
+{% endstyle %}
+
 {% stylesheet %}
   .cart-actions {
     display: flex;
