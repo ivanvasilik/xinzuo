@@ -582,6 +582,10 @@ header {
         }
 
 .cart-page {
+    .cart-bubble__background {
+        display: none;
+    }
+    
     .cart-page__items {
         overflow: hidden;
     }
