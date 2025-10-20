@@ -457,6 +457,13 @@ header-actions, .dropdown-header, .header-drawer-header {
             top: 50%;
             transform: translate(0, -50%);
         }
+
+        p {
+            font-family: "Albert Sans";
+            font-weight: 400;
+            font-size: 16px;
+            color: #86868b;
+        }
     }
 
     .cart-items__details.cart-primary-typography {
