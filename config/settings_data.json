@@ -66,6 +66,11 @@
     "show_installments": true,
     "show_accelerated_checkout_buttons": true,
     "cart_thumbnail_border": "none",
+    "drawer_recommend": [
+      "chef-knife-supreme-series",
+      "paring-knife-supreme-series",
+      "paring-knife"
+    ],
     "drawer_color_scheme": "scheme-5",
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
