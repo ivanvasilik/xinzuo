@@ -508,6 +508,10 @@ header-actions, .dropdown-header, .header-drawer-header {
         display: none;
     }
 
+    .cart-items__table-row {
+        padding: 0 !important;
+    }
+
     @media screen and (max-width: 1025px) {
         .quantity-selector :is(.quantity-minus,.quantity-plus) {
             width: auto;
