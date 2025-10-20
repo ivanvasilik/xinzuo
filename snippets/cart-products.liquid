@@ -416,24 +416,12 @@
                 </span>
             </div>
             {% liquid
-              assign inventory_quantity = product.inventory_quantity
-              assign inventory_policy = product.inventory_policy
-              if inventory_managed
-                if inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
-                  assign can_add_to_cart = false
-                  assign add_to_cart_text = 'products.product.sold_out' | t
-                else
-                  assign can_add_to_cart = true
-                  assign add_to_cart_text = 'products.product.add_to_cart' | t
-                endif
+              if product.available
+                assign can_add_to_cart = true
+                assign add_to_cart_text = 'products.product.add_to_cart' | t
               else
-                if product.selected_or_first_available_variant != null
-                  assign can_add_to_cart = true
-                  assign add_to_cart_text = 'products.product.add_to_cart' | t
-                else
-                  assign can_add_to_cart = false
-                  assign add_to_cart_text = 'products.product.unavailable' | t
-                endif
+                assign can_add_to_cart = false
+                assign add_to_cart_text = 'products.product.unavailable' | t
               endif
             %}
             {% render 'add-to-cart-button',
