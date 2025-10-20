@@ -582,6 +582,10 @@ header {
         }
 
 .cart-page {
+    .cart-page__items {
+        overflow: hidden;
+    }
+
     .cart-items-component {
         .cart-page__title {
             h1 {
@@ -663,10 +667,6 @@ header {
                 font-size: 16px;
                 color: #86868b;
             }
-        }
-
-        .cart-page__items {
-            overflow: hidden;
         }
 
         .cart-items__title-mobile {
