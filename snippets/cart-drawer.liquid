@@ -14,6 +14,54 @@
   fetchpriority="low"
 ></script>
 
+{% style %}
+  .drawer-recommend {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .drawer-recommend h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+  }
+
+  .drawer-product {
+    display: flex;
+    gap: 20px;
+  }
+
+  .drawer-product img {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .drawer-product-info {
+    width: 100%;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .drawer-product-info p {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #c1c4c7;
+  }
+
+  .drawer-product-info span {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #86868b;
+  }
+{% endstyle %}
+
 <cart-drawer-component
   class="cart-drawer"
   {{ block.shopify_attributes }}
