@@ -242,32 +242,44 @@
         margin-bottom: 36px;
       }
 
-      @media screen and (max-width: 750px) {
-        .section-{{ section.id }} .cart-swiper-buttons {
-          margin-top: 32px;
-        }
+      .section-{{ section.id }} .swiper-slide h2 {
+        font-size: 16px;
+      }
 
-        .section-{{ section.id }} .cart-swiper-buttons div {
-          width: 40px;
-          height: 40px;
-          padding: 8px;
-        }
+      .section-{{ section.id }} .product-price span.prices {
+        font-size: 16px;
+      }
 
-        .section-{{ section.id }} .slider-header p {
-          font-size: 16px;
-        }
+      .section-{{ section.id }} .product-price span.compare-price {
+        font-size: 14px;
+      }
+    }
 
-        .section-{{ section.id }} .swiper-slide h2 {
-          font-size: 18px;
-        }
+    @media screen and (max-width: 750px) {
+      .section-{{ section.id }} .cart-swiper-buttons {
+        margin-top: 32px;
+      }
 
-        .section-{{ section.id }} .product-price span.prices {
-          font-size: 22px;
-        }
+      .section-{{ section.id }} .cart-swiper-buttons div {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+      }
 
-        .section-{{ section.id }} .product-price span.compare-prices {
-          font-size: 19px;
-        }
+      .section-{{ section.id }} .slider-header p {
+        font-size: 16px;
+      }
+
+      .section-{{ section.id }} .swiper-slide h2 {
+        font-size: 18px;
+      }
+
+      .section-{{ section.id }} .product-price span.prices {
+        font-size: 22px;
+      }
+
+      .section-{{ section.id }} .product-price span.compare-prices {
+        font-size: 19px;
       }
     }
 {% endstyle %}
