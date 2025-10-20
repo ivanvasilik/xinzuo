@@ -5,8 +5,80 @@
 {%- enddoc -%}
 
 <div class="cart__summary-totals">
-  {% # We need to keep this node in place to allow morphing to work properly # %}
-  <div class="cart__original-total-container cart-primary-typography">
+  <div class="cart-summary-block">
+    <p class="cart-summary-block-header">Coupons</p>
+    <div class="cart-summary-coupons">
+      <div class="cart-summary-coupon1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <g clip-path="url(#clip0_4235_13923)">
+            <path d="M19.0086 10.625L11.25 2.86641C11.1344 2.74983 10.9967 2.65741 10.845 2.59451C10.6933 2.5316 10.5306 2.49948 10.3664 2.50001H3.12501C2.95925 2.50001 2.80027 2.56585 2.68306 2.68306C2.56585 2.80027 2.50001 2.95925 2.50001 3.12501V10.3664C2.49948 10.5306 2.5316 10.6933 2.59451 10.845C2.65741 10.9967 2.74983 11.1344 2.86641 11.25L10.625 19.0086C10.7411 19.1247 10.8789 19.2168 11.0306 19.2796C11.1822 19.3425 11.3448 19.3748 11.509 19.3748C11.6732 19.3748 11.8357 19.3425 11.9874 19.2796C12.1391 19.2168 12.2769 19.1247 12.393 19.0086L19.0086 12.393C19.1247 12.2769 19.2168 12.1391 19.2796 11.9874C19.3425 11.8357 19.3748 11.6732 19.3748 11.509C19.3748 11.3448 19.3425 11.1822 19.2796 11.0306C19.2168 10.8789 19.1247 10.7411 19.0086 10.625ZM6.56251 7.50001C6.37709 7.50001 6.19583 7.44502 6.04166 7.34201C5.88749 7.239 5.76733 7.09258 5.69637 6.92127C5.62541 6.74997 5.60685 6.56147 5.64302 6.37961C5.67919 6.19775 5.76848 6.03071 5.89959 5.89959C6.03071 5.76848 6.19775 5.67919 6.37961 5.64302C6.56147 5.60685 6.74997 5.62541 6.92127 5.69637C7.09258 5.76733 7.239 5.88749 7.34201 6.04166C7.44502 6.19583 7.50001 6.37709 7.50001 6.56251C7.50001 6.81115 7.40123 7.0496 7.22542 7.22542C7.0496 7.40123 6.81115 7.50001 6.56251 7.50001Z" fill="#86868B"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_4235_13923">
+              <rect width="20" height="20" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+        <span>Coupons</span>
+      </div>
+      <div class="cart-summary-coupon2">
+        <span>SALE10</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <g clip-path="url(#clip0_4235_13931)">
+            <path d="M15.625 4.375L4.375 15.625" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.625 15.625L4.375 4.375" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_4235_13931">
+              <rect width="20" height="20" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="cart-summary-block">
+    <p class="cart-summary-block-header">Gifting</p>
+    <div class="cart-summary-gift">
+      <div>
+        <h2>Buying for a loved one?</h2>
+        <p>Elegant, gift-ready packaging included.</p>
+        <span>Add Message</span>
+      </div>
+      <img src="{{ 'Frame_666.png?v=1760930025' | file_url }}" width="100%" height="100%" alt="Gift Card">
+    </div>
+  </div>
+  <div class="cart-summary-block">
+    <p class="cart-summary-block-header">Price Details</p>
+    <div class="cart-summary-prices">
+      <div class="cart-summary-price">
+        <span>Subtotal</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <div class="cart-summary-price">
+        {% assign discount = 0 %}
+        {% for discount_application in cart.cart_level_discount_applications %}
+          {% assign discount = discount | plus: discount_application.total_allocated_amount %}
+        {% endfor %}
+        <span>Coupon discount</span>
+        <span style="color: #34a853;">{{ discount | money }}</span>
+      </div>
+      <div class="cart-summary-price">
+        <span>Delivery Charges</span>
+        {% if cart.shipping_price == 0 or cart.total_price >= 0 %}
+          <span style="color: #56565b;">{{ cart.shipping_price | money }}</span>
+          <span>Free</span>
+        {% else %}
+          <span>{{ cart.shipping_price | money }}</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="cart-summary-total">
+      <p>Total Amount</p>
+      <span>{{ cart.total_price | money }}</span>
+    </div>
+  </div>
+  {% comment %} <div class="cart__original-total-container cart-primary-typography">
     {%- if cart.cart_level_discount_applications.size > 0 -%}
       <span class="cart__summary-item cart__original-total">
         <span class="cart__original-total-label">{{ 'content.cart_subtotal' | t }}</span>
@@ -84,7 +156,7 @@
     <div class="cart__summary-item tax-note cart-primary-typography">
       {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
     </div>
-  </div>
+  </div> {% endcomment %}
 </div>
 
 <div class="cart__ctas">
@@ -111,6 +183,68 @@
       {{ content_for_additional_checkout_buttons }}
     </div>
   {% endif %}
+</div>
+
+<div class="cart-summary-footer">
+  <div>
+    <p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <g clip-path="url(#clip0_4235_14051)">
+          <path d="M16.75 7.73785H4.25C3.90482 7.73785 3.625 8.01768 3.625 8.36285V17.1129C3.625 17.458 3.90482 17.7379 4.25 17.7379H16.75C17.0952 17.7379 17.375 17.458 17.375 17.1129V8.36285C17.375 8.01768 17.0952 7.73785 16.75 7.73785Z" stroke="#C1C4C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.5 13.6754C11.0178 13.6754 11.4375 13.2556 11.4375 12.7379C11.4375 12.2201 11.0178 11.8004 10.5 11.8004C9.98223 11.8004 9.5625 12.2201 9.5625 12.7379C9.5625 13.2556 9.98223 13.6754 10.5 13.6754Z" fill="#C1C4C7"/>
+          <path d="M7.375 7.73785V5.23785C7.375 4.40905 7.70424 3.6142 8.29029 3.02815C8.87634 2.44209 9.6712 2.11285 10.5 2.11285C11.3288 2.11285 12.1237 2.44209 12.7097 3.02815C13.2958 3.6142 13.625 4.40905 13.625 5.23785V7.73785" stroke="#C1C4C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_4235_14051">
+            <rect width="20" height="20" fill="white" transform="translate(0.5 0.862854)"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <span>Secure checkout powered by Shopify</span>
+    </p>
+    <p>Free returns in 30 days</p>
+  </div>
+  <div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+        <g clip-path="url(#clip0_4235_14063)">
+          <path d="M3.125 12.1128L7.5 16.4878L17.5 6.48779" stroke="#FD3E36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_4235_14063">
+            <rect width="20" height="20" fill="white" transform="translate(0 0.862793)"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <span>Premium Craftsmanship with 100% authentic Damascus steel</span>
+    </div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+        <g clip-path="url(#clip0_4235_14063)">
+          <path d="M3.125 12.1128L7.5 16.4878L17.5 6.48779" stroke="#FD3E36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_4235_14063">
+            <rect width="20" height="20" fill="white" transform="translate(0 0.862793)"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <span>Hassle-Free 30-Day Returns for your confidence</span>
+    </div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+        <g clip-path="url(#clip0_4235_14063)">
+          <path d="M3.125 12.1128L7.5 16.4878L17.5 6.48779" stroke="#FD3E36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_4235_14063">
+            <rect width="20" height="20" fill="white" transform="translate(0 0.862793)"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <span>Trusted by Chefs Worldwide for sharpness & durability</span>
+    </div>
+  </div>
 </div>
 
 {% stylesheet %}
