@@ -42,8 +42,8 @@
           <div style="position: relative">
             <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
             <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
-            <span style="transform: translate(-50%);left: {{ progress_value }}%;color: #f9f9f7;">FREE DELIVERY</span>
-            <span style="right: 0;color: #86868b;">${{ settings.credit_value }} DISCOUNT</span>
+            <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #f9f9f7;{% endif %}">FREE DELIVERY</span>
+            <span style="right: 0;{% if total_price > credit_value %}color: #f9f9f7;{% endif %}">${{ settings.credit_value }} DISCOUNT</span>
           </div>
           <span>$400</span>
         </span>
@@ -224,6 +224,7 @@
       font-family: "Sen";
       font-weight: 500;
       font-size: 14px;
+      color: #86868b;
     }
 
     @media screen and (max-width: 1300px) {
