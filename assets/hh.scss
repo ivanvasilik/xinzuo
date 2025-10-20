@@ -515,6 +515,10 @@ header-actions, .dropdown-header, .header-drawer-header {
         }
     }
 
+    .cart-page__items {
+        overflow: hidden;
+    }
+
     .cart-items__title-mobile {
         display: none;
     }
