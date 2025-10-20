@@ -712,23 +712,10 @@ header {
         }
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-    border-radius: 5px;
-}
- 
-::-webkit-scrollbar-thumb {
-  background: #888;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
+::-webkit-scrollbar             { width: 10px; }
+::-webkit-scrollbar-track       { background: #FAFAFA; }
+::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
+::-webkit-scrollbar-thumb:hover { background: rgba(32, 74, 52, 1); }
 
 .cart-drawer__items::-webkit-scrollbar {
     width: 10px;
