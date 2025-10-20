@@ -505,6 +505,22 @@ header-actions, .dropdown-header, .header-drawer-header {
                 align-items: flex-end;
                 justify-content: space-between;
 
+                .cart-drawer-price {
+                    span {
+                        font-family: "Sen";
+                        font-weight: 600;
+                        font-size: 22px;
+                        color: #c1c4c7;
+                    }
+
+                    s {
+                        font-family: "Sen";
+                        font-weight: 500;
+                        font-size: 14px;
+                        color: #86868b;
+                    }
+                }
+
                 .cart-drawer-quantity {
                     .quantity-selector {
                         width: 90px;
@@ -515,6 +531,14 @@ header-actions, .dropdown-header, .header-drawer-header {
                             width: 30%;
                             height: 100%;
                         }
+                    }
+
+                    * {
+                        font-family: "Sen";
+                        border: none;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #86868b;
                     }
                 }
             }
