@@ -438,10 +438,10 @@
             %}
             {% render 'add-to-cart-button',
               id: 'Cart-page-slider-' | append: product.id,
-              class: 'add-to-cart-button',
+              class: can_add_to_cart,
               can_add_to_cart: product.available,
               product: product,
-              add_to_cart_text: 'Add To Cart'
+              add_to_cart_text: add_to_cart_text
             %}
           </div>
         {% endfor %}
