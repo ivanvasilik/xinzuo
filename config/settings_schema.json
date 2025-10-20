@@ -1861,6 +1861,11 @@
         "id": "complete_message",
         "label": "Unlocked Free Shipping Message",
         "default": "<p>Congrats! You've unlocked up to $40 extra off.</p>",
+      },
+      {
+        "type": "product_list",
+        "id": "drawer_recommend",
+        "label": "Recommend Products",
       }
     ]
   },
