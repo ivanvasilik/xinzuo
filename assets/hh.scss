@@ -454,6 +454,48 @@ header-actions, .dropdown-header, .header-drawer-header {
                 background-color: white;
             }
         }
+
+        .cart-items__table-row {
+            grid-template-columns: 120px auto 0;
+            gap: 0;
+        }
+
+        .cart-drawer-img {
+            margin-right: 20px;
+        }
+
+        .cart-drawer-info {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .cart-drawer-info-div2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .cart-items__remove {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .cart-drawer-info-div1 {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            .cart-drawer-quantity {
+                width: 100px;
+                height: 30px;
+
+                .quantity-selector {
+                    border: none;
+                }
+            }
+        }
     }
 }
 
