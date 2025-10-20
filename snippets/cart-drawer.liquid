@@ -98,11 +98,11 @@
               {% render 'cart-products' %}
             </scroll-hint>
 
-            <div
+            {% comment %} <div
               class="cart-drawer__summary"
             >
               {% render 'cart-summary' %}
-            </div>
+            </div> {% endcomment %}
           </div>
         {%- endif -%}
       </cart-items-component>
