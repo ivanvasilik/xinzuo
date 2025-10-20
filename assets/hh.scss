@@ -504,6 +504,10 @@ header-actions, .dropdown-header, .header-drawer-header {
         }
     }
 
+    .cart-items__title-mobile {
+        display: none;
+    }
+
     @media screen and (max-width: 1025px) {
         .quantity-selector :is(.quantity-minus,.quantity-plus) {
             width: auto;
@@ -518,6 +522,10 @@ header-actions, .dropdown-header, .header-drawer-header {
         }
 
         .cart-product-mobile {
+            display: block;
+        }
+
+        .cart-items__title-mobile {
             display: block;
         }
     }
