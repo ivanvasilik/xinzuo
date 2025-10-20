@@ -14,7 +14,7 @@
     data-maintain-ratio
   {% endif %}
 >
-  {% comment %} <span class="cart-bubble__background"></span> {% endcomment %}
+  <span class="cart-bubble__background"></span>
   <span
     ref="cartBubbleText"
     class="cart-bubble__text"
@@ -37,7 +37,7 @@
       {%- endif -%}
     </span>
     {% if limit == blank or cart.item_count < limit %}
-      <span>Items</span>
+      <span class="cart-bubble-item">Items</span>
     {% endif %}
   </span>
 </div>
