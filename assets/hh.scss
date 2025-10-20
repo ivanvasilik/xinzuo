@@ -403,6 +403,16 @@ header-actions, .dropdown-header, .header-drawer-header {
     .cart-bubble-item {
         display: none;
     }
+
+    .cart-drawer__header {
+        .cart-bubble-item {
+            display: block;
+        }
+
+        .cart-bubble__background {
+            display: none;
+        }
+    }
 }
 
 .cart-items-component {
