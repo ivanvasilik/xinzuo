@@ -421,7 +421,7 @@
                 assign add_to_cart_text = 'products.product.add_to_cart' | t
               else
                 assign can_add_to_cart = false
-                assign add_to_cart_text = 'products.product.unavailable' | t
+                assign add_to_cart_text = 'products.product.sold_out' | t
               endif
             %}
             {% render 'add-to-cart-button',
