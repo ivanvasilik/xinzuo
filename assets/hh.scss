@@ -755,3 +755,15 @@ header {
         max-width: unset;
     }
 }
+
+.media-gallery--two-column .media-gallery__grid {
+    grid-template-columns: 1fr;
+}
+
+ul.media-gallery__grid li.product-media-container {
+    display: none;
+}
+
+ul.media-gallery__grid li.product-media-container:first-child {
+    display: block;
+}
