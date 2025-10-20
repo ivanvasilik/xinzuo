@@ -415,12 +415,31 @@
                     <span class="compare-price">{{ product.compare_at_price | money }}</span>
                 </span>
             </div>
+            {% liquid
+              if inventory_managed
+                if inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
+                  assign can_add_to_cart = false
+                  assign add_to_cart_text = 'products.product.sold_out' | t
+                else
+                  assign can_add_to_cart = true
+                  assign add_to_cart_text = 'products.product.add_to_cart' | t
+                endif
+              else
+                if closest.product.selected_or_first_available_variant != null
+                  assign can_add_to_cart = true
+                  assign add_to_cart_text = 'products.product.add_to_cart' | t
+                else
+                  assign can_add_to_cart = false
+                  assign add_to_cart_text = 'products.product.unavailable' | t
+                endif
+              endif
+            %}
             {% render 'add-to-cart-button',
               id: 'Cart-page-slider-' | append: product.id,
               class: 'add-to-cart-button',
-              can_add_to_cart: product.available,
+              can_add_to_cart: can_add_to_cart,
               product: product,
-              add_to_cart_text: 'Add To Cart'
+              add_to_cart_text: add_to_cart_text
             %}
           </div>
         {% endfor %}
