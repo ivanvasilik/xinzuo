@@ -415,6 +415,13 @@
                     <span class="compare-price">{{ product.compare_at_price | money }}</span>
                 </span>
             </div>
+            {% render 'add-to-cart-button',
+              id: 'Cart-page-slider-' | append: product.id,
+              class: 'add-to-cart-button',
+              can_add_to_cart: product.available,
+              product: product,
+              add_to_cart_text: 'Add To Cart'
+            %}
           </a>
         {% endfor %}
       </div>
