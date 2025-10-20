@@ -386,10 +386,7 @@
 
     .section--page-width .cart-page:has(.cart__container--extend) {
       grid-column: 2 / 4;
-      grid-template-columns: 1fr minmax(
-          var(--sidebar-width),
-          calc((100vw - var(--page-width)) / 2 + var(--sidebar-width))
-        );
+      grid-template-columns: 1fr minmax(var(--sidebar-width), 440px);
     }
 
     .cart__container--extend {
