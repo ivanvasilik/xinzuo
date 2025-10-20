@@ -41,9 +41,9 @@
           <span>$0</span>
           <div style="position: relative">
             <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
-            <div class="shipping-value" style="left: {{ progress_value }}%"></div>
-            <span>FREE DELIVERY</span>
-            <span>$40 DISCOUNT</span>
+            <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
+            <span style="transform: translate(-50%);left: {{ progress_value }}%;color: #f9f9f7;">FREE DELIVERY</span>
+            <span style="right: 0;color: #86868b;">${{ settings.credit_value }}&nbsp;DISCOUNT</span>
           </div>
           <span>$400</span>
         </span>
@@ -214,6 +214,16 @@
         line-height: 250%;
         align-items: center;
         gap: 15px;
+    }
+
+    #native-free-shipping-progress-bar span {
+      position: absolute;
+      top: 20px;
+      line-height: 1;
+      text-align: center;
+      font-family: "Sen";
+      font-weight: 500;
+      font-size: 14px;
     }
 
     @media screen and (max-width: 1300px) {
