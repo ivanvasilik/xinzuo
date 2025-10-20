@@ -482,16 +482,16 @@
                             {% endif %}
                           </s>
                         {% else %}
+                          <span>{{ item.original_price | money }}</span>
                           {% if item.variant.compare_at_price > item.original_price %}
                             <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
                           {% else %}
                             <span class="visually-hidden">{{ 'content.price' | t }}</span>
                           {% endif %}
                           {% if item.variant.compare_at_price > item.original_price %}
-                            <s class="compare-at-price">{{ item.variant.compare_at_price | money }}</s>
                             <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+                            <s class="compare-at-price">{{ item.variant.compare_at_price | money }}</s>
                           {% endif %}
-                          <span>{{ item.original_price | money }}</span>
                         {% endif %}
                       </div>
                       <div class="cart-drawer-quantity">
