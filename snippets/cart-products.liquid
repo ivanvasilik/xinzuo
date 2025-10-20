@@ -441,18 +441,6 @@
                         <span>{{ item.product.description }}</span>
                       </div>
                       <div class="cart-product-remove">
-                        <div
-                          class="cart-item__error"
-                          role="alert"
-                        >
-                          <span class="svg-wrapper">
-                            {{- 'icon-error.svg' | inline_asset_content -}}
-                          </span>
-                          <small
-                            class="cart-item__error-text cart-primary-typography"
-                            ref="cartItemError-{{ item.index | plus: 1 }}"
-                          ></small>
-                        </div>
                         <button
                           class="button button--tertiary cart-items__remove"
                           type="button"
