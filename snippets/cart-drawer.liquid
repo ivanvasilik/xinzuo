@@ -170,6 +170,36 @@
               class="cart-drawer__items"
             >
               {% render 'cart-products' type: "drawer" %}
+              {% if settings.drawer_recommend != blank %}
+                <div class="drawer-recommend">
+                  <h2>You might also like</h2>
+                  {% for product in settings.drawer_recommend %}
+                    <div class="drawer-product">
+                      <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Cart Recommend {{ product.title }}">
+                      <div class="drawer-product-info">
+                        <div>
+                          {% assign collection = product.collections.first %}
+                          <p>{{ collection.title }}&nbsp;-&nbsp;{{ product.title }}</p>
+                          <span>{{ product.description }}</span>
+                        </div>
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <g clip-path="url(#clip0_4235_58801)">
+                              <path d="M4 12L12 4" stroke="#86868B" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5.5 4H12V10.5" stroke="#86868B" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_4235_58801">
+                                <rect width="16" height="16" fill="white"/>
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
             </scroll-hint>
 
             {% comment %} <div
@@ -178,36 +208,6 @@
               {% render 'cart-summary' %}
             </div> {% endcomment %}
           </div>
-          {% if settings.drawer_recommend != blank %}
-            <div class="drawer-recommend">
-              <h2>You might also like</h2>
-              {% for product in settings.drawer_recommend %}
-                <div class="drawer-product">
-                  <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Cart Recommend {{ product.title }}">
-                  <div class="drawer-product-info">
-                    <div>
-                      {% assign collection = product.collections.first %}
-                      <p>{{ collection.title }}&nbsp;-&nbsp;{{ product.title }}</p>
-                      <span>{{ product.description }}</span>
-                    </div>
-                    <div>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <g clip-path="url(#clip0_4235_58801)">
-                          <path d="M4 12L12 4" stroke="#86868B" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M5.5 4H12V10.5" stroke="#86868B" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_4235_58801">
-                            <rect width="16" height="16" fill="white"/>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
         {%- endif -%}
       </cart-items-component>
     </div>
