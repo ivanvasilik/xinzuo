@@ -458,6 +458,7 @@ header-actions, .dropdown-header, .header-drawer-header {
         .cart-items__table-row {
             grid-template-columns: 120px auto 0;
             gap: 0;
+            border: none;
         }
 
         .cart-drawer-img {
@@ -469,33 +470,51 @@ header-actions, .dropdown-header, .header-drawer-header {
             flex-direction: column;
             height: 100%;
             justify-content: space-between;
-        }
 
-        .cart-drawer-info-div1 {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            .cart-drawer-info-div1 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
 
-            .cart-items__remove {
-                width: 20px;
-                height: 20px;
+                .cart-drawer-product {
+
+                    a {
+                        font-family: "Sen";
+                        font-weight: 600;
+                        font-size: 16px;
+                        color: #c1c4c7;
+                        text-decoration: none;
+                    }
+
+                    span {
+                        font-family: "Albert Sans";
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: #86868b;
+                    }
+                }
+
+                .cart-items__remove {
+                    width: 20px;
+                    height: 20px;
+                }
             }
-        }
 
-        .cart-drawer-info-div2 {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
+            .cart-drawer-info-div2 {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
 
-            .cart-drawer-quantity {
-                .quantity-selector {
-                    width: 100px;
-                    height: 30px;
-                    border: none;
+                .cart-drawer-quantity {
+                    .quantity-selector {
+                        width: 90px;
+                        height: 30px;
+                        border: none;
 
-                    button {
-                        width: 30%;
-                        height: 100%;
+                        button {
+                            width: 30%;
+                            height: 100%;
+                        }
                     }
                 }
             }
