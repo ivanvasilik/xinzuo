@@ -425,7 +425,7 @@
                   assign add_to_cart_text = 'products.product.add_to_cart' | t
                 endif
               else
-                if closest.product.selected_or_first_available_variant != null
+                if closest.product.available != null
                   assign can_add_to_cart = true
                   assign add_to_cart_text = 'products.product.add_to_cart' | t
                 else
