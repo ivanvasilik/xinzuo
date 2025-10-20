@@ -71,7 +71,7 @@
             id="cart-drawer-header"
           >
             <span class="cart-drawer__heading h3">
-              {{ 'content.cart_title' | t }}
+              Your Cart
               {% render 'cart-bubble' %}
             </span>
 
@@ -79,7 +79,7 @@
               ref="closeButton"
               on:click="cart-drawer-component/close"
               class="button close-button cart-drawer__close-button button-unstyled"
-              aria-label="{{ 'actions.close_dialog' | t }}"
+              aria-label="{{ 'actions.close_dialog' | t }}" 
             >
               <span class="svg-wrapper">
                 {{- 'icon-close.svg' | inline_asset_content -}}
@@ -98,11 +98,11 @@
               {% render 'cart-products' %}
             </scroll-hint>
 
-            {% comment %} <div
+            <div
               class="cart-drawer__summary"
             >
               {% render 'cart-summary' %}
-            </div> {% endcomment %}
+            </div>
           </div>
         {%- endif -%}
       </cart-items-component>
