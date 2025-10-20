@@ -107,11 +107,9 @@
             -%}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
-            <span class="progress-bar-cart">
-              <div style="position: relative">
-                <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
-                <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
-              </div>
+            <span class="progress-bar-cart" style="position: relative">
+              <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
+              <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
             </span>
           </div>
           
