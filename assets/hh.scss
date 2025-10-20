@@ -421,6 +421,8 @@ header-actions, .dropdown-header, .header-drawer-header {
         }
 
         .cart-drawer__heading {
+            margin-bottom: 36px;
+
             .cart-bubble[data-maintain-ratio] {
                 aspect-ratio: unset;
             }
@@ -444,7 +446,7 @@ header-actions, .dropdown-header, .header-drawer-header {
             .shipping-value {
                 position: absolute;
                 top: 50%;
-                transform: translate(0 -50%);
+                transform: translate(0, -50%);
                 width: 8px;
                 height: 8px;
                 border-radius: 50%;
