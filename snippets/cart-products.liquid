@@ -104,20 +104,6 @@
                 data-parent-key="{{ item.parent_relationship.parent.key }}"
                 data-key="{{ item.key }}"
               >
-                <td class="cart-items__title-mobile">
-                  <p>
-                    <a
-                      href="{{ item.url }}"
-                      class="cart-items__title"
-                      {% if item.parent_relationship.parent != null %}
-                        aria-label="{{ 'accessibility.nested_product' | t: product_title: item.product.title, parent_title: item.parent_relationship.parent.title | escape }}"
-                      {% endif %}
-                    >
-                      {% assign collection = item.product.collections | first %}
-                      {{- collection.title -}}&nbsp;-&nbsp;{{- item.product.title -}}
-                    </a>
-                  </p>
-                </td>
                 <td
                   class="cart-items__media"
                   role="cell"
@@ -298,7 +284,6 @@
                     <span class="visually-hidden">Remove</span>
                   </button>
                 </td> {% endcomment %}
-                <td></td>
                 <td
                   class="cart-items__error hidden"
                   role="cell"
@@ -403,6 +388,20 @@
                       can_update_quantity: can_update_quantity
                     %}
                   </div>
+                </td>
+                <td class="cart-items__title-mobile">
+                  <p>
+                    <a
+                      href="{{ item.url }}"
+                      class="cart-items__title"
+                      {% if item.parent_relationship.parent != null %}
+                        aria-label="{{ 'accessibility.nested_product' | t: product_title: item.product.title, parent_title: item.parent_relationship.parent.title | escape }}"
+                      {% endif %}
+                    >
+                      {% assign collection = item.product.collections | first %}
+                      {{- collection.title -}}&nbsp;-&nbsp;{{- item.product.title -}}
+                    </a>
+                  </p>
                 </td>
               </tr>
             {% endfor %}
