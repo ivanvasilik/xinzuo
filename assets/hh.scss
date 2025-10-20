@@ -477,6 +477,10 @@ header-actions, .dropdown-header, .header-drawer-header {
     }
 
     .cart-items__price.cart-secondary-typography {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
         s {
             font-family: "Sen";
             font-weight: 600;
@@ -523,6 +527,7 @@ header-actions, .dropdown-header, .header-drawer-header {
 
         .quantity-selector {
             height: 40px;
+            width: 100px;
         }
 
         .cart-items__table-row {
@@ -538,6 +543,7 @@ header-actions, .dropdown-header, .header-drawer-header {
         .cart-items__details {
             width: 100%;
             order: 1
+            margin-top: 20px;
         }
     }
 }
