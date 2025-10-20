@@ -4185,7 +4185,7 @@ text-component {
 /* Global scrollbar styles */
 
 /* Webkit browsers */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 20px;
 }
 
@@ -4203,7 +4203,7 @@ text-component {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   html {
