@@ -730,21 +730,21 @@ header {
     background: #555;
 }
 
-scroll-hint::-webkit-scrollbar {
+.scroll-hint::-webkit-scrollbar {
     width: 10px;
 }
 
-scroll-hint::-webkit-scrollbar-track {
+.scroll-hint::-webkit-scrollbar-track {
   background: #f1f1f1;
     border-radius: 5px;
 }
  
-scroll-hint::-webkit-scrollbar-thumb {
+.scroll-hint::-webkit-scrollbar-thumb {
   background: #888;
     border-radius: 5px;
 }
 
-scroll-hint::-webkit-scrollbar-thumb:hover {
+.scroll-hint::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
