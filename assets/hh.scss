@@ -730,21 +730,21 @@ header {
     background: #555;
 }
 
-.scroll-hint::-webkit-scrollbar {
+.cart-drawer__items::-webkit-scrollbar {
     width: 10px;
 }
 
-.scroll-hint::-webkit-scrollbar-track {
+.cart-drawer__items::-webkit-scrollbar-track {
   background: #f1f1f1;
     border-radius: 5px;
 }
  
-.scroll-hint::-webkit-scrollbar-thumb {
+.cart-drawer__items::-webkit-scrollbar-thumb {
   background: #888;
     border-radius: 5px;
 }
 
-.scroll-hint::-webkit-scrollbar-thumb:hover {
+.cart-drawer__items::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
