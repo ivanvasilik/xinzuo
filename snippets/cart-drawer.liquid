@@ -70,6 +70,9 @@
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), rgba(0, 0, 0, 0.95);
     box-shadow: 0 8px 24px 0 #000;
     backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .cart-drawer-total {
@@ -84,6 +87,7 @@
     font-weight: 600;
     font-size: 16px;
     color: #86868b;
+    margin: 0;
   }
 
   .cart-drawer-total span {
@@ -96,11 +100,13 @@
   }
 
   .cart-drawer-footer .cart__checkout-button {
-    background-color: ##ca322b;
+    background-color: #ca322b;
     color: white;
+    height: 45px;
   }
   
   .cart-drawer-cart a {
+    display: block;
     width: 100%;
     font-family: "Sen";
     font-weight: 600;
