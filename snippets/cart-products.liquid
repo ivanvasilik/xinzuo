@@ -415,7 +415,7 @@
                     <span class="compare-price">{{ product.compare_at_price | money }}</span>
                 </span>
             </div>
-            {% liquid
+            {% comment %} {% liquid
               if inventory_managed
                 if inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
                   assign can_add_to_cart = false
@@ -425,7 +425,7 @@
                   assign add_to_cart_text = 'products.product.add_to_cart' | t
                 endif
               else
-                if closest.product.available != null
+                if closest.product.selected_or_first_available_variant != null
                   assign can_add_to_cart = true
                   assign add_to_cart_text = 'products.product.add_to_cart' | t
                 else
@@ -434,12 +434,18 @@
                 endif
               endif
             %}
+            {% content_for 'block',
+              type: 'add-to-cart',
+              id: 'add-to-cart',
+              can_add_to_cart: can_add_to_cart,
+              add_to_cart_text: add_to_cart_text
+            %} {% endcomment %}
             {% render 'add-to-cart-button',
               id: 'Cart-page-slider-' | append: product.id,
               class: 'add-to-cart-button',
-              can_add_to_cart: can_add_to_cart,
+              can_add_to_cart: product.available,
               product: product,
-              add_to_cart_text: add_to_cart_text
+              add_to_cart_text: 'Add To Cart'
             %}
           </div>
         {% endfor %}
