@@ -124,7 +124,7 @@
       font-weight: 600;
       font-size: 36px;
       color: #86868b;
-      margin-bottom: 32px;
+      margin: 32px 0;
     }
 
     .section-{{ section.id }} .cart-swiper {
@@ -215,6 +215,10 @@
     }
 
     @media screen and (max-width: 1300px) {
+      .section-{{ section.id }} .cart-slider > h2 {
+        font-size: 22px;
+      }
+
       .progress-bar > div {
         width: calc(100% - 100px);
       }
