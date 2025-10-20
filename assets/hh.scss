@@ -492,6 +492,11 @@ header-actions, .dropdown-header, .header-drawer-header {
                     width: 100px;
                     height: 30px;
                     border: none;
+
+                    button {
+                        width: 30%;
+                        height: 100%;
+                    }
                 }
             }
         }
