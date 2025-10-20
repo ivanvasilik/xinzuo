@@ -3198,7 +3198,7 @@ slideshow-slides {
     scroll-behavior: auto;
   }
 
-  &::-webkit-scrollbar {
+  /* &::-webkit-scrollbar {
     width: 0;
   }
 
@@ -3209,7 +3209,7 @@ slideshow-slides {
   &::-webkit-scrollbar-thumb {
     background: transparent;
     border: none;
-  }
+  } */
 
   &[size='small'] {
     min-height: 17.5rem;
