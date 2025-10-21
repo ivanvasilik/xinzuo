@@ -88,7 +88,7 @@
 
   {% content_for 'blocks' %}
 
-  <div class="main-product-title">
+  {% comment %} <div class="main-product-title">
     <div class="main-product-link">
       <span>
         <a href="/">HOME</a>
@@ -202,43 +202,43 @@
           <span>{{ section.settings.shipping_price }}</span>
         </div>
       </div>
-      <div class="main-product-description">
-        <span>{{ product.description }}</span>
-        <div>
-          <div class="main-description-div">
-            <img src="{{ section.settings.product_info1_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail1">
-            <p>{{ section.settings.product_info1_title }}</p>
-            <span>{{ section.settings.product_info1_content }}</span>
-          </div>
-          <div class="main-description-div">
-            <img src="{{ section.settings.product_info2_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail2">
-            <p>{{ section.settings.product_info2_title }}</p>
-            <span>{{ section.settings.product_info2_content }}</span>
-          </div>
-          <div class="main-description-div">
-            <img src="{{ section.settings.product_info3_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail3">
-            <p>{{ section.settings.product_info3_title }}</p>
-            <span>{{ section.settings.product_info3_content }}</span>
-          </div>
+    </div>
+    <div class="main-product-description">
+      <span>{{ product.description }}</span>
+      <div>
+        <div class="main-description-div">
+          <img src="{{ section.settings.product_info1_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail1">
+          <p>{{ section.settings.product_info1_title }}</p>
+          <span>{{ section.settings.product_info1_content }}</span>
+        </div>
+        <div class="main-description-div">
+          <img src="{{ section.settings.product_info2_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail2">
+          <p>{{ section.settings.product_info2_title }}</p>
+          <span>{{ section.settings.product_info2_content }}</span>
+        </div>
+        <div class="main-description-div">
+          <img src="{{ section.settings.product_info3_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail3">
+          <p>{{ section.settings.product_info3_title }}</p>
+          <span>{{ section.settings.product_info3_content }}</span>
         </div>
       </div>
-      {% if product.variants.size > 1 %}
-        <div class="main-product-variants">
-          <h4>Select any type of Knives</h4>
-          <div>
-            {% for variant in product.variants %}
-              <div class="main-product-variant">
-                {% if variant.featured_image != blank %}
-                  <img src="{{ variant.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.title }}">
-                {% endif %}
-                <span></span>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
     </div>
-  </div>
+    {% if product.variants.size > 1 %}
+      <div class="main-product-variants">
+        <h4>Select any type of Knives</h4>
+        <div>
+          {% for variant in product.variants %}
+            <div class="main-product-variant">
+              {% if variant.featured_image != blank %}
+                <img src="{{ variant.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.title }}">
+              {% endif %}
+              <span></span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div> {% endcomment %}
 </div>
 
 {% stylesheet %}
