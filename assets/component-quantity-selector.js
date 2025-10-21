@@ -20,6 +20,25 @@ class QuantitySelectorComponent extends Component {
     event.preventDefault();
     this.refs.quantityInput.stepUp();
     this.#onQuantityChange();
+    const swiper = document.querySelector(".cart-swiper");
+    const cartswiper = new Swiper('.cart-swiper', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 2.5,
+          spaceBetween: 20,
+        },
+        1025: {
+          slidesPerView: 3.5,
+          spaceBetween: 30,
+        },
+      },
+      navigation: {
+        nextEl: '.cart-swiper-button-next',
+        prevEl: '.cart-swiper-button-prev',
+      },
+    });
   }
 
   /**
@@ -32,6 +51,25 @@ class QuantitySelectorComponent extends Component {
     event.preventDefault();
     this.refs.quantityInput.stepDown();
     this.#onQuantityChange();
+    const swiper = document.querySelector(".cart-swiper");
+    const cartswiper = new Swiper('.cart-swiper', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 2.5,
+          spaceBetween: 20,
+        },
+        1025: {
+          slidesPerView: 3.5,
+          spaceBetween: 30,
+        },
+      },
+      navigation: {
+        nextEl: '.cart-swiper-button-next',
+        prevEl: '.cart-swiper-button-prev',
+      },
+    });
   }
 
   /**
