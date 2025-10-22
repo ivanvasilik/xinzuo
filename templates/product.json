@@ -1359,10 +1359,10 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
-        "heading_title": "",
-        "heading_content": "",
+        "heading_title": "THIN. SHARP. POWERFUL",
+        "heading_content": "Perfectly Balanced for Sharpness.",
         "header_type": "left",
-        "heading_footer": "",
+        "heading_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
         "image_video": "image",
         "img": "shopify://shop_images/1.png",
         "color_scheme": "scheme-5",
