@@ -16,6 +16,10 @@
         font-size: 18px;
         color: #c1c4c7;
     }
+
+    .section-{{ section.id }} .slider-header span {
+        margin-bottom: 64px;
+    }
     
     .section-{{ section.id }} .slider-header h2 {
         max-width: 1200px;
@@ -23,7 +27,7 @@
         font-weight: 600;
         font-size: 64px;
         color: #f9f9f7;
-        margin-bottom: 64px;
+        margin: 0;
     }
 
     .section-{{ section.id }} .slider-header h2:after {
@@ -129,13 +133,12 @@
             padding: 40px 0;
         }
         
-        .section-{{ section.id }} .slider-header h2 {
-            font-size: 16px;
+        .section-{{ section.id }} .slider-header span {
+            margin-bottom: 36px;
         }
         
         .section-{{ section.id }} .slider-header h2 {
             font-size: 36px;
-            margin-bottom: 36px;
         }
 
         .section-{{ section.id }} .swiper-slide img {
