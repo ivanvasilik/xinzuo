@@ -1422,7 +1422,9 @@
     "product_info4_nYeXEB": {
       "type": "product-info4",
       "name": "Product Info4",
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-5"
+      }
     }
   },
   "order": [
