@@ -6,7 +6,7 @@
         overflow: hidden;
     }
 
-    .section-{{ section.id }} .swiper {
+    .section-{{ section.id }} .product-swiper {
         overflow: visible;
     }
 
@@ -103,9 +103,9 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    {% comment %} {% if product.images.size > 3 %} {% endcomment %}
+    {% if product.images.size > 3 %}
         <div class="product-slider">
-            <div class="swiper">
+            <div class="product-swiper">
                 <div class="swiper-wrapper">
                     {% for image in product.images %}
                         <div class="swiper-slide">
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-    {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
     <div class="product-description">
         <div class="product-products">
             <ul class="product-products-ul">
