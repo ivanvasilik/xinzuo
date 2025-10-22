@@ -109,7 +109,7 @@
                 <div class="swiper-wrapper">
                     {% for image in product.images %}
                         <div class="swiper-slide">
-                            <img src="{{ image | image_url: '600x' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
+                            <img src="{{ image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
                         </div>
                     {% endfor %}
                 </div>
