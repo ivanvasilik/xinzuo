@@ -1,24 +1,122 @@
 {% style %}
+    .section-{{ section.id }} {
+        padding: 80px 0;
+    }
+
+    .section-{{ section.id }} .product-info3 {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-info3 h2 {
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        padding: 0 32px;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #86868b;
+    }
+
+    .section-{{ section.id }} .product-info3 h2:after {
+        content: ".";
+        color: #ca322b;
+    }
+
+    .section-{{ section.id }} .product-info3 > div {
+        display: flex;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .product-info3-left {
+        width: 50%;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .section-{{ section.id }} .product-info3-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .section-{{ section.id }} .product-info3-left p {
+        position: absolute;
+        width: 100%;
+        padding: 24px;
+        text-align: center;
+        bottom: 0;
+        left: 0;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #f9f9f7;
+    }
+
+    .section-{{ section.id }} .product-info3-right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .section-{{ section.id }} .product-info3-div {
+        width: 100%;
+        height: 50%;
+        border-radius: 16px;
+        padding: 32px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-{{ section.id }} .product-info3-div p {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        color: #86868b;
+    }
+
+    .section-{{ section.id }} .product-info3-div h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .product-info3-div span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 14px;
+        color: #86868b;
+        line-height: 20px;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <h2>{{ section.settings.heading }}</h2>
     <div class="product-info3">
-        <div class="product-info3-left">
-            <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info3">
-            <p>{{ section.settings.img_text }}</p>
-        </div>
-        <div class="product-info3-right">
-            <div class="product-info3-div">
-                <p>{{ section.settings.info_header1 }}</p>
-                <h2>{{ section.settings.info_content1 }}</h2>
-                <span>{{ section.settings.info_footer1 }}</span>
+        <h2>{{ section.settings.heading }}</h2>
+        <div>
+            <div class="product-info3-left">
+                <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info3">
+                <p>{{ section.settings.img_text }}</p>
             </div>
-            <div class="product-info3-div">
-                <p>{{ section.settings.info_header2 }}</p>
-                <h2>{{ section.settings.info_content2 }}</h2>
-                <span>{{ section.settings.info_footer2 }}</span>
+            <div class="product-info3-right">
+                <div class="product-info3-div">
+                    <p>{{ section.settings.info_header1 }}</p>
+                    <h2>{{ section.settings.info_content1 }}</h2>
+                    <span>{{ section.settings.info_footer1 }}</span>
+                </div>
+                <div class="product-info3-div">
+                    <p>{{ section.settings.info_header2 }}</p>
+                    <h2>{{ section.settings.info_content2 }}</h2>
+                    <span>{{ section.settings.info_footer2 }}</span>
+                </div>
             </div>
         </div>
     </div>
