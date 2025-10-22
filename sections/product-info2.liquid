@@ -1,0 +1,134 @@
+{% style %}
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-info2">
+        <div class="product-info2-header">
+            <p>{{ section.settings.heading_title }}</p>
+            <h2>{{ section.settings.heading_content }}</h2>
+            <span>{{ section.settings.heading_footer }}</span>
+        </div>
+        <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
+        {% if section.settings.footer_type == "first" %}
+            <div class="product-info2-footer1">
+                <span>{{ section.settings.footer_left }}</span>
+                <span>{{ section.settings.footer_right }}</span>
+            </div>
+        {% elsif section.settings.footer_type == "second" %}
+            <div class="product-info2-footer2">
+                <span>{{ section.settings.footer_left }}</span>
+                <span>{{ section.settings.footer_right }}</span>
+            </div>
+        {% else %}
+            <div class="footer-info2-footer3">
+                <span>{{ section.settings.footer_left }}</span>
+                <div>
+                    <span>{{ section.settings.footer_right }}</span>
+                    {% assign collection = product.collections.first %}
+                    <a>Learn more about {{ collection.title }} ›</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Product Info2",
+    "settings": [
+        {
+            "type": "text",
+            "id": "header_title",
+            "label": "Header Title"
+        },
+        {
+            "type": "text",
+            "id": "header_content",
+            "label": "Header Content",
+        },
+        {
+            "type": "select",
+            "id": "header_type",
+            "label": "Header Position",
+            "options": [
+                {
+                    "label": "Left",
+                    "value": "left"
+                },
+                {
+                    "label": "Center",
+                    "value": "center"
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "id": "show_header_footer",
+            "label": "Show Header Footer",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "header_footer",
+            "label": "Header Footer"
+        },
+        {
+            "type": "select",
+            "id": "image_video",
+            "label": "Image or Video",
+            "options": [
+                {
+                    "label": "Image",
+                    "value": "image"
+                },
+                {
+                    "label": "Video",
+                    "value": "video"
+                }
+            ]
+        },
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image",
+            "visible_if": "{{ section.settings.image_video == 'image' }}"
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video",
+            "visible_if": "{{ section.settings.image_video == 'video' }}"
+        },
+        {
+            "type": "select",
+            "id": "footer_type",
+            "label": "Footer Type",
+            "options": [
+                {
+                    "label": "Type1",
+                    "value": "first"
+                },
+                {
+                    "label": "Type2",
+                    "value": "second"
+                },
+                {
+                    "label": "Type3",
+                    "value": "third"
+                }
+            ]
+        },
+        {
+            "type": "richtext",
+            "id": "footer_left",
+            "label": "Footer Left"
+        },
+        {
+            "type": "richtext",
+            "id": "footer_right",
+            "label": "Footer Right"
+        }
+    ]
+}
+{% endschema %}
