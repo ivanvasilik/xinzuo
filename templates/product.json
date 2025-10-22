@@ -1392,7 +1392,7 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "Handle Design",
-        "heading_content": "<p>Elegance You<br/>Can Hold</p>",
+        "heading_content": "<h2>Elegance You<br/>Can Hold</h2>",
         "header_type": "center",
         "heading_footer": "",
         "image_video": "image",
