@@ -187,7 +187,11 @@
                 <span>{{ section.settings.heading_footer }}</span>
             </div>
         </div>
-        <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
+        {% if section.settings.image_video == "image" %}
+            <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
+        {% else %}
+            {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+        {% endif %}
         {% if section.settings.footer_type == "first" %}
             <div class="product-info2-footer1">
                 <span class="product-info2-left">{{ section.settings.footer_left }}</span>
