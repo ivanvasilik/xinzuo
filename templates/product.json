@@ -1370,11 +1370,27 @@
         "footer_left": "<h2>Thin</h2><h2>Sharp</h2><h2>Precise</h2><h2>Effortless</h2><h2>Reliable</h2>",
         "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>"
       }
+    },
+    "product_info3_Gx89LP": {
+      "type": "product-info3",
+      "name": "Product Info3",
+      "settings": {
+        "heading": "Built to Perform",
+        "img": "shopify://shop_images/product-x02-004.png",
+        "img_text": "Full Tag for Balance and Durability",
+        "info_header1": "Hardness That Lasts",
+        "info_content1": "~56-58 HRC",
+        "info_footer1": "Built to withstand daily use, this hardness level ensures a balance of durability and flexibility, keeping the blade strong without becoming brittle.",
+        "info_header2": "Sharper Edge Corner",
+        "info_content2": "~15° Edge Cut",
+        "info_footer2": "A finely honed edge angle delivers smoother, cleaner cuts. Designed for consistent sharpness, it makes every slice precise, effortless, and professional."
+      }
     }
   },
   "order": [
     "main",
     "product_info_mmnV94",
-    "product_info2_8biKrj"
+    "product_info2_8biKrj",
+    "product_info3_Gx89LP"
   ]
 }
