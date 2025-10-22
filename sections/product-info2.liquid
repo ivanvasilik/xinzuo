@@ -25,6 +25,9 @@
         font-weight: 500;
         font-size: 18px;
         color: #c1c4c7;
+        {% if section.settings.header_type == "center" %}
+            text-align: center;
+        {% endif %}
     }
 
     .section-{{ section.id }} .product-info2-header h2 {
@@ -35,6 +38,9 @@
         line-height: 125%;
         margin: 0;
         margin-bottom: 48px;
+        {% if section.settings.header_type == "center" %}
+            text-align: center;
+        {% endif %}
     }
 
     .section-{{ section.id }} .product-info2-header h2:after {
