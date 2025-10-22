@@ -1,29 +1,170 @@
 {% style %}
+    .section-{{ section.id }} {
+        padding: 80px 0;
+    }
+
+    .section-{{ section.id }} .product-info2 {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info2-header {
+        width: 100%;
+        max-width: 1080px;
+        padding: 0 32px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .product-info2-header div {
+        max-width: 640px;
+    }
+
+    .section-{{ section.id }} .product-info2-header p {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 18px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .product-info2-header h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #f9f9f7;
+        line-height: 125%;
+        margin-bottom: 48px;
+    }
+
+    .section-{{ section.id }} .product-info2-header h2:after {
+        content: ".";
+        color: #fd3e36;
+    }
+
+    .section-{{ section.id }} .product-info2-header span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+    }
+
+    .section-{{ section.id }} .product-info2 img {
+        width: 100%;
+        height: auto;
+    }
+
+    .section-{{ section.id }} .product-info2-footer1 {
+        width: 100%;
+        max-width: 1060px;
+        padding: 64px 88px;
+        margin: auto;
+        border-radius: 16px;
+        background-color: #171717;
+        display: flex;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info2-footer1 .product-info2-left {
+        padding-left: 80px;
+    }
+
+    .section-{{ section.id }} .product-info2-left h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #f9f9f7;
+        line-height: 135%;
+    }
+
+    .section-{{ section.id }} .product-info2-left h2:after {
+        content: ".";
+        color: #fd3e36;
+    }
+
+    .section-{{ section.id }} .product-info2-footer1 .product-info2-right {
+        width: 100%;
+        max-width: 480px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .product-info2-footer2 {
+        width: 100%;
+        max-width: 1440px;
+        margin: auto;
+        padding: 0 32px;
+        display: flex;
+        gap: 60px;
+    }
+
+    .section-{{ section.id }} .product-info2-footer2 .product-info2-left {
+        max-width: 480px;
+    }
+
+    .section-{{ section.id }} .product-info2-footer2 .product-info2-right h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .product-info2-footer3 {
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        padding: 24px 32px;
+        display: flex;
+        gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-info2-footer3 .product-info2-left {
+        max-width: 360px;
+    }
+
+    .section-{{ section.id }} .product-info2-footer3 .product-info2-right {
+        max-width: 360px;
+    }
+
+    .section-{{ section.id }} .product-info2-right a {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #fd3e36;
+        text-decoration: none;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="product-info2">
         <div class="product-info2-header">
-            <p>{{ section.settings.heading_title }}</p>
-            <h2>{{ section.settings.heading_content }}</h2>
-            <span>{{ section.settings.heading_footer }}</span>
+            <div>
+                <p>{{ section.settings.heading_title }}</p>
+                <h2>{{ section.settings.heading_content }}</h2>
+                <span>{{ section.settings.heading_footer }}</span>
+            </div>
         </div>
         <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
         {% if section.settings.footer_type == "first" %}
             <div class="product-info2-footer1">
-                <span>{{ section.settings.footer_left }}</span>
-                <span>{{ section.settings.footer_right }}</span>
+                <span class="product-info2-left">{{ section.settings.footer_left }}</span>
+                <span class="product-info2-right">{{ section.settings.footer_right }}</span>
             </div>
         {% elsif section.settings.footer_type == "second" %}
             <div class="product-info2-footer2">
-                <span>{{ section.settings.footer_left }}</span>
-                <span>{{ section.settings.footer_right }}</span>
+                <span class="product-info2-left">{{ section.settings.footer_left }}</span>
+                <span class="product-info2-right">{{ section.settings.footer_right }}</span>
             </div>
         {% else %}
             <div class="footer-info2-footer3">
-                <span>{{ section.settings.footer_left }}</span>
-                <div>
+                <span class="footer-info2-left">{{ section.settings.footer_left }}</span>
+                <div class="footer-info2-right">
                     <span>{{ section.settings.footer_right }}</span>
                     {% assign collection = product.collections.first %}
                     <a>Learn more about {{ collection.title }} ›</a>
@@ -93,6 +234,12 @@
             "id": "video",
             "label": "Video",
             "visible_if": "{{ section.settings.image_video == 'video' }}"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
         },
         {
             "type": "select",
