@@ -1359,13 +1359,13 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
-        "header_title": "THIN. SHARP. POWERFUL",
-        "header_content": "Perfectly Balanced for Sharpness",
+        "heading_title": "",
+        "heading_content": "",
         "header_type": "left",
-        "show_header_footer": false,
-        "header_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
+        "heading_footer": "",
         "image_video": "image",
         "img": "shopify://shop_images/1.png",
+        "color_scheme": "scheme-5",
         "footer_type": "first",
         "footer_left": "<h2>Thin</h2><h2>Sharp</h2><h2>Precise</h2><h2>Effortless</h2><h2>Reliable</h2>",
         "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>"
