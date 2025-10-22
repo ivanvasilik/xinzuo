@@ -178,6 +178,22 @@
             },
         },
     });
+
+    const productslider = (num) => {
+        const products = document.querySelectorAll('.product-info');
+        const productInfos = document.querySelectorAll('.product-description-span');
+        const product = document.querySelector(`.product-info-${num}`);
+        const productInfo = document.querySelector(`.product-slider-${num}`);
+
+        products.forEach((product) => {
+            product.classList.remove('active');
+        });
+        productInfos.forEach((productInfo) => {
+            productInfo.classList.remove('active');
+        });
+        product.classList.add('active');
+        productInfo.classList.add('active');
+    };
     
     const btn = document.querySelector('.product-products-div2');
     const btn_width = btn.offsetWidth;
