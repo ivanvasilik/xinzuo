@@ -1287,9 +1287,69 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "product_info_mmnV94": {
+      "type": "product-info",
+      "blocks": {
+        "icon_7jadN9": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square.png",
+            "content": "<p><strong>The 15% Chromium content creates a protective layer</strong> on the blade surface, making the steel highly resistant to rust, stains, and everyday kitchen moisture exposure.</p>"
+          }
+        },
+        "icon_mxe7iw": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_1.png",
+            "content": "<p>Molybdenum enhances toughness and prevents brittleness, allowing the knife to withstand daily cutting tasks without chipping or cracking under pressure.</p>"
+          }
+        },
+        "icon_NxVM3T": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_2.png",
+            "content": "<p>Vanadium contributes to fine-grain structure, ensuring the knife achieves a sharper edge and maintains cutting performance longer between sharpenings.</p>"
+          }
+        },
+        "block_UJiBwA": {
+          "type": "block",
+          "settings": {
+            "content": ""
+          }
+        },
+        "block_XD86y8": {
+          "type": "block",
+          "settings": {
+            "content": ""
+          }
+        },
+        "block_pXdtFM": {
+          "type": "block",
+          "settings": {
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_7jadN9",
+        "icon_mxe7iw",
+        "icon_NxVM3T",
+        "block_UJiBwA",
+        "block_XD86y8",
+        "block_pXdtFM"
+      ],
+      "name": "Product Info",
+      "settings": {
+        "image": "shopify://shop_images/image_128.png",
+        "content": "<p>X50CrMoV15, a German 1.4116 stainless steel, combines 15% chromium for corrosion resistance, molybdenum for toughness, and vanadium for edge retention. Its balanced composition ensures lasting durability, effortless maintenance, reliable sharpness, and trusted performance—perfect for both professional chefs and home kitchen enthusiasts alike.</p>",
+        "first_num": "3",
+        "second_num": "3"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "product_info_mmnV94"
   ]
 }
