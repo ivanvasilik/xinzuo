@@ -185,7 +185,9 @@
             </div>
         {% else %}
             <div class="product-info2-footer3">
-                <span class="product-info2-left">{{ section.settings.footer_left }}</span>
+                <div class="product-info2-left">
+                    <span>{{ section.settings.footer_left }}</span>
+                </div>
                 <div class="product-info2-right">
                     <span>{{ section.settings.footer_right }}</span>
                     {% assign collection = product.collections.first %}
