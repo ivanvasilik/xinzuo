@@ -1360,7 +1360,7 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "THIN. SHARP. POWERFUL",
-        "heading_content": "Perfectly Balanced for Sharpness",
+        "heading_content": "<p>Perfectly Balanced for Sharpness</p>",
         "header_type": "left",
         "heading_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
         "image_video": "image",
@@ -1386,12 +1386,29 @@
         "info_footer2": "A finely honed edge angle delivers smoother, cleaner cuts. Designed for consistent sharpness, it makes every slice precise, effortless, and professional.",
         "color_scheme": "scheme-5"
       }
+    },
+    "product_info2_eVwTgB": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "heading_title": "Handle Design",
+        "heading_content": "<p>Elegance You<br/>Can Hold</p>",
+        "header_type": "center",
+        "heading_footer": "",
+        "image_video": "image",
+        "img": "shopify://shop_images/Image.png",
+        "color_scheme": "scheme-5",
+        "footer_type": "second",
+        "footer_left": "<p>The Supreme Series handle is made from hand-polished redwood, shaped to fit comfortably in your grip. Its ergonomic design reduces fatigue, while the natural warmth of wood adds elegance and balance to every slice. A handle that feels as refined as it looks.</p>",
+        "footer_right": "<h2>Ergonomic</h2><p>Comfortable grip for effortless control.</p><h2>Polished</h2><p>Smooth surface with premium feel.</p><h2>Warmth</h2><p>Wooden handle brings inviting touch.</p>"
+      }
     }
   },
   "order": [
     "main",
     "product_info_mmnV94",
     "product_info2_8biKrj",
-    "product_info3_Gx89LP"
+    "product_info3_Gx89LP",
+    "product_info2_eVwTgB"
   ]
 }
