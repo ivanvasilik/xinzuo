@@ -1,10 +1,110 @@
 {% style %}
+    .section-{{ section.id }} {
+        padding: 0;
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .swiper {
+        overflow: visible;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        transition: height 0.5s ease-in-out !important;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .section-{{ section.id }} .swiper-slide img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    
+    .section-{{ section.id }} .product-description-span {
+        display: none;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+        max-width: 640px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .product-description-span a {
+        color: #FD3E36;
+    }
+
+    .section-{{ section.id }} .product-description-span.active {
+        display: flex; 
+    }
+
+    .section-{{ section.id }} .product-products {
+        position: relative;
+        margin-bottom: 56px;
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .product-products ul {
+        padding: 0;
+        border-bottom: 1px solid #86868b;
+        display: flex;
+        gap: 48px;
+        list-style: none;
+        width: fit-content;
+        margin: auto;
+        transform: translate(0);
+        transition: transform 0.3s ease;
+    }
+
+    .section-{{ section.id }} .product-products ul li {
+        padding: 16px 0;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 28px;
+        color: #86868b;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .section-{{ section.id }} .product-products-div1 {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 12px;
+        align-items: center;
+        background: #212121;
+        backdrop-filter: blur(2px);
+        left: 0;
+        display: none;
+        cursor: pointer;
+    }
+
+    .section-{{ section.id }} .product-products-div2 {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        background: #212121;
+        backdrop-filter: blur(2px);
+        right: 0;
+        cursor: pointer;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="product-slider">
-        <div class="product-swiper">
+        <div class="swiper">
             <div class="swiper-wrapper">
                 {% for images in product.images %}
                     <div class="swiper-slide">
@@ -128,6 +228,14 @@
 {% schema %}
 {
     "name": "Product Info4",
+    "settings": [
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
     "presets": [
         {
             "name": "Product Info4"
