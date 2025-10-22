@@ -1350,7 +1350,8 @@
         "image": "shopify://shop_images/image_128.png",
         "content": "<p>X50CrMoV15, a German 1.4116 stainless steel, combines 15% chromium for corrosion resistance, molybdenum for toughness, and vanadium for edge retention. Its balanced composition ensures lasting durability, effortless maintenance, reliable sharpness, and trusted performance—perfect for both professional chefs and home kitchen enthusiasts alike.</p>",
         "first_num": "3",
-        "second_num": "3"
+        "second_num": "3",
+        "color_scheme": "scheme-5"
       }
     }
   },
