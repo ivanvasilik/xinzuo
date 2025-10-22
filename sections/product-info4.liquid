@@ -1,0 +1,137 @@
+{% style %}
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-slider">
+        <div class="product-swiper">
+            <div class="swiper-wrapper">
+                {% for images in product.images %}
+                    <div class="swiper-slide">
+                        <img src="{{ image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="product-description">
+        <div class="product-products">
+            <ul class="product-products-ul">
+                {% assign collection = product.collections.first %}
+                {% for product in collection.products %}
+                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ product.title }}</li>
+                {% endfor %}
+            </ul>
+            <div class="product-products-div1" onclick="productUlPrev()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <g clip-path="url(#clip0_4235_8014)">
+                        <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4235_8014">
+                            <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="product-products-div2" onclick="productUlNext()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <g clip-path="url(#clip0_4235_8014)">
+                        <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#86868B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4235_8014">
+                            <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+        {% assign collection = product.collections.first %}
+        {% for product in collection.products %}
+            <div class="product-description-span product-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+                <span>{{ product.description }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    const productswiper = new Swiper('.product-swiper', {
+        slidesPerView: 1.3,
+        spaceBetween: 10,
+        breakpoints: {
+            768: {
+                slidesPerView: 1.6,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 2.6,
+                spaceBetween: 30,
+            },
+        },
+    });
+    
+    const btn = document.querySelector('.product-products-div2');
+    const btn_width = btn.offsetWidth;
+
+    const changeBtn = () => {
+        const ul = document.querySelector('.product-products-ul');
+        const prevBtn = document.querySelector('.product-products-div1');
+        const nextBtn = document.querySelector('.product-products-div2');
+        let currentPosition;
+        if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+        else currentPosition = 0;
+        if (ul.parentElement.offsetWidth > ul.offsetWidth) {
+            prevBtn.style.display = "none";
+            nextBtn.style.display = "none";
+        }
+        else {
+            if (-ul.parentElement.offsetWidth + ul.scrollWidth + currentPosition + btn_width < 0) {
+                ul.style.transform = `translate(${ul.parentElement.offsetWidth - ul.scrollWidth - btn_width}px)`;
+                nextBtn.style.display = "none";
+            }
+            if (currentPosition > 0) {
+                ul.style.transform = `translate(0)`;
+                prevBtn.style.display = "none";
+            }
+        }
+    }
+
+    const productUlNext = () => {
+        const prevBtn = document.querySelector('.product-products-div1');
+        const nextBtn = document.querySelector('.product-products-div2');
+        const ul = document.querySelector('.product-products-ul');
+        let currentPosition;
+        if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+        else currentPosition = 0;
+        ul.style.transform = `translate(${currentPosition - 200}px)`;
+        prevBtn.style.display = "flex";
+        changeBtn();
+    }
+
+    const productUlPrev = () => {
+        const prevBtn = document.querySelector('.product-products-div1');
+        const nextBtn = document.querySelector('.product-products-div2');
+        const ul = document.querySelector('.product-products-ul');
+        let currentPosition;
+        if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+        else currentPosition = 0;
+        ul.style.transform = `translate(${currentPosition + 200}px)`;
+        nextBtn.style.display = "flex";
+        changeBtn();
+    }
+
+    changeBtn();
+</script>
+
+{% schema %}
+{
+    "name": "Product Info4",
+    "presets": [
+        {
+            "name": "Product Info4"
+        }
+    ]
+}
+{% endschema %}
