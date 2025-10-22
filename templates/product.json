@@ -1315,19 +1315,25 @@
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "content": ""
+            "header": "With X50CrMoV15 is stronger up to",
+            "content": "2× tougher",
+            "footer": "than ordinary stainless steels"
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "content": ""
+            "header": "With 15% chromium content, is",
+            "content": "3× resistant",
+            "footer": "than standard kitchen steels"
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "content": ""
+            "header": "X50CrMoV15 sharpens quickly and easily,",
+            "content": "40% sharper",
+            "footer": "than harder high-carbon steels"
           }
         }
       },
