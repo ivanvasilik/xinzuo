@@ -1418,6 +1418,11 @@
         "footer_left": "<p>Supreme Series delivers great performance at an accessible price, offering the <strong>strength of professional-grade steel and the comfort of ergonomic design.</strong> It’s crafted to be reliable, versatile, and the everyday knife you’ll trust for years of consistent use.</p>",
         "footer_right": "<p>With a design that’s proven, durable, and user-friendly, the Supreme Series balances toughness, sharpness, and comfort—so you can cook with confidence, meal after meal.</p>"
       }
+    },
+    "product_info4_nYeXEB": {
+      "type": "product-info4",
+      "name": "Product Info4",
+      "settings": {}
     }
   },
   "order": [
@@ -1426,6 +1431,7 @@
     "product_info2_8biKrj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
-    "product_info2_GjRq8Y"
+    "product_info2_GjRq8Y",
+    "product_info4_nYeXEB"
   ]
 }
