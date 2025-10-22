@@ -103,7 +103,7 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    {% if product.images.size > 3 %}
+    {% comment %} {% if product.images.size > 3 %} {% endcomment %}
         <div class="product-slider">
             <div class="swiper">
                 <div class="swiper-wrapper">
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
     <div class="product-description">
         <div class="product-products">
             <ul class="product-products-ul">
