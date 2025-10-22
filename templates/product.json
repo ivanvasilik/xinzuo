@@ -1348,15 +1348,33 @@
       "name": "Product Info",
       "settings": {
         "image": "shopify://shop_images/image_128.png",
+        "heading": "",
         "content": "<p>X50CrMoV15, a German 1.4116 stainless steel, combines 15% chromium for corrosion resistance, molybdenum for toughness, and vanadium for edge retention. Its balanced composition ensures lasting durability, effortless maintenance, reliable sharpness, and trusted performance—perfect for both professional chefs and home kitchen enthusiasts alike.</p>",
         "first_num": "3",
         "second_num": "3",
         "color_scheme": "scheme-5"
       }
+    },
+    "product_info2_8biKrj": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "header_title": "THIN. SHARP. POWERFUL",
+        "header_content": "Perfectly Balanced for Sharpness",
+        "header_type": "left",
+        "show_header_footer": false,
+        "header_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
+        "image_video": "image",
+        "img": "shopify://shop_images/1.png",
+        "footer_type": "first",
+        "footer_left": "<h2>Thin</h2><h2>Sharp</h2><h2>Precise</h2><h2>Effortless</h2><h2>Reliable</h2>",
+        "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>"
+      }
     }
   },
   "order": [
     "main",
-    "product_info_mmnV94"
+    "product_info_mmnV94",
+    "product_info2_8biKrj"
   ]
 }
