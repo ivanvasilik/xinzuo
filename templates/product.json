@@ -1431,7 +1431,7 @@
       "name": "Product Description",
       "settings": {
         "image": "shopify://shop_images/Frame_464.png",
-        "heading": "<h2>Respected for Precision and<br/>Timeless Craft.</h2>",
+        "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
         "info2": "<p>With a philosophy blending comfort, balance, and reliability, our knives do more than cut—they inspire confidence. Each series is built to solve kitchen challenges with durability, edge retention, and elegance that lasts a lifetime.</p>",
         "color_scheme": "scheme-5"
