@@ -1,29 +1,116 @@
 {% style %}
+    .section-{{ section.id }} {
+        padding: 80px 0;
+    }
+
+    .section-{{ section.id }} .product-info > img {
+        width: 100%;
+        height: 100%;
+        padding: 40px 0;
+    }
+
+    .section-{{ section.id }} .product-info > div {
+        width: 100%;
+        max-width: 1080px;
+        padding: 0 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info-icons {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 80px;
+        row-gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-info-icon {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding-left: 16px;
+        {% if section.settings.first_num == "2" %}
+            width: 50%;
+        {% else %}
+            width: 33%;
+        {% endif %}
+    }
+    
+    .section-{{ section.id }} .product-info-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .section-{{ section.id }} span, .section-{{ section.id }} p {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+    }
+
+    .section-{{ section.id }} strong {
+        font-weight: 700;
+        color: #f9f9f7;
+    }
+
+    .section-{{ section.id }} h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #f9f9f7;
+    }
+
+    .section-{{ section.id }} .product-info-divs {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 80px;
+        row-gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-info-div {
+        display: flex;
+        flex-direction: column;
+        padding-top: 32px;
+        max-width: 240px;
+        padding-right: auto;
+        border-top: 1px solid linear-gradient(90deg, #F56E45 0%, #F03B33 100%);
+        {% if section.settings.second_num == "2" %}
+            width: 50%;
+        {% else %}
+            width: 33%;
+        {% endif %}
+    }
 {% endstyle %}
 
-<div class="product-info">
-    <img src="{{ section.settigns.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
-    <div class="product-info-icons">
-        {% for block in section.blocks %}
-            {% if block.type == "icon" %}
-                <div class="product-info-icon">
-                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block image">
-                    <span>{{ block.settings.content }}</span>
-                </div>
-            {% endif %}
-        {% endfor %}
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-info">
+        <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
+        <div>
+            <div class="product-info-icons">
+                {% for block in section.blocks %}
+                    {% if block.type == "icon" %}
+                        <div class="product-info-icon">
+                            <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block image">
+                            <span>{{ block.settings.content }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <span>{{ section.settings.content }}</span>
+            <div class="product-info-divs">
+                {% for block in section.blocks %}
+                    {% if block.type == "block" %}
+                        <div class="product-info-div">
+                            <span>{{ block.settings.content }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <span>{{ section.settings.content }}</span>
-    <div class="product-info-divs">
-        {% for block in section.blocks %}
-            {% if block.type == "block" %}
-                <div class="product-info-div">
-                    <span>{{ block.settings.content }}</span>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-</div>
+</section>
 
 {% schema %}
 {
