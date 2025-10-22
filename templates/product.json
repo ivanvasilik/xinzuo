@@ -1436,6 +1436,24 @@
         "info2": "<p>With a philosophy blending comfort, balance, and reliability, our knives do more than cut—they inspire confidence. Each series is built to solve kitchen challenges with durability, edge retention, and elegance that lasts a lifetime.</p>",
         "color_scheme": "scheme-5"
       }
+    },
+    "collection_slider_MqNLGx": {
+      "type": "collection_slider",
+      "name": "Collection Slider",
+      "settings": {
+        "title": "THIN. SHARP. POWERFUL",
+        "heading": "<h2>More Craft</h2><h2>More Choice</h2>",
+        "show_header": true,
+        "products": [
+          "chef-knife-supreme-series",
+          "product-x06-009",
+          "paring-knife-supreme-series",
+          "paring-knife-supreme-series-2"
+        ],
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -1446,6 +1464,7 @@
     "product_info2_eVwTgB",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
-    "product_description_t4ATaB"
+    "product_description_t4ATaB",
+    "collection_slider_MqNLGx"
   ]
 }
