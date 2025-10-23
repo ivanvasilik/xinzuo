@@ -130,8 +130,14 @@
       }
 
       .section-{{ section.id }} h2 {
-          font-size: 22px;
-          margin: 0;
+          color: var(--Default, #F9F9F7);
+          /* Mobile/H2 */
+          font-family: var(--Primary-Font-Family-Heading, Sen);
+          font-size: var(--Mobile-Font-Size-H2, 28px);
+          font-style: normal;
+          font-weight: var(--Primary-Font-Weight-Semibold, 600);
+          line-height: 130%; /* 36.4px */
+          letter-spacing: -0.28px;
       }
 
       .section-{{ section.id }} img {
