@@ -176,8 +176,17 @@
         display: block;
         margin-top: 12px;
     }
+
+    {% if section.blocks.size > 0 %}
+        .section-{{ section.id }} .product-info2-img {
+            display: flex;
+        }
+
+        .section-{{ section.id }} .product-info2 img {}
+    {% endif %}
 {% endstyle %}
 
+{{ section.blocks.size }}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="product-info2">
