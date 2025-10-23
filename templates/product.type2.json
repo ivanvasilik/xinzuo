@@ -1294,46 +1294,53 @@
         "icon_7jadN9": {
           "type": "icon",
           "settings": {
-            "image": "shopify://shop_images/Square.png",
-            "content": "<p><strong>The 15% Chromium content creates a protective layer</strong> on the blade surface, making the steel highly resistant to rust, stains, and everyday kitchen moisture exposure.</p>"
+            "image": "shopify://shop_images/Square_3.png",
+            "content": "<p>Carbon (~1.0%) boosts <strong>hardness and sharpness</strong>, giving knives superior edge retention and precision performance compared to standard stainless steels.</p>"
           }
         },
         "icon_mxe7iw": {
           "type": "icon",
           "settings": {
-            "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum enhances toughness and prevents brittleness, allowing the knife to withstand daily cutting tasks without chipping or cracking under pressure.</p>"
+            "image": "shopify://shop_images/Square_4.png",
+            "content": "<p>Cobalt (~1.5%) <strong>strengthens the steel’s structure, stabilizing hardness</strong> and enhancing performance under heavy professional use.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Square_1.png",
+            "content": "<p>Molybdenum increases <strong>toughness and prevents brittleness</strong>, helping the blade resist chipping during demanding kitchen work.</p>"
+          }
+        },
+        "icon_GWBWPm": {
+          "type": "icon",
+          "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium contributes to fine-grain structure, ensuring the knife achieves a sharper edge and maintains cutting performance longer between sharpenings.</p>"
+            "content": "<p>Vanadium <strong>refines the steel’s grain structure</strong>, producing sharper, harder edges that remain effective longer between regular sharpening.</p>"
           }
         },
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With X50CrMoV15 is stronger up to",
-            "content": "2× tougher",
-            "footer": "than ordinary stainless steels"
+            "header": "With ~1.0% Carbon, sharpness up to",
+            "content": "2× longer",
+            "footer": "than German stainless steels"
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With 15% chromium content, is",
-            "content": "3× resistant",
-            "footer": "than standard kitchen steels"
+            "header": "With ~1.5% Cobalt, for heavy use, delivers",
+            "content": "1.5× stability",
+            "footer": "than standard stainless steels"
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "X50CrMoV15 sharpens quickly and easily,",
-            "content": "40% sharper",
-            "footer": "than harder high-carbon steels"
+            "header": "With Vanadium refinement,",
+            "content": "50% longer edge",
+            "footer": "lasting precision between sharpenings."
           }
         }
       },
@@ -1341,16 +1348,17 @@
         "icon_7jadN9",
         "icon_mxe7iw",
         "icon_NxVM3T",
+        "icon_GWBWPm",
         "block_UJiBwA",
         "block_XD86y8",
         "block_pXdtFM"
       ],
       "name": "Product Info",
       "settings": {
-        "image": "shopify://shop_images/image_128.png",
+        "image": "shopify://shop_images/product-pm8s-003_2x_a3d0418e-6c2d-45f2-84dc-7e9a4d2be98f.png",
         "heading": "",
-        "content": "<p>X50CrMoV15, a German 1.4116 stainless steel, combines 15% chromium for corrosion resistance, molybdenum for toughness, and vanadium for edge retention. Its balanced composition ensures lasting durability, effortless maintenance, reliable sharpness, and trusted performance—perfect for both professional chefs and home kitchen enthusiasts alike.</p>",
-        "first_num": "3",
+        "content": "<p><strong>10Cr15CoMoV (VG10-equivalent) </strong>combines high carbon for edge retention, cobalt for stability, chromium for corrosion resistance, and vanadium for sharpness. This balanced composition makes Retro Series ideal for chefs seeking long-lasting sharpness, durability, and artistry in their knives.</p>",
+        "first_num": "2",
         "second_num": "3",
         "color_scheme": "scheme-5"
       }
