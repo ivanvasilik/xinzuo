@@ -1613,14 +1613,28 @@
         "padding_bottom": 80
       }
     },
-    "product_mo_series_qK8nxj": {
-      "type": "product-mo-series",
+    "product_series1_9aqxi6": {
+      "type": "product-series1",
       "name": "Product Series",
       "settings": {
         "title": "<h2>Mo Series Damascus.</h2><h2>Blade Mastery Redefined</h2>",
         "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
         "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
-        "color_scheme": "scheme-5"
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_series2_7tEyCk": {
+      "type": "product-series2",
+      "name": "Product Series2",
+      "settings": {
+        "header_title": "<h2>Here’s why</h2><h2>Mo Series stands above.</h2>",
+        "header_left": "<p>A few ways Mo Series redefines every cut.</p>",
+        "header_right": "<p>Forged for</p><p>Professionals.</p>",
+        "color_scheme": "scheme-5",
+        "footer_img": "shopify://shop_images/Frame_34_6717962b-87c3-468e-971f-fd7f651aeb8c.png",
+        "footer_content": "Every detail forged for performance."
       }
     },
     "product_info5_whc3ta": {
@@ -2084,7 +2098,8 @@
     "product_info6_M4zfaM",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
-    "product_mo_series_qK8nxj",
+    "product_series1_9aqxi6",
+    "product_series2_7tEyCk",
     "product_info5_whc3ta",
     "product_description_t4ATaB",
     "collection_slider_MqNLGx",
