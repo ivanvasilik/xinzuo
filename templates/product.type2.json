@@ -1392,6 +1392,7 @@
         "heading_title": "TOUGH. BALANCED. RELIABLE",
         "heading_content": "<h2>3 Layer Composite</h2>",
         "header_type": "left",
+        "block_type": "text",
         "heading_footer": "Engineered with a VG10-equivalent core and stainless layers, ensuring stability, sharpness, and durability for every kitchen.",
         "image_video": "image",
         "img": "shopify://shop_images/04_4d396ad7-d0c9-4a44-b1d7-c63bca208a2d.png",
@@ -1411,6 +1412,7 @@
         "heading_title": "PRECISE. DURABLE. REFINED",
         "heading_content": "<h2>Engineered to Stay Razor Sharp</h2>",
         "header_type": "left",
+        "block_type": "text",
         "heading_footer": "Forged with a 15° edge, delivering razor-sharp accuracy, strength, and effortless control for chefs and home cooks.",
         "image_video": "image",
         "img": "shopify://shop_images/07.png",
@@ -1423,19 +1425,70 @@
         "padding_bottom": 80
       }
     },
+    "product_info2_pVhzYj": {
+      "type": "product-info2",
+      "blocks": {
+        "block_ixcYEh": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_2.png",
+            "content": "<p>The <strong>Hand-Forged Excellence of Retro Series</strong> ensures denser steel, improved toughness, and superior edge retention, creating blades designed for enduring daily culinary performance.</p>"
+          }
+        },
+        "block_JUhH4q": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_3.png",
+            "content": "<p>With <strong>Vacuum Heat Treatment</strong>, the blade achieves balanced hardness and flexibility, resisting brittleness while maintaining long-lasting sharpness and dependable cutting performance.</p>"
+          }
+        },
+        "block_RU94Wj": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_4.png",
+            "content": "<p>The <strong>45-Step Finishing process</strong> combines polishing, refining, and detailing, ensuring every Retro Series knife blends visual artistry with professional-grade functional performance.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_ixcYEh",
+        "block_JUhH4q",
+        "block_RU94Wj"
+      ],
+      "name": "Product Info2",
+      "settings": {
+        "heading_title": "FORGED. REFINED. MASTERED",
+        "heading_content": "<h2>Crafted With Precision</h2>",
+        "header_type": "left",
+        "block_type": "icon",
+        "heading_footer": "Each Retro Series knife is hand-forged, vacuum heat-treated, and finished in 45 meticulous steps for sharpness, stability, and artistry.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_257.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "hidden",
+        "footer_type": "first",
+        "footer_left": "",
+        "footer_right": "",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "product_info3_Gx89LP": {
       "type": "product-info3",
       "name": "Product Info3",
       "settings": {
-        "heading": "Built to Perform",
+        "heading": "Forged for Power",
         "img": "shopify://shop_images/product-x02-004.png",
-        "img_text": "Full Tag for Balance and Durability",
+        "img_text": "Hammered Patterns for Unique Durability",
         "info_header1": "Hardness That Lasts",
-        "info_content1": "~56-58 HRC",
-        "info_footer1": "Built to withstand daily use, this hardness level ensures a balance of durability and flexibility, keeping the blade strong without becoming brittle.",
-        "info_header2": "Sharper Edge Corner",
+        "info_content1": "~60 ±1 HRC",
+        "info_footer1": "Engineered for professional use, this hardness provides superior edge retention. It balances strength, resilience, and lasting sharpness in heavy kitchen work.",
+        "info_header2": "Golden Angle Precision",
         "info_content2": "~15° Edge Cut",
-        "info_footer2": "A finely honed edge angle delivers smoother, cleaner cuts. Designed for consistent sharpness, it makes every slice precise, effortless, and professional.",
+        "info_footer2": "The finely honed 15° Golden Angle delivers sharper, cleaner performance. Each slice feels effortless, precise, and delivers consistent results with every cut.",
         "color_scheme": "scheme-5"
       }
     },
@@ -1444,16 +1497,17 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "Handle Design",
-        "heading_content": "<h2>Elegance You<br/>Can Hold</h2>",
+        "heading_content": "<h2>Heritage You Can Feel</h2>",
         "header_type": "center",
+        "block_type": "text",
         "heading_footer": "",
         "image_video": "image",
-        "img": "shopify://shop_images/Image.png",
+        "img": "shopify://shop_images/product-pm8s-001.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "second",
-        "footer_left": "<p>The Supreme Series handle is made from hand-polished redwood, shaped to fit comfortably in your grip. Its ergonomic design reduces fatigue, while the natural warmth of wood adds elegance and balance to every slice. A handle that feels as refined as it looks.</p>",
-        "footer_right": "<h2>Ergonomic</h2><p>Comfortable grip for effortless control.</p><h2>Polished</h2><p>Smooth surface with premium feel.</p><h2>Warmth</h2><p>Wooden handle brings inviting touch.</p>",
+        "footer_left": "<p>Crafted with North American desert ironwood or refined redwood, seamlessly paired with buffalo horn, the Retro Series handle blends natural strength and timeless beauty. A hammered finish enhances its grip, delivering both artistry and utility.</p>",
+        "footer_right": "<h2>Durable</h2><p>Desert ironwood ensures lasting strength.</p><h2>Balanced</h2><p>Buffalo horn adds weight harmony.</p><h2>Distinctive</h2><p>Hammered finish for unique style.</p>",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -1463,16 +1517,17 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "",
-        "heading_content": "<h2>Effortless<br/>Cutting Power</h2>",
+        "heading_content": "<h2>Crafted</h2><h2>for Distinction</h2>",
         "header_type": "center",
+        "block_type": "text",
         "heading_footer": "",
         "image_video": "video",
         "video": "shopify://files/videos/x02-001.mp4",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "third",
-        "footer_left": "<p>Supreme Series delivers great performance at an accessible price, offering the <strong>strength of professional-grade steel and the comfort of ergonomic design.</strong> It’s crafted to be reliable, versatile, and the everyday knife you’ll trust for years of consistent use.</p>",
-        "footer_right": "<p>With a design that’s proven, durable, and user-friendly, the Supreme Series balances toughness, sharpness, and comfort—so you can cook with confidence, meal after meal.</p>",
+        "footer_left": "<p>Retro Series embodies elevated craftsmanship, with longer edge retention and a striking Damascus finish. It’s built for those who expect precision, artistry, and durability in every slice.</p>",
+        "footer_right": "<p>From its refined handles to its hammered details, the Retro Series is designed for profess-ionals and enthusiasts alike—balancing beauty with performance, meal after meal.</p>",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -1852,6 +1907,7 @@
     "product_info_mmnV94",
     "product_info2_7JTdmJ",
     "product_info2_8biKrj",
+    "product_info2_pVhzYj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
     "product_info2_GjRq8Y",
