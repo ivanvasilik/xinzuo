@@ -2,6 +2,62 @@
     .section-{{ section.id }} {
         padding: 80px 32px 0;
     }
+
+    .section-{{ section.id }} .product-series2 {
+        background-color: #171717;
+        border-radius: 16px;
+        padding: 64px 0;
+    }
+
+    .section-{{ section.id }} .product-series2-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+    }
+
+    .section-{{ section.id }} span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: #f9f9f7;
+        line-height: 130%;
+        margin: 0;
+    }
+
+    .section-{{ section.id }} .product-series2-header div {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .section-{{ section.id }} .product-series2-header > span {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #86868b;
+        line-height: 140%;
+    }
+
+    .section-{{ section.id }} .product-series-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .section-{{ section.id }} .product-series-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -16,9 +72,13 @@
         </div>
         <div class="product-series-grid">
             {% for block in section.blocks %}
-                <div class="product-series-block">
+                <div class="product-series-block" {% if block.settings.image_type == "background" and block.settings.image != blank %}style="background: {{ block.settings.image | img_url: 'master' }}"{% endif %}>
                     {% if block.settings.image != blank %}
-                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        {% if block.settings.image_type == "icon" %}
+                            <img src="{{ block.settings.image | img_url: 'master' }}" width="80px" height="80px" alt="" style="margin: auto;">
+                        {% elsif block.settings.image_type == "normal" %}
+                            <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        {% endif %}
                     {% endif %}
                     <span>{{ block.settings.content }}</span>
                 </div>
@@ -78,6 +138,26 @@
                     "type": "image_picker",
                     "id": "image",
                     "label": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "image_type",
+                    "label": "Image Type",
+                    "options": [
+                        {
+                            "label": "Icon",
+                            "value": "icon"
+                        },
+                        {
+                            "label": "Background",
+                            "value": "background"
+                        },
+                        {
+                            "label": "Normal",
+                            "value": "normal"
+                        }
+                    ],
+                    "default": "normal"
                 },
                 {
                     "type": "richtext",
