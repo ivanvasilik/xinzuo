@@ -1619,7 +1619,8 @@
       "settings": {
         "title": "<h2>Mo Series Damascus.</h2><h2>Blade Mastery Redefined</h2>",
         "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
-        "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>"
+        "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
+        "color_scheme": "scheme-5"
       }
     },
     "product_info5_whc3ta": {
