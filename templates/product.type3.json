@@ -1592,25 +1592,34 @@
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "third",
-        "footer_left": "<p>Retro Series embodies elevated craftsmanship, with longer edge retention and a striking Damascus finish. It’s built for those who expect precision, artistry, and durability in every slice.</p>",
-        "footer_right": "<p>From its refined handles to its hammered details, the Retro Series is designed for profess-ionals and enthusiasts alike—balancing beauty with performance, meal after meal.</p>",
+        "footer_left": "<p>Mo Series embodies advanced craftsmanship, forged with 67-layer Damascus and a VG10-equivalent core. It delivers razor precision, long-lasting edge retention, and strength that endures through demanding professional use.</p>",
+        "footer_right": "<p>From its black titanium Damascus finish to the burnt oak and red G10 handle, every Mo Series detail unites toughness with elegance—built for perfection, slice after slice.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
-        "additional_image1": "shopify://shop_images/Icons.png",
-        "additional_content1": "<p>The longer retention of the Retro Series blade ensures chefs <strong>spend less time sharpening and more time cooking</strong>, with reliable sharpness that lasts through demanding, daily professional use.</p>",
-        "additional_image2": "shopify://shop_images/Icons_1.png",
-        "additional_content2": "<p>The artistic design of Retro Series is revealed in every detail—<strong>from the Damascus finish to wood-and-horn handles</strong>—turning a high-performance knife into a statement of culinary elegance.</p>"
+        "additional_image1": "shopify://shop_images/Icons_1_9cb45a40-18f4-4ddb-aac9-66c8772d049e.png",
+        "additional_content1": "<p>The VG10-equivalent core wrapped in 66 Damascus layers gives Mo Series its <strong>lasting sharpness, strength, and resilience</strong>—keeping chefs focused on cooking, not constant sharpening.</p>",
+        "additional_image2": "shopify://shop_images/Icons_2_ada91f16-e94d-41b1-bbf3-08db7688a8fa.png",
+        "additional_content2": "<p>A water-wave Damascus pattern, acid-etched and stonewashed in black titanium, gives Mo Series its bold identity—<strong>striking, anti-stick, and elevated to near perfection</strong> in both design and performance.</p>"
       }
     },
     "product_info4_nYeXEB": {
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
-        "heading": "Choose Your Edge",
+        "heading": "Choose Your Blade",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
+      }
+    },
+    "product_mo_series_qK8nxj": {
+      "type": "product-mo-series",
+      "name": "Product Series",
+      "settings": {
+        "title": "<h2>Mo Series Damascus.</h2><h2>Blade Mastery Redefined</h2>",
+        "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
+        "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>"
       }
     },
     "product_info5_whc3ta": {
@@ -1684,17 +1693,27 @@
     "complete_collection_DHCqWL": {
       "type": "complete_collection",
       "blocks": {
+        "block_icN74H": {
+          "type": "block",
+          "settings": {
+            "title": "XINZUO-X06",
+            "content": "Utility, Chef Knife Set",
+            "image": "shopify://shop_images/02_bc519706-a893-403f-ab99-78669d38f427.png",
+            "image_position": "right"
+          }
+        },
         "block_WUMXhi": {
           "type": "block",
           "settings": {
-            "title": "XINZUO-PM8S",
+            "title": "XINZUO-X06",
             "content": "Utility, Chef, and Santoku Knife Set",
             "image": "shopify://shop_images/03_493adb3d-ca29-4ad8-a630-5d4cc98a2b71.png",
-            "image_position": "right"
+            "image_position": "left"
           }
         }
       },
       "block_order": [
+        "block_icN74H",
         "block_WUMXhi"
       ],
       "name": "Collection Complete",
@@ -2064,6 +2083,7 @@
     "product_info6_M4zfaM",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
+    "product_mo_series_qK8nxj",
     "product_info5_whc3ta",
     "product_description_t4ATaB",
     "collection_slider_MqNLGx",
