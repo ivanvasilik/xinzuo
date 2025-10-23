@@ -137,10 +137,12 @@ header {
         }
 
         p:nth-child(even) {
-            font-family: 'Sen';
+           color: var(--Default, #F9F9F7);
+            font-family: Sen;
+            font-size: var(--Mobile-Font-Size-Hero, 40px);
+            font-style: normal;
             font-weight: 600;
-            font-size: 80px;
-            color: #fd3e36;
+            line-height: 120%; /* 48px */
         }
 
         p:nth-child(even)::after {
