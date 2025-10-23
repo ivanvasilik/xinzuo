@@ -1,0 +1,80 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        background: linear-gradient(180deg, #171717 0%, rgba(23, 23, 23, 0.00) 100%);
+    }
+
+    .section-{{ section.id }} h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #f9f9f7;
+        width: 100%;
+        max-width: 1080px;
+        padding: 0 32px;
+        margin-bottom: 48px;
+    }
+
+    .section-{{ section.id }} .product-info5 h2 {
+        padding: 16px 32px;
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .product-info5-blocks {
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        padding: 24px 32px;
+        display: flex;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info5-block {
+        width: 33%;
+        padding-right: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .product-info5-block img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .section-{{ section.id }} .product-info5-block span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} .product-info5-block strong {
+        font-weight: 700;
+        color: #f9f9f7;
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="product-info5">
+        <h2>{{ section.settings.title }}</h2>
+        <div class="product-info5-blocks">
+            {% for block in section.blocks %}
+                <div class="product-info5-block">
+                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="Block image">
+                    <span>{{ block.settings.content }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
