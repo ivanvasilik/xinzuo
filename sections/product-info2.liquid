@@ -295,6 +295,20 @@
                         <a>Learn more about {{ collection.title }} ›</a>
                     </div>
                 </div>
+                {% if section.settings.additional_footer %}
+                    <div class="product-info2-footer3">
+                        <div class="product-info3-left">
+                            <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
+                            <div class="section-block-line"></div>
+                            <span>{{ section.settings.additional_content1 }}</span>
+                        </div>
+                        <div class="product-info3-right">
+                            <img src="{{ section.settings.additional_image2 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image2">
+                            <div class="section-block-line"></div>
+                            <span>{{ section.settings.additional_content2 }}</span>
+                        </div>
+                    </div>
+                {% endif %}
             {% endif %}
         {% endif %}
     </div>
@@ -448,7 +462,37 @@
             "max": 120,
             "step": 2,
             "unit": "px",
-            "default": 80
+            "default": 80,
+            "visible_if": "{{ section.settings.footer_state == 'visible' and section.settings.footer_type == 'third' }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "additional_footer",
+            "label": "Additional Footer State"
+        },
+        {
+            "type": "image_picker",
+            "id": "additional_image1",
+            "label": "Additional Image1",
+            "visible_if": "{{ section.settings.additional_footer == true }}"
+        },
+        {
+            "type": "richtext",
+            "id": "additional_content1",
+            "label": "Additional Content1",
+            "visible_if": "{{ section.settings.additional_footer == true }}"
+        },
+        {
+            "type": "image_picker",
+            "id": "additional_image2",
+            "label": "Additional Image2",
+            "visible_if": "{{ section.settings.additional_footer == true }}"
+        },
+        {
+            "type": "richtext",
+            "id": "additional_content2",
+            "label": "Additional Content2",
+            "visible_if": "{{ section.settings.additional_footer == true }}"
         }
     ],
     "blocks": [
