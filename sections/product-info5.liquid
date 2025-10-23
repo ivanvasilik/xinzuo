@@ -2,7 +2,9 @@
     .section-{{ section.id }} {
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
-        background: linear-gradient(180deg, #171717 0%, rgba(23, 23, 23, 0.00) 100%) !important;
+        {% if section.settings.background %}
+            background: linear-gradient(180deg, #171717 0%, rgba(23, 23, 23, 0.00) 100%) !important;
+        {% endif %}
     }
 
     .section-{{ section.id }} h2 {
@@ -72,17 +74,25 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <h2>{{ section.settings.heading }}</h2>
-    <div class="product-info5">
-        <h2>{{ section.settings.title }}</h2>
-        <div class="product-info5-blocks">
-            {% for block in section.blocks %}
+    {% for block in section.blocks %}
+        <div class="product-info5">
+            <h2>{{ section.settings.title }}</h2>
+            <div class="product-info5-blocks">
                 <div class="product-info5-block">
-                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="Block image">
-                    <span>{{ block.settings.content }}</span>
+                    <img src="{{ block.settings.image1 | img_url: 'master' }}" width="100%" height="100%" alt="Block image1">
+                    <span>{{ block.settings.content1 }}</span>
                 </div>
-            {% endfor %}
+                <div class="product-info5-block">
+                    <img src="{{ block.settings.image2 | img_url: 'master' }}" width="100%" height="100%" alt="Block image2">
+                    <span>{{ block.settings.content2 }}</span>
+                </div>
+                <div class="product-info5-block">
+                    <img src="{{ block.settings.image3 | img_url: 'master' }}" width="100%" height="100%" alt="Block image3">
+                    <span>{{ block.settings.content3 }}</span>
+                </div>
+            </div>
         </div>
-    </div>
+    {% endfor %}
 </section>
 
 {% schema %}
@@ -95,9 +105,9 @@
             "label": "Heading"
         },
         {
-            "type": "text",
-            "id": "title",
-            "label": "Title"
+            "type": "checkbox",
+            "id": "background",
+            "label": "Background"
         },
         {
             "type": "color_scheme",
@@ -132,14 +142,39 @@
             "name": "Block",
             "settings": [
                 {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
                     "type": "image_picker",
-                    "id": "image",
-                    "label": "Image"
+                    "id": "image1",
+                    "label": "Image1"
                 },
                 {
                     "type": "richtext",
-                    "id": "content",
-                    "label": "Content"
+                    "id": "content1",
+                    "label": "Content1"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image2",
+                    "label": "Image2"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content2",
+                    "label": "Content2"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image3",
+                    "label": "Image3"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content3",
+                    "label": "Content3"
                 }
             ]
         }
