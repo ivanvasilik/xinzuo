@@ -103,12 +103,10 @@
         display: flex;
         flex-direction: column;
         padding-top: 32px;
-        max-width: 240px;
-        margin-right: auto;
         {% if section.settings.second_num == "2" %}
             width: 50%;
         {% else %}
-            width: 33%;
+            width: calc(100% / 3 - 160px / 3);
         {% endif %}
         position: relative;
     }
