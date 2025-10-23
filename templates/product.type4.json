@@ -1397,14 +1397,14 @@
           "type": "block",
           "settings": {
             "heading": "Core Strength",
-            "content": "<p>At the core, 10Cr15CoMoV steel delivers high hardness, razor precision, and lasting edge retention for professional-level performance.</p>"
+            "content": "<p>At the center, 14Cr14MoVNb powdered steel delivers ~63 HRC hardness, razor precision, and lasting edge retention for professional sharpness.</p>"
           }
         },
         "block_C7wDEE": {
           "type": "block",
           "settings": {
             "heading": "Damascus Layers",
-            "content": "<p>66 outer layers of 316L stainless steel add flexibility, corrosion resistance, and Damascus beauty, protecting the premium cutting core.</p>"
+            "content": "<p>Layered Damascus enhances steel balance, giving flexibility, corrosion defense, and wave beauty, while protecting the cutting core.</p>"
           }
         }
       },
@@ -1414,13 +1414,13 @@
       ],
       "name": "Product Info2",
       "settings": {
-        "heading_title": "SHARP. TOUGH. ELEGANT.",
-        "heading_content": "<h2>67-Layer Damascus</h2>",
+        "heading_title": "SAFE. RELIABLE. PRECISE.",
+        "heading_content": "<h2>73-Layer Damascus</h2>",
         "header_type": "left",
         "block_type": "text",
-        "heading_footer": "Engineered with a VG10-equivalent 10Cr15CoMoV core and 316L Damascus layers, ensuring sharpness, resilience, and artistry in every cut.",
+        "heading_footer": "Hand-forged with a 14Cr14MoVNb powder core and 73 Damascus layers, each unique wave pattern turns steel into living artistry.",
         "image_video": "image",
-        "img": "shopify://shop_images/image_572.png",
+        "img": "shopify://shop_images/product-x06-005.png",
         "color_scheme": "scheme-5",
         "footer_state": "hidden",
         "footer_type": "first",
@@ -1437,18 +1437,18 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
-        "heading_title": "RAZOR. TOUGH. UNSTOPPABLE.",
-        "heading_content": "<h2>Supreme Sharpness, Built to Last</h2>",
+        "heading_title": "RAZOR. FINER. SUPREME",
+        "heading_content": "<h2>A Blade Beyond Ordinary.</h2>",
         "header_type": "left",
         "block_type": "text",
-        "heading_footer": "Crafted from 67-layer Damascus steel, providing razor precision, lasting durability, and superior cutting power with each slice.",
+        "heading_footer": "Its fine 15° edge, stabilized by niobium alloying, holds razor keenness longer — enduring even heavy kitchen use.",
         "image_video": "image",
-        "img": "shopify://shop_images/image_573.png",
+        "img": "shopify://shop_images/product-b37-002.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "first",
-        "footer_left": "<h2>Razor</h2><h2>Supreme</h2><h2>Dominant</h2><h2>Relentless</h2><h2>Enduring</h2>",
-        "footer_right": "<p>A 2.3 mm Damascus blade, vacuum and cryo treated to 60–62 HRC, delivers a razor-sharp 15° edge, ensuring effortless slicing, enduring sharpness, and precise, reliable performance cut after cut.</p>",
+        "footer_left": "<h2>Sharper</h2><h2>Rarer</h2><h2>Lasting</h2><h2>Luxurious</h2><h2>Unmatched</h2>",
+        "footer_right": "<p>Its slim 2.1 mm powder-steel blade glides with almost zero resistance, delivering cleaner slices, smoother cuts, and professional-grade sharpness that lasts longer than any knife in our collection.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": false,
@@ -1461,12 +1461,12 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "",
-        "heading_content": "<h2>Blade Leaner</h2>",
+        "heading_content": "<h2>Blade Whisper</h2>",
         "header_type": "center",
         "block_type": "icon",
-        "heading_footer": "A slim 2.3 mm Damascus blade blends refined steel composition with durability, enabling effortless slicing while retaining strength, sharpness, and precision for smoother, cleaner, consistently perfect cuts.",
+        "heading_footer": "The knives' ultra-slim 2.1 mm blade glides with effortless ease, minimizing resistance, enhancing control, and delivering smoother, cleaner cuts that define a professional, luxury-standard performance.",
         "image_video": "image",
-        "img": "shopify://shop_images/image_259.png",
+        "img": "shopify://shop_images/image_259_560500f0-1175-4a34-8b00-2615c772f865.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "second",
@@ -1475,10 +1475,10 @@
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
-        "additional_image1": "shopify://shop_images/Icons_9.png",
-        "additional_content1": "<p>The VG10-equivalent 10Cr15CoMoV core <strong>enables a slim 2.3 mm profile</strong>, balancing razor sharpness, high hardness, and durability <strong>without sacrificing toughness</strong> or long-lasting edge performance.</p>",
-        "additional_image2": "shopify://shop_images/Icons_10.png",
-        "additional_content2": "<p>66 Damascus layers of 316L stainless steel surround the core, <strong>enhancing flexibility, corrosion resistance, and structural stability</strong> while creating a striking water-wave titanium stonewash finish.</p>"
+        "additional_image1": "shopify://shop_images/Icons_13.png",
+        "additional_content1": "<p>Stabilized by cryogenic tempering and Damascus layering, the 2.1 mm blade reduces drag and maintains balance — <strong>achieving seamless cuts with refined precision</strong> beyond ordinary knives.</p>",
+        "additional_image2": "shopify://shop_images/Icons_14.png",
+        "additional_content2": "<p>With a refined edge geometry, uniform powder-steel microstructure, and niobium stability, the Lan Series <strong>achieves razor precision</strong>, preserving delicate textures and <strong>producing consistently sharper, finer slices</strong>.</p>"
       }
     },
     "product_info2_pVhzYj": {
