@@ -1458,8 +1458,10 @@
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
-        "additional_content1": "",
-        "additional_content2": ""
+        "additional_image1": "shopify://shop_images/Icons_9.png",
+        "additional_content1": "<p>The VG10-equivalent 10Cr15CoMoV core <strong>enables a slim 2.3 mm profile</strong>, balancing razor sharpness, high hardness, and durability <strong>without sacrificing toughness</strong> or long-lasting edge performance.</p>",
+        "additional_image2": "shopify://shop_images/Icons_10.png",
+        "additional_content2": "<p>66 Damascus layers of 316L stainless steel surround the core, <strong>enhancing flexibility, corrosion resistance, and structural stability</strong> while creating a striking water-wave titanium stonewash finish.</p>"
       }
     },
     "product_info2_pVhzYj": {
@@ -1469,8 +1471,8 @@
           "type": "block",
           "settings": {
             "heading": "",
-            "image": "shopify://shop_images/Icons_2.png",
-            "content": "<p>The <strong>Hand-Forged Excellence of Retro Series</strong> ensures denser steel, improved toughness, and superior edge retention, creating blades designed for enduring daily culinary performance.</p>"
+            "image": "shopify://shop_images/Icons_d1ec9970-de7c-4394-93d8-abd7d8d2024f.png",
+            "content": "<p><strong>Meticulous crafting through 12 precise</strong>, detailed stages ensures perfection in every blade, creating flawless consistency, reliability, and enduring professional performance.</p>"
           }
         },
         "block_JUhH4q": {
@@ -1478,7 +1480,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_3.png",
-            "content": "<p>With <strong>Vacuum Heat Treatment</strong>, the blade achieves balanced hardness and flexibility, resisting brittleness while maintaining long-lasting sharpness and dependable cutting performance.</p>"
+            "content": "<p><strong>Advanced heat treatment</strong> carefully refines the steel’s structure, unlocking exceptional durability, hardness uniformity, and long-lasting stability for demanding culinary tasks.</p>"
           }
         },
         "block_RU94Wj": {
@@ -1486,7 +1488,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_4.png",
-            "content": "<p>The <strong>45-Step Finishing process</strong> combines polishing, refining, and detailing, ensuring every Retro Series knife blends visual artistry with professional-grade functional performance.</p>"
+            "content": "<p><strong>Enhanced blade qualities</strong> deliver superior toughness, extended edge retention, and powerful corrosion resistance, ensuring professional sharpness and reliability over long-term use.</p>"
           }
         }
       },
@@ -1497,11 +1499,11 @@
       ],
       "name": "Product Info2",
       "settings": {
-        "heading_title": "FORGED. REFINED. MASTERED",
-        "heading_content": "<h2>Crafted With Precision</h2>",
+        "heading_title": "CRAFTED. HARDENED. ENDURING.",
+        "heading_content": "<h2>Strength in Crafting</h2>",
         "header_type": "left",
         "block_type": "icon",
-        "heading_footer": "Each Retro Series knife is hand-forged, vacuum heat-treated, and finished in 45 meticulous steps for sharpness, stability, and artistry.",
+        "heading_footer": "Crafted through 12 meticulous stages, advanced heat treatment enhances blade toughness, edge retention, and corrosion resistance.",
         "image_video": "image",
         "img": "shopify://shop_images/image_257.png",
         "color_scheme": "scheme-5",
@@ -1518,9 +1520,10 @@
     },
     "product_info3_Gx89LP": {
       "type": "product-info3",
+      "disabled": true,
       "name": "Product Info3",
       "settings": {
-        "heading": "Forged for Power",
+        "heading": "Defined by Strength",
         "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
         "img_text": "Hammered Patterns for Unique Durability",
         "info_header1": "Hardness That Lasts",
@@ -1534,6 +1537,7 @@
     },
     "product_info2_eVwTgB": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "heading_title": "Handle Design",
@@ -1560,7 +1564,7 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "",
-        "heading_content": "<h2>Crafted</h2><h2>for Distinction</h2>",
+        "heading_content": "<h2>Built</h2><h2>for Brilliance</h2>",
         "header_type": "center",
         "block_type": "text",
         "heading_footer": "",
