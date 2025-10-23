@@ -188,31 +188,45 @@
             </div>
         </div>
         {% if section.settings.image_video == "image" %}
-            <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
+            <div class="product-info2-img">
+                <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
+                <div class="product-info2-blocks">
+                    {% if section.blocks.size > 0 %}
+                        {% for block in section.blocks %}
+                            <div class="product-info2-block">
+                                <h2>{{ block.settings.heading }}</h2>
+                                <span>{{ block.settings.content }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
         {% else %}
             {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
         {% endif %}
-        {% if section.settings.footer_type == "first" %}
-            <div class="product-info2-footer1">
-                <span class="product-info2-left">{{ section.settings.footer_left }}</span>
-                <span class="product-info2-right">{{ section.settings.footer_right }}</span>
-            </div>
-        {% elsif section.settings.footer_type == "second" %}
-            <div class="product-info2-footer2">
-                <span class="product-info2-left">{{ section.settings.footer_left }}</span>
-                <span class="product-info2-right">{{ section.settings.footer_right }}</span>
-            </div>
-        {% else %}
-            <div class="product-info2-footer3">
-                <div class="product-info2-left">
-                    <span>{{ section.settings.footer_left }}</span>
+        {% if section.settings.footer_state == "visible" %}
+            {% if section.settings.footer_type == "first" %}
+                <div class="product-info2-footer1">
+                    <span class="product-info2-left">{{ section.settings.footer_left }}</span>
+                    <span class="product-info2-right">{{ section.settings.footer_right }}</span>
                 </div>
-                <div class="product-info2-right">
-                    <span>{{ section.settings.footer_right }}</span>
-                    {% assign collection = product.collections.first %}
-                    <a>Learn more about {{ collection.title }} ›</a>
+            {% elsif section.settings.footer_type == "second" %}
+                <div class="product-info2-footer2">
+                    <span class="product-info2-left">{{ section.settings.footer_left }}</span>
+                    <span class="product-info2-right">{{ section.settings.footer_right }}</span>
                 </div>
-            </div>
+            {% else %}
+                <div class="product-info2-footer3">
+                    <div class="product-info2-left">
+                        <span>{{ section.settings.footer_left }}</span>
+                    </div>
+                    <div class="product-info2-right">
+                        <span>{{ section.settings.footer_right }}</span>
+                        {% assign collection = product.collections.first %}
+                        <a>Learn more about {{ collection.title }} ›</a>
+                    </div>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 </section>
@@ -286,6 +300,22 @@
         },
         {
             "type": "select",
+            "id": "footer_state",
+            "label": "Footer State",
+            "options": [
+                {
+                    "label": "Visible",
+                    "value": "visible"
+                },
+                {
+                    "label": "Hidden",
+                    "value": "hidden"
+                }
+            ],
+            "default": "visible"
+        },
+        {
+            "type": "select",
             "id": "footer_type",
             "label": "Footer Type",
             "options": [
@@ -301,17 +331,20 @@
                     "label": "Type3",
                     "value": "third"
                 }
-            ]
+            ],
+            "visible_if": "{{ section.settings.footer_state == 'visible' }}"
         },
         {
             "type": "richtext",
             "id": "footer_left",
-            "label": "Footer Left"
+            "label": "Footer Left",
+            "visible_if": "{{ section.settings.footer_state == 'visible' }}"
         },
         {
             "type": "richtext",
             "id": "footer_right",
-            "label": "Footer Right"
+            "label": "Footer Right",
+            "visible_if": "{{ section.settings.footer_state == 'custom' }}"
         }
     ],
     "presets": [
