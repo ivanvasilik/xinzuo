@@ -189,7 +189,33 @@
         }
 
         .section-{{ section.id }} .product-info2-blocks {
-            max-width: 480px;
+            width: 480px;
+            padding: 64px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .section-{{ section.id }} .product-info2-block {
+            border-top: 1px solid #f2553c;
+        }
+
+        .section-{{ section.id }} .product-info2-block h2 {
+            font-family: "Sen";
+            font-weight: 600;
+            font-size: 36px;
+            color: #f9f9f7;
+            line-height: 135%;
+            margin: 0;
+            padding: 16px 0;
+        }
+
+        .section-{{ section.id }} .product-info2-block span {
+            font-family: "Albert Sans";
+            font-weight: 400;
+            font-size: 18px;
+            color: #86868b;
+            line-height: 150%;
         }
     {% endif %}
 {% endstyle %}
