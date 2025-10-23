@@ -1559,6 +1559,45 @@
         "padding_bottom": 80
       }
     },
+    "product_info5_whc3ta": {
+      "type": "product-info5",
+      "blocks": {
+        "block_AtEMGG": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Icons_6.png",
+            "content": "<p>Forged with <strong>3-layered VG10-level harder steel</strong>, the blade delivers superior sharpness, edge durability, and long-lasting cutting performance.</p>"
+          }
+        },
+        "block_DwrRdG": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Icons_7.png",
+            "content": "<p>An <strong>anti-stick finish</strong> combined with an <strong>ergonomic grip</strong> ensures smooth food release, comfortable handling, and safe, efficient control.</p>"
+          }
+        },
+        "block_hJMVii": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Icons_8.png",
+            "content": "<p><strong>Advanced vacuum heat-treatment </strong>enhances blade hardness, retention, and resili-ence, ensuring reliable perfor-mance in professional use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_AtEMGG",
+        "block_DwrRdG",
+        "block_hJMVii"
+      ],
+      "name": "Product Info5",
+      "settings": {
+        "heading": "Designed to make a difference",
+        "title": "Excellence",
+        "color_scheme": "scheme-5",
+        "padding_top": 108,
+        "padding_bottom": 108
+      }
+    },
     "product_description_t4ATaB": {
       "type": "product-description",
       "name": "Product Description",
@@ -1930,6 +1969,7 @@
     "product_info2_eVwTgB",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
+    "product_info5_whc3ta",
     "product_description_t4ATaB",
     "collection_slider_MqNLGx",
     "section_dbTzLJ",
