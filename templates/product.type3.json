@@ -1452,12 +1452,12 @@
         "img": "shopify://shop_images/image_259.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
-        "footer_type": "third",
+        "footer_type": "second",
         "footer_left": "",
         "footer_right": "",
         "padding_top": 80,
         "padding_bottom": 80,
-        "additional_footer": false,
+        "additional_footer": true,
         "additional_content1": "",
         "additional_content2": ""
       }
