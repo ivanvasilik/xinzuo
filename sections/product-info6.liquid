@@ -60,6 +60,35 @@
         font-size: 18px;
         color: #86868b;
     }
+
+    .section-{{ section.id }} .product-info6-divs {
+        display: flex;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .product-info6-div > div {
+        padding: 32px;
+        padding-bottom: 128px;
+        display: flex;
+        flex-direction: column;
+        gap: 47px;
+    }
+
+    .section-{{ section.id }} .product-info6-div span {
+        width: 100%;
+        max-width: 480px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .product-info6-div h2 {
+        color: #f9f9f7;
+    }
+
+    .section-{{ section.id }} .product-info6-div h2:after {
+        content: ".";
+        color: #fd3e36;
+        margin: 0;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
