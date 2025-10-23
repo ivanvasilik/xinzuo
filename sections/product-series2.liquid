@@ -1,0 +1,96 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding: 80px 32px 0;
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-series2">
+        <div class="product-series2-header">
+            <div>
+                <span>{{ section.settings.header_title }}</span>
+                <span>{{ section.settings.header_left }}</span>
+            </div>
+            <span>{{ section.settings.header_right }}</span>
+        </div>
+        <div class="product-series-grid">
+            {% for block in section.blocks %}
+                <div class="product-series-block">
+                    {% if block.settings.image != blank %}
+                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="">
+                    {% endif %}
+                    <span>{{ block.settings.content }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="product-series-footer">
+            <img src="{{ section.settings.footer_img | img_url: 'master' }}" width="100%" height="100%" alt="">
+            <span>{{ section.settings.footer_content }}</span>
+            {% assign collection = product.collections.first %}
+            <a href="/collections">Shop the {{ collection.title }} ›</a>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Product Series",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "header_title",
+            "label": "Header Title"
+        },
+        {
+            "type": "richtext",
+            "id": "header_left",
+            "label": "Header Left"
+        },
+        {
+            "type": "richtext",
+            "id": "header_right",
+            "label": "Header Right"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "image_picker",
+            "id": "footer_img",
+            "label": "Footer Logo"
+        },
+        {
+            "type": "text",
+            "id": "footer_content",
+            "label": "Footer Content"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Series"
+        }
+    ]
+}
+{% endschema %}
