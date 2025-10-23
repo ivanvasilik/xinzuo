@@ -180,13 +180,19 @@
     {% if section.blocks.size > 0 %}
         .section-{{ section.id }} .product-info2-img {
             display: flex;
+            width: 100%;
         }
 
-        .section-{{ section.id }} .product-info2 img {}
+        .section-{{ section.id }} .product-info2 img {
+            width: auto;
+        }
+
+        .section-{{ section.id }} .product-info2-blocks {
+            max-width: 480px;
+        }
     {% endif %}
 {% endstyle %}
 
-{{ section.blocks.size }}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="product-info2">
