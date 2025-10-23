@@ -1367,6 +1367,26 @@
     },
     "product_info2_7JTdmJ": {
       "type": "product-info2",
+      "blocks": {
+        "block_GUqr8N": {
+          "type": "block",
+          "settings": {
+            "heading": "Core Strength",
+            "content": "<p>At the core, 10Cr15CoMoV steel provides hardness, sharpness, and lasting precision for demanding professional kitchen use.</p>"
+          }
+        },
+        "block_C7wDEE": {
+          "type": "block",
+          "settings": {
+            "heading": "Protective Layers",
+            "content": "<p>Two SUS410 stainless steel layers provide resilience, corrosion resistance, and stability, protecting the premium core.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_GUqr8N",
+        "block_C7wDEE"
+      ],
       "name": "Product Info2",
       "settings": {
         "heading_title": "TOUGH. BALANCED. RELIABLE",
