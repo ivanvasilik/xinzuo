@@ -82,7 +82,16 @@
         }
 
         .section-{{ section.id }} .quick-question button {
-            font-size: 14px;
+            color: #FFF;
+            text-align: center;
+            /* Mobile/Button Default */
+            font-family: var(--Primary-Font-Family-Heading, Sen);
+            font-size: var(--Mobile-Font-Size-Button-Default, 14px);
+            font-style: normal;
+            font-weight: var(--Primary-Font-Weight-Semibold, 600);
+            line-height: 17px; /* 121.429% */
+            letter-spacing: 0.28px;
+            text-transform: uppercase;
         }
     }
 {% endstyle %}
