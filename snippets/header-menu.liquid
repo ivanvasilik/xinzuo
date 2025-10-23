@@ -116,7 +116,7 @@
             {% assign image = settings.logo %}
             {%- if image -%}
               <div class="logo-block__image-wrapper">
-                {{-
+                {% comment %} {{-
                   image
                   | image_url: width: 3840
                   | image_tag:
@@ -125,7 +125,7 @@
                     class: 'logo-block__image',
                     alt: shop.name,
                     sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
-                -}}
+                -}} {% endcomment %}
               </div>
             {%- endif -%}
           </span>
