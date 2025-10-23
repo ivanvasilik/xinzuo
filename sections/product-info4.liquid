@@ -135,7 +135,9 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <h2>{{ section.settings.heading }}</h2>
+    {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+    {% endif %}
     {% if product.images.size > 3 %}
         <div class="product-slider">
             <div class="product-swiper">
