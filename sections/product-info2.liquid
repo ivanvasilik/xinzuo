@@ -248,7 +248,13 @@
     {% endif %}
 
     {% if section.settings.additional_footer == true %}
-        .section-{{ section.id }} 
+        .section-{{ section.id }} .product-info2-left {
+            max-width: 360px;
+        }
+
+        .section-{{ section.id }} .product-info2-right {
+            max-width: 360px;
+        }
     {% endif %}
 {% endstyle %}
 
