@@ -1634,9 +1634,9 @@
       "type": "product-series1",
       "name": "Product Series",
       "settings": {
-        "title": "<p>Lan Series.</p><p>Beyond Limits of Artistry</p>",
-        "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
-        "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
+        "title": "<h2>Lan Series.</h2><h2>Beyond Limits of Artistry</h2>",
+        "image": "shopify://shop_images/02_b765cf35-27d2-418b-b71f-248ff9fa2368.png",
+        "content": "<p>Lan Series represents the ultimate union of powder metallurgy steel and Damascus artistry — refined for chefs, admired by collectors, and destined to become a lasting legacy.</p>",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
@@ -1650,21 +1650,21 @@
           "settings": {
             "image": "shopify://shop_images/Stack.png",
             "image_type": "icon",
-            "content": "<p>67-Layer Damascus</p>"
+            "content": "<p>73-Layer Damascus</p>"
           }
         },
         "block_wqQxab": {
           "type": "block",
           "settings": {
             "image_type": "normal",
-            "content": "<p>high hardness, </p><p>longer-lasting sharpness</p>"
+            "content": "<p>unmatched hardness</p><p>for lasting sharpness edge</p>"
           }
         },
         "block_wdLyzW": {
           "type": "block",
           "settings": {
             "image_type": "normal",
-            "content": "<p>Sharper by</p><h2>15°</h2><h2>edge</h2><p>sharper than Western knives</p>"
+            "content": "<p>Sharper by</p><h2>15° ±1°</h2><h2>edge</h2><p>razor precision </p><p>with smoother slicing.</p>"
           }
         },
         "block_YGcREx": {
@@ -1672,7 +1672,7 @@
           "settings": {
             "image": "shopify://shop_images/Icons_3_d0b71e0a-4756-4a90-b7fd-a68574803653.png",
             "image_type": "icon",
-            "content": "<p><strong>Vacuum + Cryo Treatment</strong></p><p>Superior toughness and edge retention.<br/><br/></p>"
+            "content": "<p><strong>Vacuum + Cryo Treated</strong></p><p>Extreme toughness, edge retention,</p><p>corrosion resistance.<br/></p>"
           }
         },
         "block_VMJrxx": {
@@ -1680,7 +1680,7 @@
           "settings": {
             "image": "shopify://shop_images/Rectangle_345.png",
             "image_type": "background",
-            "content": "<p><strong>Oak & G10 Handle</strong></p><p>Bold. Ergonomic. Comfort</p>"
+            "content": "<p><strong>Olive-Wood Handle</strong></p><p>luxury with copper-flower rivets</p>"
           }
         },
         "block_nrqYL7": {
@@ -1688,7 +1688,7 @@
           "settings": {
             "image": "shopify://shop_images/Rectangle_346.png",
             "image_type": "normal",
-            "content": "<p>Effortless cutting with</p><p>minimal resistance.</p><p><strong>2.3 mm Slim Blade</strong></p>"
+            "content": "<p>Minimal resistance,</p><p>smoother cutting flow.</p><p><strong>2.1 mm Slim Blade</strong></p>"
           }
         }
       },
@@ -1702,12 +1702,12 @@
       ],
       "name": "Product Series2",
       "settings": {
-        "header_title": "<h2>Here’s why</h2><h2>Mo Series stands above.</h2>",
-        "header_left": "<p>A few ways Mo Series redefines every cut.</p>",
-        "header_right": "<p>Forged for</p><p>Professionals.</p>",
+        "header_title": "<h2>Here’s why</h2><h2>Lan S. is the crown jewel</h2>",
+        "header_left": "<p>A few ways Lan Series gives you more.</p>",
+        "header_right": "<h2>Crafted for</h2><h2>Chefs and Collectors</h2>",
         "color_scheme": "scheme-5",
         "footer_img": "shopify://shop_images/Frame_34_6717962b-87c3-468e-971f-fd7f651aeb8c.png",
-        "footer_content": "Every detail forged for performance."
+        "footer_content": "A knife created to inspire, perform, and endure."
       }
     },
     "product_info5_whc3ta": {
@@ -1716,25 +1716,25 @@
         "block_AtEMGG": {
           "type": "block",
           "settings": {
-            "title": "Performance",
-            "image1": "shopify://shop_images/Icons_4_96f1a20a-a02e-4cf0-9795-1861cdb59e4e.png",
-            "content1": "<p>Forged <strong>with Damascus steel and a VG10-equivalent core</strong>, Mo Series endures heavy use, resisting wear and ensuring strength cut after cut.</p>",
-            "image2": "shopify://shop_images/Icons_5.png",
-            "content2": "<p><strong>Ergonomic, moisture-resistant handles</strong> give chefs steady control, reducing fatigue and ensuring sharper, more precise results.</p>",
-            "image3": "shopify://shop_images/Icons_6_221b602a-a5d3-4912-ac69-94b7a7625710.png",
-            "content3": "<p><strong>Forged through 12 meticulous steps</strong>, Mo Series blends traditional artistry with advanced heat treatment for lasting professional performance.</p>"
+            "title": "Precision",
+            "image1": "shopify://shop_images/Leaf.png",
+            "content1": "<p>Responsibly sourced from renewable forests, <strong>olive wood offers durability and elegance</strong> while supporting sustainable practices and environmentally conscious craftsmanship.</p>",
+            "image2": "shopify://shop_images/Infinity.png",
+            "content2": "<p>Built with heirloom quality in mind, the Lan Series reduces unnecessary waste by <strong>providing enduring long-term value</strong> instead of ordinary short-lived disposable tools.</p>",
+            "image3": "shopify://shop_images/ListChecks.png",
+            "content3": "<p><strong>Twelve detailed stages of manufacturing</strong> and rigorous quality controls ensure consistency, dependable strength, and enduring reliability in every Lan Series knife.</p>"
           }
         },
         "block_DwrRdG": {
           "type": "block",
           "settings": {
             "title": "Safety",
-            "image1": "shopify://shop_images/Icons_7_83874bec-26fe-425f-b920-8445d6bbc6f1.png",
-            "content1": "<p>The burnt white oak + red G10 handle <strong>provides secure, ergonomic grip</strong>—reduces slipping, improves control, especially when wet, reducing risk of accidents.</p>",
-            "image2": "shopify://shop_images/Icons_8_080f7da8-6612-4a45-af5b-dbcc396e4685.png",
-            "content2": "<p>Outer layers using 316L stainless steel <strong>ensure the blade meets food-contact safety norms</strong> (resisting corrosion, no harmful leaching ), maintaining hygiene and safety with each use.</p>",
-            "image3": "shopify://shop_images/Icons_9_d9044487-9e9d-4768-8784-2bb2c15e3e8c.png",
-            "content3": "<p>The heat-treated, cryo-tempered blade <strong>maintains hardness without brittleness</strong>—edge retention means less sharpening and safer maintenance.</p>"
+            "image1": "shopify://shop_images/Icons_10_4922674c-a744-4673-9280-91b903ed557f.png",
+            "content1": "<p>Select Lan Series models are LFGB certified — <strong>compliant with EU food-safety standards</strong>. Tested non-toxic, crafted for hygienic kitchens.</p>",
+            "image2": "shopify://shop_images/Icons_11.png",
+            "content2": "<p>From blade steel to olive-wood handle, every element of the Lan Series is crafted with materials <strong>chosen for safety, quality, and reliability</strong>.</p>",
+            "image3": "shopify://shop_images/Icons_12.png",
+            "content3": "<p><strong>Certified safe and rigorously tested</strong>, the Lan Series offers assur-ance for professional kitchens — hygienic performance with lasting confidence.</p>"
           }
         }
       },
@@ -1744,7 +1744,7 @@
       ],
       "name": "Product Info5",
       "settings": {
-        "heading": "Distinct by Every Detail",
+        "heading": "Designed for Confidence",
         "background": false,
         "color_scheme": "scheme-5",
         "padding_top": 108,
