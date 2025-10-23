@@ -9,15 +9,12 @@
         padding: 64px 0;
     }
 
-    .section-{{ section.id }} .product-series2 > div {
-        max-width: 1160px;
-        width: 100%;
-        margin: auto;
-    }
-
     .section-{{ section.id }} .product-series2-header {
         display: flex;
         justify-content: space-between;
+        max-width: 1160px;
+        width: 100%;
+        margin: auto;
         margin-bottom: 24px;
     }
 
@@ -60,6 +57,9 @@
         display: flex;
         flex-wrap: wrap;
         gap: 16px;
+        max-width: 1160px;
+        width: 100%;
+        margin: auto;
     }
 
     .section-{{ section.id }} .product-series-block {
@@ -75,6 +75,12 @@
     .section-{{ section.id }} .product-series-block .icon {
         width: 80px;
         height: 80px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .product-series-footer {
+        max-width: 1160px;
+        width: 100%;
         margin: auto;
     }
 {% endstyle %}
