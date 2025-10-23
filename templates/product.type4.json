@@ -1336,25 +1336,33 @@
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With 10Cr15CoMoV core, the steel is",
-            "content": "2× sharper",
-            "footer": "than standard stainless kitchen steels."
+            "header": "With vacuum + cryo treatment, it gains",
+            "content": "Extreme Hardness",
+            "footer": "63 HRC for extreme edge strength."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With vacuum + cryo treatment, it is",
-            "content": "3× tougher",
-            "footer": "than ordinary hardened blades."
+            "header": "With vanadium + niobium alloying, it delivers",
+            "content": "Elite toughness",
+            "footer": "resists cracks, chips, heavy use"
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "With vanadium-refined grain structure, it stays",
-            "content": "40% longer edge",
-            "footer": "than harder high-carbon steels"
+            "header": "With stainless chromium protection, it ensures",
+            "content": "Refined sharpness",
+            "footer": "smoother cuts, longer-lasting keenness"
+          }
+        },
+        "block_4FCBML": {
+          "type": "block",
+          "settings": {
+            "header": "Enhanced by chromium’s stainless shield, it ensures",
+            "content": "Luxury durability",
+            "footer": "resisting rust while preserving brilliance"
           }
         }
       },
@@ -1367,15 +1375,16 @@
         "icon_QbUatt",
         "block_UJiBwA",
         "block_XD86y8",
-        "block_pXdtFM"
+        "block_pXdtFM",
+        "block_4FCBML"
       ],
       "name": "Product Info",
       "settings": {
         "image": "shopify://shop_images/image_128_b35a7974-cbcd-440f-bfdf-e777b9df4fba.png",
         "heading": "",
-        "content": "<p><strong>10Cr15CoMoV (VG10-equivalent)</strong> steel in the Mo Series blends carbon for hardness, chromium for corrosion resistance, molybdenum for toughness, vanadium for sharpness, and cobalt for stability. This balanced alloy ensures long-lasting edge retention, durability, and professional-level performance with every cut.</p>",
+        "content": "<p><strong>14Cr14MoVNb powder metallurgy steel </strong>powers the Lan series, blending carbon for hardness, chromium for stainless protection, molybdenum for toughness, vanadium for sharpness, niobium for rare stability, and cobalt for strength. This advanced alloy ensures unmatched edge retention, resilience, and luxury performance.</p>",
         "first_num": "2",
-        "second_num": "3",
+        "second_num": "2",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
