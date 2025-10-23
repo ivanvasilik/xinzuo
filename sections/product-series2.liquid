@@ -91,7 +91,7 @@
         </div>
         <div class="product-series-grid">
             {% for block in section.blocks %}
-                <div class="product-series-block" {% if block.settings.image_type == "background" and block.settings.image != blank %}style="background: {{ block.settings.image | img_url: 'master' }}"{% endif %}>
+                <div class="product-series-block" {% if block.settings.image_type == "background" and block.settings.image != blank %}style="background-iamge: url({{ block.settings.image | img_url: 'master' }});background-size: 100% 100%;"{% endif %}>
                     {% if block.settings.image != blank and block.settings.image != blank %}
                         <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="" {% if block.settings.image_type == "icon" %}class="icon"{% endif %}>
                     {% endif %}
