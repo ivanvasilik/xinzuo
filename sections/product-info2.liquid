@@ -240,6 +240,9 @@
             line-height: 150%;
         }
     {% endif %}
+
+    {% if section.settings.additional_footer == true %}
+    {% endif %}
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -286,29 +289,31 @@
                 </div>
             {% else %}
                 <div class="product-info2-footer3">
-                    <div class="product-info2-left">
-                        <span>{{ section.settings.footer_left }}</span>
-                    </div>
-                    <div class="product-info2-right">
-                        <span>{{ section.settings.footer_right }}</span>
-                        {% assign collection = product.collections.first %}
-                        <a>Learn more about {{ collection.title }} ›</a>
-                    </div>
+                    {% if section.settings.additional_footer %}
+                        <div>
+                            <div class="product-info2-left">
+                                <span>{{ section.settings.footer_left }}</span>
+                            </div>
+                            <div class="product-info2-right">
+                                <span>{{ section.settings.footer_right }}</span>
+                                {% assign collection = product.collections.first %}
+                                <a>Learn more about {{ collection.title }} ›</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-info3-left">
+                                <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
+                                <div class="section-block-line"></div>
+                                <span>{{ section.settings.additional_content1 }}</span>
+                            </div>
+                            <div class="product-info3-right">
+                                <img src="{{ section.settings.additional_image2 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image2">
+                                <div class="section-block-line"></div>
+                                <span>{{ section.settings.additional_content2 }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
-                {% if section.settings.additional_footer %}
-                    <div class="product-info2-footer3">
-                        <div class="product-info3-left">
-                            <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
-                            <div class="section-block-line"></div>
-                            <span>{{ section.settings.additional_content1 }}</span>
-                        </div>
-                        <div class="product-info3-right">
-                            <img src="{{ section.settings.additional_image2 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image2">
-                            <div class="section-block-line"></div>
-                            <span>{{ section.settings.additional_content2 }}</span>
-                        </div>
-                    </div>
-                {% endif %}
             {% endif %}
         {% endif %}
     </div>
