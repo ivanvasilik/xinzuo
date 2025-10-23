@@ -1295,52 +1295,59 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_3.png",
-            "content": "<p>Carbon (~1.0%) boosts <strong>hardness and sharpness</strong>, giving knives superior edge retention and precision performance compared to standard stainless steels.</p>"
+            "content": "<p>Carbon (~1.0%) delivers <strong>hardness and  edge sharpness</strong>, ensuring knives’ blades perform with precision and retain their edge through daily professional use.</p>"
           }
         },
         "icon_mxe7iw": {
           "type": "icon",
           "settings": {
-            "image": "shopify://shop_images/Square_4.png",
-            "content": "<p>Cobalt (~1.5%) <strong>strengthens the steel’s structure, stabilizing hardness</strong> and enhancing performance under heavy professional use.</p>"
+            "image": "shopify://shop_images/Square.png",
+            "content": "<p>Chromium (~15%) <strong>forms a protective surface layer</strong>, giving the blade strong resistance to rust, stains, and everyday kitchen moisture exposure.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum increases <strong>toughness and prevents brittleness</strong>, helping the blade resist chipping during demanding kitchen work.</p>"
+            "content": "<p>Molybdenum boosts <strong>toughness and minimizes brittleness</strong>, allowing the blade to withstand heavy chopping and repeated use without risk of cracking or chipping.</p>"
           }
         },
         "icon_GWBWPm": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium <strong>refines the steel’s grain structure</strong>, producing sharper, harder edges that remain effective longer between regular sharpening.</p>"
+            "content": "<p>Vanadium <strong>creates a fine-grained steel structure</strong>, producing sharper edges and extending cutting performance longer between sharpening sessions.</p>"
+          }
+        },
+        "icon_4HNknW": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_4.png",
+            "content": "<p>Cobalt (~1.5%) <strong>stabilizes hardness throughout the blade</strong>, enhancing wear resistance and consistent strength during intense, continuous cooking tasks.</p>"
           }
         },
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With ~1.0% Carbon, sharpness up to",
-            "content": "2× longer",
-            "footer": "than German stainless steels"
+            "header": "With 10Cr15CoMoV core, the steel is",
+            "content": "2× sharper",
+            "footer": "than standard stainless kitchen steels."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With ~1.5% Cobalt, for heavy use, delivers",
-            "content": "1.5× stability",
-            "footer": "than standard stainless steels"
+            "header": "With vacuum + cryo treatment, it is",
+            "content": "3× tougher",
+            "footer": "than ordinary hardened blades."
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "With Vanadium refinement,",
-            "content": "50% longer edge",
-            "footer": "lasting precision between sharpenings."
+            "header": "With vanadium-refined grain structure, it stays",
+            "content": "40% longer edge",
+            "footer": "than harder high-carbon steels"
           }
         }
       },
@@ -1349,15 +1356,16 @@
         "icon_mxe7iw",
         "icon_NxVM3T",
         "icon_GWBWPm",
+        "icon_4HNknW",
         "block_UJiBwA",
         "block_XD86y8",
         "block_pXdtFM"
       ],
       "name": "Product Info",
       "settings": {
-        "image": "shopify://shop_images/product-pm8s-003_2x_a3d0418e-6c2d-45f2-84dc-7e9a4d2be98f.png",
+        "image": "shopify://shop_images/product-x06-009_c478ecc1-06e0-4b18-9bd6-c2ddef5538ea.png",
         "heading": "",
-        "content": "<p><strong>10Cr15CoMoV (VG10-equivalent) </strong>combines high carbon for edge retention, cobalt for stability, chromium for corrosion resistance, and vanadium for sharpness. This balanced composition makes Retro Series ideal for chefs seeking long-lasting sharpness, durability, and artistry in their knives.</p>",
+        "content": "<p><strong>10Cr15CoMoV (VG10-equivalent)</strong> steel in the Mo Series blends carbon for hardness, chromium for corrosion resistance, molybdenum for toughness, vanadium for sharpness, and cobalt for stability. This balanced alloy ensures long-lasting edge retention, durability, and professional-level performance with every cut.</p>",
         "first_num": "2",
         "second_num": "3",
         "color_scheme": "scheme-5",
@@ -1372,14 +1380,14 @@
           "type": "block",
           "settings": {
             "heading": "Core Strength",
-            "content": "<p>At the core, 10Cr15CoMoV steel provides hardness, sharpness, and lasting precision for demanding professional kitchen use.</p>"
+            "content": "<p>At the core, 10Cr15CoMoV steel delivers high hardness, razor precision, and lasting edge retention for professional-level performance.</p>"
           }
         },
         "block_C7wDEE": {
           "type": "block",
           "settings": {
-            "heading": "Protective Layers",
-            "content": "<p>Two SUS410 stainless steel layers provide resilience, corrosion resistance, and stability, protecting the premium core.</p>"
+            "heading": "Damascus Layers",
+            "content": "<p>66 outer layers of 316L stainless steel add flexibility, corrosion resistance, and Damascus beauty, protecting the premium cutting core.</p>"
           }
         }
       },
@@ -1389,13 +1397,13 @@
       ],
       "name": "Product Info2",
       "settings": {
-        "heading_title": "TOUGH. BALANCED. RELIABLE",
-        "heading_content": "<h2>3 Layer Composite</h2>",
+        "heading_title": "SHARP. TOUGH. ELEGANT.",
+        "heading_content": "<h2>67-Layer Damascus</h2>",
         "header_type": "left",
         "block_type": "text",
-        "heading_footer": "Engineered with a VG10-equivalent core and stainless layers, ensuring stability, sharpness, and durability for every kitchen.",
+        "heading_footer": "Engineered with a VG10-equivalent 10Cr15CoMoV core and 316L Damascus layers, ensuring sharpness, resilience, and artistry in every cut.",
         "image_video": "image",
-        "img": "shopify://shop_images/04_4d396ad7-d0c9-4a44-b1d7-c63bca208a2d.png",
+        "img": "shopify://shop_images/image_572.png",
         "color_scheme": "scheme-5",
         "footer_state": "hidden",
         "footer_type": "first",
@@ -1412,18 +1420,41 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
-        "heading_title": "PRECISE. DURABLE. REFINED",
-        "heading_content": "<h2>Engineered to Stay Razor Sharp</h2>",
+        "heading_title": "RAZOR. TOUGH. UNSTOPPABLE.",
+        "heading_content": "<h2>Supreme Sharpness, Built to Last</h2>",
         "header_type": "left",
         "block_type": "text",
-        "heading_footer": "Forged with a 15° edge, delivering razor-sharp accuracy, strength, and effortless control for chefs and home cooks.",
+        "heading_footer": "Crafted from 67-layer Damascus steel, providing razor precision, lasting durability, and superior cutting power with each slice.",
         "image_video": "image",
-        "img": "shopify://shop_images/07.png",
+        "img": "shopify://shop_images/image_573.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "first",
-        "footer_left": "<h2>Balanced</h2><h2>Sharp</h2><h2>Durable</h2><h2>Effortless</h2><h2>Consistent</h2>",
-        "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>",
+        "footer_left": "<h2>Razor</h2><h2>Supreme</h2><h2>Dominant</h2><h2>Relentless</h2><h2>Enduring</h2>",
+        "footer_right": "<p>A 2.3 mm Damascus blade, vacuum and cryo treated to 60–62 HRC, delivers a razor-sharp 15° edge, ensuring effortless slicing, enduring sharpness, and precise, reliable performance cut after cut.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
+      }
+    },
+    "product_info2_qTpE4H": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "heading_title": "",
+        "heading_content": "<h2>Blade Leaner</h2>",
+        "header_type": "center",
+        "block_type": "icon",
+        "heading_footer": "A slim 2.3 mm Damascus blade blends refined steel composition with durability, enabling effortless slicing while retaining strength, sharpness, and precision for smoother, cleaner, consistently perfect cuts.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_259.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "third",
+        "footer_left": "",
+        "footer_right": "",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": false,
@@ -2003,6 +2034,7 @@
     "product_info_mmnV94",
     "product_info2_7JTdmJ",
     "product_info2_8biKrj",
+    "product_info2_qTpE4H",
     "product_info2_pVhzYj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
