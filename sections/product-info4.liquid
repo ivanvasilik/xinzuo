@@ -1,7 +1,7 @@
 {% style %}
     .section-{{ section.id }} {
-        padding: 0;
-        padding: 80px 0;
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
         overflow: hidden;
     }
 
@@ -267,6 +267,26 @@
             "id": "color_scheme",
             "label": "t:settings.color_scheme",
             "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding Top",
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 80
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding Bottom",
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 80
         }
     ],
     "presets": [
