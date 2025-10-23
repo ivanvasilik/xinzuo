@@ -1627,6 +1627,53 @@
     },
     "product_series2_7tEyCk": {
       "type": "product-series2",
+      "blocks": {
+        "block_GWYtUR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Stack.png",
+            "content": "<p>67-Layer Damascus</p>"
+          }
+        },
+        "block_wqQxab": {
+          "type": "block",
+          "settings": {
+            "content": "<p>Up to</p><h2>62 HRC</h2><h2>harder</h2><p>high hardness, </p><p>longer-lasting sharpness</p>"
+          }
+        },
+        "block_wdLyzW": {
+          "type": "block",
+          "settings": {
+            "content": "<p>Sharper by</p><h2>15°</h2><h2>edge</h2><p>sharper than Western knives</p>"
+          }
+        },
+        "block_YGcREx": {
+          "type": "block",
+          "settings": {
+            "content": "<p><strong>Vacuum + Cryo Treatment</strong></p><p>Superior toughness and edge retention.<br/><br/></p>"
+          }
+        },
+        "block_VMJrxx": {
+          "type": "block",
+          "settings": {
+            "content": "<p><strong>Oak & G10 Handle</strong></p><p>Bold. Ergonomic. Comfort</p>"
+          }
+        },
+        "block_nrqYL7": {
+          "type": "block",
+          "settings": {
+            "content": "<p>Effortless cutting with</p><p>minimal resistance.</p><p><strong>2.3 mm Slim Blade</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_GWYtUR",
+        "block_wqQxab",
+        "block_wdLyzW",
+        "block_YGcREx",
+        "block_VMJrxx",
+        "block_nrqYL7"
+      ],
       "name": "Product Series2",
       "settings": {
         "header_title": "<h2>Here’s why</h2><h2>Mo Series stands above.</h2>",
