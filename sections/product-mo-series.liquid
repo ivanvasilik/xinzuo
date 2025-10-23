@@ -1,0 +1,69 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .section-{{ section.id }} .product-series {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-series span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} .product-series h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #f9f9f7;
+        text-align: center;
+    }
+
+    .section-{{ section.id }} .product-series h2:nth-child(odd) {
+        color: grad;
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-series">
+        <span>{{ section.settings.title }}</span>
+        <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product series">
+        <span>{{ section.settings.content }}</span>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Product Series",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Series"
+        }
+    ]
+}
+{% endschema %}
