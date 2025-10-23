@@ -1402,7 +1402,10 @@
         "footer_left": "",
         "footer_right": "",
         "padding_top": 104,
-        "padding_bottom": 104
+        "padding_bottom": 104,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
       }
     },
     "product_info2_8biKrj": {
@@ -1422,7 +1425,10 @@
         "footer_left": "<h2>Balanced</h2><h2>Sharp</h2><h2>Durable</h2><h2>Effortless</h2><h2>Consistent</h2>",
         "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
       }
     },
     "product_info2_pVhzYj": {
@@ -1473,7 +1479,10 @@
         "footer_left": "",
         "footer_right": "",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
       }
     },
     "product_info3_Gx89LP": {
@@ -1509,7 +1518,10 @@
         "footer_left": "<p>Crafted with North American desert ironwood or refined redwood, seamlessly paired with buffalo horn, the Retro Series handle blends natural strength and timeless beauty. A hammered finish enhances its grip, delivering both artistry and utility.</p>",
         "footer_right": "<h2>Durable</h2><p>Desert ironwood ensures lasting strength.</p><h2>Balanced</h2><p>Buffalo horn adds weight harmony.</p><h2>Distinctive</h2><p>Hammered finish for unique style.</p>",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
       }
     },
     "product_info2_GjRq8Y": {
@@ -1529,7 +1541,12 @@
         "footer_left": "<p>Retro Series embodies elevated craftsmanship, with longer edge retention and a striking Damascus finish. It’s built for those who expect precision, artistry, and durability in every slice.</p>",
         "footer_right": "<p>From its refined handles to its hammered details, the Retro Series is designed for profess-ionals and enthusiasts alike—balancing beauty with performance, meal after meal.</p>",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "additional_footer": true,
+        "additional_image1": "shopify://shop_images/Icons.png",
+        "additional_content1": "<p>The longer retention of the Retro Series blade ensures chefs <strong>spend less time sharpening and more time cooking</strong>, with reliable sharpness that lasts through demanding, daily professional use.</p>",
+        "additional_image2": "shopify://shop_images/Icons_1.png",
+        "additional_content2": "<p>The artistic design of Retro Series is revealed in every detail—<strong>from the Damascus finish to wood-and-horn handles</strong>—turning a high-performance knife into a statement of culinary elegance.</p>"
       }
     },
     "product_info4_nYeXEB": {
