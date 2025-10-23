@@ -1553,6 +1553,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
+        "heading": "Choose Your Edge",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
