@@ -125,7 +125,7 @@ header {
         p:nth-child(odd) {
             color: var(--Default, #F9F9F7);
             font-family: Sen;
-            font-size: var(--Mobile-Font-Size-Hero, 40px);
+            font-size: var(--Mobile-Font-Size-Hero, 40px) !important;
             font-style: normal;
             font-weight: 600;
             line-height: 120%; /* 48px */
