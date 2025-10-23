@@ -163,9 +163,16 @@
       }
 
       .section-{{ section.id }} figure.menu-card p {
-          font-size: 18px;
-          max-height: 130px;
-          overflow: hidden;
+            /* max-height: 130px; */
+            overflow: hidden;
+            color: var(--Text, #86868B);
+            text-overflow: ellipsis;
+            /* Mobile/Text Large */
+            font-family: var(--Primary-Font-Family-Body, "Albert Sans");
+            font-size: var(--Mobile-Font-Size-Text-Large, 18px);
+            font-style: normal;
+            font-weight: var(--Primary-Font-Weight-Regular, 400);
+            line-height: 150%; /* 27px */
       }
 
       .section-{{ section.id }} figure.menu-card .menu-cart-top p {
