@@ -139,14 +139,17 @@
 
     .section-{{ section.id }} .product-info2-footer3 {
         width: 100%;
-        max-width: 1080px;
-        margin: auto;
-        padding: 24px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
     }
 
     .section-{{ section.id }} .product-info2-footer3 > div {
         display: flex;
         gap: 64px;
+        max-width: 1080px;
+        margin: auto;
+        padding: 24px 32px;
     }
 
     .section-{{ section.id }} strong {
@@ -245,6 +248,7 @@
     {% endif %}
 
     {% if section.settings.additional_footer == true %}
+        .section-{{ section.id }} 
     {% endif %}
 {% endstyle %}
 
