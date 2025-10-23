@@ -5,6 +5,23 @@
         overflow: hidden;
     }
 
+    .section-{{ section.id }} h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #86868b;
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        padding: 0 32px;
+        text-align: center;
+    }
+
+    .section-{{ section.id }} h2:after {
+        content: ".";
+        color: #ca322b;
+    }
+
     .section-{{ section.id }} .product-slider {
         margin-bottom: 80px;
     }
@@ -118,6 +135,7 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <h2>{{ section.settings.heading }}</h2>
     {% if product.images.size > 3 %}
         <div class="product-slider">
             <div class="product-swiper">
@@ -262,6 +280,11 @@
 {
     "name": "Product Info4",
     "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
         {
             "type": "color_scheme",
             "id": "color_scheme",
