@@ -1374,13 +1374,14 @@
         "header_type": "left",
         "heading_footer": "Engineered with a VG10-equivalent core and stainless layers, ensuring stability, sharpness, and durability for every kitchen.",
         "image_video": "image",
+        "img": "shopify://shop_images/04_4d396ad7-d0c9-4a44-b1d7-c63bca208a2d.png",
         "color_scheme": "scheme-5",
-        "footer_state": "visible",
+        "footer_state": "hidden",
         "footer_type": "first",
         "footer_left": "",
         "footer_right": "",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 104,
+        "padding_bottom": 104
       }
     },
     "product_info2_8biKrj": {
