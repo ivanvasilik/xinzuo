@@ -514,13 +514,13 @@
             "max": 120,
             "step": 2,
             "unit": "px",
-            "default": 80,
-            "visible_if": "{{ section.settings.footer_state == 'visible' and section.settings.footer_type == 'third' }}"
+            "default": 80
         },
         {
             "type": "checkbox",
             "id": "additional_footer",
-            "label": "Additional Footer State"
+            "label": "Additional Footer State",
+            "visible_if": "{{ section.settings.footer_state == 'visible' and section.settings.footer_type == 'third' }}"
         },
         {
             "type": "image_picker",
