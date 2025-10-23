@@ -17,12 +17,12 @@
         margin: auto;
     }
 
-    {% if section.settings.header_type == "center" %}
-        max-width: 640px;
-        .section-{{ section.id }} .product-info2-header div {
+    .section-{{ section.id }} .product-info2-header div {
+        {% if section.settings.header_type == "center" %}
+            max-width: 640px;
             margin: auto;
-        }
-    {% endif %}
+        {% endif %}
+    }
 
     .section-{{ section.id }} .product-info2-header p {
         font-family: "Sen";
