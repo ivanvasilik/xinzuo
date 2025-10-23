@@ -1489,7 +1489,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_d1ec9970-de7c-4394-93d8-abd7d8d2024f.png",
-            "content": "<p><strong>Meticulous crafting through 12 precise</strong>, detailed stages ensures perfection in every blade, creating flawless consistency, reliability, and enduring professional performance.</p>"
+            "content": "<p><strong>Crafting through twelve deliberate stages</strong>, each inspected with precision, gives the Lan Series flawless uniformity, ensuring every knife reflects uncompromising artistry and legacy refinement.</p>"
           }
         },
         "block_JUhH4q": {
@@ -1497,15 +1497,15 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_3.png",
-            "content": "<p><strong>Advanced heat treatment</strong> carefully refines the steel’s structure, unlocking exceptional durability, hardness uniformity, and long-lasting stability for demanding culinary tasks.</p>"
+            "content": "<p><strong>Heat Treatment under vacuum conditions</strong>, followed by deep-freeze tempering, stabilizes the steel’s core, aligning structure with harmony that preserves integrity through years of demanding use.</p>"
           }
         },
         "block_RU94Wj": {
           "type": "block",
           "settings": {
             "heading": "",
-            "image": "shopify://shop_images/Icons_4.png",
-            "content": "<p><strong>Enhanced blade qualities</strong> deliver superior toughness, extended edge retention, and powerful corrosion resistance, ensuring professional sharpness and reliability over long-term use.</p>"
+            "image": "shopify://shop_images/Icons_15.png",
+            "content": "<p><strong>Refinement at the molecular level </strong>enhances the steel’s resilience, balancing hardness with control, giving the Lan Series unmatched character that reflects innovation and timeless craftsmanship.</p>"
           }
         }
       },
@@ -1516,13 +1516,13 @@
       ],
       "name": "Product Info2",
       "settings": {
-        "heading_title": "CRAFTED. HARDENED. ENDURING.",
-        "heading_content": "<h2>Strength in Crafting</h2>",
+        "heading_title": "CRAFTED. SUPREME. TIMELESS.",
+        "heading_content": "<h2>The Gentle Perfection</h2>",
         "header_type": "left",
         "block_type": "icon",
-        "heading_footer": "Crafted through 12 meticulous stages, advanced heat treatment enhances blade toughness, edge retention, and corrosion resistance.",
+        "heading_footer": "Guided through twelve precise steps, refined under advanced treatment, each Lan Series emerges as a crafted legacy.",
         "image_video": "image",
-        "img": "shopify://shop_images/image_257.png",
+        "img": "shopify://shop_images/img_477.png",
         "color_scheme": "scheme-5",
         "footer_state": "hidden",
         "footer_type": "first",
@@ -1580,16 +1580,16 @@
       "type": "product-info6",
       "name": "Product Info6",
       "settings": {
-        "heading_title": "Knife Design",
-        "heading_content": "<h2>Artistry in</h2><h2>Detail</h2>",
+        "heading_title": "Design Legacy",
+        "heading_content": "<h2>The Shape of</h2><h2>Mastery</h2>",
         "header_type": "center",
         "heading_footer": "",
-        "left_img": "shopify://shop_images/product-x06-008.png",
-        "left_title": "<h2>Artful</h2><h2>Etched</h2><h2>Iconic</h2>",
-        "left_content": "<p>The Mo Series blade features an acid-etched, battle-forged Damascus pattern with a black titanium water-wave stonewash, delivering striking visual artistry, reduced food adhesion, and durable, performance-driven elegance in every cut.</p>",
-        "right_img": "shopify://shop_images/product-x06-007.png",
-        "right_title": "<h2>Ergonomic</h2><h2>Durable</h2><h2>Comfort</h2>",
-        "right_content": "<p>The Mo Series handle blends burnt white oak with bold red G10, delivering a refined, durable aesthetic that is ergonomic, moisture-resistant, exceptionally comfortable in extended use, stable under pressure, and a superior upgrade over plain wooden handles.</p>",
+        "left_img": "shopify://shop_images/image_582.png",
+        "left_title": "<h2>Luxurious</h2><h2>Powerful</h2><h2>Supreme</h2>",
+        "left_content": "<p>The Lan Series blade features 73-layer Damascus artistry polished to brilliance, each wave pattern unique. Its powder-metallurgy core delivers strength and precision, combining refined beauty with a professional presence beyond ordinary Damascus.</p>",
+        "right_img": "shopify://shop_images/product-b37-003.png",
+        "right_title": "<h2>Elegant</h2><h2>Stable</h2><h2>Exquisite</h2>",
+        "right_content": "<p>The Lan Series handle blends rich olive wood with copper-flower rivets, hand-finished for luxury. Ergonomic shaping ensures a fatigue-free grip, while natural warmth and fine detailing balance comfort, artistry, and enduring sophistication.</p>",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
@@ -1600,24 +1600,24 @@
       "name": "Product Info2",
       "settings": {
         "heading_title": "",
-        "heading_content": "<h2>Built</h2><h2>for Brilliance</h2>",
+        "heading_content": "<h2>Defined</h2><h2>by Supremacy</h2>",
         "header_type": "center",
         "block_type": "text",
         "heading_footer": "",
         "image_video": "video",
-        "video": "shopify://files/videos/x06-001.mp4",
+        "video": "shopify://files/videos/b37-001.mp4",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "third",
-        "footer_left": "<p>Mo Series embodies advanced craftsmanship, forged with 67-layer Damascus and a VG10-equivalent core. It delivers razor precision, long-lasting edge retention, and strength that endures through demanding professional use.</p>",
-        "footer_right": "<p>From its black titanium Damascus finish to the burnt oak and red G10 handle, every Mo Series detail unites toughness with elegance—built for perfection, slice after slice.</p>",
+        "footer_left": "<p>The Lan Series stands at the pinnacle of Xinzuo craftsmanship, forged with powder metallurgy steel and Damascus artistry. It delivers supreme sharpness, enduring toughness, and a legacy worthy of chefs and collectors.</p>",
+        "footer_right": "<p>Each Lan Series arrives in a bespoke case, crafted to preserve its legacy — more than a knife, it becomes a gift of refinement, tradition, and enduring value.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
-        "additional_image1": "shopify://shop_images/Icons_1_9cb45a40-18f4-4ddb-aac9-66c8772d049e.png",
-        "additional_content1": "<p>The VG10-equivalent core wrapped in 66 Damascus layers gives Mo Series its <strong>lasting sharpness, strength, and resilience</strong>—keeping chefs focused on cooking, not constant sharpening.</p>",
+        "additional_image1": "shopify://shop_images/Icons_16.png",
+        "additional_content1": "<p><strong>Powder metallurgy steel and layered Damascus design</strong> give the Lan Series unrivaled exclusivity — crafted as the crown jewel above every other Xinzuo series.</p>",
         "additional_image2": "shopify://shop_images/Icons_2_ada91f16-e94d-41b1-bbf3-08db7688a8fa.png",
-        "additional_content2": "<p>A water-wave Damascus pattern, acid-etched and stonewashed in black titanium, gives Mo Series its bold identity—<strong>striking, anti-stick, and elevated to near perfection</strong> in both design and performance.</p>"
+        "additional_content2": "<p><strong>Hand-finished details and bespoke gift packaging</strong> transform the Lan Series from a knife into an heirloom — a statement of prestige, artistry, and timeless refinement.</p>"
       }
     },
     "product_info4_nYeXEB": {
@@ -1634,7 +1634,7 @@
       "type": "product-series1",
       "name": "Product Series",
       "settings": {
-        "title": "<h2>Mo Series Damascus.</h2><h2>Blade Mastery Redefined</h2>",
+        "title": "<p>Lan Series.</p><p>Beyond Limits of Artistry</p>",
         "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
         "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
         "color_scheme": "scheme-5",
