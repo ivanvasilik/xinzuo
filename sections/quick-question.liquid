@@ -68,7 +68,15 @@
         }
 
         .section-{{ section.id }} .quick-question h2 {
-            font-size: 22px;
+            color: var(--Default, #F9F9F7);
+            text-align: center;
+            /* Mobile/H3 */
+            font-family: var(--Primary-Font-Family-Heading, Sen);
+            font-size: var(--Mobile-Font-Size-H3, 22px);
+            font-style: normal;
+            font-weight: var(--Primary-Font-Weight-Semibold, 600);
+            line-height: 135%; /* 29.7px */
+            letter-spacing: -0.11px;
         }
 
         .section-{{ section.id }} .quick-question button {
