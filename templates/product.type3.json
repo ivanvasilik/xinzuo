@@ -1632,36 +1632,45 @@
           "type": "block",
           "settings": {
             "image": "shopify://shop_images/Stack.png",
+            "image_type": "icon",
             "content": "<p>67-Layer Damascus</p>"
           }
         },
         "block_wqQxab": {
           "type": "block",
           "settings": {
+            "image_type": "normal",
             "content": "<p>Up to</p><h2>62 HRC</h2><h2>harder</h2><p>high hardness, </p><p>longer-lasting sharpness</p>"
           }
         },
         "block_wdLyzW": {
           "type": "block",
           "settings": {
+            "image_type": "normal",
             "content": "<p>Sharper by</p><h2>15°</h2><h2>edge</h2><p>sharper than Western knives</p>"
           }
         },
         "block_YGcREx": {
           "type": "block",
           "settings": {
+            "image": "shopify://shop_images/Icons_3_d0b71e0a-4756-4a90-b7fd-a68574803653.png",
+            "image_type": "icon",
             "content": "<p><strong>Vacuum + Cryo Treatment</strong></p><p>Superior toughness and edge retention.<br/><br/></p>"
           }
         },
         "block_VMJrxx": {
           "type": "block",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_345.png",
+            "image_type": "background",
             "content": "<p><strong>Oak & G10 Handle</strong></p><p>Bold. Ergonomic. Comfort</p>"
           }
         },
         "block_nrqYL7": {
           "type": "block",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_346.png",
+            "image_type": "normal",
             "content": "<p>Effortless cutting with</p><p>minimal resistance.</p><p><strong>2.3 mm Slim Blade</strong></p>"
           }
         }
