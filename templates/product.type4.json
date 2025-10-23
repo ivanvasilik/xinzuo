@@ -1302,28 +1302,35 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square.png",
-            "content": "<p>Chromium (~15%) <strong>forms a protective surface layer</strong>, giving the blade strong resistance to rust, stains, and everyday kitchen moisture exposure.</p>"
+            "content": "<p>Chromium (~15%) forms a protective stainless shield, <strong>giving superior resistance against rust, stains, and moisture</strong> while preserving blade beauty and strength.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum boosts <strong>toughness and minimizes brittleness</strong>, allowing the blade to withstand heavy chopping and repeated use without risk of cracking or chipping.</p>"
+            "content": "<p>Molybdenum (~1.5%) <strong>boosts toughness and reduces brittleness</strong>, allowing the knives to resist cracks or chips during heavy chopping and professional kitchen work.</p>"
           }
         },
         "icon_GWBWPm": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium <strong>creates a fine-grained steel structure</strong>, producing sharper edges and extending cutting performance longer between sharpening sessions.</p>"
+            "content": "<p>Vanadium (~0.4%) <strong>refines grain structure, producing sharper, harder edges</strong> that stay keen longer and require less frequent sharpening.</p>"
           }
         },
         "icon_4HNknW": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_4.png",
-            "content": "<p>Cobalt (~1.5%) <strong>stabilizes hardness throughout the blade</strong>, enhancing wear resistance and consistent strength during intense, continuous cooking tasks.</p>"
+            "content": "<p>Cobalt (~1.5%) <strong>stabilizes hardness throughout the steel matrix</strong>, enhancing wear resistance and endurance during continuous, high-intensity cutting.</p>"
+          }
+        },
+        "icon_QbUatt": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_32275f87-7708-4c45-9407-e6c3fcd0f2a5.png",
+            "content": "<p>Niobium (~0.2%), a rare addition, <strong>strengthens the microstructure, balancing extreme hardness</strong> with durability for long-lasting, stable cutting performance.</p>"
           }
         },
         "block_UJiBwA": {
@@ -1357,13 +1364,14 @@
         "icon_NxVM3T",
         "icon_GWBWPm",
         "icon_4HNknW",
+        "icon_QbUatt",
         "block_UJiBwA",
         "block_XD86y8",
         "block_pXdtFM"
       ],
       "name": "Product Info",
       "settings": {
-        "image": "shopify://shop_images/product-x06-009_c478ecc1-06e0-4b18-9bd6-c2ddef5538ea.png",
+        "image": "shopify://shop_images/image_128_b35a7974-cbcd-440f-bfdf-e777b9df4fba.png",
         "heading": "",
         "content": "<p><strong>10Cr15CoMoV (VG10-equivalent)</strong> steel in the Mo Series blends carbon for hardness, chromium for corrosion resistance, molybdenum for toughness, vanadium for sharpness, and cobalt for stability. This balanced alloy ensures long-lasting edge retention, durability, and professional-level performance with every cut.</p>",
         "first_num": "2",
