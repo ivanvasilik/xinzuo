@@ -1360,7 +1360,27 @@
         "content": "<p><strong>10Cr15CoMoV (VG10-equivalent) </strong>combines high carbon for edge retention, cobalt for stability, chromium for corrosion resistance, and vanadium for sharpness. This balanced composition makes Retro Series ideal for chefs seeking long-lasting sharpness, durability, and artistry in their knives.</p>",
         "first_num": "2",
         "second_num": "3",
-        "color_scheme": "scheme-5"
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_info2_7JTdmJ": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "heading_title": "TOUGH. BALANCED. RELIABLE",
+        "heading_content": "<h2>3 Layer Composite</h2>",
+        "header_type": "left",
+        "heading_footer": "Engineered with a VG10-equivalent core and stainless layers, ensuring stability, sharpness, and durability for every kitchen.",
+        "image_video": "image",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "first",
+        "footer_left": "",
+        "footer_right": "",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_info2_8biKrj": {
@@ -1374,9 +1394,12 @@
         "image_video": "image",
         "img": "shopify://shop_images/1.png",
         "color_scheme": "scheme-5",
+        "footer_state": "visible",
         "footer_type": "first",
         "footer_left": "<h2>Thin</h2><h2>Sharp</h2><h2>Precise</h2><h2>Effortless</h2><h2>Reliable</h2>",
-        "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>"
+        "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_info3_Gx89LP": {
@@ -1406,9 +1429,12 @@
         "image_video": "image",
         "img": "shopify://shop_images/Image.png",
         "color_scheme": "scheme-5",
+        "footer_state": "visible",
         "footer_type": "second",
         "footer_left": "<p>The Supreme Series handle is made from hand-polished redwood, shaped to fit comfortably in your grip. Its ergonomic design reduces fatigue, while the natural warmth of wood adds elegance and balance to every slice. A handle that feels as refined as it looks.</p>",
-        "footer_right": "<h2>Ergonomic</h2><p>Comfortable grip for effortless control.</p><h2>Polished</h2><p>Smooth surface with premium feel.</p><h2>Warmth</h2><p>Wooden handle brings inviting touch.</p>"
+        "footer_right": "<h2>Ergonomic</h2><p>Comfortable grip for effortless control.</p><h2>Polished</h2><p>Smooth surface with premium feel.</p><h2>Warmth</h2><p>Wooden handle brings inviting touch.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_info2_GjRq8Y": {
@@ -1422,16 +1448,21 @@
         "image_video": "video",
         "video": "shopify://files/videos/x02-001.mp4",
         "color_scheme": "scheme-5",
+        "footer_state": "visible",
         "footer_type": "third",
         "footer_left": "<p>Supreme Series delivers great performance at an accessible price, offering the <strong>strength of professional-grade steel and the comfort of ergonomic design.</strong> It’s crafted to be reliable, versatile, and the everyday knife you’ll trust for years of consistent use.</p>",
-        "footer_right": "<p>With a design that’s proven, durable, and user-friendly, the Supreme Series balances toughness, sharpness, and comfort—so you can cook with confidence, meal after meal.</p>"
+        "footer_right": "<p>With a design that’s proven, durable, and user-friendly, the Supreme Series balances toughness, sharpness, and comfort—so you can cook with confidence, meal after meal.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_info4_nYeXEB": {
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
-        "color_scheme": "scheme-5"
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_description_t4ATaB": {
@@ -1798,6 +1829,7 @@
   "order": [
     "main",
     "product_info_mmnV94",
+    "product_info2_7JTdmJ",
     "product_info2_8biKrj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
