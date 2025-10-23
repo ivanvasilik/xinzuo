@@ -1559,6 +1559,19 @@
         "additional_content2": ""
       }
     },
+    "product_info6_M4zfaM": {
+      "type": "product-info6",
+      "name": "Product Info6",
+      "settings": {
+        "heading_title": "Knife Design",
+        "heading_content": "<h2>Artistry in</h2><h2>Detail</h2>",
+        "header_type": "center",
+        "heading_footer": "",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "product_info2_GjRq8Y": {
       "type": "product-info2",
       "name": "Product Info2",
@@ -2042,6 +2055,7 @@
     "product_info2_pVhzYj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
+    "product_info6_M4zfaM",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
     "product_info5_whc3ta",
