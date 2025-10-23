@@ -1698,25 +1698,37 @@
       "blocks": {
         "block_AtEMGG": {
           "type": "block",
-          "settings": {}
+          "settings": {
+            "title": "Performance",
+            "image1": "shopify://shop_images/Icons_4_96f1a20a-a02e-4cf0-9795-1861cdb59e4e.png",
+            "content1": "<p>Forged <strong>with Damascus steel and a VG10-equivalent core</strong>, Mo Series endures heavy use, resisting wear and ensuring strength cut after cut.</p>",
+            "image2": "shopify://shop_images/Icons_5.png",
+            "content2": "<p><strong>Ergonomic, moisture-resistant handles</strong> give chefs steady control, reducing fatigue and ensuring sharper, more precise results.</p>",
+            "image3": "shopify://shop_images/Icons_6_221b602a-a5d3-4912-ac69-94b7a7625710.png",
+            "content3": "<p><strong>Forged through 12 meticulous steps</strong>, Mo Series blends traditional artistry with advanced heat treatment for lasting professional performance.</p>"
+          }
         },
         "block_DwrRdG": {
           "type": "block",
-          "settings": {}
-        },
-        "block_hJMVii": {
-          "type": "block",
-          "settings": {}
+          "settings": {
+            "title": "Safety",
+            "image1": "shopify://shop_images/Icons_7_83874bec-26fe-425f-b920-8445d6bbc6f1.png",
+            "content1": "<p>The burnt white oak + red G10 handle <strong>provides secure, ergonomic grip</strong>—reduces slipping, improves control, especially when wet, reducing risk of accidents.</p>",
+            "image2": "shopify://shop_images/Icons_8_080f7da8-6612-4a45-af5b-dbcc396e4685.png",
+            "content2": "<p>Outer layers using 316L stainless steel <strong>ensure the blade meets food-contact safety norms</strong> (resisting corrosion, no harmful leaching ), maintaining hygiene and safety with each use.</p>",
+            "image3": "shopify://shop_images/Icons_9_d9044487-9e9d-4768-8784-2bb2c15e3e8c.png",
+            "content3": "<p>The heat-treated, cryo-tempered blade <strong>maintains hardness without brittleness</strong>—edge retention means less sharpening and safer maintenance.</p>"
+          }
         }
       },
       "block_order": [
         "block_AtEMGG",
-        "block_DwrRdG",
-        "block_hJMVii"
+        "block_DwrRdG"
       ],
       "name": "Product Info5",
       "settings": {
-        "heading": "Designed to make a difference",
+        "heading": "Distinct by Every Detail",
+        "background": false,
         "color_scheme": "scheme-5",
         "padding_top": 108,
         "padding_bottom": 108
