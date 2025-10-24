@@ -142,6 +142,10 @@
         color: #86868b;
     }
 
+    .section-{{ section.id }} .question-modal-header svg {
+        cursor: pointer;
+    }
+
     .section-{{ section.id }} .question-progress {
         width: 100%;
         height: 3px;
@@ -178,6 +182,7 @@
         width: calc(50% - 8px);
         text-align: left;
         background-color: transparent;
+        cursor: pointer;
     }
 {% endstyle %}
 
@@ -195,7 +200,7 @@
             <div class="question-modal-info {% if forloop.index == 1 %}active{% endif %}">
                 <div class="question-modal-header">
                     <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" onclick="close()">
                         <g clip-path="url(#clip0_4592_59391)">
                             <path d="M18.75 5.46875L5.25 19.5312" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M18.75 19.5312L5.25 5.46875" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -217,13 +222,17 @@
                 </div>
                 <h2>{{ block.settings.question }}</h2>
                 <div class="question-answers">
-                    <button onclick="next()">{{ block.settings.answer1 }}</button>
-                    <button onclick="next()">{{ block.settings.answer2 }}</button>
+                    <button onclick="next({{ forloop.index }})">{{ block.settings.answer1 }}</button>
+                    <button onclick="next({{ forloop.index }})">{{ block.settings.answer2 }}</button>
                 </div>
             </div>
         {% endfor %}
     </div>
 </section>
+
+<script>
+    const close = () => {}
+</script>
 
 {% schema %}
 {
