@@ -36,7 +36,7 @@
         letter-spacing: -0.18px;
         margin-bottom:0;
     }
-    .section-{{ section.settings.first_order_content }} p {
+    .section-{{ section.id }} p {
         color: var(--Text, #86868B);
         text-align: center;
         font-family: var(--Primary-Font-Family-Body, "Albert Sans");
@@ -48,21 +48,14 @@
     }
 
     .section-{{  section.id }} input {
-        display: flex;
-        padding: 10px 16px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        align-self: stretch;
-        border-radius: 4px;
-        border: 1px solid var(--Stroke, rgba(255, 255, 255, 0.10));
-        background: rgba(255, 255, 255, 0.03);
         color: var(--Text, #86868B);
+        width:100%;
         font-family: var(--Primary-Font-Family-Body, "Albert Sans");
         font-size: var(--Primary-Font-Size-Label, 14px);
         font-style: normal;
         font-weight: var(--Primary-Font-Weight-Regular, 400);
         line-height: 20px; /* 142.857% */
+        background: 
     }
 
     .section-{{ section.id }} button {
