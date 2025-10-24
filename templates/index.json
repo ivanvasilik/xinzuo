@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "enjoy_first_order_m8pUGH": {
+      "type": "enjoy_first_order",
+      "name": "first_order",
+      "settings": {
+        "first_order_image": "shopify://shop_images/03_8b6a4268-ee4a-48fe-8514-3b36ab12ebc1.png",
+        "first_order_text": "",
+        "first_order_content": "",
+        "first_order_input": "",
+        "first_order_button": ""
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -847,6 +858,7 @@
     }
   },
   "order": [
+    "enjoy_first_order_m8pUGH",
     "hero_jVaWmY",
     "customer_GD7Dyr",
     "home_slider_g9dVGe",
