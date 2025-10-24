@@ -16,15 +16,15 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "thumbnail_position": "left",
+            "thumbnail_width": 72,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
@@ -67,603 +67,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_icgrde": {
-              "type": "group",
-              "name": "Header",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_xrnftG": {
-                  "type": "text",
-                  "name": "Product title",
-                  "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "price_HpTK4P": {
-                  "type": "price",
-                  "name": "t:names.product_price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "",
-                    "width": "100%",
-                    "alignment": "left",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "color": "var(--color-foreground)",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_xrnftG",
-                "price_HpTK4P"
-              ]
-            },
-            "group_RV9hdT": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "icon_UFdhCf": {
-                  "type": "icon",
-                  "name": "t:names.icon",
-                  "settings": {
-                    "icon": "price_tag",
-                    "width": 24,
-                    "link": "",
-                    "open_in_new_tab": false
-                  },
-                  "blocks": {}
-                },
-                "custom_liquid_ANx7BK": {
-                  "type": "custom-liquid",
-                  "name": "t:names.custom_liquid",
-                  "settings": {
-                    "custom_liquid": ""
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "icon_UFdhCf",
-                "custom_liquid_ANx7BK"
-              ]
-            },
-            "custom_liquid_CGNLjq": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": ""
-              },
-              "blocks": {}
-            },
-            "product_description_ieQ84N": {
-              "type": "product-description",
-              "name": "t:names.product_description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_J8NfVM": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "group_ptY7q9": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "icon_kNB7yf": {
-                      "type": "icon",
-                      "name": "t:names.icon",
-                      "settings": {
-                        "icon": "price_tag",
-                        "width": 24,
-                        "link": "",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "text_UmXrdr": {
-                      "type": "text",
-                      "name": "t:names.heading",
-                      "settings": {
-                        "text": "<h2>New arrivals</h2>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_4qHcNE": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "icon_kNB7yf",
-                    "text_UmXrdr",
-                    "text_4qHcNE"
-                  ]
-                },
-                "group_gxL4hf": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "icon_hD8rXz": {
-                      "type": "icon",
-                      "name": "t:names.icon",
-                      "settings": {
-                        "icon": "price_tag",
-                        "width": 24,
-                        "link": "",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "text_EHJBxt": {
-                      "type": "text",
-                      "name": "t:names.heading",
-                      "settings": {
-                        "text": "<h2>New arrivals</h2>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_4beVQ6": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "icon_hD8rXz",
-                    "text_EHJBxt",
-                    "text_4beVQ6"
-                  ]
-                },
-                "group_TQpPVL": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "icon_LgDDD3": {
-                      "type": "icon",
-                      "name": "t:names.icon",
-                      "settings": {
-                        "icon": "price_tag",
-                        "width": 24,
-                        "link": "",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "text_bWdBGA": {
-                      "type": "text",
-                      "name": "t:names.heading",
-                      "settings": {
-                        "text": "<h2>New arrivals</h2>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_UTEMyT": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "icon_LgDDD3",
-                    "text_bWdBGA",
-                    "text_UTEMyT"
-                  ]
-                }
-              },
-              "block_order": [
-                "group_ptY7q9",
-                "group_gxL4hf",
-                "group_TQpPVL"
-              ]
-            },
-            "text_m8ddez": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>New arrivals</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -726,40 +129,14 @@
               },
               "blocks": {}
             },
-            "text_LHLzkk": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "group_QVNfmK": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
-                "content_direction": "column",
+                "content_direction": "row",
                 "vertical_on_mobile": true,
                 "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
+                "vertical_alignment": "flex-start",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
@@ -797,6 +174,7 @@
                   "name": "t:names.icon",
                   "settings": {
                     "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check.png",
                     "width": 24,
                     "link": "",
                     "open_in_new_tab": false
@@ -807,7 +185,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                    "text": "<p>Reliable tracked delivery within 4–6 days, keeping you updated every step until your knife reaches home.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -839,10 +217,10 @@
               "type": "group",
               "name": "t:names.group",
               "settings": {
-                "content_direction": "column",
+                "content_direction": "row",
                 "vertical_on_mobile": true,
                 "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
+                "vertical_alignment": "flex-start",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
@@ -880,6 +258,7 @@
                   "name": "t:names.icon",
                   "settings": {
                     "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check.png",
                     "width": 24,
                     "link": "",
                     "open_in_new_tab": false
@@ -890,7 +269,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                    "text": "<p>Premium protective box included; optional gift packaging available as a paid add-on for special occasions.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -940,7 +319,7 @@
                 "accordion_row_CUG9xJ": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Return policy",
+                    "heading": "DESCRIPTION",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
@@ -949,7 +328,7 @@
                     "text_pyDqAk": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "text": "<p>The Retro Series Chef Knife is forged with a Damascus-clad 10Cr15CoMoV core, designed for precise cutting, versatile use, and long-term edge stability.</p><p>The handle is crafted from desert ironwood or redwood with buffalo horn, offering a comfortable grip and natural resistance to wear.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -979,7 +358,7 @@
                 "accordion_row_6HHD9d": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping",
+                    "heading": "WHAT’S INCLUDED",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -988,7 +367,7 @@
                     "text_EdgYbR": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                        "text": "<p>The Retro Series Chef Knife is forged with a Damascus-clad 10Cr15CoMoV core, designed for precise cutting, versatile use, and long-term edge stability.</p><p>The handle is crafted from desert ironwood or redwood with buffalo horn, offering a comfortable grip and natural resistance to wear.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1018,7 +397,7 @@
                 "accordion_row_UfiwpK": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Manufacturing",
+                    "heading": "TECHNICAL DETAILS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -1027,7 +406,7 @@
                     "text_JKdy9F": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
+                        "text": "<p>The Retro Series Chef Knife is forged with a Damascus-clad 10Cr15CoMoV core, designed for precise cutting, versatile use, and long-term edge stability.</p><p>The handle is crafted from desert ironwood or redwood with buffalo horn, offering a comfortable grip and natural resistance to wear.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1065,7 +444,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                "text": "<p><em>Note - All knives tested under rigorous quality control for consistency.</em></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1087,11 +466,11 @@
               },
               "blocks": {}
             },
-            "text_tfRUMm": {
+            "text_jYr4xY": {
               "type": "text",
-              "name": "t:names.heading",
+              "name": "t:names.text",
               "settings": {
-                "text": "<h2>New arrivals</h2>",
+                "text": "<h4></h4><h4></h4><h4></h4><h4></h4><h4>Most Asked Questions</h4>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1135,7 +514,7 @@
                 "accordion_row_V8VGYp": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Return policy",
+                    "heading": "What defines the Retro Series knife collection?",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
@@ -1144,7 +523,7 @@
                     "text_mz9UqL": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "text": "<p>The Retro Series collection emphasizes refinement, combining artistic detailing with practical utility, designed for cooks who value both appearance and efficiency.</p><p>Through deliberate construction methods, the knives balance control and comfort, enabling versatile use across a wide variety of kitchen preparations.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1174,7 +553,7 @@
                 "accordion_row_Pc4bbF": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping",
+                    "heading": "How is Retro Series different from entry-level options?",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -1183,7 +562,7 @@
                     "text_KQaBR4": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                        "text": "<p>The Retro Series collection emphasizes refinement, combining artistic detailing with practical utility, designed for cooks who value both appearance and efficiency.</p><p>Through deliberate construction methods, the knives balance control and comfort, enabling versatile use across a wide variety of kitchen preparations.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1213,7 +592,7 @@
                 "accordion_row_Fhigtk": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Manufacturing",
+                    "heading": "Why do professionals appreciate the Retro Series?",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -1222,7 +601,7 @@
                     "text_xxNJCn": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
+                        "text": "<p>The Retro Series collection emphasizes refinement, combining artistic detailing with practical utility, designed for cooks who value both appearance and efficiency.</p><p>Through deliberate construction methods, the knives balance control and comfort, enabling versatile use across a wide variety of kitchen preparations.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1258,21 +637,14 @@
             }
           },
           "block_order": [
-            "group_icgrde",
-            "group_RV9hdT",
-            "custom_liquid_CGNLjq",
-            "product_description_ieQ84N",
-            "group_J8NfVM",
-            "text_m8ddez",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "payment_icons_hCKkQw",
-            "text_LHLzkk",
             "group_QVNfmK",
             "group_pUXHfM",
             "accordion_xErnFV",
             "text_EUV7Bd",
-            "text_tfRUMm",
+            "text_jYr4xY",
             "accordion_GU3TmD"
           ]
         }
@@ -1282,6 +654,26 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
+        "shipping_title1": "Earliest Delivery Tomorrow to",
+        "shipping_title2": "Carina, 4152",
+        "shipping_icon1": "shopify://shop_images/ClockCounterClockwise.png",
+        "shipping_content1": "18 hours left, for get it by tomorrow",
+        "shipping_icon2": "shopify://shop_images/Truck.png",
+        "shipping_content2": "Free Delivery on order worth $400",
+        "detail_content": "Damascus steel chef knife offering refined sharpness, long-lasting edge retention, and comfortable balance for precise, professional-grade cooking.",
+        "detail_icon1": "shopify://shop_images/StackSimple.png",
+        "detail_info1": "<p><strong>3-Layer Forged</strong></p><p>Composite</p>",
+        "detail_icon2": "shopify://shop_images/Hammer.png",
+        "detail_info2": "<p><strong>~60 ±1 HRC</strong></p><p>Blade Hardness</p>",
+        "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+        "detail_info3": "<p>10Cr15CoMoV</p><p>VG10 equivalent </p>",
+        "contact_heading": "Have any question",
+        "contact_icon1": "shopify://shop_images/Phone.png",
+        "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
+        "contact_icon2": "shopify://shop_images/EnvelopeSimple.png",
+        "contact_info2": "<p>Email</p><p>support@xinzuo.com.au</p>",
+        "contact_icon3": "shopify://shop_images/Headset.png",
+        "contact_info3": "<p>Support</p><p>Mon-Fri: 8am-10pm</p>",
         "gap": 48,
         "color_scheme": "scheme-5",
         "padding-block-start": 0,
@@ -1356,8 +748,10 @@
       "name": "Product Info",
       "settings": {
         "image": "shopify://shop_images/product-pm8s-003_2x_a3d0418e-6c2d-45f2-84dc-7e9a4d2be98f.png",
+        "header_type": "left",
         "heading": "",
         "content": "<p><strong>10Cr15CoMoV (VG10-equivalent) </strong>combines high carbon for edge retention, cobalt for stability, chromium for corrosion resistance, and vanadium for sharpness. This balanced composition makes Retro Series ideal for chefs seeking long-lasting sharpness, durability, and artistry in their knives.</p>",
+        "icon_block_state": true,
         "first_num": "2",
         "second_num": "3",
         "color_scheme": "scheme-5",
@@ -1556,7 +950,10 @@
         "heading": "Choose Your Edge",
         "color_scheme": "scheme-5",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "footer_state": false,
+        "footer_content1": "",
+        "footer_content2": ""
       }
     },
     "product_info5_whc3ta": {
@@ -1565,22 +962,28 @@
         "block_AtEMGG": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Icons_6.png",
-            "content": "<p>Forged with <strong>3-layered VG10-level harder steel</strong>, the blade delivers superior sharpness, edge durability, and long-lasting cutting performance.</p>"
+            "title": "",
+            "content1": "",
+            "content2": "",
+            "content3": ""
           }
         },
         "block_DwrRdG": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Icons_7.png",
-            "content": "<p>An <strong>anti-stick finish</strong> combined with an <strong>ergonomic grip</strong> ensures smooth food release, comfortable handling, and safe, efficient control.</p>"
+            "title": "",
+            "content1": "",
+            "content2": "",
+            "content3": ""
           }
         },
         "block_hJMVii": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Icons_8.png",
-            "content": "<p><strong>Advanced vacuum heat-treatment </strong>enhances blade hardness, retention, and resili-ence, ensuring reliable perfor-mance in professional use.</p>"
+            "title": "",
+            "content1": "",
+            "content2": "",
+            "content3": ""
           }
         }
       },
@@ -1592,7 +995,7 @@
       "name": "Product Info5",
       "settings": {
         "heading": "Designed to make a difference",
-        "title": "Excellence",
+        "background": false,
         "color_scheme": "scheme-5",
         "padding_top": 108,
         "padding_bottom": 108
