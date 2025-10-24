@@ -14,10 +14,10 @@
       "name": "first_order",
       "settings": {
         "first_order_image": "shopify://shop_images/03_417c0b77-d62a-487d-b054-951dbbed115d.png",
-        "first_order_text": "",
-        "first_order_content": "",
-        "first_order_input": "",
-        "first_order_button": ""
+        "first_order_title": "ENJOY 10% OFF ON FIRST ORDER",
+        "first_order_content": "<p>Sign up today and instantly receive your exclusive discount coupon by email.</p>",
+        "first_order_input": "<p>Enter email, receive code instantly</p>",
+        "first_order_button": "<p>SAVE 10% NOW</p>"
       }
     },
     "hero_jVaWmY": {
