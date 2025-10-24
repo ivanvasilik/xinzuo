@@ -83,6 +83,25 @@
     },
     "cw_product_information_6YAyPh": {
       "type": "cw-product-information",
+      "blocks": {
+        "shipping_LVpg78": {
+          "type": "shipping",
+          "settings": {}
+        },
+        "info_YQpd7c": {
+          "type": "info",
+          "settings": {}
+        },
+        "variant_kDcx4P": {
+          "type": "variant",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "shipping_LVpg78",
+        "info_YQpd7c",
+        "variant_kDcx4P"
+      ],
       "name": "Product Header",
       "settings": {
         "color_scheme": "scheme-5",
