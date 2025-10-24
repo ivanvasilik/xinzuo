@@ -52,7 +52,7 @@
         color: #fd3e36;
     }
 
-    .section-{{ section.id }} .product-info > div > div {
+    .section-{{ section.id }} .product-infoheaderdiv {
         max-width: 800px;
         margin: 0 auto;
         padding: 0 32px;
@@ -182,7 +182,7 @@
                 {% endif %}
                 <span class="product-info-span">{{ section.settings.content }}</span>
             {% else %}
-                <div>
+                <div class="product-info-headerdiv">
                     {% if section.settings.heading != blank %}
                         <span class="product-info-header">{{ section.settings.heading }}</span>
                     {% endif %}
