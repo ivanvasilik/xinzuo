@@ -213,7 +213,7 @@
             {% if section.settings.block_type == "text" %}
                 width: calc(100% - 544px);
             {% else %}
-                width: 50%;
+                width: calc(50% - 32px);
             {% endif %}
             object-fit: cover;
         }
@@ -224,9 +224,9 @@
                 width: 480px;
                 gap: 64px;
             {% else %}
-                padding: 32px 32px 64px 48px;
+                padding: 32px 48px 64px 32px;
                 gap: 48px;
-                width: 100%;
+                width: calc(50% - 32px);
             {% endif %}
             display: flex;
             flex-direction: column;
