@@ -94,6 +94,75 @@
             text-transform: uppercase;
         }
     }
+
+    .section-{{ section.id }} .question-modal {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+    .section-{{ section.id }} .question-modal-back {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .section-{{ section.id }} .question-modal-info {
+        width: 800px;
+        height: 400px;
+        padding: 40px 32px;
+    }
+
+    .section-{{ section.id }} .question-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .section-{{ section.id }} .question-modal-header span {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #86868b;
+        margin-bottom: 20px;
+    }
+
+    .section-{{ section.id }} .question-progress {
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #56565B;
+    }
+
+    .section-{{ section.id }} .question-state {
+        height: 3px;
+        background: #c1c4c7;
+    }
+
+    .section-{{ section.id }} .quick-modal-info h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 135%;
+        margin: 32px 0;
+    }
+
+    .section-{{ section.id }} .question-answers {
+        display: flex;
+        gap: 16px;
+    }
+
+    .section-{{ section.id }} .question-answers button {
+        padding: 12px 16px;
+        border: 1px solid #56565b;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        min-width: 320px;
+        width: calc(50% - 8px);
+    }
 {% endstyle %}
 
 <section class="section-{{ section.id }}">
@@ -104,42 +173,41 @@
             <button class="most">SEE CHEFS LOVE MOST</button>
         </div>
     </div>
-</section>
-
-<div class="question-modal">
-    <div class="question-modal-back"></div>
-    <div class="question-modal-info">
-        {% for block in section.blocks %}
-            <div class="question-modal-header">
-                <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                    <g clip-path="url(#clip0_4592_59391)">
-                        <path d="M18.75 5.46875L5.25 19.5312" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.75 19.5312L5.25 5.46875" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_4592_59391">
-                            <rect width="24" height="25" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-            {% liquid
-              assign page = forloop.index
-              assign total = section.blocks.size
-              assign progress = page | times: 100 | divided_by: total
-            %}
-            <div class="question-progress">
-                <div class="question-state" style="width: {{ progress }}"></div>
-            </div>
-            <h2>{{ block.settings.question }}</h2>
-            <div class="question-answers">
-                <button>{{ block.settings.answer1 }}</button>
-                <button>{{ block.settings.answer2 }}</button>
-            </div>
-        {% endfor %}
+    <div class="question-modal">
+        <div class="question-modal-back"></div>
+        <div class="question-modal-info">
+            {% for block in section.blocks %}
+                <div class="question-modal-header">
+                    <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                        <g clip-path="url(#clip0_4592_59391)">
+                            <path d="M18.75 5.46875L5.25 19.5312" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.75 19.5312L5.25 5.46875" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4592_59391">
+                                <rect width="24" height="25" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                {% liquid
+                  assign page = forloop.index
+                  assign total = section.blocks.size
+                  assign progress = page | times: 100 | divided_by: total
+                %}
+                <div class="question-progress">
+                    <div class="question-state" style="width: {{ progress }}"></div>
+                </div>
+                <h2>{{ block.settings.question }}</h2>
+                <div class="question-answers">
+                    <button>{{ block.settings.answer1 }}</button>
+                    <button>{{ block.settings.answer2 }}</button>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+</section>
 
 {% schema %}
 {
