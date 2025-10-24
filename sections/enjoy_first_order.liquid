@@ -1,3 +1,40 @@
+{% style %}
+  
+{% endstyle %}
+
 <div class="first_order">
-    
+
 </div>
+
+{% schema %}
+    {
+        "name": "first_order",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "first_order",
+                "label": "Enjoy First Order"
+            },
+            {
+                "type": "text",
+                "id":"first_order_text",
+                "label": "First Order Text"
+            },
+            {
+                "type": "richtext",
+                "id": "first_order_content",
+                "label": "First Order content"
+            },
+             {
+                "type": "richtext",
+                "id": "first_order_input",
+                "label": "First Order Input"
+            },
+             {
+                "type": "richtext",
+                "id": "first_order_button",
+                "label": "First Order Button"
+            },
+        ]
+    }
+{% endschema %}
