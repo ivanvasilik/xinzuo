@@ -239,12 +239,11 @@
 
     const open = () => {
         const modal = document.querySelector(".question-modal");
-        console.log(modal);
         modal.style.display = "block";
     }
 
     const next = (num) => {
-        const nextModal = document.querySelector(`.question-modal-info-${num}`);
+        const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
         const modals = document.querySelectorAll(".question-modal-info");
         modals.forEach(modal => {
             modal.classList.remove('.active');
