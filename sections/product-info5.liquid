@@ -88,6 +88,12 @@
             gap: 48px;
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-info5-blocks {
+            flex-direction: column;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
