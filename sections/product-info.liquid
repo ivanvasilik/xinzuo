@@ -52,6 +52,11 @@
         color: #fd3e36;
     }
 
+    .section-{{ section.id }} .product-info > div > div {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
     .section-{{ section.id }} .product-info > div > div > h2:after {
         content: ".";
         color: #fd3e36;
@@ -80,8 +85,7 @@
         {% if section.settings.header_type == "left" %}
             max-width: 840px;
         {% else %}
-            max-width: 800px;
-            margin: 0 auto;
+            width: 100%;
             text-align: center;
         {% endif %}
     }
