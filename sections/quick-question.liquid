@@ -190,14 +190,14 @@
     <div class="quick-question">
         <h2>{{ section.settings.heading }}</h2>
         <div class="buttons">
-            <button class="quiz">TAKE QUICK QUIZ</button>
+            <button class="quiz" onclick="open()">TAKE QUICK QUIZ</button>
             <button class="most">SEE CHEFS LOVE MOST</button>
         </div>
     </div>
     <div class="question-modal">
         <div class="question-modal-back"></div>
         {% for block in section.blocks %}
-            <div class="question-modal-info {% if forloop.index == 1 %}active{% endif %}">
+            <div class="question-modal-info question-modal-info-{{ forloop.index }}>
                 <div class="question-modal-header">
                     <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" onclick="close()">
@@ -231,7 +231,26 @@
 </section>
 
 <script>
-    const close = () => {}
+    const close = () => {
+        const modals = document.querySelectorAll(".question-modal-info");
+        modals.forEach(mdoal => {
+            modal.style.display = "none";
+        })
+    }
+
+    const open = () => {
+        const firstModal = document.querySelector(".question-modal-info-1");
+        firstModal.style.display = "block";
+    }
+
+    const next = (num) => {
+        const nextModal = document.querySelector(`.question-modal-info-${num}`);
+        const modals = document.querySelectorAll(".question-modal-info");
+        modals.forEach(modal => {
+            modal.style.dispaly = "none";
+        });
+        nextModal.style.display = "block";
+    }
 </script>
 
 {% schema %}
