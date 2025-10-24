@@ -81,7 +81,7 @@
   </div>
   <div class="order_content">
     <h2>{{ section.settings.first_order_title }}</h2>
-    <p>{{ section.settings.first_order_content }}</p>
+    {{ section.settings.first_order_content }}
     <input placeholder="Enter email, receive code instantly">
     <button>{{ section.settings.first_order_button }}</button>
   </div>
@@ -112,7 +112,7 @@
       "label": "First Order Input"
     },
     {
-      "type": "richtext",
+      "type": "text",
       "id": "first_order_button",
       "label": "First Order Button"
     }
