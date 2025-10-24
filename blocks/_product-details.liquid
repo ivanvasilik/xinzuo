@@ -71,17 +71,19 @@
         </svg>
         <span>
           {{ section.settings.shipping_title1 }}
-          <span>{{ section.settings.shipping_title2 }}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <g clip-path="url(#clip0_4592_48402)">
-              <path d="M13 6L8 11L3 6" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4592_48402">
-                <rect width="16" height="16" fill="white"/>
-              </clipPath>
-            </defs>
-          </svg>
+          <span>
+            {{ section.settings.shipping_title2 }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <g clip-path="url(#clip0_4592_48402)">
+                <path d="M13 6L8 11L3 6" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_4592_48402">
+                  <rect width="16" height="16" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </span>
         </span>
       </div>
       <div class="product-shipping-content">
@@ -178,7 +180,27 @@
     margin-bottom: 16px;
   }
 
-  .
+  .product-details-header h2 {
+    margin-bottom: 12px;
+  }
+
+  .product-details-prices h4 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .product-details-shipping {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-shipping-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
 {% endstyle %}
 
 {% stylesheet %}
