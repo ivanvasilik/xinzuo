@@ -26,7 +26,7 @@
     {% endif %}
   </div>
   <div class="section-{{ section.settings.first_order_content }}">
-    <h2>{{ section.settings.first_order_content }}</h2>
+    <h2>{{ section.settings.first_order_title }}</h2>
     <p>{{ section.settings.first_order_text }}</p>
     <input placeholder="Enter email, receive code instantly">
     <button>{{ section.settings.first_order_button }}</button>
@@ -44,13 +44,13 @@
     },
     {
       "type": "text",
-      "id": "first_order_text",
-      "label": "First Order Text"
+      "id": "first_order_title",
+      "label": "First Order Title"
     },
     {
       "type": "richtext",
       "id": "first_order_content",
-      "label": "First Order content"
+      "label": "First Order Content"
     },
     {
       "type": "richtext",
