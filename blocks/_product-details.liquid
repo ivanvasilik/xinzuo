@@ -50,9 +50,9 @@
     </div>
     {% comment %} <div class="product-reviews"></div> {% endcomment %}
     <div class="product-details-prices">
-      <h2>{{ product.price }}</h2>
+      <h2>{{ product.price | money }}</h2>
       {% if product.price < product.compare_at_price %}
-        <h4>{{ product.compare_at_price }}</h4>
+        <h4>{{ product.compare_at_price | money }}</h4>
       {% endif %}
     </div>
     <div class="product-details-shipping">
@@ -308,15 +308,19 @@
     color #f9f9f7;
   }
 
-  .product-details .accordion {
+  .product-details .accordion p px {} {
     margin: 0;
   }
 
-  .product-details  .accordion -custom .details-content p {
+  .product-details  .accordion-custom .details-content p {
     font-family: "Albert Sans";
     font-weight: 600;
-    font-size: 12x;
+    font-size: 12x; 
     color: #86868b;
+  }
+
+  .product-details p em {
+
   }
 
   .product-details-contact {
