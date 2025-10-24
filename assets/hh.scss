@@ -125,10 +125,13 @@ header {
         p:nth-child(odd) {
             color: var(--Default, #F9F9F7);
             font-family: Sen;
-            font-size: var(--Mobile-Font-Size-Hero, 40px) !important;
+            font-size: 80px;
             font-style: normal;
             font-weight: 600;
-            line-height: 120%; /* 48px */
+            line-height: 120%;
+            @media screen and (max-width: 750px) {
+                font-size: 40px;
+            }
         }
 
         p:nth-child(odd)::after {
@@ -139,10 +142,13 @@ header {
         p:nth-child(even) {
             color: #fd3e36;
             font-family: Sen;
-            font-size: var(--Mobile-Font-Size-Hero, 40px);
+            font-size: 80px;
             font-style: normal;
             font-weight: 600;
-            line-height: 120%; /* 48px */
+            line-height: 120%;
+            @media screen and (max-width: 750px) {
+                font-size: 40px;
+            }
         }
 
         p:nth-child(even)::after {
