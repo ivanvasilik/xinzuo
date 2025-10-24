@@ -130,6 +130,13 @@
                             </div>
                         {% endif %}
                         {% render 'variant-main-picker', product_resource: product %}
+                        {% render 'add-to-cart-button',
+                            id: 'BuyButtons-ProductSubmitButton-' | append: block.id,
+                            class: class,
+                            can_add_to_cart: can_add_to_cart,
+                            product: product,
+                            add_to_cart_text: add_to_cart_text
+                        %}
                 {% endcase %}
             {% endfor %}
         </div>
