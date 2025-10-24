@@ -114,9 +114,15 @@
         height: 400px;
         padding: 40px 32px;
         position: absolute;
-        top: 50px;
-        left: 50px;
+        top: 50%;
+        left: 50%;
+        background-color: #151515;
         transform: translate(-50%, -50%);
+        display: none;
+    }
+
+    .section-{{ section.id }} .question-modal-info.active {
+        display: block;
     }
 
     .section-{{ section.id }} .question-modal-header {
@@ -179,8 +185,8 @@
     </div>
     <div class="question-modal">
         <div class="question-modal-back"></div>
-        <div class="question-modal-info">
-            {% for block in section.blocks %}
+        {% for block in section.blocks %}
+            <div class="question-modal-info {% if forloop.index == 1 %}active{% endif %}">
                 <div class="question-modal-header">
                     <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -208,8 +214,8 @@
                     <button>{{ block.settings.answer1 }}</button>
                     <button>{{ block.settings.answer2 }}</button>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </section>
 
