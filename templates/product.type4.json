@@ -1766,7 +1766,7 @@
         "block_VMJrxx": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_345.png",
+            "image": "shopify://shop_images/Rectangle_345_1.png",
             "image_type": "background",
             "content": "<p><strong>Olive-Wood Handle</strong></p><p>luxury with copper-flower rivets</p>"
           }
@@ -1774,7 +1774,7 @@
         "block_nrqYL7": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_346.png",
+            "image": "shopify://shop_images/Rectangle_346_2.png",
             "image_type": "normal",
             "content": "<p>Minimal resistance,</p><p>smoother cutting flow.</p><p><strong>2.1 mm Slim Blade</strong></p>"
           }
@@ -1874,18 +1874,18 @@
         "block_icN74H": {
           "type": "block",
           "settings": {
-            "title": "XINZUO-X06",
+            "title": "XINZUO-B37",
             "content": "Utility, Chef Knife Set",
-            "image": "shopify://shop_images/02_bc519706-a893-403f-ab99-78669d38f427.png",
+            "image": "shopify://shop_images/03_e8aef4e2-789b-44a3-9b8e-d9b5b5b28e0b.png",
             "image_position": "right"
           }
         },
         "block_WUMXhi": {
           "type": "block",
           "settings": {
-            "title": "XINZUO-X06",
+            "title": "XINZUO-B37",
             "content": "Utility, Chef, and Santoku Knife Set",
-            "image": "shopify://shop_images/02_dd2ba986-e7f5-45c6-958b-4bc7ae7ca2fd.png",
+            "image": "shopify://shop_images/01.png",
             "image_position": "left"
           }
         }
