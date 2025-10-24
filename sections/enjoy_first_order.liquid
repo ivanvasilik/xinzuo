@@ -1,15 +1,23 @@
 {% style %}
-  
+  .section-{{ section.id }} {
+    display: flex;
+    max-width: 800px;
+    align-items: center;
+    align-self: stretch;    
+  }
 {% endstyle %}
 
-<div class="first_order">
-    <div class="first_order_image">
+<div class="section-{{ section.id }}">
+    <div class="section-{{ section.settings.first_order_image }}">
         {% if section.settings.first_order_image != blank %}
             <img src="{{ section.settings.first_order_image | img_url }}">
         {% endif %}
     </div>
-    <div>
-
+    <div class="section-{{ section.settings.first_order_content }}">
+        <h2>{{ section.settings.first_order_content }}</h2>
+        <p>{{ section.settings.first_order_text }}</p>
+        <input placeholder="Enter email, receive code instantly"> 
+        <button>{{ section.settings.first_order_button }}</button>
     </div>
 </div>
 
