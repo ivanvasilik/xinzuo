@@ -26,7 +26,7 @@
         margin: auto;
     }
 
-    .section-{{ section.id }} .product-info > div > span > h2 {
+    .section-{{ section.id }} .product-info-header > h2 {
         font-family: "Sen";
         font-weight: 600;
         font-size: 64px;
@@ -35,11 +35,11 @@
         margin: 0;
     }
 
-    .section-{{ section.id }} .product-info > div > div > span {
+    .section-{{ section.id }} .product-info-header {
         margin-bottom: 32px;
     }
 
-    .section-{{ section.id }} .product-info > div > div > span > h2 {
+    .section-{{ section.id }} .product-info-header > h2 {
         font-family: "Sen";
         font-weight: 600;
         font-size: 64px;
@@ -49,7 +49,7 @@
         text-align: center;
     }
 
-    .section-{{ section.id }} .product-info > div > span > h2:last-child:after {
+    .section-{{ section.id }} .product-info-header > h2:last-child:after {
         content: ".";
         color: #fd3e36;
     }
@@ -60,7 +60,7 @@
         padding: 0 32px;
     }
 
-    .section-{{ section.id }} .product-info > div > div > span > h2:last-child:after {
+    .section-{{ section.id }} .product-info-header > h2:last-child:after {
         content: ".";
         color: #fd3e36;
     }
@@ -168,7 +168,7 @@
         <div>
             {% if section.settings.header_type == "left" %}
                 {% if section.settings.heading != blank %}
-                    <span>{{ section.settings.heading }}</span>
+                    <span class="product-info-header">{{ section.settings.heading }}</span>
                 {% endif %}
                 {% if section.settings.icon_block_state %}
                     <div class="product-info-icons">
@@ -186,7 +186,7 @@
             {% else %}
                 <div>
                     {% if section.settings.heading != blank %}
-                        <span>{{ section.settings.heading }}</span>
+                        <span class="product-info-header">{{ section.settings.heading }}</span>
                     {% endif %}
                     <span class="product-info-span">{{ section.settings.content }}</span>
                 </div>
