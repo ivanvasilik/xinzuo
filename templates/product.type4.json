@@ -1187,7 +1187,7 @@
       "settings": {
         "header_title": "<h2>Here’s why</h2><h2>Lan S. is the crown jewel</h2>",
         "header_left": "<p>A few ways Lan Series gives you more.</p>",
-        "header_right": "<h2>Crafted for</h2><h2>Chefs and Collectors</h2>",
+        "header_right": "<p>Crafted for</p><p>Chefs and Collectors</p>",
         "color_scheme": "scheme-5",
         "footer_img": "shopify://shop_images/Frame_34_6717962b-87c3-468e-971f-fd7f651aeb8c.png",
         "footer_content": "A knife created to inspire, perform, and endure."
