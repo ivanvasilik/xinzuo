@@ -52,7 +52,7 @@
     <div class="product-details-prices">
       <h2>{{ product.price | money }}</h2>
       {% if product.price < product.compare_at_price %}
-        <h4>{{ product.compare_at_price | money }}</h4>
+        <h5>{{ product.compare_at_price | money }}</h5>
       {% endif %}
     </div>
     <div class="product-details-shipping">
@@ -162,12 +162,19 @@
     margin: 0;
   }
 
-  .product-details h4 {
+  .product-details h5 {
     font-family: "Sen";
     font-weight: 600;
     font-size: 22px;
     color: #86868b;
     text-decoration-line: line-through;
+  }
+
+  .product-details h4 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #f9f9f7;
   }
 
   .product-details-prices {
