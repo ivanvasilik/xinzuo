@@ -664,19 +664,6 @@
               },
               "blocks": {}
             },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "variant_style": "buttons",
-                "show_swatches": false,
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -1264,7 +1251,6 @@
             "product_description_ieQ84N",
             "group_J8NfVM",
             "text_m8ddez",
-            "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "payment_icons_hCKkQw",
             "text_LHLzkk",
@@ -1384,7 +1370,7 @@
         "header_type": "left",
         "heading": "<h2>Every element chosen with purpose</h2>",
         "content": "<p><strong>14Cr14MoVNb powder metallurgy steel </strong>powers the Lan series, blending carbon for hardness, chromium for stainless protection, molybdenum for toughness, vanadium for sharpness, niobium for rare stability, and cobalt for strength. This advanced alloy ensures unmatched edge retention, resilience, and luxury performance.</p>",
-        "icon_block_state": true,
+        "icon_block_state": false,
         "first_num": "2",
         "second_num": "2",
         "color_scheme": "scheme-5",
