@@ -143,22 +143,29 @@
     <div class="product-info">
         <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
         <div>
-            {% if section.settings.heading != blank %}
-                <h2>{{ section.settings.heading }}</h2>
+            {% if section.settings.header_type == "left" %}
+                {% if section.settings.heading != blank %}
+                    <h2>{{ section.settings.heading }}</h2>
+                {% endif %}
+                {% if section.settings.icon_block_state %}
+                    <div class="product-info-icons">
+                        {% for block in section.blocks %}
+                            {% if block.type == "icon" %}
+                                <div class="product-info-icon">
+                                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block image">
+                                    <span>{{ block.settings.content }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <span class="product-info-span">{{ section.settings.content }}</span>
+            {% else %}
+                {% if section.settings.heading != blank %}
+                    <h2>{{ section.settings.heading }}</h2>
+                {% endif %}
+                <span class="product-info-span">{{ section.settings.content }}</span>
             {% endif %}
-            {% if section.settings.icon_block_state %}
-                <div class="product-info-icons">
-                    {% for block in section.blocks %}
-                        {% if block.type == "icon" %}
-                            <div class="product-info-icon">
-                                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block image">
-                                <span>{{ block.settings.content }}</span>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            <span class="product-info-span">{{ section.settings.content }}</span>
             <div class="product-info-divs">
                 {% for block in section.blocks %}
                     {% if block.type == "block" %}
