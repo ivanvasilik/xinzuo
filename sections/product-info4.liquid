@@ -191,21 +191,21 @@
                 <span>{{ product.description }}</span>
             </div>
         {% endfor %}
+        {% if section.settings.footer_state %}
+            <div class="product-info4-footer">
+                <div class="product-info4-div">
+                    <div></div>
+                    <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                    <span>{{ section.settings.footer_content1 }}</span>
+                </div>
+                <div class="product-info4-div">
+                    <div></div>
+                    <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                    <span>{{ section.settings.footer_content2 }}</span>
+                </div>
+            </div>
+        {% endif %}
     </div>
-    {% if section.settings.footer_state %}
-        <div class="product-info4-footer">
-            <div class="product-info4-div">
-                <div></div>
-                <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
-                <span>{{ section.settings.footer_content1 }}</span>
-            </div>
-            <div class="product-info4-div">
-                <div></div>
-                <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
-                <span>{{ section.settings.footer_content2 }}</span>
-            </div>
-        </div>
-    {% endif %}
 </section>
 
 <script>
