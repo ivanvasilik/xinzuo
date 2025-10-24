@@ -1481,6 +1481,39 @@
         "additional_content2": "<p>With a refined edge geometry, uniform powder-steel microstructure, and niobium stability, the Lan Series <strong>achieves razor precision</strong>, preserving delicate textures and <strong>producing consistently sharper, finer slices</strong>.</p>"
       }
     },
+    "product_info7_DTcLJk": {
+      "type": "product-info7",
+      "blocks": {
+        "block_rFcaBc": {
+          "type": "block",
+          "settings": {
+            "heading": "Up to",
+            "content": "<p>Up to</p><h2>All Styles</h2><p>master every cutting technique</p>"
+          }
+        },
+        "block_i4Ya9d": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "content": "<p>Up to</p><h2>Total Control</h2><p>curved belly, pointed tip versatility</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_rFcaBc",
+        "block_i4Ya9d"
+      ],
+      "name": "Product Info7",
+      "settings": {
+        "heading_title": "",
+        "heading_content": "<h2>A Curve Mastered</h2>",
+        "header_type": "center",
+        "heading_footer": "The knives' geometry is sculpted for mastery — a curved belly flows for effortless rocking, while the pointed tip ensures detailed precision. From chopping to slicing, mincing to delicate work, it adapts seamlessly, delivering control, versatility, and performance at a level ordinary knives cannot approach.",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "product_info2_pVhzYj": {
       "type": "product-info2",
       "blocks": {
@@ -2167,6 +2200,7 @@
     "product_info2_7JTdmJ",
     "product_info2_8biKrj",
     "product_info2_qTpE4H",
+    "product_info7_DTcLJk",
     "product_info2_pVhzYj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
