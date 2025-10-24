@@ -1,11 +1,11 @@
 {% style %}
     .section-{{ section.id }} {
         padding: 80px 32px 0;
+        background-color: #171717;
+        border-radius: 16px;
     }
 
     .section-{{ section.id }} .product-series2 {
-        background-color: #171717;
-        border-radius: 16px;
         padding: 64px 0;
     }
 
@@ -111,6 +111,16 @@
 
     .section-{{ section.id }} .product-series-footer a {
         color: #fd3e36;
+    }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} h2 {
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .product-series2-header div {
+            gap: 24px;
+        }
     }
 {% endstyle %}
 
