@@ -4,8 +4,8 @@
 
 <div class="first_order">
     <div class="first_order_image">
-        {% if section.settings.first_order != blank %}
-            <img src="{{ section.settings.first_order | img_url }}">
+        {% if section.settings.first_order_image != blank %}
+            <img src="{{ section.settings.first_order_image | img_url }}">
         {% endif %}
     </div>
     <div>
@@ -19,8 +19,8 @@
         "settings": [
             {
                 "type": "image_picker",
-                "id": "first_order",
-                "label": "Enjoy First Order"
+                "id": "first_order_image",
+                "label": "Enjoy Order Image"
             },
             {
                 "type": "text",
