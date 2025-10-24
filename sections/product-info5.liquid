@@ -74,6 +74,20 @@
         font-weight: 700;
         color: #f9f9f7;
     }
+
+    @media screen and (max-width: 1025px) {
+        .product-info5 h2 {
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .product-info5 h2 {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .product-info5-blocks {
+            gap: 48px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
