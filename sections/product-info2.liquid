@@ -277,6 +277,37 @@
             margin-right: auto;
         }
     {% endif %}
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 48px 0;
+        }
+
+        .section-{{ section.id }} .product-info2 {
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-info2-header h2 {
+            margin-bottom: 32px;
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .product-info2-header p {
+            font-size: 16px;
+        }
+
+        .section-{{ section.id }} .product-info2-header span {
+            font-size: 16px;
+        }
+
+        .section-{{ section.id }} .product-info2-footer1 {
+            padding: 40px 32px;
+        }
+
+        .section-{{ section.id }} .product-info2-footer1 .product-info2-left {
+            padding-right: 40px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
