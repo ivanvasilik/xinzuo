@@ -125,11 +125,19 @@
         .section-{{ section.id }} .product-series-block {
             width: calc(50% - 8px);
         }
+
+        .section-{{ section.id }} product-series2-header span h2 {
+            font-size: 22px;
+        }
     }
 
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .product-series-block {
             width: 100%;
+        }
+
+        .section-{{ section.id }} product-series2-header span h2 {
+            font-size: 16px;
         }
     }
 {% endstyle %}
