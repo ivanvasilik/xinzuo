@@ -3,7 +3,14 @@
 {% endstyle %}
 
 <div class="first_order">
+    <div class="first_order_image">
+        {% if section.settings.first_order != blank %}
+            <img src="{{ section.settings.first_order | img_url }}">
+        {% endif %}
+    </div>
+    <div>
 
+    </div>
 </div>
 
 {% schema %}
