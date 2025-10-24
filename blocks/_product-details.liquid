@@ -135,6 +135,50 @@
   {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
 </div>
 
+{% style %}
+  .product-details span {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 14px;
+    color: #86868b;
+    text-transform: uppercase;
+  }
+
+  .product-details h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 135%;
+    color: #f9f9f7;
+    margin: 0;
+  }
+
+  .product-details h4 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    color: #86868b;
+    text-decoration-line: line-through;
+  }
+
+  .product-details-prices {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .product-details-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  product-details-links > span {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+{% endstyle %}
+
 {% stylesheet %}
   /* Clear padding on mobile, if not full-width */
   @media screen and (max-width: 749px) {
