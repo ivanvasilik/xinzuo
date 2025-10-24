@@ -319,7 +319,7 @@
                 "accordion_row_CUG9xJ": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Return policy",
+                    "heading": "DESCRIPTION",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
@@ -328,7 +328,7 @@
                     "text_pyDqAk": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -358,7 +358,7 @@
                 "accordion_row_6HHD9d": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping",
+                    "heading": "WHAT’S INCLUDED",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -367,7 +367,7 @@
                     "text_EdgYbR": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -397,7 +397,7 @@
                 "accordion_row_UfiwpK": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Manufacturing",
+                    "heading": "TECHNICAL DETAILS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -406,7 +406,7 @@
                     "text_JKdy9F": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
+                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -444,7 +444,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                "text": "<p><em>Note - All knives tested under rigorous quality control for consistency.</em></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -466,11 +466,11 @@
               },
               "blocks": {}
             },
-            "text_tfRUMm": {
+            "text_dNwVKF": {
               "type": "text",
-              "name": "t:names.heading",
+              "name": "t:names.text",
               "settings": {
-                "text": "<h2>New arrivals</h2>",
+                "text": "<h4></h4><h4></h4><h4></h4><h4></h4><h4>Most Asked Questions</h4>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -498,7 +498,7 @@
               "settings": {
                 "icon": "caret",
                 "dividers": true,
-                "type_preset": "h6",
+                "type_preset": "h5",
                 "inherit_color_scheme": true,
                 "color_scheme": "",
                 "border": "none",
@@ -514,7 +514,7 @@
                 "accordion_row_V8VGYp": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Return policy",
+                    "heading": "Why choose the Supreme Series?",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
@@ -523,7 +523,7 @@
                     "text_mz9UqL": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "text": "<p>The Supreme Series offers practical functionality for kitchens seeking reliable knives without unnecessary complexity, focusing on simplicity, usability, and straightforward performance.</p><p>Its approachable design allows cooks to develop confidence in handling, sharpening, and cutting techniques, supporting learning while maintaining consistent culinary results.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -553,7 +553,7 @@
                 "accordion_row_Pc4bbF": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping",
+                    "heading": "What makes Supreme Series suitable for beginners?",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -562,7 +562,7 @@
                     "text_KQaBR4": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                        "text": "<p>The Supreme Series offers practical functionality for kitchens seeking reliable knives without unnecessary complexity, focusing on simplicity, usability, and straightforward performance.</p><p>Its approachable design allows cooks to develop confidence in handling, sharpening, and cutting techniques, supporting learning while maintaining consistent culinary results.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -592,7 +592,7 @@
                 "accordion_row_Fhigtk": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Manufacturing",
+                    "heading": "How does Supreme Series perform with daily cooking?",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -601,7 +601,7 @@
                     "text_xxNJCn": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
+                        "text": "<p>The Supreme Series offers practical functionality for kitchens seeking reliable knives without unnecessary complexity, focusing on simplicity, usability, and straightforward performance.</p><p>Its approachable design allows cooks to develop confidence in handling, sharpening, and cutting techniques, supporting learning while maintaining consistent culinary results.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -644,7 +644,7 @@
             "group_pUXHfM",
             "accordion_xErnFV",
             "text_EUV7Bd",
-            "text_tfRUMm",
+            "text_dNwVKF",
             "accordion_GU3TmD"
           ]
         }
