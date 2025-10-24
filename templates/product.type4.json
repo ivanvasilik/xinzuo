@@ -1382,7 +1382,7 @@
       "settings": {
         "image": "shopify://shop_images/image_128_b35a7974-cbcd-440f-bfdf-e777b9df4fba.png",
         "header_type": "left",
-        "heading": "Every element chosen with purpose",
+        "heading": "<p>Every element chosen with purpose</p>",
         "content": "<p><strong>14Cr14MoVNb powder metallurgy steel </strong>powers the Lan series, blending carbon for hardness, chromium for stainless protection, molybdenum for toughness, vanadium for sharpness, niobium for rare stability, and cobalt for strength. This advanced alloy ensures unmatched edge retention, resilience, and luxury performance.</p>",
         "icon_block_state": true,
         "first_num": "2",
@@ -1554,7 +1554,7 @@
       "settings": {
         "image": "shopify://shop_images/06_b87af953-409c-4b0e-bc87-3d9041c80978.png",
         "header_type": "center",
-        "heading": "Damascus Waves The artistry beyond craft perfection",
+        "heading": "<h2>Damascus Waves</h2><h2>The artistry beyond</h2><h2>craft perfection</h2>",
         "content": "<p>Each Lan Series blade carries a polished Damascus surface, forged from seventy-three layers into flowing waves of steel. No two patterns are alike — each a singular mark of Damascus artistry and prestige. <strong>Luxurious and enduring</strong> — Damascus perfection forged beyond limits, a legacy of master craftsmanship.</p>",
         "icon_block_state": false,
         "first_num": "3",
