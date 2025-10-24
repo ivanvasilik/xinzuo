@@ -59,7 +59,18 @@
 >
     <noscript>
         {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-            <span class="product__media-icon motion-reduce quick-add-hidden">{% render 'icon-play' %}</span>
+            <span class="product__media-icon motion-reduce quick-add-hidden">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    focusable="false"
+                    class="icon icon-play"
+                    fill="none"
+                    viewBox="0 0 10 14"
+                    >
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.48177 0.814643C0.81532 0.448245 0 0.930414 0 1.69094V12.2081C0 12.991 0.858787 13.4702 1.52503 13.0592L10.5398 7.49813C11.1918 7.09588 11.1679 6.13985 10.4965 5.77075L1.48177 0.814643Z" fill="currentColor"/>
+                </svg>
+            </span>
             <div class="product__media media">
                 {{ media.preview_image | image_url: width: 1946 | image_tag:
                     loading: lazy,
@@ -84,16 +95,10 @@
     {%- if media.media_type == 'image' -%}
         <modal-opener class="product__modal-opener product__modal-opener--{{ media.media_type }} no-js-hidden" data-modal="#ProductModal-{{ modal_id }}">
             <span class="product__media-icon motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}" aria-hidden="true">
-            {%- liquid
-                case media.media_type
-                when 'video' or 'external_video'
-                render 'icon-play'
-                when 'model'
-                render 'icon-3d-model'
-                else
-                render 'icon-zoom'
-                endcase
-            -%}
+                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 27 24" fill="none" class="icon icon-plus">
+                    <circle cx="11" cy="11.4541" r="10.25" stroke="black" stroke-width="1.5"/>
+                    <path d="M18.5 17.5166L26 23.2041" stroke="black" stroke-width="1.5"/>
+                </svg>
             </span>
             <div class="loading-overlay__spinner hidden">
             <svg
@@ -115,9 +120,7 @@
             }}
             </div>
             <button class="product__media-toggle quick-add-hidden product__media-zoom-{{ section.settings.image_zoom }}" type="button" aria-haspopup="dialog" data-media-id="{{ media.id }}">
-            <span class="visually-hidden">
-                {{ 'products.product.media.open_media' | t: index: position }}
-            </span>
+            <span class="visually-hidden">open_media</span>
             </button>
         </modal-opener>
     {% endif %}
