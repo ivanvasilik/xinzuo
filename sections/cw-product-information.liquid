@@ -9,7 +9,6 @@
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
     <div class="product-media-wrapper">
-        {% render 'cw-breadcrumb' %}
         {% render 'product-media-gallery', variant_images: variant_images %}
     </div>
 </section>
