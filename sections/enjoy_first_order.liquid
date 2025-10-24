@@ -1,68 +1,72 @@
 {% style %}
-  .section-{{ section.id }} {
-        display: flex;
-        max-width: 800px;
-        align-items: center;
-        position: fixed;
-        top:50%;
-        left:50%;
-        z-index: 99;
-        align-self: stretch;
-        border: 1px solid var(--Line, rgba(255, 255, 255, 0.05));
-        background: #151515;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.10);
-  }
+    .section-{{ section.id }} {
+          display: flex;
+          max-width: 800px;
+          align-items: center;
+          position: fixed;
+          top:50%;
+          left:50%;
+          z-index: 99;
+          align-self: stretch;
+          border: 1px solid var(--Line, rgba(255, 255, 255, 0.05));
+          background: #151515;
+          transform: translate(-50%, -50%);
+          box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.10);
+    }
+    .section-{{ section.id }} img {
+        width: 400px;
+        height: 440px;
+    }
 {% endstyle %}
 
 <div class="section-{{ section.id }}">
-    <div class="section-{{ section.settings.first_order_image }}">
-        {% if section.settings.first_order_image != blank %}
-            <img src="{{ section.settings.first_order_image | img_url }}" width="100%" height="100%" alt="Knife">
-        {% endif %}
-    </div>
-    <div class="section-{{ section.settings.first_order_content }}">
-        <h2>{{ section.settings.first_order_content }}</h2>
-        <p>{{ section.settings.first_order_text }}</p>
-        <input placeholder="Enter email, receive code instantly"> 
-        <button>{{ section.settings.first_order_button }}</button>
-    </div>
+  <div class="section-{{ section.settings.first_order_image }}">
+    {% if section.settings.first_order_image != blank %}
+      <img src="{{ section.settings.first_order_image | img_url }}" width="100%" height="100%" alt="Knife">
+    {% endif %}
+  </div>
+  <div class="section-{{ section.settings.first_order_content }}">
+    <h2>{{ section.settings.first_order_content }}</h2>
+    <p>{{ section.settings.first_order_text }}</p>
+    <input placeholder="Enter email, receive code instantly">
+    <button>{{ section.settings.first_order_button }}</button>
+  </div>
 </div>
 
 {% schema %}
+{
+  "name": "first_order",
+  "settings": [
     {
-        "name": "first_order",
-        "settings": [
-            {
-                "type": "image_picker",
-                "id": "first_order_image",
-                "label": "Enjoy Order Image"
-            },
-            {
-                "type": "text",
-                "id":"first_order_text",
-                "label": "First Order Text"
-            },
-            {
-                "type": "richtext",
-                "id": "first_order_content",
-                "label": "First Order content"
-            },
-             {
-                "type": "richtext",
-                "id": "first_order_input",
-                "label": "First Order Input"
-            },
-             {
-                "type": "richtext",
-                "id": "first_order_button",
-                "label": "First Order Button"
-            },
-        ],
-        "presets": [
-            {
-                "name": "first_order"
-            }
-        ]
+      "type": "image_picker",
+      "id": "first_order_image",
+      "label": "Enjoy Order Image"
+    },
+    {
+      "type": "text",
+      "id": "first_order_text",
+      "label": "First Order Text"
+    },
+    {
+      "type": "richtext",
+      "id": "first_order_content",
+      "label": "First Order content"
+    },
+    {
+      "type": "richtext",
+      "id": "first_order_input",
+      "label": "First Order Input"
+    },
+    {
+      "type": "richtext",
+      "id": "first_order_button",
+      "label": "First Order Button"
     }
+  ],
+  "presets": [
+    {
+      "name": "first_order"
+    }
+  ]
+}
 {% endschema %}
