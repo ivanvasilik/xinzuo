@@ -26,7 +26,6 @@
     </div>
     {% content_for 'blocks' %}
   {% endcapture %}
-  {{ product | json }}
 
   {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
 </div>
