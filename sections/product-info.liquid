@@ -31,20 +31,26 @@
         font-weight: 600;
         font-size: 64px;
         color: #c1c4c7;
+        line-height: 125%;
     }
 
-    .section-{{ section.id }} .product-info > div > h2 > div {
+    .section-{{ section.id }} .product-info > div > div > h2 {
         font-family: "Sen";
         font-weight: 600;
         font-size: 64px;
         color: white;
         text-align: center;
+        line-height: 125%;
     }
 
     .section-{{ section.id }} .product-info > div > h2:after {
         content: ".";
         color: #fd3e36;
-        line-height: 125%;
+    }
+
+    .section-{{ section.id }} .product-info > div > div > h2:after {
+        content: ".";
+        color: #fd3e36;
     }
 
     .section-{{ section.id }} .product-info-icons {
