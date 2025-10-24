@@ -875,6 +875,17 @@
         "img": "shopify://shop_images/Rectangle_267.png",
         "color_scheme": "scheme-5"
       }
+    },
+    "modal_P7YjyA": {
+      "type": "modal",
+      "name": "Home Modal",
+      "settings": {
+        "image": "shopify://shop_images/03_417c0b77-d62a-487d-b054-951dbbed115d.png",
+        "heading": "ENJOY 10% OFF ON FIRST ORDER",
+        "content": "Sign up today and instantly receive your exclusive discount coupon by email.",
+        "input": "Enter email, receive code instantly",
+        "button": "SAVE 10% NOW"
+      }
     }
   },
   "order": [
@@ -885,6 +896,7 @@
     "quick_question_XyWDMB",
     "reviews_UMDUhc",
     "section_er3F6d",
-    "img_with_text_geRLJH"
+    "img_with_text_geRLJH",
+    "modal_P7YjyA"
   ]
 }
