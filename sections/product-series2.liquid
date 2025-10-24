@@ -126,6 +126,12 @@
             width: calc(50% - 8px);
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-series-block {
+            width: 100%;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
