@@ -28,14 +28,21 @@
     .section-{{ section.id }} h2 {
         color: var(--Default, #F9F9F7);
         text-align: center;
-
-        /* Primary/H3 */
         font-family: var(--Primary-Font-Family-Heading, Sen);
         font-size: var(--Primary-Font-Size-H3, 36px);
         font-style: normal;
         font-weight: var(--Primary-Font-Weight-Semibold, 600);
         line-height: 135%; /* 48.6px */
         letter-spacing: -0.18px;
+    }
+    .section-{{ section.id }} p {
+        color: var(--Text, #86868B);
+        text-align: center;
+        font-family: var(--Primary-Font-Family-Body, "Albert Sans");
+        font-size: var(--Primary-Font-Size-Text-Default, 16px);
+        font-style: normal;
+        font-weight: var(--Primary-Font-Weight-Regular, 400);
+        line-height: 150%;
     }
 
 {% endstyle %}
