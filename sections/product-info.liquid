@@ -157,6 +157,24 @@
         height: 1px;
         background: linear-gradient(90deg, #f56e45 0%, #f03b33 100%);
     }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 48px;
+        }
+
+        .section-{{ section.id }} .product-info {
+            gap: 40px;
+        }
+
+        .section-{{ section.id }} .product-info > img {
+            padding: 24px 0;
+        }
+
+        .section-{{ section.id }} .product-info > div {
+            gap: 48px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
