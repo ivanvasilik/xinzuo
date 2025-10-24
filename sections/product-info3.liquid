@@ -102,6 +102,24 @@
         text-align: center;
         max-width: 400px;
     }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 48px 0;
+        }
+
+        .section-{{ section.id }} .product-info3 {
+            gap: 40px;
+        }
+
+        .section-{{ section.id }} .product-info3 > h2 {
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .product-info3-div h2 {
+            font-size: 28px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
