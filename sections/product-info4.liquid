@@ -192,6 +192,20 @@
             </div>
         {% endfor %}
     </div>
+    {% if section.settings.footer_state %}
+        <div class="product-info4-footer">
+            <div class="product-info4-div">
+                <div></div>
+                <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                <span>{{ section.settings.footer_content1 }}</span>
+            </div>
+            <div class="product-info4-div">
+                <div></div>
+                <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                <span>{{ section.settings.footer_content2 }}</span>
+            </div>
+        </div>
+    {% endif %}
 </section>
 
 <script>
@@ -313,6 +327,36 @@
             "step": 2,
             "unit": "px",
             "default": 80
+        },
+        {
+            "type": "checkbox",
+            "id": "footer_state",
+            "label": "Footer State",
+            "default": false
+        },
+        {
+            "type": "image_picker",
+            "id": "footer-img1",
+            "label": "Footer Image1",
+            "visible_if": "{{ section.settings.footer_state }}"
+        },
+        {
+            "type": "richtext",
+            "id": "footer_content1",
+            "label": "Footer Content1",
+            "visible_if": "{{ section.settings.footer_state }}"
+        },
+        {
+            "type": "image_picker",
+            "id": "footer-img2",
+            "label": "Footer Image2",
+            "visible_if": "{{ section.settings.footer_state }}"
+        },
+        {
+            "type": "richtext",
+            "id": "footer_content2",
+            "label": "Footer Content2",
+            "visible_if": "{{ section.settings.footer_state }}"
         }
     ],
     "presets": [
