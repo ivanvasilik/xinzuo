@@ -236,7 +236,8 @@
             {% if section.settings.block_type == "text" %}
                 border-top: 1px solid #f2553c;
             {% else %}
-                width: 360px;
+                max-width: 360px;
+                width: 100%;
                 margin: auto;
             {% endif %}
         }
@@ -323,6 +324,8 @@
                 {% if section.settings.block_type == "text" %}
                     width: calc(100% - 400px);
                     padding: 24px 32px;
+                {% else %}
+                    gap: 32px;
                 {% endif %}
             }
 
@@ -332,6 +335,12 @@
 
             .section-{{ section.id }} .product-info2-img {
                 gap: 40px;
+            }
+
+            .section-{{ section.id }} .product-info2-block img {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 20px;
             }
         {% endif %}
     }
