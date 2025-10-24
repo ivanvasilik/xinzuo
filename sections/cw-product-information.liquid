@@ -129,7 +129,6 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        {% render 'variant-main-picker', product_resource: product %}
                         {% render 'add-to-cart-button',
                             id: 'BuyButtons-ProductSubmitButton-' | append: block.id,
                             class: class,
@@ -189,7 +188,7 @@
             "type": "variant",
             "name": "Variant",
             "settings": []
-        }
+        },
     ],
     "presets": [
         {
