@@ -100,6 +100,16 @@
         content: ".";
         color: #fd3e36;
     }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .product-info6-header h2 {
+            font-size: 40px;
+        }
+
+        .section-{{ section.id }} .product-info6-div h2 {
+            font-size: 28px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
