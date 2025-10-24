@@ -110,6 +110,30 @@
             font-size: 28px;
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-info6-divs {
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-info6-div.left {
+            display: flex;
+            flex-direction: column-reverse;
+            margin-right: 32px;
+        }
+
+        .section-{{ section.id }} .product-info6-div.right {
+            margin-left: 32px;
+        }
+
+        .section-{{ section.id }} .product-info6-div div {
+            padding: 40px 32px;
+            margin-top: -100px;
+            background-color: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
