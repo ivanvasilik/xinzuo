@@ -87,158 +87,6 @@
   </div>
 
   {% content_for 'blocks' %}
-
-  {% comment %} <div class="main-product-title">
-    <div class="main-product-link">
-      <span>
-        <a href="/">HOME</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <g clip-path="url(#clip0_4235_2373)">
-            <path d="M6 3L11 8L6 13" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_4235_2373">
-              <rect width="16" height="16" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-        <a href="/collections">KNIFE</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <g clip-path="url(#clip0_4235_2373)">
-            <path d="M6 3L11 8L6 13" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_4235_2373">
-              <rect width="16" height="16" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-        <span>{{ product.title }}</span>
-      </span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <g clip-path="url(#clip0_4235_2382)">
-          <path d="M14.8537 7.35375L9.85371 12.3537C9.78378 12.4238 9.69466 12.4714 9.59761 12.4908C9.50057 12.5101 9.39998 12.5002 9.30857 12.4623C9.21716 12.4244 9.13904 12.3603 9.0841 12.278C9.02917 12.1957 8.99988 12.0989 8.99996 12V9.51437C5.43121 9.71687 2.98434 12.0312 2.29746 12.7644C2.18961 12.8796 2.04817 12.9578 1.89328 12.9879C1.73838 13.0181 1.57793 12.9986 1.43475 12.9323C1.29157 12.8659 1.17295 12.7561 1.09579 12.6185C1.01863 12.4809 0.986842 12.3224 1.00496 12.1656C1.23684 10.1494 2.34121 8.21 4.11496 6.705C5.58809 5.455 7.37871 4.66187 8.99996 4.52312V2C8.99988 1.90105 9.02917 1.8043 9.0841 1.72201C9.13904 1.63971 9.21716 1.57556 9.30857 1.53769C9.39998 1.49981 9.50057 1.48991 9.59761 1.50923C9.69466 1.52856 9.78378 1.57624 9.85371 1.64625L14.8537 6.64625C14.9002 6.69268 14.9371 6.74783 14.9622 6.80853C14.9874 6.86923 15.0004 6.93429 15.0004 7C15.0004 7.0657 14.9874 7.13077 14.9622 7.19147C14.9371 7.25217 14.9002 7.30731 14.8537 7.35375Z" fill="#86868B"/>
-        </g>
-        <defs>
-          <clipPath id="clip0_4235_2382">
-            <rect width="16" height="16" fill="white"/>
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-    {% assign collection = product.collections.first %}
-    <h2>{{ collection.title }}&nbsp;-&nbsp;{{ product.title }}</h2>
-    {% if product.metafields.custom.model %}
-      <span>MODEL: {{ product.metafields.custom.model }}</span>
-    {% endif %}
-    <div class="main-product-price">
-      <h2>{{ product.price }}</h2>
-      {% if product.compare_at_price > product.price %}
-        <span>{{ product.compare_at_price }}</span>
-      {% endif %}
-    </div>
-    <div class="main-product-delivery">
-      <div class="main-product-delivery-header">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-          <g clip-path="url(#clip0_4235_21877)">
-            <path d="M8 12.5C8.41421 12.5 8.75 12.1642 8.75 11.75C8.75 11.3358 8.41421 11 8 11C7.58579 11 7.25 11.3358 7.25 11.75C7.25 12.1642 7.58579 12.5 8 12.5Z" fill="#C1C4C7"/>
-            <path d="M8 9.5V9C9.10438 9 10 8.21625 10 7.25C10 6.28375 9.10438 5.5 8 5.5C6.89562 5.5 6 6.28375 6 7.25V7.5" stroke="#C1C4C7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 14.5C11.3137 14.5 14 11.8137 14 8.5C14 5.18629 11.3137 2.5 8 2.5C4.68629 2.5 2 5.18629 2 8.5C2 11.8137 4.68629 14.5 8 14.5Z" stroke="#C1C4C7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_4235_21877">
-              <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
-            </clipPath>
-          </defs>
-        </svg>
-        <span>Earliest Delivery <span style="color: #f9f9f7;">Tomorrow</span> to</span>
-        <a>
-          <span>Carina, 4152</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-            <g clip-path="url(#clip0_4235_21886)">
-              <path d="M13 6.5L8 11.5L3 6.5" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4235_21886">
-                <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </a>
-      </div>
-      <div class="main-product-delivery-info">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-            <g clip-path="url(#clip0_4235_21893)">
-              <path d="M8 5.5V8.5L10.5 10" stroke="#CA322B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4.5 7H2V4.5" stroke="#CA322B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4.225 12.5C5.01123 13.2419 5.99865 13.7356 7.06389 13.9196C8.12914 14.1035 9.22496 13.9694 10.2144 13.5341C11.2039 13.0988 12.0432 12.3816 12.6274 11.472C13.2116 10.5625 13.5148 9.50092 13.4991 8.42003C13.4834 7.33914 13.1496 6.28684 12.5393 5.3946C11.929 4.50236 11.0693 3.80975 10.0676 3.40331C9.06588 2.99687 7.96664 2.89463 6.90718 3.10935C5.84771 3.32408 4.87502 3.84625 4.11062 4.61062C3.375 5.35562 2.7675 6.05812 2 7" stroke="#CA322B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4235_21893">
-                <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
-              </clipPath>
-            </defs>
-          </svg>
-          <span>{{ section.settings.shipping_hour }}</span>
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-            <g clip-path="url(#clip0_4235_21902)">
-              <path d="M11.5 5.5H14.1613C14.2609 5.49995 14.3583 5.52968 14.4409 5.58536C14.5235 5.64104 14.5876 5.72013 14.625 5.8125L15.5 8" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M1.5 9.5H11.5" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 14C12.8284 14 13.5 13.3284 13.5 12.5C13.5 11.6716 12.8284 11 12 11C11.1716 11 10.5 11.6716 10.5 12.5C10.5 13.3284 11.1716 14 12 14Z" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M5 14C5.82843 14 6.5 13.3284 6.5 12.5C6.5 11.6716 5.82843 11 5 11C4.17157 11 3.5 11.6716 3.5 12.5C3.5 13.3284 4.17157 14 5 14Z" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10.5 12.5H6.5" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M11.5 8H15.5V12C15.5 12.1326 15.4473 12.2598 15.3536 12.3536C15.2598 12.4473 15.1326 12.5 15 12.5H13.5" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M3.5 12.5H2C1.86739 12.5 1.74021 12.4473 1.64645 12.3536C1.55268 12.2598 1.5 12.1326 1.5 12V5C1.5 4.86739 1.55268 4.74021 1.64645 4.64645C1.74021 4.55268 1.86739 4.5 2 4.5H11.5V11.0856" stroke="#CA322B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4235_21902">
-                <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
-              </clipPath>
-            </defs>
-          </svg>
-          <span>{{ section.settings.shipping_price }}</span>
-        </div>
-      </div>
-    </div>
-    <div class="main-product-description">
-      <span>{{ product.description }}</span>
-      <div>
-        <div class="main-description-div">
-          <img src="{{ section.settings.product_info1_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail1">
-          <p>{{ section.settings.product_info1_title }}</p>
-          <span>{{ section.settings.product_info1_content }}</span>
-        </div>
-        <div class="main-description-div">
-          <img src="{{ section.settings.product_info2_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail2">
-          <p>{{ section.settings.product_info2_title }}</p>
-          <span>{{ section.settings.product_info2_content }}</span>
-        </div>
-        <div class="main-description-div">
-          <img src="{{ section.settings.product_info3_img | img_url: 'master' }}" width="100%;" height="100%" alt="Image Detail3">
-          <p>{{ section.settings.product_info3_title }}</p>
-          <span>{{ section.settings.product_info3_content }}</span>
-        </div>
-      </div>
-    </div>
-    {% if product.variants.size > 1 %}
-      <div class="main-product-variants">
-        <h4>Select any type of Knives</h4>
-        <div>
-          {% for variant in product.variants %}
-            <div class="main-product-variant">
-              {% if variant.featured_image != blank %}
-                <img src="{{ variant.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.title }}">
-              {% endif %}
-              <span></span>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-  </div> {% endcomment %}
 </div>
 
 {% stylesheet %}
@@ -495,6 +343,106 @@
       "label": "t:settings.limit_product_details_width",
       "default": false,
       "visible_if": "{{ section.settings.equal_columns }}"
+    },
+    {
+      "type": "text",
+      "id": "shipping_title1",
+      "label": "Shipping Title1"
+    },
+    {
+      "type": "text",
+      "id": "shipping_title2",
+      "label": "Shipping Title2"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_icon1",
+      "label": "Shipping Icon1"
+    },
+    {
+      "type": "text",
+      "id": "shipping_content1",
+      "label": "Shipping Content1"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_icon2",
+      "label": "Shipping Icon2"
+    },
+    {
+      "type": "text",
+      "id": "shipping_content2",
+      "label": "Shipping Content2"
+    },
+    {
+      "type": "text",
+      "id": "detail_content",
+      "label": "Detail Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon1",
+      "label": "Detail Icon1"
+    },
+    {
+      "type": "text",
+      "id": "detail_info1",
+      "label": "Detail Info1"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon2",
+      "label": "Detail Icon2"
+    },
+    {
+      "type": "text",
+      "id": "detail_info2",
+      "label": "Detail Info2"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon3",
+      "label": "Detail Icon3"
+    },
+    {
+      "type": "text",
+      "id": "detail_info3",
+      "label": "Detail Info3"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "contact_icon1",
+      "label": "Contact Icon1"
+    },
+    {
+      "type": "text",
+      "id": "contact_info1",
+      "label": "Contact Info1"
+    },
+    {
+      "type": "image_picker",
+      "id": "contact_icon2",
+      "label": "Contact Icon2"
+    },
+    {
+      "type": "text",
+      "id": "contact_info2",
+      "label": "Contact Info2"
+    },
+    {
+      "type": "image_picker",
+      "id": "contact_icon3",
+      "label": "Contact Icon3"
+    },
+    {
+      "type": "text",
+      "id": "contact_info3",
+      "label": "Contact Info3"
     },
     {
       "type": "range",
