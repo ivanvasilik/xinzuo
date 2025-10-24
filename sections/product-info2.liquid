@@ -288,7 +288,9 @@
         }
 
         .section-{{ section.id }} .product-info2-header h2 {
-            margin-bottom: 32px;
+            {% if section.settings.header_type == "left" %}
+                margin-bottom: 32px;
+            {% endif %}
             font-size: 36px;
         }
 
@@ -311,6 +313,10 @@
         .section-{{ section.id }} .product-info2-left h2 {
             margin: 0;
         }
+
+        .section-{{ section.id }} .product-info2-footer2 .product-info2-right h2 {
+            font-size: 28px;
+        }
     }
 
     @media screen and (max-width: 750px) {
@@ -332,6 +338,23 @@
 
         .section-{{ section.id }} .product-info2-footer1 {
             gap: 64px;
+        }
+
+        .section-{{ section.id }} .product-info2-footer2 {
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-info2-footer3 > div {
+            flex-direction: column;
+        }
+
+        .section-{{ section.id }} .product-info2-footer3 .product-info2-left {
+            width: 100%;
+        }
+
+        .section-{{ section.id }} .product-info2-footer3 .product-info2-right {
+            width: 100%;
         }
     }
 {% endstyle %}
@@ -403,8 +426,8 @@
                             <a>Learn more about {{ collection.title }} ›</a>
                         </div>
                     </div>
-                    <div>
-                        {% if section.settings.additional_footer %}
+                    {% if section.settings.additional_footer %}
+                        <div>
                             <div class="product-info2-left">
                                 <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
                                 <div class="product-block-line"></div>
@@ -415,8 +438,8 @@
                                 <div class="product-block-line"></div>
                                 <span>{{ section.settings.additional_content2 }}</span>
                             </div>
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
         {% endif %}
