@@ -60,6 +60,39 @@
         font-size: 16px;
         color: #fd3e36;
     }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 32px 0;
+        }
+
+        .section-{{ section.id }} .product-static {
+            padding: 48px 0;
+        }
+
+        .section-{{ section.id }} .product-static > div {
+            padding: 32px 40px;
+            gap: 40px;
+        }
+
+        .section-{{ section.id }} .product-static img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .section-{{ section.id }} .product-static h2 {
+            font-size: 28px;
+        }
+
+        .section-{{ section.id }} .product-static-div {
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-static-div span {
+            width: 100%;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
