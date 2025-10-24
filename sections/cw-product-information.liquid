@@ -7,9 +7,16 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-    <div class="product-media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+    <div class="main-product">
+        <div class="product-media-wrapper">
+            <ul class="product-thumbnail">
+                {% for image in product.images %}
+                    <li>
+                        <img src="{{ image | img_url: 'master' }}" width="100%" height="100%" alt="product-thumbnail">
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </section>
 
