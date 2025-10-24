@@ -193,6 +193,26 @@
             width: calc(50% - 20px);
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-info-icons {
+            flex-direction: column;
+        }
+
+        .section-{{ section.id }} .product-info-icon {
+            width: 100%;
+            gap: 20px;
+        }
+        
+        .section-{{ section.id }} .product-info-divs {
+            flex-direction: column;
+        }
+
+        .section-{{ section.id }} .product-info-div {
+            width: 100%;
+            padding-top: 24px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
