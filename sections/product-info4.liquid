@@ -132,6 +132,49 @@
         right: 0;
         cursor: pointer;
     }
+
+    .section-{{ section.id }} .product-info4-footer {
+        padding: 24px 32px;
+        display: flex;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info4-footer > div {
+        width: 50%;
+    }
+
+    .section-{{ section.id }} .product-info4-div {
+        width: 100%;
+        max-width: 360px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .section-{{ section.id }} .product-info4-div div {
+        width: 100%;
+        max-width: 320px;
+        height: 1px;
+        background-color: #fd3e36;
+    }
+
+    .section-{{ section.id }} .product-info4-div img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .section-{{ section.id }} .product-info4-div span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #86868b;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} .product-info4-div strong {
+        font-weight: 700;
+        color: #f9f9f7;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -193,15 +236,19 @@
         {% endfor %}
         {% if section.settings.footer_state %}
             <div class="product-info4-footer">
-                <div class="product-info4-div">
-                    <div></div>
-                    <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
-                    <span>{{ section.settings.footer_content1 }}</span>
+                <div>
+                    <div class="product-info4-div">
+                        <div></div>
+                        <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        <span>{{ section.settings.footer_content1 }}</span>
+                    </div>
                 </div>
-                <div class="product-info4-div">
-                    <div></div>
-                    <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
-                    <span>{{ section.settings.footer_content2 }}</span>
+                <div>
+                    <div class="product-info4-div">
+                        <div></div>
+                        <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        <span>{{ section.settings.footer_content2 }}</span>
+                    </div>
                 </div>
             </div>
         {% endif %}
