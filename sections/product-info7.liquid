@@ -151,6 +151,12 @@
             gap: 40px;
         }
     }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-info7-img {
+            flex-direction: column;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
