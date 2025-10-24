@@ -1710,7 +1710,12 @@
         "heading": "Shapes of Excellence",
         "color_scheme": "scheme-5",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "footer_state": true,
+        "footer-img1": "shopify://shop_images/Icons_8c3a9e09-e479-403e-9ed1-555e70442b84.png",
+        "footer_content1": "<p>This chef knife excels at refined cutting, delivering <strong>flawless slices of vegetables, meats, and herbs</strong>, enhancing presentation and efficiency for chefs who demand precision and artistry.</p>",
+        "footer-img2": "shopify://shop_images/Icons_1_a43303c7-8345-4fc9-b3c3-2e3d54f7527a.png",
+        "footer_content2": "<p>The Lan Series chef knife features powdered Damascus steel with superior hardness, <strong>combining luxury craftsmanship and strength</strong> for unmatched sharpness, balance, and enduring performance.</p>"
       }
     },
     "product_series1_9aqxi6": {
