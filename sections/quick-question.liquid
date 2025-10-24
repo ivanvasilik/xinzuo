@@ -243,12 +243,17 @@
     }
 
     const next = (num) => {
-        const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
-        const modals = document.querySelectorAll(".question-modal-info");
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        nextModal.classList.add('active');
+        if (num < {{ section.blocks.size }}) {
+            const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
+            const modals = document.querySelectorAll(".question-modal-info");
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            nextModal.classList.add('active');
+        }
+        else {
+            close();
+        }
     }
 </script>
 
