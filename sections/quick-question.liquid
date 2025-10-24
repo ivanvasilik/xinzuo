@@ -132,6 +132,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 20px;
     }
 
     .section-{{ section.id }} .question-modal-header span {
@@ -139,7 +140,6 @@
         font-weight: 600;
         font-size: 36px;
         color: #86868b;
-        margin-bottom: 20px;
     }
 
     .section-{{ section.id }} .question-progress {
@@ -217,8 +217,8 @@
                 </div>
                 <h2>{{ block.settings.question }}</h2>
                 <div class="question-answers">
-                    <button>{{ block.settings.answer1 }}</button>
-                    <button>{{ block.settings.answer2 }}</button>
+                    <button onclick="next()">{{ block.settings.answer1 }}</button>
+                    <button onclick="next()">{{ block.settings.answer2 }}</button>
                 </div>
             </div>
         {% endfor %}
