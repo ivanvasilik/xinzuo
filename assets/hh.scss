@@ -132,6 +132,7 @@ header {
             @media screen and (max-width: 750px) {
                 font-size: 40px;
             }
+            margin: 0;
         }
 
         p:nth-child(odd)::after {
@@ -149,6 +150,7 @@ header {
             @media screen and (max-width: 750px) {
                 font-size: 40px;
             }
+            margin: 0;
         }
 
         p:nth-child(even)::after {
