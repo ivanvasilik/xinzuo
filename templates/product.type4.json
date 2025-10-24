@@ -1515,6 +1515,51 @@
         "padding_bottom": 80
       }
     },
+    "product_info_YrcCK3": {
+      "type": "product-info",
+      "blocks": {
+        "block_kdHLfq": {
+          "type": "block",
+          "settings": {
+            "header": "Unique",
+            "content": "73 Layers",
+            "footer": "bring deeper texture and contrast"
+          }
+        },
+        "block_QkpTdF": {
+          "type": "block",
+          "settings": {
+            "header": "Each wave",
+            "content": "Truly Unique,",
+            "footer": "reflecting rarity and prestige"
+          }
+        },
+        "block_JPVg4G": {
+          "type": "block",
+          "settings": {
+            "header": "Defined by",
+            "content": "Damascus Craft",
+            "footer": "refined artistry beyond compare"
+          }
+        }
+      },
+      "block_order": [
+        "block_kdHLfq",
+        "block_QkpTdF",
+        "block_JPVg4G"
+      ],
+      "name": "Product Info",
+      "settings": {
+        "image": "shopify://shop_images/06_b87af953-409c-4b0e-bc87-3d9041c80978.png",
+        "heading": "Damascus Waves The artistry beyond craft perfection",
+        "content": "<p>Each Lan Series blade carries a polished Damascus surface, forged from seventy-three layers into flowing waves of steel. No two patterns are alike — each a singular mark of Damascus artistry and prestige. <strong>Luxurious and enduring</strong> — Damascus perfection forged beyond limits, a legacy of master craftsmanship.</p>",
+        "first_num": "3",
+        "second_num": "3",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "product_info2_pVhzYj": {
       "type": "product-info2",
       "blocks": {
@@ -2202,6 +2247,7 @@
     "product_info2_8biKrj",
     "product_info2_qTpE4H",
     "product_info7_DTcLJk",
+    "product_info_YrcCK3",
     "product_info2_pVhzYj",
     "product_info3_Gx89LP",
     "product_info2_eVwTgB",
