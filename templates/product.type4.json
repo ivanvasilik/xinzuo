@@ -105,7 +105,7 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button-secondary"
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
@@ -123,7 +123,7 @@
               "type": "payment-icons",
               "name": "t:names.payment_icons",
               "settings": {
-                "horizontal_alignment": "flex-start",
+                "horizontal_alignment": "center",
                 "gap": 10,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
