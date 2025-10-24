@@ -16,6 +16,122 @@
                     </li>
                 {% endfor %}
             </ul>
+            <ul class="product-media">
+                {% for image in product.images %}
+                    <li>
+                        <img src="{{ image | img_url: 'master' }}" width="100%" height="100%" alt="product-thumbnail">
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="product-details">
+            <div class="product-details-header">
+                <div class="product-details-links">
+                    <span>
+                        <a href="/">Home</a>
+                        <span>></span>
+                        <a href="/collections">KNIVES</a>
+                        <span>></span>
+                        <span>{{ product.title }}</span>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <g clip-path="url(#clip0_4592_48340)">
+                            <path d="M14.8537 7.35375L9.85371 12.3537C9.78378 12.4238 9.69466 12.4714 9.59761 12.4908C9.50057 12.5101 9.39998 12.5002 9.30857 12.4623C9.21716 12.4244 9.13904 12.3603 9.0841 12.278C9.02917 12.1957 8.99988 12.0989 8.99996 12V9.51437C5.43121 9.71687 2.98434 12.0312 2.29746 12.7644C2.18961 12.8796 2.04817 12.9578 1.89328 12.9879C1.73838 13.0181 1.57793 12.9986 1.43475 12.9323C1.29157 12.8659 1.17295 12.7561 1.09579 12.6185C1.01863 12.4809 0.986842 12.3224 1.00496 12.1656C1.23684 10.1494 2.34121 8.21 4.11496 6.705C5.58809 5.455 7.37871 4.66187 8.99996 4.52312V2C8.99988 1.90105 9.02917 1.8043 9.0841 1.72201C9.13904 1.63971 9.21716 1.57556 9.30857 1.53769C9.39998 1.49981 9.50057 1.48991 9.59761 1.50923C9.69466 1.52856 9.78378 1.57624 9.85371 1.64625L14.8537 6.64625C14.9002 6.69268 14.9371 6.74783 14.9622 6.80853C14.9874 6.86923 15.0004 6.93429 15.0004 7C15.0004 7.0657 14.9874 7.13077 14.9622 7.19147C14.9371 7.25217 14.9002 7.30731 14.8537 7.35375Z" fill="#86868B"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4592_48340">
+                                <rect width="16" height="16" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                {% assign collection = product.collections.first %}
+                <h2>{{ collection.title }} — {{ product.title }}</h2>
+                <span>MODEL: {{ product.model }}</span>
+            </div>
+            {% comment %} <div class="product-reviews"></div> {% endcomment %}
+            <div class="product-details-prices">
+                <h2>{{ product.price }}</h2>
+                {% if product.price < product.compare_at_price %}
+                    <h4>{{ product.compare_at_price }}</h4>
+                {% endif %}
+            </div>
+            {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'shipping' %}
+                        <div class="product-details-shipping">
+                            <div class="product-shipping-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <g clip-path="url(#clip0_4592_48393)">
+                                        <path d="M10 15C10.5178 15 10.9375 14.5803 10.9375 14.0625C10.9375 13.5447 10.5178 13.125 10 13.125C9.48223 13.125 9.0625 13.5447 9.0625 14.0625C9.0625 14.5803 9.48223 15 10 15Z" fill="#C1C4C7"/>
+                                        <path d="M10 11.25V10.625C11.3805 10.625 12.5 9.64531 12.5 8.4375C12.5 7.22969 11.3805 6.25 10 6.25C8.61953 6.25 7.5 7.22969 7.5 8.4375V8.75" stroke="#C1C4C7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z" stroke="#C1C4C7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_4592_48393">
+                                            <rect width="20" height="20" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>
+                                    {{ block.settings.title1 }}
+                                    <span>{{ block.settings.title2 }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <g clip-path="url(#clip0_4592_48402)">
+                                            <path d="M13 6L8 11L3 6" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_4592_48402">
+                                                <rect width="16" height="16" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="product-shipping-content">
+                                <div>
+                                    <img src="{{ block.settings.icon1 | img_url: 'master' }}" width="100%" height="100%" alt="Shipping Icon1">
+                                    <span>{{ block.settings.content1 }}</span>
+                                </div>
+                                <div>
+                                    <img src="{{ block.settings.icon2 | img_url: 'master' }}" width="100%" height="100%" alt="Shipping Icon2">
+                                    <span>{{ block.settings.content2 }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% when 'info' %}
+                        <div class="product-details-info">
+                            <span>{{ block.settings.content }}</span>
+                            <div class="product-detail_info-divs">
+                                <div class="product-detail_info-div">
+                                    <img src="{{ block.settings.icon1 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon1">
+                                    <span>{{ block.settings.info1 }}</span>
+                                </div>
+                                <div class="product-detail_info-div">
+                                    <img src="{{ block.settings.icon2 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon2">
+                                    <span>{{ block.settings.info2 }}</span>
+                                </div>
+                                <div class="product-detail_info-div">
+                                    <img src="{{ block.settings.icon3 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon3">
+                                    <span>{{ block.settings.info3 }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% when 'variant' %}
+                        {% if product.variants.size > 1 %}
+                            <div class="product-details-variants">
+                                <p>{{ block.settings.title }}</p>
+                                {% for variant in product.variants %}
+                                    <a class="product-details-variant" href="{{ variant.url }}">
+                                        <img src="{{ variant.image | img_url: 'master' }}" width="100%" height="100%" alt="Variant-{{ variant.id }}">
+                                        <span>{{ variant.title }}</span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% render 'variant-main-picker', product_resource: product %}
+                {% endcase %}
+            {% endfor %}
         </div>
     </div>
 </section>
