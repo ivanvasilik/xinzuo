@@ -1487,7 +1487,7 @@
         "block_rFcaBc": {
           "type": "block",
           "settings": {
-            "heading": "Up to",
+            "heading": "",
             "content": "<p>Up to</p><h2>All Styles</h2><p>master every cutting technique</p>"
           }
         },
@@ -1508,6 +1508,7 @@
         "heading_title": "",
         "heading_content": "<h2>A Curve Mastered</h2>",
         "header_type": "center",
+        "img": "shopify://shop_images/04_65f8d085-4069-4831-ad65-8966bdc589dc.png",
         "heading_footer": "The knives' geometry is sculpted for mastery — a curved belly flows for effortless rocking, while the pointed tip ensures detailed precision. From chopping to slicing, mincing to delicate work, it adapts seamlessly, delivering control, versatility, and performance at a level ordinary knives cannot approach.",
         "color_scheme": "scheme-5",
         "padding_top": 80,
