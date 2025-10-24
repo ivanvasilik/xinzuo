@@ -16,23 +16,23 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "one",
             "image_gap": 0,
             "large_first_image": false,
             "icons_style": "arrow",
-            "slideshow_controls_style": "dots",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "bottom",
-            "thumbnail_width": 64,
+            "thumbnail_position": "left",
+            "thumbnail_width": 72,
             "aspect_ratio": "adapt",
-            "constrain_to_viewport": false,
-            "media_fit": "cover",
-            "media_radius": 4,
-            "extend_media": true,
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
             "zoom": true,
             "video_loop": false,
-            "hide_variants": false,
+            "hide_variants": true,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -50,8 +50,8 @@
             "custom_width_mobile": 100,
             "height": "fit",
             "details_position": "flex-start",
-            "gap": 12,
-            "sticky_details_desktop": false,
+            "gap": 28,
+            "sticky_details_desktop": true,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "background_media": "none",
@@ -61,52 +61,626 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "variant_picker_nfG9H7": {
+              "type": "variant-picker",
+              "name": "t:names.product_variant_picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_BPWXER": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-secondary"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "payment_icons_THQfk6": {
+              "type": "payment-icons",
+              "name": "t:names.payment_icons",
+              "settings": {
+                "horizontal_alignment": "flex-start",
+                "gap": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "group_aNBpAK": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_CDEgPF": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check.png",
+                    "width": 24,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_wwedya": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Express delivery service within 3–5 days ensures your knife arrives quickly, safely, and ready to perform.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_CDEgPF",
+                "text_wwedya"
+              ]
+            },
+            "group_hm6XUD": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_yLd7nA": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check.png",
+                    "width": 24,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_9Cqp84": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Each knife packed in reinforced protective casing, with optional paid gift box available for elegant presentation.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_yLd7nA",
+                "text_9Cqp84"
+              ]
+            },
+            "accordion_mfT479": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_9AmHQn": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "DESCRIPTION",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_LQ3U3M": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_LQ3U3M"
+                  ]
+                },
+                "accordion_row_mrn7Tc": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "WHAT’S INCLUDED",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_3MCNeg": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_3MCNeg"
+                  ]
+                },
+                "accordion_row_7y4q6n": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "TECHNICAL DETAILS",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_qF9wXp": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_qF9wXp"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_9AmHQn",
+                "accordion_row_mrn7Tc",
+                "accordion_row_7y4q6n"
+              ]
+            },
+            "text_UkTHcz": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><em>Note - All knives tested under rigorous quality control for consistency.</em></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_z3Tcrw": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>Most Asked Questions</strong></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "accordion_gTqVLM": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_BWDamh": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Why is the Mo Series considered a premium series?",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_DmaXcq": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_DmaXcq"
+                  ]
+                },
+                "accordion_row_HWk9WM": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How does Mo Series suit professional kitchen environments?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_LTHGAr": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_LTHGAr"
+                  ]
+                },
+                "accordion_row_eBLxqa": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "What separates Mo Series from other Damascus collections?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_XkEqE6": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_XkEqE6"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_BWDamh",
+                "accordion_row_HWk9WM",
+                "accordion_row_eBLxqa"
+              ]
+            }
+          },
+          "block_order": [
+            "variant_picker_nfG9H7",
+            "buy_buttons_BPWXER",
+            "payment_icons_THQfk6",
+            "group_aNBpAK",
+            "group_hm6XUD",
+            "accordion_mfT479",
+            "text_UkTHcz",
+            "text_z3Tcrw",
+            "accordion_gTqVLM"
+          ]
         }
       },
-      "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
+        "shipping_title1": "Earliest Delivery Tomorrow to",
+        "shipping_title2": "Carina, 4152",
+        "shipping_icon1": "shopify://shop_images/ClockCounterClockwise.png",
+        "shipping_content1": "18 hours left, for get it by tomorrow",
+        "shipping_icon2": "shopify://shop_images/Truck.png",
+        "shipping_content2": "Free Delivery on order worth $400",
+        "detail_content": "67-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.",
+        "detail_icon1": "shopify://shop_images/StackSimple.png",
+        "detail_info1": "<p><strong>67-layer Damascus</strong></p><p>Composite</p>",
+        "detail_icon2": "shopify://shop_images/Hammer.png",
+        "detail_info2": "<p><strong>~60-62 HRC Blade</strong></p><p>Hardness</p>",
+        "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+        "detail_info3": "<p><strong>10Cr15CoMoV core,</strong></p><p>67-layer D </p>",
+        "contact_heading": "Have any question",
+        "contact_icon1": "shopify://shop_images/Phone.png",
+        "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
+        "contact_icon2": "shopify://shop_images/EnvelopeSimple.png",
+        "contact_info2": "<p>Email</p><p>support@xinzuo.com.au</p>",
+        "contact_icon3": "shopify://shop_images/Headset.png",
+        "contact_info3": "<p>Support</p><p>Mon-Fri: 8am-10pm</p>",
         "gap": 48,
         "color_scheme": "scheme-5",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
-    },
-    "cw_product_information_6YAyPh": {
-      "type": "cw-product-information",
-      "blocks": {
-        "shipping_LVpg78": {
-          "type": "shipping",
-          "settings": {}
-        },
-        "info_YQpd7c": {
-          "type": "info",
-          "settings": {}
-        },
-        "variant_kDcx4P": {
-          "type": "variant",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "shipping_LVpg78",
-        "info_YQpd7c",
-        "variant_kDcx4P"
-      ],
-      "name": "Product Header",
-      "settings": {
-        "color_scheme": "scheme-5",
-        "padding_top": 80,
-        "padding_bottom": 80
       }
     },
     "product_info_mmnV94": {
@@ -1072,7 +1646,6 @@
   },
   "order": [
     "main",
-    "cw_product_information_6YAyPh",
     "product_info_mmnV94",
     "product_info2_7JTdmJ",
     "product_info2_8biKrj",
