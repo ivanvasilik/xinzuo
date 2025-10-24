@@ -30,24 +30,22 @@
         font-family: "Sen";
         font-weight: 600;
         font-size: 64px;
-        color: #c1c4c7;
+        {% if section.settings.header_type == "left" %}
+            color: #c1c4c7;
+        {% else %}
+            color: white;
+            text-align: center;
+        {% endif %}
         line-height: 125%;
         margin: 0;
     }
 
-    .section-{{ section.id }} .product-info-header {
-        margin-bottom: 32px;
-    }
-
-    .section-{{ section.id }} .product-info-header > h2 {
-        font-family: "Sen";
-        font-weight: 600;
-        font-size: 64px;
-        color: white;
-        line-height: 125%;
-        margin: 0;
-        text-align: center;
-    }
+    {% if section.settings.header_type == "center" %}
+        .section-{{ section.id }} .product-info-header {
+            display: block;
+            margin-bottom: 32px;
+        }
+    {% endif %}
 
     .section-{{ section.id }} .product-info-header > h2:last-child:after {
         content: ".";
