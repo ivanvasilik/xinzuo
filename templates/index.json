@@ -431,6 +431,37 @@
     },
     "quick_question_XyWDMB": {
       "type": "quick-question",
+      "blocks": {
+        "question_yND3FQ": {
+          "type": "question",
+          "settings": {
+            "question": "Are you buying for yourself or as a gift?",
+            "answer1": "For myself",
+            "answer2": "For a gift"
+          }
+        },
+        "question_8WCU9U": {
+          "type": "question",
+          "settings": {
+            "question": "Question2",
+            "answer1": "Answer1",
+            "answer2": "Answer2"
+          }
+        },
+        "question_DB3B3e": {
+          "type": "question",
+          "settings": {
+            "question": "Are you buying for yourself or as a gift?",
+            "answer1": "For myself",
+            "answer2": "For a gift"
+          }
+        }
+      },
+      "block_order": [
+        "question_yND3FQ",
+        "question_8WCU9U",
+        "question_DB3B3e"
+      ],
       "name": "Quick Question",
       "settings": {
         "heading": "Can’t decide which knife fits your style?"
