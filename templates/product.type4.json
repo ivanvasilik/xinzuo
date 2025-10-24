@@ -1699,7 +1699,7 @@
         "additional_footer": true,
         "additional_image1": "shopify://shop_images/Icons_16.png",
         "additional_content1": "<p><strong>Powder metallurgy steel and layered Damascus design</strong> give the Lan Series unrivaled exclusivity — crafted as the crown jewel above every other Xinzuo series.</p>",
-        "additional_image2": "shopify://shop_images/Icons_2_ada91f16-e94d-41b1-bbf3-08db7688a8fa.png",
+        "additional_image2": "shopify://shop_images/Icons_17.png",
         "additional_content2": "<p><strong>Hand-finished details and bespoke gift packaging</strong> transform the Lan Series from a knife into an heirloom — a statement of prestige, artistry, and timeless refinement.</p>"
       }
     },
@@ -1707,7 +1707,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
-        "heading": "Choose Your Blade",
+        "heading": "Shapes of Excellence",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
