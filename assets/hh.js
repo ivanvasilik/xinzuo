@@ -1,7 +1,12 @@
 const imageThumbnail = () => {
     const thumbnail = document.querySelector("slideshow-controls");
     if (thumbnail) {
-        thumbnail.setAttribute("pagination-position", "center");
+        if (window.innerWidth > 750) {
+            thumbnail.setAttribute("pagination-position", "left");
+        }
+        else {
+            thumbnail.setAttribute("pagination-position", "center");
+        }
     }
     console.log(thumbnail);
 }
