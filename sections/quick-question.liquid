@@ -186,6 +186,31 @@
         background-color: transparent;
         cursor: pointer;
     }
+
+    @meida screen and (max-width: 850px) {
+        .question-modal-info {
+            width: calc(100% - 32px);
+            top: 148px;
+            min-height: 480px;
+            padding: 24px 16px 32px;
+        }
+
+        .question-modal-header span {
+            font-size: 22px;
+        }
+
+        .question-modal-info h2 {
+            font-size: 22px;
+        }
+
+        .question-answers {
+            flex-direction: column;
+        }
+
+        .question-answers button {
+            width: 100%;
+        }
+    }
 {% endstyle %}
 
 <section class="section-{{ section.id }}">
