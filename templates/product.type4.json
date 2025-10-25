@@ -20,7 +20,7 @@
             "media_columns": "one",
             "image_gap": 0,
             "large_first_image": false,
-            "icons_style": "arrow",
+            "icons_style": "chevron_large",
             "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "left",
