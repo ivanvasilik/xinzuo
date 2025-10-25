@@ -271,7 +271,7 @@
     endfor
   endif
 %}
-<div class="product-details-links">
+<div class="main-product-links">
   <span>
     <a href="/">Home</a>
     <span>&gt;</span>
@@ -579,6 +579,21 @@
     </script>
   {%- endif -%}
 </media-gallery>
+
+{% style %}
+  .main-product-links {
+    display: none;
+  }
+
+  @media screen and (max-width: 750px) {
+    .main-product-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+    }
+  }
+{% endstyle %}
 
 {% stylesheet %}
   .dialog-zoomed-gallery {
