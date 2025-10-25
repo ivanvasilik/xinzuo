@@ -2,12 +2,15 @@
     .section-{{ section.id }} {
         background: radial-gradient(59.22% 45.55% at 100% 107.77%, #151515 0%, rgba(21, 21, 21, 0.00) 100%), linear-gradient(114deg, #252525 0.16%, rgba(37, 37, 37, 0.00) 26.55%, rgba(32, 32, 32, 0.00) 79.33%, #171717 105.71%), linear-gradient(250deg, #1E1E1E 0.63%, #222428 14.81%, #252527 36.15%, #252527 99.37%);
     }
+
+    .section-{{ section.id }} .hero-banner {
+        display: flex;
+    }
     
     .section-{{ section.id }} .hero-banner-content h2:nth-child(odd) {
-        color: var(--Default, #F9F9F7);
-        font-family: Sen;
+        color: #F9F9F7;
+        font-family: "Sen";
         font-size: 80px;
-        font-style: normal;
         font-weight: 600;
         line-height: 120%;
         margin: 0;
@@ -20,9 +23,8 @@
 
     .section-{{ section.id }} .hero-banner-content h2:nth-child(even) {
         color: #fd3e36;
-        font-family: Sen;
+        font-family: "Sen";
         font-size: 80px;
-        font-style: normal;
         font-weight: 600;
         line-height: 120%;
         margin: 0;
