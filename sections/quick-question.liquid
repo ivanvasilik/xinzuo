@@ -268,11 +268,13 @@
             modal.classList.remove('active');
         });
         firstModal.classList.add('active');
+        document.body.style.overflow = '';
     }
 
     const openModal = () => {
         const modal = document.querySelector(".question-modal");
         modal.style.display = "block";
+        document.body.style.overflow = 'hidden';
     }
 
     const nextModal = (num) => {
