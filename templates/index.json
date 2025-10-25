@@ -99,6 +99,7 @@
         "icon_MXdgiP",
         "button_H9gpTf"
       ],
+      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -126,6 +127,18 @@
         "reflection_opacity": 75,
         "padding-block-start": 100,
         "padding-block-end": 72
+      }
+    },
+    "cw_hero_BD9KK7": {
+      "type": "cw-hero",
+      "name": "CW Hero",
+      "settings": {
+        "heading": "<h2>Sharp</h2><h2>Strong</h2><h2>Timeless</h2>",
+        "content": "<p>Every slice feels precise, every detail crafted with care.</p>",
+        "icon": "shopify://shop_images/John_Smith.svg",
+        "link_text": "EXPLORE PRODUCTS",
+        "desktop_img": "shopify://shop_images/1_1_424bcec9-c9c1-44f7-8e2b-f93eba483199.png",
+        "mobile_img": "shopify://shop_images/IMG_5941_1_d1b0d206-2b5e-4930-8b5c-399fd91b7e84.png"
       }
     },
     "customer_GD7Dyr": {
@@ -890,6 +903,7 @@
   },
   "order": [
     "hero_jVaWmY",
+    "cw_hero_BD9KK7",
     "customer_GD7Dyr",
     "home_slider_g9dVGe",
     "product_list_fa6P9H",
