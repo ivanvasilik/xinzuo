@@ -349,7 +349,19 @@
         -%}
       {% endif %}
 
-      {% if render_mobile_slideshow_controls %}
+      {% if render_slideshow_controls %}
+        {%- render 'slideshow-controls',
+          class: desktop:hidden,
+          style: slideshow_controls_style,
+          item_count: sorted_media.size,
+          thumbnails: sorted_media,
+          controls_on_media: controls_on_media,
+          pagination_position: center,
+          aspect_ratio: block_settings.aspect_ratio
+        -%}
+      {% endif %}
+
+      {% comment %} {% if render_mobile_slideshow_controls %}
         {%- render 'slideshow-controls',
           class: 'desktop:hidden media-gallery__mobile-controls',
           style: block_settings.slideshow_mobile_controls_style,
@@ -357,7 +369,7 @@
           controls_on_media: true,
           pagination_position: 'center',
         -%}
-      {% endif %}
+      {% endif %} {% endcomment %}
     {% endcapture %}
   {% endif %}
 
