@@ -104,7 +104,11 @@
     }
 
     @media screen and (max-width: 1150px) {
-        .section-{{ section.id }} .hero-banner-content h2 {
+        .section-{{ section.id }} .hero-banner-content h2:nth-child(odd) {
+            font-size: 40px;
+        }
+
+        .section-{{ section.id }} .hero-banner-content h2:nth-child(even) {
             font-size: 40px;
         }
 
