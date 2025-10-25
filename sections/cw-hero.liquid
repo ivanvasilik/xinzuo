@@ -11,6 +11,7 @@
         padding-top: 100px;
         max-width: 1440px;
         margin: auto;
+        position: relative;
     }
 
     .section-{{ section.id }} .hero-banner-content {
@@ -18,6 +19,10 @@
         flex-direction: column;
         justify-content: center;
         width: 500px;
+        position: absolute;
+        top: 0;
+        right: 54%;
+        height: 100%;
     }
 
     .section-{{ section.id }} .hero-banner-content span {
@@ -70,6 +75,15 @@
         display: flex;
         justify-content: flex-end;
         margin-left: auto;
+    }
+
+    .section-{{ section.id }} .hero-banner-content .desktop-hero {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 54%;
+        height: calc(100% - 100px);
+        object-fit: cover;
     }
 
     .section-{{ section.id }} .hero-banner-content a {
