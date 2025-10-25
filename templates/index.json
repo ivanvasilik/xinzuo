@@ -99,7 +99,6 @@
         "icon_MXdgiP",
         "button_H9gpTf"
       ],
-      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -131,6 +130,7 @@
     },
     "cw_hero_BD9KK7": {
       "type": "cw-hero",
+      "disabled": true,
       "name": "CW Hero",
       "settings": {
         "heading": "<h2>Sharp</h2><h2>Strong</h2><h2>Timeless</h2>",
