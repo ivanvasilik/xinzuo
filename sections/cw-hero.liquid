@@ -7,7 +7,7 @@
         display: flex;
     }
     
-    .section-{{ section.id }} .hero-banner-content h2:nth-child(odd) {
+    .section-{{ section.id }} .hero-banenr-content h2:nth-child(odd) {
         color: #F9F9F7;
         font-family: "Sen";
         font-size: 80px;
@@ -16,12 +16,12 @@
         margin: 0;
     }
 
-    .section-{{ section.id }} .hero-banner-content h2:nth-child(odd)::after {
+    .section-{{ section.id }} .hero-banenr-content h2:nth-child(odd)::after {
         content: '.';
         color: #fd3e36;
     }
 
-    .section-{{ section.id }} .hero-banner-content h2:nth-child(even) {
+    .section-{{ section.id }} .hero-banenr-content h2:nth-child(even) {
         color: #fd3e36;
         font-family: "Sen";
         font-size: 80px;
@@ -30,25 +30,25 @@
         margin: 0;
     }
 
-    .section-{{ section.id }} .hero-banner-content h2:nth-child(even)::after {
+    .section-{{ section.id }} .hero-banenr-content h2:nth-child(even)::after {
         content: '.';
         color: white;
     }
 
-    .section-{{ section.id }} .hero-banner-content span {
+    .section-{{ section.id }} .hero-banenr-content span {
         font-size: 18px;
         font-weight: 400;
         color: #86868b;
     }
 
-    .hero-banner-content img {
+    .hero-banenr-content img {
         width: 400px;
         justify-content: flex-end;
         margin-bottom: 70px;
         max-width: 35vw;
     }
 
-    .hero-banner-content a {
+    .hero-banenr-content a {
         font-family: "Sen";
         font-weight: 500;
         font-size: 16px;
@@ -60,7 +60,7 @@
 
 <section class="section-{{ section.id }}">
     <div class="hero-banner">
-        <div class="hero-banenr-content">
+        <div class="hero-banner-content">
             <span>{{ section.settings.heading }}</span>
             <span>{{ section.settings.content }}</span>
             <div>
