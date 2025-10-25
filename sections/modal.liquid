@@ -6,6 +6,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        display: none;
     }
 
     .home-modal-back {
@@ -164,6 +165,11 @@
         const homeModal = document.querySelector(".home-modal");
         homeModal.style.display = "none";
     }
+
+    setTimeout(() => {
+        const homeModal = document.querySelector(".home-modal");
+        console.log(homeModal);
+    })
 </script>
 
 {% schema %}
