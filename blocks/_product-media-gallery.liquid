@@ -339,7 +339,6 @@
     {% capture controls %}
       {% if render_slideshow_controls %}
         {%- render 'slideshow-controls',
-          class: slideshow_controls_class,
           style: slideshow_controls_style,
           item_count: sorted_media.size,
           thumbnails: sorted_media,
