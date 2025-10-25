@@ -223,7 +223,7 @@
         </div>
     </div>
     <div class="question-modal">
-        <div class="question-modal-back"></div>
+        <div class="question-modal-back" onclick="closeModal()"></div>
         {% for block in section.blocks %}
             <div class="question-modal-info question-modal-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
                 <div class="question-modal-header">
