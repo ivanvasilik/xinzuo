@@ -168,11 +168,13 @@
     const closeHomeModal = () => {
         const homeModal = document.querySelector(".home-modal");
         homeModal.style.display = "none";
+        document.body.style.overflow = '';
     }
 
     setTimeout(() => {
         const homeModal = document.querySelector(".home-modal");
         homeModal.style.display = "block";
+        document.body.style.overflow = 'hidden';
     }, 5000)
 </script>
 
