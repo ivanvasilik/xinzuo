@@ -47,26 +47,30 @@
         color: #86868b;
     }
 
-    .hero-banner-content div {
+    .section-{{ section.id }} .hero-banner-content div {
         width: 400px;
         display: flex;
         flex-direction: column;
         gap: 100px;
     }
 
-    .hero-banner-content img {
+    .section-{{ section.id }} .hero-banner-content img {
         width: 150px;
         display: flex;
         justify-content: flex-end;
     }
 
-    .hero-banner-content a {
+    .section-{{ section.id }} .hero-banner-content a {
         font-family: "Sen";
         font-weight: 500;
         font-size: 16px;
         letter-spacing: 2px;
         border-bottom: 2px solid #444444;
         line-height: 250%;
+    }
+
+    .section-{{ section.id }} .hero-banner-img {
+        height: 100%;
     }
 {% endstyle %}
 
