@@ -1,6 +1,9 @@
 {% style %}
-    .section-{{ section.id }} .hero-banner {
+    .section-{{ section.id }} > div {
         background: radial-gradient(59.22% 45.55% at 100% 107.77%, #151515 0%, rgba(21, 21, 21, 0.00) 100%), linear-gradient(114deg, #252525 0.16%, rgba(37, 37, 37, 0.00) 26.55%, rgba(32, 32, 32, 0.00) 79.33%, #171717 105.71%), linear-gradient(250deg, #1E1E1E 0.63%, #222428 14.81%, #252527 36.15%, #252527 99.37%);
+    }
+
+    .section-{{ section.id }} .hero-banner {
         display: flex;
         justify-content: flex-end;
         height: 100vh;
@@ -80,31 +83,33 @@
 {% endstyle %}
 
 <section class="section-{{ section.id }}">
-    <div class="hero-banner">
-        <div class="hero-banner-content">
-            <span>{{ section.settings.heading }}</span>
-            <span>{{ section.settings.content }}</span>
-            <div>
-                <img src="{{ section.settings.icon | img_url: 'master' }}" width="100%" height="100%" alt="Hero Icon">
-                <a href="/collections">
-                    {{ section.settings.link_text }}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g clip-path="url(#clip0_4592_26684)">
-                            <path d="M10 3.125V16.875" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M4.375 11.25L10 16.875L15.625 11.25" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_4592_26684">
-                                <rect width="20" height="20" fill="white"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </a>
+    <div>
+        <div class="hero-banner">
+            <div class="hero-banner-content">
+                <span>{{ section.settings.heading }}</span>
+                <span>{{ section.settings.content }}</span>
+                <div>
+                    <img src="{{ section.settings.icon | img_url: 'master' }}" width="100%" height="100%" alt="Hero Icon">
+                    <a href="/collections">
+                        {{ section.settings.link_text }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_4592_26684)">
+                                <path d="M10 3.125V16.875" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.375 11.25L10 16.875L15.625 11.25" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_4592_26684">
+                                    <rect width="20" height="20" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="hero-banner-img">
-            <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="mobile:hidden">
-            <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="desktop:hidden">
+            <div class="hero-banner-img">
+                <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="mobile:hidden">
+                <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="desktop:hidden">
+            </div>
         </div>
     </div>
 </section>
