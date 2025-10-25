@@ -4,6 +4,13 @@
         display: flex;
         justify-content: flex-end;
         height: 100vh;
+        padding-top: 100px;
+    }
+
+    .section-{{ section.id }} .hero-banner-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .section-{{ section.id }} .hero-banner-content h2:nth-child(odd) {
@@ -40,11 +47,17 @@
         color: #86868b;
     }
 
-    .hero-banner-content img {
+    .hero-banner-content div {
         width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .hero-banner-content img {
+        width: 150px;
+        display: flex;
         justify-content: flex-end;
-        margin-bottom: 70px;
-        max-width: 35vw;
     }
 
     .hero-banner-content a {
