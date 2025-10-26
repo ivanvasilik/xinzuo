@@ -226,10 +226,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
   <div>
-    <h2>
-      <span>{{ section.settings.heading -}}</span>
-      {{ section.settings.heading_color }}
-    </h2>
+    <h2><span>{{ section.settings.heading -}}</span>{{ section.settings.heading_color }}</h2>
     <div class="home-menu-list">
       <ul>
         {% for block in section.blocks %}
