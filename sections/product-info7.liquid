@@ -125,10 +125,12 @@
         line-height: 150%;
     }
 
-    .section-{{ section.id }} {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
 
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} .product-info7 {
