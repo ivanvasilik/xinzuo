@@ -67,10 +67,6 @@
     }
 
     @media screen and (max-width: 750px) {
-        .section-{{ section.id }} {
-            padding: 32px 16px;
-        }
-
         .section-{{ section.id }} .quick-question {
             padding: 32px 16px;
             gap: 32px;
@@ -79,24 +75,20 @@
         .section-{{ section.id }} .quick-question h2 {
             color: var(--Default, #F9F9F7);
             text-align: center;
-            /* Mobile/H3 */
-            font-family: var(--Primary-Font-Family-Heading, Sen);
-            font-size: var(--Mobile-Font-Size-H3, 22px);
-            font-style: normal;
-            font-weight: var(--Primary-Font-Weight-Semibold, 600);
-            line-height: 135%; /* 29.7px */
+            font-family: "Sen";
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 135%;
             letter-spacing: -0.11px;
         }
 
         .section-{{ section.id }} .quick-question button {
             color: #FFF;
             text-align: center;
-            /* Mobile/Button Default */
-            font-family: var(--Primary-Font-Family-Heading, Sen);
-            font-size: var(--Mobile-Font-Size-Button-Default, 14px);
-            font-style: normal;
-            font-weight: var(--Primary-Font-Weight-Semibold, 600);
-            line-height: 17px; /* 121.429% */
+            font-family: Sen;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
             letter-spacing: 0.28px;
             text-transform: uppercase;
         }
