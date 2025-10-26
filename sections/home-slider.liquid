@@ -25,127 +25,125 @@
   }
 
   .section-{{ section.id }} h2 span {
-      color: #FD3E36;
-      padding-left: 10px;
+    color: #FD3E36;
+    padding-left: 10px;
   }
 
   .section-{{ section.id }} h2:after {
-      content: ".";
-      color: #86868b;
+    content: ".";
+    color: #86868b;
   }
 
   .section-{{ section.id }} .home-price {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      /* padding: 0 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .section-{{ section.id }} .home-price span.prices {
-      font-family: "Sen";
-      font-weight: 600;
-      font-size: 22px;
-      color: #c1c4c7
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    color: #c1c4c7
   }
 
   .section-{{ section.id }} .home-price span.compare-price {
-      font-size: 19px;
-      text-decoration: line-through;
-      color: #86868b;
+    font-size: 19px;
+    text-decoration: line-through;
+    color: #86868b;
   }
 
   .section-{{ section.id }} .home-price a {
-      background-color: transparent;
-      border: none;
-      display: flex;
-      font-family: "Sen";
-      font-weight: 600;
-      font-size: 14px;
-      color: #c1c4c7;
-      border-bottom: 2px solid #444444;
-      padding: 0;
-      line-height: 250%;
-      align-items: center;
-      gap: 15px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 14px;
+    color: #c1c4c7;
+    border-bottom: 2px solid #444444;
+    padding: 0;
+    line-height: 250%;
+    align-items: center;
+    gap: 15px;
   }
 
   .section-{{ section.id }} .home-price a img {
-      width: 20px;
-      height: 20px;
-      margin: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
   }
 
   .section-{{ section.id }} .swiper-slide .active {
-      height: 360px;
-      overflow: visible;
+    height: 360px;
+    overflow: visible;
   }
 
   .section-{{ section.id }} .home-menu-list {
-      margin-bottom: 64px;
+    margin-bottom: 64px;
+    overflow: hidden;
+    border-bottom: 1px solid #86868b;
   }
 
   .section-{{ section.id }} .home-menu-list ul {
-      display: flex;
-      list-style: none;
-      gap: 40px;
-      padding: 0;
-      border-bottom: 1px solid #86868b;
-      width: fit-content;
-      margin: 0;
-      overflow: hidden;
-      width: 100%;
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    padding: 0;
+    width: fit-content;
+    margin: 0;
   }
 
   .section-{{ section.id }} .home-menu-list ul li {
-      padding: 16px 0;
-      color: #86868b;
-      cursor: pointer;
+    padding: 16px 0;
+    color: #86868b;
+    cursor: pointer;
   }
 
   .section-{{ section.id }} .home-menu-list ul li p {
-      width: max-content;
+    width: max-content;
   }
 
   .section-{{ section.id }} .home-menu-list ul li.active {
-      color: #f9f9f7;
-      border-bottom: 1px solid #F9F9F7;
+    color: #f9f9f7;
+    border-bottom: 1px solid #F9F9F7;
   }
 
   .section-{{ section.id }} .home-slider {
-      display: none;
+    display: none;
   }
 
   .section-{{ section.id }} .home-slider.active {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   @media screen and (max-width: 750px) {
-      .section-{{ section.id }} {
-          padding: 48px 0;
-      }
+    .section-{{ section.id }} {
+      padding: 48px 0;
+    }
 
-      .section-{{ section.id }} > div {
-        padding: 0 16px;
-      }
+    .section-{{ section.id }} > div {
+      padding: 0 16px;
+    }
 
-      .section-{{ section.id }} h2 {
-          font-size: 28px;
-          margin-bottom: 12px;
-      }
-      
-      .section-{{ section.id }} img {
-          margin-bottom: 24px;
-      }
+    .section-{{ section.id }} h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    
+    .section-{{ section.id }} img {
+      margin-bottom: 24px;
+    }
 
-      .section-{{ section.id }} .home-menu-list {
-          margin-bottom: 48px;
-      }
+    .section-{{ section.id }} .home-menu-list {
+      margin-bottom: 48px;
+    }
 
-      .section-{{ section.id }} .home-menu-list ul {
-          gap: 32px;
-      }
+    .section-{{ section.id }} .home-menu-list ul {
+      gap: 32px;
+    }
   }
 
   .home-products-th {
