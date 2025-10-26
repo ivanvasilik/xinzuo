@@ -1,7 +1,5 @@
 {% style %}
     .section-{{ section.id }} {
-        max-width: 1440px;
-        margin: auto;
         background-color: black;
     }
 
@@ -13,6 +11,8 @@
         background-repeat: no-repeat;
         background-image: url("{{ section.settings.background | img_url: 'master' }}");
         padding: 50px 0;
+        max-width: 1440px;
+        margin: auto;
     }
 
     .section-{{ section.id }} .customers h2 {
@@ -22,6 +22,7 @@
         color: white;
         text-align: center;
         line-height: 135%;
+        padding: 0 16px;
     }
 
     .section-{{ section.id }} .customer-imgs {
