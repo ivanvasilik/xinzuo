@@ -906,7 +906,7 @@
       ],
       "name": "Product Info7",
       "settings": {
-        "width": "page",
+        "width": "full",
         "heading_title": "",
         "heading_content": "<h2>A Curve Mastered</h2>",
         "header_type": "center",
