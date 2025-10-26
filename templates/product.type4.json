@@ -775,6 +775,7 @@
       ],
       "name": "Product Info",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/image_128_b35a7974-cbcd-440f-bfdf-e777b9df4fba.png",
         "header_type": "left",
         "heading": "<h2>Every element chosen with purpose</h2>",
@@ -811,6 +812,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "SAFE. RELIABLE. PRECISE.",
         "heading_content": "<h2>73-Layer Damascus</h2>",
         "header_type": "left",
@@ -834,6 +836,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "RAZOR. FINER. SUPREME",
         "heading_content": "<h2>A Blade Beyond Ordinary.</h2>",
         "header_type": "left",
@@ -857,6 +860,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Blade Whisper</h2>",
         "header_type": "center",
@@ -902,6 +906,7 @@
       ],
       "name": "Product Info7",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>A Curve Mastered</h2>",
         "header_type": "center",
@@ -947,6 +952,7 @@
       ],
       "name": "Product Info",
       "settings": {
+        "width": "full",
         "image": "shopify://shop_images/06_b87af953-409c-4b0e-bc87-3d9041c80978.png",
         "header_type": "center",
         "heading": "<h2>Damascus Waves</h2><h2>The artistry beyond</h2><h2>craft perfection</h2>",
@@ -994,6 +1000,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "CRAFTED. SUPREME. TIMELESS.",
         "heading_content": "<h2>The Gentle Perfection</h2>",
         "header_type": "left",
@@ -1018,6 +1025,7 @@
       "disabled": true,
       "name": "Product Info3",
       "settings": {
+        "width": "page",
         "heading": "Defined by Strength",
         "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
         "img_text": "Hammered Patterns for Unique Durability",
@@ -1035,6 +1043,7 @@
       "disabled": true,
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "Handle Design",
         "heading_content": "<h2>Heritage You Can Feel</h2>",
         "header_type": "center",
@@ -1058,6 +1067,7 @@
       "type": "product-info6",
       "name": "Product Info6",
       "settings": {
+        "width": "page",
         "heading_title": "Design Legacy",
         "heading_content": "<h2>The Shape of</h2><h2>Mastery</h2>",
         "header_type": "center",
@@ -1077,6 +1087,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Defined</h2><h2>by Supremacy</h2>",
         "header_type": "center",
@@ -1102,6 +1113,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
+        "width": "page",
         "heading": "Shapes of Excellence",
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -1117,6 +1129,7 @@
       "type": "product-series1",
       "name": "Product Series",
       "settings": {
+        "width": "page",
         "title": "<h2>Lan Series.</h2><h2>Beyond Limits of Artistry</h2>",
         "image": "shopify://shop_images/02_b765cf35-27d2-418b-b71f-248ff9fa2368.png",
         "content": "<p>Lan Series represents the ultimate union of powder metallurgy steel and Damascus artistry — refined for chefs, admired by collectors, and destined to become a lasting legacy.</p>",
@@ -1185,6 +1198,7 @@
       ],
       "name": "Product Series2",
       "settings": {
+        "width": "page",
         "header_title": "<h2>Here’s why</h2><h2>Lan S. is the crown jewel</h2>",
         "header_left": "<p>A few ways Lan Series gives you more.</p>",
         "header_right": "<p>Crafted for</p><p>Chefs and Collectors</p>",
@@ -1227,6 +1241,7 @@
       ],
       "name": "Product Info5",
       "settings": {
+        "width": "page",
         "heading": "Designed for Confidence",
         "background": false,
         "color_scheme": "scheme-5",
@@ -1238,6 +1253,7 @@
       "type": "product-description",
       "name": "Product Description",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/Frame_464.png",
         "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
