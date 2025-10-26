@@ -15,8 +15,7 @@
         border: 1px solid rgba(255, 255, 255, 0.02);
         overflow: hidden;
         background: rgba(255, 255, 255, 0.02);
-        max-width: 1280px;
-        margin: auto;
+        padding: 0 80px;
     }
 
     .section-{{ section.id }} .image-left {
@@ -86,6 +85,10 @@
     }
 
     @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .image-with-text {
+            padding: 0 40px;
+        }
+
         .section-{{ section.id }} .image-left {
             gap: 24px;
         }
@@ -103,6 +106,7 @@
         .section-{{ section.id }} .img-with-text {
             flex-direction: column-reverse;
             gap: 0;
+            padding: 0 16px;
         }
 
         .section-{{ section.id }} .img-with-text .image-right {
