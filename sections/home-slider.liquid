@@ -329,7 +329,7 @@
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
-    ul.style.transform = `translate(${currentPosition - 200}px)`;
+    ul.style.transform = `translate(${currentPosition - 100}px)`;
     prevBtn.style.display = "flex";
     changeBtn();
   }
@@ -341,7 +341,7 @@
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
-    ul.style.transform = `translate(${currentPosition + 200}px)`;
+    ul.style.transform = `translate(${currentPosition + 100}px)`;
     nextBtn.style.display = "flex";
     changeBtn();
   }
