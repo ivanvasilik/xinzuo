@@ -85,6 +85,12 @@
     border-bottom: 1px solid #86868b;
   }
 
+  .section-{{ section.id }} .home-menu-list > div {
+    position: relative;
+    max-width: fit-content;
+    overflow: hidden;
+  }
+
   .section-{{ section.id }} .home-menu-list ul {
     display: flex;
     list-style: none;
@@ -209,7 +215,7 @@
     <h2>{{ section.settings.heading -}}<span>{{ section.settings.heading_color }}</span></h2>
     <div class="home-menu-list">
       <div>
-        <ul>
+        <ul class="product-products-ul">
           {% for block in section.blocks %}
             <li
               class="home-collection home-collection-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}"
@@ -287,6 +293,58 @@
     homeCollection.classList.add('active');
     homeSlider.classList.add('active');
   };
+  
+  const btn = document.querySelector('.product-products-div2');
+  const btn_width = btn.offsetWidth;
+
+  const changeBtn = () => {
+    const ul = document.querySelector('.product-products-ul');
+    const prevBtn = document.querySelector('.product-products-div1');
+    const nextBtn = document.querySelector('.product-products-div2');
+    let currentPosition;
+    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+    else currentPosition = 0;
+    if (ul.parentElement.offsetWidth > ul.offsetWidth) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    }
+    else {
+      if (-ul.parentElement.offsetWidth + ul.scrollWidth + currentPosition + btn_width < 0) {
+        ul.style.transform = `translate(${ul.parentElement.offsetWidth - ul.scrollWidth - btn_width}px)`;
+        nextBtn.style.display = "none";
+      }
+      if (currentPosition > 0) {
+        ul.style.transform = `translate(0)`;
+        prevBtn.style.display = "none";
+      }
+    }
+  }
+
+  const productUlNext = () => {
+    const prevBtn = document.querySelector('.product-products-div1');
+    const nextBtn = document.querySelector('.product-products-div2');
+    const ul = document.querySelector('.product-products-ul');
+    let currentPosition;
+    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+    else currentPosition = 0;
+    ul.style.transform = `translate(${currentPosition - 200}px)`;
+    prevBtn.style.display = "flex";
+    changeBtn();
+  }
+
+  const productUlPrev = () => {
+    const prevBtn = document.querySelector('.product-products-div1');
+    const nextBtn = document.querySelector('.product-products-div2');
+    const ul = document.querySelector('.product-products-ul');
+    let currentPosition;
+    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
+    else currentPosition = 0;
+    ul.style.transform = `translate(${currentPosition + 200}px)`;
+    nextBtn.style.display = "flex";
+    changeBtn();
+  }
+
+  changeBtn();
 </script>
 
 {% schema %}
