@@ -140,10 +140,25 @@
     @media screen and (max-width: 1000px) {
         .section-{{ section.id }} .hero-banner-content {
             justify-content: flex-end;
+            width: calc(100% - 100px);
         }
 
         .section-{{ section.id }} .hero-banner-content div {
             margin-bottom: 40px;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .section-{{ section.id }} .hero-banner-content img {
+            margin: auto;
+        }
+
+        .section-{{ section.id }} .hero-banner-content a {
+            margin: auto;
+        }
+
+        .section-{{ section.id }} .hero-banner-content span {
+            width: 210px;
         }
 
         .section-{{ section.id }} .desktop-hero {
