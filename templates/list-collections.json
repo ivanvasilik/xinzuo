@@ -101,6 +101,7 @@
       "type": "collection_list_header",
       "name": "Collection List Header",
       "settings": {
+        "width": "full",
         "heading": "KNIVES",
         "title": "<p>If cooking is art,</p><p>Xinzuo is the brush.</p>",
         "video": "shopify://files/videos/b37-001.mp4",
@@ -227,6 +228,7 @@
       ],
       "name": "Custom Collection List",
       "settings": {
+        "width": "page",
         "heading": "Explore Every Series",
         "color_scheme": "scheme-5"
       }
