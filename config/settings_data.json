@@ -252,7 +252,7 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#000000",
+          "background": "#111111",
           "foreground_heading": "#ffffff",
           "foreground": "#c1c4c7",
           "primary": "#ffffff",
