@@ -1,6 +1,9 @@
 {% style %}
     .section-{{ section.id }} {
         background-color: #111111;
+    }
+
+    .section-{{ section.id }} > div {
         padding: 80px 0 96px;
     }
 
@@ -91,7 +94,7 @@
     }
 
     @media screen and (max-width: 750px) {
-        .section-{{ section.id }} {
+        .section-{{ section.id }} > div {
             padding: 48px 0;
         }
 
@@ -122,16 +125,18 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <div class="img-with-text">
-        <div class="image-left">
-            <div>
-                <h2>{{ section.settings.heading }}</h2>
-                <p>{{ section.settings.content }}</p>
+    <div>
+        <div class="img-with-text">
+            <div class="image-left">
+                <div>
+                    <h2>{{ section.settings.heading }}</h2>
+                    <p>{{ section.settings.content }}</p>
+                </div>
+                <a href="{{ section.settings.url }}">{{ section.settings.button }} <img src="{{ 'ArrowUpRight.svg?v=1760533953' | file_url }}" width="100%" height="100%" alt="product"></a>
             </div>
-            <a href="{{ section.settings.url }}">{{ section.settings.button }} <img src="{{ 'ArrowUpRight.svg?v=1760533953' | file_url }}" width="100%" height="100%" alt="product"></a>
-        </div>
-        <div class="image-right">
-            <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="image">
+            <div class="image-right">
+                <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="image">
+            </div>
         </div>
     </div>
 </section>
