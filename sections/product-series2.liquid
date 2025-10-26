@@ -114,6 +114,13 @@
         color: #fd3e36;
     }
 
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
+
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} h2 {
             font-size: 36px;
@@ -197,6 +204,22 @@
 {
     "name": "Product Series2",
     "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
         {
             "type": "richtext",
             "id": "header_title",
