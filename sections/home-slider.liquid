@@ -105,7 +105,7 @@
     position: absolute;
     top: 0;
     height: 100%;
-    padding: 12px;
+    padding: 5px;
     align-items: center;
     background: #212121;
     backdrop-filter: blur(2px);
@@ -118,7 +118,7 @@
     position: absolute;
     top: 0;
     height: 100%;
-    padding: 12px;
+    padding: 5px;
     display: flex;
     align-items: center;
     background: #212121;
@@ -210,6 +210,10 @@
   @media screen and (max-width: 650px) {
     .section-{{ section.id }} .home-slider.active {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .section-{{ section.id }} .home-menu-list ul li {
+      padding: 10px 0;
     }
   }
 {% endstyle %}
