@@ -405,7 +405,7 @@
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+<section class="section-{{ section.id }} {% if section.settings.width == "page" %}section section--page-width{% endif %} color-{{ section.settings.color_scheme }}">
     <div class="product-info2">
         <div class="product-info2-header">
             <div>
@@ -495,6 +495,21 @@
 {
     "name": "Product Info2",
     "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ]
+        },
         {
             "type": "text",
             "id": "heading_title",
