@@ -1,12 +1,9 @@
 {% style %}
-    .section-{{ section.id }} {
-        padding: 80px 0;
-    }
-
     .section-{{ section.id }} .product-info3 {
         display: flex;
         flex-direction: column;
         gap: 64px;
+        padding: 80px 0;
     }
 
     .section-{{ section.id }} .product-info3 > h2 {
@@ -104,12 +101,9 @@
     }
 
     @media screen and (max-width: 1025px) {
-        .section-{{ section.id }} {
-            padding: 48px 0;
-        }
-
         .section-{{ section.id }} .product-info3 {
             gap: 40px;
+            padding: 48px 0;
         }
 
         .section-{{ section.id }} .product-info3 > h2 {
