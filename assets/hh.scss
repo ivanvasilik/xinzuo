@@ -7,7 +7,7 @@ body > * {
 }
 
 header {
-    position: fixed;
+    position: fixed !important;
 
     .header__row {
         background-color: #232323 !important;
