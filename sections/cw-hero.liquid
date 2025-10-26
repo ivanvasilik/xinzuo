@@ -22,6 +22,7 @@
         top: 0;
         right: 54%;
         height: 100%;
+        z-index: 1;
     }
 
     .section-{{ section.id }} .hero-banner-content span {
@@ -137,6 +138,18 @@
     }
 
     @media screen and (max-width: 1000px) {
+        .section-{{ section.id }} .hero-banner-content {
+            justify-content: flex-end;
+        }
+
+        .section-{{ section.id }} .hero-banner-content div {
+            margin-bottom: 40px;
+        }
+
+        .section-{{ section.id }} .desktop-hero {
+            width: 80%;
+        }
+    }
 {% endstyle %}
 
 <section class="section-{{ section.id }}">
