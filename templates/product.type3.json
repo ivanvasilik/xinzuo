@@ -109,6 +109,7 @@
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {},
                   "blocks": {}
@@ -755,6 +756,7 @@
       ],
       "name": "Product Info",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/product-x06-009_c478ecc1-06e0-4b18-9bd6-c2ddef5538ea.png",
         "header_type": "left",
         "heading": "",
@@ -791,6 +793,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "SHARP. TOUGH. ELEGANT.",
         "heading_content": "<h2>67-Layer Damascus</h2>",
         "header_type": "left",
@@ -814,6 +817,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "RAZOR. TOUGH. UNSTOPPABLE.",
         "heading_content": "<h2>Supreme Sharpness, Built to Last</h2>",
         "header_type": "left",
@@ -837,6 +841,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Blade Leaner</h2>",
         "header_type": "center",
@@ -893,6 +898,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "CRAFTED. HARDENED. ENDURING.",
         "heading_content": "<h2>Strength in Crafting</h2>",
         "header_type": "left",
@@ -917,6 +923,7 @@
       "disabled": true,
       "name": "Product Info3",
       "settings": {
+        "width": "page",
         "heading": "Defined by Strength",
         "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
         "img_text": "Hammered Patterns for Unique Durability",
@@ -934,6 +941,7 @@
       "disabled": true,
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "Handle Design",
         "heading_content": "<h2>Heritage You Can Feel</h2>",
         "header_type": "center",
@@ -957,6 +965,7 @@
       "type": "product-info6",
       "name": "Product Info6",
       "settings": {
+        "width": "page",
         "heading_title": "Knife Design",
         "heading_content": "<h2>Artistry in</h2><h2>Detail</h2>",
         "header_type": "center",
@@ -976,6 +985,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Built</h2><h2>for Brilliance</h2>",
         "header_type": "center",
@@ -1001,6 +1011,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
+        "width": "page",
         "heading": "Choose Your Blade",
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -1014,6 +1025,7 @@
       "type": "product-series1",
       "name": "Product Series",
       "settings": {
+        "width": "page",
         "title": "<h2>Mo Series Damascus.</h2><h2>Blade Mastery Redefined</h2>",
         "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
         "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
@@ -1082,6 +1094,7 @@
       ],
       "name": "Product Series2",
       "settings": {
+        "width": "page",
         "header_title": "<h2>Here’s why</h2><h2>Mo Series stands above.</h2>",
         "header_left": "<p>A few ways Mo Series redefines every cut.</p>",
         "header_right": "<p>Forged for</p><p>Professionals.</p>",
@@ -1124,6 +1137,7 @@
       ],
       "name": "Product Info5",
       "settings": {
+        "width": "page",
         "heading": "Distinct by Every Detail",
         "background": false,
         "color_scheme": "scheme-5",
@@ -1135,6 +1149,7 @@
       "type": "product-description",
       "name": "Product Description",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/Frame_464.png",
         "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
