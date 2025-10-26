@@ -18,6 +18,17 @@
         font-size: 12px;
     }
 
+    .section-{{ section.id }} .footer-payments {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .footer-payments img {
+        width: 35px;
+        height: 24px;
+    }
+
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .footer-3 {
             flex-direction: column;
@@ -29,10 +40,6 @@
         .section-{{ section.id }} .footer-3 p {
             text-align: center;
         }
-
-        .section-{{ section.id }} .payment-icons__list {
-            flex-wrap: unset;
-        }
     }
 {% endstyle %}
 
@@ -40,7 +47,11 @@
 <div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
     <div class="footer-3">
         <p>{{ section.settings.copyright }}</p>
-        {% content_for 'blocks' %}
+        <div class="footer-payments">
+            {% for block in section.blocks %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="payment-{{ block.id }}">
+            {% endfor %}
+        </div>
     </div>
 </div>
 
@@ -50,46 +61,15 @@
     "tag": "footer",
     "blocks": [
         {
-            "type": "_divider"
-        },
-        {
-            "type": "@app"
-        },
-        {
-            "type": "button"
-        },
-        {
-            "type": "follow-on-shop"
-        },
-        {
-            "type": "group"
-        },
-        {
-            "type": "icon"
-        },
-        {
-            "type": "image"
-        },
-        {
-            "type": "menu"
-        },
-        {
-            "type": "payment-icons"
-        },
-        {
-            "type": "text"
-        },
-        {
-            "type": "logo"
-        },
-        {
-            "type": "jumbo-text"
-        },
-        {
-            "type": "social-links"
-        },
-        {
-            "type": "email-signup"
+            "type": "icon",
+            "name": "Icon",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Payment Icon"
+                }
+            ]
         }
     ],
     "settings": [
