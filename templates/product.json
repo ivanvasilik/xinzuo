@@ -756,6 +756,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "THIN. SHARP. POWERFUL",
         "heading_content": "<h2>Perfectly Balanced for Sharpness</h2>",
         "header_type": "left",
@@ -795,6 +796,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "full",
         "heading_title": "Handle Design",
         "heading_content": "<h2>Elegance You<br/>Can Hold</h2>",
         "header_type": "center",
@@ -818,6 +820,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Effortless<br/>Cutting Power</h2>",
         "header_type": "center",
