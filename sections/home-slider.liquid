@@ -179,17 +179,22 @@
     }
   }
 
-  .home-products-th {
+  .section-{{ section.id }} .home-products-th {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .home-products .home-price span, .sale-price {
+  .section-{{ section.id }} .home-products .home-price span, .sale-price {
     font-size:25px !important;
   }
-  .home-products-th h2 {
+
+  .section-{{ section.id }} .home-products-th h2 {
     font-size:25px;
+  }
+
+  .section-{{ section.id }} .product-products-ul {
+    transition: transform 0.3s ease;
   }
 
   @media screen and (max-width: 1300px) {
