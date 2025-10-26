@@ -125,6 +125,11 @@
         line-height: 150%;
     }
 
+    .section-{{ section.id }} {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} .product-info7 {
             gap: 40px;
@@ -172,7 +177,7 @@
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<section class="section-{{ section.id }} {% if section.settings.width == "page" %}section section--page-width{% endif %} color-{{ section.settings.color_scheme }}">
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div class="product-info7">
         <div class="product-info7-header">
             <div>
