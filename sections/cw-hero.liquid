@@ -103,6 +103,12 @@
         height: 100%;
     }
 
+    .section-{{ section.id }} .mobile-hero {
+        width: 100vw;
+        object-fit: cover;
+        display: none;
+    }
+
     @media screen and (max-width: 1150px) {
         .section-{{ section.id }} .hero-banner-content {
             width: 400px;
@@ -185,8 +191,6 @@
 
         .section-{{ section.id }} .mobile-hero {
             display: block;
-            width: 100vw;
-            object-fit: cover;
         }
     }
 {% endstyle %}
