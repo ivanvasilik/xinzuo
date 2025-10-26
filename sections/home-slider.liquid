@@ -304,6 +304,8 @@
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
+    console.log(ul.parentElement.offsetWidth);
+    console.log(ul.offsetWidth);
     if (ul.parentElement.offsetWidth > ul.offsetWidth) {
       prevBtn.style.display = "none";
       nextBtn.style.display = "none";
