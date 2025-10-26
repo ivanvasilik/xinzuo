@@ -208,15 +208,17 @@
   <div>
     <h2>{{ section.settings.heading -}}<span>{{ section.settings.heading_color }}</span></h2>
     <div class="home-menu-list">
-      <ul>
-        {% for block in section.blocks %}
-          <li
-            class="home-collection home-collection-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}"
-            onclick="homeslider({{ forloop.index }})"
-          >
-            <p>{{ block.settings.collection_name }}</p>
-          </li>
-        {% endfor %}
+      <div>
+        <ul>
+          {% for block in section.blocks %}
+            <li
+              class="home-collection home-collection-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}"
+              onclick="homeslider({{ forloop.index }})"
+            >
+              <p>{{ block.settings.collection_name }}</p>
+            </li>
+          {% endfor %}
+        </ul>
         <div class="product-products-div1" onclick="productUlPrev()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
             <g clip-path="url(#clip0_4235_8014)">
@@ -241,7 +243,7 @@
             </defs>
           </svg>
         </div>
-      </ul>
+      </div>
     </div>
     {% for block in section.blocks %}
       {% assign collection = block.settings.collection %}
