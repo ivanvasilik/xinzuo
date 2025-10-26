@@ -748,6 +748,7 @@
       ],
       "name": "Product Info",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/product-pm8s-003_2x_a3d0418e-6c2d-45f2-84dc-7e9a4d2be98f.png",
         "header_type": "left",
         "heading": "",
@@ -784,6 +785,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "TOUGH. BALANCED. RELIABLE",
         "heading_content": "<h2>3 Layer Composite</h2>",
         "header_type": "left",
@@ -807,6 +809,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "PRECISE. DURABLE. REFINED",
         "heading_content": "<h2>Engineered to Stay Razor Sharp</h2>",
         "header_type": "left",
@@ -861,6 +864,7 @@
       ],
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "FORGED. REFINED. MASTERED",
         "heading_content": "<h2>Crafted With Precision</h2>",
         "header_type": "left",
@@ -884,6 +888,7 @@
       "type": "product-info3",
       "name": "Product Info3",
       "settings": {
+        "width": "page",
         "heading": "Forged for Power",
         "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
         "img_text": "Hammered Patterns for Unique Durability",
@@ -900,6 +905,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "full",
         "heading_title": "Handle Design",
         "heading_content": "<h2>Heritage You Can Feel</h2>",
         "header_type": "center",
@@ -923,6 +929,7 @@
       "type": "product-info2",
       "name": "Product Info2",
       "settings": {
+        "width": "page",
         "heading_title": "",
         "heading_content": "<h2>Crafted</h2><h2>for Distinction</h2>",
         "header_type": "center",
@@ -948,6 +955,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
+        "width": "page",
         "heading": "Choose Your Edge",
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -978,6 +986,7 @@
       ],
       "name": "Product Info5",
       "settings": {
+        "width": "page",
         "heading": "Designed to make a difference",
         "background": false,
         "color_scheme": "scheme-5",
@@ -989,6 +998,7 @@
       "type": "product-description",
       "name": "Product Description",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/Frame_464.png",
         "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
