@@ -121,22 +121,57 @@
     "cw_footer3_4VR8Dg": {
       "type": "cw-footer3",
       "blocks": {
-        "payment_icons_faPUM4": {
-          "type": "payment-icons",
-          "name": "t:names.payment_icons",
+        "icon_kgVBhV": {
+          "type": "icon",
           "settings": {
-            "horizontal_alignment": "flex-start",
-            "gap": 10,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "image": "shopify://shop_images/Visa.png"
+          }
+        },
+        "icon_cM7XnC": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Mastercard.png"
+          }
+        },
+        "icon_NzteHH": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ApplePay.png"
+          }
+        },
+        "icon_emJtVf": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/GooglePay.png"
+          }
+        },
+        "icon_KeiwfT": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ShopPay.png"
+          }
+        },
+        "icon_cKyHzE": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Stripe.png"
+          }
+        },
+        "icon_DeqNWT": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Amex.png"
+          }
         }
       },
       "block_order": [
-        "payment_icons_faPUM4"
+        "icon_kgVBhV",
+        "icon_cM7XnC",
+        "icon_NzteHH",
+        "icon_emJtVf",
+        "icon_KeiwfT",
+        "icon_cKyHzE",
+        "icon_DeqNWT"
       ],
       "name": "Custom Footer3",
       "settings": {
