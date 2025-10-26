@@ -7,6 +7,10 @@ body > * {
 }
 
 header {
+    .header__row {
+        background-color: #232323 !important;
+    }
+
     .mega-menu__list {
         grid-column: span var(4);
     }
