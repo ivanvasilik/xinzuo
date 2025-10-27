@@ -368,6 +368,7 @@
                               {% assign product = all_products[product_handle] %}
                               {% assign collection_handle = childlink.url | split: "/" | last %}
                               {% assign collection = collections[collection_handle] %}
+                              {{ collection | json }}
                               <li
                                 class="
                                   menu-drawer__list-item
