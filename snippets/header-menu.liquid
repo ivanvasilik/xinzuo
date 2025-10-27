@@ -228,8 +228,8 @@
                           </a>
                         </li>
                       {% endfor %}
-                      {% if sublink.links.size > 5 %}
-                        <a href="{{ sublink.url }}">view all</a>
+                      {% if product.variants.size > 5 %}
+                        <a href="{{ product.url }}">view all</a>
                       {% endif %}
                     </ul>
                     {% if product.featured_image != blank %}
