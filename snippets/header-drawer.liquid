@@ -814,7 +814,7 @@
         {%- endif -%}
       </div>
 
-      {% liquid
+      {% comment %} {% liquid
         if block_settings.menu_style == 'featured_collections'
           assign top_level_featured_collections = linklist.links | where: 'type', 'collection_link'
         endif
@@ -832,7 +832,7 @@
           endfor
         endif
       -%}
-      {% comment %} {% if top_level_featured_collections.size > 0 or top_level_featured_products_collection.products_count > 0 %}
+      {% if top_level_featured_collections.size > 0 or top_level_featured_products_collection.products_count > 0 %}
         <div
           class="menu-drawer__featured-content"
           style="--menu-drawer-animation-index: {{ linklist.links.size | plus: 1 }};"
