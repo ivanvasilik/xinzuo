@@ -267,6 +267,7 @@
                   class="menu-drawer__list-item"
                   style="--menu-drawer-animation-index: {{ animation_index }};"
                 >
+                  {{ link.links | json }}
                   {%- if link.links != blank -%}
                     {%- comment -%}
                       Regardless of the Accordion setting, in menus with 3 levels of links, we use a details element to handle the top level of the menu for links that have children.
