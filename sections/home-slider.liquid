@@ -15,6 +15,7 @@
       height: 100%;
       object-fit: cover;
       margin-bottom: 40px;
+      cursor: pointer;
   }
 
   .section-{{ section.id }} h2 {
@@ -261,7 +262,7 @@
       <div class="home-slider home-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
         {% for variant in product.variants limit: 4 %}
           <div class="home-products-th">
-            <img src="{{ variant.image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.image.alt }}">
+            <a href="{{ variant.url }}"><img src="{{ variant.image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.image.alt }}"></a>
             <h2>{{ variant.title }} — {{ product.title }}</h2>
             <div class="home-reviews"></div>
             <div class="home-price">
