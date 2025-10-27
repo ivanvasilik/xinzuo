@@ -148,24 +148,6 @@
           </a>
         {% endif %}
         {%- if link.links != blank -%}
-          {% comment %}
-            <div class="menu-list__submenu{{ color_scheme_classes }}">
-              <div
-                id="submenu-{{ forloop.index }}"
-                class="menu-list__submenu-inner"
-              >
-                {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
-                {% render 'mega-menu',
-                  section: section,
-                  parent_link: link,
-                  id: list_id,
-                  menu_content_type: menu_content_type,
-                  content_aspect_ratio: ratio,
-                  image_border_radius: image_border_radius
-                %}
-              </div>
-            </div>
-          {% endcomment %}
           <div
             id="header-dropdown-back-{{ forloop.index }}"
             class="header-dropdown-back"
@@ -196,8 +178,8 @@
             <ul>
               {% for sublink in link.links %}
                 <li class="menu-dropdown-list">
-                  {% if sublink.url contains '/collections/' %}
-                    <a href="/collections" class="mega-dropdown">
+                  {% if sublink.url contains '/products/' %}
+                    <a href="{{ sublink.url }}" class="mega-dropdown">
                       <span class="mega-dropdown-title">
                         {{ sublink.title }}
                       </span>
