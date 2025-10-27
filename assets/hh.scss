@@ -755,3 +755,11 @@ footer {
         font-size: 16px;
     }
 }
+
+.product-details {
+    rte-formatter {
+        em {
+            color: #56565b;
+        }
+    }
+}
