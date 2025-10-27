@@ -208,7 +208,7 @@
                     </ul>
                   {% endif %}
                   {% assign product_handle = sublink.url | split: '/' | last %}
-                  {% assign product = products[product_handle] %}
+                  {% assign product = all_products[product_handle] %}
                   {% if product != blank %}
                     <ul
                       class="list-unstyled"
