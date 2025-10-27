@@ -178,19 +178,11 @@
             <ul>
               {% for sublink in link.links %}
                 <li class="menu-dropdown-list">
-                  {% if sublink.url contains '/products/' %}
-                    <a href="{{ sublink.url }}" class="mega-dropdown">
-                      <span class="mega-dropdown-title">
-                        {{ sublink.title }}
-                      </span>
-                    </a>
-                  {% else %}
-                    <a href="{{ sublink.url }}" class="mega-dropdown">
-                      <span class="mega-dropdown-title">
-                        {{ sublink.title }}
-                      </span>
-                    </a>
-                  {% endif %}
+                  <a href="{{ sublink.url }}" class="mega-dropdown">
+                    <span class="mega-dropdown-title">
+                      {{ sublink.title }}
+                    </span>
+                  </a>
                   {% if sublink.links != blank %}
                     <ul
                       class="list-unstyled"
@@ -215,24 +207,24 @@
                       {% endif %}
                     </ul>
                   {% endif %}
-                  {% assign collection_handle = sublink.url | split: '/' | last %}
-                  {% assign collection = collections[collection_handle] %}
-                  {% if collection != blank %}
+                  {% assign product_handle = sublink.url | split: '/' | last %}
+                  {% assign product = products[product_handle] %}
+                  {% if product != blank %}
                     <ul
                       class="list-unstyled"
                       {% if should_break_columns %}
                         style="column-count: {{ column_span }};"
                       {% endif %}
                     >
-                      {% for product in collection.products limit: 5 %}
+                      {% for variant in product.variants limit: 5 %}
                         {% assign break_after_modulo = forloop.index | modulo: 10 %}
                         <li
                           {% if break_after_modulo == 0 and should_break_columns %}
                             style="break-after: column;"
                           {% endif %}
                         >
-                          <a href="{{ product.url }}">
-                            <span class="mega-menu__link-title wrap-text">{{- product.title -}}</span>
+                          <a href="{{ variant.url }}">
+                            <span class="mega-menu__link-title wrap-text">{{- variant.title -}}</span>
                           </a>
                         </li>
                       {% endfor %}
@@ -240,15 +232,15 @@
                         <a href="{{ sublink.url }}">view all</a>
                       {% endif %}
                     </ul>
-                    {% if collection.featured_image != blank %}
+                    {% if product.featured_image != blank %}
                       <img
-                        src="{{ collection.featured_image | img_url: 'master' }}"
+                        src="{{ product.featured_image | img_url: 'master' }}"
                         width="100%"
                         height="100%"
-                        alt="{{ collection.title | escape }}"
+                        alt="{{ product.title | escape }}"
                       >
                     {% else %}
-                      {% assign firstimage = collection.products.first %}
+                      {% assign firstimage = product.products.first %}
                       <img
                         src="{{ firstimage.featured_image | img_url: 'master' }}"
                         width="100%"
@@ -264,10 +256,6 @@
         {%- endif -%}
       </li>
     {% endfor %}
-    {% comment %}
-      {% assign class = 'overflow-menu' | append: color_scheme_classes %}
-      {% render 'overflow-list', class: class, ref: 'overflowMenu', children: children, minimum-items: 2, defer: false %}
-    {% endcomment %}
   </div>
 </nav>
 
