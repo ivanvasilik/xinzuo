@@ -208,29 +208,29 @@
         "block_aKEQHW": {
           "type": "block",
           "settings": {
-            "collection_name": "SUPREME SERIES",
-            "collection": "supreme-series"
+            "product_name": "SUPREME SERIES",
+            "product": "supreme-series"
           }
         },
         "block_zBNGEX": {
           "type": "block",
           "settings": {
-            "collection_name": "RETRO SERIES",
-            "collection": "retro-series"
+            "product_name": "RETRO SERIES",
+            "product": "retro-series"
           }
         },
         "block_rjVjr6": {
           "type": "block",
           "settings": {
-            "collection_name": "MO SERIES",
-            "collection": "mo-series"
+            "product_name": "MO SERIES",
+            "product": "mo-series"
           }
         },
         "block_zj8Rr9": {
           "type": "block",
           "settings": {
-            "collection_name": "LAN SERIES",
-            "collection": "lan-series"
+            "product_name": "LAN SERIES",
+            "product": "10-inch-carving-knife"
           }
         }
       },
