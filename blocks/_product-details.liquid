@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="product-variants">
+    <div>
       <h4>Select any type of Knives</h4>
       <div class="product-variants">
         {% for variant in product.variants %}
@@ -299,6 +299,30 @@
     width: 64px;
     height: 64px;
     margin: auto;
+  }
+
+  .product-variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .product-variant {
+    width: calc(100% / 3 - 32px / 3);
+  }
+
+  .product-variant.active {
+    border: 4px solid #86868b;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    padding: 8px;
+  }
+
+  .product-variant span {
+    padding: 12px 8px;
+  }
+
+  .product-variant.active span {
+    color: #f9f9f7;
   }
 
   @media screen and (max-width: 750px) {
