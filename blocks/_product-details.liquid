@@ -29,7 +29,7 @@
         <span>
           <a href="/">Home</a>
           <span>></span>
-          <a href="/collections">KNIVES</a>
+          <a href="/collections/all">KNIVES</a>
           <span>></span>
           <span>{{ product.title }}</span>
         </span>
@@ -44,8 +44,7 @@
           </defs>
         </svg>
       </div>
-      {% assign collection = product.collections.first %}
-      <h2>{{ collection.title }} — {{ product.title }}</h2>
+      <h2>{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
       <span>MODEL: {{ product.model }}</span>
     </div>
     {% comment %} <div class="product-reviews"></div> {% endcomment %}
