@@ -832,7 +832,7 @@
           endfor
         endif
       -%}
-      {% if top_level_featured_collections.size > 0 or top_level_featured_products_collection.products_count > 0 %}
+      {% comment %} {% if top_level_featured_collections.size > 0 or top_level_featured_products_collection.products_count > 0 %}
         <div
           class="menu-drawer__featured-content"
           style="--menu-drawer-animation-index: {{ linklist.links.size | plus: 1 }};"
@@ -866,7 +866,7 @@
             {% endif %}
           </ul>
         </div>
-      {% endif %}
+      {% endif %} {% endcomment %}
       <div class="header-drawer-closediv">
         <span class="header-drawer-closebtn" aria-label="{{ 'actions.close' | t }}" on:click="/close">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
