@@ -226,7 +226,7 @@
               class="home-collection home-collection-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}"
               onclick="homeslider({{ forloop.index }})"
             >
-              <p>{{ block.settings.collection_name }}</p>
+              <p>{{ block.settings.product_name }}</p>
             </li>
           {% endfor %}
         </ul>
@@ -257,20 +257,19 @@
       </div>
     </div>
     {% for block in section.blocks %}
-      {% assign collection = block.settings.collection %}
+      {% assign product = block.settings.product %}
       <div class="home-slider home-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
-        {% for product in collection.products limit: 4 %}
+        {% for variant in product.variants limit: 4 %}
           <div class="home-products-th">
-            {% assign image = product.featured_image %}
-            <img src="{{ image | img_url: 'master' }}" width="100%" height="100%" alt="{{ product.featured_image.alt }}">
-            <h2>{{ product.title }}</h2>
+            <img src="{{ variant.image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.image.alt }}">
+            <h2>{{ variant.title }} — {{ product.title }}</h2>
             <div class="home-reviews"></div>
             <div class="home-price">
               <span class="prices">
-                <span class="sale-price">{{ product.price | money }}</span>
-                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                <span class="sale-price">{{ variant.price | money }}</span>
+                <span class="compare-price">{{ variant.compare_at_price | money }}</span>
               </span>
-              <a href="{{ product.url }}">SHOP NOW
+              <a href="{{ variant.url }}">SHOP NOW
                 <img src="{{ 'ArrowUpRight.svg?v=1760533953' | file_url }}" width="100%" height="100%" alt="product"
               ></a>
             </div>
@@ -377,17 +376,17 @@
   "blocks": [
     {
       "type": "block",
-      "name": "Collection",
+      "name": "Product",
       "settings": [
         {
           "type": "text",
-          "id": "collection_name",
-          "label": "Collection Name"
+          "id": "product_name",
+          "label": "Product Name"
         },
         {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
+          "type": "product",
+          "id": "product",
+          "label": "Product"
         }
       ]
     }
