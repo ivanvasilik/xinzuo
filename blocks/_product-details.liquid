@@ -45,7 +45,7 @@
         </svg>
       </div>
       <h2>{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
-      <span>MODEL: {{ product.model }}</span>
+      <span>MODEL: {{ product.metafields.custom.model }}</span>
     </div>
     {% comment %} <div class="product-reviews"></div> {% endcomment %}
     <div class="product-details-prices">
