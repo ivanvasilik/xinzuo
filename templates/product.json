@@ -67,19 +67,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "variant_style": "buttons",
-                "show_swatches": false,
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -638,7 +625,6 @@
             }
           },
           "block_order": [
-            "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
@@ -740,6 +726,7 @@
       ],
       "name": "Product Info",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/image_128.png",
         "header_type": "left",
         "heading": "",
@@ -780,6 +767,7 @@
       "type": "product-info3",
       "name": "Product Info3",
       "settings": {
+        "width": "page",
         "heading": "Built to Perform",
         "img": "shopify://shop_images/product-x02-004.png",
         "img_text": "Full Tag for Balance and Durability",
@@ -844,6 +832,7 @@
       "type": "product-info4",
       "name": "Product Info4",
       "settings": {
+        "width": "page",
         "heading": "",
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -857,6 +846,7 @@
       "type": "product-description",
       "name": "Product Description",
       "settings": {
+        "width": "page",
         "image": "shopify://shop_images/Frame_464.png",
         "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
