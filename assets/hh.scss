@@ -741,3 +741,15 @@ footer {
         padding: 0 16px;
     }
 }
+
+.contact-form {
+    font-family: "Albert Sans";
+    font-size: 16px;
+
+    button.submit-button {
+        padding: 10px 30px;
+        border-radius: 4px;
+        background-color: #fd3e36;
+        color: white;
+    }
+}
