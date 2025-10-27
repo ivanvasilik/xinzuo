@@ -165,7 +165,7 @@
     </div>
 </div>
 
-<script>
+{% comment %} <script>
     const closeHomeModal = () => {
         const homeModal = document.querySelector(".home-modal");
         homeModal.style.display = "none";
@@ -177,7 +177,7 @@
         homeModal.style.display = "block";
         document.body.style.overflow = 'hidden';
     }, 5000)
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
