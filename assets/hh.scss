@@ -764,3 +764,17 @@ footer {
         }
     }
 }
+
+.variant-option--equal-width-buttons .variant-option__button-label {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.variant-option--equal-width-buttons {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.variant-option__button-label {
+    background-color: transparent;
+}
