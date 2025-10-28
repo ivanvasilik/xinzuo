@@ -768,7 +768,7 @@ footer {
 }
 
 @media screen and (max-width: 750px) {
-    search-button {
+    .header__column.header__column--right > search-button {
         display: none !important;
     }
 }
