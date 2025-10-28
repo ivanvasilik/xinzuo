@@ -763,6 +763,6 @@ footer {
 
 @media screen and (max-width: 750px) {
     search-button {
-        display: none;
+        display: none !important;
     }
 }
