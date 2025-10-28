@@ -760,3 +760,9 @@ footer {
 .variant-option__button-label {
     background-color: transparent;
 }
+
+@media screen and (max-width: 750px) {
+    search-button {
+        display: none;
+    }
+}
