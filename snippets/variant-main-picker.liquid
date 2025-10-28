@@ -202,8 +202,12 @@
       if (!selectedVariant) return;
 
       const titleEl = document.querySelector('#product-variant-title');
+      const modelEl = document.querySelector('#product-variant-model');
       if (titleEl) {
         titleEl.textContent = `${product.title} — ${selectedVariant.title}`;
+      }
+      if (modelEl) {
+        modelEl.textContent = `${selectedVariant.metafields.custom.model}`;
       }
 
       const priceContainer = document.querySelector('.product-details-prices');
