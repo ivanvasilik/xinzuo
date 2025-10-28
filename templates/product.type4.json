@@ -1647,18 +1647,6 @@
         "padding-block-end": 48
       }
     },
-    "img_with_text_67m3af": {
-      "type": "img-with-text",
-      "name": "Img with text",
-      "settings": {
-        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
-        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
-        "button": "Step Into Excellence",
-        "url": "",
-        "img": "shopify://shop_images/Rectangle_267.png",
-        "color_scheme": "scheme-5"
-      }
-    },
     "1761657286791a8b0a": {
       "type": "_blocks",
       "blocks": {
@@ -1701,6 +1689,18 @@
         "gradient_direction": "to top",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "img_with_text_67m3af": {
+      "type": "img-with-text",
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
       }
     }
   },
