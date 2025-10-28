@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div>
+    {% comment %} <div>
       <h4>Select any type of Knives</h4>
       <div class="product-variants">
         {% for variant in product.variants %}
@@ -122,7 +122,7 @@
           </a>
         {% endfor %}
       </div>
-    </div>
+    </div> {% endcomment %}
     {% content_for 'blocks' %}
     <div class="product-details-contact">
       <h4>{{ section.settings.contact_heading }}</h4>
