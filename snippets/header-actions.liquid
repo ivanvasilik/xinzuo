@@ -8,8 +8,8 @@
   {{- block.shopify_attributes -}}
 >
   {% if shop.customer_accounts_enabled %}
-    {% comment %} {% render 'account-popover' %} {% endcomment %}
-    {% comment %} {% render 'account-drawer' %} {% endcomment %}
+    {% render 'account-popover' %}
+    {% render 'account-drawer' %}
   {% endif %}
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
