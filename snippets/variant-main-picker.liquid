@@ -215,9 +215,9 @@
           }).format(amount / 100);
 
         priceContainer.innerHTML = `
-          <h2>${selectedVariant.price}</h2>
+          <h2>${moneyFormat(selectedVariant.price)}</h2>
           ${selectedVariant.compare_at_price && selectedVariant.compare_at_price > selectedVariant.price
-            ? `<h5>${selectedVariant.compare_at_price}</h5>`
+            ? `<h5>${moneyFormat(selectedVariant.compare_at_price)}</h5>`
             : ''
           }
         `;
