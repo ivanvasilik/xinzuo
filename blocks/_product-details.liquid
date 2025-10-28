@@ -47,13 +47,13 @@
       <h2 id="product-variant-title">{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
       <span id="product-variant-model">MODEL: {{ product.selected_or_first_available_variant.metafields.custom.model }}</span>
     </div>
-    <div style='clear:both'></div>
-    <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget'
-        data-product-title='{{ product.title | escape }}'
-        data-id='{{ product.id }}'
-        data-auto-install='false'>
-        {{ product.metafields.judgeme.widget }}
+    <!-- Start of Judge.me Rating Widget -->
+    <div class="jdgm-widget jdgm-preview-badge" 
+        data-id="{{ product.id }}" 
+        data-auto-install="false">
+      {{ product.metafields.judgeme.badge }}
     </div>
+    <!-- End of Judge.me Rating Widget -->
     <div class="product-details-prices">
       <h2>{{ product.price | money }}</h2>
       {% if product.price < product.compare_at_price %}
