@@ -198,6 +198,7 @@
     try {
       const response = await fetch(window.location.pathname + '.js');
       const product = await response.json();
+      const modelValue = selectedInput?.getAttribute('data-model');
 
       const selectedVariant = product.variants.find(v => v.id === variantId);
       if (!selectedVariant) return;
@@ -208,7 +209,7 @@
       }
       const modelEl = document.querySelector('#product-variant-model');
       if (modelEl) {
-        modelEl.textContent = `${selectedVariant.metafields.custom.model}`;
+        modelEl.textContent = modelValue;
       }
 
       const priceContainer = document.querySelector('.product-details-prices');
