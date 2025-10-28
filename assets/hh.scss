@@ -70,6 +70,12 @@ header {
             }
         }
     }
+
+    @media screen and (max-width: 800px) {
+        li.menu-list__list-item {
+            padding: 0 10px !important;
+        }
+    }
 }
 
 .menu-drawer__navigation {
