@@ -59,7 +59,7 @@
             {{ option_id_attribute }}
           >
             <legend>
-              Select any type of Knives
+              <h4>Select any type of Knives</h4>
               {%- if variant_style == 'swatch' -%}
                 <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
               {%- endif %}
@@ -88,7 +88,7 @@
                     checked
                   {% endif %}
                 >
-                {% if variant_style == 'swatch' %}
+                {% comment %} {% if variant_style == 'swatch' %} {% endcomment %}
                   {% liquid
                     assign featured_media = product_option_value.variant.featured_media
 
@@ -104,9 +104,9 @@
                     variant_image: featured_media,
                     mode: 'unscaled'
                   %}
-                {% else %}
+                {% comment %} {% else %}
                   <span class="variant-option__button-label__text">{{ product_option_value | escape }}</span>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 {% render 'strikethrough-variant', product_option: product_option_value %}
               </label>
             {%- endfor -%}
