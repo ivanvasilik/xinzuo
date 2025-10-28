@@ -1658,6 +1658,50 @@
         "img": "shopify://shop_images/Rectangle_267.png",
         "color_scheme": "scheme-5"
       }
+    },
+    "1761657286791a8b0a": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_MmQeWj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget",
+            "max_width": 1200
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_MmQeWj"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -1682,6 +1726,7 @@
     "complete_collection_DHCqWL",
     "collection_slider2_hBQkkU",
     "section_dbTzLJ",
+    "1761657286791a8b0a",
     "img_with_text_67m3af"
   ]
 }
