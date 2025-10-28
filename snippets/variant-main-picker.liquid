@@ -78,6 +78,7 @@
                     aria-disabled="true"
                   {% endif %}
                   onclick="changeVariant({{ product_option_value.variant.id }})"
+                  data-model="{{ product_option_value.variant.metafields.custom.model }}"
                   data-input-id="{{ product_option.position }}-{{ forloop.index0 }}"
                   data-option-value-id="{{ product_option_value.id }}"
                   data-option-available="{{ product_option_value.available }}"
@@ -202,10 +203,10 @@
       if (!selectedVariant) return;
 
       const titleEl = document.querySelector('#product-variant-title');
-      const modelEl = document.querySelector('#product-variant-model');
       if (titleEl) {
         titleEl.textContent = `${product.title} — ${selectedVariant.title}`;
       }
+      const modelEl = document.querySelector('#product-variant-model');
       if (modelEl) {
         modelEl.textContent = `${selectedVariant.metafields.custom.model}`;
       }
