@@ -103,6 +103,13 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "position": "right"
+        }
       }
     },
     "color_schemes": {
