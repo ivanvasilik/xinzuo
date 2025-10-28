@@ -209,10 +209,7 @@
       const priceContainer = document.querySelector('.product-details-prices');
       if (priceContainer) {
         const moneyFormat = (amount) =>
-          new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: '{{ shop.currency }}',
-          }).format(amount / 100);
+          `$${(amount / 100).toFixed(2)}`;
 
         priceContainer.innerHTML = `
           <h2>${moneyFormat(selectedVariant.price)}</h2>
