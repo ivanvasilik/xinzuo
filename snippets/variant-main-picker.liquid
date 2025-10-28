@@ -198,6 +198,7 @@
     try {
       const response = await fetch(window.location.pathname + '.js');
       const product = await response.json();
+      const selectedInput = document.querySelector(`[data-variant-id="${variantId}"]`);
       const modelValue = selectedInput?.getAttribute('data-model');
 
       const selectedVariant = product.variants.find(v => v.id === variantId);
