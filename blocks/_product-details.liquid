@@ -44,7 +44,7 @@
           </defs>
         </svg>
       </div>
-      <h2>{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
+      <h2 id="product-variant-title">{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
       <span>MODEL: {{ product.metafields.custom.model }}</span>
     </div>
     {% comment %} <div class="product-reviews"></div> {% endcomment %}
