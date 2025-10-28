@@ -233,24 +233,20 @@
                       {% endif %}
                     </ul>
                     {% if product.featured_image != blank %}
-                      <a href="{{ product.url }}">
-                        <img
-                          src="{{ product.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ product.title | escape }}"
-                        >
-                      </a>
+                      <img
+                        src="{{ product.featured_image | img_url: 'master' }}"
+                        width="100%"
+                        height="100%"
+                        alt="{{ product.title | escape }}"
+                      >
                     {% else %}
                       {% assign firstimage = product.products.first %}
-                      <a href="{{ product.url }}">
-                        <img
-                          src="{{ firstimage.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ firstimage.title | escape }}"
-                        >
-                      </a>
+                      <img
+                        src="{{ firstimage.featured_image | img_url: 'master' }}"
+                        width="100%"
+                        height="100%"
+                        alt="{{ firstimage.title | escape }}"
+                      >
                     {% endif %}
                   {% endif %}
                   {% assign collection_handle = sublink.url | split: '/' | last %}
@@ -279,24 +275,20 @@
                       {% endif %}
                     </ul>
                     {% if collection.featured_image != blank %}
-                      <a href="{{ collection.url }}">
-                        <img
-                          src="{{ collection.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ collection.title | escape }}"
-                        >
-                      </a>
+                      <img
+                        src="{{ collection.featured_image | img_url: 'master' }}"
+                        width="100%"
+                        height="100%"
+                        alt="{{ collection.title | escape }}"
+                      >
                     {% else %}
                       {% assign firstimage = collection.collections.first %}
-                      <a href="{{ collection.url }}">
-                        <img
-                          src="{{ firstimage.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ firstimage.title | escape }}"
-                        >
-                      </a>
+                      <img
+                        src="{{ firstimage.featured_image | img_url: 'master' }}"
+                        width="100%"
+                        height="100%"
+                        alt="{{ firstimage.title | escape }}"
+                      >
                     {% endif %}
                   {% endif %}
                 </li>
