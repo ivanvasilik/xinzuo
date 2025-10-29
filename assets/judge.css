@@ -1,7 +1,7 @@
 .jdgm-rev-widg__title {
     text-align: center;
     font-family: "Sen";
-    font-size: 64px;
+    font-size: 64px !important;
     font-weight: 600;
     color: #f9f9f7;
 }
