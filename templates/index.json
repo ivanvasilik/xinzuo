@@ -891,6 +891,7 @@
     },
     "modal_P7YjyA": {
       "type": "modal",
+      "disabled": true,
       "name": "Home Modal",
       "settings": {
         "image": "shopify://shop_images/03_417c0b77-d62a-487d-b054-951dbbed115d.png",
