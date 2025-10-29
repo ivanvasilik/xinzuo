@@ -79,5 +79,6 @@
 .jdgm-rev__timestamp {
     font-family: "Albert Sans";
     font-weight: 500;
-    font-size: 14px;
+    font-size: 14px !important;
+    color: #56565b !important;
 }
