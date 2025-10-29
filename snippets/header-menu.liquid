@@ -88,7 +88,11 @@
     style="{% render 'menu-font-styles', settings: block_settings %}"
   >
     {% for link in block_settings.menu.links %}
-      <li class="menu-list__list-item">
+      {% if link.title == "FAQS" %}
+        <li class="menu-list__list-item faq" id="faq">
+      {% else %}
+        <li class="menu-list__list-item">
+      {% endif %}
         {% if link.title != 'Logo' %}
           <a
             {% if link.links == blank %}
