@@ -60,7 +60,7 @@
 }
 
 .jdgm-rev__author {
-    color: #86868b;
+    color: #86868b !important;
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 16px;
