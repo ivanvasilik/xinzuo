@@ -1269,10 +1269,10 @@
         "heading": "<h2>More Craft</h2><h2>More Choice</h2>",
         "show_header": true,
         "products": [
-          "chef-knife-supreme-series",
-          "product-x06-009",
-          "paring-knife-supreme-series",
-          "paring-knife-supreme-series-2"
+          "10-inch-carving-knife",
+          "retro-series",
+          "mo-series",
+          "supreme-series"
         ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
@@ -1654,9 +1654,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "real_data",
+            "max_width": 1200,
             "show_shop_reviews": false,
-            "empty_state": "empty_widget",
-            "max_width": 1200
+            "empty_state": "empty_widget"
           }
         }
       },
@@ -1710,9 +1710,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
+            "max_width": 1200,
             "show_shop_reviews": false,
-            "empty_state": "empty_widget",
-            "max_width": 1200
+            "empty_state": "empty_widget"
           }
         }
       },
