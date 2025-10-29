@@ -58,3 +58,14 @@
     font-size: 16px;
     color: #86868b !important;
 }
+
+.jdgm-rev__author {
+    color: #86868b;
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.jdgm-rev__icon:not(.jdgm-rev__avatar):before {
+    color: #c1c4c7;
+}
