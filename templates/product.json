@@ -920,7 +920,12 @@
         "title": "THIN. SHARP. POWERFUL",
         "heading": "<h2>More Craft</h2><h2>More Choice</h2>",
         "show_header": true,
-        "product": "",
+        "products": [
+          "mo-series",
+          "retro-series",
+          "10-inch-carving-knife",
+          "supreme-series"
+        ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
