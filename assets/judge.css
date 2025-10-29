@@ -31,11 +31,29 @@
 
 .jdgm-write-rev-link {
     margin: 0 !important;
+    color: #c1c4c7 !important;
+    font-family: "Albert Sans";
+    font-size: 18px;
 }
 
 .jdgm-rev-widg__summary-stars span, .jdgm-rev-widg__summary-text {
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 18px;
+    color: #86868b;
+}
+
+.jdgm-histogram__row {
+    width: 100%;
+}
+
+.jdgm-histogram__bar {
+    width: calc(100% - 160px);
+}
+
+.jdgm-histogram__frequency {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
     color: #86868b;
 }
