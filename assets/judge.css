@@ -49,7 +49,7 @@
 
 .jdgm-histogram__bar {
     width: calc(100% - 160px) !important;
-    height: 6px;
+    height: 6px !important;
 }
 
 .jdgm-histogram__frequency {
