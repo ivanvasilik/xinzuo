@@ -1,5 +1,5 @@
 .jdgm-rev-widg__title {
-    text-align: center;
+    text-align: start;
     font-family: "Sen";
     font-size: 64px !important;
     font-weight: 600;
@@ -12,7 +12,7 @@
 }
 
 .jdgm-row-stars > div {
-    align-items: flex-start;
+    align-items: flex-start !important;
 }
 
 .jdgm-widget-actions-wrapper {
@@ -30,7 +30,7 @@
 }
 
 .jdgm-write-rev-link {
-    margin: 0;
+    margin: 0 !important;
 }
 
 .jdgm-rev-widg__summary-stars span, .jdgm-rev-widg__summary-text {
