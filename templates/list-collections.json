@@ -291,7 +291,10 @@
         "heading": "",
         "show_header": false,
         "products": [
-          "mo-series"
+          "mo-series",
+          "10-inch-carving-knife",
+          "supreme-series",
+          "retro-series"
         ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
