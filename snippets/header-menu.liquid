@@ -88,15 +88,15 @@
     style="{% render 'menu-font-styles', settings: block_settings %}"
   >
     {% for link in block_settings.menu.links %}
-      {% if link.title == "FAQS" %}
-        <li class="menu-list__list-item faq" id="faq">
-      {% else %}
-        <li class="menu-list__list-item">
-      {% endif %}
+      <li class="menu-list__list-item">
         {% if link.title != 'Logo' %}
           <a
             {% if link.links == blank %}
-              href="{{ link.url }}"
+              {% if link.title == "FAQS" %}
+                href="#faq"
+              {% else %}
+                href="{{ link.url }}"
+              {% endif %}
             {% else %}
               onclick="openMenu({{ forloop.index }})"
             {% endif %}
