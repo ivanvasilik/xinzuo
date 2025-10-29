@@ -1,0 +1,41 @@
+.jdgm-rev-widg__title {
+    text-align: center;
+    font-family: "Sen";
+    font-size: 64px;
+    font-weight: 600;
+    color: #f9f9f7;
+}
+
+.jdgm-rev-widg__title:after {
+    content: ".";
+    color: #fd3e36;
+}
+
+.jdgm-row-stars > div {
+    align-items: flex-start;
+}
+
+.jdgm-widget-actions-wrapper {
+    border: none;
+}
+
+.jdgm-rev-widg__summary {
+    border: none;
+    order: 1;
+}
+
+.jdgm-histogram.jdgm-temp-hidden {
+    border: none;
+    order: 2;
+}
+
+.jdgm-write-rev-link {
+    margin: 0;
+}
+
+.jdgm-rev-widg__summary-stars span, .jdgm-rev-widg__summary-text {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 18px;
+    color: #86868b;
+}
