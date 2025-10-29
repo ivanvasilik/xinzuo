@@ -82,3 +82,13 @@
     font-size: 14px !important;
     color: #56565b !important;
 }
+
+@media screen and (max-width: 1025px) {
+    .jdgm-rev-widg__title {
+        font-size: 36px !important;
+    }
+    
+    .jdgm-rev__body {
+        font-size: 16px;
+    }
+}
