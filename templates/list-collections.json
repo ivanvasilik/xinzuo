@@ -240,7 +240,12 @@
         "title": "THIN. SHARP. POWERFUL",
         "heading": "<h2>The knives, <br/>People love most</h2>",
         "show_header": true,
-        "product": "10-inch-carving-knife",
+        "products": [
+          "10-inch-carving-knife",
+          "mo-series",
+          "retro-series",
+          "supreme-series"
+        ],
         "color_scheme": "scheme-5",
         "padding_top": 105,
         "padding_bottom": 65
