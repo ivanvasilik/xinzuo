@@ -769,7 +769,7 @@
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "first",
-        "footer_left": "<h2>Thin</h2><h2>Sharp</h2><h2>Precise</h2><h2>Effortless</h2><h2>Reliable</h2>",
+        "footer_left": "<h2>Normal title</h2><h2>here</h2>",
         "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
