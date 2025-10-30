@@ -1136,7 +1136,7 @@
       "name": "Product Series",
       "settings": {
         "width": "page",
-        "title": "<h2>Lan Series.</h2><h2>Beyond Limits of Artistry</h2>",
+        "title": "<h2>Lan Series</h2><h2>Beyond Limits of Artistry</h2>",
         "image": "shopify://shop_images/02_b765cf35-27d2-418b-b71f-248ff9fa2368.png",
         "content": "<p>Lan Series represents the ultimate union of powder metallurgy steel and Damascus artistry — refined for chefs, admired by collectors, and destined to become a lasting legacy.</p>",
         "color_scheme": "scheme-5",
@@ -1172,7 +1172,7 @@
         "block_YGcREx": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Icons_3_d0b71e0a-4756-4a90-b7fd-a68574803653.png",
+            "image": "shopify://shop_images/Icons_6_3aed62ba-7315-432c-bd4f-be484067c0e2.png",
             "image_type": "icon",
             "content": "<p><strong>Vacuum + Cryo Treated</strong></p><p>Extreme toughness, edge retention,</p><p>corrosion resistance.<br/></p>"
           }
@@ -1220,11 +1220,11 @@
           "type": "block",
           "settings": {
             "title": "Precision",
-            "image1": "shopify://shop_images/Leaf.png",
+            "image1": "shopify://shop_images/Leaf_715d58e1-5363-4448-9e39-5c4b8ffab059.png",
             "content1": "<p>Responsibly sourced from renewable forests, <strong>olive wood offers durability and elegance</strong> while supporting sustainable practices and environmentally conscious craftsmanship.</p>",
-            "image2": "shopify://shop_images/Infinity.png",
+            "image2": "shopify://shop_images/Infinity_7efc16a7-46e3-4a00-9543-a037d568e8de.png",
             "content2": "<p>Built with heirloom quality in mind, the Lan Series reduces unnecessary waste by <strong>providing enduring long-term value</strong> instead of ordinary short-lived disposable tools.</p>",
-            "image3": "shopify://shop_images/ListChecks.png",
+            "image3": "shopify://shop_images/ListChecks_07d3ff48-9ba3-4806-a015-8ff784ad588f.png",
             "content3": "<p><strong>Twelve detailed stages of manufacturing</strong> and rigorous quality controls ensure consistency, dependable strength, and enduring reliability in every Lan Series knife.</p>"
           }
         },
