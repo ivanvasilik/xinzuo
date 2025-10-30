@@ -274,7 +274,7 @@
         <div class="product-products">
             <ul class="product-products-ul">
                 {% for variant in product.variants %}
-                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ product.title }} - {{ variant.title }}</li>
+                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ variant.title }}</li>
                 {% endfor %}
             </ul>
             <div class="product-products-div1" onclick="productUlPrev()">
