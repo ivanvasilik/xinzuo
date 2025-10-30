@@ -128,6 +128,11 @@
     background: #c1c4c7;
   }
 
+  .section-{{ section.id }} img {
+    position: absolute;
+    margin-top: -80px;
+  }
+
   @media screen and (max-width: 750px) {
     .section-{{ section.id }} > div {
       padding: 48px 0 40px;
@@ -188,6 +193,20 @@
 <section class="section-{{ section.id }}">
   <div>
     <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="Review Image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="88" height="14" viewBox="0 0 88 14" fill="none">
+      <g clip-path="url(#clip0_6018_26809)">
+        <path d="M3.872 3.38086L5.06 5.76476L7.744 6.15485L5.808 8.01863L6.292 10.6192L3.872 9.40563L1.496 10.6192L1.936 8.01863L0 6.15485L2.684 5.76476L3.872 3.38086Z" fill="white"/>
+        <path d="M23.936 3.38086L25.124 5.76476L27.808 6.15485L25.872 8.01863L26.356 10.6192L23.936 9.40563L21.56 10.6192L22 8.01863L20.064 6.15485L22.748 5.76476L23.936 3.38086Z" fill="white"/>
+        <path d="M43.9999 3.38086L45.1879 5.76476L47.8719 6.15485L45.9359 8.01863L46.3759 10.6192L43.9999 9.40563L41.6239 10.6192L42.0639 8.01863L40.1279 6.15485L42.8119 5.76476L43.9999 3.38086Z" fill="white"/>
+        <path d="M64.0639 3.38086L65.2519 5.76476L67.9359 6.15485L65.9999 8.01863L66.4399 10.6192L64.0639 9.40563L61.6439 10.6192L62.1279 8.01863L60.1919 6.15485L62.8759 5.76476L64.0639 3.38086Z" fill="white"/>
+        <path d="M84.1281 3.38086L85.3161 5.76476L88.0001 6.15485L86.0641 8.01863L86.5041 10.6192L84.1281 9.40563L81.7081 10.6192L82.1921 8.01863L80.2561 6.15485L82.9401 5.76476L84.1281 3.38086Z" fill="white"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_6018_26809">
+          <rect width="88" height="14" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
     <div class="home-reviews">
       <h2>{{ section.settings.heading }}</h2>
     </div>
