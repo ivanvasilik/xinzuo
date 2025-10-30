@@ -696,14 +696,14 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum enhances toughness and prevents brittleness, allowing the knife to withstand daily cutting tasks without chipping or cracking under pressure.</p>"
+            "content": "<p>Molybdenum <strong>enhances toughness and prevents brittleness</strong>, allowing the knife to withstand daily cutting tasks without chipping or cracking under pressure.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium contributes to fine-grain structure, ensuring the knife achieves a sharper edge and maintains cutting performance longer between sharpenings.</p>"
+            "content": "<p>Vanadium contributes to fine-grain structure, <strong>ensuring the knife achieves a sharper edge</strong> and maintains cutting performance longer between sharpenings.</p>"
           }
         },
         "block_UJiBwA": {
