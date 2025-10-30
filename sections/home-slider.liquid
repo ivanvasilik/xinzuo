@@ -332,6 +332,20 @@
                     <span class="sale-price">{{ variant.price | money }}</span>
                     <span class="compare-price">{{ variant.compare_at_price | money }}</span>
                   </span>
+                  <a href="{{ variant.url }}">
+                    <span>SHOP NOW</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <g clip-path="url(#clip0_6018_26691)">
+                        <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_6018_26691">
+                          <rect width="20" height="20" fill="white"/>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
                 </div>
               </a>
             {% endfor %}
