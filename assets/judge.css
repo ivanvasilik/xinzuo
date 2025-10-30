@@ -114,3 +114,7 @@
 .sec-color {
     background-color: #292A33;
 }
+
+#faq {
+    background: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
+}
