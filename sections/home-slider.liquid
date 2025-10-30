@@ -267,24 +267,57 @@
       {% assign product = block.settings.product %}
       <div class="home-slider home-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
         {% for variant in product.variants limit: 4 %}
-          <div class="home-products-th">
-            <a href="{{ variant.url }}"><img src="{{ variant.image | img_url: 'master' }}" width="100%" height="100%" alt="{{ variant.image.alt }}"></a>
-            <h2>{{ variant.title }} — {{ product.title }}</h2>
-            <!-- Start of Judge.me Rating Widget -->
-            <div class="jdgm-widget jdgm-preview-badge" 
-                data-id="{{ product.id }}" 
-                data-auto-install="false">
-              {{ product.metafields.judgeme.badge }}
+          <div class="home-slider">
+            <div class="home-swiper">
+                <div class="swiper-wrapper">
+                    {% for product in section.settings.products %}
+                        <a class="swiper-slide" href="{{ product.url }}">
+                            <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="home slider {{ forloop.index }}">
+                            <h2>{{ product.title }}</h2>
+                            <!-- Start of Judge.me Rating Widget -->
+                            <div class="jdgm-widget jdgm-preview-badge" 
+                                data-id="{{ product.id }}" 
+                                data-auto-install="false"
+                                style="padding: 12px;"
+                            >
+                            {{ product.metafields.judgeme.badge }}
+                            </div>
+                            <!-- End of Judge.me Rating Widget -->
+                            <div class="product-price">
+                                <span class="prices">
+                                    <span class="sale-price">{{ product.price | money }}</span>
+                                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                                </span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
-            <!-- End of Judge.me Rating Widget -->
-            <div class="home-price">
-              <span class="prices">
-                <span class="sale-price">{{ variant.price | money }}</span>
-                <span class="compare-price">{{ variant.compare_at_price | money }}</span>
-              </span>
-              <a href="{{ variant.url }}">SHOP NOW
-                <img src="{{ 'ArrowUpRight.svg?v=1760533953' | file_url }}" width="100%" height="100%" alt="product"
-              ></a>
+            <div class="swiper-buttons">
+              <div class="swiper-button-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <g clip-path="url(#clip0_4030_26868)">
+                    <path d="M15 19.5L7.5 12L15 4.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4030_26868">
+                      <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <g clip-path="url(#clip0_4030_26872)">
+                    <path d="M9 4.5L16.5 12L9 19.5" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4030_26872">
+                      <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
             </div>
           </div>
         {% endfor %}
@@ -294,6 +327,25 @@
 </section>
 
 <script>
+  const homeswiper = new Swiper('.home-swiper', {
+    slidesPerView: 1.3,
+    spaceBetween: 10,
+    breakpoints: {
+      768: {
+        slidesPerView: 1.6,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 2.6,
+        spaceBetween: 30,
+      },
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  
   const homeslider = (num) => {
     const homeCollections = document.querySelectorAll('.home-collection');
     const homeSliders = document.querySelectorAll('.home-slider');
