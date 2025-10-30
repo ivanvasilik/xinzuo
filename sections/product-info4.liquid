@@ -284,9 +284,8 @@
     <div class="product-description">
         <div class="product-products">
             <ul class="product-products-ul">
-                {% assign collection = product.collections.first %}
-                {% for product in collection.products %}
-                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ product.title }}</li>
+                {% for variant in product.variants %}
+                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ product.title }} - {{ variant.title }}</li>
                 {% endfor %}
             </ul>
             <div class="product-products-div1" onclick="productUlPrev()">
@@ -314,10 +313,9 @@
                 </svg>
             </div>
         </div>
-        {% assign collection = product.collections.first %}
-        {% for product in collection.products %}
+        {% for variant in product.variants %}
             <div class="product-description-span product-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
-                <span>{{ product.description }}</span>
+                <span>{{ variant.description }}</span>
             </div>
         {% endfor %}
         {% if section.settings.footer_state %}
