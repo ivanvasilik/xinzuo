@@ -6,11 +6,6 @@
     color: #fff;
 }
 
-.jdgm-rev-widg__title:after {
-    content: ".";
-    color: #ff0004;
-}
-
 .jdgm-row-stars > div {
     align-items: flex-start !important;
 }
