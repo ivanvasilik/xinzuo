@@ -39,11 +39,11 @@
         height: 100%;
     }
 
-    @media screen and (max-width: 1025px) {
+    /* @media screen and (max-width: 1025px) {
         .section-{{ section.id }} .customer-imgs {
             height: 60px;
         }
-    }
+    } */
 
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .customers {
@@ -62,16 +62,8 @@
             letter-spacing: -0.11px;
         }
 
-        .section-{{ section.id }} .customer-imgs {
-            margin: auto;
-            height: auto;
-            justify-content: space-between;
-            width: 340px;
-            flex-wrap: wrap;
-        }
-
         .section-{{ section.id }} .customer-imgs img {
-            height: 45px;
+            height: 55px;
         }
     }
 {% endstyle %}
