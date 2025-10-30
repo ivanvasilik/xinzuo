@@ -243,7 +243,6 @@
       "name": "Home Slider",
       "settings": {
         "heading": "Meet Xinauo",
-        "heading_color": "",
         "color_scheme": "scheme-5"
       }
     },
@@ -528,7 +527,8 @@
       ],
       "name": "Reviews",
       "settings": {
-        "heading": "Turning Everyday Moments Into Lasting Impressions."
+        "heading": "Turning Everyday Moments Into Lasting Impressions.",
+        "img": "shopify://shop_images/Rectangle_457.png"
       }
     },
     "section_er3F6d": {
