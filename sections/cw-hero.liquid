@@ -59,20 +59,6 @@
         color: #86868b;
     }
 
-    .section-{{ section.id }} .hero-banner-content div {
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-        gap: 100px;
-    }
-
-    .section-{{ section.id }} .hero-banner-content img {
-        width: 150px;
-        display: flex;
-        justify-content: flex-end;
-        margin-left: auto;
-    }
-
     .section-{{ section.id }} .desktop-hero {
         position: absolute;
         bottom: 0;
@@ -129,11 +115,6 @@
             width: 250px;
         }
 
-        .section-{{ section.id }} .hero-banner-content div {
-            width: 300px;
-            gap: 50px;
-        }
-
         .section-{{ section.id }} .hero-banner-content a {
             font-size: 13px;
         }
@@ -143,16 +124,6 @@
         .section-{{ section.id }} .hero-banner-content {
             justify-content: flex-end;
             width: calc(100% - 100px);
-        }
-
-        .section-{{ section.id }} .hero-banner-content div {
-            margin-bottom: 40px;
-            width: 100%;
-            gap: 20px;
-        }
-
-        .section-{{ section.id }} .hero-banner-content img {
-            margin: auto;
         }
 
         .section-{{ section.id }} .hero-banner-content a {
@@ -197,22 +168,20 @@
             <div class="hero-banner-content">
                 <span>{{ section.settings.heading }}</span>
                 <span>{{ section.settings.content }}</span>
-                <div>
-                    <a href="/collections">
-                        {{ section.settings.link_text }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_4592_26684)">
-                                <path d="M10 3.125V16.875" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M4.375 11.25L10 16.875L15.625 11.25" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_4592_26684">
-                                    <rect width="20" height="20" fill="white"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </a>
-                </div>
+                <a href="/collections">
+                    {{ section.settings.link_text }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <g clip-path="url(#clip0_4592_26684)">
+                            <path d="M10 3.125V16.875" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.375 11.25L10 16.875L15.625 11.25" stroke="#F9F9F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4592_26684">
+                                <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
             </div>
             <div class="hero-banner-img">
                 <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
