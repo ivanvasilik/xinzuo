@@ -199,8 +199,7 @@
       ],
       "name": "Customers",
       "settings": {
-        "heading": "Trusted by Michelin-Starred Chefs Worldwide",
-        "background": "shopify://shop_images/5-B27-15PCS-_1.png"
+        "heading": "Trusted by Michelin-Starred Chefs Worldwide"
       }
     },
     "home_slider_g9dVGe": {
@@ -243,8 +242,8 @@
       ],
       "name": "Home Slider",
       "settings": {
-        "heading": "Meet",
-        "heading_color": "Xinzuo",
+        "heading": "Meet Xinauo",
+        "heading_color": "",
         "color_scheme": "scheme-5"
       }
     },
