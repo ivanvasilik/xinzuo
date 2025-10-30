@@ -40,7 +40,7 @@
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 18px;
-    color: #86868b;
+    color: #c9c9cc;
 }
 
 .jdgm-histogram__row {
@@ -56,11 +56,11 @@
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 16px;
-    color: #86868b !important;
+    color: #c9c9cc !important;
 }
 
 .jdgm-rev__author {
-    color: #86868b !important;
+    color: #c9c9cc !important;
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 16px;
