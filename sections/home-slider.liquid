@@ -332,7 +332,7 @@
                     <span class="sale-price">{{ variant.price | money }}</span>
                     <span class="compare-price">{{ variant.compare_at_price | money }}</span>
                   </span>
-                  <a href="{{ variant.url }}">
+                  {% comment %} <a href="{{ variant.url }}">
                     <span>SHOP NOW</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <g clip-path="url(#clip0_6018_26691)">
@@ -345,7 +345,7 @@
                         </clipPath>
                       </defs>
                     </svg>
-                  </a>
+                  </a> {% endcomment %}
                 </div>
               </a>
             {% endfor %}
