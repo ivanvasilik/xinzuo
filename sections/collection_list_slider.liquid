@@ -56,6 +56,19 @@
         opacity: 0.5;
     }
 
+    .section-{{ section.id }} .collection-slider p {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        color: #c9c9cc;
+    }
+    
+    .section-{{ section.id }} .collection-slider p strong {
+        font-weight: 700;
+        color: #fff;
+    }
+
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} > div {
             padding: 40px 16px;
@@ -85,7 +98,7 @@
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
     <div>
         <h2>{{ section.settings.heading }}</h2>
-        <div class="collection-slider collection-slider">
+        <div class="collection-slider">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     {% for block in section.blocks %}
