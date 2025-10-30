@@ -993,7 +993,7 @@
       "settings": {
         "width": "page",
         "heading": "Designed to make a difference",
-        "background": false,
+        "background_type": "gradient",
         "color_scheme": "scheme-5",
         "padding_top": 108,
         "padding_bottom": 108
