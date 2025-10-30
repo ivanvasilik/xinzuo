@@ -812,11 +812,11 @@
       "settings": {
         "width": "page",
         "heading_title": "PRECISE. DURABLE. REFINED",
-        "heading_content": "<h2>Engineered to Stay Razor Sharp</h2>",
+        "heading_content": "<h2>Normal Title<br/>Here</h2>",
         "header_type": "left",
         "background_type": "none",
         "block_type": "text",
-        "heading_footer": "Forged with a 15° edge, delivering razor-sharp accuracy, strength, and effortless control for chefs and home cooks.",
+        "heading_footer": "A refined 2.4 mm blade combines sharpness with strength, slicing smoothly while maintaining durability and precision, making every cut efficient, consistent, and highly reliable in the kitchen.",
         "image_video": "image",
         "img": "shopify://shop_images/07.png",
         "color_scheme": "scheme-5",
