@@ -322,23 +322,23 @@
           <div class="home-slider">
             <div class="home-swiper">
                 <div class="swiper-wrapper">
-                    {% for product in all_products %}
-                        <a class="swiper-slide" href="{{ product.url }}">
-                            <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="home slider {{ forloop.index }}">
-                            <h2>{{ product.title }}</h2>
+                    {% for variant in product %}
+                        <a class="swiper-slide" href="{{ variant.url }}">
+                            <img src="{{ variant.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="home slider {{ forloop.index }}">
+                            <h2>{{ variant.title }}</h2>
                             <!-- Start of Judge.me Rating Widget -->
                             <div class="jdgm-widget jdgm-preview-badge" 
                                 data-id="{{ product.id }}" 
                                 data-auto-install="false"
                                 style="padding: 12px;"
                             >
-                            {{ product.metafields.judgeme.badge }}
+                            {{ variant.metafields.judgeme.badge }}
                             </div>
                             <!-- End of Judge.me Rating Widget -->
-                            <div class="product-price">
+                            <div class="variant-price">
                                 <span class="prices">
-                                    <span class="sale-price">{{ product.price | money }}</span>
-                                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                                    <span class="sale-price">{{ variant.price | money }}</span>
+                                    <span class="compare-price">{{ variant.compare_at_price | money }}</span>
                                 </span>
                             </div>
                         </a>
