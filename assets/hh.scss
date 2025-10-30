@@ -168,7 +168,7 @@ header {
         }
 
         a {
-            color: #f9f9f7;
+            color: #fff;
         }
 
         .accordion {
@@ -520,7 +520,7 @@ header {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: #f9f9f7;
+        background-color: #fff;
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
@@ -550,7 +550,7 @@ header {
             font-weight: 600;
             font-size: 48px;
             gap: 24px;
-            color: #f9f9f7;
+            color: #fff;
             @media screen and (max-width: 1025px) {
                 font-size: 28px;
             }
