@@ -5,11 +5,7 @@
 
     .section-{{ section.id }} .customers {
         position: relative;
-        background-color: #111;
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-image: url("{{ section.settings.background | img_url: 'master' }}");
+        background-color: black;
         padding: 50px 0;
         max-width: 1440px;
         margin: auto;
@@ -85,11 +81,6 @@
             "type": "text",
             "id": "heading",
             "label": "Heading",
-        },
-        {
-            "type": "image_picker",
-            "id": "background",
-            "label": "Background"
         }
     ],
     "blocks": [
