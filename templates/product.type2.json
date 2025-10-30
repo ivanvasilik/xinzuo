@@ -1120,7 +1120,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Where Curiosity Meets</h2><h2>Clear Answers.</h2>",
+            "text": "<h2>FAQs</h2>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
