@@ -92,3 +92,17 @@
         font-size: 16px;
     }
 }
+
+.mobile {
+    display: none !important;
+}
+
+@media screen and (max-width: 750px) {
+    .desktop {
+        display: none !important;
+    }
+
+    .mobile {
+        display: block !important;
+    }
+}
