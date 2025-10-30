@@ -538,33 +538,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Where Curiosity Meets</h2><h2>Clear Answers.</h2>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_wkHQKY": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>We’ve gathered the most asked questions here, so you can explore our collection with greater ease and lasting assurance.</p>",
+            "text": "<h2>FAQ</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -844,7 +818,6 @@
       },
       "block_order": [
         "text_C44Tze",
-        "text_wkHQKY",
         "accordion_KdnW4B",
         "text_XaMgEF"
       ],
