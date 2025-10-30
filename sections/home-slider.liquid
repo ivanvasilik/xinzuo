@@ -20,18 +20,8 @@
   .section-{{ section.id }} h2 {
       font-family: "Sen";
       font-weight: 600;
-      font-size: 36px;
-      color: #f9f9f7;
-  }
-
-  .section-{{ section.id }} h2 span {
-    color: #FD3E36;
-    padding-left: 10px;
-  }
-
-  .section-{{ section.id }} > div > h2:after {
-    content: ".";
-    color: #86868b;
+      font-size: 64px;
+      color: #fff;
   }
 
   .section-{{ section.id }} .home-price {
@@ -217,7 +207,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} color-{{ section.settings.color_scheme }} sec-gradient">
   <div>
-    <h2>{{ section.settings.heading -}}<span>{{ section.settings.heading_color }}</span></h2>
+    <h2>{{ section.settings.heading }}</h2>
     <div class="home-menu-list">
       <div>
         <ul class="product-products-ul">
@@ -366,11 +356,6 @@
       "type": "text",
       "id": "heading",
       "label": "Heading"
-    },
-    {
-      "type": "text",
-      "id": "heading_color",
-      "label": "Color Heading"
     },
     {
       "type": "color_scheme",
