@@ -37,7 +37,7 @@
     .section-{{ section.id }} .hero-banner-content span {
         font-size: 18px;
         font-weight: 400;
-        color: #86868b;
+        color: #c9c9cc;
     }
 
     .section-{{ section.id }} .desktop-hero {
@@ -147,8 +147,10 @@
     <div>
         <div class="hero-banner">
             <div class="hero-banner-content">
-                <span>{{ section.settings.heading }}</span>
-                <span>{{ section.settings.content }}</span>
+                <span class="desktop">{{ section.settings.heading_desktop }}</span>
+                <span class="mobile">{{ section.settings.heading_mobile }}</span>
+                <span class="desktop">{{ section.settings.content_desktop }}</span>
+                <span class="mobile">{{ section.settings.content_mobile }}</span>
                 <a href="/collections">
                     {{ section.settings.link_text }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -178,13 +180,23 @@
     "settings": [
         {
             "type": "richtext",
-            "id": "heading",
-            "label": "header"
+            "id": "heading_desktop",
+            "label": "Desktop Header"
         },
         {
             "type": "richtext",
-            "id": "content",
-            "label": "Content"
+            "id": "content_desktop",
+            "label": "Desktop Content"
+        },
+        {
+            "type": "richtext",
+            "id": "heading_mobile",
+            "label": "Mobile Header"
+        },
+        {
+            "type": "richtext",
+            "id": "content_mobile",
+            "label": "Mobile Content"
         },
         {
             "type": "text",
