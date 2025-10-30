@@ -11,7 +11,7 @@
   }
 
   .section-{{ section.id }} .home-reviews {
-    background-color: #111111;
+    position: relative;
     max-width: 1280px;
     margin: auto;
     margin-bottom: 64px;
@@ -131,6 +131,11 @@
   .section-{{ section.id }} img {
     position: absolute;
     margin-top: -80px;
+  }
+
+  .section-{{ section.id }} svg {
+    position: relative;
+    z-index: 1;
   }
 
   @media screen and (max-width: 750px) {
