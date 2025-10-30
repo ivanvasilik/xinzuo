@@ -36,6 +36,7 @@
     opacity: 0;
     transition: opacity 0.6s ease;
     overflow-x: hidden;
+    margin-top: 30vw;
   }
 
   .section-{{ section.id }} .menu-swiper.swiper-initialized {
@@ -133,6 +134,8 @@
     position: absolute;
     margin-top: -80px;
     width: 100%;
+    min-height: 700px;
+    object-fit: cover;
   }
 
   .section-{{ section.id }} svg {
@@ -140,9 +143,11 @@
     margin: auto;
   }
 
-  .section-{{ section.id }} .menu-swiper {
-    margin-top: 40vw;
-  } 
+  @media screen and (max-width: 1000px) {
+    .section-{{ section.id }} .menu-swiper {
+      margin-top: 350px;
+    }
+  }
 
   @media screen and (max-width: 750px) {
     .section-{{ section.id }} > div {
