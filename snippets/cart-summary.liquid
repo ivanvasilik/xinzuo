@@ -66,7 +66,7 @@
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
         {% if cart.shipping_price == 0 or cart.total_price >= 0 %}
-          <span style="color: #56565b;">{{ cart.shipping_price | money }}</span>
+          <span style="color: #828282;">{{ cart.shipping_price | money }}</span>
           <span>Free</span>
         {% else %}
           <span>{{ cart.shipping_price | money }}</span>
