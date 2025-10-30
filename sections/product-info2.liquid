@@ -67,7 +67,7 @@
         padding: 64px 88px;
         margin: auto;
         border-radius: 16px;
-        background-color: #171717;
+        background-color: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
         display: flex;
         gap: 80px;
     }
@@ -82,11 +82,7 @@
         font-size: 36px;
         color: #fff;
         line-height: 135%;
-    }
-
-    .section-{{ section.id }} .product-info2-left h2:after {
-        content: ".";
-        color: #ff0004;
+        margin: 0;
     }
 
     .section-{{ section.id }} .product-info2-footer1 .product-info2-right {
@@ -311,10 +307,6 @@
 
         .section-{{ section.id }} .product-info2-footer1 .product-info2-left {
             padding-right: 40px;
-        }
-
-        .section-{{ section.id }} .product-info2-left h2 {
-            margin: 0;
         }
 
         .section-{{ section.id }} .product-info2-footer2 .product-info2-right h2 {
