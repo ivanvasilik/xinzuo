@@ -527,7 +527,7 @@
       ],
       "name": "Reviews",
       "settings": {
-        "heading": "<p>Endorsed by <strong>CulinaryMasters</strong></p>",
+        "heading": "<h2>Endorsed by <strong>Culinary</strong></h2><h2><strong>Masters</strong></h2>",
         "img": "shopify://shop_images/Rectangle_457.png"
       }
     },
