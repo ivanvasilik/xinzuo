@@ -160,6 +160,17 @@
     transition: transform 0.3s ease;
   }
 
+  .section-{{ section.id }} .home-collection p {
+    font-size: 18px;
+    font-family: "Sen";
+    font-weight: 500;
+    color: #c9c9cc;
+  }
+
+  .section-{{ section.id }} .home-collection.active p {
+    color: #fff;
+  }
+
   @media screen and (max-width: 1300px) {
     .section-{{ section.id }} .home-slider.active {
         grid-template-columns: repeat(2, 1fr);
