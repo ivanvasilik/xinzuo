@@ -778,3 +778,7 @@ main[data-template="page.contact"] {
         background-color: #292a33 !important;
     }
 }
+
+.header-section:has(>#header-component[sticky=always]) {
+    z-index: 100;
+}
