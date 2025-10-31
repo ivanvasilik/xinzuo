@@ -226,6 +226,7 @@
                     {% endif %}
 
                     <div>
+                      {{ item | json }}
                       {{ item.metafields.custom.description }}
                     </div>
                     {% comment %} <div>
