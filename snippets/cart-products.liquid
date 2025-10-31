@@ -489,8 +489,7 @@
                               aria-label="{{ 'accessibility.nested_product' | t: product_title: item.product.title, parent_title: item.parent_relationship.parent.title | escape }}"
                             {% endif %}
                           >
-                            {% assign collection = item.product.collections | first %}
-                            {{- collection.title -}}&nbsp;-&nbsp;{{- item.product.title -}}
+                            {{ item.title }}
                           </a>
                         </p>
                         <span>{{ item.product.description }}</span>
