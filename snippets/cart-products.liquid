@@ -145,7 +145,6 @@
                     role="cell"
                     headers="productInformation"
                   >
-                    {{ item | json }}
                     <p>
                       <a
                         href="{{ item.url }}"
@@ -154,7 +153,7 @@
                           aria-label="{{ 'accessibility.nested_product' | t: product_title: item.product.title, parent_title: item.parent_relationship.parent.title | escape }}"
                         {% endif %}
                       >
-                        {% comment %} {{- item.product.title -}}&nbsp;-&nbsp;{{- item.variant.title -}} {% endcomment %}
+                        {{ item.title }}
                       </a>
                     </p>
                     {% if item.product.vendor and block_settings.vendor %}
