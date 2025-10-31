@@ -772,3 +772,9 @@ footer {
         display: none !important;
     }
 }
+
+main[data-template="page.contact"] {
+    .section.page-width-content {
+        background-color: #292a33 !important;
+    }
+}
