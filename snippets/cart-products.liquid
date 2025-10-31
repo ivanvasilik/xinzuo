@@ -226,8 +226,7 @@
                     {% endif %}
 
                     <div>
-                      {{ item | json }}
-                      {{ item.metafields.custom.description }}
+                      {{ item.variant.metafields.custom.description.value }}
                     </div>
                     {% comment %} <div>
                       {% if item.original_price != item.final_price %}
