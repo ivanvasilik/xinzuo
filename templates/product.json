@@ -1196,7 +1196,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>still have any question, <a href=\"#\" title=\"#\">Contact Us</a></p>",
+            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
