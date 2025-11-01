@@ -762,6 +762,7 @@
         "heading_title": "THIN. SHARP. POWERFUL",
         "heading_content": "<h2>Perfectly Balanced for Sharpness</h2>",
         "header_type": "left",
+        "background_type": "none",
         "block_type": "text",
         "heading_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
         "image_video": "image",
@@ -803,6 +804,7 @@
         "heading_title": "Handle Design",
         "heading_content": "<h2>Elegance You<br/>Can Hold</h2>",
         "header_type": "center",
+        "background_type": "none",
         "block_type": "text",
         "heading_footer": "",
         "image_video": "image",
@@ -827,6 +829,7 @@
         "heading_title": "",
         "heading_content": "<h2>Effortless<br/>Cutting Power</h2>",
         "header_type": "center",
+        "background_type": "none",
         "block_type": "text",
         "heading_footer": "",
         "image_video": "video",
@@ -1257,7 +1260,7 @@
         "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
         "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
         "button": "Step Into Excellence",
-        "url": "",
+        "url": "shopify://collections",
         "img": "shopify://shop_images/Rectangle_267.png",
         "color_scheme": "scheme-5"
       }
