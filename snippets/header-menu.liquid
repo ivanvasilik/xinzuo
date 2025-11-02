@@ -172,7 +172,7 @@
                 <li class="menu-dropdown-list">
                   <a href="{{ sublink.url }}" class="mega-dropdown">
                     <span class="mega-dropdown-title">
-                      {{ sublink.title }}
+                      {{ sublink.title | strip_html | truncate: 25, "..." }}
                     </span>
                   </a>
                   {% if sublink.links != blank %}
