@@ -329,7 +329,7 @@
                     "text_pyDqAk": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The Retro Series Chef Knife is forged with a Damascus-clad 10Cr15CoMoV core, designed for precise cutting, versatile use, and long-term edge stability.</p><p>The handle is crafted from desert ironwood or redwood with buffalo horn, offering a comfortable grip and natural resistance to wear.</p>",
+                        "text": "{{ closest.product.description }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
