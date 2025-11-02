@@ -17,6 +17,17 @@
         "color_scheme": "scheme-5"
       }
     },
+    "collection_list_header_dFpQGQ": {
+      "type": "collection_list_header",
+      "name": "Collection List Header",
+      "settings": {
+        "width": "full",
+        "heading": "RETRO SERIES",
+        "title": "",
+        "video": "shopify://files/videos/pm8s-001.mp4",
+        "color_scheme": "scheme-5"
+      }
+    },
     "section": {
       "type": "section",
       "blocks": {
@@ -238,6 +249,7 @@
   },
   "order": [
     "collection_heading_Cr9UMW",
+    "collection_list_header_dFpQGQ",
     "section",
     "main"
   ]
