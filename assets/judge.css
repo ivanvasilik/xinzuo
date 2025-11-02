@@ -121,12 +121,22 @@
 
 .collection-wrapper .product-grid__item a.user-select-text p {
     font-family: "Sen";
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
 }
 
 .collection-wrapper .product-grid__item span.price {
     font-family: "Sen";
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 1025px) {
+    .collection-wrapper .product-grid__item a.user-select-text p {
+        font-size: 18px;
+    }
+
+    .collection-wrapper .product-grid__item span.price {
+        font-size: 16px;
+    }
 }
