@@ -150,7 +150,7 @@
         "block_kJJye3": {
           "type": "block",
           "settings": {
-            "product": "supreme-series",
+            "collection": "hezhen-supreme-series-knives",
             "image": "shopify://shop_images/04.png",
             "image_position": "left",
             "first_block_header": "Hardness",
@@ -168,7 +168,7 @@
         "block_f3DkPp": {
           "type": "block",
           "settings": {
-            "product": "retro-series",
+            "collection": "hezhen-retro-series-knives",
             "image": "shopify://shop_images/03_723e214b-431d-4f52-9786-ea1992de1b98.png",
             "image_position": "right",
             "first_block_header": "Hardness",
@@ -186,7 +186,7 @@
         "block_JTa8cV": {
           "type": "block",
           "settings": {
-            "product": "mo-series",
+            "collection": "xinzuo-mo-series-knives",
             "image": "shopify://shop_images/03_e826fa8a-301c-4ff6-9f20-92db5084672c.png",
             "image_position": "left",
             "first_block_header": "Hardness",
@@ -204,7 +204,7 @@
         "block_QJTmc6": {
           "type": "block",
           "settings": {
-            "product": "10-inch-carving-knife",
+            "collection": "xinzuo-lan-series-knives",
             "image": "shopify://shop_images/03_d662372f-4811-40f9-b3a7-d11f31542a4a.png",
             "image_position": "right",
             "first_block_header": "Hardness",
