@@ -9,14 +9,6 @@
  */
 {
   "sections": {
-    "collection_heading_Cr9UMW": {
-      "type": "collection_heading",
-      "name": "Collection Header",
-      "settings": {
-        "width": "full",
-        "color_scheme": "scheme-5"
-      }
-    },
     "collection_list_header_W4hYL4": {
       "type": "collection_list_header",
       "name": "Collection List Header",
@@ -25,6 +17,14 @@
         "heading": "SUPREME SERIES",
         "title": "",
         "video": "shopify://files/videos/x02-001.mp4",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_heading_Cr9UMW": {
+      "type": "collection_heading",
+      "name": "Collection Header",
+      "settings": {
+        "width": "full",
         "color_scheme": "scheme-5"
       }
     },
@@ -248,8 +248,8 @@
     }
   },
   "order": [
-    "collection_heading_Cr9UMW",
     "collection_list_header_W4hYL4",
+    "collection_heading_Cr9UMW",
     "section",
     "main"
   ]
