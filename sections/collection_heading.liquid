@@ -4,7 +4,9 @@
 
     .section-{{ section.id }} .collection-header {
         display: flex;
-        gap: 80px;
+        gap: 40px;
+        max-width: 1440px;
+        margin: auto;
     }
 
     .section-{{ section.id }} .collection-header img {
@@ -13,6 +15,19 @@
 
     .section-{{ section.id }} .collection-title {
         width: 50%;
+        padding-top: 24px;
+    }
+
+    .section-{{ section.id }} .collection-title h2 {
+        font-size: 36px;
+        font-family: "Sen";
+        font-weight: 600;
+    }
+
+    .section-{{ section.id }} .collection-title span {
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 14px;
     }
 {% endstyle %}
 
