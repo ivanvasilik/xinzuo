@@ -241,10 +241,13 @@
         "heading": "<h2>The knives, <br/>People love most</h2>",
         "show_header": true,
         "products": [
-          "10-inch-carving-knife",
-          "mo-series",
-          "retro-series",
-          "supreme-series"
+          "xinzuo-lan-carving-knife-10-inch",
+          "xinzuo-mo-series-10-inch-carving-knife",
+          "hezhen-supreme-paring-knife-4-inch",
+          "hezhen-supreme-utility-knife-5-inch",
+          "hezhen-retro-series-4-inch-paring-knife",
+          "xinzuo-lan-santoku-knife-7-inch",
+          "products-hezhen-supreme-santoku-knife-7-inch"
         ],
         "color_scheme": "scheme-5",
         "padding_top": 105,
@@ -291,10 +294,19 @@
         "heading": "",
         "show_header": false,
         "products": [
-          "mo-series",
-          "10-inch-carving-knife",
-          "supreme-series",
-          "retro-series"
+          "hezhen-retro-series-7-inch-nakiri-knife",
+          "xinzuo-mo-series-6-8-inch-nakiri-knife",
+          "hezhen-retro-series-7-inch-santoku-knife",
+          "xinzuo-mo-santoku-knife-7-5-inch",
+          "xinzuo-supreme-series-8-bread-knife",
+          "xinzuo-mo-series-8-inch-bread-knife",
+          "hezhen-supreme-carving-knife-8-inch",
+          "hezhen-supreme-series-8-chef-knife",
+          "hezhen-supreme-granton-edge-chef-knife-8-inch",
+          "hezhen-retro-series-8-5-inch-bread-knife",
+          "xinzuo-lan-bread-knife-8-5-inch",
+          "xinzuo-mo-chef-knife-8-5-inch",
+          "xinzuo-lan-chef-knife-8-5-inch"
         ],
         "color_scheme": "scheme-5",
         "padding_top": 80,
