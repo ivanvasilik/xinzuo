@@ -156,7 +156,7 @@
                 href="{{ childLink.url }}"
                 class="mega-menu__link"
               >
-                <span class="mega-menu__link-title wrap-text">{{- childLink.title -}}</span>
+                <span class="mega-menu__link-title wrap-text">{{- childLink.title | strip_html | truncate: 25, "..." -}}</span>
               </a>
             </li>
           {% endfor %}
