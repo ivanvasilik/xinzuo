@@ -1,4 +1,16 @@
 {% style %}
+    .section-{{ section.id }} .collection-header {
+        display: flex;
+        gap: 20px;
+    }
+
+    .section-{{ section.id }} .collection-header img {
+        width: 50%;
+    }
+
+    .section-{{ section.id }} .collection-title {
+        width: 50%;
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
