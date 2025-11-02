@@ -1,0 +1,1633 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "carousel",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "chevron_large",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "left",
+            "thumbnail_width": 72,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 28,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "payment_icons_hCKkQw": {
+              "type": "payment-icons",
+              "name": "t:names.payment_icons",
+              "settings": {
+                "horizontal_alignment": "center",
+                "gap": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "group_QVNfmK": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_MzNmna": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check_3a9c0588-3838-4617-870d-05b2301e1f84.png",
+                    "width": 24,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_DHhbFg": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Express delivery service within 3–5 days ensures your knife arrives quickly, safely, and ready to perform.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_MzNmna",
+                "text_DHhbFg"
+              ]
+            },
+            "group_pUXHfM": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_DXAg9Q": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check_3a9c0588-3838-4617-870d-05b2301e1f84.png",
+                    "width": 24,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_6Ytn7D": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Each knife packed in reinforced protective casing, with optional paid gift box available for elegant presentation.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_DXAg9Q",
+                "text_6Ytn7D"
+              ]
+            },
+            "accordion_xErnFV": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_CUG9xJ": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "DESCRIPTION",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_pyDqAk": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_pyDqAk"
+                  ]
+                },
+                "accordion_row_6HHD9d": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "WHAT’S INCLUDED",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_EdgYbR": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_EdgYbR"
+                  ]
+                },
+                "accordion_row_UfiwpK": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "TECHNICAL DETAILS",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_JKdy9F": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_JKdy9F"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_CUG9xJ",
+                "accordion_row_6HHD9d",
+                "accordion_row_UfiwpK"
+              ]
+            },
+            "text_EUV7Bd": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><em>Note - All knives tested under rigorous quality control for consistency.</em></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_FqwP36": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>Most Asked Questions</strong></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "accordion_GU3TmD": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_V8VGYp": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Why is the Mo Series considered a premium series?",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_mz9UqL": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_mz9UqL"
+                  ]
+                },
+                "accordion_row_Pc4bbF": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How does Mo Series suit professional kitchen environments?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_KQaBR4": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_KQaBR4"
+                  ]
+                },
+                "accordion_row_Fhigtk": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "What separates Mo Series from other Damascus collections?",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_xxNJCn": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The Mo Series emphasizes precision manufacturing and consistent quality assurance, appealing to chefs who demand higher standards from their cutting tools.</p><p>Its advanced build processes create predictable performance across tasks, supporting long hours of food preparation without compromising handling stability or accuracy.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_xxNJCn"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_V8VGYp",
+                "accordion_row_Pc4bbF",
+                "accordion_row_Fhigtk"
+              ]
+            }
+          },
+          "block_order": [
+            "variant_picker_R3rGDr",
+            "buy_buttons_eYQEYi",
+            "payment_icons_hCKkQw",
+            "group_QVNfmK",
+            "group_pUXHfM",
+            "accordion_xErnFV",
+            "text_EUV7Bd",
+            "text_FqwP36",
+            "accordion_GU3TmD"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "shipping_title1": "Earliest Delivery Tomorrow to",
+        "shipping_title2": "Carina, 4152",
+        "shipping_icon1": "shopify://shop_images/ClockCounterClockwise_7c120623-bc70-461d-a26e-3764c1069a3b.png",
+        "shipping_content1": "18 hours left, for get it by tomorrow",
+        "shipping_icon2": "shopify://shop_images/Truck_08a77173-2c8e-48af-9d47-2036c9c77ed4.png",
+        "shipping_content2": "Free Delivery on order worth $400",
+        "detail_content": "67-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.",
+        "detail_icon1": "shopify://shop_images/StackSimple.png",
+        "detail_info1": "<p><strong>67-layer Damascus</strong></p><p>Composite</p>",
+        "detail_icon2": "shopify://shop_images/Hammer.png",
+        "detail_info2": "<p><strong>~60-62 HRC Blade</strong></p><p>Hardness</p>",
+        "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+        "detail_info3": "<p><strong>10Cr15CoMoV core,</strong></p><p>67-layer D </p>",
+        "contact_heading": "Have any question",
+        "contact_icon1": "shopify://shop_images/Phone_1.png",
+        "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
+        "contact_icon2": "shopify://shop_images/EnvelopeSimple_1.png",
+        "contact_info2": "<p>Email</p><p>support@xinzuo.com.au</p>",
+        "contact_icon3": "shopify://shop_images/Headset_1.png",
+        "contact_info3": "<p>Support</p><p>Mon-Fri: 8am-10pm</p>",
+        "gap": 48,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_info_mmnV94": {
+      "type": "product-info",
+      "blocks": {
+        "icon_7jadN9": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_3.png",
+            "content": "<p>Carbon (~1.0%) delivers <strong>hardness and  edge sharpness</strong>, ensuring knives’ blades perform with precision and retain their edge through daily professional use.</p>"
+          }
+        },
+        "icon_mxe7iw": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square.png",
+            "content": "<p>Chromium (~15%) <strong>forms a protective surface layer</strong>, giving the blade strong resistance to rust, stains, and everyday kitchen moisture exposure.</p>"
+          }
+        },
+        "icon_NxVM3T": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_1.png",
+            "content": "<p>Molybdenum boosts <strong>toughness and minimizes brittleness</strong>, allowing the blade to withstand heavy chopping and repeated use without risk of cracking or chipping.</p>"
+          }
+        },
+        "icon_GWBWPm": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_2.png",
+            "content": "<p>Vanadium <strong>creates a fine-grained steel structure</strong>, producing sharper edges and extending cutting performance longer between sharpening sessions.</p>"
+          }
+        },
+        "icon_4HNknW": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Square_4.png",
+            "content": "<p>Cobalt (~1.5%) <strong>stabilizes hardness throughout the blade</strong>, enhancing wear resistance and consistent strength during intense, continuous cooking tasks.</p>"
+          }
+        },
+        "block_UJiBwA": {
+          "type": "block",
+          "settings": {
+            "header": "With 10Cr15CoMoV core, the steel is",
+            "content": "2× sharper",
+            "footer": "than standard stainless kitchen steels."
+          }
+        },
+        "block_XD86y8": {
+          "type": "block",
+          "settings": {
+            "header": "With vacuum + cryo treatment, it is",
+            "content": "3× tougher",
+            "footer": "than ordinary hardened blades."
+          }
+        },
+        "block_pXdtFM": {
+          "type": "block",
+          "settings": {
+            "header": "With vanadium-refined grain structure, it stays",
+            "content": "40% longer edge",
+            "footer": "than harder high-carbon steels"
+          }
+        }
+      },
+      "block_order": [
+        "icon_7jadN9",
+        "icon_mxe7iw",
+        "icon_NxVM3T",
+        "icon_GWBWPm",
+        "icon_4HNknW",
+        "block_UJiBwA",
+        "block_XD86y8",
+        "block_pXdtFM"
+      ],
+      "name": "Product Info",
+      "settings": {
+        "width": "page",
+        "image": "shopify://shop_images/product-x06-009_c478ecc1-06e0-4b18-9bd6-c2ddef5538ea.png",
+        "header_type": "left",
+        "heading": "",
+        "content": "<p><strong>10Cr15CoMoV (VG10-equivalent)</strong> steel in the Mo Series blends carbon for hardness, chromium for corrosion resistance, molybdenum for toughness, vanadium for sharpness, and cobalt for stability. This balanced alloy ensures long-lasting edge retention, durability, and professional-level performance with every cut.</p>",
+        "icon_block_state": true,
+        "first_num": "2",
+        "second_num": "3",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_info2_7JTdmJ": {
+      "type": "product-info2",
+      "blocks": {
+        "block_GUqr8N": {
+          "type": "block",
+          "settings": {
+            "heading": "Core Strength",
+            "content": "<p>At the core, 10Cr15CoMoV steel delivers high hardness, razor precision, and lasting edge retention for professional-level performance.</p>"
+          }
+        },
+        "block_C7wDEE": {
+          "type": "block",
+          "settings": {
+            "heading": "Damascus Layers",
+            "content": "<p>66 outer layers of 316L stainless steel add flexibility, corrosion resistance, and Damascus beauty, protecting the premium cutting core.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_GUqr8N",
+        "block_C7wDEE"
+      ],
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "SHARP. TOUGH. ELEGANT.",
+        "heading_content": "<h2>67-Layer Damascus</h2>",
+        "header_type": "left",
+        "background_type": "color",
+        "block_type": "text",
+        "heading_footer": "Engineered with a VG10-equivalent 10Cr15CoMoV core and 316L Damascus layers, ensuring sharpness, resilience, and artistry in every cut.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_572.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "hidden",
+        "footer_type": "first",
+        "footer_left": "",
+        "footer_right": "",
+        "padding_top": 104,
+        "padding_bottom": 104,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
+      }
+    },
+    "product_info2_8biKrj": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "RAZOR. TOUGH. UNSTOPPABLE.",
+        "heading_content": "<h2>Supreme Sharpness, Built to Last</h2>",
+        "header_type": "left",
+        "background_type": "none",
+        "block_type": "text",
+        "heading_footer": "Crafted from 67-layer Damascus steel, providing razor precision, lasting durability, and superior cutting power with each slice.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_573.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "first",
+        "footer_left": "<h2>Razor</h2>",
+        "footer_right": "<p>A 2.3 mm Damascus blade, vacuum and cryo treated to 60–62 HRC, delivers a razor-sharp 15° edge, ensuring effortless slicing, enduring sharpness, and precise, reliable performance cut after cut.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
+      }
+    },
+    "product_info2_qTpE4H": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "",
+        "heading_content": "<h2>Blade Leaner</h2>",
+        "header_type": "center",
+        "background_type": "none",
+        "block_type": "icon",
+        "heading_footer": "A slim 2.3 mm Damascus blade blends refined steel composition with durability, enabling effortless slicing while retaining strength, sharpness, and precision for smoother, cleaner, consistently perfect cuts.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_259.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "second",
+        "footer_left": "",
+        "footer_right": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": true,
+        "additional_image1": "shopify://shop_images/Icons_9.png",
+        "additional_content1": "<p>The VG10-equivalent 10Cr15CoMoV core <strong>enables a slim 2.3 mm profile</strong>, balancing razor sharpness, high hardness, and durability <strong>without sacrificing toughness</strong> or long-lasting edge performance.</p>",
+        "additional_image2": "shopify://shop_images/Icons_10.png",
+        "additional_content2": "<p>66 Damascus layers of 316L stainless steel surround the core, <strong>enhancing flexibility, corrosion resistance, and structural stability</strong> while creating a striking water-wave titanium stonewash finish.</p>"
+      }
+    },
+    "product_info2_pVhzYj": {
+      "type": "product-info2",
+      "blocks": {
+        "block_ixcYEh": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_d1ec9970-de7c-4394-93d8-abd7d8d2024f.png",
+            "content": "<p><strong>Meticulous crafting through 12 precise</strong>, detailed stages ensures perfection in every blade, creating flawless consistency, reliability, and enduring professional performance.</p>"
+          }
+        },
+        "block_JUhH4q": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_3.png",
+            "content": "<p><strong>Advanced heat treatment</strong> carefully refines the steel’s structure, unlocking exceptional durability, hardness uniformity, and long-lasting stability for demanding culinary tasks.</p>"
+          }
+        },
+        "block_RU94Wj": {
+          "type": "block",
+          "settings": {
+            "heading": "",
+            "image": "shopify://shop_images/Icons_4.png",
+            "content": "<p><strong>Enhanced blade qualities</strong> deliver superior toughness, extended edge retention, and powerful corrosion resistance, ensuring professional sharpness and reliability over long-term use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_ixcYEh",
+        "block_JUhH4q",
+        "block_RU94Wj"
+      ],
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "CRAFTED. HARDENED. ENDURING.",
+        "heading_content": "<h2>Strength in Crafting</h2>",
+        "header_type": "left",
+        "background_type": "none",
+        "block_type": "icon",
+        "heading_footer": "Crafted through 12 meticulous stages, advanced heat treatment enhances blade toughness, edge retention, and corrosion resistance.",
+        "image_video": "image",
+        "img": "shopify://shop_images/image_257.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "hidden",
+        "footer_type": "first",
+        "footer_left": "",
+        "footer_right": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
+      }
+    },
+    "product_info3_Gx89LP": {
+      "type": "product-info3",
+      "disabled": true,
+      "name": "Product Info3",
+      "settings": {
+        "width": "page",
+        "heading": "Defined by Strength",
+        "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
+        "img_text": "Hammered Patterns for Unique Durability",
+        "info_header1": "Hardness That Lasts",
+        "info_content1": "~60 ±1 HRC",
+        "info_footer1": "Engineered for professional use, this hardness provides superior edge retention. It balances strength, resilience, and lasting sharpness in heavy kitchen work.",
+        "info_header2": "Golden Angle Precision",
+        "info_content2": "~15° Edge Cut",
+        "info_footer2": "The finely honed 15° Golden Angle delivers sharper, cleaner performance. Each slice feels effortless, precise, and delivers consistent results with every cut.",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "product_info2_eVwTgB": {
+      "type": "product-info2",
+      "disabled": true,
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "Handle Design",
+        "heading_content": "<h2>Heritage You Can Feel</h2>",
+        "header_type": "center",
+        "background_type": "none",
+        "block_type": "text",
+        "heading_footer": "",
+        "image_video": "image",
+        "img": "shopify://shop_images/product-pm8s-001.png",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "second",
+        "footer_left": "<p>Crafted with North American desert ironwood or refined redwood, seamlessly paired with buffalo horn, the Retro Series handle blends natural strength and timeless beauty. A hammered finish enhances its grip, delivering both artistry and utility.</p>",
+        "footer_right": "<h2>Durable</h2><p>Desert ironwood ensures lasting strength.</p><h2>Balanced</h2><p>Buffalo horn adds weight harmony.</p><h2>Distinctive</h2><p>Hammered finish for unique style.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "",
+        "additional_content2": ""
+      }
+    },
+    "product_info6_M4zfaM": {
+      "type": "product-info6",
+      "name": "Product Info6",
+      "settings": {
+        "width": "page",
+        "heading_title": "Knife Design",
+        "heading_content": "<h2>Artistry in</h2><h2>Detail</h2>",
+        "header_type": "center",
+        "heading_footer": "",
+        "left_img": "shopify://shop_images/product-x06-008.png",
+        "left_title": "<h2>Artful</h2>",
+        "left_content": "<p>The Mo Series blade features an acid-etched, battle-forged Damascus pattern with a black titanium water-wave stonewash, delivering striking visual artistry, reduced food adhesion, and durable, performance-driven elegance in every cut.</p>",
+        "right_img": "shopify://shop_images/product-x06-007.png",
+        "right_title": "<h2>Ergonomic</h2>",
+        "right_content": "<p>The Mo Series handle blends burnt white oak with bold red G10, delivering a refined, durable aesthetic that is ergonomic, moisture-resistant, exceptionally comfortable in extended use, stable under pressure, and a superior upgrade over plain wooden handles.</p>",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_info2_GjRq8Y": {
+      "type": "product-info2",
+      "name": "Product Info2",
+      "settings": {
+        "width": "page",
+        "heading_title": "",
+        "heading_content": "<h2>Built</h2><h2>for Brilliance</h2>",
+        "header_type": "center",
+        "background_type": "none",
+        "block_type": "text",
+        "heading_footer": "",
+        "image_video": "video",
+        "video": "shopify://files/videos/x06-001.mp4",
+        "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "third",
+        "footer_left": "<p>Mo Series embodies advanced craftsmanship, forged with 67-layer Damascus and a VG10-equivalent core. It delivers razor precision, long-lasting edge retention, and strength that endures through demanding professional use.</p>",
+        "footer_right": "<p>From its black titanium Damascus finish to the burnt oak and red G10 handle, every Mo Series detail unites toughness with elegance—built for perfection, slice after slice.</p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "additional_footer": true,
+        "additional_image1": "shopify://shop_images/Icons_1_9cb45a40-18f4-4ddb-aac9-66c8772d049e.png",
+        "additional_content1": "<p>The VG10-equivalent core wrapped in 66 Damascus layers gives Mo Series its <strong>lasting sharpness, strength, and resilience</strong>—keeping chefs focused on cooking, not constant sharpening.</p>",
+        "additional_image2": "shopify://shop_images/Icons_2_ada91f16-e94d-41b1-bbf3-08db7688a8fa.png",
+        "additional_content2": "<p>A water-wave Damascus pattern, acid-etched and stonewashed in black titanium, gives Mo Series its bold identity—<strong>striking, anti-stick, and elevated to near perfection</strong> in both design and performance.</p>"
+      }
+    },
+    "product_info4_nYeXEB": {
+      "type": "product-info4",
+      "name": "Product Info4",
+      "settings": {
+        "width": "page",
+        "heading": "Choose Your Blade",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "footer_state": false,
+        "footer_content1": "",
+        "footer_content2": ""
+      }
+    },
+    "product_series1_9aqxi6": {
+      "type": "product-series1",
+      "name": "Product Series",
+      "settings": {
+        "width": "page",
+        "title": "<h2>Mo Series Damascus</h2><h2>Blade Mastery Redefined</h2>",
+        "image": "shopify://shop_images/03_e8c192ad-892e-42a4-a4c5-3dae3a55ea9d.png",
+        "content": "<p>Forged with 67 layers, vacuum treated, and balanced to perfection—Mo Series delivers sharpness and durability beyond expectation.</p>",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "product_series2_7tEyCk": {
+      "type": "product-series2",
+      "blocks": {
+        "block_GWYtUR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Stack.png",
+            "image_type": "icon",
+            "content": "<p>67-Layer Damascus</p>"
+          }
+        },
+        "block_wqQxab": {
+          "type": "block",
+          "settings": {
+            "image_type": "normal",
+            "content": "<p>high hardness, </p><p>longer-lasting sharpness</p>"
+          }
+        },
+        "block_wdLyzW": {
+          "type": "block",
+          "settings": {
+            "image_type": "normal",
+            "content": "<p>Sharper by</p><h2>15°</h2><h2>edge</h2><p>sharper than Western knives</p>"
+          }
+        },
+        "block_YGcREx": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Icons_3_d0b71e0a-4756-4a90-b7fd-a68574803653.png",
+            "image_type": "icon",
+            "content": "<p><strong>Vacuum + Cryo Treatment</strong></p><p>Superior toughness and edge retention.<br/><br/></p>"
+          }
+        },
+        "block_VMJrxx": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_345.png",
+            "image_type": "background",
+            "content": "<p><strong>Oak & G10 Handle</strong></p><p>Bold. Ergonomic. Comfort</p>"
+          }
+        },
+        "block_nrqYL7": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_346.png",
+            "image_type": "normal",
+            "content": "<p>Effortless cutting with</p><p>minimal resistance.</p><p><strong>2.3 mm Slim Blade</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_GWYtUR",
+        "block_wqQxab",
+        "block_wdLyzW",
+        "block_YGcREx",
+        "block_VMJrxx",
+        "block_nrqYL7"
+      ],
+      "name": "Product Series2",
+      "settings": {
+        "width": "page",
+        "header_title": "<h2>Here’s why</h2><h2>Mo Series stands above.</h2>",
+        "header_left": "<p>A few ways Mo Series redefines every cut.</p>",
+        "header_right": "<p>Forged for</p><p>Professionals.</p>",
+        "color_scheme": "scheme-5",
+        "footer_img": "shopify://shop_images/Frame_34_6717962b-87c3-468e-971f-fd7f651aeb8c.png",
+        "footer_content": "Every detail forged for performance."
+      }
+    },
+    "product_info5_whc3ta": {
+      "type": "product-info5",
+      "blocks": {
+        "block_AtEMGG": {
+          "type": "block",
+          "settings": {
+            "title": "Performance",
+            "image1": "shopify://shop_images/Icons_3_02149699-cc81-42e2-9ede-871ceb0a819c.png",
+            "content1": "<p>Forged <strong>with Damascus steel and a VG10-equivalent core</strong>, Mo Series endures heavy use, resisting wear and ensuring strength cut after cut.</p>",
+            "image2": "shopify://shop_images/Icons_4_8c9a25b2-dde1-4c2a-8630-6c3c76147a84.png",
+            "content2": "<p><strong>Ergonomic, moisture-resistant handles</strong> give chefs steady control, reducing fatigue and ensuring sharper, more precise results.</p>",
+            "image3": "shopify://shop_images/Icons_5_8c43986c-91d9-4669-8e4d-9363158354db.png",
+            "content3": "<p><strong>Forged through 12 meticulous steps</strong>, Mo Series blends traditional artistry with advanced heat treatment for lasting professional performance.</p>"
+          }
+        },
+        "block_DwrRdG": {
+          "type": "block",
+          "settings": {
+            "title": "Safety",
+            "image1": "shopify://shop_images/Icons_7_83874bec-26fe-425f-b920-8445d6bbc6f1.png",
+            "content1": "<p>The burnt white oak + red G10 handle <strong>provides secure, ergonomic grip</strong>—reduces slipping, improves control, especially when wet, reducing risk of accidents.</p>",
+            "image2": "shopify://shop_images/Icons_8_080f7da8-6612-4a45-af5b-dbcc396e4685.png",
+            "content2": "<p>Outer layers using 316L stainless steel <strong>ensure the blade meets food-contact safety norms</strong> (resisting corrosion, no harmful leaching ), maintaining hygiene and safety with each use.</p>",
+            "image3": "shopify://shop_images/Icons_9_d9044487-9e9d-4768-8784-2bb2c15e3e8c.png",
+            "content3": "<p>The heat-treated, cryo-tempered blade <strong>maintains hardness without brittleness</strong>—edge retention means less sharpening and safer maintenance.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_AtEMGG",
+        "block_DwrRdG"
+      ],
+      "name": "Product Info5",
+      "settings": {
+        "width": "page",
+        "heading": "Distinct by Every Detail",
+        "background_type": "none",
+        "color_scheme": "scheme-5",
+        "padding_top": 108,
+        "padding_bottom": 108
+      }
+    },
+    "17617113376f523233": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_drqhaP": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_drqhaP"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 10
+      }
+    },
+    "product_description_t4ATaB": {
+      "type": "product-description",
+      "name": "Product Description",
+      "settings": {
+        "width": "page",
+        "image": "shopify://shop_images/Frame_464.png",
+        "heading": "<h2>Respected for Precision and<br/>Timeless Craft</h2>",
+        "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
+        "info2": "<p>With a philosophy blending comfort, balance, and reliability, our knives do more than cut—they inspire confidence. Each series is built to solve kitchen challenges with durability, edge retention, and elegance that lasts a lifetime.</p>",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_slider_MqNLGx": {
+      "type": "collection_slider",
+      "name": "Collection Slider",
+      "settings": {
+        "title": "THIN. SHARP. POWERFUL",
+        "heading": "<h2>More Craft</h2><h2>More Choice</h2>",
+        "show_header": true,
+        "products": [
+          "10-inch-carving-knife",
+          "mo-series",
+          "retro-series",
+          "supreme-series"
+        ],
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "complete_collection_DHCqWL": {
+      "type": "complete_collection",
+      "blocks": {
+        "block_icN74H": {
+          "type": "block",
+          "settings": {
+            "title": "XINZUO-X06",
+            "content": "Utility, Chef Knife Set",
+            "image": "shopify://shop_images/02_bc519706-a893-403f-ab99-78669d38f427.png",
+            "image_position": "right"
+          }
+        },
+        "block_WUMXhi": {
+          "type": "block",
+          "settings": {
+            "title": "XINZUO-X06",
+            "content": "Utility, Chef, and Santoku Knife Set",
+            "image": "shopify://shop_images/02_dd2ba986-e7f5-45c6-958b-4bc7ae7ca2fd.png",
+            "image_position": "left"
+          }
+        }
+      },
+      "block_order": [
+        "block_icN74H",
+        "block_WUMXhi"
+      ],
+      "name": "Collection Complete",
+      "settings": {
+        "heading": "",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_slider2_hBQkkU": {
+      "type": "collection_slider2",
+      "name": "Collection Slider2",
+      "settings": {
+        "title": "",
+        "heading": "",
+        "show_header": false,
+        "products": [
+          "retro-series",
+          "mo-series",
+          "supreme-series",
+          "10-inch-carving-knife"
+        ],
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_dbTzLJ": {
+      "type": "section",
+      "blocks": {
+        "text_bydrCc": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>FAQs</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_7LXzhk": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_LhnEHV": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What makes Xinzuo knives stand apart from other kitchen knife brands?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_jhRycT": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_jhRycT"
+              ]
+            },
+            "accordion_row_bUbaqn": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are Xinzuo knives designed for professional chefs as well as home kitchens?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_WnXXxF": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WnXXxF"
+              ]
+            },
+            "accordion_row_CL4j6C": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How should I properly care for my Xinzuo knife collection?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_RGPqGR": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_RGPqGR"
+              ]
+            },
+            "accordion_row_m4AEPz": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do Xinzuo products include a warranty, and what does it cover?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_r7X8QN": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_r7X8QN"
+              ]
+            },
+            "accordion_row_irhLT6": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How long does delivery of Xinzuo knives usually take?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_wKBChf": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_wKBChf"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_LhnEHV",
+            "accordion_row_bUbaqn",
+            "accordion_row_CL4j6C",
+            "accordion_row_m4AEPz",
+            "accordion_row_irhLT6"
+          ]
+        },
+        "text_Pq7Ga8": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_bydrCc",
+        "accordion_7LXzhk",
+        "text_Pq7Ga8"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "img_with_text_67m3af": {
+      "type": "img-with-text",
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "shopify://collections",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_info_mmnV94",
+    "product_info2_7JTdmJ",
+    "product_info2_8biKrj",
+    "product_info2_qTpE4H",
+    "product_info2_pVhzYj",
+    "product_info3_Gx89LP",
+    "product_info2_eVwTgB",
+    "product_info6_M4zfaM",
+    "product_info2_GjRq8Y",
+    "product_info4_nYeXEB",
+    "product_series1_9aqxi6",
+    "product_series2_7tEyCk",
+    "product_info5_whc3ta",
+    "17617113376f523233",
+    "product_description_t4ATaB",
+    "collection_slider_MqNLGx",
+    "complete_collection_DHCqWL",
+    "collection_slider2_hBQkkU",
+    "section_dbTzLJ",
+    "img_with_text_67m3af"
+  ]
+}
