@@ -1,0 +1,48 @@
+{% style %}
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section color-{{ section.settings.color_scheme }}">
+    {{ collection | json }}
+    <div class="collection-list-header">
+        <div class="collection-list-title">
+            <h2>{{ section.settings.heading }}</h2>
+            <span>{{ section.settings.title }}</span>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Collection Header",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection Header"
+        }
+    ]
+}
+{% endschema %}
