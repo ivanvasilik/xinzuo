@@ -114,6 +114,19 @@
     background: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
 }
 
-.collection-wrapper span {
+.collection-wrapper facets-form-component span {
     font-family: "Albert Sans";
+    font-size: 16px;
+}
+
+.collection-wrapper .product-grid__item a.user-select-text p {
+    font-family: "Sen";
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.collection-wrapper .product-grid__item span.price {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
 }
