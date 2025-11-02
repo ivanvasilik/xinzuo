@@ -352,17 +352,17 @@
       </div>
     </div>
     {% for block in section.blocks %}
-      {% assign product = block.settings.product %}
+      {% assign collection = block.settings.collection %}
       <div class="home-slider home-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
         <div class="home-swiper">
           <div class="swiper-wrapper">
-            {% for variant in product.variants %}
+            {% for product in collection.products %}
               <div class="swiper-slide">
-                <a href="{{ variant.url }}"><img src="{{ variant.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="home slider {{ forloop.index }}"></a>
-                <h2>{{ variant.title }}</h2>
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="home slider {{ forloop.index }}"></a>
+                <h2>{{ product.title }}</h2>
                 <!-- Start of Judge.me Rating Widget -->
                 <div class="jdgm-widget jdgm-preview-badge" 
-                  data-id="{{ product.id }}" 
+                  data-id="{{ collection.id }}" 
                   data-auto-install="false"
                   style="padding: 12px;"
                 >
@@ -371,10 +371,10 @@
                 <!-- End of Judge.me Rating Widget -->
                 <div class="collection-price">
                   <span class="prices">
-                    <span class="sale-price">{{ variant.price | money }}</span>
-                    <span class="compare-price">{{ variant.compare_at_price | money }}</span>
+                    <span class="sale-price">{{ product.price | money }}</span>
+                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
                   </span>
-                  <a class="collection-link" href="{{ variant.url }}">
+                  <a class="collection-link" href="{{ product.url }}">
                     <span>SHOP NOW</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <g clip-path="url(#clip0_6018_26691)">
@@ -534,17 +534,17 @@
   "blocks": [
     {
       "type": "block",
-      "name": "Product",
+      "name": "Collection",
       "settings": [
         {
           "type": "text",
           "id": "collection_name",
-          "label": "Product Name"
+          "label": "Collection Name"
         },
         {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
         }
       ]
     }
