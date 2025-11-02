@@ -16,6 +16,7 @@
   {% endif %}
 >
   {% capture children %}
+    {% assign collection = product.collections.first %}
     <div class="view-product-title">
       <a
         href="{{ product.selected_or_first_available_variant.url }}"
@@ -31,7 +32,7 @@
           <span>></span>
           <a href="/collections/all">KNIVES</a>
           <span>></span>
-          <span>{{ product.title }}</span>
+          <span>{{ collection.title }}</span>
         </span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <g clip-path="url(#clip0_4592_48340)">
@@ -44,7 +45,7 @@
           </defs>
         </svg>
       </div>
-      <h2 id="product-variant-title">{{ product.title }} — {{ product.selected_or_first_available_variant.title }}</h2>
+      <h2 id="product-variant-title">{{ collection.title }} — {{ product.title }}</h2>
       <span id="product-variant-model">MODEL: {{ product.selected_or_first_available_variant.metafields.custom.model }}</span>
     </div>
     <!-- Start of Judge.me Rating Widget -->
