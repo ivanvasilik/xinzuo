@@ -91,7 +91,7 @@
     position: relative;
   }
 
-  .section-{{ section.id }} .product-products-div1 {
+  .section-{{ section.id }} .collection-products-div1 {
     position: absolute;
     top: 0;
     height: 100%;
@@ -104,7 +104,7 @@
     cursor: pointer;
   }
 
-  .section-{{ section.id }} .product-products-div2 {
+  .section-{{ section.id }} .collection-products-div2 {
     position: absolute;
     top: 0;
     height: 100%;
@@ -209,27 +209,27 @@
     color: #c9c9cc;
   }
 
-  .section-{{ section.id }} .product-price {
+  .section-{{ section.id }} .collection-price {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 12px;
   }
 
-  .section-{{ section.id }} .product-price span.prices {
+  .section-{{ section.id }} .collection-price span.prices {
     font-family: "Sen";
     font-weight: 600;
     font-size: 36px;
     color: #fff
   }
       
-  .section-{{ section.id }} .product-price span.compare-price {
+  .section-{{ section.id }} .collection-price span.compare-price {
     font-size: 22px;
     text-decoration: line-through;
     color: #828282;
   }
 
-  .section-{{ section.id }} .product-link {
+  .section-{{ section.id }} .collection-link {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -256,11 +256,11 @@
       font-size: 22px;
     }
 
-    .section-{{ section.id }} .product-price span.prices {
+    .section-{{ section.id }} .collection-price span.prices {
       font-size: 22px;
     }
 
-    .section-{{ section.id }} .product-price span.compare-price {
+    .section-{{ section.id }} .collection-price span.compare-price {
       font-size: 19px;
     }
 
@@ -268,7 +268,7 @@
       font-size: 16px;
     }
 
-    .section-{{ section.id }} .product-link {
+    .section-{{ section.id }} .collection-link {
       font-size: 14px;
     }
   }
@@ -315,17 +315,17 @@
     <h2>{{ section.settings.heading }}</h2>
     <div class="home-menu-list">
       <div>
-        <ul class="product-products-ul">
+        <ul class="collection-products-ul">
           {% for block in section.blocks %}
             <li
               class="home-collection home-collection-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}"
               onclick="homeslider({{ forloop.index }})"
             >
-              <p>{{ block.settings.product_name }}</p>
+              <p>{{ block.settings.collection_name }}</p>
             </li>
           {% endfor %}
         </ul>
-        <div class="product-products-div1" onclick="productUlPrev()">
+        <div class="collection-products-div1" onclick="collectinUlPrev()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
             <g clip-path="url(#clip0_4235_8014)">
               <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -337,7 +337,7 @@
             </defs>
           </svg>
         </div>
-        <div class="product-products-div2" onclick="productUlNext()">
+        <div class="collection-products-div2" onclick="collectinUlNext()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
             <g clip-path="url(#clip0_4235_8014)">
               <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -369,12 +369,12 @@
                 {{ product.metafields.judgeme.badge }}
                 </div>
                 <!-- End of Judge.me Rating Widget -->
-                <div class="product-price">
+                <div class="collection-price">
                   <span class="prices">
                     <span class="sale-price">{{ variant.price | money }}</span>
                     <span class="compare-price">{{ variant.compare_at_price | money }}</span>
                   </span>
-                  <a class="product-link" href="{{ variant.url }}">
+                  <a class="collection-link" href="{{ variant.url }}">
                     <span>SHOP NOW</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <g clip-path="url(#clip0_6018_26691)">
@@ -460,13 +460,13 @@
     homeSlider.classList.add('active');
   };
   
-  const btn = document.querySelector('.product-products-div2');
+  const btn = document.querySelector('.collection-products-div2');
   const btn_width = btn.offsetWidth;
 
   const changeBtn = () => {
-    const ul = document.querySelector('.product-products-ul');
-    const prevBtn = document.querySelector('.product-products-div1');
-    const nextBtn = document.querySelector('.product-products-div2');
+    const ul = document.querySelector('.collection-products-ul');
+    const prevBtn = document.querySelector('.collection-products-div1');
+    const nextBtn = document.querySelector('.collection-products-div2');
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
@@ -488,10 +488,10 @@
     }
   }
 
-  const productUlNext = () => {
-    const prevBtn = document.querySelector('.product-products-div1');
-    const nextBtn = document.querySelector('.product-products-div2');
-    const ul = document.querySelector('.product-products-ul');
+  const collectinUlNext = () => {
+    const prevBtn = document.querySelector('.collection-products-div1');
+    const nextBtn = document.querySelector('.collection-products-div2');
+    const ul = document.querySelector('.collection-products-ul');
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
@@ -500,10 +500,10 @@
     changeBtn();
   }
 
-  const productUlPrev = () => {
-    const prevBtn = document.querySelector('.product-products-div1');
-    const nextBtn = document.querySelector('.product-products-div2');
-    const ul = document.querySelector('.product-products-ul');
+  const collectinUlPrev = () => {
+    const prevBtn = document.querySelector('.collection-products-div1');
+    const nextBtn = document.querySelector('.collection-products-div2');
+    const ul = document.querySelector('.collection-products-ul');
     let currentPosition;
     if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
     else currentPosition = 0;
@@ -538,7 +538,7 @@
       "settings": [
         {
           "type": "text",
-          "id": "product_name",
+          "id": "collection_name",
           "label": "Product Name"
         },
         {
