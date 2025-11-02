@@ -142,7 +142,7 @@
     }
 }
 
-html::-webkit-scrollbar             { width: 10px; }
-html::-webkit-scrollbar-track       { background: #FAFAFA; }
-html::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
-html::-webkit-scrollbar-thumb:hover { background: rgba(32, 74, 52, 1); }
+.cart-drawer__items::-webkit-scrollbar             { width: 10px; }
+.cart-drawer__items::-webkit-scrollbar-track       { background: #FAFAFA; }
+.cart-drawer__items::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
+.cart-drawer__items::-webkit-scrollbar-thumb:hover { background: rgba(32, 74, 52, 1); }
