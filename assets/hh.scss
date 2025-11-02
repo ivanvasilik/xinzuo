@@ -707,6 +707,10 @@ ul.media-gallery__grid li.product-media-container:first-child {
     padding: 0 80px;
 }
 
+results-list.section {
+    padding: 0;
+}
+
 .product-information {
     display: grid;
     padding: 0 !important;
@@ -723,11 +727,19 @@ footer {
     .section {
         padding: 0 40px;
     }
+
+    results-list.section {
+        padding: 0;
+    }
 }
 
 @media screen and (max-width: 750px) {
     .section {
         padding: 0 16px;
+    }
+
+    results-list.section {
+        padding: 0;
     }
 }
 
