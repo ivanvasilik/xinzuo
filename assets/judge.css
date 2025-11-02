@@ -142,7 +142,7 @@
     }
 }
 
-body::-webkit-scrollbar             { width: 10px !important; }
-body::-webkit-scrollbar-track       { background: #FAFAFA !important; }
-body::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5) !important; }
-body::-webkit-scrollbar-thumb:hover { background: rgba(32, 74, 52, 1) !important; }
+body::-webkit-scrollbar             { width: 10px; }
+body::-webkit-scrollbar-track       { background: #FAFAFA; }
+body::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
+body::-webkit-scrollbar-thumb:hover { background: rgba(32, 74, 52, 1); }
