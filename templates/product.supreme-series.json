@@ -330,7 +330,7 @@
                     "text_pyDqAk": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
+                        "text": "{{ closest.product.description }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
