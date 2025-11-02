@@ -9,6 +9,14 @@
  */
 {
   "sections": {
+    "collection_heading_Cr9UMW": {
+      "type": "collection_heading",
+      "name": "Collection Header",
+      "settings": {
+        "width": "page",
+        "color_scheme": "scheme-5"
+      }
+    },
     "section": {
       "type": "section",
       "blocks": {
@@ -228,6 +236,7 @@
     }
   },
   "order": [
+    "collection_heading_Cr9UMW",
     "section",
     "main"
   ]
