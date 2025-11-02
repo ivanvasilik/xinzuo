@@ -72,13 +72,13 @@
         display: flex; 
     }
 
-    .section-{{ section.id }} .product-products {
+    .section-{{ section.id }} .collection-products {
         position: relative;
         margin-bottom: 56px;
         overflow: hidden;
     }
 
-    .section-{{ section.id }} .product-products ul {
+    .section-{{ section.id }} .collection-products ul {
         padding: 0;
         border-bottom: 1px solid #c9c9cc;
         display: flex;
@@ -90,7 +90,7 @@
         transition: transform 0.3s ease;
     }
 
-    .section-{{ section.id }} .product-products ul li {
+    .section-{{ section.id }} .collection-products ul li {
         padding: 16px 0;
         font-family: "Sen";
         font-weight: 600;
@@ -100,7 +100,7 @@
         white-space: nowrap;
     }
 
-    .section-{{ section.id }} .product-products-div1 {
+    .section-{{ section.id }} .collection-products-div1 {
         position: absolute;
         top: 0;
         height: 100%;
@@ -113,7 +113,7 @@
         cursor: pointer;
     }
 
-    .section-{{ section.id }} .product-products-div2 {
+    .section-{{ section.id }} .collection-products-div2 {
         position: absolute;
         top: 0;
         height: 100%;
@@ -170,7 +170,7 @@
         color: #fff;
     }
 
-    .section-{{ section.id }} .product-products-ul {
+    .section-{{ section.id }} .collection-products-ul {
         transition: transform 0.3s ease;
     }
 
@@ -227,12 +227,12 @@
             font-size: 19px;
         }
 
-        .section-{{ section.id }} .product-products ul li {
+        .section-{{ section.id }} .collection-products ul li {
             font-size: 16px;
             padding: 12px 0;
         }
 
-        .section-{{ section.id }} .product-products-div1 {
+        .section-{{ section.id }} .collection-products-div1 {
             padding: 8px;
         }
 
@@ -271,13 +271,14 @@
         </div>
     {% endif %}
     <div class="product-description">
-        <div class="product-products">
-            <ul class="product-products-ul">
-                {% for variant in product.variants %}
-                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ variant.title }}</li>
+        {% assign collection = product.collections.first %}
+        <div class="collection-products">
+            <ul class="collection-products-ul">
+                {% for product in collection.products %}
+                    <li class="product-info product-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}" onclick="productslider({{ forloop.index }})">{{ product.title }}</li>
                 {% endfor %}
             </ul>
-            <div class="product-products-div1" onclick="productUlPrev()">
+            <div class="collection-products-div1" onclick="productUlPrev()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clip-path="url(#clip0_4235_8014)">
                         <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -289,7 +290,7 @@
                     </defs>
                 </svg>
             </div>
-            <div class="product-products-div2" onclick="productUlNext()">
+            <div class="collection-products-div2" onclick="productUlNext()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clip-path="url(#clip0_4235_8014)">
                         <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -302,9 +303,9 @@
                 </svg>
             </div>
         </div>
-        {% for variant in product.variants %}
+        {% for product in collection.products %}
             <div class="product-description-span product-slider-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
-                <span>{{ variant.description }}</span>
+                <span>{{ product.description }}</span>
             </div>
         {% endfor %}
         {% if section.settings.footer_state %}
@@ -360,13 +361,13 @@
         productInfo.classList.add('active');
     };
     
-    const btn = document.querySelector('.product-products-div2');
+    const btn = document.querySelector('.collection-products-div2');
     const btn_width = btn.offsetWidth;
 
     const changeBtn = () => {
-        const ul = document.querySelector('.product-products-ul');
-        const prevBtn = document.querySelector('.product-products-div1');
-        const nextBtn = document.querySelector('.product-products-div2');
+        const ul = document.querySelector('.collection-products-ul');
+        const prevBtn = document.querySelector('.collection-products-div1');
+        const nextBtn = document.querySelector('.collection-products-div2');
         let currentPosition;
         if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
         else currentPosition = 0;
@@ -387,9 +388,9 @@
     }
 
     const productUlNext = () => {
-        const prevBtn = document.querySelector('.product-products-div1');
-        const nextBtn = document.querySelector('.product-products-div2');
-        const ul = document.querySelector('.product-products-ul');
+        const prevBtn = document.querySelector('.collection-products-div1');
+        const nextBtn = document.querySelector('.collection-products-div2');
+        const ul = document.querySelector('.collection-products-ul');
         let currentPosition;
         if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
         else currentPosition = 0;
@@ -399,9 +400,9 @@
     }
 
     const productUlPrev = () => {
-        const prevBtn = document.querySelector('.product-products-div1');
-        const nextBtn = document.querySelector('.product-products-div2');
-        const ul = document.querySelector('.product-products-ul');
+        const prevBtn = document.querySelector('.collection-products-div1');
+        const nextBtn = document.querySelector('.collection-products-div2');
+        const ul = document.querySelector('.collection-products-ul');
         let currentPosition;
         if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
         else currentPosition = 0;
