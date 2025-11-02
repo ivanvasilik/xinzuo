@@ -13,7 +13,7 @@
       "type": "collection_heading",
       "name": "Collection Header",
       "settings": {
-        "width": "page",
+        "width": "full",
         "color_scheme": "scheme-5"
       }
     },
