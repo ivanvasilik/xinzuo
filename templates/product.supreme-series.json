@@ -271,7 +271,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Aussie Lifetime Warranty.</p>",
+                    "text": "<p>Aussie Lifetime Warranty</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
