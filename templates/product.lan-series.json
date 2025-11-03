@@ -753,11 +753,11 @@
         "shipping_content2": "Free Delivery on order worth $400",
         "detail_content": "67-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.",
         "detail_icon1": "shopify://shop_images/StackSimple.png",
-        "detail_info1": "<p><strong>67-layer Damascus</strong></p><p>Composite</p>",
+        "detail_info1": "<p><strong>73-Layer Damascus</strong></p><p>Composite</p>",
         "detail_icon2": "shopify://shop_images/Hammer.png",
-        "detail_info2": "<p><strong>~60-62 HRC Blade</strong></p><p>Hardness</p>",
+        "detail_info2": "<p><strong>62-64 HRC</strong></p><p>Extreme Hardness</p>",
         "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-        "detail_info3": "<p><strong>10Cr15CoMoV core,</strong></p><p>67-layer D </p>",
+        "detail_info3": "<p><strong>14Cr14MoVNb</strong></p><p>Powder Steel Core </p>",
         "contact_heading": "Have any question",
         "contact_icon1": "shopify://shop_images/Phone_1.png",
         "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
@@ -867,7 +867,7 @@
         "image": "shopify://shop_images/image_128_b35a7974-cbcd-440f-bfdf-e777b9df4fba.png",
         "header_type": "left",
         "heading": "<h2>Every element chosen with purpose</h2>",
-        "content": "<p>This is our flagship steel for a reason. Powder metallurgy creates an incredibly fine, dense blade structure that <strong>takes a surgical edge and holds it longer than anything else we make.</strong> Combined with 73 layers of protective Damascus, it's the pinnacle of performance and style.</p>",
+        "content": "<p>This is our flagship steel for a reason. Powder metallurgy creates an incredibly fine, dense blade structure that <strong>takes a surgical edge and holds it longer than anything else we make.</strong> </p>",
         "icon_block_state": true,
         "first_num": "2",
         "second_num": "2",
@@ -887,19 +887,22 @@
         "block_type": "text",
         "heading_footer": "This isn't just Damascus; it's powder steel Damascus. The ultra-fine core takes a sharper, longer-lasting edge than forged steel, while 73 layers of cladding create our most stunning pattern. This is flagship performance.",
         "image_video": "image",
-        "img": "shopify://shop_images/image_129_e690f0ac-3300-4749-bd3f-5d04ccf88d2b.png",
-        "additional_block_state": true,
-        "additional_title1": "The Powder Steel Core",
-        "additional_content1": "<p>Powder metallurgy creates a microscopic steel structure. In the kitchen, that means a blade that gets surgically sharp and stays that way longer than any other knife we make.</p>",
-        "additional_title2": "The 73-Layer Damascus",
-        "additional_content2": "<p>More than just a beautiful pattern. Each of the 73 layers adds corrosion resistance and protects the ultra-hard powder steel core, giving the blade strength and resilience.</p>",
+        "img": "shopify://shop_images/product-x06-005.png",
         "color_scheme": "scheme-5",
+        "footer_state": "visible",
+        "footer_type": "first",
+        "footer_left": "",
+        "footer_right": "",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "additional_footer": false,
+        "additional_content1": "<p>Powder metallurgy creates a microscopic steel structure. In the kitchen, that means a blade that gets surgically sharp and stays that way longer than any other knife we make.</p>",
+        "additional_content2": "<p>More than just a beautiful pattern. Each of the 73 layers adds corrosion resistance and protects the ultra-hard powder steel core, giving the blade strength and resilience.</p>"
       }
     },
     "product_info2_8biKrj": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "width": "page",
@@ -929,11 +932,11 @@
       "settings": {
         "width": "page",
         "heading_title": "",
-        "heading_content": "<h2>Blade Whisper</h2>",
+        "heading_content": "<h2>Effortless is an Understatement</h2>",
         "header_type": "center",
         "background_type": "none",
         "block_type": "icon",
-        "heading_footer": "The knives' ultra-slim 2.1 mm blade glides with effortless ease, minimizing resistance, enhancing control, and delivering smoother, cleaner cuts that define a professional, luxury-standard performance.",
+        "heading_footer": "",
         "image_video": "image",
         "img": "shopify://shop_images/image_259_560500f0-1175-4a34-8b00-2615c772f865.png",
         "color_scheme": "scheme-5",
@@ -945,9 +948,9 @@
         "padding_bottom": 80,
         "additional_footer": true,
         "additional_image1": "shopify://shop_images/Icons_13.png",
-        "additional_content1": "<p>Stabilized by cryogenic tempering and Damascus layering, the 2.1 mm blade reduces drag and maintains balance — <strong>achieving seamless cuts with refined precision</strong> beyond ordinary knives.</p>",
+        "additional_content1": "<p>The blade's geometry is <strong>obsessively designed</strong>. A gentle curve for that smooth rock-chop, and a fine tip for precision work. It’s your go-to for everything.</p>",
         "additional_image2": "shopify://shop_images/Icons_14.png",
-        "additional_content2": "<p>With a refined edge geometry, uniform powder-steel microstructure, and niobium stability, the Lan Series <strong>achieves razor precision</strong>, preserving delicate textures and <strong>producing consistently sharper, finer slices</strong>.</p>"
+        "additional_content2": "<p>Less resistance means <strong>cleaner cuts and better-looking food</strong>. It’s the kind of upgrade that instantly makes you a more confident cook.</p>"
       }
     },
     "product_info7_DTcLJk": {
@@ -972,6 +975,7 @@
         "block_rFcaBc",
         "block_i4Ya9d"
       ],
+      "disabled": true,
       "name": "Product Info7",
       "settings": {
         "width": "full",
@@ -1027,6 +1031,7 @@
         "block_D44bMA",
         "block_kX3Ejj"
       ],
+      "disabled": true,
       "name": "Product Info",
       "settings": {
         "width": "full",
@@ -1050,7 +1055,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_d1ec9970-de7c-4394-93d8-abd7d8d2024f.png",
-            "content": "<p><strong>Crafting through twelve deliberate stages</strong>, each inspected with precision, gives the Lan Series flawless uniformity, ensuring every knife reflects uncompromising artistry and legacy refinement.</p>"
+            "content": "<p><strong>Perfectly Balanced for Effortless Handling</strong><br/>Weighted to feel like an extension of your hand. Nimble, comfortable, and fatigue-free.</p>"
           }
         },
         "block_JUhH4q": {
@@ -1058,7 +1063,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_3.png",
-            "content": "<p><strong>Heat Treatment under vacuum conditions</strong>, followed by deep-freeze tempering, stabilizes the steel's core, aligning structure with harmony that preserves integrity through years of demanding use.</p>"
+            "content": "<p><strong>Advanced Heat Treatment</strong><br/>Our vacuum and deep-freeze process creates an ultra-resilient blade. All the hardness, none of the brittleness.</p>"
           }
         },
         "block_RU94Wj": {
@@ -1066,7 +1071,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_15.png",
-            "content": "<p><strong>Refinement at the molecular level </strong>enhances the steel's resilience, balancing hardness with control, giving the Lan Series unmatched character that reflects innovation and timeless craftsmanship.</p>"
+            "content": "<p><strong>Refined at a Microscopic Level</strong><br/>Powder metallurgy creates an ultra-fine grain. That’s the secret to an edge that gets sharper and stays sharper, longer.</p>"
           }
         }
       },
@@ -1078,12 +1083,12 @@
       "name": "Product Info2",
       "settings": {
         "width": "page",
-        "heading_title": "CRAFTED. SUPREME. TIMELESS.",
-        "heading_content": "<h2>The Gentle Perfection</h2>",
+        "heading_title": "Obsessively Engineered",
+        "heading_content": "<h2>This is What Flagship Feels Like</h2>",
         "header_type": "left",
         "background_type": "none",
         "block_type": "icon",
-        "heading_footer": "Guided through twelve precise steps, refined under advanced treatment, each Lan Series emerges as a crafted legacy.",
+        "heading_footer": "From the premium steel to the hand-finished handle, every detail is designed to give you the best experience in the kitchen.",
         "image_video": "image",
         "img": "shopify://shop_images/img_477.png",
         "color_scheme": "scheme-5",
@@ -1144,6 +1149,7 @@
     },
     "product_info6_M4zfaM": {
       "type": "product-info6",
+      "disabled": true,
       "name": "Product Info6",
       "settings": {
         "width": "page",
@@ -1168,7 +1174,7 @@
       "settings": {
         "width": "page",
         "heading_title": "",
-        "heading_content": "<h2>Defined</h2><h2>by Supremacy</h2>",
+        "heading_content": "<h2>Why It's Our Best</h2>",
         "header_type": "center",
         "background_type": "none",
         "block_type": "text",
@@ -1177,14 +1183,14 @@
         "video": "shopify://files/videos/b37-001.mp4",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
-        "footer_type": "third",
-        "footer_left": "<p>The Lan Series stands at the pinnacle of Xinzuo craftsmanship, forged with powder metallurgy steel and Damascus artistry. It delivers supreme sharpness, enduring toughness, and a legacy worthy of chefs and collectors.</p>",
-        "footer_right": "<p>Each Lan Series arrives in a bespoke case, crafted to preserve its legacy — more than a knife, it becomes a gift of refinement, tradition, and enduring value.</p>",
+        "footer_type": "first",
+        "footer_left": "<p><strong>The Sharpest Steel We Offer</strong><br/>Powder steel isn’t just sharp; it’s microscopically sharp. It takes a keener edge and holds it longer than any other blade in our lineup.</p>",
+        "footer_right": "<p><strong>Our Most Intricate Damascus</strong><br/>With 73 layers, this is our most stunning and complex pattern. It’s a work of art that also protects the blade’s ultra-hard core.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
         "additional_image1": "shopify://shop_images/Icons_16.png",
-        "additional_content1": "<p><strong>Powder metallurgy steel and layered Damascus design</strong> give the Lan Series unrivaled exclusivity — crafted as the crown jewel above every other Xinzuo series.</p>",
+        "additional_content1": "<p><strong>Our Most Intricate Damascus</strong><br/>With 73 layers, this is our most stunning and complex pattern. It’s a work of art that also protects the blade’s ultra-hard core.</p>",
         "additional_image2": "shopify://shop_images/Icons_17.png",
         "additional_content2": "<p><strong>Hand-finished details and bespoke gift packaging</strong> transform the Lan Series from a knife into an heirloom — a statement of prestige, artistry, and timeless refinement.</p>"
       }
@@ -1194,7 +1200,7 @@
       "name": "Product Info4",
       "settings": {
         "width": "page",
-        "heading": "Shapes of Excellence",
+        "heading": "More Knives From Supreme Series",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80,
@@ -1210,9 +1216,9 @@
       "name": "Product Series",
       "settings": {
         "width": "page",
-        "title": "<h2>Lan Series</h2><h2>Beyond Limits of Artistry</h2>",
+        "title": "<h2>A Gift-Worthy Experience</h2>",
         "image": "shopify://shop_images/02_b765cf35-27d2-418b-b71f-248ff9fa2368.png",
-        "content": "<p>Lan Series represents the ultimate union of powder metallurgy steel and Damascus artistry — refined for chefs, admired by collectors, and destined to become a lasting legacy.</p>",
+        "content": "<p>Whether it’s for a very lucky friend or a well-deserved gift to yourself, the experience matters. Every Lan Series knife arrives in a beautiful, premium gift box, ensuring the unboxing is as memorable as the first slice.</p>",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80
@@ -1276,6 +1282,7 @@
         "block_VMJrxx",
         "block_nrqYL7"
       ],
+      "disabled": true,
       "name": "Product Series2",
       "settings": {
         "width": "page",
@@ -1319,10 +1326,11 @@
         "block_AtEMGG",
         "block_DwrRdG"
       ],
+      "disabled": true,
       "name": "Product Info5",
       "settings": {
         "width": "page",
-        "heading": "Designed for Confidence",
+        "heading": "Engineered for Life",
         "background_type": "none",
         "color_scheme": "scheme-5",
         "padding_top": 108,
