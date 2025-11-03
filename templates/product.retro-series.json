@@ -783,14 +783,14 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_4.png",
-            "content": "<p>Cobalt (~1.5%) <strong>strengthens the steel’s structure, stabilizing hardness</strong> and enhancing performance under heavy professional use.</p>"
+            "content": "<p><strong>Pro-Level Stability</strong><br/><br/>Cobalt is the support crew. It adds serious strength and wear-resistance, pushing this into a true pro-performance category.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum increases <strong>toughness and prevents brittleness</strong>, helping the blade resist chipping during demanding kitchen work.</p>"
+            "content": "<p><strong>The \"Anti-Chip\" Factor</strong><br/><br/>Molybdenum adds toughness, so your hard, sharp blade won't be brittle. All the performance, none of the panic.</p>"
           }
         },
         "icon_GWBWPm": {
