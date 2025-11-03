@@ -711,7 +711,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How should I properly care for my Xinzuo knife collection?",
+                "heading": "So... can I put any of them in the dishwasher?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -721,7 +721,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "text": "<p>Please, for the love of all things sharp, <strong>no.</strong></p><p>A dishwasher is where great knives go to die. The harsh detergents will dull the precision hand-honed edge, the high heat can damage and warp the premium wood handles, and clanging against a plate is the fastest way to get a chip.</p><p>It takes 30 seconds to <strong>hand wash with soap and dry immediately.</strong> Treat them right, and they'll be your favourite kitchen tool for life.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -752,7 +752,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "Do Xinzuo products include a warranty, and what does it cover?",
+                "heading": "Aren't these just 'Made in China' knives?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
