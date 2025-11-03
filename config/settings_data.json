@@ -67,6 +67,7 @@
     "show_installments": true,
     "show_accelerated_checkout_buttons": true,
     "cart_thumbnail_border": "none",
+    "shipping_value": 100,
     "drawer_recommend": [
       "10-inch-carving-knife",
       "mo-series",
