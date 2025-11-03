@@ -1106,7 +1106,7 @@
       "name": "Product Info4",
       "settings": {
         "width": "page",
-        "heading": "More from thn",
+        "heading": "More from the Mo Series",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80,
@@ -1231,6 +1231,7 @@
         "block_AtEMGG",
         "block_DwrRdG"
       ],
+      "disabled": true,
       "name": "Product Info5",
       "settings": {
         "width": "page",
@@ -1299,6 +1300,7 @@
     },
     "collection_slider_MqNLGx": {
       "type": "collection_slider",
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "title": "THIN. SHARP. POWERFUL",
@@ -1627,6 +1629,7 @@
         "text_Pq7Ga8": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
             "width": "100%",
@@ -1687,6 +1690,7 @@
     },
     "img_with_text_67m3af": {
       "type": "img-with-text",
+      "disabled": true,
       "name": "Img with text",
       "settings": {
         "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
