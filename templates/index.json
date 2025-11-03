@@ -793,7 +793,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How long does delivery of Xinzuo knives usually take?",
+                "heading": "What's the warranty? What if I don't like it?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -803,7 +803,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "text": "<p>No dramas. We're not into \"buyer's remorse.\" If it's not love at first slice, you can return it <strong>within 30 days for a full refund.</strong></p><p>For the long haul, all our knives are covered by a <strong>lifetime warranty</strong> against manufacturing defects. And since we're a 100% Australian-based company, you're always covered by your full rights under <strong>Australian Consumer Law.</strong> We've got your back.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
