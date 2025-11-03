@@ -799,21 +799,21 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium (~0.4%) <strong>refines grain structure, producing sharper, harder edges</strong> that stay keen longer and require less frequent sharpening.</p>"
+            "content": "<p><strong>Vanadium Sharpness</strong><br/>This refines the steel’s grain for that fine, surgical edge that stays sharper for longer.</p>"
           }
         },
         "icon_4HNknW": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_4.png",
-            "content": "<p>Cobalt (~1.5%) <strong>stabilizes hardness throughout the steel matrix</strong>, enhancing wear resistance and endurance during continuous, high-intensity cutting.</p>"
+            "content": "<p><strong>Cobalt  Stability</strong><br/>This is the pro-level support crew. It strengthens the steel and boosts wear-resistance under heavy use.</p>"
           }
         },
         "icon_QbUatt": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_32275f87-7708-4c45-9407-e6c3fcd0f2a5.png",
-            "content": "<p>Niobium (~0.2%), a rare addition, <strong>strengthens the microstructure, balancing extreme hardness</strong> with durability for long-lasting, stable cutting performance.</p>"
+            "content": "<p><strong>Niobium – Balance</strong><br/>The secret edge enhancer. It strengthens the microstructure for long-lasting hardness and stable cutting power.</p>"
           }
         },
         "block_UJiBwA": {
