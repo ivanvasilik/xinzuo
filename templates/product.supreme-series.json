@@ -453,7 +453,7 @@
                     "text_EdgYbR": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Yep. All our knives arrive in a beautiful, premium gift box that’s ready to impress. (Whether it's for a very lucky cook, or just for you.)</p>",
+                        "text": "<p>All our knives arrive in a beautiful, premium gift box that’s ready to impress. (Whether it's for a very lucky cook, or just for you.)</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -492,11 +492,11 @@
                     "text_JKdy9F": {
                       "type": "text",
                       "settings": {
-                        "text": "<p><strong>Steel Type: </strong>German 1.4116 Stainless Steel</p><p><br/><strong>Hardness (HRC)</strong>: 56-58 HRC.</p><p><br/><strong>Handle: </strong>Riveted Red Wood</p><p><br/><strong>Heat Treatment: </strong>Vacuum Heat Treatment<br/>Blade Construction: Single-layer (mono-steel)<br/><br/></p>",
+                        "text": "<p><strong>Steel Type:</strong> German 1.4116 Stainless Steel<br/><strong>Hardness (HRC):</strong> 56-58 HRC<br/><strong>Handle:</strong> Riveted Red Wood<br/><strong>Heat Treatment:</strong> Vacuum Heat Treatment<br/><strong>What that means:</strong> Super durable and very easy to maintain at home.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
-                        "type_preset": "custom",
+                        "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
                         "line_height": "normal",
