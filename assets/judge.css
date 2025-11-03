@@ -100,6 +100,10 @@
     .mobile {
         display: block !important;
     }
+
+    .announcement-bar__text {
+        font-size: 14px;
+    }
 }
 
 .sec-gradient {
