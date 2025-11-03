@@ -819,33 +819,33 @@
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With vacuum + cryo treatment, it achieves",
-            "content": "Peak Hardness",
-            "footer": "At 62-64 HRC, this is our hardest steel for maximum edge retention."
+            "header": "At 62-64 HRC",
+            "content": "Flagship Edge Retention",
+            "footer": "This is our hardest steel, holding an edge far longer than conventional blades."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With vanadium + niobium alloying, it has",
-            "content": "Engineered Toughness",
-            "footer": "The perfect balance of hardness and durability to prevent chips."
+            "header": "14Cr14MoVNb Powder Steel",
+            "content": "Ultra-Fine Performance",
+            "footer": "The microscopic grain structure takes a surgical edge for the cleanest cuts."
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "Thanks to an ultra-fine steel grain, it takes a",
-            "content": "Microscopic Edge",
-            "footer": "For the sharpest, cleanest cuts you've ever experienced."
+            "header": "Niobium & Vanadium Core",
+            "content": "Toughness Meets Hardness",
+            "footer": "The blade is hard enough for extreme sharpness, but tough enough to resist chips."
           }
         },
         "block_4FCBML": {
           "type": "block",
           "settings": {
-            "header": "Enhanced by 73 layers of Damascus, it gets",
-            "content": "Lasting Durability",
-            "footer": "Resists corrosion, protects the core, and looks stunning."
+            "header": "73-Layer Damascus",
+            "content": "Engineered Protection",
+            "footer": "The core is protected by 73 layers of steel, ensuring durability and corrosion resistance."
           }
         }
       },
