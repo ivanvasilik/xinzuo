@@ -67,12 +67,45 @@
     <div class="customers">
         <h2>{{ section.settings.heading }}</h2>
         <div class="customer-imgs">
-            {% for block in section.blocks %}
-                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="customer">
-            {% endfor %}
+            <div class="swiper tab-content">
+                <div class="grid-container swiper-wrapper">
+                    {% for block in section.blocks %}
+                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="customer">
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    const buttons = document.querySelectorAll('.button--tab');
+    const swiper = new Swiper('.swiper', {
+        spaceBetween: 0,
+        slidesPerView: 1,
+        centeredSlides: true,
+        loop: true,
+        breakpoints: {
+            320: {
+                slidesPerView: 2
+            },
+            640: {
+                slidesPerView: 3,
+                centeredSlides: false,
+                loop: false
+            },
+            1024: {
+                slidesPerView: 4,
+                centeredSlides: false,
+                loop: false
+            }
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
 
 {% schema %}
 {
