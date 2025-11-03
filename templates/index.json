@@ -632,7 +632,7 @@
             "accordion_row_pcXW9Y": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "What makes Xinzuo knives stand apart from other kitchen knife brands?",
+                "heading": "You've got four main series. What's the actual difference?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -641,7 +641,7 @@
                 "text_7EtcXB": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "text": "<p>Good question. It's a clear step-up in performance and materials.</p><ul><li><strong>Supreme (Our Classic Workhorse):</strong> This is your durable, reliable all-rounder. It's made from tough <strong>German 1.4116 Steel</strong>—the same steel used by the big legacy brands—so it's a breeze to sharpen and maintain.</li><li><strong>Retro (The Sharp Hybrid):</strong> This is a step up to a harder, sharper <strong>Composite Steel core (10Cr15CoMoV)</strong>. It will hold its edge longer than the Supreme and features a classic handle with a buffalo horn accent.</li><li><strong>Mo (The Damascus Performer):</strong> This is where you get the \"wow\" factor <em>and</em> serious performance. It has the same sharp <strong>10Cr core</strong>, but it's wrapped in <strong>67 layers of real Damascus steel</strong> and features a burnt oak handle.</li><li><strong>LAN (Our Premium Best):</strong> This is our top-of-the-line. It's built on an elite <strong>Powder Steel core (14Cr)</strong>, which is incredibly hard (62+ HRC) and holds an edge for an exceptionally long time. It's wrapped in <strong>73 layers of Damascus</strong> and finished with a beautiful olive wood handle.</li></ul>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -671,7 +671,7 @@
             "accordion_row_6tQbnh": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Are Xinzuo knives designed for professional chefs as well as home kitchens?",
+                "heading": "Is the wavy 'Damascus' pattern on the Mo and LAN series real?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -680,7 +680,7 @@
                 "text_g7yrea": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "text": "<p>100% real. It's not a cheap laser etching. That pattern is the genuine result of folding <strong>67 or 73 layers of steel</strong> over that high-performance cutting core. It's not just for looks; the process adds resilience and creates micro-pockets to help food release from the blade.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
