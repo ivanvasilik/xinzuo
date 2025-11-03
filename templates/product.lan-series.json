@@ -1014,9 +1014,9 @@
         "block_kdHLfq": {
           "type": "block",
           "settings": {
-            "header": "Unique",
+            "header": "Extreme Hardness",
             "content": "73 Layers",
-            "footer": "bring deeper texture and contrast"
+            "footer": "Vacuum + cryo treated to hit 63 HRC"
           }
         },
         "block_QkpTdF": {
@@ -1293,7 +1293,7 @@
       "name": "Product Series2",
       "settings": {
         "width": "page",
-        "header_title": "<h2>Here’s why</h2><h2>Lan S. is the crown jewel</h2>",
+        "header_title": "<h2>Here’s why</h2><h2>Lan Series is the crown jewel</h2>",
         "header_left": "<p>A few ways Lan Series gives you more.</p>",
         "header_right": "<p>Crafted for</p><p>Chefs and Collectors</p>",
         "color_scheme": "scheme-5",
