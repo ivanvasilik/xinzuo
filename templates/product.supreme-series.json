@@ -777,21 +777,21 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square.png",
-            "content": "<p><strong>The 15% Chromium content creates a protective layer</strong> on the blade surface, making the steel highly resistant to rust, stains, and everyday kitchen moisture exposure.</p>"
+            "content": "<p><strong>Chromium Protection</strong><br/>This is what fights off rust and stains. It keeps your knife looking clean and sharp, even in a busy, wet kitchen.</p>"
           }
         },
         "icon_mxe7iw": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum <strong>enhances toughness and prevents brittleness</strong>, allowing the knife to withstand daily cutting tasks without chipping or cracking under pressure.</p>"
+            "content": "<p><strong>Molybdenum Toughness</strong><br/>This adds serious toughness and stops the steel from becoming brittle. It means you can handle daily chopping without worrying about chips.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_2.png",
-            "content": "<p>Vanadium contributes to fine-grain structure, <strong>ensuring the knife achieves a sharper edge</strong> and maintains cutting performance longer between sharpenings.</p>"
+            "content": "<p><strong>Vanadium for Sharpness</strong><br/>This helps create a finer, tighter steel structure. In human terms? It lets the blade take a sharper edge and hold it for longer.</p>"
           }
         },
         "block_UJiBwA": {
