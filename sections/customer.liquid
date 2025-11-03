@@ -19,35 +19,35 @@
         text-align: center;
         line-height: 135%;
         padding: 0 16px;
+        margin-bottom: 40px;
     }
 
     .section-{{ section.id }} .swiper-container {
         width: 100%;
+        overflow: hidden;
     }
 
-    /* .section-{{ section.id }} .swiper-slide {
-        width: max-content !important;
-    } */
+    .section-{{ section.id }} .swiper-wrapper {
+        transition-timing-function: linear !important;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        width: auto !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     .section-{{ section.id }} .customer-imgs {
         width: 100%;
         height: 80px;
-        display: flex;
-        justify-content: center;
         overflow: hidden;
-        gap: 16px;
     }
 
     .section-{{ section.id }} .customer-imgs img {
         width: auto;
         height: 100%;
-    }
-
-    .swiper-slide {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        height: auto;
+        display: block;
     }
 
     @media screen and (max-width: 750px) {
@@ -65,11 +65,11 @@
             font-weight: var(--Primary-Font-Weight-Semibold, 600);
             line-height: 135%;
             letter-spacing: -0.11px;
+            margin-bottom: 30px;
         }
 
         .section-{{ section.id }} .customer-imgs {
             height: 55px;
-            gap: 11px;
         }
 
         .section-{{ section.id }} .customer-imgs img {
@@ -83,10 +83,16 @@
         <h2>{{ section.settings.heading }}</h2>
         <div class="customer-imgs">
             <div class="swiper swiper-container mySwiper_u" >    
-                <div class="swiper-wrapper slide-part">
+                <div class="swiper-wrapper">
                     {%- for block in section.blocks -%}
                         <div class="swiper-slide">
-                            <img src="{{ block.settings.image | img_url:'master' }}" width="100%" height="100%" alt="Customer image">
+                            <img src="{{ block.settings.image | img_url:'master' }}" alt="Customer image">
+                        </div>
+                    {%- endfor -%}
+                    {%- comment -%} Duplicate slides for seamless loop {%- endcomment -%}
+                    {%- for block in section.blocks -%}
+                        <div class="swiper-slide">
+                            <img src="{{ block.settings.image | img_url:'master' }}" alt="Customer image">
                         </div>
                     {%- endfor -%}
                 </div>
@@ -98,23 +104,30 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var swiper = new Swiper('.mySwiper_u', {
-            slidesPerView: 2,
-            spaceBetween: 0,
-            centeredSlides: true,
+            slidesPerView: 'auto',
+            spaceBetween: 30,
             loop: true,
+            speed: 5000, // Duration of the transition (5 seconds)
             autoplay: {
-                delay: 1000
+                delay: 0, // No delay between transitions
+                disableOnInteraction: false,
             },
+            freeMode: {
+                enabled: true,
+                momentum: false,
+            },
+            grabCursor: false,
+            allowTouchMove: false, // Disable touch/mouse interaction
             breakpoints: {
-                570: {
-                    slidesPerView: 3
+                320: {
+                    spaceBetween: 20
                 },
-                900: {
-                    slidesPerView: 4
+                750: {
+                    spaceBetween: 30
                 },
-                1224: {
-                    slidesPerView: 5
-                },
+                1024: {
+                    spaceBetween: 40
+                }
             },
         });
     });
@@ -128,6 +141,7 @@
             "type": "text",
             "id": "heading",
             "label": "Heading",
+            "default": "Trusted by Leading Brands"
         }
     ],
     "blocks": [
