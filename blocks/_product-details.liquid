@@ -58,7 +58,7 @@
     <div class="product-details-prices">
       <h2>{{ product.price | money }}</h2>
       {% if product.price < product.compare_at_price %}
-        <h5>{{ product.compare_at_price | money }}</h5>
+        <h4>{{ product.compare_at_price | money }}</h4>
       {% endif %}
     </div>
     {% comment %} <div class="product-details-shipping">
@@ -212,6 +212,7 @@
     font-weight: 600;
     font-size: 22px;
     margin-bottom: 7px;
+    margin-top: 0;
   }
 
   .product-details-shipping {
