@@ -19,6 +19,10 @@
     border: none !important;
 }
 
+.jdgm-sort-dropdown {
+    color: #292a33;
+}
+
 .jdgm-rev-widg__summary {
     border: none;
     order: 1;
