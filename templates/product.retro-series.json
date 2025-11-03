@@ -981,20 +981,21 @@
       "name": "Product Info3",
       "settings": {
         "width": "page",
-        "heading": "Forged for Power",
+        "heading": "The Pro Specs",
         "img": "shopify://shop_images/06_816a66cf-c06c-4041-ae75-7b43640897f6.png",
-        "img_text": "Hammered Patterns for Unique Durability",
-        "info_header1": "Hardness That Lasts",
-        "info_content1": "~60 ±1 HRC",
-        "info_footer1": "Engineered for professional use, this hardness provides superior edge retention. It balances strength, resilience, and lasting sharpness in heavy kitchen work.",
-        "info_header2": "Golden Angle Precision",
-        "info_content2": "~15° Edge Cut",
-        "info_footer2": "The finely honed 15° Golden Angle delivers sharper, cleaner performance. Each slice feels effortless, precise, and delivers consistent results with every cut.",
+        "img_text": "Artisan Hammered Finish",
+        "info_header1": "Pro-Level Hardness",
+        "info_content1": "60 ±1 HRC",
+        "info_footer1": "This is pro-level hardness. It holds a razor-sharp edge for months, not weeks. More cooking, less sharpening.",
+        "info_header2": "Glides, Doesn't Crush",
+        "info_content2": "15° Edge",
+        "info_footer2": "A razor-fine 15° edge glides through food with less effort. You get cleaner, smoother cuts every time.",
         "color_scheme": "scheme-5"
       }
     },
     "product_info2_eVwTgB": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "width": "full",
@@ -1024,7 +1025,7 @@
       "settings": {
         "width": "page",
         "heading_title": "",
-        "heading_content": "<h2>Crafted</h2><h2>for Distinction</h2>",
+        "heading_content": "<h2><strong>The One You'll Reach For Every Time</strong></h2>",
         "header_type": "center",
         "background_type": "none",
         "block_type": "text",
@@ -1034,8 +1035,8 @@
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "third",
-        "footer_left": "<p>w</p>",
-        "footer_right": "<p>From its refined handles to its hammered details, the Retro Series is designed for profess-ionals and enthusiasts alike—balancing beauty with performance, meal after meal.</p>",
+        "footer_left": "<p>3-layer steel blade that stays sharp. Octagonal handle that feels perfect in your hand. Hand-sharpened, vacuum heat-treated, built to last.</p>",
+        "footer_right": "<p>This is the knife you'll reach for every single time. 10-year warranty. Gift-ready packaging.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": true,
@@ -1050,7 +1051,7 @@
       "name": "Product Info4",
       "settings": {
         "width": "page",
-        "heading": "Choose Your Edge",
+        "heading": "More From Retro Series",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80,
@@ -1078,6 +1079,7 @@
       "block_order": [
         "block_AtEMGG"
       ],
+      "disabled": true,
       "name": "Product Info5",
       "settings": {
         "width": "page",
