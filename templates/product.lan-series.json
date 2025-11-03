@@ -878,47 +878,24 @@
     },
     "product_info2_7JTdmJ": {
       "type": "product-info2",
-      "blocks": {
-        "block_GUqr8N": {
-          "type": "block",
-          "settings": {
-            "heading": "Core Strength",
-            "content": "<p>At the center, 14Cr14MoVNb powdered steel delivers ~63 HRC hardness, razor precision, and lasting edge retention for professional sharpness.</p>"
-          }
-        },
-        "block_C7wDEE": {
-          "type": "block",
-          "settings": {
-            "heading": "Damascus Layers",
-            "content": "<p>Layered Damascus enhances steel balance, giving flexibility, corrosion defense, and wave beauty, while protecting the cutting core.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "block_GUqr8N",
-        "block_C7wDEE"
-      ],
-      "name": "Product Info2",
       "settings": {
         "width": "page",
-        "heading_title": "SAFE. RELIABLE. PRECISE.",
-        "heading_content": "<h2>73-Layer Damascus</h2>",
+        "heading_title": "THE PEAK OF PERFORMANCE",
+        "heading_content": "<h2>The Powder Steel Advantage</h2>",
         "header_type": "left",
         "background_type": "color",
         "block_type": "text",
-        "heading_footer": "Hand-forged with a 14Cr14MoVNb powder core and 73 Damascus layers, each unique wave pattern turns steel into living artistry.",
+        "heading_footer": "This isn't just Damascus; it's powder steel Damascus. The ultra-fine core takes a sharper, longer-lasting edge than forged steel, while 73 layers of cladding create our most stunning pattern. This is flagship performance.",
         "image_video": "image",
-        "img": "shopify://shop_images/product-x06-005.png",
+        "img": "shopify://shop_images/image_129_e690f0ac-3300-4749-bd3f-5d04ccf88d2b.png",
+        "additional_block_state": true,
+        "additional_title1": "The Powder Steel Core",
+        "additional_content1": "<p>Powder metallurgy creates a microscopic steel structure. In the kitchen, that means a blade that gets surgically sharp and stays that way longer than any other knife we make.</p>",
+        "additional_title2": "The 73-Layer Damascus",
+        "additional_content2": "<p>More than just a beautiful pattern. Each of the 73 layers adds corrosion resistance and protects the ultra-hard powder steel core, giving the blade strength and resilience.</p>",
         "color_scheme": "scheme-5",
-        "footer_state": "hidden",
-        "footer_type": "first",
-        "footer_left": "",
-        "footer_right": "",
-        "padding_top": 104,
-        "padding_bottom": 104,
-        "additional_footer": false,
-        "additional_content1": "",
-        "additional_content2": ""
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_info2_8biKrj": {
