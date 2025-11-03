@@ -812,14 +812,14 @@
           "settings": {
             "header": "At 60±1 HRC",
             "content": "Pro-Level Edge Retention",
-            "footer": "This steel is a true workhorse, built to resist the chips and cracks that plague harder, more brittle knives."
+            "footer": "This pro-level hardness means it holds an edge significantly longer than German steel."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With 15% Chromium",
-            "content": "Superior Stain Resistance",
+            "header": "10Cr15CoMoV Core",
+            "content": "Serious Performance",
             "footer": "Fights off rust and stains, even from acidic foods. It just stays clean, no fuss."
           }
         },
