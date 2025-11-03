@@ -174,6 +174,7 @@
                 "icon_MzNmna": {
                   "type": "icon",
                   "name": "t:names.icon",
+                  "disabled": true,
                   "settings": {
                     "icon": "price_tag",
                     "image_upload": "shopify://shop_images/Check_3a9c0588-3838-4617-870d-05b2301e1f84.png",
@@ -187,7 +188,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Fast standard delivery within 1–5 business days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
+                    "text": "<p>✓ Fast standard delivery within 1–5 business days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -258,6 +259,7 @@
                 "icon_DXAg9Q": {
                   "type": "icon",
                   "name": "t:names.icon",
+                  "disabled": true,
                   "settings": {
                     "icon": "price_tag",
                     "image_upload": "shopify://shop_images/Check_3a9c0588-3838-4617-870d-05b2301e1f84.png",
@@ -271,7 +273,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Secure protective packaging included at no extra cost, designed to prevent damage during shipping and handling.</p>",
+                    "text": "<p>✓ Secure protective packaging included at no extra cost, designed to prevent damage during shipping and handling.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
