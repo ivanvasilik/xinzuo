@@ -804,7 +804,7 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_4.png",
-            "content": "<p>Cobalt Stability<br/>This is the pro-level support crew. It adds serious strength and wear-resistance, keeping the blade stable under heavy use.</p>"
+            "content": "<p><strong>Cobalt Stability<br/></strong>This is the pro-level support crew. It adds serious strength and wear-resistance, keeping the blade stable under heavy use.</p>"
           }
         },
         "block_UJiBwA": {
