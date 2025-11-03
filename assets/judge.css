@@ -20,7 +20,11 @@
 }
 
 .jdgm-sort-dropdown {
-    color: #292a33 !important;
+    color: #c9c9cc !important;
+}
+
+.jdgm-sort-dropdown-arrow {
+    color: #c9c9cc !important;
 }
 
 .jdgm-rev-widg__summary {
