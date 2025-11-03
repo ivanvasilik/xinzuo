@@ -864,14 +864,14 @@
           "type": "block",
           "settings": {
             "heading": "Core Strength",
-            "content": "<p><br/>The 10Cr15CoMoV core does the cutting—stays sharp through months of use at 60-62 HRC.<br/><br/></p>"
+            "content": "<p>The 10Cr15CoMoV core does the cutting—stays sharp through months of use at 60-62 HRC.</p>"
           }
         },
         "block_C7wDEE": {
           "type": "block",
           "settings": {
             "heading": "Damascus Layers",
-            "content": "<p>66 outer layers of 316L stainless steel add flexibility, corrosion resistance, and Damascus beauty, protecting the premium cutting core.</p>"
+            "content": "<p><br/>66 Damascus layers protect the core from rust and add lateral strength. Pattern that performs.</p>"
           }
         }
       },
