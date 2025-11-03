@@ -78,7 +78,7 @@
   .section-{{ section.id }} .home-menu-list > div {
     position: relative;
     max-width: fit-content;
-    overflow: hidden;
+    overflow: auto;
   }
 
   .section-{{ section.id }} .home-menu-list ul {
@@ -325,7 +325,7 @@
             </li>
           {% endfor %}
         </ul>
-        <div class="collection-products-div1" onclick="collectinUlPrev()">
+        {% comment %} <div class="collection-products-div1" onclick="collectinUlPrev()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
             <g clip-path="url(#clip0_4235_8014)">
               <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -348,7 +348,7 @@
               </clipPath>
             </defs>
           </svg>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
     {% for block in section.blocks %}
@@ -460,7 +460,7 @@
     homeSlider.classList.add('active');
   };
   
-  const btn = document.querySelector('.collection-products-div2');
+  {% comment %} const btn = document.querySelector('.collection-products-div2');
   const btn_width = btn.offsetWidth;
 
   const changeBtn = () => {
@@ -512,7 +512,7 @@
     changeBtn();
   }
 
-  changeBtn();
+  changeBtn(); {% endcomment %}
 </script>
 
 {% schema %}
