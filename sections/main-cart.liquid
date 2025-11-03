@@ -43,7 +43,7 @@
             <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
             {% comment %} <div class="shipping-value" style="left: {{ progress_value }}%;"></div> {% endcomment %}
             {% comment %} <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span> {% endcomment %}
-            <span style="right: 0;{% if total_price > credit_value %}color: #fff;{% endif %}">${{ settings.credit_value }} DISCOUNT</span>
+            <span style="right: 0;{% if total_price > credit_value %}color: #fff;{% endif %}">${{ settings.credit_value | divided_by: 10 }} DISCOUNT</span>
           </div>
           <span>$100</span>
         </span>
