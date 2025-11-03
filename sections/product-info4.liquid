@@ -347,10 +347,10 @@
     const productslider = (num) => {
         const products = document.querySelectorAll('.product-info');
         const productInfos = document.querySelectorAll('.product-description-span');
-        const swipers = document.querySelectorAll('.swiper-slide');
+        {% comment %} const swipers = document.querySelectorAll('.swiper-slide'); {% endcomment %}
         const product = document.querySelector(`.product-info-${num}`);
         const productInfo = document.querySelector(`.product-slider-${num}`);
-        const swiper = document.querySelector(`.swiper-slide-${num}`);
+        {% comment %} const swiper = document.querySelector(`.swiper-slide-${num}`); {% endcomment %}
 
         products.forEach((product) => {
             product.classList.remove('active');
