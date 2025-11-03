@@ -532,6 +532,15 @@
     "reviews_UMDUhc": {
       "type": "reviews",
       "blocks": {
+        "block_HigAQt": {
+          "type": "block",
+          "settings": {
+            "heading": "Precision in Every Cut",
+            "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.</p>",
+            "customer": "Chef Joshua Hitchcock",
+            "location": "Head Chef, Salti Restaurant & Bar — Daydream Island, QLD"
+          }
+        },
         "block_Ljni9A": {
           "type": "block",
           "settings": {
@@ -539,15 +548,6 @@
             "content": "<h5>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. </h5>",
             "customer": "Chef Daniel Richter",
             "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
-          }
-        },
-        "block_HigAQt": {
-          "type": "block",
-          "settings": {
-            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
-            "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.<br/></p>",
-            "customer": "Chef Joshua Hitchcock",
-            "location": "Head Chef, Salti Restaurant & Bar — Daydream Island, QLD"
           }
         },
         "block_L8cEcn": {
@@ -570,8 +570,8 @@
         }
       },
       "block_order": [
-        "block_Ljni9A",
         "block_HigAQt",
+        "block_Ljni9A",
         "block_L8cEcn",
         "block_iD89Hz"
       ],
