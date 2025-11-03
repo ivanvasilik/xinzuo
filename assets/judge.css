@@ -143,8 +143,8 @@
 }
 
 aside {
-    border: none;
-    padding: 10px 0;
+    border: none !important;
+    padding: 10px 0 !important;
 }
 
 .announcement-bar__slider slideshow-arrows {
