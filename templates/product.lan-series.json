@@ -813,15 +813,15 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_32275f87-7708-4c45-9407-e6c3fcd0f2a5.png",
-            "content": "<p><strong>Niobium – Balance</strong><br/>The secret edge enhancer. It strengthens the microstructure for long-lasting hardness and stable cutting power.</p>"
+            "content": "<p><strong>Niobium  Balance</strong><br/>The secret edge enhancer. It strengthens the microstructure for long-lasting hardness and stable cutting power.</p>"
           }
         },
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With vacuum + cryo treatment, it gains",
+            "header": "Vacuum + cryo treated to hit 63 HRC.",
             "content": "Extreme Hardness",
-            "footer": "63 HRC for extreme edge strength."
+            "footer": "63 HRC for incredible edge strength and lasting precision."
           }
         },
         "block_XD86y8": {
@@ -1389,6 +1389,7 @@
     },
     "product_description_t4ATaB": {
       "type": "product-description",
+      "disabled": true,
       "name": "Product Description",
       "settings": {
         "width": "page",
@@ -1397,24 +1398,6 @@
         "info1": "<p>Xinzuo’s four series—Supreme, Retro, Mo, and Lan—are crafted to serve every kitchen. From everyday durability to refined Damascus luxury, each knife combines sharpness, toughness, and timeless design shaped by forging expertise.</p>",
         "info2": "<p>With a philosophy blending comfort, balance, and reliability, our knives do more than cut—they inspire confidence. Each series is built to solve kitchen challenges with durability, edge retention, and elegance that lasts a lifetime.</p>",
         "color_scheme": "scheme-5"
-      }
-    },
-    "collection_slider_MqNLGx": {
-      "type": "collection_slider",
-      "name": "Collection Slider",
-      "settings": {
-        "title": "THIN. SHARP. POWERFUL",
-        "heading": "<h2>More Craft</h2><h2>More Choice</h2>",
-        "show_header": true,
-        "products": [
-          "10-inch-carving-knife",
-          "retro-series",
-          "mo-series",
-          "supreme-series"
-        ],
-        "color_scheme": "scheme-5",
-        "padding_top": 80,
-        "padding_bottom": 80
       }
     },
     "complete_collection_DHCqWL": {
@@ -1452,6 +1435,7 @@
     },
     "collection_slider2_hBQkkU": {
       "type": "collection_slider2",
+      "disabled": true,
       "name": "Collection Slider2",
       "settings": {
         "title": "",
@@ -1468,269 +1452,27 @@
         "padding_bottom": 80
       }
     },
-    "section_dbTzLJ": {
+    "img_with_text_67m3af": {
+      "type": "img-with-text",
+      "disabled": true,
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "shopify://collections",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "section_dWjDaP": {
       "type": "section",
       "blocks": {
-        "text_bydrCc": {
+        "text_DcBTrm": {
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Where Curiosity Meets</h2><h2>Clear Answers.</h2>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "accordion_7LXzhk": {
-          "type": "accordion",
-          "name": "t:names.accordion",
-          "settings": {
-            "icon": "caret",
-            "dividers": true,
-            "type_preset": "h5",
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "accordion_row_LhnEHV": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "What makes Xinzuo knives stand apart from other kitchen knife brands?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_jhRycT": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_jhRycT"
-              ]
-            },
-            "accordion_row_bUbaqn": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "Are Xinzuo knives designed for professional chefs as well as home kitchens?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_WnXXxF": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_WnXXxF"
-              ]
-            },
-            "accordion_row_CL4j6C": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_dash_row",
-              "settings": {
-                "heading": "How should I properly care for my Xinzuo knife collection?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_RGPqGR": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_RGPqGR"
-              ]
-            },
-            "accordion_row_m4AEPz": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_dash_row",
-              "settings": {
-                "heading": "Do Xinzuo products include a warranty, and what does it cover?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_r7X8QN": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_r7X8QN"
-              ]
-            },
-            "accordion_row_irhLT6": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_dash_row",
-              "settings": {
-                "heading": "How long does delivery of Xinzuo knives usually take?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_wKBChf": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_wKBChf"
-              ]
-            }
-          },
-          "block_order": [
-            "accordion_row_LhnEHV",
-            "accordion_row_bUbaqn",
-            "accordion_row_CL4j6C",
-            "accordion_row_m4AEPz",
-            "accordion_row_irhLT6"
-          ]
-        },
-        "text_Pq7Ga8": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
+            "text": "<h2>FAQs</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1751,12 +1493,268 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "accordion_dAwyB3": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_UiqA8m": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "You've got four main series. What's the actual difference?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_G66BEK": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><strong>Supreme (The Workhorse):</strong> Your durable, reliable first great knife.</p><p><strong>Retro (The Upgrade):</strong> A big step up. Stays seriously sharp, for longer.</p><p><strong>Mo (The Stunner):</strong> All the sharpness of the Upgrade, in a beautiful Damascus finish.</p><p><strong>LAN (The Pro):</strong> Our absolute best. Elite steel for an edge that just doesn't quit.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_G66BEK"
+              ]
+            },
+            "accordion_row_QWQPrQ": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Is the wavy 'Damascus' pattern on the Mo and LAN series real?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_UBagzy": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Oh, 100%. That’s not a cheap laser-etch you’ll see on knock-offs. </p><p>It’s the real, beautiful result of folding 67+ layers of steel over that high-performance core. It looks incredible, and it even helps food slide right off the blade. This is the real deal.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_UBagzy"
+              ]
+            },
+            "accordion_row_zK9keP": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "So... can I put my knife in the dishwasher?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_tDAt4E": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>That's the one hard \"no.\" A dishwasher's high heat and harsh soap are brutal on a sharp blade and a beautiful handle.</p><p><strong>The simple fix:</strong> Just give it a 10-second hand wash with warm, soapy water right after use. Done.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_tDAt4E"
+              ]
+            },
+            "accordion_row_Gx83dE": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Aren't these just 'Made in China' knives?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_YWhcLq": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yep. They’re made in Yangjiang, the \"Capital of Knives.\"</p><p>Here’s a fun fact: Yangjiang has been mastering this craft for over 1,400 years. That’s centuries before the famous hubs in Germany and Japan even got started.</p><p>So we take world-class steel, send it to the city with the longest history of making world-class blades, and skip the legacy-brand markups. It’s not just a good knife; it's a smart one.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_YWhcLq"
+              ]
+            },
+            "accordion_row_qCjegN": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What's the warranty? What if I don't like it?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_rFPKDr": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Easy. If it's not love at first slice, send it back within 30 days for a full refund.</p><p>You're also covered by a lifetime warranty against manufacturing defects. And as a 100% Aussie company, you’re always protected by Australian Consumer Law. We’ve got your back.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_rFPKDr"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_UiqA8m",
+            "accordion_row_QWQPrQ",
+            "accordion_row_zK9keP",
+            "accordion_row_Gx83dE",
+            "accordion_row_qCjegN"
+          ]
+        },
+        "text_pJzTxF": {
+          "type": "text",
+          "name": "t:names.text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_bydrCc",
-        "accordion_7LXzhk",
-        "text_Pq7Ga8"
+        "text_DcBTrm",
+        "accordion_dAwyB3",
+        "text_pJzTxF"
       ],
       "name": "t:names.faq_section",
       "settings": {
@@ -1786,18 +1784,6 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "img_with_text_67m3af": {
-      "type": "img-with-text",
-      "name": "Img with text",
-      "settings": {
-        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
-        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
-        "button": "Step Into Excellence",
-        "url": "shopify://collections",
-        "img": "shopify://shop_images/Rectangle_267.png",
-        "color_scheme": "scheme-5"
-      }
     }
   },
   "order": [
@@ -1819,10 +1805,9 @@
     "product_info5_whc3ta",
     "1761835043ecfb99da",
     "product_description_t4ATaB",
-    "collection_slider_MqNLGx",
     "complete_collection_DHCqWL",
     "collection_slider2_hBQkkU",
-    "section_dbTzLJ",
-    "img_with_text_67m3af"
+    "img_with_text_67m3af",
+    "section_dWjDaP"
   ]
 }
