@@ -187,7 +187,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Fast standard delivery within 5–7 days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
+                    "text": "<p>Fast standard delivery within 1–5 business days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
