@@ -1191,6 +1191,7 @@
     },
     "collection_slider2_hBQkkU": {
       "type": "collection_slider2",
+      "disabled": true,
       "name": "Collection Slider2",
       "settings": {
         "title": "",
