@@ -445,7 +445,7 @@
                 "accordion_row_mrn7Tc": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "WHAT’S INCLUDED",
+                    "heading": "READY TO GIFT",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -454,7 +454,7 @@
                     "text_3MCNeg": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "text": "<p>All our knives arrive in a beautiful, premium gift box that’s ready to impress. (Whether it's for a very lucky friend, or just for you.)</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -484,7 +484,7 @@
                 "accordion_row_7y4q6n": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "TECHNICAL DETAILS",
+                    "heading": "THE NERDY BITS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -493,7 +493,7 @@
                     "text_qF9wXp": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The Mo Series Chef Knife is constructed with 67-layer Damascus steel and a 10Cr15CoMoV core, combining functional sharpness with durable hardness.</p><p>Its burnt oak and G10 handle provides strength and stability, ensuring effective handling and consistent performance across diverse food preparation tasks.</p>",
+                        "text": "<p><strong>Steel Type:</strong> 73-Layer Damascus Powder Steel<br/><strong>Core Steel:</strong> 14Cr14MoVNb Powder Steel<br/><strong>Hardness (HRC):</strong> 62±2 HRC<br/><strong>Handle:</strong> Olive Wood<br/><strong>Heat Treatment:</strong> Vacuum Heat Treatment + Deep Freeze<br/><strong>What that means:</strong> An elite, ultra-hard blade. Our sharpest edge, for the longest time.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
