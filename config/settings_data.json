@@ -68,6 +68,10 @@
     "show_accelerated_checkout_buttons": true,
     "cart_thumbnail_border": "none",
     "shipping_value": 100,
+    "credit_value": 100,
+    "shipping_message": "",
+    "credit_message": "<p>Add just {PRICE} more to unlock up to $10 (10%) extra off.</p>",
+    "complete_message": "<p>Congrats! You've unlocked up to $10 extra off.</p>",
     "drawer_recommend": [
       "10-inch-carving-knife",
       "mo-series",
