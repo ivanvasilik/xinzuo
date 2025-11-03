@@ -908,7 +908,7 @@
         "image_video": "image",
         "img": "shopify://shop_images/07.png",
         "color_scheme": "scheme-5",
-        "footer_state": "visible",
+        "footer_state": "hidden",
         "footer_type": "first",
         "footer_left": "<h2>Normal Title<br/>Here</h2>",
         "footer_right": "<p>A refined 2.4 mm blade combines sharpness with strength, slicing smoothly while maintaining durability and precision, making every cut efficient, consistent, and highly reliable in the kitchen.</p>",
