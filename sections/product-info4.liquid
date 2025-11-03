@@ -315,6 +315,44 @@
         border-bottom: 1px solid #c9c9cc;
     }
 
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .swiper-slide h2 {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .collection-price span.prices {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .collection-price span.compare-price {
+            font-size: 19px;
+        }
+
+        .section-{{ section.id }} .jdgm-prev-badge__text {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .swiper-buttons {
+            margin-top: 32px;
+        }
+
+        .section-{{ section.id }} .swiper-buttons div {
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+        }
+
+        .section-{{ section.id }} > div {
+            padding: 48px 16px;
+        }
+
+        .section-{{ section.id }} h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
