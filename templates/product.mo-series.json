@@ -1288,6 +1288,7 @@
     },
     "product_description_t4ATaB": {
       "type": "product-description",
+      "disabled": true,
       "name": "Product Description",
       "settings": {
         "width": "page",
