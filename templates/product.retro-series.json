@@ -1039,7 +1039,7 @@
         "footer_right": "<p>This is the knife you'll reach for every single time. 10-year warranty. Gift-ready packaging.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
-        "additional_footer": true,
+        "additional_footer": false,
         "additional_image1": "shopify://shop_images/Icons.png",
         "additional_content1": "<p>The longer retention of the Retro Series blade ensures chefs <strong>spend less time sharpening and more time cooking</strong>, with reliable sharpness that lasts through demanding, daily professional use.</p>",
         "additional_image2": "shopify://shop_images/Icons_1.png",
