@@ -73,10 +73,12 @@
     "credit_message": "<p>Add just {PRICE} more to unlock up to $10 (10%) extra off.</p>",
     "complete_message": "<p>Congrats! You've unlocked up to $10 extra off.</p>",
     "drawer_recommend": [
-      "10-inch-carving-knife",
-      "mo-series",
-      "retro-series",
-      "supreme-series"
+      "hezhen-retro-series-10-inch-carving-knife",
+      "xinzuo-mo-series-10-inch-carving-knife",
+      "xinzuo-mo-series-2-piece-knife-set",
+      "hezhen-supreme-2-piece-knife-set-8-chef-5-utility",
+      "hezhen-supreme-paring-knife-4-inch",
+      "hezhen-retro-series-4-inch-paring-knife"
     ],
     "drawer_color_scheme": "scheme-5",
     "drawer_drop_shadow": true,
