@@ -187,7 +187,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Fast standard delivery within 5–7 days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
+                    "text": "<p>Ships fast from our Aussie warehouse.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -271,7 +271,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Secure protective packaging included at no extra cost, designed to prevent damage during shipping and handling.</p>",
+                    "text": "<p>Aussie Lifetime Warranty.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
