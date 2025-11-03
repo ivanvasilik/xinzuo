@@ -14,6 +14,11 @@
     border: none;
 }
 
+.jdgm-widget-actions-wrapper a {
+    background-color: #292a33;
+    border: none;
+}
+
 .jdgm-rev-widg__summary {
     border: none;
     order: 1;
