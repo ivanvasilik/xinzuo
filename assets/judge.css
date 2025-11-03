@@ -15,8 +15,8 @@
 }
 
 .jdgm-widget-actions-wrapper a {
-    background-color: #292a33;
-    border: none;
+    background-color: #292a33 !important;
+    border: none !important;
 }
 
 .jdgm-rev-widg__summary {
