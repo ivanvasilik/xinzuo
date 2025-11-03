@@ -871,7 +871,7 @@
           "type": "block",
           "settings": {
             "heading": "Damascus Layers",
-            "content": "<p><br/>66 Damascus layers protect the core from rust and add lateral strength. Pattern that performs.</p>"
+            "content": "<p>66 Damascus layers protect the core from rust and add lateral strength. Pattern that performs.</p>"
           }
         }
       },
@@ -919,7 +919,7 @@
         "footer_state": "visible",
         "footer_type": "first",
         "footer_left": "<h2>Razor</h2>",
-        "footer_right": "<p>A 2.3 mm Damascus blade, vacuum and cryo treated to 60–62 HRC, delivers a razor-sharp 15° edge, ensuring effortless slicing, enduring sharpness, and precise, reliable performance cut after cut.</p>",
+        "footer_right": "<p>Vacuum and cryo treated to 60-62 HRC. Holds its edge through months of cooking.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": false,
