@@ -186,7 +186,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Express delivery service within 3–5 days ensures your knife arrives quickly, safely, and ready to perform.</p>",
+                    "text": "<p>Ships fast from our AU warehouse</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -270,7 +270,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Each knife packed in reinforced protective casing, with optional paid gift box available for elegant presentation.</p>",
+                    "text": "<p>Aussie Lifetime Warranty</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
