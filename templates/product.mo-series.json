@@ -1106,7 +1106,7 @@
       "name": "Product Info4",
       "settings": {
         "width": "page",
-        "heading": "Choose Your Blade",
+        "heading": "More from thn",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80,
@@ -1117,6 +1117,7 @@
     },
     "product_series1_9aqxi6": {
       "type": "product-series1",
+      "disabled": true,
       "name": "Product Series",
       "settings": {
         "width": "page",
@@ -1186,6 +1187,7 @@
         "block_VMJrxx",
         "block_nrqYL7"
       ],
+      "disabled": true,
       "name": "Product Series2",
       "settings": {
         "width": "page",
