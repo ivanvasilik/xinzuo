@@ -762,7 +762,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "text": "<p>Yep. And we're proud of it.</p><p>Here's our formula: We source <em>world-class</em> steel from Germany and Japan, as well as elite powder steels. Then, our partner artisans in Yangjiang—a city that's been a global centre for knife-making for over 1,400 years—use our modern \"laser-cut, vacuum-treated, hand-honed\" process.</p><p>You get a knife that performs as well (or better) than the old legacy brands, just without the traditional markups and marketing BS.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
