@@ -27,6 +27,10 @@
     color: #c9c9cc !important;
 }
 
+.jdgm-verified-checkmark {
+    display: none;
+}
+
 .jdgm-rev-widg__summary {
     border: none;
     order: 1;
