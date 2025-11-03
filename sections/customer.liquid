@@ -34,6 +34,12 @@
         width: auto;
         height: 100%;
     }
+    
+    .swiper-slide {
+        position: relative;
+        display: block;
+        height: auto;
+    }
 
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .customers {
@@ -67,11 +73,13 @@
     <div class="customers">
         <h2>{{ section.settings.heading }}</h2>
         <div class="customer-imgs">
-            <div class="swiper tab-content">
-                <div class="grid-container swiper-wrapper">
-                    {% for block in section.blocks %}
-                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="customer">
-                    {% endfor %}
+            <div class="swiper swiper-container mySwiper_u" >    
+                <div class="swiper-wrapper slide-part">
+                    {%- for block in section.blocks -%}
+                        <div class="swiper-slide">
+                            <img src="{{ block.settings.image | img_url:'master' }}" width="100%" height="100%" alt="Customer image">
+                        </div>
+                    {%- endfor -%}
                 </div>
             </div>
         </div>
@@ -79,31 +87,31 @@
 </section>
 
 <script>
-    const buttons = document.querySelectorAll('.button--tab');
-    const swiper = new Swiper('.swiper', {
+    document.addEventListener('DOMContentLoaded', function () {
+      var swiper = new Swiper('.mySwiper_u', {
+        slidesPerView: 2,
         spaceBetween: 0,
-        slidesPerView: 1,
         centeredSlides: true,
         loop: true,
         breakpoints: {
-            320: {
-                slidesPerView: 2
-            },
-            640: {
-                slidesPerView: 3,
-                centeredSlides: false,
-                loop: false
-            },
-            1024: {
-                slidesPerView: 4,
-                centeredSlides: false,
-                loop: false
-            }
+          570: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          900: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+            centeredSlides: false,
+            loop: false,
+          },
+          1224: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+            centeredSlides: false,
+            loop: false,
+          },
         },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
+      });
     });
 </script>
 
