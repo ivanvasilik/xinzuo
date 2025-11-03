@@ -928,7 +928,7 @@
           "settings": {
             "heading": "",
             "image": "shopify://shop_images/Icons_2.png",
-            "content": "<p><strong>Hand-Forged Build</strong><br/><br/>We forge the blade to compact the steel. This creates a tougher, more durable knife that holds its edge for ages.</p>"
+            "content": "<p><strong>3-Layer Composite Build</strong><br/><br/>This is our modern build. A hard 10Cr15CoMoV core is protected by tougher steel, giving you pro-level sharpness <em>and</em> chip-resistant durability.</p>"
           }
         },
         "block_JUhH4q": {
@@ -956,12 +956,12 @@
       "name": "Product Info2",
       "settings": {
         "width": "page",
-        "heading_title": "FORGED. REFINED. MASTERED",
-        "heading_content": "<h2>Crafted With Precision</h2>",
+        "heading_title": "THE HEAT-TREAT ADVANTAGE",
+        "heading_content": "<h2>The Secret is the Temper.</h2>",
         "header_type": "left",
         "background_type": "none",
         "block_type": "icon",
-        "heading_footer": "Each Retro Series knife is hand-forged, vacuum heat-treated, and finished in 45 meticulous steps for sharpness, stability, and artistry.",
+        "heading_footer": "We use a precise Vacuum Heat Treatment to create a pro-level blade. This is how it gets incredibly sharp, but stays tough and chip-resistant.",
         "image_video": "image",
         "img": "shopify://shop_images/product-pm8s-006.png",
         "color_scheme": "scheme-5",
