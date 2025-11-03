@@ -797,25 +797,25 @@
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With X50CrMoV15 is stronger up to",
-            "content": "2× tougher",
-            "footer": "than ordinary stainless steels"
+            "header": "Built for Real Kitchens",
+            "content": "Seriously Durable",
+            "footer": "This steel is a true workhorse, built to resist the chips and cracks that plague harder, more brittle knives."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With 15% chromium content, is",
-            "content": "3× resistant",
-            "footer": "than standard kitchen steels"
+            "header": "With 15% Chromium",
+            "content": "Superior Stain Resistance",
+            "footer": "Fights off rust and stains, even from acidic foods. It just stays clean, no fuss."
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "X50CrMoV15 sharpens quickly and easily,",
-            "content": "40% sharper",
-            "footer": "than harder high-carbon steels"
+            "header": "At 56-58 HRC",
+            "content": "A Breeze to Sharpen",
+            "footer": "Takes a razor-sharp edge in seconds at home. All the sharpness, none of the high-maintenance drama."
           }
         }
       },
@@ -847,19 +847,19 @@
       "name": "Product Info2",
       "settings": {
         "width": "page",
-        "heading_title": "THIN. SHARP. POWERFUL",
-        "heading_content": "<h2>Perfectly Balanced for Sharpness</h2>",
+        "heading_title": "THAT \"GLIDE-THROUGH\" FEELING",
+        "heading_content": "<h2>Sharp Enough for Tomatoes. Tough Enough for Butternut.</h2>",
         "header_type": "left",
         "background_type": "none",
         "block_type": "text",
-        "heading_footer": "Crafted with a fine 15° edge, delivering razor-sharp precision for effortless slicing and consistent cutting performance every time.",
+        "heading_footer": "That 15° edge is the difference between a clean, effortless slice and a mushy mess. This is prep work made fun.",
         "image_video": "image",
         "img": "shopify://shop_images/1.png",
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "first",
-        "footer_left": "<h2>Normal title</h2><h2>here</h2>",
-        "footer_right": "<p>A slim 2.2 mm blade glides effortlessly through ingredients with minimal resistance, delivering smoother, cleaner, and more precise cuts that make everyday cooking easier, faster, and consistently perfect.</p>",
+        "footer_left": "<h2>YOUR RELIABLE WORKHORSE</h2>",
+        "footer_right": "<p>A lot of 'pro' knives are secretly fragile. This one is different. It's a true workhorse, built from tough German 1.4116 steel. It handles daily prep, resists stains, and sharpens up in seconds. All the performance, none of the panic.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": false,
@@ -874,18 +874,19 @@
         "width": "page",
         "heading": "Built to Perform",
         "img": "shopify://shop_images/product-x02-004.png",
-        "img_text": "Full Tag for Balance and Durability",
-        "info_header1": "Hardness That Lasts",
+        "img_text": "Full Tang for Perfect Balance",
+        "info_header1": "A Breeze to Maintain",
         "info_content1": "~56-58 HRC",
-        "info_footer1": "Built to withstand daily use, this hardness level ensures a balance of durability and flexibility, keeping the blade strong without becoming brittle.",
-        "info_header2": "Sharper Edge Corner",
+        "info_footer1": "This is the workhorse sweet spot. It's hard enough to hold a great edge, but tough enough to resist chipping and—best of all—a total breeze to re-sharpen at home.",
+        "info_header2": "Effortless, Clean Cuts",
         "info_content2": "~15° Edge Cut",
-        "info_footer2": "A finely honed edge angle delivers smoother, cleaner cuts. Designed for consistent sharpness, it makes every slice precise, effortless, and professional.",
+        "info_footer2": "A 15° edge glides through food with less effort, giving you cleaner, smoother, and more professional-looking cuts. It just works.",
         "color_scheme": "scheme-5"
       }
     },
     "product_info2_eVwTgB": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "width": "full",
@@ -925,8 +926,8 @@
         "color_scheme": "scheme-5",
         "footer_state": "visible",
         "footer_type": "third",
-        "footer_left": "<p>Supreme Series delivers great performance at an accessible price, offering the <strong>strength of professional-grade steel and the comfort of ergonomic design.</strong> It’s crafted to be reliable, versatile, and the everyday knife you’ll trust for years of consistent use.</p>",
-        "footer_right": "<p>With a design that’s proven, durable, and user-friendly, the Supreme Series balances toughness, sharpness, and comfort—so you can cook with confidence, meal after meal.</p>",
+        "footer_left": "<p>Meet your new <strong>daily workhorse</strong>. The Supreme series gives you tough German steel and a comfy, balanced handle at a no-BS price. It's the reliable, \"does-it-all\" knife you'll trust for years.</p>",
+        "footer_right": "<p>It just feels right. The Supreme perfectly balances no-fuss toughness, a sharp 15° edge, and a secure handle. It’s built to give you total control and help you cook with confidence, meal after meal.</p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "additional_footer": false,
@@ -939,7 +940,7 @@
       "name": "Product Info4",
       "settings": {
         "width": "page",
-        "heading": "",
+        "heading": "More from Supreme Series",
         "color_scheme": "scheme-5",
         "padding_top": 80,
         "padding_bottom": 80,
@@ -994,6 +995,7 @@
     },
     "product_description_t4ATaB": {
       "type": "product-description",
+      "disabled": true,
       "name": "Product Description",
       "settings": {
         "width": "page",
@@ -1006,6 +1008,7 @@
     },
     "collection_slider_MqNLGx": {
       "type": "collection_slider",
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "title": "THIN. SHARP. POWERFUL",
@@ -1291,6 +1294,7 @@
         "text_Pq7Ga8": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
             "width": "100%",
@@ -1351,6 +1355,7 @@
     },
     "img_with_text_67m3af": {
       "type": "img-with-text",
+      "disabled": true,
       "name": "Img with text",
       "settings": {
         "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
