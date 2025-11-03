@@ -262,9 +262,9 @@
             <div class="product-swiper">
                 <div class="swiper-wrapper">
                     {% for product in collection.products %}
-                        <div href="{{ product.url }}" class="swiper-slide swiper-slide-{{ forloop.index }}">
+                        <a href="{{ product.url }}" class="swiper-slide swiper-slide-{{ }}">
                             <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
@@ -347,10 +347,8 @@
     const productslider = (num) => {
         const products = document.querySelectorAll('.product-info');
         const productInfos = document.querySelectorAll('.product-description-span');
-        {% comment %} const swipers = document.querySelectorAll('.swiper-slide'); {% endcomment %}
         const product = document.querySelector(`.product-info-${num}`);
         const productInfo = document.querySelector(`.product-slider-${num}`);
-        {% comment %} const swiper = document.querySelector(`.swiper-slide-${num}`); {% endcomment %}
 
         products.forEach((product) => {
             product.classList.remove('active');
@@ -358,12 +356,8 @@
         productInfos.forEach((productInfo) => {
             productInfo.classList.remove('active');
         });
-        swipers.forEach(swiper) => {
-            swiper.classList.remove('active');
-        }
         product.classList.add('active');
         productInfo.classList.add('active');
-        swiper.classList.add('active');
     };
     
     const btn = document.querySelector('.collection-products-div2');
