@@ -262,7 +262,7 @@
             <div class="product-swiper">
                 <div class="swiper-wrapper">
                     {% for product in collection.products %}
-                        <div href="{{ product.url }}" class="swiper-slide swiper-slide-{{ forloop.index }}">
+                        <div href="{{ product.url }}" class="swiper-slide">
                             <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
                         </div>
                     {% endfor %}
