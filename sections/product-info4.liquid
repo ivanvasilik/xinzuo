@@ -245,6 +245,7 @@
         font-weight: 600;
         font-size: 36px;
         color: #fff;
+        display: none;
     }
 
     .section-{{ section.id }} .swiper-slide img {
@@ -276,6 +277,10 @@
         opacity: 0.5;
     }
 
+    .section-{{ section.id }} .swiper-slide .jdgm-widget {
+        display: none;
+    }
+
     .section-{{ section.id }} .jdgm-prev-badge__text {
         font-family: "Albert Sans";
         font-weight: 400;
@@ -284,7 +289,7 @@
     }
 
     .section-{{ section.id }} .collection-price {
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: space-between;
         padding: 0 12px;
@@ -351,6 +356,18 @@
         .section-{{ section.id }} h2 {
             font-size: 28px;
             margin-bottom: 12px;
+        }
+
+        .section-{{ section.id }} .swiper-slide h2 {
+            display: block;
+        }
+
+        .section-{{ section.id }} .swiper-slide .jdgm-widget {
+            display: block;
+        }
+
+        .section-{{ section.id }} .collection-price {
+            display: flex;
         }
     }
 {% endstyle %}
