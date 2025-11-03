@@ -181,21 +181,8 @@
     {% endif %}
 
     @media screen and (max-width: 1025px) {
-        .section-{{ section.id }} {
-            padding: 64px 0;
-        }
-        
-        .section-{{ section.id }} .slider-header span {
-            margin-bottom: 36px;
-        }
-        
         .section-{{ section.id }} .slider-header h2 {
             font-size: 36px;
-        }
-
-        .section-{{ section.id }} h2 {
-            font-size: 36px;
-            margin-bottom: 48px;
         }
     }
 
@@ -250,12 +237,21 @@
         }
     }
     
-    
+
+    .section-{{ section.id }} .swiper-slide h2 {
+        padding: 24px 12px 0;
+        margin: 0;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff;
+    }
+
     .section-{{ section.id }} .swiper-slide img {
         width: 100%;
         object-fit: cover;
     }
-    
+
     .section-{{ section.id }} .swiper-buttons {
         display: flex;
         margin-top: 64px;
