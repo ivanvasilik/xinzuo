@@ -444,7 +444,7 @@
                 "accordion_row_6HHD9d": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "WHAT'S IN THE BOX?",
+                    "heading": "READY TO GIFT",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -453,13 +453,13 @@
                     "text_EdgYbR": {
                       "type": "text",
                       "settings": {
-                        "text": "<ul><li><strong>Steel Type:</strong> German 1.4116 Stainless Steel</li><li><strong>Hardness (HRC):</strong> 56-58 HRC</li><li><strong>What that means:</strong> The perfect balance of toughness and edge retention. Super durable and easy to maintain.</li><li><strong>Handle:</strong> Riveted Red Wood</li><li><strong>Heat Treatment:</strong> Vacuum Heat Treatment</li><li><strong>Blade Construction:</strong> Single-layer (mono-steel)</li></ul>",
+                        "text": "<p>Yep. All our knives arrive in a beautiful, premium gift box that’s ready to impress. (Whether it's for a very lucky cook, or just for you.)</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
-                        "font_size": "1rem",
+                        "font_size": "0.875rem",
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
