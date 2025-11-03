@@ -819,33 +819,33 @@
         "block_UJiBwA": {
           "type": "block",
           "settings": {
-            "header": "With vacuum + cryo treatment, it gains",
-            "content": "Extreme Hardness",
-            "footer": "63 HRC for extreme edge strength."
+            "header": "With vacuum + cryo treatment, it achieves",
+            "content": "Peak Hardness",
+            "footer": "At 62-64 HRC, this is our hardest steel for maximum edge retention."
           }
         },
         "block_XD86y8": {
           "type": "block",
           "settings": {
-            "header": "With vanadium + niobium alloying, it delivers",
-            "content": "Elite toughness",
-            "footer": "resists cracks, chips, heavy use"
+            "header": "With vanadium + niobium alloying, it has",
+            "content": "Engineered Toughness",
+            "footer": "The perfect balance of hardness and durability to prevent chips."
           }
         },
         "block_pXdtFM": {
           "type": "block",
           "settings": {
-            "header": "With stainless chromium protection, it ensures",
-            "content": "Refined sharpness",
-            "footer": "smoother cuts, longer-lasting keenness"
+            "header": "Thanks to an ultra-fine steel grain, it takes a",
+            "content": "Microscopic Edge",
+            "footer": "For the sharpest, cleanest cuts you've ever experienced."
           }
         },
         "block_4FCBML": {
           "type": "block",
           "settings": {
-            "header": "Enhanced by chromium's stainless shield, it ensures",
-            "content": "Luxury durability",
-            "footer": "resisting rust while preserving brilliance"
+            "header": "Enhanced by 73 layers of Damascus, it gets",
+            "content": "Lasting Durability",
+            "footer": "Resists corrosion, protects the core, and looks stunning."
           }
         }
       },
