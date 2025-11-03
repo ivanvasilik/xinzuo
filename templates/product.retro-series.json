@@ -482,7 +482,7 @@
                 "accordion_row_UfiwpK": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "TECHNICAL DETAILS",
+                    "heading": "THE NERDY BITS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -491,7 +491,7 @@
                     "text_JKdy9F": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The Retro Series Chef Knife is forged with a Damascus-clad 10Cr15CoMoV core, designed for precise cutting, versatile use, and long-term edge stability.</p><p>The handle is crafted from desert ironwood or redwood with buffalo horn, offering a comfortable grip and natural resistance to wear.</p>",
+                        "text": "<p><strong>Steel Type:</strong> 67-Layer Damascus Steel<br/><strong>Core Steel:</strong> 10Cr15CoMoV (VG10-Equivalent)<br/><strong>Hardness (HRC):</strong> 60±1 HRC<br/><strong>Handle:</strong> Oak Burnt Handle<br/><strong>Heat Treatment:</strong> Vacuum Heat Treatment + Deep Freeze<br/><strong>What that means:</strong> Pro-level hardness plus deep-freeze toughness.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
