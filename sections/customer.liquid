@@ -101,6 +101,9 @@
             spaceBetween: 0,
             centeredSlides: true,
             loop: true,
+            autoplay: {
+                delay: 5000
+            },
             breakpoints: {
                 570: {
                     slidesPerView: 3,
@@ -121,10 +124,6 @@
             },
         });
     });
-
-    setInterval(() => {
-        swiper.slideNext();
-    })
 </script>
 
 {% schema %}
