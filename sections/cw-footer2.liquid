@@ -164,10 +164,12 @@
                 </div>
                 <div class="footer-list">
                     <span class="menu-title">{{ section.settings.contact_us }}</span>
+{% comment %}
                     <div class="menu-item">
                         <img src="{{ section.settings.phone-icon | img_url: 'master' }}" width="100%" height="100%" alt="Phone">
                         <p>{{ section.settings.phone-number }}</p>
                     </div>
+{% endcomment %}
                     <div class="menu-item">
                         <img src="{{ section.settings.email-icon | img_url: 'master' }}" width="100%" height="100%" alt="Email">
                         <p>{{ section.settings.email-number }}</p>
