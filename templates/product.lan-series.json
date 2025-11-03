@@ -785,14 +785,14 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square.png",
-            "content": "<p><strong>Chromium  Protection</strong><br/><br/>This is what fights off rust and stains. It keeps your knife looking clean and sharp, even in a busy, wet kitchen.</p>"
+            "content": "<p><strong>Chromium  Protection</strong><br/>This is what fights off rust and stains. It keeps your knife looking clean and sharp, even in a busy, wet kitchen.</p>"
           }
         },
         "icon_NxVM3T": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_1.png",
-            "content": "<p>Molybdenum (~1.5%) <strong>boosts toughness and reduces brittleness</strong>, allowing the knives to resist cracks or chips during heavy chopping and professional kitchen work.</p>"
+            "content": "<p><strong>Molybdenum Toughness</strong><br/>This is the \"anti-chip\" ingredient. It adds real toughness so your blade isn’t brittle. All the performance, none of the panic.</p>"
           }
         },
         "icon_GWBWPm": {
