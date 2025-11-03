@@ -61,7 +61,7 @@
         <h5>{{ product.compare_at_price | money }}</h5>
       {% endif %}
     </div>
-    <div class="product-details-shipping">
+    {% comment %} <div class="product-details-shipping">
       <div class="product-shipping-header">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <g clip-path="url(#clip0_4592_48393)">
@@ -101,7 +101,7 @@
           <span>{{ section.settings.shipping_content2 }}</span>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
     <div class="product-details-info">
       <span>{{ section.settings.detail_content }}</span>
       <div class="product-detail_info-divs">
