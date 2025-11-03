@@ -133,10 +133,10 @@
       "type": "cw-hero",
       "name": "CW Hero",
       "settings": {
-        "heading_desktop": "<h2>Exclusively</h2><h2>in Australia</h2>",
-        "content_desktop": "<p>Home of the official Australian representative for a globally acclaimed knife brand.</p>",
-        "heading_mobile": "<h2>Officially</h2><h2>in Australia</h2>",
-        "content_mobile": "<p>Home of the official Australian representative for a globally acclaimed Xinzuo brand.</p>",
+        "heading_desktop": "<h2>Look Sharp, Australia.</h2>",
+        "content_desktop": "<p>We’re the official home of Xinzuo in Australia, bringing game-changing sharpness straight to your door.</p>",
+        "heading_mobile": "<h2>Look Sharp, Australia.</h2>",
+        "content_mobile": "<p>We’re the official home of Xinzuo in Australia, bringing game-changing sharpness straight to your door.</p>",
         "link_text": "EXPLORE PRODUCTS",
         "desktop_img": "shopify://shop_images/1_1_424bcec9-c9c1-44f7-8e2b-f93eba483199.png",
         "mobile_img": "shopify://shop_images/IMG_5941_1_d1b0d206-2b5e-4930-8b5c-399fd91b7e84.png"
@@ -248,7 +248,7 @@
       ],
       "name": "Customers",
       "settings": {
-        "heading": "Trusted by Michelin-Starred Chefs Worldwide"
+        "heading": "Trusted by Michelin Star Chefs Worldwide."
       }
     },
     "home_slider_g9dVGe": {
@@ -537,8 +537,8 @@
           "settings": {
             "heading": "Precision in Every Cut",
             "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.</p>",
-            "customer": "— Chef Joshua Hitchcock",
-            "location": "Head Chef, Salti Restaurant & Bar Daydream Island, QLD"
+            "customer": "Chef Joshua Hitchcock",
+            "location": "— Head Chef, Salti Restaurant & Bar Daydream Island, QLD"
           }
         },
         "block_Ljni9A": {
@@ -547,37 +547,27 @@
             "heading": "The Chef’s Perfect Edge",
             "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. </p>",
             "customer": "Chef Daniel Richter",
-            "location": "Head Chef, Bellevue Kitchen & Bar Hamburg, Germany"
+            "location": "— Head Chef, Bellevue Kitchen & Bar Hamburg, Germany"
           }
         },
         "block_L8cEcn": {
           "type": "block",
           "settings": {
-            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
-            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
-            "customer": "Chef Daniel Richter",
-            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
-          }
-        },
-        "block_iD89Hz": {
-          "type": "block",
-          "settings": {
-            "heading": "Xinzuo Knives Make Every Cut Feel Effortless",
-            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. These knives handle daily work with ease and never let me down. It’s rare to find tools that combine lasting quality with such comfort, balance, and genuine joy in cooking.</p>",
-            "customer": "Chef Daniel Richter",
-            "location": "Head Chef, Bellevue Kitchen & Bar — Hamburg, Germany"
+            "heading": "Quality Control",
+            "content": "<p>Xinzuo stands out as one of the select few brands that have impressed me with their quality control and precise heat treatment of their knives.</p>",
+            "customer": "Chef Panko",
+            "location": "— YouTube Kitchen Knife Reviewer"
           }
         }
       },
       "block_order": [
         "block_HigAQt",
         "block_Ljni9A",
-        "block_L8cEcn",
-        "block_iD89Hz"
+        "block_L8cEcn"
       ],
       "name": "Reviews",
       "settings": {
-        "heading": "<h2>Endorsed by <strong>Culinary</strong></h2><h2><strong>Masters</strong></h2>",
+        "heading": "<h2>Chefs Love Them. </h2><h2><strong>You Will Too.</strong></h2>",
         "img": "shopify://shop_images/Rectangle_457.png"
       }
     },
@@ -641,7 +631,7 @@
                 "text_7EtcXB": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Good question. It's a clear step-up in performance and materials.</p><ul><li><strong>Supreme (Our Classic Workhorse):</strong> This is your durable, reliable all-rounder. It's made from tough <strong>German 1.4116 Steel</strong>—the same steel used by the big legacy brands—so it's a breeze to sharpen and maintain.</li><li><strong>Retro (The Sharp Hybrid):</strong> This is a step up to a harder, sharper <strong>Composite Steel core (10Cr15CoMoV)</strong>. It will hold its edge longer than the Supreme and features a classic handle with a buffalo horn accent.</li><li><strong>Mo (The Damascus Performer):</strong> This is where you get the \"wow\" factor <em>and</em> serious performance. It has the same sharp <strong>10Cr core</strong>, but it's wrapped in <strong>67 layers of real Damascus steel</strong> and features a burnt oak handle.</li><li><strong>LAN (Our Premium Best):</strong> This is our top-of-the-line. It's built on an elite <strong>Powder Steel core (14Cr)</strong>, which is incredibly hard (62+ HRC) and holds an edge for an exceptionally long time. It's wrapped in <strong>73 layers of Damascus</strong> and finished with a beautiful olive wood handle.</li></ul>",
+                    "text": "<p><strong>Supreme (The Workhorse):</strong> Your durable, reliable first great knife.</p><p><strong>Retro (The Upgrade):</strong> A big step up. Stays seriously sharp, for longer.</p><p><strong>Mo (The Stunner):</strong> All the sharpness of the Upgrade, in a beautiful Damascus finish.</p><p><strong>LAN (The Pro):</strong> Our absolute best. Elite steel for an edge that just doesn't quit.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -680,7 +670,7 @@
                 "text_g7yrea": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><strong>Oh, it’s 100% real. That pattern isn't a cheap laser-etch.</strong> It’s the genuine result of 67 or 73 layers of steel folded over that high-performance core.</p><p>It's not just for show, either; the layers add resilience and create micro-pockets that help food release from the blade. A lot of knock-offs try to fake this look with a laser. Bless their hearts. This is the real deal.</p>",
+                    "text": "<p>Oh, 100%. That’s not a cheap laser-etch you’ll see on knock-offs. </p><p>It’s the real, beautiful result of folding 67+ layers of steel over that high-performance core. It looks incredible, and it even helps food slide right off the blade. This is the real deal.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -711,7 +701,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "So... can I put any of them in the dishwasher?",
+                "heading": "So... can I put my knife in the dishwasher?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -721,7 +711,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Please, for the love of all things sharp, <strong>no.</strong></p><p>A dishwasher is where great knives go to die. The harsh detergents will dull the precision hand-honed edge, the high heat can damage and warp the premium wood handles, and clanging against a plate is the fastest way to get a chip.</p><p>It takes 30 seconds to <strong>hand wash with soap and dry immediately.</strong> Treat them right, and they'll be your favourite kitchen tool for life.</p>",
+                    "text": "<p>That's the one hard \"no.\" A dishwasher's high heat and harsh soap are brutal on a sharp blade and a beautiful handle.</p><p><strong>The simple fix:</strong> Just give it a 10-second hand wash with warm, soapy water right after use. Done.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -762,7 +752,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yep. And we're proud of it.</p><p>Here's our formula: We source <em>world-class</em> steel from Germany and Japan, as well as elite powder steels. Then, our partner artisans in Yangjiang—a city that's been a global centre for knife-making for over 1,400 years—use our modern \"laser-cut, vacuum-treated, hand-honed\" process.</p><p>You get a knife that performs as well (or better) than the old legacy brands, just without the traditional markups and marketing BS.</p>",
+                    "text": "<p>Yep. They’re made in Yangjiang, the \"Capital of Knives.\"</p><p>Here’s a fun fact: Yangjiang has been mastering this craft for over 1,400 years. That’s centuries before the famous hubs in Germany and Japan even got started.</p><p>So we take world-class steel, send it to the city with the longest history of making world-class blades, and skip the legacy-brand markups. It’s not just a good knife; it's a smart one.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -803,7 +793,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>No dramas. We're not into \"buyer's remorse.\" If it's not love at first slice, you can return it <strong>within 30 days for a full refund.</strong></p><p>For the long haul, all our knives are covered by a <strong>lifetime warranty</strong> against manufacturing defects. And since we're a 100% Australian-based company, you're always covered by your full rights under <strong>Australian Consumer Law.</strong> We've got your back.</p>",
+                    "text": "<p>Easy. If it's not love at first slice, send it back within 30 days for a full refund.</p><p>You're also covered by a lifetime warranty against manufacturing defects. And as a 100% Aussie company, you’re always protected by Australian Consumer Law. We’ve got your back.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -842,6 +832,7 @@
         "text_XaMgEF": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
             "width": "100%",
@@ -902,6 +893,7 @@
     },
     "img_with_text_geRLJH": {
       "type": "img-with-text",
+      "disabled": true,
       "name": "Img with text",
       "settings": {
         "heading": "<p>Experience Precision</p><p>in Every Cut</p>",

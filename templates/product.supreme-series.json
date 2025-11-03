@@ -187,7 +187,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Fast standard delivery within 5–7 days, ensuring your knife arrives safely and ready for immediate kitchen use.</p>",
+                    "text": "<p>Ships fast from our AU warehouse</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -271,7 +271,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Secure protective packaging included at no extra cost, designed to prevent damage during shipping and handling.</p>",
+                    "text": "<p>Aussie Lifetime Warranty</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -297,6 +297,90 @@
               "block_order": [
                 "icon_DXAg9Q",
                 "text_6Ytn7D"
+              ]
+            },
+            "group_F7Q7df": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_nmq3gM": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/Check_3a9c0588-3838-4617-870d-05b2301e1f84.png",
+                    "width": 24,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_RaX7r9": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>30-Day No-Fuss Returns</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_nmq3gM",
+                "text_RaX7r9"
               ]
             },
             "accordion_xErnFV": {
@@ -644,6 +728,7 @@
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",
+            "group_F7Q7df",
             "accordion_xErnFV",
             "text_EUV7Bd",
             "text_dNwVKF",
@@ -662,13 +747,13 @@
         "shipping_content1": "18 hours left, for get it by tomorrow",
         "shipping_icon2": "shopify://shop_images/Truck_08a77173-2c8e-48af-9d47-2036c9c77ed4.png",
         "shipping_content2": "Free Delivery on order worth $400",
-        "detail_content": "Reliable German steel chef knife with balanced handling, durable build, and effortless performance for versatile daily cooking tasks.",
+        "detail_content": "This is your new kitchen workhorse. Tough German 1.4116 steel, super stain-resistant, and a total breeze to sharpen. The perfect no-fuss upgrade.",
         "detail_icon1": "shopify://shop_images/Angle.png",
-        "detail_info1": "<p><strong>15deg Sharp </strong>Edge</p><p>Angle/Side</p>",
+        "detail_info1": "<p><strong>15</strong>° <strong>Angle</strong></p><p>Razor Sharp</p>",
         "detail_icon2": "shopify://shop_images/Triangle.png",
-        "detail_info2": "<p><strong>~2.2 mm Blade</strong></p><p>Thickness<br/><br/></p>",
+        "detail_info2": "<p><strong>~2.2mm Spine</strong></p><p>Perfectly Balanced<br/><br/></p>",
         "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-        "detail_info3": "<p>10Cr15CoMoV Composition </p>",
+        "detail_info3": "<p><strong>German Steel</strong></p><p>1.4116 Stainless</p>",
         "contact_heading": "Have any question",
         "contact_icon1": "shopify://shop_images/Phone_1.png",
         "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
