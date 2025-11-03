@@ -474,6 +474,7 @@
         "question_8WCU9U",
         "question_DB3B3e"
       ],
+      "disabled": true,
       "name": "Quick Question",
       "settings": {
         "heading": "Can’t decide which knife fits your style?"
