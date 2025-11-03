@@ -262,9 +262,39 @@
             <div class="product-swiper">
                 <div class="swiper-wrapper">
                     {% for product in collection.products %}
-                        <a href="{{ product.url }}" class="swiper-slide swiper-slide-{{ forloop.index }}">
-                            <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
-                        </a>
+                        <div class="swiper-slide swiper-slide-{{ forloop.index }}">
+                            <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}"></a>
+                            <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+                            <!-- Start of Judge.me Rating Widget -->
+                            <div class="jdgm-widget jdgm-preview-badge" 
+                                data-id="{{ collection.id }}" 
+                                data-auto-install="false"
+                                style="padding: 12px;"
+                            >
+                                {{ product.metafields.judgeme.badge }}
+                            </div>
+                            <!-- End of Judge.me Rating Widget -->
+                            <div class="collection-price">
+                                <span class="prices">
+                                    <span class="sale-price">{{ product.price | money }}</span>
+                                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                                </span>
+                                <a class="collection-link" href="{{ product.url }}">
+                                    <span>SHOP NOW</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <g clip-path="url(#clip0_6018_26691)">
+                                            <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_6018_26691">
+                                            <rect width="20" height="20" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
