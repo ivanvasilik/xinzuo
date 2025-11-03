@@ -755,7 +755,7 @@
         "detail_icon2": "shopify://shop_images/Hammer.png",
         "detail_info2": "<p><strong>60-62 HRC</strong></p><p>Hardness</p>",
         "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-        "detail_info3": "<p><strong>10Cr15CoMoV</strong></p><p>Core Steel </p>",
+        "detail_info3": "<p><strong>10Cr15CoMoV core,</strong></p><p>Core Steel </p>",
         "contact_heading": "Have any question",
         "contact_icon1": "shopify://shop_images/Phone_1.png",
         "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
@@ -776,7 +776,7 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Square_3.png",
-            "content": "<p><strong>Carbon Hardness</strong>This is the \"stays sharp\" secret. The high-carbon core holds a razor edge for months, not weeks.</p>"
+            "content": "<p><strong>Carbon Hardness<br/></strong>This is the \"stays sharp\" secret. The high-carbon core holds a razor edge for months, not weeks.</p>"
           }
         },
         "icon_mxe7iw": {
