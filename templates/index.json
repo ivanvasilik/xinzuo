@@ -842,6 +842,7 @@
         "text_XaMgEF": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
             "width": "100%",
@@ -902,6 +903,7 @@
     },
     "img_with_text_geRLJH": {
       "type": "img-with-text",
+      "disabled": true,
       "name": "Img with text",
       "settings": {
         "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
