@@ -444,7 +444,7 @@
                 "accordion_row_6HHD9d": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "WHAT’S INCLUDED",
+                    "heading": "WHAT'S IN THE BOX?",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -453,7 +453,7 @@
                     "text_EdgYbR": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
+                        "text": "<ul><li><strong>Steel Type:</strong> German 1.4116 Stainless Steel</li><li><strong>Hardness (HRC):</strong> 56-58 HRC</li><li><strong>What that means:</strong> The perfect balance of toughness and edge retention. Super durable and easy to maintain.</li><li><strong>Handle:</strong> Riveted Red Wood</li><li><strong>Heat Treatment:</strong> Vacuum Heat Treatment</li><li><strong>Blade Construction:</strong> Single-layer (mono-steel)</li></ul>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -483,7 +483,7 @@
                 "accordion_row_UfiwpK": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "TECHNICAL DETAILS",
+                    "heading": "THE NERDY BITS",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -492,11 +492,11 @@
                     "text_JKdy9F": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied The Supreme Series  Chef Knife features German 1.4116 stainless steel, delivering reliable hardness, balanced weight, and consistent sharpness for everyday kitchen preparation.</p><p>Its ergonomic redwood handle provides comfort during extended use, while the full tang construction ensures durability and secure control in varied cooking tasks.</p>",
+                        "text": "<p><strong>Steel Type: </strong>German 1.4116 Stainless Steel</p><p><br/><strong>Hardness (HRC)</strong>: 56-58 HRC.</p><p><br/><strong>Handle: </strong>Riveted Red Wood</p><p><br/><strong>Heat Treatment: </strong>Vacuum Heat Treatment<br/>Blade Construction: Single-layer (mono-steel)<br/><br/></p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
-                        "type_preset": "rte",
+                        "type_preset": "custom",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
                         "line_height": "normal",
