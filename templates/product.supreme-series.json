@@ -529,6 +529,7 @@
             "text_EUV7Bd": {
               "type": "text",
               "name": "t:names.text",
+              "disabled": true,
               "settings": {
                 "text": "<p><em>Note - All knives tested under rigorous quality control for consistency.</em></p>",
                 "width": "fit-content",
@@ -555,6 +556,7 @@
             "text_dNwVKF": {
               "type": "text",
               "name": "t:names.text",
+              "disabled": true,
               "settings": {
                 "text": "<h4></h4><h4></h4><h4></h4><h4></h4><h4>Most Asked Questions</h4>",
                 "width": "fit-content",
@@ -581,6 +583,7 @@
             "accordion_GU3TmD": {
               "type": "accordion",
               "name": "t:names.accordion",
+              "disabled": true,
               "settings": {
                 "icon": "caret",
                 "dividers": true,

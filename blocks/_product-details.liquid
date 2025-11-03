@@ -120,7 +120,7 @@
       </div>
     </div>
     {% content_for 'blocks' %}
-    <div class="product-details-contact">
+    {% comment %} <div class="product-details-contact">
       <h4>{{ section.settings.contact_heading }}</h4>
       <div class="product-detail_info-divs">
         <div class="product-detail_info-div">
@@ -136,7 +136,7 @@
           <span>{{ section.settings.contact_info3 }}</span>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
   {% endcapture %}
 
   {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}

@@ -51,7 +51,7 @@
       "settings": {
         "content_direction": "column",
         "gap": 32,
-        "color_scheme": "",
+        "color_scheme": "scheme-5",
         "padding-block-start": 40,
         "padding-block-end": 80
       }
