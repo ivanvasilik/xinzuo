@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Free Express Shipping on Orders $100+",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
@@ -31,7 +31,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Shop our latest arrivals!",
+            "text": "Black Friday Sale – 50% Off Everything",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
