@@ -249,6 +249,76 @@
             width: 100%;
         }
     }
+    
+    
+    .section-{{ section.id }} .swiper-slide img {
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .section-{{ section.id }} .swiper-buttons {
+        display: flex;
+        margin-top: 64px;
+        padding: 0 32px 16px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div {
+        position: static;
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-{{ section.id }} .swiper-buttons div:after {
+        display: none;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div[aria-disabled="true"] {
+        opacity: 0.5;
+    }
+
+    .section-{{ section.id }} .jdgm-prev-badge__text {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .collection-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+
+    .section-{{ section.id }} .collection-price span.prices {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff
+    }
+        
+    .section-{{ section.id }} .collection-price span.compare-price {
+        font-size: 22px;
+        text-decoration: line-through;
+        color: #828282;
+    }
+
+    .section-{{ section.id }} .collection-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Sen";
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 250%;
+        border-bottom: 1px solid #c9c9cc;
+    }
+
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
