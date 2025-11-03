@@ -187,7 +187,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Ships fast from our AU warehouse.</p>",
+                    "text": "<p>Ships fast from our AU warehouse</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -355,7 +355,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Aussie Lifetime Warranty.</p>",
+                    "text": "<p>30-Day No-Fuss Returns</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
