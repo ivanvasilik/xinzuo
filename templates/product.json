@@ -324,7 +324,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "DESCRIPTION",
-                    "open_by_default": true,
+                    "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
@@ -361,6 +361,7 @@
                 },
                 "accordion_row_6HHD9d": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "heading": "WHAT’S INCLUDED",
                     "open_by_default": false,
@@ -400,6 +401,7 @@
                 },
                 "accordion_row_UfiwpK": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "heading": "TECHNICAL DETAILS",
                     "open_by_default": false,
