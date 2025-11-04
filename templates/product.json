@@ -661,6 +661,7 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
+        "is_knife": false,
         "shipping_title1": "Earliest Delivery Tomorrow to",
         "shipping_title2": "Carina, 4152",
         "shipping_icon1": "shopify://shop_images/ClockCounterClockwise_7c120623-bc70-461d-a26e-3764c1069a3b.png",
