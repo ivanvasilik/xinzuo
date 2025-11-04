@@ -30,8 +30,10 @@
         <span>
           <a href="/">Home</a>
           <span>></span>
-          <a href="/collections/all">KNIVES</a>
-          <span>></span>
+          {% if section.settings.is_knife %}
+            <a href="/collections/all">KNIVES</a>
+            <span>></span>
+          {% endif %}
           <span>{{ collection.title }}</span>
         </span>
         {% comment %} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -102,23 +104,25 @@
         </div>
       </div>
     </div> {% endcomment %}
-    <div class="product-details-info">
-      <span>{{ section.settings.detail_content }}</span>
-      <div class="product-detail_info-divs">
-        <div class="product-detail_info-div">
-          <img src="{{ section.settings.detail_icon1 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon1">
-          <span>{{ section.settings.detail_info1 }}</span>
-        </div>
-        <div class="product-detail_info-div">
-          <img src="{{ section.settings.detail_icon2 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon2">
-          <span>{{ section.settings.detail_info2 }}</span>
-        </div>
-        <div class="product-detail_info-div">
-          <img src="{{ section.settings.detail_icon3 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon3">
-          <span>{{ section.settings.detail_info3 }}</span>
+    {% if section.settings.is_knife %}
+      <div class="product-details-info">
+        <span>{{ section.settings.detail_content }}</span>
+        <div class="product-detail_info-divs">
+          <div class="product-detail_info-div">
+            <img src="{{ section.settings.detail_icon1 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon1">
+            <span>{{ section.settings.detail_info1 }}</span>
+          </div>
+          <div class="product-detail_info-div">
+            <img src="{{ section.settings.detail_icon2 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon2">
+            <span>{{ section.settings.detail_info2 }}</span>
+          </div>
+          <div class="product-detail_info-div">
+            <img src="{{ section.settings.detail_icon3 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon3">
+            <span>{{ section.settings.detail_info3 }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
     {% content_for 'blocks' %}
     {% comment %} <div class="product-details-contact">
       <h4>{{ section.settings.contact_heading }}</h4>
