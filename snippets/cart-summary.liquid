@@ -65,6 +65,8 @@
       </div> {% endcomment %}
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
+        {{ cart.total_price }}
+        {{ settings.shipping_value }}
         {% if cart.total_price > settings.shipping_value %}
           <span>Free Express Shipping</span>
         {% else %}
