@@ -52,7 +52,7 @@
     <p class="cart-summary-block-header">Price Details</p>
     <div class="cart-summary-prices">
       <div class="cart-summary-price">
-        <span>Subtotal</span>
+        <span>Total Amount</span>
         <span>{{ cart.total_price | money }}</span>
       </div>
       {% comment %} <div class="cart-summary-price">
@@ -65,18 +65,17 @@
       </div> {% endcomment %}
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
-        {% if cart.shipping_price == 0 or cart.total_price >= 0 %}
-          <span style="color: #828282;">{{ cart.shipping_price | money }}</span>
-          <span>Free</span>
+        {% if cart.total_price > settings.shipping_value %}
+          <span>Free Express Shipping</span>
         {% else %}
-          <span>{{ cart.shipping_price | money }}</span>
+          <span>Calcuated at checkout</span>
         {% endif %}
       </div>
     </div>
-    <div class="cart-summary-total">
+    {% comment %} <div class="cart-summary-total">
       <p>Total Amount</p>
       <span>{{ cart.total_price | money }}</span>
-    </div>
+    </div> {% endcomment %}
   </div>
   {% comment %} <div class="cart__original-total-container cart-primary-typography">
     {%- if cart.cart_level_discount_applications.size > 0 -%}
