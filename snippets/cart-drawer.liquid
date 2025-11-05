@@ -210,10 +210,6 @@
                 assign balance = settings.shipping_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
                 assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
-              elsif total_price < credit_value
-                assign balance = settings.credit_value | minus: total_price
-                assign balance_txt = balance | times: 100.00 | money_with_currency
-                assign message = settings.credit_message | replace: '{PRICE}', balance_txt
               else
                 assign message = settings.complete_message
               endif
@@ -222,7 +218,7 @@
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
-              <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
+              <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.shipping_value }}"></progress>
               {% comment %} <div class="shipping-value" style="left: {{ progress_value }}%;"></div> {% endcomment %}
             </span>
           </div>
