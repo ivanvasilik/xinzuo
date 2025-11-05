@@ -202,7 +202,6 @@
               </button>
             </div>
             {%- liquid 
-              assign message = settings.shipping_message
               assign total_price = cart.total_price | divided_by: 100.00
               assign shipping_value = settings.shipping_value
               assign credit_value = settings.credit_value
@@ -215,6 +214,7 @@
               endif
               assign progress_value = shipping_value | times: 100 | divided_by: credit_value
             -%}
+            {{ shipping_message }}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
