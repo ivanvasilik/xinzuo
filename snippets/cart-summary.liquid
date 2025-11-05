@@ -55,14 +55,14 @@
         <span>Subtotal</span>
         <span>{{ cart.total_price | money }}</span>
       </div>
-      <div class="cart-summary-price">
+      {% comment %} <div class="cart-summary-price">
         {% assign discount = 0 %}
         {% for discount_application in cart.cart_level_discount_applications %}
           {% assign discount = discount | plus: discount_application.total_allocated_amount %}
         {% endfor %}
         <span>Coupon discount</span>
         <span style="color: #34a853;">{{ discount | money }}</span>
-      </div>
+      </div> {% endcomment %}
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
         {% if cart.shipping_price == 0 or cart.total_price >= 0 %}
