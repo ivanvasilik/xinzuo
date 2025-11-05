@@ -20,10 +20,10 @@
          assign total_price = cart.total_price | divided_by: 100.00
          assign shipping_value = settings.shipping_value
          assign credit_value = settings.credit_value
-         if total_price < shipping_value
-          assign balance = settings.shipping_value | minus: total_price
+         if total_price < credit_value
+          assign balance = settings.credit_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money_with_currency
-          assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+          assign message = settings.credit_message | replace: '{PRICE}', balance_txt
          else
           assign message = settings.complete_message
          endif
@@ -36,10 +36,10 @@
         <span class="progress-bar">
           <span>$0</span>
           <div style="position: relative">
-            <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.shipping_value }}"></progress>
+            <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.credit_value }}"></progress>
             {% comment %} <div class="shipping-value" style="left: {{ progress_value }}%;"></div> {% endcomment %}
             {% comment %} <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span> {% endcomment %}
-            <span style="right: 0;{% if total_price > credit_value %}color: #fff;{% endif %}">${{ settings.shipping_value | divided_by: 10 }} DISCOUNT</span>
+            <span style="right: 0;{% if total_price > credit_value %}color: #fff;{% endif %}">${{ settings.credit_value | divided_by: 10 }} DISCOUNT</span>
           </div>
           <span>$100</span>
         </span>
