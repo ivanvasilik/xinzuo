@@ -69,9 +69,9 @@
     "cart_thumbnail_border": "none",
     "shipping_value": 100,
     "credit_value": 100,
-    "shipping_message": "",
+    "shipping_message": "<p>Add just {PRICE} more to unlock up to Free Delivery.</p>",
     "credit_message": "<p>Add just {PRICE} more to unlock up to $10 (10%) extra off.</p>",
-    "complete_message": "<p>Congrats! You've unlocked up to $10 extra off.</p>",
+    "complete_message": "<p>Congrats! You've unlocked up to Free Shipping.</p>",
     "drawer_recommend": [
       "hezhen-retro-series-10-inch-carving-knife",
       "xinzuo-mo-series-10-inch-carving-knife",
