@@ -90,24 +90,27 @@
       {% for link in block_settings.menu.links %}
         <li class="menu-list__list-item">
           {% if link.title != 'Logo' %}
-            <a
-              {% if link.links == blank %}
+            {% if link.links == blank %}
+              <a
                 {% if link.title == "FAQS" %}
                   href="#faq"
                 {% else %}
                   href="{{ link.url }}"
                 {% endif %}
-              {% else %}
+                data-skip-node-update="true"
+                class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
+                ref="menuitem"
+              >
+            {% else %}
+              <span
                 onclick="openMenu({{ forloop.index }})"
-              {% endif %}
-              data-skip-node-update="true"
-              class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
-              {%- if link.links != blank -%}
+                data-skip-node-update="true"
+                class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
                 aria-controls="submenu-{{ forloop.index }}"
                 aria-haspopup="true"
-              {%- endif -%}
-              ref="menuitem"
-            >
+                ref="menuitem"
+              >
+            {% endif %}
               <span class="menu-list__link-title">{{- link.title -}}</span>
               {%- if link.links != blank -%}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -121,7 +124,11 @@
                   </defs>
                 </svg>
               {%- endif -%}
-            </a>
+            {% if link.links == blank %}
+              </a>
+            {% else %}
+              </span>
+            {% endif %}
           {% else %}
             <a href="{{ link.url }}" aria-label="logo">
               <span class="menu-list__link-title">
