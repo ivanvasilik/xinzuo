@@ -176,8 +176,37 @@
                 </a>
             </div>
             <div class="hero-banner-img">
-                <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" loading="lazy" class="desktop-hero">
-                <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" loading="lazy" class="mobile-hero">
+                <img
+                    srcset="
+                    {{ section.settings.desktop_img | image_url: width: 800 }} 800w,
+                    {{ section.settings.desktop_img | image_url: width: 1200 }} 1200w,
+                    {{ section.settings.desktop_img | image_url: width: 1600 }} 1600w,
+                    {{ section.settings.desktop_img | image_url: width: 2000 }} 2000w"
+                    sizes="100vw"
+                    src="{{ section.settings.desktop_img | image_url: width: 1600 }}"
+                    alt="Desktop hero"
+                    width="100%"
+                    height="auto"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="desktop-hero"
+                >
+                <img
+                    srcset="
+                    {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
+                    {{ section.settings.mobile_img | image_url: width: 800 }} 800w,
+                    {{ section.settings.mobile_img | image_url: width: 1200 }} 1200w"
+                    sizes="100vw"
+                    src="{{ section.settings.mobile_img | image_url: width: 800 }}"
+                    alt="Mobile hero"
+                    width="100%"
+                    height="auto"
+                    loading="lazy"
+                    decoding="async"
+                    class="mobile-hero"
+                >
+                {% comment %} <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
+                <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero"> {% endcomment %}
             </div>
         </div>
     </div>
