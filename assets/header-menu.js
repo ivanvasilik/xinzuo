@@ -180,9 +180,9 @@ const DEACTIVATE_DELAY = 350;
 //   };
 // }
 
-if (!customElements.get('header-menu')) {
-  customElements.define('header-menu', HeaderMenu);
-}
+// if (!customElements.get('header-menu')) {
+//   customElements.define('header-menu', HeaderMenu);
+// }
 
 /**
  * Find the closest menu item.
