@@ -269,15 +269,15 @@
         centeredSlides: true,
         loop: false,
         grabCursor: true,
-        pagination: {
+        {% comment %} pagination: {
           el: sliderEl.querySelector('.swiper-pagination'),
           type: 'bullets',
           clickable: 'true',
-        },
+        }, {% endcomment %}
       });
 
       // Click-to-activate and follow link
-      sliderEl.querySelectorAll('.swiper-slide').forEach((slide, index) => {
+      {% comment %} sliderEl.querySelectorAll('.swiper-slide').forEach((slide, index) => {
         slide.addEventListener('click', (e) => {
           const isActive = slide.classList.contains('swiper-slide-active');
           const link = slide.querySelector('a');
@@ -289,7 +289,7 @@
             window.location.href = link.href;
           }
         });
-      });
+      }); {% endcomment %}
     });
   }
   initMenuSwipers();
