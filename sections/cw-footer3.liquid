@@ -58,7 +58,7 @@
         <p>{{ section.settings.copyright }}</p>
         <div class="footer-payments">
             {% for block in section.blocks %}
-                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="payment-{{ block.id }}">
+                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="payment-{{ block.id }}">
             {% endfor %}
         </div>
     </div>
