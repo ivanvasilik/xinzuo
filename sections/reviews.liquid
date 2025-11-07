@@ -90,7 +90,7 @@
     gap: 96px;
   }
 
-  .section-{{ section.id }} figure.menu-card h4 {
+  .section-{{ section.id }} figure.menu-card h2 {
     font-family: "Sen";
     font-weight: 600;
     font-size: 22px;
@@ -187,7 +187,7 @@
       background: linear-gradient(180deg, #282A33 0%, #0C0C0C 100%);
     }
 
-    .section-{{ section.id }} figure.menu-card h4 {
+    .section-{{ section.id }} figure.menu-card h2 {
       font-size: 19px;
       margin-bottom: 12px;
       color: #fff;
@@ -238,7 +238,7 @@
           <div class="swiper-slide">
             <figure class="menu-card">
               <div class="menu-card-top">
-                <h4>{{ block.settings.heading }}</h4>
+                <h2>{{ block.settings.heading }}</h2>
                 <p>{{ block.settings.content }}</p>
               </div>
               <div class="menu-card-bottom">
@@ -259,10 +259,9 @@
     function initMenuSwipers() {
       const sliders = document.querySelectorAll('.menu-swiper');
 
-      if (!sliders.length) return; // Exit if none found
+      if (!sliders.length) return;
 
       sliders.forEach((sliderEl) => {
-        // Prevent double-init
         if (sliderEl.classList.contains('swiper-initialized')) return;
 
         const swiperInstance = new Swiper(sliderEl, {
