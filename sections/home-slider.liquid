@@ -425,94 +425,42 @@
 </section>
 
 <script>
-  const homeswiper = new Swiper('.home-swiper', {
-    slidesPerView: 1.3,
-    spaceBetween: 10,
-    breakpoints: {
-      768: {
-        slidesPerView: 1.6,
-        spaceBetween: 20,
+  document.addEventListener('DOMContentLoaded', function () {
+    const homeswiper = new Swiper('.home-swiper', {
+      slidesPerView: 1.3,
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 1.6,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 2.6,
+          spaceBetween: 30,
+        },
       },
-      1024: {
-        slidesPerView: 2.6,
-        spaceBetween: 30,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-  
-  const homeslider = (num) => {
-    const homeCollections = document.querySelectorAll('.home-collection');
-    const homeSliders = document.querySelectorAll('.home-slider');
-    const homeCollection = document.querySelector(`.home-collection-${num}`);
-    const homeSlider = document.querySelector(`.home-slider-${num}`);
-
-    homeCollections.forEach((homeCollection) => {
-      homeCollection.classList.remove('active');
     });
-    homeSliders.forEach((homeSlider) => {
-      homeSlider.classList.remove('active');
-    });
-    homeCollection.classList.add('active');
-    homeSlider.classList.add('active');
-  };
-  
-  {% comment %} const btn = document.querySelector('.collection-products-div2');
-  const btn_width = btn.offsetWidth;
+    
+    const homeslider = (num) => {
+      const homeCollections = document.querySelectorAll('.home-collection');
+      const homeSliders = document.querySelectorAll('.home-slider');
+      const homeCollection = document.querySelector(`.home-collection-${num}`);
+      const homeSlider = document.querySelector(`.home-slider-${num}`);
 
-  const changeBtn = () => {
-    const ul = document.querySelector('.collection-products-ul');
-    const prevBtn = document.querySelector('.collection-products-div1');
-    const nextBtn = document.querySelector('.collection-products-div2');
-    let currentPosition;
-    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
-    else currentPosition = 0;
-    console.log(ul.parentElement.offsetWidth);
-    console.log(ul.offsetWidth);
-    if (ul.parentElement.offsetWidth >= ul.offsetWidth) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-    }
-    else {
-      if (-ul.parentElement.offsetWidth + ul.scrollWidth + currentPosition + btn_width < 0) {
-        ul.style.transform = `translate(${ul.parentElement.offsetWidth - ul.scrollWidth - btn_width}px)`;
-        nextBtn.style.display = "none";
-      }
-      if (currentPosition > 0) {
-        ul.style.transform = `translate(0)`;
-        prevBtn.style.display = "none";
-      }
-    }
-  }
-
-  const collectinUlNext = () => {
-    const prevBtn = document.querySelector('.collection-products-div1');
-    const nextBtn = document.querySelector('.collection-products-div2');
-    const ul = document.querySelector('.collection-products-ul');
-    let currentPosition;
-    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
-    else currentPosition = 0;
-    ul.style.transform = `translate(${currentPosition - 100}px)`;
-    prevBtn.style.display = "flex";
-    changeBtn();
-  }
-
-  const collectinUlPrev = () => {
-    const prevBtn = document.querySelector('.collection-products-div1');
-    const nextBtn = document.querySelector('.collection-products-div2');
-    const ul = document.querySelector('.collection-products-ul');
-    let currentPosition;
-    if (ul.style.transform != "") currentPosition = parseFloat(ul.style.transform.match(/-?\d+\.?\d*/)[0]);
-    else currentPosition = 0;
-    ul.style.transform = `translate(${currentPosition + 100}px)`;
-    nextBtn.style.display = "flex";
-    changeBtn();
-  }
-
-  changeBtn(); {% endcomment %}
+      homeCollections.forEach((homeCollection) => {
+        homeCollection.classList.remove('active');
+      });
+      homeSliders.forEach((homeSlider) => {
+        homeSlider.classList.remove('active');
+      });
+      homeCollection.classList.add('active');
+      homeSlider.classList.add('active');
+    };
+  })
 </script>
 
 {% schema %}
