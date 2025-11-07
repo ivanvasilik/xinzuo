@@ -258,37 +258,39 @@
 </section>
 
 <script>
-    const closeModal = () => {
-        const modal = document.querySelector(".question-modal");
-        modal.style.display = "none";
-        const firstModal = document.querySelector(`.question-modal-info-1`);
-        const modals = document.querySelectorAll(".question-modal-info");
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        firstModal.classList.add('active');
-        document.body.style.overflow = '';
-    }
-
-    const openModal = () => {
-        const modal = document.querySelector(".question-modal");
-        modal.style.display = "block";
-        document.body.style.overflow = 'hidden';
-    }
-
-    const nextModal = (num) => {
-        if (num < {{ section.blocks.size }}) {
-            const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
+    document.addEventListener('DOMContentLoaded', function () {
+        const closeModal = () => {
+            const modal = document.querySelector(".question-modal");
+            modal.style.display = "none";
+            const firstModal = document.querySelector(`.question-modal-info-1`);
             const modals = document.querySelectorAll(".question-modal-info");
             modals.forEach(modal => {
                 modal.classList.remove('active');
             });
-            nextModal.classList.add('active');
+            firstModal.classList.add('active');
+            document.body.style.overflow = '';
         }
-        else {
-            closeModal();
+
+        const openModal = () => {
+            const modal = document.querySelector(".question-modal");
+            modal.style.display = "block";
+            document.body.style.overflow = 'hidden';
         }
-    }
+
+        const nextModal = (num) => {
+            if (num < {{ section.blocks.size }}) {
+                const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
+                const modals = document.querySelectorAll(".question-modal-info");
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                nextModal.classList.add('active');
+            }
+            else {
+                closeModal();
+            }
+        }
+    })
 </script>
 
 {% schema %}
