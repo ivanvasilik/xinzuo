@@ -40,6 +40,28 @@
     {{ 'hh.scss' | asset_url | stylesheet_tag: preload: true }}
     {{ 'judgeme_core.css' | asset_url | stylesheet_tag }}
     {{ 'judge.css' | asset_url | stylesheet_tag }}
+
+    {% if request.path contains '/products/' %}
+      <script>
+        const imageThumbnail = () => {
+            const thumbnail = document.querySelector("slideshow-controls");
+            if (thumbnail) {
+                if (window.innerWidth > 750) {
+                    thumbnail.setAttribute("pagination-position", "left");
+                }
+                else {
+                    thumbnail.setAttribute("pagination-position", "center");
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            imageThumbnail();
+        });
+
+        window.addEventListener('resize', imageThumbnail());
+      </script>
+    {% endif %}
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
