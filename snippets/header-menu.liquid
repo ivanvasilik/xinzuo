@@ -433,18 +433,20 @@
 {% endstyle %}
 
 <script>
-  const openMenu = (num) => {
-    const menu = document.querySelector(`#submenu-${num}`);
-    const back = document.querySelector(`#header-dropdown-back-${num}`);
-    menu.style.maxHeight = menu.scrollHeight + 'px';
-    back.style.display = 'block';
-    document.body.style.overflow = "hidden";
-  };
-  const closeMenu = (num) => {
-    const menu = document.querySelector(`#submenu-${num}`);
-    const back = document.querySelector(`#header-dropdown-back-${num}`);
-    menu.style.maxHeight = 0;
-    back.style.display = 'none';
-    document.body.style.overflow = ""
-  };
+  document.addEventListener('DOMContentLoaded', function () {
+    const openMenu = (num) => {
+      const menu = document.querySelector(`#submenu-${num}`);
+      const back = document.querySelector(`#header-dropdown-back-${num}`);
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+      back.style.display = 'block';
+      document.body.style.overflow = "hidden";
+    };
+    const closeMenu = (num) => {
+      const menu = document.querySelector(`#submenu-${num}`);
+      const back = document.querySelector(`#header-dropdown-back-${num}`);
+      menu.style.maxHeight = 0;
+      back.style.display = 'none';
+      document.body.style.overflow = ""
+    };
+  })
 </script>

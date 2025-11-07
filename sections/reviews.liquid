@@ -255,44 +255,46 @@
 </section>
 
 <script>
-  function initMenuSwipers() {
-    const sliders = document.querySelectorAll('.menu-swiper');
+  document.addEventListener('DOMContentLoaded', function () {
+    function initMenuSwipers() {
+      const sliders = document.querySelectorAll('.menu-swiper');
 
-    if (!sliders.length) return; // Exit if none found
+      if (!sliders.length) return; // Exit if none found
 
-    sliders.forEach((sliderEl) => {
-      // Prevent double-init
-      if (sliderEl.classList.contains('swiper-initialized')) return;
+      sliders.forEach((sliderEl) => {
+        // Prevent double-init
+        if (sliderEl.classList.contains('swiper-initialized')) return;
 
-      const swiperInstance = new Swiper(sliderEl, {
-        slidesPerView: 1.3,
-        centeredSlides: true,
-        loop: false,
-        grabCursor: true,
-        {% comment %} pagination: {
-          el: sliderEl.querySelector('.swiper-pagination'),
-          type: 'bullets',
-          clickable: 'true',
-        }, {% endcomment %}
-      });
-
-      // Click-to-activate and follow link
-      {% comment %} sliderEl.querySelectorAll('.swiper-slide').forEach((slide, index) => {
-        slide.addEventListener('click', (e) => {
-          const isActive = slide.classList.contains('swiper-slide-active');
-          const link = slide.querySelector('a');
-
-          if (!isActive) {
-            e.preventDefault();
-            swiperInstance.slideTo(index);
-          } else if (link) {
-            window.location.href = link.href;
-          }
+        const swiperInstance = new Swiper(sliderEl, {
+          slidesPerView: 1.3,
+          centeredSlides: true,
+          loop: false,
+          grabCursor: true,
+          {% comment %} pagination: {
+            el: sliderEl.querySelector('.swiper-pagination'),
+            type: 'bullets',
+            clickable: 'true',
+          }, {% endcomment %}
         });
-      }); {% endcomment %}
-    });
-  }
-  initMenuSwipers();
+
+        // Click-to-activate and follow link
+        {% comment %} sliderEl.querySelectorAll('.swiper-slide').forEach((slide, index) => {
+          slide.addEventListener('click', (e) => {
+            const isActive = slide.classList.contains('swiper-slide-active');
+            const link = slide.querySelector('a');
+
+            if (!isActive) {
+              e.preventDefault();
+              swiperInstance.slideTo(index);
+            } else if (link) {
+              window.location.href = link.href;
+            }
+          });
+        }); {% endcomment %}
+      });
+    }
+    initMenuSwipers();
+  })
 </script>
 
 {% schema %}
