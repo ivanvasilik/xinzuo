@@ -1,0 +1,79 @@
+{%- comment -%}
+Reusable coupon snippet
+
+Usage example to render:
+{% render 'coupon-block',
+  code: 'XINZUO20',
+  text: 'Use this coupon for 20% off at checkout.',
+  color: '#e60013',
+  perforation: true,
+  margin_top: 12,
+  margin_bottom: 0
+%}
+{%- endcomment -%}
+
+{%- assign code = code | default: 'XINZUO20' -%}
+{%- assign text = text | default: 'Use this coupon for 20% off at checkout.' -%}
+{%- assign color = color | default: '#e60013' -%}
+{%- assign perforation = perforation | default: true -%}
+{%- assign mt = margin_top | default: 12 -%}
+{%- assign mb = margin_bottom | default: 0 -%}
+
+<div class="coupon-block" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
+  <div class="coupon-left">
+    <span class="coupon-label">Coupon</span>
+    <strong class="coupon-code">{{ code }}</strong>
+    <button class="coupon-copy" type="button" data-copy="{{ code }}">Copy</button>
+  </div>
+  <p class="coupon-text">{{ text }}</p>
+</div>
+
+<style>
+  .coupon-block{
+    display:block; width:100%;
+    background: color-mix(in oklab, var(--c) 5%, #fff);
+    border: 2px dotted var(--c);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    box-sizing: border-box;
+    position: relative;
+  }
+  {% if perforation %}
+  .coupon-block:before,.coupon-block:after{
+    content:""; position:absolute; top:50%;
+    width:14px; height:14px; background:#fff; border:2px solid var(--c);
+    border-radius:50%; transform:translateY(-50%);
+  }
+  .coupon-block:before{ left:-8px; }
+  .coupon-block:after{ right:-8px; }
+  {% endif %}
+  .coupon-left{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .coupon-label{
+    font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    padding:.22rem .5rem; border:1px solid var(--c); border-radius:999px;
+  }
+  .coupon-code{
+    font-family: var(--font-heading--family, inherit);
+    font-size: clamp(1rem, 2.6vw, 1.4rem); letter-spacing:.08em;
+  }
+  .coupon-copy{
+    border:1px solid var(--c); background:#fff; border-radius:8px;
+    padding:.4rem .6rem; font-size:.85rem; cursor:pointer;
+  }
+  .coupon-text{ margin:.25rem 0 0; opacity:.9; font-size:.95rem; }
+</style>
+
+<script>
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.coupon-block .coupon-copy');
+    if(!btn) return;
+    const code = btn.getAttribute('data-copy') || '';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(function(){
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1200);
+      });
+    }
+  });
+</script>
