@@ -1,66 +1,64 @@
 {%- comment -%}
-Minimal coupon snippet - fully scoped by uid to prevent style bleed.
-Render examples:
-  In add-to-cart.liquid -> uid: block.id
-  In Custom liquid block -> uid: section.id
+Minimal, scoped coupon
+Shows: COUPON: BF20 (COPY)
+Subtext: Black Friday 🎉 use the coupon above at checkout for 20% off
 {%- endcomment -%}
 
-{%- assign code = code | default: 'XINZUO20' -%}
-{%- assign text = text | default: 'Use this coupon for 20% off at checkout.' -%}
+{%- assign code = code | default: 'BF20' -%}
+{%- assign text = text | default: 'Black Friday 🎉 use the coupon above at checkout for 20% off' -%}
 {%- assign color = color | default: '#e60013' -%}
+{%- assign uid = uid | default: 'coupon' -%}
 {%- assign mt = margin_top | default: 12 -%}
 {%- assign mb = margin_bottom | default: 0 -%}
-{%- assign uid = uid | default: 'coupon' -%}
 
-<div id="coupon-{{ uid }}" class="coupon-block coupon--minimal" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
+<div id="coupon-{{ uid }}" class="coupon" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
   <div class="coupon-line">
-    <strong class="coupon-code" aria-label="Coupon code">{{ code }}</strong>
-    <button class="coupon-copy" type="button" aria-label="Copy code" data-copy="{{ code }}">
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M16 3H8a2 2 0 0 0-2 2v10h2V5h8V3zm3 4H10a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm0 12H10V9h9v10z" fill="currentColor"/>
-      </svg>
-      <span class="sr-only">Copy</span>
-    </button>
+    <span class="coupon-label">COUPON:</span>
+    <strong class="coupon-code">{{ code }}</strong>
+    <button class="coupon-copy" type="button" data-copy="{{ code }}">COPY</button>
   </div>
   <p class="coupon-text">{{ text }}</p>
 </div>
 
 <style>
   /* scope everything to this instance */
-  #coupon-{{ uid }}{ background: transparent; }
+  #coupon-{{ uid }} { background: transparent; }
 
   #coupon-{{ uid }} .coupon-line{
-    display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-    padding:.6rem .8rem; border:1.5px dotted var(--c); border-radius:999px;
+    display:flex; align-items:center; gap:.75rem; flex-wrap:nowrap;
+    padding:.6rem .8rem;
+    border:1.5px dotted var(--c);
+    border-radius:12px;
+  }
+
+  #coupon-{{ uid }} .coupon-label{
+    font-size:.85rem; letter-spacing:.08em; color:#fff; opacity:.9;
   }
 
   #coupon-{{ uid }} .coupon-code{
     font-family: var(--font-heading--family, inherit);
-    font-weight:700; letter-spacing:.08em; color:#fff;
+    font-weight:700; letter-spacing:.06em; color:#fff;
     font-size: clamp(1rem, 2.2vw, 1.125rem);
   }
 
   #coupon-{{ uid }} .coupon-copy{
-    display:inline-grid; place-items:center; width:36px; height:36px;
-    border-radius:999px; border:1.5px dotted var(--c);
-    background:transparent; color:#fff; cursor:pointer;
+    margin-left:auto;
+    height:32px; padding:0 .85rem;
+    border-radius:999px;
+    border:1.5px dotted var(--c);
+    background:transparent; color:#fff;
+    font-size:.8rem; line-height:1; cursor:pointer;
   }
   #coupon-{{ uid }} .coupon-copy:focus{ outline:2px solid rgba(255,255,255,.25); outline-offset:2px; }
   #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
 
   #coupon-{{ uid }} .coupon-text{
-    margin:.5rem 0 0; font-size:.95rem; color:#c9c9cc;
+    margin:.55rem 0 0; font-size:.95rem; color:#c9c9cc;
   }
 
   @media (max-width:640px){
     #coupon-{{ uid }} .coupon-line{ padding:.55rem .7rem; }
-    #coupon-{{ uid }} .coupon-copy{ width:34px; height:34px; }
-  }
-
-  /* screen reader helper, scoped */
-  #coupon-{{ uid }} .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    #coupon-{{ uid }} .coupon-copy{ height:30px; padding:0 .75rem; }
   }
 </style>
 
@@ -73,9 +71,9 @@ Render examples:
     const code = btn.getAttribute('data-copy') || '';
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(code).then(function(){
-        const old = btn.innerHTML;
-        btn.innerHTML = '✓';
-        setTimeout(function(){ btn.innerHTML = old; }, 900);
+        const old = btn.textContent;
+        btn.textContent = 'COPIED';
+        setTimeout(function(){ btn.textContent = old; }, 900);
       });
     }
   });
