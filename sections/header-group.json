@@ -31,7 +31,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Black Friday Sale – 50% Off Everything",
+            "text": "Black Friday Sale → Coupon BF20",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
