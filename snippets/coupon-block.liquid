@@ -1,10 +1,12 @@
 {%- comment -%}
-Minimal coupon snippet: white text, dotted pill, icon-only copy button.
-Render example:
+Reusable coupon snippet
+
+Usage example to render:
 {% render 'coupon-block',
-  code: 'BF20',
+  code: 'XINZUO20',
   text: 'Use this coupon for 20% off at checkout.',
   color: '#e60013',
+  perforation: true,
   margin_top: 12,
   margin_bottom: 0
 %}
@@ -13,84 +15,119 @@ Render example:
 {%- assign code = code | default: 'XINZUO20' -%}
 {%- assign text = text | default: 'Use this coupon for 20% off at checkout.' -%}
 {%- assign color = color | default: '#e60013' -%}
+{%- assign perforation = perforation | default: true -%}
 {%- assign mt = margin_top | default: 12 -%}
 {%- assign mb = margin_bottom | default: 0 -%}
 
-<div class="coupon-block coupon--minimal" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
-  <div class="coupon-line">
-    <strong class="coupon-code" aria-label="Coupon code">{{ code }}</strong>
-    <button class="coupon-copy" type="button" aria-label="Copy code" data-copy="{{ code }}">
-      <!-- copy icon -->
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M16 3H8a2 2 0 0 0-2 2v10h2V5h8V3zm3 4H10a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm0 12H10V9h9v10z" fill="currentColor"/>
-      </svg>
-      <span class="sr-only">Copy</span>
-    </button>
+<div class="coupon-block" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
+  <div class="coupon-left">
+    <span class="coupon-label">Coupon</span>
+    <strong class="coupon-code">{{ code }}</strong>
+    <button class="coupon-copy" type="button" data-copy="{{ code }}">Copy</button>
   </div>
   <p class="coupon-text">{{ text }}</p>
 </div>
 
 <style>
-  /* container */
-  .coupon--minimal{
-    background: transparent;
-  }
+  {%- assign v = variant | default: 'ticket' -%}
 
-  /* one-line pill */
-  .coupon-line{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: .75rem;
-    padding: .6rem .8rem;
-    border: 1.5px dotted var(--c);
-    border-radius: 999px;
+  /* base */
+  .coupon-block{
+    --bg: transparent;
+    --border: 2px dotted var(--c);
+    --radius: 14px;
+    --pad: 1rem 1.25rem;
+    --label-bg: transparent;
+    --label-border: 1px solid var(--c);
+    --label-color: var(--c);
+    --code-color: inherit;
+    --copy-bg: #fff;
+    --copy-color: inherit;
+    --copy-border: 1px solid var(--c);
+    display:block; width:100%;
+    background: var(--bg);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: var(--pad);
+    box-sizing: border-box;
+    position: relative;
   }
-
-  /* white code text */
+  .coupon-left{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .coupon-label{
+    font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    padding:.22rem .5rem; border-radius:999px;
+    background: var(--label-bg); border: var(--label-border); color: var(--label-color);
+  }
   .coupon-code{
     font-family: var(--font-heading--family, inherit);
     font-weight: 700;
-    letter-spacing: .08em;
-    color: #fff;
-    font-size: clamp(1rem, 2.2vw, 1.125rem);
+    letter-spacing:.08em;
+    color: var(--code-color);
   }
-
-  /* circular dotted copy icon */
   .coupon-copy{
-    display: inline-grid;
-    place-items: center;
-    width: 36px; height: 36px;
-    border-radius: 999px;
-    border: 1.5px dotted var(--c);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
+    border: var(--copy-border); background: var(--copy-bg); color: var(--copy-color);
+    border-radius: 10px; padding:.5rem .8rem; font-size:.9rem; cursor:pointer;
+    min-width: 7rem;
   }
-  .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
-  .coupon-copy:active{ transform: translateY(1px); }
+  .coupon-text{ margin:.4rem 0 0; opacity:.9; font-size:.95rem; }
 
-  /* subtext */
-  .coupon-text{
-    margin: .5rem 0 0;
-    font-size: .95rem;
-    color: #c9c9cc;
+  /* VARIANTS */
+
+  /* 1) Ticket (your current vibe, refined) */
+  {% if v == 'ticket' %}
+  .coupon-block{ --bg: color-mix(in oklab, var(--c) 6%, #fff); }
+  {% if perforation %}
+  .coupon-block:before,.coupon-block:after{
+    content:""; position:absolute; top:50%;
+    width:14px; height:14px; background:#fff; border:2px solid var(--c);
+    border-radius:50%; transform:translateY(-50%);
   }
+  .coupon-block:before{ left:-8px; } .coupon-block:after{ right:-8px; }
+  {% endif %}
+  {% endif %}
 
-  /* mobile tightness */
+  /* 2) Solid band (brand red, high contrast) */
+  {% if v == 'solid' %}
+  .coupon-block{
+    --bg: var(--c);
+    --border: 0;
+    --radius: 12px;
+  }
+  .coupon-label{ --label-bg: rgba(255,255,255,.12); --label-border: 0; --label-color: #fff; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg:#fff; --copy-color:#000; --copy-border:0; }
+  .coupon-text{ color:#fff; opacity:.85; }
+  {% endif %}
+
+  /* 3) Minimal outline (dark themes, subtle) */
+  {% if v == 'outline' %}
+  .coupon-block{
+    --bg: transparent;
+    --border: 1px solid rgba(230,0,19,.55);
+    --radius: 12px;
+  }
+  .coupon-label{ --label-border: 0; --label-bg: rgba(230,0,19,.12); --label-color: #fff; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg: transparent; --copy-border: 1px solid rgba(230,0,19,.55); --copy-color: #fff; }
+  .coupon-text{ color:#c9c9cc; }
+  {% endif %}
+
+  /* 4) Pill card (soft, rounded, new UI) */
+  {% if v == 'pill' %}
+  .coupon-block{
+    --bg: #1f1f24;
+    --border: 0;
+    --radius: 18px;
+    box-shadow: 0 0 0 1px rgba(230,0,19,.22) inset;
+  }
+  .coupon-label{ --label-bg: transparent; --label-border: 1px solid rgba(230,0,19,.5); --label-color: #ffb3bd; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg:#2a2a31; --copy-border: 1px solid rgba(230,0,19,.35); --copy-color:#fff; }
+  .coupon-text{ color:#a9a9b2; }
+  {% endif %}
+
+  /* Type scale tuning for mobile */
   @media (max-width: 640px){
-    .coupon-line{ padding: .55rem .7rem; }
-    .coupon-copy{ width: 34px; height: 34px; }
-  }
-
-  /* screen reader helper */
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    .coupon-code{ font-size: 1.05rem; }
   }
 </style>
-
-<script>
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.coupon-block .coupon-copy');
-    if(!btn) return;
-    const code = btn.getAttribu
