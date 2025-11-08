@@ -1,24 +1,11 @@
 {%- comment -%}
-Coupon UI with border drawn on the panel edge.
-Controls you can pass in the render:
-  code: 'BF20'
-  text: 'Black Friday 🎉 use the coupon above at checkout for 20% off'
-  color: '#e60013'
-  uid: block.id
-  margin_top: 12
-  margin_bottom: 0
-
-  border_style: 'dashed' | 'dotted' | 'solid'
-  stroke_width: 2
-  dash_len: 12
-  dash_gap: 8
-  dot_gap: 10
-
-  panel: true
-  panel_bg: '#1f1f24'
-  panel_padding: 12
-  radius: 10
-  panel_radius: 16  (optional; defaults to radius + 6)
+Coupon UI with border on the panel edge.
+Controls (pass via render):
+  code, text, color, uid, margin_top, margin_bottom
+  border_style: 'dotted' | 'dashed' | 'solid'
+  stroke_width, dash_len, dash_gap, dot_gap
+  panel: true, panel_bg, panel_padding
+  radius (row), panel_radius (defaults to radius + 6)
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
@@ -28,7 +15,7 @@ Controls you can pass in the render:
 {%- assign mt = margin_top | default: 12 -%}
 {%- assign mb = margin_bottom | default: 0 -%}
 
-{%- assign border_style = border_style | default: 'dashed' -%}
+{%- assign border_style = border_style | default: 'dotted' -%}
 {%- assign stroke_width = stroke_width | default: 2 -%}
 {%- assign dash_len = dash_len | default: 12 -%}
 {%- assign dash_gap = dash_gap | default: 8 -%}
@@ -40,22 +27,13 @@ Controls you can pass in the render:
 
 {%- assign radius = radius | default: 10 -%}
 {%- assign panel_radius_value = panel_radius -%}
-{%- if panel_radius_value == blank -%}
-  {%- assign panel_radius_value = radius | plus: 6 -%}
-{%- endif -%}
-
-{%- if panel -%}
-  {%- assign frame_radius = panel_radius_value -%}
-{%- else -%}
-  {%- assign frame_radius = radius -%}
-{%- endif -%}
+{%- if panel_radius_value == blank -%}{%- assign panel_radius_value = radius | plus: 6 -%}{%- endif -%}
 
 <div id="coupon-{{ uid }}" class="coupon-ui"
      style="--c: {{ color }}; --radius: {{ radius }}px; --panel-radius: {{ panel_radius_value }}px; --panel-pad: {{ panel_padding }}px; margin: {{ mt }}px 0 {{ mb }}px;">
   <div class="coupon-panel{% unless panel %} no-panel{% endunless %}" style="{% if panel %}--panel-bg: {{ panel_bg }};{% endif %}">
     {%- if panel and border_style != 'solid' -%}
     {%- assign half_sw = stroke_width | times: 0.5 -%}
-    <!-- Frame on the panel so the border sits on the background edge -->
     <svg class="coupon-frame panel-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
       {%- if border_style == 'dashed' -%}
         {%- assign cap = 'butt' -%}
@@ -67,24 +45,20 @@ Controls you can pass in the render:
         {%- assign cap = 'butt' -%}
         {%- assign dash = '' -%}
       {%- endif -%}
-
-      <!-- top -->
-      <line x1="{{ frame_radius }}" y1="{{ half_sw }}" x2="{{ 100 | minus: frame_radius }}" y2="{{ half_sw }}"
+      <!-- Full-length sides; corners are clipped by border-radius -->
+      <line x1="0" y1="{{ half_sw }}" x2="100" y2="{{ half_sw }}"
             stroke="var(--c)" stroke-width="{{ stroke_width }}"
             vector-effect="non-scaling-stroke"
             stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-      <!-- bottom -->
-      <line x1="{{ frame_radius }}" y1="{{ 40 | minus: half_sw }}" x2="{{ 100 | minus: frame_radius }}" y2="{{ 40 | minus: half_sw }}"
+      <line x1="0" y1="{{ 40 | minus: half_sw }}" x2="100" y2="{{ 40 | minus: half_sw }}"
             stroke="var(--c)" stroke-width="{{ stroke_width }}"
             vector-effect="non-scaling-stroke"
             stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-      <!-- left -->
-      <line x1="{{ half_sw }}" y1="{{ frame_radius }}" x2="{{ half_sw }}" y2="{{ 40 | minus: frame_radius }}"
+      <line x1="{{ half_sw }}" y1="0" x2="{{ half_sw }}" y2="40"
             stroke="var(--c)" stroke-width="{{ stroke_width }}"
             vector-effect="non-scaling-stroke"
             stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-      <!-- right -->
-      <line x1="{{ 100 | minus: half_sw }}" y1="{{ frame_radius }}" x2="{{ 100 | minus: half_sw }}" y2="{{ 40 | minus: frame_radius }}"
+      <line x1="{{ 100 | minus: half_sw }}" y1="0" x2="{{ 100 | minus: half_sw }}" y2="40"
             stroke="var(--c)" stroke-width="{{ stroke_width }}"
             vector-effect="non-scaling-stroke"
             stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
@@ -94,7 +68,6 @@ Controls you can pass in the render:
     <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
       {%- unless panel -%}
         {%- if border_style != 'solid' -%}
-        <!-- Fallback: draw frame on the row when no panel -->
         {%- assign half_sw = stroke_width | times: 0.5 -%}
         <svg class="coupon-frame row-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
           {%- if border_style == 'dashed' -%}
@@ -107,19 +80,19 @@ Controls you can pass in the render:
             {%- assign cap = 'butt' -%}
             {%- assign dash = '' -%}
           {%- endif -%}
-          <line x1="{{ radius }}" y1="{{ half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ half_sw }}"
+          <line x1="0" y1="{{ half_sw }}" x2="100" y2="{{ half_sw }}"
                 stroke="var(--c)" stroke-width="{{ stroke_width }}"
                 vector-effect="non-scaling-stroke"
                 stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-          <line x1="{{ radius }}" y1="{{ 40 | minus: half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ 40 | minus: half_sw }}"
+          <line x1="0" y1="{{ 40 | minus: half_sw }}" x2="100" y2="{{ 40 | minus: half_sw }}"
                 stroke="var(--c)" stroke-width="{{ stroke_width }}"
                 vector-effect="non-scaling-stroke"
                 stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-          <line x1="{{ half_sw }}" y1="{{ radius }}" x2="{{ half_sw }}" y2="{{ 40 | minus: radius }}"
+          <line x1="{{ half_sw }}" y1="0" x2="{{ half_sw }}" y2="40"
                 stroke="var(--c)" stroke-width="{{ stroke_width }}"
                 vector-effect="non-scaling-stroke"
                 stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-          <line x1="{{ 100 | minus: half_sw }}" y1="{{ radius }}" x2="{{ 100 | minus: half_sw }}" y2="{{ 40 | minus: radius }}"
+          <line x1="{{ 100 | minus: half_sw }}" y1="0" x2="{{ 100 | minus: half_sw }}" y2="40"
                 stroke="var(--c)" stroke-width="{{ stroke_width }}"
                 vector-effect="non-scaling-stroke"
                 stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
@@ -138,13 +111,13 @@ Controls you can pass in the render:
 <style>
   #coupon-{{ uid }}{ background: transparent; }
 
-  /* Panel as the visual section */
+  /* Panel forms the “section” */
   #coupon-{{ uid }} .coupon-panel{
     position: relative;
     padding: var(--panel-pad);
     border-radius: var(--panel-radius);
     background: var(--panel-bg, transparent);
-    overflow: hidden;
+    overflow: hidden; /* clips the frame at rounded corners */
   }
   #coupon-{{ uid }} .coupon-panel.no-panel{
     padding: 0; background: transparent; border-radius: 0; overflow: visible;
@@ -157,7 +130,7 @@ Controls you can pass in the render:
     #coupon-{{ uid }} .coupon-row{ border: {{ stroke_width }}px solid var(--c); }
   {% endif %}
 
-  /* Row surface */
+  /* Row */
   #coupon-{{ uid }} .coupon-row{
     position: relative;
     display: flex; align-items: center; gap: .6rem; flex-wrap: nowrap;
@@ -170,7 +143,7 @@ Controls you can pass in the render:
   }
   #coupon-{{ uid }} .coupon-row *{ min-width: 0; }
 
-  /* Frame positioning */
+  /* Frame */
   #coupon-{{ uid }} .coupon-frame{
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none;
@@ -189,7 +162,7 @@ Controls you can pass in the render:
     flex: 1 1 auto; min-width: 0;
   }
 
-  /* Compact COPY chip */
+  /* COPY chip */
   #coupon-{{ uid }} .coupon-copy{
     display: inline-flex; align-items: center; justify-content: center;
     box-sizing: border-box;
@@ -203,13 +176,11 @@ Controls you can pass in the render:
   #coupon-{{ uid }} .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
   #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
 
-  /* Subtext */
-  #coupon-{{ uid }} .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
+  .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
 
-  /* Mobile */
   @media (max-width:640px){
-    #coupon-{{ uid }} .coupon-row{ padding: .6rem .8rem; }
-    #coupon-{{ uid }} .coupon-copy{ height: 28px; padding: 0 .6rem; }
+    .coupon-row{ padding: .6rem .8rem; }
+    .coupon-copy{ height: 28px; padding: 0 .6rem; }
   }
 </style>
 
