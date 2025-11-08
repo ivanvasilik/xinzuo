@@ -33,12 +33,11 @@
 
     {{ content_for_header }}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer="defer"></script>
+    {% comment %} <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap"> {% endcomment %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap">
     {{ 'hh.scss' | asset_url | stylesheet_tag: preload: true }}
-    {% comment %} {{ 'judgeme_core.css' | asset_url | stylesheet_tag }} {% endcomment %}
-    {{ 'judge.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'judge.css' | asset_url }}">
 
     {% if request.path contains '/products/' %}
       <script>
