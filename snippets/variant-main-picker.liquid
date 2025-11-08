@@ -54,16 +54,16 @@
         -%}
 
         {%- if variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
+          <legend>
+            <h4>Select any type of Knives</h4>
+            {%- if variant_style == 'swatch' -%}
+              <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
+            {%- endif %}
+          </legend>
           <fieldset
             class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}"
             {{ option_id_attribute }}
           >
-            <legend>
-              <h4>Select any type of Knives</h4>
-              {%- if variant_style == 'swatch' -%}
-                <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
-              {%- endif %}
-            </legend>
             {%- for product_option_value in product_option.values -%}
               {% if product_option_value.size > longest_value and option_id_attribute %}
                 {% assign longest_value = product_option_value.size %}
@@ -91,7 +91,7 @@
                   {% endif %}
                 >
                 <a class="product-variant {% if product.selected_or_first_available_variant.id == product_option_value.variant.id %}active{% endif %}" href="{{ product_option_value.variant.url }}">
-                  {% comment %} <img src="{{ product_option_value.variant.image | img_url: 'master' }}" width="100%" height="100%" alt="variant-{{ product_option_value.variant.id }}"> {% endcomment %}
+                  <img src="{{ product_option_value.variant.image | img_url: 'master' }}" width="100%" height="100%" alt="variant-{{ product_option_value.variant.id }}">
                   <span>{{ product_option_value.variant.title }}</span>
                 </a>
                 {% comment %} {% if variant_style == 'swatch' %}
