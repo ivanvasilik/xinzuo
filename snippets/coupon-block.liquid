@@ -1,6 +1,15 @@
 {%- comment -%}
-Minimal, scoped coupon
-Solid border, subtle radius, small filled COPY button
+Minimal coupon with easy border controls and optional panel "section" look.
+Tweak via render params:
+  frame_style: 'dashed' | 'dotted' | 'solid'
+  stroke_width: 2            # border thickness
+  dash_len: 12               # dashed length (if dashed)
+  dash_gap: 8                # dashed gap (if dashed)
+  dot_size: 3                # dot length (if dotted)
+  dot_gap: 7                 # dot gap (if dotted)
+  radius: 10                 # corner roundness
+  panel: true                # wrap in a subtle "section" panel
+  panel_bg: '#1f1f24'        # panel background
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
@@ -10,50 +19,86 @@ Solid border, subtle radius, small filled COPY button
 {%- assign mt = margin_top | default: 12 -%}
 {%- assign mb = margin_bottom | default: 0 -%}
 
-<div id="coupon-{{ uid }}" class="coupon-ui" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
-  <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
-    <span class="coupon-label">COUPON:</span>
-    <strong class="coupon-code">{{ code }}</strong>
-    <button class="coupon-copy" type="button" data-copy="{{ code }}">COPY</button>
+{%- assign frame_style = frame_style | default: 'dashed' -%}
+{%- assign stroke_width = stroke_width | default: 2 -%}
+{%- assign dash_len = dash_len | default: 12 -%}
+{%- assign dash_gap = dash_gap | default: 8 -%}
+{%- assign dot_size = dot_size | default: 3 -%}
+{%- assign dot_gap = dot_gap | default: 7 -%}
+{%- assign radius = radius | default: 10 -%}
+{%- assign panel = panel | default: true -%}
+{%- assign panel_bg = panel_bg | default: '#1f1f24' -%}
+
+<div id="coupon-{{ uid }}" class="coupon-ui" style="--c: {{ color }}; --radius: {{ radius }}px; margin: {{ mt }}px 0 {{ mb }}px;">
+  <div class="coupon-panel{% unless panel %} no-panel{% endunless %}" style="{% if panel %}--panel-bg: {{ panel_bg }};{% endif %}">
+    <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
+      {%- if frame_style != 'solid' -%}
+      <svg class="coupon-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+        <rect
+          x="{{ stroke_width | times: 0.5 }}" y="{{ stroke_width | times: 0.5 }}"
+          width="{{ 100 | minus: stroke_width }}" height="{{ 40 | minus: stroke_width }}"
+          rx="{{ radius }}" ry="{{ radius }}"
+          fill="none" stroke="var(--c)" stroke-width="{{ stroke_width }}"
+          {%- if frame_style == 'dashed' -%} stroke-dasharray="{{ dash_len }} {{ dash_gap }}"{%- endif -%}
+          {%- if frame_style == 'dotted' -%} stroke-linecap="round" stroke-dasharray="{{ dot_size }} {{ dot_gap }}"{%- endif -%}
+        />
+      </svg>
+      {%- endif -%}
+
+      <span class="coupon-label">COUPON:</span>
+      <strong class="coupon-code">{{ code }}</strong>
+      <button class="coupon-copy" type="button" data-copy="{{ code }}">COPY</button>
+    </div>
   </div>
   <p class="coupon-text">{{ text }}</p>
 </div>
 
 <style>
-  /* scope */
-  #coupon-{{ uid }} { background: transparent; }
+  /* Root */
+  #coupon-{{ uid }}{ background: transparent; }
 
-  /* one-line surface: near-square, subtle radius, thin border */
-  #coupon-{{ uid }} .coupon-row{
-    display:flex; align-items:center; gap:.75rem; flex-wrap:nowrap;
-    padding:.65rem .9rem;
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:10px;
-    background: transparent;
-    cursor: pointer;
+  /* Optional panel to feel like its own section */
+  #coupon-{{ uid }} .coupon-panel{
+    padding: 12px;
+    border-radius: calc(var(--radius) + 6px);
+    background: var(--panel-bg, transparent);
+    box-shadow: 0 0 0 1px rgba(230,0,19,.12) inset;
+  }
+  #coupon-{{ uid }} .coupon-panel.no-panel{
+    padding: 0; background: transparent; box-shadow: none;
   }
 
-  /* label and code */
+  /* Row */
+  #coupon-{{ uid }} .coupon-row{
+    position: relative;
+    display:flex; align-items:center; gap:.75rem; flex-wrap:nowrap;
+    padding:.7rem .95rem;
+    border-radius: var(--radius);
+    background: transparent;
+    cursor: pointer;
+    /* fallback solid if requested */
+    {% if frame_style == 'solid' %} border: {{ stroke_width }}px solid var(--c); {% else %} border: none; {% endif %}
+  }
+  #coupon-{{ uid }} .coupon-frame{
+    position:absolute; inset:0; width:100%; height:100%; pointer-events:none;
+  }
+
+  /* Text */
   #coupon-{{ uid }} .coupon-label{
-    font-size:.82rem; letter-spacing:.08em; text-transform:uppercase;
-    color:#fff; opacity:.9; white-space:nowrap;
-    flex:0 0 auto;
+    font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; color:#fff; opacity:.9; white-space:nowrap; flex:0 0 auto;
   }
   #coupon-{{ uid }} .coupon-code{
     font-family: var(--font-heading--family, inherit);
     font-weight:700; letter-spacing:.06em; color:#fff;
     font-size: clamp(1rem, 2.2vw, 1.125rem);
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    flex:1 1 auto; min-width:0;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1 1 auto; min-width:0;
   }
 
-  /* small filled COPY chip */
+  /* Small filled COPY chip */
   #coupon-{{ uid }} .coupon-copy{
-    /* prevent theme-wide button styles from stretching it */
     display:inline-flex; align-items:center; justify-content:center;
     box-sizing:border-box;
     width:auto; max-width:none; flex:0 0 auto; align-self:center;
-
     height:30px; padding:0 .75rem;
     border-radius:10px;
     border:1px solid var(--c);
@@ -65,14 +110,15 @@ Solid border, subtle radius, small filled COPY button
   #coupon-{{ uid }} .coupon-copy:focus{ outline:2px solid rgba(255,255,255,.25); outline-offset:2px; }
   #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
 
-  /* subtext */
+  /* Subtext */
   #coupon-{{ uid }} .coupon-text{
-    margin:.55rem 0 0; font-size:.95rem; color:#c9c9cc;
+    margin:.6rem 0 0; font-size:.95rem; color:#c9c9cc;
   }
 
-  /* mobile */
+  /* Mobile */
   @media (max-width:640px){
-    #coupon-{{ uid }} .coupon-row{ padding:.6rem .8rem; }
+    #coupon-{{ uid }} .coupon-panel{ padding: 10px; }
+    #coupon-{{ uid }} .coupon-row{ padding:.6rem .85rem; }
     #coupon-{{ uid }} .coupon-copy{ height:28px; padding:0 .65rem; }
   }
 </style>
@@ -81,7 +127,6 @@ Solid border, subtle radius, small filled COPY button
   (function(){
     var root = document.getElementById('coupon-{{ uid }}');
     if(!root) return;
-
     function doCopy(value, btn){
       if (!navigator.clipboard || !navigator.clipboard.writeText) return;
       navigator.clipboard.writeText(value).then(function(){
@@ -92,17 +137,12 @@ Solid border, subtle radius, small filled COPY button
         }
       });
     }
-
     root.addEventListener('click', function(e){
       var btn = e.target.closest('#coupon-{{ uid }} .coupon-copy');
       var row = e.target.closest('#coupon-{{ uid }} .coupon-row');
-      if (btn){
-        doCopy(btn.getAttribute('data-copy') || '', btn);
-      } else if (row){
-        doCopy(row.getAttribute('data-copy') || '', root.querySelector('.coupon-copy'));
-      }
+      if (btn){ doCopy(btn.getAttribute('data-copy') || '', btn); }
+      else if (row){ doCopy(row.getAttribute('data-copy') || '', root.querySelector('.coupon-copy')); }
     });
-
     root.addEventListener('keydown', function(e){
       var row = e.target.closest('#coupon-{{ uid }} .coupon-row');
       if (row && (e.key === 'Enter' || e.key === ' ')){
