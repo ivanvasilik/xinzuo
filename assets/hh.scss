@@ -777,6 +777,8 @@ footer {
     padding: 0;
     border: none;
     border-radius: 0;
+    min-width: unset;
+    width: 30%;
 }
 
 @media screen and (max-width: 750px) {
