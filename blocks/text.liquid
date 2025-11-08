@@ -1,23 +1,28 @@
 <div
-  class="text-block text-block--{{ block.id }}"
+  class="text-block text-block--{{ block.id }}{% if block.settings.lead_symbol == blank %} no-symbol{% endif %}"
   style="--lead-color: {{ block.settings.lead_color | default: '#E53935' }};"
 >
   {% if block.settings.lead_symbol != blank %}
     <span class="lead-symbol" aria-hidden="true">{{ block.settings.lead_symbol }}</span>
   {% endif %}
-  {% render 'text', block: block %}
+
+  {%- comment -%} Render the actual rich text, no recursion {%- endcomment -%}
+  <div class="rte">{{ block.settings.text }}</div>
 </div>
 
 <style>
-  .text-block--{{ block.id }} {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: start;
-    gap: .4em;
+  /* Use flex so nothing breaks when there’s no symbol */
+  .text-block--{{ block.id }}{
+    display:flex;
+    align-items:flex-start;
+    gap:.4em;
   }
-  .text-block--{{ block.id }} .lead-symbol {
-    color: var(--lead-color);
-    line-height: 1;
+  .text-block--{{ block.id }}.no-symbol{
+    gap:0; /* no extra offset when symbol is missing */
+  }
+  .text-block--{{ block.id }} .lead-symbol{
+    color:var(--lead-color);
+    line-height:1;
   }
 </style>
 
