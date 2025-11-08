@@ -779,6 +779,10 @@ footer {
     border-radius: 0;
     min-width: unset;
     width: 30%;
+
+    .product-variant {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 750px) {
