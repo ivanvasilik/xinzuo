@@ -1,15 +1,24 @@
 {%- comment -%}
-Coupon UI with consistent dashed/dotted/solid border and optional panel.
-Controls you can pass in render:
-  code, text, color, uid, margin_top, margin_bottom
+Coupon UI with border drawn on the panel edge.
+Controls you can pass in the render:
+  code: 'BF20'
+  text: 'Black Friday 🎉 use the coupon above at checkout for 20% off'
+  color: '#e60013'             # border + button color
+  uid: block.id                # unique scope id
+  margin_top: 12
+  margin_bottom: 0
+
   border_style: 'dashed' | 'dotted' | 'solid'
   stroke_width: 2
-  dash_len: 12
-  dash_gap: 8
-  dot_gap: 10
-  radius: 10
-  panel: true
+  dash_len: 12                 # dashed only
+  dash_gap: 8                  # dashed only
+  dot_gap: 10                  # dotted only
+
+  panel: true                  # enables background panel
   panel_bg: '#1f1f24'
+  panel_padding: 12            # space inside the panel
+  radius: 10                   # row radius
+  panel_radius:                # optional, defaults to radius + 6
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
@@ -24,49 +33,93 @@ Controls you can pass in render:
 {%- assign dash_len = dash_len | default: 12 -%}
 {%- assign dash_gap = dash_gap | default: 8 -%}
 {%- assign dot_gap = dot_gap | default: 10 -%}
-{%- assign radius = radius | default: 10 -%}
+
 {%- assign panel = panel | default: true -%}
 {%- assign panel_bg = panel_bg | default: '#1f1f24' -%}
+{%- assign panel_padding = panel_padding | default: 12 -%}
 
-<div id="coupon-{{ uid }}" class="coupon-ui" style="--c: {{ color }}; --radius: {{ radius }}px; margin: {{ mt }}px 0 {{ mb }}px;">
+{%- assign radius = radius | default: 10 -%}
+{%- assign panel_radius_value = panel_radius -%}
+{%- if panel_radius_value == blank -%}{%- assign panel_radius_value = radius | plus: 6 -%}{%- endif -%}
+
+{%- assign frame_radius = panel | ternary: panel_radius_value, radius -%}
+
+<div id="coupon-{{ uid }}" class="coupon-ui"
+     style="--c: {{ color }}; --radius: {{ radius }}px; --panel-radius: {{ panel_radius_value }}px; --panel-pad: {{ panel_padding }}px; margin: {{ mt }}px 0 {{ mb }}px;">
   <div class="coupon-panel{% unless panel %} no-panel{% endunless %}" style="{% if panel %}--panel-bg: {{ panel_bg }};{% endif %}">
-    <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
-      {%- if border_style != 'solid' -%}
-      {%- assign half_sw = stroke_width | times: 0.5 -%}
-      <svg class="coupon-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-        {%- if border_style == 'dashed' -%}
-          {%- assign cap = 'butt' -%}
-          {%- assign dash = dash_len | append: ' ' | append: dash_gap -%}
-        {%- elsif border_style == 'dotted' -%}
-          {%- assign cap = 'round' -%}
-          {%- assign dash = stroke_width | append: ' ' | append: dot_gap -%}
-        {%- else -%}
-          {%- assign cap = 'butt' -%}
-          {%- assign dash = '' -%}
-        {%- endif -%}
-
-        <!-- top -->
-        <line x1="{{ radius }}" y1="{{ half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ half_sw }}"
-              stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              vector-effect="non-scaling-stroke"
-              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-        <!-- bottom -->
-        <line x1="{{ radius }}" y1="{{ 40 | minus: half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ 40 | minus: half_sw }}"
-              stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              vector-effect="non-scaling-stroke"
-              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-        <!-- left -->
-        <line x1="{{ half_sw }}" y1="{{ radius }}" x2="{{ half_sw }}" y2="{{ 40 | minus: radius }}"
-              stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              vector-effect="non-scaling-stroke"
-              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-        <!-- right -->
-        <line x1="{{ 100 | minus: half_sw }}" y1="{{ radius }}" x2="{{ 100 | minus: half_sw }}" y2="{{ 40 | minus: radius }}"
-              stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              vector-effect="non-scaling-stroke"
-              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
-      </svg>
+    {%- if panel and border_style != 'solid' -%}
+    {%- assign half_sw = stroke_width | times: 0.5 -%}
+    <!-- Frame on the panel so the border sits on the background edge -->
+    <svg class="coupon-frame panel-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+      {%- if border_style == 'dashed' -%}
+        {%- assign cap = 'butt' -%}
+        {%- assign dash = dash_len | append: ' ' | append: dash_gap -%}
+      {%- elsif border_style == 'dotted' -%}
+        {%- assign cap = 'round' -%}
+        {%- assign dash = stroke_width | append: ' ' | append: dot_gap -%}
+      {%- else -%}
+        {%- assign cap = 'butt' -%}
+        {%- assign dash = '' -%}
       {%- endif -%}
+
+      <!-- top -->
+      <line x1="{{ frame_radius }}" y1="{{ half_sw }}" x2="{{ 100 | minus: frame_radius }}" y2="{{ half_sw }}"
+            stroke="var(--c)" stroke-width="{{ stroke_width }}"
+            vector-effect="non-scaling-stroke"
+            stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+      <!-- bottom -->
+      <line x1="{{ frame_radius }}" y1="{{ 40 | minus: half_sw }}" x2="{{ 100 | minus: frame_radius }}" y2="{{ 40 | minus: half_sw }}"
+            stroke="var(--c)" stroke-width="{{ stroke_width }}"
+            vector-effect="non-scaling-stroke"
+            stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+      <!-- left -->
+      <line x1="{{ half_sw }}" y1="{{ frame_radius }}" x2="{{ half_sw }}" y2="{{ 40 | minus: frame_radius }}"
+            stroke="var(--c)" stroke-width="{{ stroke_width }}"
+            vector-effect="non-scaling-stroke"
+            stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+      <!-- right -->
+      <line x1="{{ 100 | minus: half_sw }}" y1="{{ frame_radius }}" x2="{{ 100 | minus: half_sw }}" y2="{{ 40 | minus: frame_radius }}"
+            stroke="var(--c)" stroke-width="{{ stroke_width }}"
+            vector-effect="non-scaling-stroke"
+            stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+    </svg>
+    {%- endif -%}
+
+    <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
+      {%- unless panel -%}
+        {%- if border_style != 'solid' -%}
+        <!-- Fallback: draw frame on the row when no panel -->
+        {%- assign half_sw = stroke_width | times: 0.5 -%}
+        <svg class="coupon-frame row-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          {%- if border_style == 'dashed' -%}
+            {%- assign cap = 'butt' -%}
+            {%- assign dash = dash_len | append: ' ' | append: dash_gap -%}
+          {%- elsif border_style == 'dotted' -%}
+            {%- assign cap = 'round' -%}
+            {%- assign dash = stroke_width | append: ' ' | append: dot_gap -%}
+          {%- else -%}
+            {%- assign cap = 'butt' -%}
+            {%- assign dash = '' -%}
+          {%- endif -%}
+          <line x1="{{ radius }}" y1="{{ half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ half_sw }}"
+                stroke="var(--c)" stroke-width="{{ stroke_width }}"
+                vector-effect="non-scaling-stroke"
+                stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+          <line x1="{{ radius }}" y1="{{ 40 | minus: half_sw }}" x2="{{ 100 | minus: radius }}" y2="{{ 40 | minus: half_sw }}"
+                stroke="var(--c)" stroke-width="{{ stroke_width }}"
+                vector-effect="non-scaling-stroke"
+                stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+          <line x1="{{ half_sw }}" y1="{{ radius }}" x2="{{ half_sw }}" y2="{{ 40 | minus: radius }}"
+                stroke="var(--c)" stroke-width="{{ stroke_width }}"
+                vector-effect="non-scaling-stroke"
+                stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+          <line x1="{{ 100 | minus: half_sw }}" y1="{{ radius }}" x2="{{ 100 | minus: half_sw }}" y2="{{ 40 | minus: radius }}"
+                stroke="var(--c)" stroke-width="{{ stroke_width }}"
+                vector-effect="non-scaling-stroke"
+                stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
+        </svg>
+        {%- endif -%}
+      {%- endunless -%}
 
       <span class="coupon-label">COUPON:</span>
       <strong class="coupon-code">{{ code }}</strong>
@@ -79,15 +132,27 @@ Controls you can pass in render:
 <style>
   #coupon-{{ uid }}{ background: transparent; }
 
-  .coupon-panel{
-    padding: 300px;
-    border-radius: calc(var(--radius) + 6px);
+  /* Panel as the visual section */
+  #coupon-{{ uid }} .coupon-panel{
+    position: relative;
+    padding: var(--panel-pad);
+    border-radius: var(--panel-radius);
     background: var(--panel-bg, transparent);
-    box-shadow: 0 0 0 1px rgba(230,0,19,.12) inset;
+    overflow: hidden; /* lets the frame hug the edge cleanly */
   }
-  .coupon-panel.no-panel{ padding:0; background:transparent; box-shadow:none; }
+  #coupon-{{ uid }} .coupon-panel.no-panel{
+    padding: 0; background: transparent; border-radius: 0; overflow: visible;
+  }
 
-  .coupon-row{
+  /* Solid border placement */
+  {% if panel and border_style == 'solid' %}
+    #coupon-{{ uid }} .coupon-panel{ border: {{ stroke_width }}px solid var(--c); }
+  {% elsif border_style == 'solid' %}
+    #coupon-{{ uid }} .coupon-row{ border: {{ stroke_width }}px solid var(--c); }
+  {% endif %}
+
+  /* Row surface */
+  #coupon-{{ uid }} .coupon-row{
     position: relative;
     display: flex; align-items: center; gap: .6rem; flex-wrap: nowrap;
     padding: .65rem .85rem;
@@ -96,24 +161,21 @@ Controls you can pass in render:
     cursor: pointer;
     box-sizing: border-box;
     overflow: hidden;
-    {% if border_style == 'solid' %}
-      border: {{ stroke_width }}px solid var(--c);
-    {% else %}
-      border: none;
-    {% endif %}
   }
-  .coupon-row *{ min-width: 0; }
+  #coupon-{{ uid }} .coupon-row *{ min-width: 0; }
 
-  .coupon-frame{
+  /* Frame positioning */
+  #coupon-{{ uid }} .coupon-frame{
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none;
   }
 
-  .coupon-label{
+  /* Text */
+  #coupon-{{ uid }} .coupon-label{
     font-size: .82rem; letter-spacing: .08em; text-transform: uppercase;
     color: #fff; opacity: .9; white-space: nowrap; flex: 0 0 auto;
   }
-  .coupon-code{
+  #coupon-{{ uid }} .coupon-code{
     font-family: var(--font-heading--family, inherit);
     font-weight: 700; letter-spacing: .06em; color: #fff;
     font-size: clamp(1rem, 2.2vw, 1.125rem);
@@ -121,27 +183,27 @@ Controls you can pass in render:
     flex: 1 1 auto; min-width: 0;
   }
 
-  .coupon-copy{
+  /* Compact COPY chip */
+  #coupon-{{ uid }} .coupon-copy{
     display: inline-flex; align-items: center; justify-content: center;
     box-sizing: border-box;
-    width: auto !important;
-    max-width: 40%;
-    flex: 0 0 auto;
+    width: auto !important; max-width: 40%; flex: 0 0 auto;
     height: 28px; padding: 0 .65rem;
     border-radius: 10px; border: 1px solid var(--c); background: var(--c);
     color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .04em; line-height: 1;
     white-space: nowrap; cursor: pointer;
   }
-  .coupon-copy:hover{ filter: brightness(1.05); }
-  .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
-  .coupon-copy:active{ transform: translateY(1px); }
+  #coupon-{{ uid }} .coupon-copy:hover{ filter: brightness(1.05); }
+  #coupon-{{ uid }} .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
+  #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
 
-  .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
+  /* Subtext */
+  #coupon-{{ uid }} .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
 
+  /* Mobile */
   @media (max-width:640px){
-    .coupon-panel{ padding:10px; }
-    .coupon-row{ padding:.6rem .85rem; }
-    .coupon-copy{ height:28px; padding:0 .6rem; }
+    #coupon-{{ uid }} .coupon-row{ padding: .6rem .8rem; }
+    #coupon-{{ uid }} .coupon-copy{ height: 28px; padding: 0 .6rem; }
   }
 </style>
 
