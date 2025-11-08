@@ -29,51 +29,105 @@ Usage example to render:
 </div>
 
 <style>
+  {%- assign v = variant | default: 'ticket' -%}
+
+  /* base */
   .coupon-block{
+    --bg: transparent;
+    --border: 2px dotted var(--c);
+    --radius: 14px;
+    --pad: 1rem 1.25rem;
+    --label-bg: transparent;
+    --label-border: 1px solid var(--c);
+    --label-color: var(--c);
+    --code-color: inherit;
+    --copy-bg: #fff;
+    --copy-color: inherit;
+    --copy-border: 1px solid var(--c);
     display:block; width:100%;
-    background: color-mix(in oklab, var(--c) 5%, #fff);
-    border: 2px dotted var(--c);
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
+    background: var(--bg);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: var(--pad);
     box-sizing: border-box;
     position: relative;
   }
+  .coupon-left{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .coupon-label{
+    font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    padding:.22rem .5rem; border-radius:999px;
+    background: var(--label-bg); border: var(--label-border); color: var(--label-color);
+  }
+  .coupon-code{
+    font-family: var(--font-heading--family, inherit);
+    font-weight: 700;
+    letter-spacing:.08em;
+    color: var(--code-color);
+  }
+  .coupon-copy{
+    border: var(--copy-border); background: var(--copy-bg); color: var(--copy-color);
+    border-radius: 10px; padding:.5rem .8rem; font-size:.9rem; cursor:pointer;
+    min-width: 7rem;
+  }
+  .coupon-text{ margin:.4rem 0 0; opacity:.9; font-size:.95rem; }
+
+  /* VARIANTS */
+
+  /* 1) Ticket (your current vibe, refined) */
+  {% if v == 'ticket' %}
+  .coupon-block{ --bg: color-mix(in oklab, var(--c) 6%, #fff); }
   {% if perforation %}
   .coupon-block:before,.coupon-block:after{
     content:""; position:absolute; top:50%;
     width:14px; height:14px; background:#fff; border:2px solid var(--c);
     border-radius:50%; transform:translateY(-50%);
   }
-  .coupon-block:before{ left:-8px; }
-  .coupon-block:after{ right:-8px; }
+  .coupon-block:before{ left:-8px; } .coupon-block:after{ right:-8px; }
   {% endif %}
-  .coupon-left{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
-  .coupon-label{
-    font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
-    padding:.22rem .5rem; border:1px solid var(--c); border-radius:999px;
-  }
-  .coupon-code{
-    font-family: var(--font-heading--family, inherit);
-    font-size: clamp(1rem, 2.6vw, 1.4rem); letter-spacing:.08em;
-  }
-  .coupon-copy{
-    border:1px solid var(--c); background:#fff; border-radius:8px;
-    padding:.4rem .6rem; font-size:.85rem; cursor:pointer;
-  }
-  .coupon-text{ margin:.25rem 0 0; opacity:.9; font-size:.95rem; }
-</style>
+  {% endif %}
 
-<script>
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.coupon-block .coupon-copy');
-    if(!btn) return;
-    const code = btn.getAttribute('data-copy') || '';
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(code).then(function(){
-        const old = btn.textContent;
-        btn.textContent = 'Copied';
-        setTimeout(function(){ btn.textContent = old; }, 1200);
-      });
-    }
-  });
-</script>
+  /* 2) Solid band (brand red, high contrast) */
+  {% if v == 'solid' %}
+  .coupon-block{
+    --bg: var(--c);
+    --border: 0;
+    --radius: 12px;
+  }
+  .coupon-label{ --label-bg: rgba(255,255,255,.12); --label-border: 0; --label-color: #fff; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg:#fff; --copy-color:#000; --copy-border:0; }
+  .coupon-text{ color:#fff; opacity:.85; }
+  {% endif %}
+
+  /* 3) Minimal outline (dark themes, subtle) */
+  {% if v == 'outline' %}
+  .coupon-block{
+    --bg: transparent;
+    --border: 1px solid rgba(230,0,19,.55);
+    --radius: 12px;
+  }
+  .coupon-label{ --label-border: 0; --label-bg: rgba(230,0,19,.12); --label-color: #fff; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg: transparent; --copy-border: 1px solid rgba(230,0,19,.55); --copy-color: #fff; }
+  .coupon-text{ color:#c9c9cc; }
+  {% endif %}
+
+  /* 4) Pill card (soft, rounded, new UI) */
+  {% if v == 'pill' %}
+  .coupon-block{
+    --bg: #1f1f24;
+    --border: 0;
+    --radius: 18px;
+    box-shadow: 0 0 0 1px rgba(230,0,19,.22) inset;
+  }
+  .coupon-label{ --label-bg: transparent; --label-border: 1px solid rgba(230,0,19,.5); --label-color: #ffb3bd; }
+  .coupon-code{ --code-color: #fff; }
+  .coupon-copy{ --copy-bg:#2a2a31; --copy-border: 1px solid rgba(230,0,19,.35); --copy-color:#fff; }
+  .coupon-text{ color:#a9a9b2; }
+  {% endif %}
+
+  /* Type scale tuning for mobile */
+  @media (max-width: 640px){
+    .coupon-code{ font-size: 1.05rem; }
+  }
+</style>
