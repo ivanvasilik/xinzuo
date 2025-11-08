@@ -1,5 +1,5 @@
 {%- comment -%}
-Minimal, scoped coupon
+Minimal, scoped coupon with precise dashed outline.
 Shows: COUPON: BF20 (COPY)
 Subtext: Black Friday 🎉 use the coupon above at checkout for 20% off
 {%- endcomment -%}
@@ -13,52 +13,77 @@ Subtext: Black Friday 🎉 use the coupon above at checkout for 20% off
 
 <div id="coupon-{{ uid }}" class="coupon" style="--c: {{ color }}; margin: {{ mt }}px 0 {{ mb }}px;">
   <div class="coupon-line">
+    <!-- precise dashed border via SVG -->
+    <svg class="coupon-stroke" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="97" height="37" rx="12" ry="12"
+            fill="none" stroke="var(--c)" stroke-width="2" stroke-dasharray="16 12"/>
+    </svg>
+
     <span class="coupon-label">COUPON:</span>
     <strong class="coupon-code">{{ code }}</strong>
+
     <button class="coupon-copy" type="button" data-copy="{{ code }}">COPY</button>
   </div>
+
   <p class="coupon-text">{{ text }}</p>
 </div>
 
 <style>
-  /* scope everything to this instance */
-  #coupon-{{ uid }} { background: transparent; }
+  /* scope */
+  #coupon-{{ uid }}{ background: transparent; }
 
+  /* one-line pill */
   #coupon-{{ uid }} .coupon-line{
-    display:flex; align-items:center; gap:.75rem; flex-wrap:nowrap;
-    padding:.6rem .8rem;
-    border:1.5px dotted var(--c);
-    border-radius:12px;
+    position: relative;
+    display: flex; align-items: center; gap: .9rem; flex-wrap: nowrap;
+    padding: .65rem .95rem;
+    border-radius: 12px;           /* subtle radius */
   }
 
+  /* dashed frame */
+  #coupon-{{ uid }} .coupon-stroke{
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* text */
   #coupon-{{ uid }} .coupon-label{
-    font-size:.85rem; letter-spacing:.08em; color:#fff; opacity:.9;
+    font-size: .85rem; letter-spacing: .08em; color: #fff; opacity: .9;
   }
-
   #coupon-{{ uid }} .coupon-code{
     font-family: var(--font-heading--family, inherit);
-    font-weight:700; letter-spacing:.06em; color:#fff;
+    font-weight: 700; letter-spacing: .06em; color: #fff;
     font-size: clamp(1rem, 2.2vw, 1.125rem);
   }
 
+  /* compact COPY chip */
   #coupon-{{ uid }} .coupon-copy{
-    margin-left:auto;
-    height:32px; padding:0 .85rem;
-    border-radius:999px;
-    border:1.5px dotted var(--c);
-    background:transparent; color:#fff;
-    font-size:.8rem; line-height:1; cursor:pointer;
+    margin-left: auto;
+    height: 28px; padding: 0 .65rem;
+    border-radius: 999px;
+    border: 1.5px dashed var(--c); /* match the frame */
+    background: transparent; color: #fff;
+    font-size: .78rem; font-weight: 600; letter-spacing: .04em; line-height: 1;
+    cursor: pointer;
   }
-  #coupon-{{ uid }} .coupon-copy:focus{ outline:2px solid rgba(255,255,255,.25); outline-offset:2px; }
+  #coupon-{{ uid }} .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
   #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
 
+  /* subtext */
   #coupon-{{ uid }} .coupon-text{
-    margin:.55rem 0 0; font-size:.95rem; color:#c9c9cc;
+    margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc;
   }
 
-  @media (max-width:640px){
-    #coupon-{{ uid }} .coupon-line{ padding:.55rem .7rem; }
-    #coupon-{{ uid }} .coupon-copy{ height:30px; padding:0 .75rem; }
+  /* mobile */
+  @media (max-width: 640px){
+    #coupon-{{ uid }} .coupon-line{ padding: .6rem .85rem; }
+    #coupon-{{ uid }} .coupon-copy{ height: 26px; padding: 0 .6rem; }
+  }
+
+  /* screen reader helper */
+  #coupon-{{ uid }} .sr-only{
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
 </style>
 
