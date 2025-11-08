@@ -3,22 +3,22 @@ Coupon UI with border drawn on the panel edge.
 Controls you can pass in the render:
   code: 'BF20'
   text: 'Black Friday 🎉 use the coupon above at checkout for 20% off'
-  color: '#e60013'             # border + button color
-  uid: block.id                # unique scope id
+  color: '#e60013'
+  uid: block.id
   margin_top: 12
   margin_bottom: 0
 
   border_style: 'dashed' | 'dotted' | 'solid'
   stroke_width: 2
-  dash_len: 12                 # dashed only
-  dash_gap: 8                  # dashed only
-  dot_gap: 10                  # dotted only
+  dash_len: 12
+  dash_gap: 8
+  dot_gap: 10
 
-  panel: true                  # enables background panel
+  panel: true
   panel_bg: '#1f1f24'
-  panel_padding: 12            # space inside the panel
-  radius: 10                   # row radius
-  panel_radius:                # optional, defaults to radius + 6
+  panel_padding: 12
+  radius: 10
+  panel_radius: 16  (optional; defaults to radius + 6)
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
@@ -40,9 +40,15 @@ Controls you can pass in the render:
 
 {%- assign radius = radius | default: 10 -%}
 {%- assign panel_radius_value = panel_radius -%}
-{%- if panel_radius_value == blank -%}{%- assign panel_radius_value = radius | plus: 6 -%}{%- endif -%}
+{%- if panel_radius_value == blank -%}
+  {%- assign panel_radius_value = radius | plus: 6 -%}
+{%- endif -%}
 
-{%- assign frame_radius = panel | ternary: panel_radius_value, radius -%}
+{%- if panel -%}
+  {%- assign frame_radius = panel_radius_value -%}
+{%- else -%}
+  {%- assign frame_radius = radius -%}
+{%- endif -%}
 
 <div id="coupon-{{ uid }}" class="coupon-ui"
      style="--c: {{ color }}; --radius: {{ radius }}px; --panel-radius: {{ panel_radius_value }}px; --panel-pad: {{ panel_padding }}px; margin: {{ mt }}px 0 {{ mb }}px;">
@@ -138,7 +144,7 @@ Controls you can pass in the render:
     padding: var(--panel-pad);
     border-radius: var(--panel-radius);
     background: var(--panel-bg, transparent);
-    overflow: hidden; /* lets the frame hug the edge cleanly */
+    overflow: hidden;
   }
   #coupon-{{ uid }} .coupon-panel.no-panel{
     padding: 0; background: transparent; border-radius: 0; overflow: visible;
