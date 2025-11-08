@@ -235,7 +235,7 @@
                 <div class="drawer-recommend">
                   <h2>You might also like</h2>
                   {% for product in settings.drawer_recommend %}
-                    <div class="drawer-product">
+                    <div class="drawer-product" onclick="location.href({{ product.url }})">
                       <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Cart Recommend {{ product.title }}">
                       <div class="drawer-product-info">
                         <div>
