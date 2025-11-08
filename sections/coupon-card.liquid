@@ -1,0 +1,113 @@
+<div class="coupon-card" style="--coupon-color: {{ section.settings.accent_color }};">
+  <div class="coupon-content">
+    <div class="coupon-left">
+      <span class="coupon-label">Coupon</span>
+      <strong class="coupon-code">{{ section.settings.coupon_code }}</strong>
+      <button class="coupon-copy" type="button" data-copy="{{ section.settings.coupon_code }}">Copy</button>
+    </div>
+    <p class="coupon-text">{{ section.settings.note_text }}</p>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }} .coupon-card{
+    --c: var(--coupon-color, #e60013);
+    display: block;
+    width: 100%;
+    background: color-mix(in oklab, var(--c) 5%, white);
+    border: 2px dotted var(--c);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
+    margin: {{ section.settings.margin_top }}px 0 {{ section.settings.margin_bottom }}px;
+  }
+
+  /* optional perforation “holes” on sides */
+  {% if section.settings.perforation %}
+  #shopify-section-{{ section.id }} .coupon-card:before,
+  #shopify-section-{{ section.id }} .coupon-card:after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 14px; height: 14px;
+    background: #fff;
+    border: 2px solid var(--c);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  #shopify-section-{{ section.id }} .coupon-card:before{ left: -8px; }
+  #shopify-section-{{ section.id }} .coupon-card:after{ right: -8px; }
+  {% endif %}
+
+  #shopify-section-{{ section.id }} .coupon-content{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .75rem 1rem;
+    align-items: center;
+  }
+  #shopify-section-{{ section.id }} .coupon-left{
+    display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  }
+  #shopify-section-{{ section.id }} .coupon-label{
+    font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+    padding: .22rem .5rem; border: 1px solid var(--c); border-radius: 999px;
+  }
+  #shopify-section-{{ section.id }} .coupon-code{
+    font-family: var(--font-heading--family, inherit);
+    font-size: clamp(1rem, 2.6vw, 1.4rem);
+    letter-spacing: .08em;
+  }
+  #shopify-section-{{ section.id }} .coupon-copy{
+    border: 1px solid var(--c);
+    background: #fff;
+    border-radius: 8px;
+    padding: .4rem .6rem;
+    font-size: .85rem;
+    cursor: pointer;
+  }
+  #shopify-section-{{ section.id }} .coupon-copy:active{ transform: translateY(1px); }
+  #shopify-section-{{ section.id }} .coupon-text{
+    margin: 0; text-align: right; opacity: .9; font-size: .95rem;
+  }
+
+  /* mobile stack */
+  @media (max-width: 640px){
+    #shopify-section-{{ section.id }} .coupon-content{
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    #shopify-section-{{ section.id }} .coupon-text{ text-align: left; }
+  }
+</style>
+
+<script>
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('#shopify-section-{{ section.id }} .coupon-copy');
+    if(!btn) return;
+    const code = btn.getAttribute('data-copy') || '';
+    navigator.clipboard && navigator.clipboard.writeText(code).then(()=>{
+      const old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(()=> btn.textContent = old, 1200);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Coupon card",
+  "settings": [
+    { "type": "text", "id": "coupon_code", "label": "Coupon code", "default": "XINZUO20" },
+    { "type": "text", "id": "note_text", "label": "Subtext", "default": "Use this coupon for 20% off at checkout." },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#e60013" },
+    { "type": "checkbox", "id": "perforation", "label": "Show perforation", "default": true },
+    { "type": "range", "id": "margin_top", "label": "Top margin", "min": 0, "max": 80, "step": 4, "default": 16 },
+    { "type": "range", "id": "margin_bottom", "label": "Bottom margin", "min": 0, "max": 80, "step": 4, "default": 16 }
+  ],
+  "presets": [
+    { "name": "Coupon card" }
+  ]
+}
+{% endschema %}
