@@ -1,14 +1,21 @@
 {%- comment -%}
-Coupon UI with consistent dashed or dotted border on all sides.
-Controls (set per render):
+Coupon UI with consistent dashed/dotted/solid border and optional panel.
+Controls you can pass in the render:
+  code: 'BF20'
+  text: 'Black Friday 🎉 use the coupon above at checkout for 20% off'
+  color: '#e60013'          # border + button color
+  uid: block.id             # unique scope id
+  margin_top: 12
+  margin_bottom: 0
+
   border_style: 'dashed' | 'dotted' | 'solid'
-  stroke_width: 2          # border thickness (also dot size for dotted)
-  dash_len: 12             # dash length (dashed only)
-  dash_gap: 8              # dash gap (dashed only)
-  dot_gap: 10              # gap between dots (dotted only)
-  radius: 10               # corner roundness of the hit area
-  panel: true              # optional subtle panel so it feels like its own section
-  panel_bg: '#1f1f24'      # panel background if panel is true
+  stroke_width: 2           # border thickness (and dot size for dotted)
+  dash_len: 12              # dashed only
+  dash_gap: 8               # dashed only
+  dot_gap: 10               # dotted only
+  radius: 10                # corner radius of the row
+  panel: true               # adds a subtle panel background to feel like a section
+  panel_bg: '#1f1f24'
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
@@ -31,30 +38,35 @@ Controls (set per render):
   <div class="coupon-panel{% unless panel %} no-panel{% endunless %}" style="{% if panel %}--panel-bg: {{ panel_bg }};{% endif %}">
     <div class="coupon-row" role="button" tabindex="0" aria-label="Copy coupon {{ code }}" data-copy="{{ code }}">
       {%- if border_style != 'solid' -%}
-      <!-- Four-side frame so dash/dot spacing stays uniform -->
+      <!-- Four independent sides so dash/dot spacing stays uniform -->
       <svg class="coupon-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-        {% assign cap = border_style == 'dotted' | ternary: 'round','round' %}
-        {% if border_style == 'dashed' %}
-          {% assign dash = dash_len | append: ' ' | append: dash_gap %}
-        {% else %}
-          {% assign dash = '1 ' | append: dot_gap %}   {# tiny dash + round caps = dots #}
-        {% endif %}
+        {%- if border_style == 'dashed' -%}
+          {%- assign cap = 'butt' -%}
+          {%- assign dash = dash_len | append: ' ' | append: dash_gap -%}
+        {%- elsif border_style == 'dotted' -%}
+          {%- assign cap = 'round' -%}
+          {%- assign dash = stroke_width | append: ' ' | append: dot_gap -%}
+        {%- else -%}
+          {%- assign cap = 'butt' -%}
+          {%- assign dash = '' -%}
+        {%- endif -%}
+
         <!-- top -->
         <line x1="{{ radius }}" y1="1" x2="{{ 100 | minus: radius }}" y2="1"
               stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              stroke-linecap="{{ cap }}" stroke-dasharray="{{ dash }}" />
+              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
         <!-- bottom -->
         <line x1="{{ radius }}" y1="39" x2="{{ 100 | minus: radius }}" y2="39"
               stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              stroke-linecap="{{ cap }}" stroke-dasharray="{{ dash }}" />
+              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
         <!-- left -->
         <line x1="1" y1="{{ radius }}" x2="1" y2="{{ 40 | minus: radius }}"
               stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              stroke-linecap="{{ cap }}" stroke-dasharray="{{ dash }}" />
+              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
         <!-- right -->
         <line x1="99" y1="{{ radius }}" x2="99" y2="{{ 40 | minus: radius }}"
               stroke="var(--c)" stroke-width="{{ stroke_width }}"
-              stroke-linecap="{{ cap }}" stroke-dasharray="{{ dash }}" />
+              stroke-linecap="{{ cap }}" {% if dash != '' %}stroke-dasharray="{{ dash }}"{% endif %} />
       </svg>
       {%- endif -%}
 
@@ -70,14 +82,14 @@ Controls (set per render):
   /* Scope */
   #coupon-{{ uid }}{ background: transparent; }
 
-  /* Optional panel for a “section” feel */
+  /* Optional panel wrapper to feel like its own section */
   #coupon-{{ uid }} .coupon-panel{
     padding: 12px;
     border-radius: calc(var(--radius) + 6px);
     background: var(--panel-bg, transparent);
     box-shadow: 0 0 0 1px rgba(230,0,19,.12) inset;
   }
-  #coupon-{{ uid }} .coupon-panel.no-panel{ padding: 0; background: transparent; box-shadow:none; }
+  #coupon-{{ uid }} .coupon-panel.no-panel{ padding:0; background:transparent; box-shadow:none; }
 
   /* Row surface */
   #coupon-{{ uid }} .coupon-row{
