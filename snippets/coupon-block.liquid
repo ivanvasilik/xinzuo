@@ -162,25 +162,50 @@ Controls (pass via render):
     flex: 1 1 auto; min-width: 0;
   }
 
-  /* COPY chip */
+  /* COPY button - matches Xinzuo button style */
   #coupon-{{ uid }} .coupon-copy{
-    display: inline-flex; align-items: center; justify-content: center; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
     box-sizing: border-box;
-    width: auto !important; max-width: 40%; flex: 0 0 auto;
-    height: 28px; padding: 0 .65rem;
-    border-radius: 10px; border: 1px solid var(--c); background: var(--c);
-    color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .04em; line-height: 1;
-    white-space: nowrap; cursor: pointer;
+    width: auto !important; 
+    max-width: 40%; 
+    flex: 0 0 auto;
+    height: 32px; 
+    padding: 0 16px;
+    border-radius: 4px; 
+    border: none; 
+    background: var(--c);
+    color: #fff; 
+    font-family: "Sen", sans-serif;
+    font-size: 13px; 
+    font-weight: 600; 
+    letter-spacing: 0.02em; 
+    line-height: 1;
+    white-space: nowrap; 
+    cursor: pointer;
+    transition: background-color 0.2s;
   }
-  #coupon-{{ uid }} .coupon-copy:hover{ filter: brightness(1.05); }
-  #coupon-{{ uid }} .coupon-copy:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; }
-  #coupon-{{ uid }} .coupon-copy:active{ transform: translateY(1px); }
+  #coupon-{{ uid }} .coupon-copy:hover{ 
+    background-color: #dd0003;
+  }
+  #coupon-{{ uid }} .coupon-copy:focus{ 
+    outline: 2px solid rgba(255,255,255,.25); 
+    outline-offset: 2px; 
+  }
+  #coupon-{{ uid }} .coupon-copy:active{ 
+    transform: translateY(1px); 
+  }
 
   .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
 
   @media (max-width:640px){
     .coupon-row{ padding: .6rem .8rem; }
-    .coupon-copy{ height: 28px; padding: 0 .6rem; }
+    #coupon-{{ uid }} .coupon-copy{ 
+      height: 32px; 
+      padding: 0 12px; 
+      font-size: 12px;
+    }
   }
 </style>
 

@@ -104,11 +104,7 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button",
-                    "coupon": true,
-                    "coupon_code": "",
-                    "coupon_text": "",
-                    "coupon_color": ""
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
@@ -135,6 +131,22 @@
                 "text_size": 13,
                 "padding-block-start": 16,
                 "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "coupon_discount_supreme": {
+              "type": "coupon-discount",
+              "name": "Coupon Discount",
+              "settings": {
+                "coupon_code": "BFSALE20",
+                "coupon_text": "Use this code at checkout for 20% off",
+                "coupon_color": "#ff0004",
+                "border_style": "dotted",
+                "stroke_width": 2,
+                "panel_bg": "#1f1f24",
+                "panel_padding": 8,
+                "radius": 1,
+                "panel_radius": 14
               },
               "blocks": {}
             },
@@ -749,6 +761,7 @@
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
             "delivery_estimate_QFz8gG",
+            "coupon_discount_supreme",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",
