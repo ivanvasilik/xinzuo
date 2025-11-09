@@ -29,29 +29,30 @@
 
             const page = parseInt(btn.getAttribute('data-page')) + 1;
 
-            const url = `/collections/all?page=${page} .product-item`;
+            const url = `/collections/all?page=${page}`;
 
             try {
-            const response = await fetch(url);
-            const text = await response.text();
+                const response = await fetch(url);
+                const text = await response.text();
 
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(text, 'text/html');
-            const newItems = htmlDoc.querySelectorAll('.product-item');
+                const parser = new DOMParser();
+                const htmlDoc = parser.parseFromString(text, 'text/html');
+                const newItems = htmlDoc.querySelectorAll('.product-item');
 
-            for (let i = 0; i < 4; i ++) {
-                if (newItems[i]) grid.appendChild(newItems[i]);
-            }
-            if (newItems.length < 4) {
-                btn.remove();
-            } else {
-                btn.setAttribute('data-page', page);
-                btn.textContent = 'Load more';
-            }
+                for (let i = 0; i < 4; i++) {
+                    if (newItems[i]) grid.appendChild(newItems[i]);
+                }
+
+                if (newItems.length < 4) {
+                    btn.remove();
+                } else {
+                    btn.setAttribute('data-page', page);
+                    btn.textContent = 'Load more';
+                }
 
             } catch (err) {
-            console.error(err);
-            btn.textContent = 'Error';
+                console.error(err);
+                btn.textContent = 'Error';
             }
 
             loading = false;
