@@ -152,6 +152,18 @@
     }
     
     @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .home-products-div {
+            padding: 30px 18px 60px;
+            gap: 20px;
+        }
+
+        .section-{{ section.id }} .home-grid {
+            gap: 10px;
+        }
+
+        .section-{{ section.id }} .product-item {
+            width: calc(50% - 5px);
+        }
     }
 {% endstyle %}
 
