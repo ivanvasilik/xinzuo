@@ -91,6 +91,7 @@ class DeliveryEstimateComponent extends Component {
     this.enableHolidays = this.dataset.enableHolidays === 'true';
     this.postcodeData = null;
     this.selectedIndex = -1;
+    this.selectedSuburb = null; // Track selected suburb name
 
     // Wait for refs to be populated
     requestAnimationFrame(() => {
@@ -179,8 +180,15 @@ class DeliveryEstimateComponent extends Component {
     try {
       // Check if already saved in session storage
       const savedPostcode = sessionStorage.getItem('detectedPostcode');
+      const savedSuburb = sessionStorage.getItem('detectedSuburb');
       if (savedPostcode && savedPostcode.length === 4) {
-        this.postcodeInput.value = savedPostcode;
+        // Show in "Suburb, Postcode" format if suburb is available
+        if (savedSuburb) {
+          this.postcodeInput.value = `${savedSuburb}, ${savedPostcode}`;
+          this.selectedSuburb = savedSuburb;
+        } else {
+          this.postcodeInput.value = savedPostcode;
+        }
         this.handleCheck(); // Auto-calculate on load
         return;
       }
@@ -198,7 +206,17 @@ class DeliveryEstimateComponent extends Component {
       if (data.country_code === 'AU' && data.postal) {
         const postcode = data.postal;
         if (postcode.length === 4 && /^\d{4}$/.test(postcode)) {
-          this.postcodeInput.value = postcode;
+          // Find suburb for this postcode
+          const match = this.postcodeData?.find((item) => item.postcode === postcode);
+          
+          if (match) {
+            this.postcodeInput.value = `${match.locality}, ${postcode}`;
+            this.selectedSuburb = match.locality;
+            sessionStorage.setItem('detectedSuburb', match.locality);
+          } else {
+            this.postcodeInput.value = postcode;
+          }
+          
           sessionStorage.setItem('detectedPostcode', postcode);
           // Auto-calculate delivery estimate
           this.handleCheck();
@@ -252,11 +270,15 @@ class DeliveryEstimateComponent extends Component {
       const li = document.createElement('li');
       li.innerHTML = `${item.locality} <span class="dropdown-postcode">${item.postcode}</span>`;
       li.dataset.postcode = item.postcode;
+      li.dataset.locality = item.locality;
       li.dataset.index = index;
       
       li.addEventListener('click', () => {
-        this.postcodeInput.value = item.postcode;
+        // Set input to "Suburb, Postcode" format
+        this.postcodeInput.value = `${item.locality}, ${item.postcode}`;
+        this.selectedSuburb = item.locality;
         sessionStorage.setItem('detectedPostcode', item.postcode);
+        sessionStorage.setItem('detectedSuburb', item.locality);
         this.hideDropdown();
         this.handleCheck(); // Auto-calculate on selection
       });
@@ -313,8 +335,12 @@ class DeliveryEstimateComponent extends Component {
     const items = this.dropdownList.querySelectorAll('li');
     if (this.selectedIndex >= 0 && items[this.selectedIndex]) {
       const postcode = items[this.selectedIndex].dataset.postcode;
-      this.postcodeInput.value = postcode;
+      const locality = items[this.selectedIndex].dataset.locality;
+      // Set input to "Suburb, Postcode" format
+      this.postcodeInput.value = `${locality}, ${postcode}`;
+      this.selectedSuburb = locality;
       sessionStorage.setItem('detectedPostcode', postcode);
+      sessionStorage.setItem('detectedSuburb', locality);
       this.hideDropdown();
       this.handleCheck(); // Auto-calculate on selection
     }
@@ -333,11 +359,31 @@ class DeliveryEstimateComponent extends Component {
       return;
     }
 
-    // Extract postcode if it's just numbers
-    let postcode = input;
-    
-    // If input contains letters, try to find exact match in data
-    if (/[a-zA-Z]/.test(input)) {
+    let postcode = null;
+    let suburb = null;
+
+    // Check if input is in "Suburb, Postcode" format
+    if (input.includes(',')) {
+      const parts = input.split(',').map(p => p.trim());
+      if (parts.length === 2) {
+        suburb = parts[0];
+        postcode = parts[1];
+      }
+    }
+    // If just postcode (numbers only)
+    else if (/^\d{4}$/.test(input)) {
+      postcode = input;
+      // Try to find a suburb for this postcode
+      const match = this.postcodeData?.find((item) => item.postcode === postcode);
+      if (match) {
+        suburb = match.locality;
+        // Update input to show suburb too
+        this.postcodeInput.value = `${suburb}, ${postcode}`;
+        this.selectedSuburb = suburb;
+      }
+    }
+    // If suburb name only
+    else {
       const inputLower = input.toLowerCase();
       const match = this.postcodeData?.find(
         (item) => item.locality.toLowerCase() === inputLower
@@ -345,14 +391,18 @@ class DeliveryEstimateComponent extends Component {
       
       if (match) {
         postcode = match.postcode;
+        suburb = match.locality;
+        // Update input to show full format
+        this.postcodeInput.value = `${suburb}, ${postcode}`;
+        this.selectedSuburb = suburb;
       } else {
         this.showError('Please select a suburb from the dropdown or enter a postcode');
         return;
       }
     }
 
-    // Validate postcode format
-    if (postcode.length !== 4 || !/^\d{4}$/.test(postcode)) {
+    // Validate postcode
+    if (!postcode || postcode.length !== 4 || !/^\d{4}$/.test(postcode)) {
       this.showError('Please enter a valid 4-digit Australian postcode');
       return;
     }
@@ -364,6 +414,9 @@ class DeliveryEstimateComponent extends Component {
       this.showError('Please enter a valid Australian postcode');
       return;
     }
+
+    // Store suburb for display
+    this.selectedSuburb = suburb;
 
     // Calculate delivery estimate
     const estimate = this.calculateDeliveryEstimate(postcodeNum);
@@ -561,13 +614,18 @@ class DeliveryEstimateComponent extends Component {
       return `<strong>${dateInfo.formatted}</strong>`;
     };
 
+    // Format location as "Suburb, Postcode"
+    const locationDisplay = this.selectedSuburb 
+      ? `<strong>${this.selectedSuburb}, ${estimate.postcode}</strong>`
+      : `<strong>${estimate.postcode}</strong>`;
+
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to <strong class="postcode-text">${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       } else {
         // After cutoff - show date
-        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to <strong class="postcode-text">${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       }
     } else {
       // Standard delivery with date range
@@ -576,10 +634,10 @@ class DeliveryEstimateComponent extends Component {
       
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to <strong class="postcode-text">${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       } else {
         // After cutoff - show date range
-        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to <strong class="postcode-text">${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       }
     }
     this.destinationText.style.color = '#ffffff';
