@@ -680,7 +680,7 @@ class DeliveryEstimateComponent extends Component {
         this.destinationText.innerHTML = `<strong>Tomorrow</strong> to ${locationDisplay}`;
         
         // Show countdown (EXPRESS: "to get it tomorrow")
-        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it tomorrow`;
+        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it <strong>tomorrow</strong>`;
         this.countdownBox.style.display = 'flex';
       } else {
         // After cutoff OR delivery not tomorrow (e.g., skipped weekend/holiday)
