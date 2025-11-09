@@ -276,15 +276,37 @@ class DeliveryEstimateComponent extends Component {
     } else {
       // Standard delivery (1-2 days for QLD, 1-3 days for others)
       const isQLD = this.isQueensland(postcode);
-      const days = isQLD ? '1-2' : '1-3';
-      const state = isQLD ? 'Queensland' : 'your area';
+      const minDays = 1;
+      const maxDays = isQLD ? 2 : 3;
+      const timeRemaining = this.getTimeRemaining(brisbaneTime, cutoffHour, cutoffMinute);
+      
+      // Calculate earliest delivery date
+      const earliestDate = this.getNextBusinessDay(brisbaneTime, cutoffHour, cutoffMinute);
+      
+      // Calculate latest delivery date (add additional business days)
+      let latestDate = new Date(earliestDate);
+      let daysToAdd = maxDays - minDays;
+      while (daysToAdd > 0) {
+        latestDate.setDate(latestDate.getDate() + 1);
+        if (!this.isWeekendOrHoliday(latestDate)) {
+          daysToAdd--;
+        }
+      }
+      
+      const earliestFormatted = this.formatDeliveryDate(earliestDate);
+      const latestFormatted = this.formatDeliveryDate(latestDate);
 
       return {
         type: 'standard',
-        days,
-        state,
+        minDays,
+        maxDays,
         isQLD,
         postcode,
+        timeRemaining,
+        earliestDate,
+        latestDate,
+        earliestFormatted,
+        latestFormatted,
       };
     }
   }
@@ -387,17 +409,23 @@ class DeliveryEstimateComponent extends Component {
   showResult(estimate) {
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown with red time
-        this.destinationText.innerHTML = `Order within <span class="time-countdown">${estimate.timeRemaining}</span> to receive it by ${estimate.formattedDate}`;
+        // Before cutoff - show countdown with styling
+        this.destinationText.innerHTML = `<strong>Order within</strong> <span class="time-countdown">${estimate.timeRemaining}</span> <span class="delivery-date-text">to receive it by ${estimate.formattedDate} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
       } else {
-        // After cutoff - just show date
-        this.destinationText.textContent = `Get it by ${estimate.formattedDate} to ${estimate.postcode}`;
+        // After cutoff - just show date with styling
+        this.destinationText.innerHTML = `<span class="delivery-date-text">Get it by ${estimate.formattedDate} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
       }
-      this.destinationText.style.color = '#ffffff';
     } else {
-      this.destinationText.textContent = `Get it in ${estimate.days} days to ${estimate.postcode}`;
-      this.destinationText.style.color = '#ffffff';
+      // Standard delivery with date range
+      if (estimate.timeRemaining) {
+        // Before cutoff - show countdown
+        this.destinationText.innerHTML = `<strong>Order within</strong> <span class="time-countdown">${estimate.timeRemaining}</span> <span class="delivery-date-text">to receive it between ${estimate.earliestFormatted} - ${estimate.latestFormatted} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+      } else {
+        // After cutoff - just show date range
+        this.destinationText.innerHTML = `<span class="delivery-date-text">Get it between ${estimate.earliestFormatted} - ${estimate.latestFormatted} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+      }
     }
+    this.destinationText.style.color = '#ffffff';
     this.hideError();
   }
 
