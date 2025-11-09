@@ -24,9 +24,11 @@
   %}
 </span>
 
-{{ block.settings.coupon_code }}
-{{ block.settings.coupon_text }}
-{{ block.settings.coupon_color }}
+<span>
+  {{ block.settings.coupon_code }}
+  {{ block.settings.coupon_text }}
+  {{ block.settings.coupon_color }}
+</span>
 
 {% if block.settings.coupon == true %}
   {% render 'coupon-block',
