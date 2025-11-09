@@ -24,21 +24,22 @@
   %}
 </span>
 
-{% render 'coupon-block',
-  uid: block.id,
-  code: 'BF20',
-  text: 'Black Friday 🎉 use at checkout for 20% off',
-  color: '#e60013',
-  border_style: 'dotted',
-  stroke_width: 2,
-  dot_gap: 7,
-  panel: true,
-  panel_bg: '#1f1f24',
-  panel_padding: 8,
-  radius: 1,
-  panel_radius: 14
-%}
-
+{% if block.settings.coupon == true %}
+  {% render 'coupon-block',
+    uid: block.id,
+    code: block.settings.coupon_code,
+    text: block.settings.coupon_text,
+    color: block.settings.coupon_color,
+    border_style: 'dotted',
+    stroke_width: 2,
+    dot_gap: 7,
+    panel: true,
+    panel_bg: '#1f1f24',
+    panel_padding: 8,
+    radius: 1,
+    panel_radius: 14
+  %}
+{% endif %}
 
 
 {% schema %}
@@ -55,6 +56,30 @@
         { "value": "button-secondary", "label": "t:options.secondary" }
       ],
       "default": "button-secondary"
+    },
+    {
+      "type": "checkbox",
+      "id": "coupon",
+      "label": "Coupon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Coupon Code",
+      "visible_if": "{{ block.settings.coupon == true }}"
+    },
+    {
+      "type": "text",
+      "id": "coupon_text",
+      "label": "Coupon Text",
+      "visible_if": "{{ block.settings.coupon == true }}"
+    },
+    {
+      "type": "color",
+      "id": "coupon_color",
+      "label": "Coupon Color",
+      "visible_if": "{{ block.settings.coupon == true }}"
     }
   ]
 }

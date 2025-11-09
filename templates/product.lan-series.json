@@ -105,7 +105,11 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button"
+                    "style_class": "button",
+                    "coupon": true,
+                    "coupon_code": "BF20",
+                    "coupon_text": "Black Friday 🎉 use the coupon above at checkout for 20% off",
+                    "coupon_color": "#e60013"
                   },
                   "blocks": {}
                 },
