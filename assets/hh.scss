@@ -801,6 +801,6 @@ main[data-template="page.contact"] {
     z-index: 100;
 }
 
-.HubWidgetContainer-sc-qnyrsh-0 {
+div[data-testid="hub-widget-container"] {
     display: none !important;
 }
