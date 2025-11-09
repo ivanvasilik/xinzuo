@@ -677,7 +677,7 @@ class DeliveryEstimateComponent extends Component {
       // CHECK CONDITIONS: Express + Before Cutoff + Tomorrow is Business Day
       if (estimate.timeRemaining && estimate.dateInfo.isTomorrow) {
         // Show specific delivery date
-        this.destinationText.innerHTML = `<strong>Tomorrow</strong> to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Earliest delivery <strong>Tomorrow</strong> to ${locationDisplay}`;
         
         // Show countdown (EXPRESS: "to get it tomorrow")
         this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it <strong>tomorrow</strong>`;
@@ -685,7 +685,7 @@ class DeliveryEstimateComponent extends Component {
       } else {
         // After cutoff OR delivery not tomorrow (e.g., skipped weekend/holiday)
         // Show generic business days
-        this.destinationText.innerHTML = `1 business day to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Earliest delivery: 1 business day to ${locationDisplay}`;
         this.countdownBox.style.display = 'none';
       }
     } else {
@@ -693,7 +693,7 @@ class DeliveryEstimateComponent extends Component {
       const isQLD = estimate.isQLD;
       const businessDays = isQLD ? '1-2' : '1-3';
       
-      this.destinationText.innerHTML = `${businessDays} business days to ${locationDisplay}`;
+      this.destinationText.innerHTML = `Earliest delivery: ${businessDays} business days to ${locationDisplay}`;
       
       // Show countdown if before cutoff (STANDARD: "for dispatch today")
       if (estimate.timeRemaining) {
@@ -721,7 +721,7 @@ class DeliveryEstimateComponent extends Component {
   }
 
   hideResults() {
-    this.destinationText.textContent = 'Enter suburb or postcode';
+    this.destinationText.textContent = 'Earliest delivery: Enter suburb or postcode';
     this.countdownBox.style.display = 'none';
     this.hideError();
   }
