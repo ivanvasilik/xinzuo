@@ -7,7 +7,7 @@
         <h2>{{ section.settings.heading }}</h2>
         <div class="home-grid" id="home-products">
             {% assign counter = 0 %}
-            {% for product in all_products %}
+            {% for product in collections.all.products %}
                 {% assign counter = counter | plus: 1 %}
                 <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
                     {{ product.title }}
