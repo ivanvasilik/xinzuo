@@ -24,6 +24,10 @@
   %}
 </span>
 
+{{ block.settings.coupon_code }}
+{{ block.settings.coupon_text }}
+{{ block.settings.coupon_color }}
+
 {% if block.settings.coupon %}
   {% render 'coupon-block',
     uid: block.id,
