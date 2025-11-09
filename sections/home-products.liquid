@@ -24,8 +24,9 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 80px;
+        gap: 60px;
         position: relative;
+        padding: 60px 0;
     }
 
     .section-{{ section.id }} .home-products > h2 {
@@ -34,16 +35,25 @@
         font-weight: 600;
         color: #fff;
         line-height: 125%;
+        margin: 0;
     }
 
     .section-{{ section.id }} .home-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 80px;
+        gap: 60px;
     }
 
     .section-{{ section.id }} .product-item {
-        width: calc(50% - 40px);
+        width: calc(50% - 30px);
+    }
+
+    .section-{{ section.id }} .product-item h2 {
+        font-size: 36px;
+        font-family: "Sen";
+        font-weight: 600;
+        color: white;
+        line-height: 135%;
     }
 
     .section-{{ section.id }} .jdgm-prev-badge__text {
