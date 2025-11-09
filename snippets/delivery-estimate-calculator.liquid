@@ -195,11 +195,11 @@
     background-color: #10b981;
   }
 
-  /* Override .product-details styles globally affecting our component */
+  /* Match the countdown box styling - grey with bold white */
   .product-details .delivery-estimate-full-text,
   .product-details .delivery-estimate-full-text * {
     font-size: var(--delivery-text-size) !important;
-    color: #ffffff !important;
+    color: #c9c9cc !important;
     font-family: "Albert Sans", sans-serif !important;
     font-weight: 400 !important;
     line-height: 1.5 !important;
@@ -208,7 +208,7 @@
   .delivery-estimate-full-text {
     margin: 0;
     font-size: var(--delivery-text-size) !important;
-    color: #ffffff !important;
+    color: #c9c9cc !important;
     line-height: 1.5 !important;
     font-family: "Albert Sans", sans-serif !important;
     font-weight: 400 !important;
@@ -219,11 +219,12 @@
 
   .delivery-estimate-full-text u {
     text-decoration: underline;
+    color: #c9c9cc !important;
   }
 
   .delivery-estimate-full-text strong {
     font-weight: 600 !important;
-    font-family: "Sen", sans-serif !important;
+    color: #ffffff !important;
   }
 
   .delivery-estimate-main {
@@ -280,7 +281,6 @@
   .delivery-estimate-countdown strong {
     font-weight: 600;
     color: #ffffff;
-    font-family: "Sen", sans-serif;
   }
 
   .delivery-estimate-input-wrapper {
@@ -406,6 +406,15 @@
     .product-details .delivery-estimate-full-text,
     .product-details .delivery-estimate-full-text * {
       font-size: var(--delivery-text-size) !important;
+      color: #c9c9cc !important;
+    }
+
+    .product-details .delivery-estimate-full-text strong {
+      color: #ffffff !important;
+    }
+
+    .product-details .delivery-estimate-full-text u {
+      color: #c9c9cc !important;
     }
 
     .delivery-estimate-input {
