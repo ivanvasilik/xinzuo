@@ -95,6 +95,47 @@
         border-bottom: 1px solid #c9c9cc;
     }
 
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .home-products-div {
+            padding: 40px 60px 60px;
+            gap: 30px;
+        }
+
+        .section-{{ section.id }} .home-products-div > h2 {
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .home-grid {
+            gap: 30px;
+        }
+
+        .section-{{ section.id }} .product-item {
+            width: calc(50% - 15px);
+        }
+
+        .section-{{ section.id }} .product-item h2 {
+            font-size: 20px;
+        }
+
+        .section-{{ section.id }} .collection-price span.prices {
+        font-size: 22px;
+        }
+
+        .section-{{ section.id }} .collection-price span.compare-price {
+        font-size: 19px;
+        }
+
+        .section-{{ section.id }} .jdgm-prev-badge__text {
+        font-size: 16px;
+        }
+
+        .section-{{ section.id }} .collection-link {
+        font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 750px) {
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
