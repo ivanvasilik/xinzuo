@@ -44,34 +44,7 @@ class StickyAddToCartBar extends Component {
 
       this.setupIntersectionObserver();
       this.bindEvents();
-      this.handleIOSSafariViewport();
     });
-  }
-
-  /**
-   * Handle iOS Safari's dynamic viewport (bottom bar shows/hides)
-   * Ensures sticky bar stays at actual bottom, not where UI bar was
-   */
-  handleIOSSafariViewport() {
-    // Only needed for iOS Safari
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (!isIOS) return;
-
-    // Use visualViewport API to track Safari's UI bar changes
-    if (window.visualViewport) {
-      const updatePosition = () => {
-        // Calculate offset from bottom based on visual viewport vs layout viewport
-        const offsetBottom = window.innerHeight - window.visualViewport.height;
-        this.stickyBar.style.bottom = `${offsetBottom}px`;
-      };
-
-      // Update on viewport resize (when Safari bar appears/disappears)
-      window.visualViewport.addEventListener('resize', updatePosition);
-      window.visualViewport.addEventListener('scroll', updatePosition);
-      
-      // Initial positioning
-      updatePosition();
-    }
   }
 
   /**
