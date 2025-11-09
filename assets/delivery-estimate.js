@@ -8,16 +8,22 @@ import { Component } from './component.js';
  * Features:
  * - Express delivery zones (next business day) for major metro areas
  * - Standard delivery (1-2 days QLD, 1-3 days other states)
- * - Respects cutoff times (default 12:00 PM)
+ * - Respects cutoff times (default 12:00 PM Brisbane/AEST time)
  * - Automatically skips weekends
  * - Optional public holiday detection
  * - Mobile-first responsive design
+ * - Automatic postcode detection via IP geolocation
+ * 
+ * Important:
+ * - All time calculations use Australia/Brisbane timezone (AEST GMT+10)
+ * - Queensland doesn't observe daylight saving, so always GMT+10
+ * - Cutoff time is based on Brisbane time, not user's local time
  * 
  * Usage:
  * Add the 'delivery-estimate' block type to product pages in the theme editor.
  * 
  * Configuration:
- * - cutoff_time: Order cutoff time in 24h format (default: "12:00")
+ * - cutoff_time: Order cutoff time in 24h format (default: "12:00" Brisbane time)
  * - enable_public_holidays: Whether to skip public holidays (default: true)
  * - Styling options available in block settings
  * 
@@ -245,7 +251,10 @@ class DeliveryEstimateComponent extends Component {
   }
 
   calculateDeliveryEstimate(postcode) {
-    const now = new Date();
+    // Get current time in Brisbane/Queensland timezone (AEST GMT+10)
+    const brisbaneTime = new Date(
+      new Date().toLocaleString('en-US', { timeZone: 'Australia/Brisbane' })
+    );
     const [cutoffHour, cutoffMinute] = this.cutoffTime.split(':').map(Number);
 
     // Check if in express delivery zone
@@ -253,9 +262,9 @@ class DeliveryEstimateComponent extends Component {
 
     if (expressZone) {
       // Next business day delivery
-      const deliveryDate = this.getNextBusinessDay(now, cutoffHour, cutoffMinute);
+      const deliveryDate = this.getNextBusinessDay(brisbaneTime, cutoffHour, cutoffMinute);
       const formattedDate = this.formatDeliveryDate(deliveryDate);
-      const timeRemaining = this.getTimeRemaining(now, cutoffHour, cutoffMinute);
+      const timeRemaining = this.getTimeRemaining(brisbaneTime, cutoffHour, cutoffMinute);
 
       return {
         type: 'express',
@@ -345,7 +354,12 @@ class DeliveryEstimateComponent extends Component {
   }
 
   formatDeliveryDate(date) {
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    const options = { 
+      weekday: 'short', 
+      day: 'numeric', 
+      month: 'short',
+      timeZone: 'Australia/Brisbane'
+    };
     return date.toLocaleDateString('en-AU', options);
   }
 
