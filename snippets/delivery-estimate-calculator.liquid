@@ -195,10 +195,10 @@
     background-color: #10b981;
   }
 
-  /* EXACT match to countdown box styling */
+  /* EXACT match to countdown box styling (but with adjustable size) */
   .product-details .delivery-estimate-full-text,
   .product-details .delivery-estimate-full-text * {
-    font-size: 12px !important;
+    font-size: var(--delivery-text-size) !important;
     color: #c9c9cc !important;
     font-family: "Albert Sans", sans-serif !important;
     font-weight: 400 !important;
@@ -207,7 +207,7 @@
 
   .delivery-estimate-full-text {
     margin: 0;
-    font-size: 12px !important;
+    font-size: var(--delivery-text-size) !important;
     color: #c9c9cc !important;
     line-height: 1.5 !important;
     font-family: "Albert Sans", sans-serif !important;
@@ -406,7 +406,7 @@
 
     .product-details .delivery-estimate-full-text,
     .product-details .delivery-estimate-full-text * {
-      font-size: 12px !important;
+      font-size: var(--delivery-text-size) !important;
       color: #c9c9cc !important;
     }
 
