@@ -90,6 +90,8 @@ class DeliveryEstimateComponent extends Component {
     this.cutoffTime = this.dataset.cutoffTime || '12:00';
     this.enableHolidays = this.dataset.enableHolidays === 'true';
     this.postcodeData = null;
+    this.postcodeDataLoading = false;
+    this.postcodeDataLoaded = false;
     this.selectedIndex = -1;
     this.selectedSuburb = null; // Track selected suburb name
 
@@ -104,7 +106,9 @@ class DeliveryEstimateComponent extends Component {
       this.dropdownList = this.refs.dropdownList;
 
       this.bindEvents();
-      this.loadPostcodeData();
+      // Lazy load: Only load postcode data on first interaction
+      // This improves PageSpeed scores by not loading 1.2MB on initial page load
+      this.autoDetectPostcodeSimple();
     });
   }
 
@@ -606,23 +610,23 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
-    // Helper to format date with Tomorrow underlined and actual date shown
+    // Helper to format date with underline
     const formatDateDisplay = (dateInfo) => {
       if (dateInfo.isTomorrow) {
-        return `<strong class="tomorrow-text">Tomorrow,</strong> <strong>${dateInfo.formatted}</strong>`;
+        return `<span class="underline-text">Tomorrow, ${dateInfo.formatted}</span>`;
       }
-      return `<strong>${dateInfo.formatted}</strong>`;
+      return `<span class="underline-text">${dateInfo.formatted}</span>`;
     };
 
-    // Format location as "Suburb, Postcode"
+    // Format location as "Suburb, Postcode" with underline
     const locationDisplay = this.selectedSuburb 
-      ? `<strong>${this.selectedSuburb}, ${estimate.postcode}</strong>`
-      : `<strong>${estimate.postcode}</strong>`;
+      ? `<span class="underline-text">${this.selectedSuburb}, ${estimate.postcode}</span>`
+      : `<span class="underline-text">${estimate.postcode}</span>`;
 
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <span class="underline-text">${estimate.timeRemaining}</span> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       } else {
         // After cutoff - show date
         this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
@@ -634,7 +638,7 @@ class DeliveryEstimateComponent extends Component {
       
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <span class="underline-text">${estimate.timeRemaining}</span> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       } else {
         // After cutoff - show date range
         this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
