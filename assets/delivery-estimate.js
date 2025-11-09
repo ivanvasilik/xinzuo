@@ -78,22 +78,29 @@ class DeliveryEstimateComponent extends Component {
     '2026-12-28', // Boxing Day (observed)
   ];
 
-  init() {
-    this.cutoffTime = this.data.get('cutoffTime') || '12:00';
-    this.enableHolidays = this.data.get('enableHolidays') === 'true';
+  connectedCallback() {
+    super.connectedCallback();
 
-    this.postcodeInput = this.getRef('postcodeInput');
-    this.checkButton = this.getRef('checkButton');
-    this.resultContainer = this.getRef('resultContainer');
-    this.resultTitle = this.getRef('resultTitle');
-    this.resultDetails = this.getRef('resultDetails');
-    this.errorContainer = this.getRef('errorContainer');
-    this.errorMessage = this.getRef('errorMessage');
+    this.cutoffTime = this.dataset.cutoffTime || '12:00';
+    this.enableHolidays = this.dataset.enableHolidays === 'true';
 
-    this.bindEvents();
+    // Wait for refs to be populated
+    requestAnimationFrame(() => {
+      this.postcodeInput = this.refs.postcodeInput;
+      this.checkButton = this.refs.checkButton;
+      this.resultContainer = this.refs.resultContainer;
+      this.resultTitle = this.refs.resultTitle;
+      this.resultDetails = this.refs.resultDetails;
+      this.errorContainer = this.refs.errorContainer;
+      this.errorMessage = this.refs.errorMessage;
+
+      this.bindEvents();
+    });
   }
 
   bindEvents() {
+    if (!this.checkButton || !this.postcodeInput) return;
+
     // Handle check button click
     this.checkButton.addEventListener('click', () => this.handleCheck());
 
