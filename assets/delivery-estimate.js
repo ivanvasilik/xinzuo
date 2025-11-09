@@ -88,9 +88,7 @@ class DeliveryEstimateComponent extends Component {
     requestAnimationFrame(() => {
       this.postcodeInput = this.refs.postcodeInput;
       this.checkButton = this.refs.checkButton;
-      this.resultContainer = this.refs.resultContainer;
-      this.resultTitle = this.refs.resultTitle;
-      this.resultDetails = this.refs.resultDetails;
+      this.destinationText = this.refs.destinationText;
       this.errorContainer = this.refs.errorContainer;
       this.errorMessage = this.refs.errorMessage;
       this.detectLocationButton = this.refs.detectLocationButton;
@@ -388,28 +386,29 @@ class DeliveryEstimateComponent extends Component {
 
   showResult(estimate) {
     if (estimate.type === 'express') {
-      const timeRemainingText = estimate.timeRemaining
-        ? ` — Order within ${estimate.timeRemaining}`
-        : '';
-
-      this.resultTitle.textContent = `Receive by ${estimate.formattedDate}${timeRemainingText}`;
-      this.resultDetails.textContent = `Express delivery available for ${estimate.zone} (postcode ${estimate.postcode})`;
+      const formattedDate = estimate.formattedDate.charAt(0).toUpperCase() + estimate.formattedDate.slice(1);
+      this.destinationText.textContent = `Get it ${formattedDate} to ${estimate.postcode}`;
+      this.destinationText.style.color = '#10b981';
     } else {
-      this.resultTitle.textContent = `Delivery in ${estimate.days} business days`;
-      this.resultDetails.textContent = `Standard delivery to ${estimate.state} (postcode ${estimate.postcode})`;
+      this.destinationText.textContent = `Get it in ${estimate.days} days to ${estimate.postcode}`;
+      this.destinationText.style.color = '#10b981';
     }
-
-    this.resultContainer.style.display = 'flex';
+    this.hideError();
   }
 
   showError(message) {
     this.errorMessage.textContent = message;
-    this.errorContainer.style.display = 'flex';
+    this.errorContainer.style.display = 'block';
+  }
+
+  hideError() {
+    this.errorContainer.style.display = 'none';
   }
 
   hideResults() {
-    this.resultContainer.style.display = 'none';
-    this.errorContainer.style.display = 'none';
+    this.destinationText.textContent = 'Enter postcode to see delivery date';
+    this.destinationText.style.color = '';
+    this.hideError();
   }
 }
 
