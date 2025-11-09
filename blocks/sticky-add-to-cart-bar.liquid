@@ -54,18 +54,11 @@
           class="sticky-add-to-cart-button"
           {% unless can_add_to_cart %}disabled{% endunless %}
         >
-          <span class="sticky-add-to-cart-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 5H12L8 1L4 5H2L8 11L14 5Z" fill="currentColor"/>
-            </svg>
-          </span>
-          <span class="sticky-add-to-cart-text">
-            {% if can_add_to_cart %}
-              Add to Cart
-            {% else %}
-              Sold Out
-            {% endif %}
-          </span>
+          {% if can_add_to_cart %}
+            Add to Cart
+          {% else %}
+            Sold Out
+          {% endif %}
         </button>
       </form>
     </div>
@@ -151,18 +144,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #ff0004;
     border: none;
     border-radius: 4px;
-    color: #ffffff;
+    color: #ffffff !important;
     font-family: "Sen", sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
     white-space: nowrap;
+    text-align: center;
+    line-height: 1;
   }
 
   .sticky-add-to-cart-button:hover {
@@ -172,16 +166,6 @@
   .sticky-add-to-cart-button:disabled {
     background-color: #6b7280;
     cursor: not-allowed;
-  }
-
-  .sticky-add-to-cart-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .sticky-add-to-cart-text {
-    line-height: 1;
   }
 
   /* Hide on desktop - extra safety */

@@ -37,7 +37,6 @@ class StickyAddToCartBar extends Component {
       this.stickyBar = this.querySelector('.sticky-add-to-cart-bar');
       this.priceElement = this.querySelector('.sticky-add-to-cart-price');
       this.button = this.querySelector('.sticky-add-to-cart-button');
-      this.buttonText = this.querySelector('.sticky-add-to-cart-text');
       this.form = this.querySelector('.sticky-add-to-cart-form');
       this.hiddenInput = this.form?.querySelector('input[name="id"]');
 
@@ -158,10 +157,7 @@ class StickyAddToCartBar extends Component {
     if (this.button) {
       const available = variant.available;
       this.button.disabled = !available;
-      
-      if (this.buttonText) {
-        this.buttonText.textContent = available ? 'Add to Cart' : 'Sold Out';
-      }
+      this.button.textContent = available ? 'Add to Cart' : 'Sold Out';
     }
   }
 
