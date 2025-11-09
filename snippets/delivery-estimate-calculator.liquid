@@ -34,7 +34,7 @@
     <div class="delivery-estimate-content">
       <div class="delivery-estimate-header">
         <h3>Check Delivery Estimate</h3>
-        <p class="delivery-estimate-subtitle">Enter your postcode to see when you'll receive your order</p>
+        <p class="delivery-estimate-subtitle">Your postcode may be auto-detected, or enter it manually</p>
       </div>
 
       <div class="delivery-estimate-input-group">
@@ -47,6 +47,19 @@
           ref="postcodeInput"
           aria-label="Postcode"
         />
+        <button
+          type="button"
+          class="delivery-estimate-button delivery-estimate-button--secondary"
+          ref="detectLocationButton"
+          aria-label="Detect my location"
+          title="Use my location to auto-fill postcode"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 1V2M8 14V15M15 8H14M2 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
         <button
           type="button"
           class="delivery-estimate-button"
@@ -162,11 +175,13 @@
   .delivery-estimate-input-group {
     display: flex;
     gap: 8px;
+    align-items: stretch;
   }
 
   @media (max-width: 749px) {
     .delivery-estimate-input-group {
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 8px;
     }
   }
@@ -223,10 +238,42 @@
     background-color: #1e40af;
   }
 
+  .delivery-estimate-button--secondary {
+    padding: 12px;
+    width: auto;
+    min-width: 48px;
+    background-color: #3a3b47;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .delivery-estimate-button--secondary:hover {
+    background-color: #4a4b57;
+  }
+
+  .delivery-estimate-button--secondary:active {
+    background-color: #2a2b37;
+  }
+
+  .delivery-estimate-button--secondary svg {
+    flex-shrink: 0;
+  }
+
   @media (max-width: 749px) {
     .delivery-estimate-button {
-      width: 100%;
       padding: 14px 24px;
+    }
+
+    .delivery-estimate-button--secondary {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 14px;
+    }
+
+    .delivery-estimate-button:not(.delivery-estimate-button--secondary) {
+      grid-column: 1 / -1;
+      grid-row: 2;
     }
   }
 

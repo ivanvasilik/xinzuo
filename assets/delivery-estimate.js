@@ -93,8 +93,10 @@ class DeliveryEstimateComponent extends Component {
       this.resultDetails = this.refs.resultDetails;
       this.errorContainer = this.refs.errorContainer;
       this.errorMessage = this.refs.errorMessage;
+      this.detectLocationButton = this.refs.detectLocationButton;
 
       this.bindEvents();
+      this.autoDetectPostcode();
     });
   }
 
@@ -103,6 +105,11 @@ class DeliveryEstimateComponent extends Component {
 
     // Handle check button click
     this.checkButton.addEventListener('click', () => this.handleCheck());
+
+    // Handle detect location button
+    if (this.detectLocationButton) {
+      this.detectLocationButton.addEventListener('click', () => this.detectPostcodeManually());
+    }
 
     // Handle Enter key in input
     this.postcodeInput.addEventListener('keypress', (e) => {
@@ -115,6 +122,98 @@ class DeliveryEstimateComponent extends Component {
     this.postcodeInput.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/[^0-9]/g, '');
     });
+  }
+
+  /**
+   * Auto-detect postcode using IP geolocation (no permission needed)
+   * Falls back silently if detection fails
+   */
+  async autoDetectPostcode() {
+    try {
+      // Check if already saved in session storage
+      const savedPostcode = sessionStorage.getItem('detectedPostcode');
+      if (savedPostcode && savedPostcode.length === 4) {
+        this.postcodeInput.value = savedPostcode;
+        return;
+      }
+
+      // Use free IP geolocation API (no key required for basic use)
+      const response = await fetch('https://ipapi.co/json/', {
+        signal: AbortSignal.timeout(3000), // 3 second timeout
+      });
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+
+      // Check if it's Australia and has a postcode
+      if (data.country_code === 'AU' && data.postal) {
+        const postcode = data.postal;
+        if (postcode.length === 4 && /^\d{4}$/.test(postcode)) {
+          this.postcodeInput.value = postcode;
+          // Save to session storage for this session
+          sessionStorage.setItem('detectedPostcode', postcode);
+        }
+      }
+    } catch (error) {
+      // Silently fail - user can still enter manually
+      console.log('Postcode auto-detection unavailable');
+    }
+  }
+
+  /**
+   * Manual location detection using browser geolocation API
+   * Requires user permission
+   */
+  async detectPostcodeManually() {
+    if (!navigator.geolocation) {
+      this.showError('Location detection not supported in your browser');
+      return;
+    }
+
+    // Show loading state
+    const originalText = this.detectLocationButton.textContent;
+    this.detectLocationButton.textContent = 'Detecting...';
+    this.detectLocationButton.disabled = true;
+
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          timeout: 10000,
+          maximumAge: 300000, // 5 minutes
+        });
+      });
+
+      const { latitude, longitude } = position.coords;
+
+      // Reverse geocode to get postcode using free API
+      const response = await fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+      );
+
+      if (!response.ok) throw new Error('Geocoding failed');
+
+      const data = await response.json();
+
+      if (data.postcode && /^\d{4}$/.test(data.postcode)) {
+        this.postcodeInput.value = data.postcode;
+        sessionStorage.setItem('detectedPostcode', data.postcode);
+        // Auto-check after detection
+        this.handleCheck();
+      } else {
+        this.showError('Could not determine postcode from your location');
+      }
+    } catch (error) {
+      if (error.code === 1) {
+        this.showError('Location permission denied. Please enter postcode manually.');
+      } else {
+        this.showError('Could not detect location. Please enter postcode manually.');
+      }
+    } finally {
+      // Restore button
+      this.detectLocationButton.textContent = originalText;
+      this.detectLocationButton.disabled = false;
+    }
   }
 
   handleCheck() {
