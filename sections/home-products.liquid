@@ -6,6 +6,14 @@
     .section-{{ section.id }} .home-products {
         max-width: 1440px;
         margin: 0 auto;
+        background-color: black;
+    }
+    
+    .section-{{ section.id }} .home-products-gradient {
+        background: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
+        width: 100%;
+        height: 80%;
+        max-height: 600px;
     }
 
     .section-{{ section.id }} .home-products-div {
@@ -32,7 +40,7 @@
     .section-{{ section.id }} .product-item {
         width: 50%;
     }
-    
+
     .section-{{ section.id }} .jdgm-prev-badge__text {
         font-family: "Albert Sans";
         font-weight: 400;
@@ -77,6 +85,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
     <div class="home-products">
+        <div class="home-products-gradient"></div>
         <div class="home-products-div">
             <h2>{{ section.settings.heading }}</h2>
             <div class="home-grid" id="home-products">
