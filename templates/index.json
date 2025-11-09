@@ -251,6 +251,13 @@
         "heading": "Trusted by Michelin Star Chefs Worldwide."
       }
     },
+    "home_products_3iCime": {
+      "type": "home-products",
+      "name": "Home Products",
+      "settings": {
+        "heading": ""
+      }
+    },
     "home_slider_g9dVGe": {
       "type": "home-slider",
       "blocks": {
@@ -726,6 +733,7 @@
     "hero_jVaWmY",
     "cw_hero_BD9KK7",
     "customer_GD7Dyr",
+    "home_products_3iCime",
     "home_slider_g9dVGe",
     "quick_question_XyWDMB",
     "reviews_UMDUhc",
