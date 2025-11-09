@@ -124,8 +124,8 @@
                 "cutoff_time": "12:00",
                 "enable_public_holidays": true,
                 "show_icon": true,
-                "background_color": "#f8f9fa",
-                "border_color": "#e0e0e0",
+                "background_color": "#292a33",
+                "border_color": "#3a3b47",
                 "border_radius": 8,
                 "padding-block-start": 16,
                 "padding-block-end": 0
