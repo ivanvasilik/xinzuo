@@ -109,7 +109,7 @@
                     "coupon": true,
                     "coupon_code": "",
                     "coupon_text": "",
-                    "coupon_color": "rgba(0,0,0,0)"
+                    "coupon_color": "#e60013"
                   },
                   "blocks": {}
                 },
