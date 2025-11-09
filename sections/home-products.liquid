@@ -6,14 +6,11 @@
     <div class="home-products">
         <h2>{{ section.settings.heading }}</h2>
         <div class="home-grid" id="home-products">
-            {% for product in collections.all.products limit: 4 %}
-                <div class="product-item">
-                    <a href="{{ product.url }}">
-                        {% if product.featured_image %}
-                            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                        {% endif %}
-                        <p>{{ product.title }}</p>
-                    </a>
+            {% assign counter = 0 %}
+            {% for product in all_products %}
+                {% assign counter = counter | plus: 1 %}
+                <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
+                    {{ product.title }}
                 </div>
             {% endfor %}
         </div>
@@ -22,51 +19,23 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.querySelector('#load-more');
-    const grid = document.querySelector('#home-products');
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('#load-more');
+        const products = document.querySelectorAll('#home-products .product-item');
+        let visible = 4; // initially visible products
 
-    btn.addEventListener('click', async () => {
-        btn.disabled = true;
-        btn.textContent = 'Loading...';
-
-        let page = parseInt(btn.getAttribute('data-page')) + 1;
-
-        try {
-            // Fetch the next page HTML of the collection
-            const res = await fetch(`/collections/all?page=${page}`);
-            const text = await res.text();
-
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(text, 'text/html');
-
-            // Grab all product-item elements from that page
-            const newItems = htmlDoc.querySelectorAll('.product-item');
-
-            if (!newItems || newItems.length === 0) {
-                btn.remove();
-                return;
+        btn.addEventListener('click', () => {
+            // Show next 4 products
+            for (let i = visible; i < visible + 4; i++) {
+            if (products[i]) products[i].style.display = 'block';
             }
 
-            // Append the next 4 products
-            for (let i = 0; i < 4; i++) {
-                if (newItems[i]) grid.appendChild(newItems[i]);
-            }
+            visible += 4;
 
-            btn.setAttribute('data-page', page);
-            btn.disabled = false;
-            btn.textContent = 'Load more';
-
-            // Remove button if fewer than 4 products were returned
-            if (newItems.length < 4) btn.remove();
-
-        } catch (err) {
-            console.error(err);
-            btn.disabled = false;
-            btn.textContent = 'Error';
-        }
+            // Remove button if all products are visible
+            if (visible >= products.length) btn.remove();
+        });
     });
-});
 </script>
 
 {% schema %}
