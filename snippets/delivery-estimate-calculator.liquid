@@ -1,0 +1,318 @@
+
+{% liquid
+  assign cutoff_time = settings.cutoff_time | default: '12:00'
+  assign enable_public_holidays = settings.enable_public_holidays | default: true
+  assign show_icon = settings.show_icon | default: true
+  assign background_color = settings.background_color | default: '#f8f9fa'
+  assign border_color = settings.border_color | default: '#e0e0e0'
+  assign border_radius = settings.border_radius | default: 8
+%}
+
+<script src="{{ 'delivery-estimate.js' | asset_url }}" type="module"></script>
+
+<delivery-estimate-component
+  data-cutoff-time="{{ cutoff_time }}"
+  data-enable-holidays="{{ enable_public_holidays }}"
+>
+  <div
+    class="delivery-estimate-container"
+    style="
+      --delivery-bg-color: {{ background_color }};
+      --delivery-border-color: {{ border_color }};
+      --delivery-border-radius: {{ border_radius }}px;
+    "
+  >
+    {% if show_icon %}
+      <div class="delivery-estimate-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 10V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    {% endif %}
+
+    <div class="delivery-estimate-content">
+      <div class="delivery-estimate-header">
+        <h3>Check Delivery Estimate</h3>
+        <p class="delivery-estimate-subtitle">Enter your postcode to see when you'll receive your order</p>
+      </div>
+
+      <div class="delivery-estimate-input-group">
+        <input
+          type="text"
+          class="delivery-estimate-input"
+          placeholder="Enter postcode (e.g., 4000)"
+          maxlength="4"
+          pattern="[0-9]{4}"
+          ref="postcodeInput"
+          aria-label="Postcode"
+        />
+        <button
+          type="button"
+          class="delivery-estimate-button"
+          ref="checkButton"
+        >
+          Check
+        </button>
+      </div>
+
+      <div
+        class="delivery-estimate-result"
+        ref="resultContainer"
+        style="display: none;"
+      >
+        <div class="delivery-estimate-result-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.6666 5L7.49998 14.1667L3.33331 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="delivery-estimate-result-content">
+          <p class="delivery-estimate-result-title" ref="resultTitle"></p>
+          <p class="delivery-estimate-result-details" ref="resultDetails"></p>
+        </div>
+      </div>
+
+      <div
+        class="delivery-estimate-error"
+        ref="errorContainer"
+        style="display: none;"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 6V10M10 14H10.01M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p ref="errorMessage"></p>
+      </div>
+    </div>
+  </div>
+</delivery-estimate-component>
+
+<style>
+  .delivery-estimate-container {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--delivery-bg-color);
+    border: 1px solid var(--delivery-border-color);
+    border-radius: var(--delivery-border-radius);
+    font-family: var(--font-body--family, sans-serif);
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-container {
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+    }
+  }
+
+  .delivery-estimate-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    background-color: #eff6ff;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-icon {
+      display: none;
+    }
+  }
+
+  .delivery-estimate-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .delivery-estimate-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-header h3 {
+      font-size: 16px;
+    }
+  }
+
+  .delivery-estimate-subtitle {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-subtitle {
+      font-size: 13px;
+    }
+  }
+
+  .delivery-estimate-input-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-input-group {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  .delivery-estimate-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: var(--font-body--family, sans-serif);
+  }
+
+  .delivery-estimate-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+    }
+  }
+
+  .delivery-estimate-button {
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    font-family: var(--font-body--family, sans-serif);
+  }
+
+  .delivery-estimate-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .delivery-estimate-button:active {
+    background-color: #1e40af;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-button {
+      width: 100%;
+      padding: 14px 24px;
+    }
+  }
+
+  .delivery-estimate-result {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 6px;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-result {
+      padding: 12px;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .delivery-estimate-result-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: #059669;
+  }
+
+  .delivery-estimate-result-content {
+    flex: 1;
+  }
+
+  .delivery-estimate-result-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #065f46;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-result-title {
+      font-size: 14px;
+    }
+  }
+
+  .delivery-estimate-result-details {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #047857;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-result-details {
+      font-size: 13px;
+    }
+  }
+
+  .delivery-estimate-error {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    color: #991b1b;
+    font-size: 14px;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .delivery-estimate-error svg {
+    flex-shrink: 0;
+    color: #dc2626;
+  }
+
+  .delivery-estimate-error p {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-error {
+      font-size: 13px;
+    }
+  }
+</style>
+

@@ -118,6 +118,20 @@
               },
               "block_order": []
             },
+            "delivery_estimate_block": {
+              "type": "delivery-estimate",
+              "settings": {
+                "cutoff_time": "12:00",
+                "enable_public_holidays": true,
+                "show_icon": true,
+                "background_color": "#f8f9fa",
+                "border_color": "#e0e0e0",
+                "border_radius": 8,
+                "padding-block-start": 16,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "payment_icons_hCKkQw": {
               "type": "payment-icons",
               "name": "t:names.payment_icons",
@@ -646,6 +660,7 @@
           "block_order": [
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
+            "delivery_estimate_block",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",
