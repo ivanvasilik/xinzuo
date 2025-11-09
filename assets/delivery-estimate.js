@@ -409,20 +409,20 @@ class DeliveryEstimateComponent extends Component {
   showResult(estimate) {
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown with styling
-        this.destinationText.innerHTML = `<strong>Order within</strong> <span class="time-countdown">${estimate.timeRemaining}</span> <span class="delivery-date-text">to receive it by ${estimate.formattedDate} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+        // Before cutoff - clean styling with strategic bolding
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by <strong>${estimate.formattedDate}</strong> to <strong>${estimate.postcode}</strong>`;
       } else {
-        // After cutoff - just show date with styling
-        this.destinationText.innerHTML = `<span class="delivery-date-text">Get it by ${estimate.formattedDate} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+        // After cutoff - clean styling
+        this.destinationText.innerHTML = `Get it by <strong>${estimate.formattedDate}</strong> to <strong>${estimate.postcode}</strong>`;
       }
     } else {
       // Standard delivery with date range
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown
-        this.destinationText.innerHTML = `<strong>Order within</strong> <span class="time-countdown">${estimate.timeRemaining}</span> <span class="delivery-date-text">to receive it between ${estimate.earliestFormatted} - ${estimate.latestFormatted} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+        // Before cutoff - clean styling with strategic bolding
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between <strong>${estimate.earliestFormatted} - ${estimate.latestFormatted}</strong> to <strong>${estimate.postcode}</strong>`;
       } else {
-        // After cutoff - just show date range
-        this.destinationText.innerHTML = `<span class="delivery-date-text">Get it between ${estimate.earliestFormatted} - ${estimate.latestFormatted} to <span class="delivery-postcode">${estimate.postcode}</span></span>`;
+        // After cutoff - clean styling
+        this.destinationText.innerHTML = `Get it between <strong>${estimate.earliestFormatted} - ${estimate.latestFormatted}</strong> to <strong>${estimate.postcode}</strong>`;
       }
     }
     this.destinationText.style.color = '#ffffff';
