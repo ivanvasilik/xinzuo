@@ -375,6 +375,21 @@ class DeliveryEstimateComponent extends Component {
   }
 
   formatDeliveryDate(date) {
+    // Get tomorrow's date in Brisbane timezone for comparison
+    const brisbaneNow = new Date(
+      new Date().toLocaleString('en-US', { timeZone: 'Australia/Brisbane' })
+    );
+    const tomorrowBrisbane = new Date(brisbaneNow);
+    tomorrowBrisbane.setDate(tomorrowBrisbane.getDate() + 1);
+    
+    // Compare just the date parts (ignore time)
+    const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const tomorrowOnly = new Date(tomorrowBrisbane.getFullYear(), tomorrowBrisbane.getMonth(), tomorrowBrisbane.getDate());
+    
+    if (dateOnly.getTime() === tomorrowOnly.getTime()) {
+      return 'Tomorrow';
+    }
+    
     const options = { 
       weekday: 'short', 
       day: 'numeric', 
@@ -407,22 +422,33 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
+    // Helper to format date with Tomorrow underlined
+    const formatDateDisplay = (dateStr) => {
+      if (dateStr === 'Tomorrow') {
+        return '<strong class="tomorrow-text">Tomorrow,</strong>';
+      }
+      return `<strong>${dateStr}</strong>`;
+    };
+
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - clean styling with strategic bolding
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by <strong>${estimate.formattedDate}</strong> to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.formattedDate)} to <strong>${estimate.postcode}</strong>`;
       } else {
         // After cutoff - clean styling
-        this.destinationText.innerHTML = `Get it by <strong>${estimate.formattedDate}</strong> to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.formattedDate)} to <strong>${estimate.postcode}</strong>`;
       }
     } else {
       // Standard delivery with date range
+      const earliestDisplay = formatDateDisplay(estimate.earliestFormatted);
+      const latestDisplay = formatDateDisplay(estimate.latestFormatted);
+      
       if (estimate.timeRemaining) {
         // Before cutoff - clean styling with strategic bolding
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between <strong>${estimate.earliestFormatted} - ${estimate.latestFormatted}</strong> to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
       } else {
         // After cutoff - clean styling
-        this.destinationText.innerHTML = `Get it between <strong>${estimate.earliestFormatted} - ${estimate.latestFormatted}</strong> to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
       }
     }
     this.destinationText.style.color = '#ffffff';
