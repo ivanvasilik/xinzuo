@@ -56,30 +56,6 @@
       ],
       "default": "button-secondary"
     },
-    {
-      "type": "checkbox",
-      "id": "coupon",
-      "label": "Coupon",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "coupon_code",
-      "label": "Coupon Code",
-      "visible_if": "{{ block.settings.coupon == true }}"
-    },
-    {
-      "type": "text",
-      "id": "coupon_text",
-      "label": "Coupon Text",
-      "visible_if": "{{ block.settings.coupon == true }}"
-    },
-    {
-      "type": "color",
-      "id": "coupon_color",
-      "label": "Coupon Color",
-      "visible_if": "{{ block.settings.coupon == true }}"
-    }
   ]
 }
 {% endschema %}
