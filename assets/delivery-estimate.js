@@ -262,14 +262,14 @@ class DeliveryEstimateComponent extends Component {
     if (expressZone) {
       // Next business day delivery
       const deliveryDate = this.getNextBusinessDay(brisbaneTime, cutoffHour, cutoffMinute);
-      const formattedDate = this.formatDeliveryDate(deliveryDate);
+      const dateInfo = this.formatDeliveryDate(deliveryDate);
       const timeRemaining = this.getTimeRemaining(brisbaneTime, cutoffHour, cutoffMinute);
 
       return {
         type: 'express',
         zone: expressZone,
         date: deliveryDate,
-        formattedDate,
+        dateInfo,
         timeRemaining,
         postcode,
       };
@@ -293,8 +293,8 @@ class DeliveryEstimateComponent extends Component {
         }
       }
       
-      const earliestFormatted = this.formatDeliveryDate(earliestDate);
-      const latestFormatted = this.formatDeliveryDate(latestDate);
+      const earliestInfo = this.formatDeliveryDate(earliestDate);
+      const latestInfo = this.formatDeliveryDate(latestDate);
 
       return {
         type: 'standard',
@@ -305,8 +305,8 @@ class DeliveryEstimateComponent extends Component {
         timeRemaining,
         earliestDate,
         latestDate,
-        earliestFormatted,
-        latestFormatted,
+        earliestInfo,
+        latestInfo,
       };
     }
   }
@@ -386,17 +386,27 @@ class DeliveryEstimateComponent extends Component {
     const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     const tomorrowOnly = new Date(tomorrowBrisbane.getFullYear(), tomorrowBrisbane.getMonth(), tomorrowBrisbane.getDate());
     
-    if (dateOnly.getTime() === tomorrowOnly.getTime()) {
-      return 'Tomorrow';
-    }
-    
+    // Always format the actual date
     const options = { 
       weekday: 'short', 
       day: 'numeric', 
       month: 'short',
       timeZone: 'Australia/Brisbane'
     };
-    return date.toLocaleDateString('en-AU', options);
+    const formattedDate = date.toLocaleDateString('en-AU', options);
+    
+    // Return object with both tomorrow flag and formatted date
+    if (dateOnly.getTime() === tomorrowOnly.getTime()) {
+      return {
+        isTomorrow: true,
+        formatted: formattedDate
+      };
+    }
+    
+    return {
+      isTomorrow: false,
+      formatted: formattedDate
+    };
   }
 
   getTimeRemaining(now, cutoffHour, cutoffMinute) {
@@ -422,32 +432,32 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
-    // Helper to format date with Tomorrow underlined
-    const formatDateDisplay = (dateStr) => {
-      if (dateStr === 'Tomorrow') {
-        return '<strong class="tomorrow-text">Tomorrow,</strong>';
+    // Helper to format date with Tomorrow underlined and actual date shown
+    const formatDateDisplay = (dateInfo) => {
+      if (dateInfo.isTomorrow) {
+        return `<strong class="tomorrow-text">Tomorrow,</strong> <strong>${dateInfo.formatted}</strong>`;
       }
-      return `<strong>${dateStr}</strong>`;
+      return `<strong>${dateInfo.formatted}</strong>`;
     };
 
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
-        // Before cutoff - clean styling with strategic bolding
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.formattedDate)} to <strong>${estimate.postcode}</strong>`;
+        // Before cutoff - show countdown and date
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to <strong>${estimate.postcode}</strong>`;
       } else {
-        // After cutoff - clean styling
-        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.formattedDate)} to <strong>${estimate.postcode}</strong>`;
+        // After cutoff - show date
+        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to <strong>${estimate.postcode}</strong>`;
       }
     } else {
       // Standard delivery with date range
-      const earliestDisplay = formatDateDisplay(estimate.earliestFormatted);
-      const latestDisplay = formatDateDisplay(estimate.latestFormatted);
+      const earliestDisplay = formatDateDisplay(estimate.earliestInfo);
+      const latestDisplay = formatDateDisplay(estimate.latestInfo);
       
       if (estimate.timeRemaining) {
-        // Before cutoff - clean styling with strategic bolding
+        // Before cutoff - show countdown and date range
         this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
       } else {
-        // After cutoff - clean styling
+        // After cutoff - show date range
         this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
       }
     }
