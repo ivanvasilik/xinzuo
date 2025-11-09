@@ -43,35 +43,31 @@
         </p>
       </div>
 
-      <div class="delivery-estimate-input-group">
-        <input
-          type="text"
-          class="delivery-estimate-input"
-          placeholder="Postcode"
-          maxlength="4"
-          pattern="[0-9]{4}"
-          ref="postcodeInput"
-          aria-label="Postcode"
-        />
-        <button
-          type="button"
-          class="delivery-estimate-button delivery-estimate-button--icon"
-          ref="detectLocationButton"
-          aria-label="Detect my location"
-          title="Use my location"
+      <div class="delivery-estimate-input-wrapper">
+        <div class="delivery-estimate-input-group">
+          <input
+            type="text"
+            class="delivery-estimate-input"
+            placeholder="Suburb or postcode"
+            ref="postcodeInput"
+            aria-label="Suburb or postcode"
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            class="delivery-estimate-button"
+            ref="checkButton"
+          >
+            Check
+          </button>
+        </div>
+        <div
+          class="delivery-estimate-dropdown"
+          ref="dropdown"
+          style="display: none;"
         >
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="delivery-estimate-button"
-          ref="checkButton"
-        >
-          Check
-        </button>
+          <ul ref="dropdownList"></ul>
+        </div>
       </div>
 
       <div
@@ -185,6 +181,10 @@
     text-decoration: underline;
   }
 
+  .delivery-estimate-input-wrapper {
+    position: relative;
+  }
+
   .delivery-estimate-input-group {
     display: flex;
     gap: 6px;
@@ -213,6 +213,55 @@
     border-color: #ffffff;
   }
 
+  .delivery-estimate-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #1f2029;
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .delivery-estimate-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .delivery-estimate-dropdown li {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #c9c9cc;
+    font-family: "Albert Sans", sans-serif;
+    transition: background-color 0.15s;
+    border-bottom: 1px solid #2a2b33;
+  }
+
+  .delivery-estimate-dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .delivery-estimate-dropdown li:hover {
+    background-color: #2a2b33;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-dropdown li.selected {
+    background-color: #3a3b47;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-dropdown .dropdown-postcode {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
   .delivery-estimate-button {
     padding: 8px 16px;
     font-size: 13px;
@@ -230,43 +279,6 @@
 
   .delivery-estimate-button:hover {
     background-color: #dd0003;
-  }
-
-  .delivery-estimate-button--icon {
-    padding: 8px;
-    width: 32px;
-    height: 32px;
-    background-color: #3a3b47;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .delivery-estimate-button--icon:hover {
-    background-color: #4a4b57;
-  }
-
-  .delivery-estimate-button--icon svg {
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-  }
-
-  .delivery-estimate-button--icon.loading {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .delivery-estimate-button--icon.loading svg {
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
   }
 
   .delivery-estimate-error {
@@ -320,11 +332,6 @@
     .delivery-estimate-button {
       padding: 8px 12px;
       font-size: 12px;
-    }
-
-    .delivery-estimate-button--icon {
-      width: 32px;
-      height: 32px;
     }
   }
 </style>

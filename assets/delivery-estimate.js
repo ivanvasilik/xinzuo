@@ -89,6 +89,8 @@ class DeliveryEstimateComponent extends Component {
 
     this.cutoffTime = this.dataset.cutoffTime || '12:00';
     this.enableHolidays = this.dataset.enableHolidays === 'true';
+    this.postcodeData = null;
+    this.selectedIndex = -1;
 
     // Wait for refs to be populated
     requestAnimationFrame(() => {
@@ -97,10 +99,11 @@ class DeliveryEstimateComponent extends Component {
       this.destinationText = this.refs.destinationText;
       this.errorContainer = this.refs.errorContainer;
       this.errorMessage = this.refs.errorMessage;
-      this.detectLocationButton = this.refs.detectLocationButton;
+      this.dropdown = this.refs.dropdown;
+      this.dropdownList = this.refs.dropdownList;
 
       this.bindEvents();
-      this.autoDetectPostcode();
+      this.loadPostcodeData();
     });
   }
 
@@ -110,27 +113,67 @@ class DeliveryEstimateComponent extends Component {
     // Handle check button click
     this.checkButton.addEventListener('click', () => this.handleCheck());
 
-    // Handle detect location button
-    if (this.detectLocationButton) {
-      this.detectLocationButton.addEventListener('click', () => this.detectPostcodeManually());
-    }
+    // Handle input for autocomplete
+    this.postcodeInput.addEventListener('input', (e) => {
+      this.handleAutocomplete(e.target.value);
+    });
 
-    // Handle Enter key in input
-    this.postcodeInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.handleCheck();
+    // Handle keyboard navigation
+    this.postcodeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        this.navigateDropdown(1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        this.navigateDropdown(-1);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (this.selectedIndex >= 0) {
+          this.selectDropdownItem();
+        } else {
+          this.handleCheck();
+        }
+      } else if (e.key === 'Escape') {
+        this.hideDropdown();
       }
     });
 
-    // Only allow numbers in input
-    this.postcodeInput.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    // Handle blur to hide dropdown
+    this.postcodeInput.addEventListener('blur', () => {
+      // Delay to allow click on dropdown item
+      setTimeout(() => this.hideDropdown(), 200);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.contains(e.target)) {
+        this.hideDropdown();
+      }
     });
   }
 
   /**
+   * Load Australian postcode data from JSON file
+   */
+  async loadPostcodeData() {
+    try {
+      const response = await fetch('/cdn/shop/t/7/assets/australian_postcodes.json');
+      if (!response.ok) {
+        console.error('Failed to load postcode data');
+        return;
+      }
+      this.postcodeData = await response.json();
+      
+      // Auto-detect postcode via IP after data loads
+      this.autoDetectPostcode();
+    } catch (error) {
+      console.error('Error loading postcode data:', error);
+    }
+  }
+
+  /**
    * Auto-detect postcode using IP geolocation (no permission needed)
-   * Falls back silently if detection fails
+   * Auto-calculates delivery once detected
    */
   async autoDetectPostcode() {
     try {
@@ -138,12 +181,13 @@ class DeliveryEstimateComponent extends Component {
       const savedPostcode = sessionStorage.getItem('detectedPostcode');
       if (savedPostcode && savedPostcode.length === 4) {
         this.postcodeInput.value = savedPostcode;
+        this.handleCheck(); // Auto-calculate on load
         return;
       }
 
-      // Use free IP geolocation API (no key required for basic use)
+      // Use free IP geolocation API
       const response = await fetch('https://ipapi.co/json/', {
-        signal: AbortSignal.timeout(3000), // 3 second timeout
+        signal: AbortSignal.timeout(3000),
       });
 
       if (!response.ok) return;
@@ -155,8 +199,9 @@ class DeliveryEstimateComponent extends Component {
         const postcode = data.postal;
         if (postcode.length === 4 && /^\d{4}$/.test(postcode)) {
           this.postcodeInput.value = postcode;
-          // Save to session storage for this session
           sessionStorage.setItem('detectedPostcode', postcode);
+          // Auto-calculate delivery estimate
+          this.handleCheck();
         }
       }
     } catch (error) {
@@ -166,72 +211,148 @@ class DeliveryEstimateComponent extends Component {
   }
 
   /**
-   * Manual location detection using browser geolocation API
-   * Requires user permission
+   * Handle autocomplete as user types
    */
-  async detectPostcodeManually() {
-    if (!navigator.geolocation) {
-      this.showError('Location detection not supported in your browser');
+  handleAutocomplete(query) {
+    if (!this.postcodeData) return;
+
+    const trimmedQuery = query.trim().toLowerCase();
+
+    // Hide dropdown if query is too short
+    if (trimmedQuery.length < 2) {
+      this.hideDropdown();
       return;
     }
 
-    // Show loading state - disable button and add loading class
-    this.detectLocationButton.disabled = true;
-    this.detectLocationButton.classList.add('loading');
+    // Filter postcodes - search both postcode and locality
+    const matches = this.postcodeData.filter((item) => {
+      const postcodeMatch = item.postcode.includes(trimmedQuery);
+      const localityMatch = item.locality.toLowerCase().includes(trimmedQuery);
+      return postcodeMatch || localityMatch;
+    });
 
-    try {
-      const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          timeout: 10000,
-          maximumAge: 300000, // 5 minutes
-        });
+    // Limit to first 8 results for performance
+    const limitedMatches = matches.slice(0, 8);
+
+    if (limitedMatches.length > 0) {
+      this.showDropdown(limitedMatches);
+    } else {
+      this.hideDropdown();
+    }
+  }
+
+  /**
+   * Display dropdown with filtered results
+   */
+  showDropdown(matches) {
+    this.dropdownList.innerHTML = '';
+    this.selectedIndex = -1;
+
+    matches.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `${item.locality} <span class="dropdown-postcode">${item.postcode}</span>`;
+      li.dataset.postcode = item.postcode;
+      li.dataset.index = index;
+      
+      li.addEventListener('click', () => {
+        this.postcodeInput.value = item.postcode;
+        sessionStorage.setItem('detectedPostcode', item.postcode);
+        this.hideDropdown();
+        this.handleCheck(); // Auto-calculate on selection
       });
 
-      const { latitude, longitude } = position.coords;
+      this.dropdownList.appendChild(li);
+    });
 
-      // Reverse geocode to get postcode using free API
-      const response = await fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-      );
+    this.dropdown.style.display = 'block';
+  }
 
-      if (!response.ok) throw new Error('Geocoding failed');
+  /**
+   * Hide the dropdown
+   */
+  hideDropdown() {
+    if (this.dropdown) {
+      this.dropdown.style.display = 'none';
+      this.selectedIndex = -1;
+    }
+  }
 
-      const data = await response.json();
+  /**
+   * Navigate dropdown with arrow keys
+   */
+  navigateDropdown(direction) {
+    const items = this.dropdownList.querySelectorAll('li');
+    if (items.length === 0) return;
 
-      if (data.postcode && /^\d{4}$/.test(data.postcode)) {
-        this.postcodeInput.value = data.postcode;
-        sessionStorage.setItem('detectedPostcode', data.postcode);
-        // Auto-check after detection
-        this.handleCheck();
-      } else {
-        this.showError('Could not determine postcode from your location');
-      }
-    } catch (error) {
-      if (error.code === 1) {
-        this.showError('Location permission denied. Please enter postcode manually.');
-      } else {
-        this.showError('Could not detect location. Please enter postcode manually.');
-      }
-    } finally {
-      // Restore button state
-      this.detectLocationButton.disabled = false;
-      this.detectLocationButton.classList.remove('loading');
+    // Remove previous selection
+    if (this.selectedIndex >= 0 && items[this.selectedIndex]) {
+      items[this.selectedIndex].classList.remove('selected');
+    }
+
+    // Update index
+    this.selectedIndex += direction;
+
+    // Loop around
+    if (this.selectedIndex < 0) {
+      this.selectedIndex = items.length - 1;
+    } else if (this.selectedIndex >= items.length) {
+      this.selectedIndex = 0;
+    }
+
+    // Add new selection
+    if (items[this.selectedIndex]) {
+      items[this.selectedIndex].classList.add('selected');
+      items[this.selectedIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  /**
+   * Select the currently highlighted dropdown item
+   */
+  selectDropdownItem() {
+    const items = this.dropdownList.querySelectorAll('li');
+    if (this.selectedIndex >= 0 && items[this.selectedIndex]) {
+      const postcode = items[this.selectedIndex].dataset.postcode;
+      this.postcodeInput.value = postcode;
+      sessionStorage.setItem('detectedPostcode', postcode);
+      this.hideDropdown();
+      this.handleCheck(); // Auto-calculate on selection
     }
   }
 
   handleCheck() {
-    const postcode = this.postcodeInput.value.trim();
+    let input = this.postcodeInput.value.trim();
 
     // Hide previous results
     this.hideResults();
+    this.hideDropdown();
 
-    // Validate postcode
-    if (!postcode) {
-      this.showError('Please enter a postcode');
+    // Validate input
+    if (!input) {
+      this.showError('Please enter a suburb or postcode');
       return;
     }
 
-    if (postcode.length !== 4) {
+    // Extract postcode if it's just numbers
+    let postcode = input;
+    
+    // If input contains letters, try to find exact match in data
+    if (/[a-zA-Z]/.test(input)) {
+      const inputLower = input.toLowerCase();
+      const match = this.postcodeData?.find(
+        (item) => item.locality.toLowerCase() === inputLower
+      );
+      
+      if (match) {
+        postcode = match.postcode;
+      } else {
+        this.showError('Please select a suburb from the dropdown or enter a postcode');
+        return;
+      }
+    }
+
+    // Validate postcode format
+    if (postcode.length !== 4 || !/^\d{4}$/.test(postcode)) {
       this.showError('Please enter a valid 4-digit Australian postcode');
       return;
     }
