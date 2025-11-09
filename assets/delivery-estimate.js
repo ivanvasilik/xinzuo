@@ -684,24 +684,24 @@ class DeliveryEstimateComponent extends Component {
     if (estimate.type === 'express') {
       this.destinationText.innerHTML = `${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       
-      // Show countdown if available
+      // Show countdown if available (EXPRESS ZONE)
       if (estimate.timeRemaining) {
-        this.countdownText.textContent = `Order in the next ${estimate.timeRemaining} to get it ${estimate.dateInfo.isTomorrow ? 'today' : estimate.dateInfo.formatted.toLowerCase()}`;
+        const targetDay = estimate.dateInfo.isTomorrow ? 'tomorrow' : estimate.dateInfo.formatted.toLowerCase();
+        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it ${targetDay}`;
         this.countdownBox.style.display = 'flex';
       } else {
         this.countdownBox.style.display = 'none';
       }
     } else {
-      // Standard delivery
+      // Standard delivery (NON-EXPRESS ZONE)
       const earliestDisplay = formatDateDisplay(estimate.earliestInfo);
       const latestDisplay = formatDateDisplay(estimate.latestInfo);
       
       this.destinationText.innerHTML = `${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       
-      // Show countdown if available
+      // Show countdown if available (STANDARD DELIVERY)
       if (estimate.timeRemaining) {
-        const targetDate = estimate.earliestInfo.isTomorrow ? 'tomorrow' : estimate.earliestInfo.formatted.toLowerCase();
-        this.countdownText.textContent = `Order in the next ${estimate.timeRemaining} to get it ${targetDate}`;
+        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> for dispatch today`;
         this.countdownBox.style.display = 'flex';
       } else {
         this.countdownBox.style.display = 'none';
