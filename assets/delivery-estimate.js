@@ -443,10 +443,10 @@ class DeliveryEstimateComponent extends Component {
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it by ${formatDateDisplay(estimate.dateInfo)} to <strong class="postcode-text">${estimate.postcode}</strong>`;
       } else {
         // After cutoff - show date
-        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to <strong class="postcode-text">${estimate.postcode}</strong>`;
       }
     } else {
       // Standard delivery with date range
@@ -455,10 +455,10 @@ class DeliveryEstimateComponent extends Component {
       
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Order within <strong>${estimate.timeRemaining}</strong> to receive it between ${earliestDisplay} - ${latestDisplay} to <strong class="postcode-text">${estimate.postcode}</strong>`;
       } else {
         // After cutoff - show date range
-        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to <strong>${estimate.postcode}</strong>`;
+        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to <strong class="postcode-text">${estimate.postcode}</strong>`;
       }
     }
     this.destinationText.style.color = '#ffffff';
