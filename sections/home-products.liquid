@@ -95,9 +95,22 @@
         border-bottom: 1px solid #c9c9cc;
     }
 
+    .section{{ section.id }} #load-more {
+        width: fit-content;
+        padding: 10px 20px;
+        font-family: 'Sen';
+        font-weight: 600;
+        font-size: 24px;
+        color: white;
+        background-color: #ff0004;
+        border: none;
+        border-radius: 4px;
+        margin: auto;
+    }
+
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} .home-products-div {
-            padding: 40px 60px 60px;
+            padding: 40px 40px 60px;
             gap: 30px;
         }
 
@@ -118,19 +131,23 @@
         }
 
         .section-{{ section.id }} .collection-price span.prices {
-        font-size: 22px;
+            font-size: 22px;
         }
 
         .section-{{ section.id }} .collection-price span.compare-price {
-        font-size: 19px;
+            font-size: 19px;
         }
 
         .section-{{ section.id }} .jdgm-prev-badge__text {
-        font-size: 16px;
+            font-size: 16px;
         }
 
         .section-{{ section.id }} .collection-link {
-        font-size: 14px;
+            font-size: 14px;
+        }
+
+        .section-{{ section.id }} #load-more {
+            font-size: 16px;
         }
     }
     
