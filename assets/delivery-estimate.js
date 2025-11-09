@@ -712,7 +712,7 @@ class DeliveryEstimateComponent extends Component {
       
       // Show countdown if before cutoff (STANDARD: "for dispatch today")
       if (estimate.timeRemaining) {
-        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> for dispatch today`;
+        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> for dispatch <strong>today</strong>`;
         this.countdownBox.style.display = 'flex';
       } else {
         this.countdownBox.style.display = 'none';
