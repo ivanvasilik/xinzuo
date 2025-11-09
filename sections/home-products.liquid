@@ -1,0 +1,316 @@
+{% style %}
+    .section-{{ section.id }} {
+        background-color: #111;
+    }
+
+    .section-{{ section.id }} .home-products {
+        max-width: 1440px;
+        margin: 0 auto;
+        background-color: black;
+        position: relative;
+    }
+    
+    .section-{{ section.id }} .home-products-gradient {
+        background: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
+        width: 100%;
+        height: 80%;
+        position: absolute;
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    .section-{{ section.id }} .home-products-div {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        position: relative;
+        padding: 60px 80px;
+    }
+
+    .section-{{ section.id }} .home-products-div > h2 {
+        font-family: "Sen";
+        font-size: 64px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 125%;
+        margin: 0;
+    }
+
+    .section-{{ section.id }} .home-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+    }
+
+    .section-{{ section.id }} .product-item {
+        width: calc(50% - 30px);
+    }
+
+    .section-{{ section.id }} .product-item h2 {
+        font-size: 36px;
+        font-family: "Sen";
+        font-weight: 600;
+        color: white;
+        line-height: 135%;
+        margin: 0;
+        padding: 15px 12px 0;
+    }
+
+    .section-{{ section.id }} .jdgm-prev-badge__text {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .collection-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+
+    .section-{{ section.id }} .collection-price span.prices {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff
+    }
+        
+    .section-{{ section.id }} .collection-price span.compare-price {
+        font-size: 22px;
+        text-decoration: line-through;
+        color: #828282;
+    }
+
+    .section-{{ section.id }} .collection-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Sen";
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 250%;
+        border-bottom: 1px solid #c9c9cc;
+    }
+
+    .section-{{ section.id }} #load-more {
+        width: fit-content;
+        padding: 10px 20px;
+        font-family: 'Sen';
+        font-weight: 600;
+        font-size: 24px;
+        color: white;
+        background-color: #ff0004;
+        border: none;
+        border-radius: 4px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} #load-more:disabled {
+        background-color: #ff0004bb;
+        color: #ffffffbb;
+    }
+
+    .section-{{ section.id }} .product-img {
+        position: relative;
+    }
+
+    .section-{{ section.id }} .product-img span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #00000066;
+        color: white;
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .home-products-div {
+            padding: 40px 40px 60px;
+            gap: 30px;
+        }
+
+        .section-{{ section.id }} .home-products-div > h2 {
+            font-size: 36px;
+        }
+
+        .section-{{ section.id }} .home-grid {
+            gap: 30px;
+        }
+
+        .section-{{ section.id }} .product-item {
+            width: calc(50% - 15px);
+        }
+
+        .section-{{ section.id }} .product-item h2 {
+            font-size: 15px;
+            padding: 5px 12px 0;
+        }
+
+        .section-{{ section.id }} .jdgm-widget {
+            padding: 5px 12px !important;
+        }
+
+        .section-{{ section.id }} .collection-price span.prices {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .collection-price span.compare-price {
+            font-size: 19px;
+        }
+
+        .section-{{ section.id }} .jdgm-prev-badge__text {
+            font-size: 16px;
+        }
+
+        .section-{{ section.id }} .collection-link {
+            font-size: 14px;
+        }
+
+        .section-{{ section.id }} #load-more {
+            font-size: 16px;
+        }
+    }
+    
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .home-products-div {
+            padding: 30px 18px 60px;
+            gap: 20px;
+        }
+
+        .section-{{ section.id }} .home-grid {
+            column-gap: 10px;
+            row-gap: 20px;
+        }
+
+        .section-{{ section.id }} .product-item {
+            width: calc(50% - 5px);
+        }
+
+        .section-{{ section.id }} .collection-price {
+            display: block;
+        }
+
+        .section-{{ section.id }} .collection-link {
+            width: fit-content;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
+    <div class="home-products">
+        <div class="home-products-gradient"></div>
+        <div class="home-products-div">
+            <h2>{{ section.settings.heading }}</h2>
+            <div class="home-grid" id="home-products">
+                {% assign counter = 0 %}
+                {% for product in collections.all.products %}
+                    {% assign counter = counter | plus: 1 %}
+                    <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
+                        <div class="product-img">
+                            {% if product.featured_image != blank %}
+                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product-{{ product.id }}">
+                            {% endif %}
+                            {% if product.available == false %}
+                                <span>Sold Out</span>
+                            {% endif %}
+                        </div>
+                        <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+
+                        <!-- Start of Judge.me Rating Widget -->
+                        <div class="jdgm-widget jdgm-preview-badge" 
+                        data-id="{{ collection.id }}" 
+                        data-auto-install="false"
+                        style="padding: 12px;"
+                        >
+                        {{ product.metafields.judgeme.badge }}
+                        </div>
+                        <!-- End of Judge.me Rating Widget -->
+
+                        <div class="collection-price">
+                            <span class="prices">
+                                <span class="sale-price">{{ product.price | money }}</span>
+                                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                            </span>
+                            <a class="collection-link" href="{{ product.url }}">
+                                <span>SHOP NOW</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <g clip-path="url(#clip0_6018_26691)">
+                                        <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_6018_26691">
+                                        <rect width="20" height="20" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button id="load-more" data-page="1">Load more</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('#load-more');
+        const products = document.querySelectorAll('#home-products .product-item');
+        let visible = 4;
+
+        btn.addEventListener('click', () => {
+            btn.disabled = true;
+            btn.textContent = 'Loading...';
+
+            setTimeout(() => {
+            for (let i = visible; i < visible + 4; i++) {
+                if (products[i]) products[i].style.display = 'block';
+            }
+
+            visible += 4;
+
+            btn.disabled = false;
+            btn.textContent = 'Load more';
+
+            if (visible >= products.length) btn.remove();
+            }, 1000);
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Home Products",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Home Products"
+        }
+    ]
+}
+{% endschema %}
