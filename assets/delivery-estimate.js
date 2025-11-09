@@ -667,39 +667,35 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
-    // Format date with bold
-    const formatDateDisplay = (dateInfo) => {
-      if (dateInfo.isTomorrow) {
-        return `<strong>Tomorrow</strong>`;
-      }
-      return `<strong>${dateInfo.formatted}</strong>`;
-    };
-
     // Format location as "Suburb, Postcode" with underline
     const locationDisplay = this.selectedSuburb 
       ? `<u>${this.selectedSuburb}, ${estimate.postcode}</u>`
       : `<u>${estimate.postcode}</u>`;
 
-    // Update main destination text
+    // Determine what to show based on conditions
     if (estimate.type === 'express') {
-      this.destinationText.innerHTML = `${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
-      
-      // Show countdown if available (EXPRESS ZONE)
-      if (estimate.timeRemaining) {
-        const targetDay = estimate.dateInfo.isTomorrow ? 'tomorrow' : estimate.dateInfo.formatted.toLowerCase();
-        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it ${targetDay}`;
+      // CHECK CONDITIONS: Express + Before Cutoff + Tomorrow is Business Day
+      if (estimate.timeRemaining && estimate.dateInfo.isTomorrow) {
+        // Show specific delivery date
+        this.destinationText.innerHTML = `<strong>Tomorrow</strong> to ${locationDisplay}`;
+        
+        // Show countdown (EXPRESS: "to get it tomorrow")
+        this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> to get it tomorrow`;
         this.countdownBox.style.display = 'flex';
       } else {
+        // After cutoff OR delivery not tomorrow (e.g., skipped weekend/holiday)
+        // Show generic business days
+        this.destinationText.innerHTML = `1 business day to ${locationDisplay}`;
         this.countdownBox.style.display = 'none';
       }
     } else {
-      // Standard delivery (NON-EXPRESS ZONE)
-      const earliestDisplay = formatDateDisplay(estimate.earliestInfo);
-      const latestDisplay = formatDateDisplay(estimate.latestInfo);
+      // STANDARD DELIVERY (non-express zones)
+      const isQLD = estimate.isQLD;
+      const businessDays = isQLD ? '1-2' : '1-3';
       
-      this.destinationText.innerHTML = `${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+      this.destinationText.innerHTML = `${businessDays} business days to ${locationDisplay}`;
       
-      // Show countdown if available (STANDARD DELIVERY)
+      // Show countdown if before cutoff (STANDARD: "for dispatch today")
       if (estimate.timeRemaining) {
         this.countdownText.innerHTML = `Order in the next <strong>${estimate.timeRemaining}</strong> for dispatch today`;
         this.countdownBox.style.display = 'flex';
