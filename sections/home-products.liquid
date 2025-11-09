@@ -8,7 +8,12 @@
         <div class="home-grid" id="home-products">
             {% for product in collections.all.products limit: 4 %}
                 <div class="product-item">
-                    {{ product.title }}
+                    <a href="{{ product.url }}">
+                        {% if product.featured_image %}
+                            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                        {% endif %}
+                        <p>{{ product.title }}</p>
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -17,49 +22,51 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.querySelector('#load-more');
-        const grid = document.querySelector('#home-products');
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('#load-more');
+    const grid = document.querySelector('#home-products');
 
-        btn.addEventListener('click', async () => {
-            btn.disabled = true;
-            btn.textContent = 'Loading...';
+    btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        btn.textContent = 'Loading...';
 
-            let page = parseInt(btn.getAttribute('data-page')) + 1;
-            const collectionHandle = "{{ section.settings.collection.handle }}";
+        let page = parseInt(btn.getAttribute('data-page')) + 1;
 
-            try {
-            const res = await fetch(`/collections/all.json?page=${page}`);
-            const data = await res.json();
+        try {
+            // Fetch the next page HTML of the collection
+            const res = await fetch(`/collections/all?page=${page}`);
+            const text = await res.text();
 
-            if (!data.products || data.products.length === 0) {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(text, 'text/html');
+
+            // Grab all product-item elements from that page
+            const newItems = htmlDoc.querySelectorAll('.product-item');
+
+            if (!newItems || newItems.length === 0) {
                 btn.remove();
                 return;
             }
 
-            data.products.slice(0,4).forEach(p => {
-                const div = document.createElement('div');
-                div.className = 'product-item';
-                div.innerHTML = `<a href="${p.url}">
-                    <img src="${p.images[0] || ''}" alt="${p.title}">
-                    <p>${p.title}</p>
-                    </a>`;
-                grid.appendChild(div);
-            });
+            // Append the next 4 products
+            for (let i = 0; i < 4; i++) {
+                if (newItems[i]) grid.appendChild(newItems[i]);
+            }
 
             btn.setAttribute('data-page', page);
             btn.disabled = false;
             btn.textContent = 'Load more';
 
-            if (data.products.length < 4) btn.remove();
+            // Remove button if fewer than 4 products were returned
+            if (newItems.length < 4) btn.remove();
 
-            } catch(err) {
-                console.error(err);
-                btn.disabled = false;
-                btn.textContent = 'Error';
-            }
-        });
+        } catch (err) {
+            console.error(err);
+            btn.disabled = false;
+            btn.textContent = 'Error';
+        }
     });
+});
 </script>
 
 {% schema %}
