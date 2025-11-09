@@ -255,7 +255,8 @@
       "type": "home-products",
       "name": "Home Products",
       "settings": {
-        "heading": ""
+        "heading": "Best Offers:",
+        "color_scheme": ""
       }
     },
     "home_slider_g9dVGe": {
