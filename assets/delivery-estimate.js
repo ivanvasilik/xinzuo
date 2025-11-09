@@ -640,23 +640,26 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
+    // Inline styles to ensure complete isolation from theme CSS
+    const underlineStyle = 'text-decoration: underline; font-size: 10px; color: #ffffff; font-weight: 400; font-family: "Albert Sans", sans-serif;';
+    
     // Helper to format date with underline
     const formatDateDisplay = (dateInfo) => {
       if (dateInfo.isTomorrow) {
-        return `<span class="underline-text">Tomorrow, ${dateInfo.formatted}</span>`;
+        return `<span style="${underlineStyle}">Tomorrow, ${dateInfo.formatted}</span>`;
       }
-      return `<span class="underline-text">${dateInfo.formatted}</span>`;
+      return `<span style="${underlineStyle}">${dateInfo.formatted}</span>`;
     };
 
     // Format location as "Suburb, Postcode" with underline
     const locationDisplay = this.selectedSuburb 
-      ? `<span class="underline-text">${this.selectedSuburb}, ${estimate.postcode}</span>`
-      : `<span class="underline-text">${estimate.postcode}</span>`;
+      ? `<span style="${underlineStyle}">${this.selectedSuburb}, ${estimate.postcode}</span>`
+      : `<span style="${underlineStyle}">${estimate.postcode}</span>`;
 
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <span class="underline-text">${estimate.timeRemaining}</span> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <span style="${underlineStyle}">${estimate.timeRemaining}</span> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       } else {
         // After cutoff - show date
         this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
@@ -668,7 +671,7 @@ class DeliveryEstimateComponent extends Component {
       
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <span class="underline-text">${estimate.timeRemaining}</span> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <span style="${underlineStyle}">${estimate.timeRemaining}</span> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       } else {
         // After cutoff - show date range
         this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
