@@ -1,0 +1,77 @@
+{% style %}
+
+{% endstyle %}
+
+<div class="section-{{ section.id }}">
+    <div class="home-products">
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="home-grid" id="home-products">
+            {% for product in collections.all.products limit: 4 %}
+                <div class="product-item">
+                    {{ product.title }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('#load-more');
+        const grid = document.querySelector('#home-products');
+        let loading = false;
+
+        btn.addEventListener('click', async () => {
+            if (loading) return;
+            loading = true;
+            btn.textContent = 'Loading...';
+
+            const page = parseInt(btn.getAttribute('data-page')) + 1;
+
+            const url = `/collections/all?page=${page} .product-item`;
+
+            try {
+            const response = await fetch(url);
+            const text = await response.text();
+
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(text, 'text/html');
+            const newItems = htmlDoc.querySelectorAll('.product-item');
+
+            for (let i = 0; i < 4; i ++) {
+                if (newItems[i]) grid.appendChild(newItems[i]);
+            }
+            if (newItems.length < 4) {
+                btn.remove();
+            } else {
+                btn.setAttribute('data-page', page);
+                btn.textContent = 'Load more';
+            }
+
+            } catch (err) {
+            console.error(err);
+            btn.textContent = 'Error';
+            }
+
+            loading = false;
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Home Products",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Home Products"
+        }
+    ]
+}
+{% endschema %}
