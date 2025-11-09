@@ -2,22 +2,130 @@
     .section-{{ section.id }} {
         background-color: #111;
     }
+
+    .section-{{ section.id }} .home-products {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .section-{{ section.id }} .home-products-div {
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .home-products > h2 {
+        font-family: "Sen";
+        font-size: 64px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 125%;
+    }
+
+    .section-{{ section.id }} .home-grid {
+        display: flex;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-item {
+        width: 50%;
+    }
+    
+    .section-{{ section.id }} .jdgm-prev-badge__text {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .collection-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+
+    .section-{{ section.id }} .collection-price span.prices {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff
+    }
+        
+    .section-{{ section.id }} .collection-price span.compare-price {
+        font-size: 22px;
+        text-decoration: line-through;
+        color: #828282;
+    }
+
+    .section-{{ section.id }} .collection-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Sen";
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 250%;
+        border-bottom: 1px solid #c9c9cc;
+    }
+
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
     <div class="home-products">
-        <h2>{{ section.settings.heading }}</h2>
-        <div class="home-grid" id="home-products">
-            {% assign counter = 0 %}
-            {% for product in collections.all.products %}
-                {% assign counter = counter | plus: 1 %}
-                <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
-                    {{ product.title }}
-                </div>
-            {% endfor %}
+        <div class="home-products-div">
+            <h2>{{ section.settings.heading }}</h2>
+            <div class="home-grid" id="home-products">
+                {% assign counter = 0 %}
+                {% for product in collections.all.products %}
+                    {% assign counter = counter | plus: 1 %}
+                    <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
+                        <div class="product-img">
+                            {% if product.featured_image != blank %}
+                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product-{{ product.id }}">
+                            {% endif %}
+                        </div>
+                        <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+
+                        <!-- Start of Judge.me Rating Widget -->
+                        <div class="jdgm-widget jdgm-preview-badge" 
+                        data-id="{{ collection.id }}" 
+                        data-auto-install="false"
+                        style="padding: 12px;"
+                        >
+                        {{ product.metafields.judgeme.badge }}
+                        </div>
+                        <!-- End of Judge.me Rating Widget -->
+
+                        <div class="collection-price">
+                            <span class="prices">
+                                <span class="sale-price">{{ product.price | money }}</span>
+                                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                            </span>
+                            <a class="collection-link" href="{{ product.url }}">
+                                <span>SHOP NOW</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <g clip-path="url(#clip0_6018_26691)">
+                                        <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_6018_26691">
+                                        <rect width="20" height="20" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button id="load-more" data-page="1">Load more</button>
         </div>
-        <button id="load-more" data-page="1">Load more</button>
     </div>
 </div>
 
