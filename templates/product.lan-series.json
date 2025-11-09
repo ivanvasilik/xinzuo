@@ -756,6 +756,13 @@
                 "accordion_row_HWk9WM",
                 "accordion_row_eBLxqa"
               ]
+            },
+            "sticky_add_to_cart_bar_lan": {
+              "type": "sticky-add-to-cart-bar",
+              "settings": {
+                "enabled": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -770,7 +777,8 @@
             "accordion_mfT479",
             "text_UkTHcz",
             "text_z3Tcrw",
-            "accordion_gTqVLM"
+            "accordion_gTqVLM",
+            "sticky_add_to_cart_bar_lan"
           ]
         }
       },
