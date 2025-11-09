@@ -118,6 +118,13 @@ class DeliveryEstimateComponent extends Component {
     // Handle check button click
     this.checkButton.addEventListener('click', () => this.handleCheck());
 
+    // Lazy load postcode data on first focus (for autocomplete)
+    this.postcodeInput.addEventListener('focus', () => {
+      if (!this.postcodeDataLoaded && !this.postcodeDataLoading) {
+        this.loadPostcodeData();
+      }
+    }, { once: false }); // Keep listener but check flags
+
     // Handle input for autocomplete
     this.postcodeInput.addEventListener('input', (e) => {
       this.handleAutocomplete(e.target.value);
@@ -159,28 +166,37 @@ class DeliveryEstimateComponent extends Component {
 
   /**
    * Load Australian postcode data from JSON file
+   * Lazy loaded on first focus for better PageSpeed performance
    */
   async loadPostcodeData() {
+    if (this.postcodeDataLoading || this.postcodeDataLoaded) return;
+    
+    this.postcodeDataLoading = true;
+    
     try {
       const response = await fetch('/cdn/shop/t/7/assets/australian_postcodes.json');
       if (!response.ok) {
         console.error('Failed to load postcode data');
+        this.postcodeDataLoading = false;
         return;
       }
       this.postcodeData = await response.json();
+      this.postcodeDataLoaded = true;
+      this.postcodeDataLoading = false;
       
-      // Auto-detect postcode via IP after data loads
-      this.autoDetectPostcode();
+      // Enhance existing postcode with suburb if data now available
+      this.enhancePostcodeWithSuburb();
     } catch (error) {
       console.error('Error loading postcode data:', error);
+      this.postcodeDataLoading = false;
     }
   }
 
   /**
-   * Auto-detect postcode using IP geolocation (no permission needed)
-   * Auto-calculates delivery once detected
+   * Simplified auto-detect that works without JSON data
+   * Used on initial page load for better performance
    */
-  async autoDetectPostcode() {
+  async autoDetectPostcodeSimple() {
     try {
       // Check if already saved in session storage
       const savedPostcode = sessionStorage.getItem('detectedPostcode');
@@ -197,7 +213,7 @@ class DeliveryEstimateComponent extends Component {
         return;
       }
 
-      // Use free IP geolocation API
+      // Use free IP geolocation API (lightweight, ~5KB)
       const response = await fetch('https://ipapi.co/json/', {
         signal: AbortSignal.timeout(3000),
       });
@@ -210,17 +226,8 @@ class DeliveryEstimateComponent extends Component {
       if (data.country_code === 'AU' && data.postal) {
         const postcode = data.postal;
         if (postcode.length === 4 && /^\d{4}$/.test(postcode)) {
-          // Find suburb for this postcode
-          const match = this.postcodeData?.find((item) => item.postcode === postcode);
-          
-          if (match) {
-            this.postcodeInput.value = `${match.locality}, ${postcode}`;
-            this.selectedSuburb = match.locality;
-            sessionStorage.setItem('detectedSuburb', match.locality);
-          } else {
-            this.postcodeInput.value = postcode;
-          }
-          
+          // Just use postcode without suburb (no JSON data needed)
+          this.postcodeInput.value = postcode;
           sessionStorage.setItem('detectedPostcode', postcode);
           // Auto-calculate delivery estimate
           this.handleCheck();
@@ -229,6 +236,29 @@ class DeliveryEstimateComponent extends Component {
     } catch (error) {
       // Silently fail - user can still enter manually
       console.log('Postcode auto-detection unavailable');
+    }
+  }
+
+  /**
+   * Enhance existing postcode input with suburb name after data loads
+   */
+  enhancePostcodeWithSuburb() {
+    if (!this.postcodeData) return;
+    
+    // Check if we have a postcode in the input
+    const currentValue = this.postcodeInput.value.trim();
+    const postcodeMatch = currentValue.match(/\d{4}/);
+    
+    if (postcodeMatch && !currentValue.includes(',')) {
+      // We have a postcode but no suburb name yet
+      const postcode = postcodeMatch[0];
+      const match = this.postcodeData.find((item) => item.postcode === postcode);
+      
+      if (match) {
+        this.postcodeInput.value = `${match.locality}, ${postcode}`;
+        this.selectedSuburb = match.locality;
+        sessionStorage.setItem('detectedSuburb', match.locality);
+      }
     }
   }
 
