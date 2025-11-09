@@ -1,4 +1,5 @@
 import { Component } from './component.js';
+import { ThemeEvents } from './events.js';
 
 /**
  * Delivery Estimate Component
@@ -95,6 +96,12 @@ class DeliveryEstimateComponent extends Component {
     this.selectedIndex = -1;
     this.selectedSuburb = null; // Track selected suburb name
 
+    // Set up variant update listener for stock badge
+    const closestSection = this.closest('.shopify-section, dialog');
+    if (closestSection) {
+      closestSection.addEventListener(ThemeEvents.variantUpdate, this.updateStockBadge);
+    }
+
     // Wait for refs to be populated
     requestAnimationFrame(() => {
       this.postcodeInput = this.refs.postcodeInput;
@@ -107,12 +114,20 @@ class DeliveryEstimateComponent extends Component {
       this.errorMessage = this.refs.errorMessage;
       this.dropdown = this.refs.dropdown;
       this.dropdownList = this.refs.dropdownList;
+      this.stockBadge = this.refs.stockBadge;
 
       this.bindEvents();
       // Lazy load: Only load postcode data on first interaction
       // This improves PageSpeed scores by not loading 1.2MB on initial page load
       this.autoDetectPostcodeSimple();
     });
+  }
+
+  disconnectedCallback() {
+    const closestSection = this.closest('.shopify-section, dialog');
+    if (closestSection) {
+      closestSection.removeEventListener(ThemeEvents.variantUpdate, this.updateStockBadge);
+    }
   }
 
   bindEvents() {
@@ -725,6 +740,35 @@ class DeliveryEstimateComponent extends Component {
     this.countdownBox.style.display = 'none';
     this.hideError();
   }
+
+  /**
+   * Updates the stock badge visibility based on variant availability
+   * Triggered by variant:update event
+   */
+  updateStockBadge = (event) => {
+    // Ensure this update is for the correct product
+    if (event.detail.data.newProduct) {
+      this.dataset.productId = event.detail.data.newProduct.id;
+    } else if (event.target instanceof HTMLElement && event.target.dataset.productId !== this.dataset.productId) {
+      return;
+    }
+
+    // Check if stock badge ref is available
+    if (!this.stockBadge) return;
+
+    // Get variant availability from event
+    const variant = event.detail.resource;
+    if (!variant) return;
+
+    // Show or hide badge based on availability
+    if (variant.available) {
+      this.stockBadge.classList.remove('stock-badge--hidden');
+      this.stockBadge.dataset.available = 'true';
+    } else {
+      this.stockBadge.classList.add('stock-badge--hidden');
+      this.stockBadge.dataset.available = 'false';
+    }
+  };
 }
 
 customElements.define('delivery-estimate-component', DeliveryEstimateComponent);

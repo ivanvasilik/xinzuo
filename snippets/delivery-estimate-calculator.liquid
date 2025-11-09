@@ -7,6 +7,12 @@
   assign border_color = settings.border_color | default: '#3a3b47'
   assign border_radius = settings.border_radius | default: 8
   assign text_size = settings.text_size | default: 13
+  
+  # Check if product is available (for stock badge)
+  assign is_available = false
+  if variant.available
+    assign is_available = true
+  endif
 %}
 
 <script src="{{ 'delivery-estimate.js' | asset_url }}" type="module"></script>
@@ -14,6 +20,7 @@
 <delivery-estimate-component
   data-cutoff-time="{{ cutoff_time }}"
   data-enable-holidays="{{ enable_public_holidays }}"
+  data-product-id="{{ product.id }}"
 >
   <div
     class="delivery-estimate-container"
@@ -33,7 +40,11 @@
             </span>
             FREE DELIVERY
           </span>
-          <span class="stock-badge">
+          <span 
+            class="stock-badge{% unless is_available %} stock-badge--hidden{% endunless %}" 
+            ref="stockBadge"
+            data-available="{{ is_available }}"
+          >
             <span class="badge-indicator">
               <span class="badge-indicator-inner"></span>
             </span>
@@ -159,6 +170,10 @@
     color: #c9c9cc;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+  }
+
+  .stock-badge--hidden {
+    display: none;
   }
 
   .badge-indicator {
