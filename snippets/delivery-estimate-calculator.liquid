@@ -223,6 +223,25 @@
 
   .delivery-estimate-button--icon svg {
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .delivery-estimate-button--icon.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .delivery-estimate-button--icon.loading svg {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .delivery-estimate-error {

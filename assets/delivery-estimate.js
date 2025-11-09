@@ -175,10 +175,9 @@ class DeliveryEstimateComponent extends Component {
       return;
     }
 
-    // Show loading state
-    const originalText = this.detectLocationButton.textContent;
-    this.detectLocationButton.textContent = 'Detecting...';
+    // Show loading state - disable button and add loading class
     this.detectLocationButton.disabled = true;
+    this.detectLocationButton.classList.add('loading');
 
     try {
       const position = await new Promise((resolve, reject) => {
@@ -214,9 +213,9 @@ class DeliveryEstimateComponent extends Component {
         this.showError('Could not detect location. Please enter postcode manually.');
       }
     } finally {
-      // Restore button
-      this.detectLocationButton.textContent = originalText;
+      // Restore button state
       this.detectLocationButton.disabled = false;
+      this.detectLocationButton.classList.remove('loading');
     }
   }
 
