@@ -24,18 +24,16 @@
   %}
 </span>
 
-<span>
-  {{ block.settings.coupon_code }}
-  {{ block.settings.coupon_text }}
-  {{ block.settings.coupon_color }}
-</span>
+{% assign coupon_code = block.settings.coupon_code %}
+{% assign coupon_text = block.settings.coupon_text %}
+{% assign coupon_color = block.settings.coupon_color %}
 
 {% if block.settings.coupon == true %}
   {% render 'coupon-block',
     uid: block.id,
-    code: {{ block.settings.coupon_code }},
-    text: {{ block.settings.coupon_text }},
-    color: {{ block.settings.coupon_color }},
+    code: coupon_code,
+    text: {{ coupon_text }},
+    color: {{ coupon_color }},
     border_style: 'dotted',
     stroke_width: 2,
     dot_gap: 7,
