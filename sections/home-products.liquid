@@ -20,42 +20,44 @@
     document.addEventListener('DOMContentLoaded', () => {
         const btn = document.querySelector('#load-more');
         const grid = document.querySelector('#home-products');
-        let loading = false;
 
         btn.addEventListener('click', async () => {
-            if (loading) return;
-            loading = true;
+            btn.disabled = true;
             btn.textContent = 'Loading...';
 
-            const page = parseInt(btn.getAttribute('data-page')) + 1;
-
-            const url = `/collections/all?page=${page}`;
+            let page = parseInt(btn.getAttribute('data-page')) + 1;
+            const collectionHandle = "{{ section.settings.collection.handle }}";
 
             try {
-                const response = await fetch(url);
-                const text = await response.text();
+            const res = await fetch(`/collections/${collectionHandle}.json?page=${page}`);
+            const data = await res.json();
 
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(text, 'text/html');
-                const newItems = htmlDoc.querySelectorAll('.product-item');
-
-                for (let i = 0; i < 4; i++) {
-                    if (newItems[i]) grid.appendChild(newItems[i]);
-                }
-
-                if (newItems.length < 4) {
-                    btn.remove();
-                } else {
-                    btn.setAttribute('data-page', page);
-                    btn.textContent = 'Load more';
-                }
-
-            } catch (err) {
-                console.error(err);
-                btn.textContent = 'Error';
+            if (!data.products || data.products.length === 0) {
+                btn.remove();
+                return;
             }
 
-            loading = false;
+            data.products.slice(0,4).forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'product-item';
+                div.innerHTML = `<a href="${p.url}">
+                    <img src="${p.images[0] || ''}" alt="${p.title}">
+                    <p>${p.title}</p>
+                    </a>`;
+                grid.appendChild(div);
+            });
+
+            btn.setAttribute('data-page', page);
+            btn.disabled = false;
+            btn.textContent = 'Load more';
+
+            if (data.products.length < 4) btn.remove();
+
+            } catch(err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.textContent = 'Error';
+            }
         });
     });
 </script>
