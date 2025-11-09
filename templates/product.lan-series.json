@@ -107,9 +107,9 @@
                   "settings": {
                     "style_class": "button",
                     "coupon": true,
-                    "coupon_code": "dhjfk",
-                    "coupon_text": "Black Friday",
-                    "coupon_color": "#608cbb"
+                    "coupon_code": "",
+                    "coupon_text": "",
+                    "coupon_color": "rgba(0,0,0,0)"
                   },
                   "blocks": {}
                 },
