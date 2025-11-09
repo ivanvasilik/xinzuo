@@ -640,26 +640,23 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
-    // Use single quotes for outer, double for inner to preserve font-family
-    const underlineStyle = "text-decoration: underline; font-size: 10px !important; color: #ffffff !important; font-weight: 400 !important; font-family: 'Albert Sans', sans-serif !important;";
-    
-    // Helper to format date with underline
+    // Helper to format date with underline - CSS handles styling
     const formatDateDisplay = (dateInfo) => {
       if (dateInfo.isTomorrow) {
-        return `<u style="${underlineStyle}">Tomorrow, ${dateInfo.formatted}</u>`;
+        return `<u>Tomorrow, ${dateInfo.formatted}</u>`;
       }
-      return `<u style="${underlineStyle}">${dateInfo.formatted}</u>`;
+      return `<u>${dateInfo.formatted}</u>`;
     };
 
     // Format location as "Suburb, Postcode" with underline
     const locationDisplay = this.selectedSuburb 
-      ? `<u style="${underlineStyle}">${this.selectedSuburb}, ${estimate.postcode}</u>`
-      : `<u style="${underlineStyle}">${estimate.postcode}</u>`;
+      ? `<u>${this.selectedSuburb}, ${estimate.postcode}</u>`
+      : `<u>${estimate.postcode}</u>`;
 
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <u style="${underlineStyle}">${estimate.timeRemaining}</u> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <u>${estimate.timeRemaining}</u> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
       } else {
         // After cutoff - show date
         this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
@@ -671,13 +668,12 @@ class DeliveryEstimateComponent extends Component {
       
       if (estimate.timeRemaining) {
         // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <u style="${underlineStyle}">${estimate.timeRemaining}</u> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+        this.destinationText.innerHTML = `Order within <u>${estimate.timeRemaining}</u> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       } else {
         // After cutoff - show date range
         this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
       }
     }
-    this.destinationText.style.color = '#ffffff';
     this.hideError();
   }
 
