@@ -345,23 +345,8 @@ class DeliveryEstimateComponent extends Component {
   }
 
   formatDeliveryDate(date) {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    // Reset time parts for comparison
-    const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const tomorrowOnly = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate());
-
-    if (dateOnly.getTime() === todayOnly.getTime()) {
-      return 'today';
-    } else if (dateOnly.getTime() === tomorrowOnly.getTime()) {
-      return 'tomorrow';
-    } else {
-      const options = { weekday: 'long', month: 'short', day: 'numeric' };
-      return date.toLocaleDateString('en-AU', options);
-    }
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    return date.toLocaleDateString('en-AU', options);
   }
 
   getTimeRemaining(now, cutoffHour, cutoffMinute) {
@@ -375,10 +360,12 @@ class DeliveryEstimateComponent extends Component {
       const hoursRemaining = Math.floor(minutesRemaining / 60);
       const minsRemaining = minutesRemaining % 60;
 
-      if (hoursRemaining > 0) {
-        return `${hoursRemaining} hour${hoursRemaining > 1 ? 's' : ''} ${minsRemaining > 0 ? `${minsRemaining} min` : ''}`;
+      if (hoursRemaining > 0 && minsRemaining > 0) {
+        return `${hoursRemaining}hrs ${minsRemaining}min`;
+      } else if (hoursRemaining > 0) {
+        return `${hoursRemaining}hrs`;
       } else {
-        return `${minsRemaining} minute${minsRemaining > 1 ? 's' : ''}`;
+        return `${minsRemaining}min`;
       }
     }
     return null;
@@ -386,8 +373,13 @@ class DeliveryEstimateComponent extends Component {
 
   showResult(estimate) {
     if (estimate.type === 'express') {
-      const formattedDate = estimate.formattedDate.charAt(0).toUpperCase() + estimate.formattedDate.slice(1);
-      this.destinationText.textContent = `Get it ${formattedDate} to ${estimate.postcode}`;
+      if (estimate.timeRemaining) {
+        // Before cutoff - show countdown
+        this.destinationText.textContent = `Order within ${estimate.timeRemaining} to receive it by ${estimate.formattedDate}`;
+      } else {
+        // After cutoff - just show date
+        this.destinationText.textContent = `Get it by ${estimate.formattedDate} to ${estimate.postcode}`;
+      }
       this.destinationText.style.color = '#10b981';
     } else {
       this.destinationText.textContent = `Get it in ${estimate.days} days to ${estimate.postcode}`;
