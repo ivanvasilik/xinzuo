@@ -654,7 +654,7 @@ class DeliveryEstimateComponent extends Component {
   }
 
   hideResults() {
-    this.destinationText.textContent = 'Enter postcode to see delivery date';
+    this.destinationText.textContent = 'Enter suburb or postcode to check delivery';
     this.destinationText.style.color = '';
     this.hideError();
   }
