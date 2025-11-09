@@ -1,0 +1,134 @@
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div
+  class="coupon-discount-block"
+  {{ block.shopify_attributes }}
+>
+  {% render 'coupon-block',
+    uid: block.id,
+    code: block_settings.coupon_code,
+    text: block_settings.coupon_text,
+    color: block_settings.coupon_color,
+    border_style: block_settings.border_style,
+    stroke_width: block_settings.stroke_width,
+    dot_gap: 7,
+    panel: true,
+    panel_bg: block_settings.panel_bg,
+    panel_padding: block_settings.panel_padding,
+    radius: block_settings.radius,
+    panel_radius: block_settings.panel_radius,
+    margin_top: 0,
+    margin_bottom: 0
+  %}
+</div>
+
+{% stylesheet %}
+  .coupon-discount-block {
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Coupon Discount",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Coupon Settings"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Coupon Code",
+      "default": "SAVE20",
+      "info": "The discount code customers will copy"
+    },
+    {
+      "type": "textarea",
+      "id": "coupon_text",
+      "label": "Coupon Description",
+      "default": "Use this coupon at checkout for 20% off your order",
+      "info": "Explain what the coupon does"
+    },
+    {
+      "type": "color",
+      "id": "coupon_color",
+      "label": "Accent Color",
+      "default": "#ff0004",
+      "info": "Border and button color"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "solid", "label": "Solid" }
+      ],
+      "default": "dotted"
+    },
+    {
+      "type": "range",
+      "id": "stroke_width",
+      "label": "Border Width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "panel_bg",
+      "label": "Background Color",
+      "default": "#1f1f24"
+    },
+    {
+      "type": "range",
+      "id": "panel_padding",
+      "label": "Padding",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "label": "Inner Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "panel_radius",
+      "label": "Outer Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coupon Discount",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
+

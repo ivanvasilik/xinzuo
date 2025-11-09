@@ -133,6 +133,21 @@
               },
               "blocks": {}
             },
+            "coupon_discount_block": {
+              "type": "coupon-discount",
+              "settings": {
+                "coupon_code": "SAVE20",
+                "coupon_text": "Use this coupon at checkout for 20% off your order",
+                "coupon_color": "#ff0004",
+                "border_style": "dotted",
+                "stroke_width": 2,
+                "panel_bg": "#1f1f24",
+                "panel_padding": 8,
+                "radius": 1,
+                "panel_radius": 14
+              },
+              "blocks": {}
+            },
             "payment_icons_hCKkQw": {
               "type": "payment-icons",
               "name": "t:names.payment_icons",
@@ -664,6 +679,7 @@
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
             "delivery_estimate_block",
+            "coupon_discount_block",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",
