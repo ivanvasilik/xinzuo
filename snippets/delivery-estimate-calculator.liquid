@@ -40,28 +40,47 @@
             IN STOCK
           </span>
         </div>
-        <p class="delivery-estimate-destination" ref="destinationText">
-          Enter suburb or postcode to check delivery
-        </p>
+        
+        <div class="delivery-estimate-main" ref="mainDisplay">
+          <button 
+            type="button" 
+            class="delivery-estimate-toggle" 
+            ref="toggleButton"
+            aria-label="Change delivery location"
+          >
+            <span class="delivery-estimate-label">Earliest delivery</span>
+            <span class="delivery-estimate-destination" ref="destinationText">
+              Enter suburb or postcode
+            </span>
+            <svg class="delivery-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 6L8 11L3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div
+          class="delivery-estimate-countdown"
+          ref="countdownBox"
+          style="display: none;"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 4V8L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span ref="countdownText"></span>
+        </div>
       </div>
 
-      <div class="delivery-estimate-input-wrapper">
+      <div class="delivery-estimate-input-wrapper" ref="inputWrapper" style="display: none;">
         <div class="delivery-estimate-input-group">
-        <input
-          type="text"
-          class="delivery-estimate-input"
-          placeholder="Suburb or postcode"
-          ref="postcodeInput"
-          aria-label="Suburb or postcode"
-          autocomplete="off"
-        />
-          <button
-            type="button"
-            class="delivery-estimate-button"
-            ref="checkButton"
-          >
-            Check
-          </button>
+          <input
+            type="text"
+            class="delivery-estimate-input"
+            placeholder="Suburb or postcode"
+            ref="postcodeInput"
+            aria-label="Suburb or postcode"
+            autocomplete="off"
+          />
         </div>
         <div
           class="delivery-estimate-dropdown"
@@ -185,8 +204,69 @@
     text-decoration: underline;
   }
 
+  .delivery-estimate-destination strong {
+    font-weight: 600 !important;
+  }
+
+  .delivery-estimate-main {
+    margin-top: 8px;
+  }
+
+  .delivery-estimate-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-label {
+    font-size: 12px;
+    color: #c9c9cc;
+    white-space: nowrap;
+  }
+
+  .delivery-estimate-toggle .delivery-estimate-destination {
+    flex: 1;
+  }
+
+  .delivery-chevron {
+    flex-shrink: 0;
+    color: #c9c9cc;
+    transition: transform 0.2s;
+  }
+
+  .delivery-estimate-toggle.expanded .delivery-chevron {
+    transform: rotate(180deg);
+  }
+
+  .delivery-estimate-countdown {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #c9c9cc;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-countdown svg {
+    flex-shrink: 0;
+    color: #c9c9cc;
+  }
+
   .delivery-estimate-input-wrapper {
     position: relative;
+    margin-top: 8px;
   }
 
   .delivery-estimate-input-group {
@@ -196,9 +276,8 @@
   }
 
   .delivery-estimate-input {
-    flex: 1;
-    min-width: 0;
-    padding: 8px 12px;
+    width: 100%;
+    padding: 10px 12px;
     font-size: 14px;
     border: 1px solid #3a3b47;
     border-radius: 4px;
@@ -266,25 +345,6 @@
     color: #ffffff;
   }
 
-  .delivery-estimate-button {
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    color: white;
-    background-color: #ff0004;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    white-space: nowrap;
-    font-family: "Sen", sans-serif;
-    flex-shrink: 0;
-  }
-
-  .delivery-estimate-button:hover {
-    background-color: #dd0003;
-  }
-
   .delivery-estimate-error {
     padding: 6px 0;
     color: #ef4444;
@@ -331,12 +391,11 @@
 
     .delivery-estimate-input {
       font-size: 14px;
-      padding: 8px 10px;
+      padding: 10px 12px;
     }
 
-    .delivery-estimate-button {
-      padding: 8px 12px;
-      font-size: 12px;
+    .delivery-estimate-label {
+      font-size: 11px;
     }
   }
 </style>

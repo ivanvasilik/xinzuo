@@ -98,8 +98,11 @@ class DeliveryEstimateComponent extends Component {
     // Wait for refs to be populated
     requestAnimationFrame(() => {
       this.postcodeInput = this.refs.postcodeInput;
-      this.checkButton = this.refs.checkButton;
+      this.toggleButton = this.refs.toggleButton;
+      this.inputWrapper = this.refs.inputWrapper;
       this.destinationText = this.refs.destinationText;
+      this.countdownBox = this.refs.countdownBox;
+      this.countdownText = this.refs.countdownText;
       this.errorContainer = this.refs.errorContainer;
       this.errorMessage = this.refs.errorMessage;
       this.dropdown = this.refs.dropdown;
@@ -113,10 +116,10 @@ class DeliveryEstimateComponent extends Component {
   }
 
   bindEvents() {
-    if (!this.checkButton || !this.postcodeInput) return;
+    if (!this.toggleButton || !this.postcodeInput) return;
 
-    // Handle check button click
-    this.checkButton.addEventListener('click', () => this.handleCheck());
+    // Handle toggle button click to show/hide input
+    this.toggleButton.addEventListener('click', () => this.toggleInput());
 
     // Lazy load postcode data on first focus (for autocomplete)
     this.postcodeInput.addEventListener('focus', () => {
@@ -258,6 +261,30 @@ class DeliveryEstimateComponent extends Component {
         this.postcodeInput.value = `${match.locality}, ${postcode}`;
         this.selectedSuburb = match.locality;
         sessionStorage.setItem('detectedSuburb', match.locality);
+      }
+    }
+  }
+
+  /**
+   * Toggle the input field visibility
+   */
+  toggleInput() {
+    const isExpanded = this.inputWrapper.style.display !== 'none';
+    
+    if (isExpanded) {
+      // Close input
+      this.inputWrapper.style.display = 'none';
+      this.toggleButton.classList.remove('expanded');
+      this.hideDropdown();
+    } else {
+      // Open input
+      this.inputWrapper.style.display = 'block';
+      this.toggleButton.classList.add('expanded');
+      this.postcodeInput.focus();
+      
+      // Load postcode data if not loaded yet
+      if (!this.postcodeDataLoaded && !this.postcodeDataLoading) {
+        this.loadPostcodeData();
       }
     }
   }
@@ -640,12 +667,12 @@ class DeliveryEstimateComponent extends Component {
   }
 
   showResult(estimate) {
-    // Helper to format date with underline - CSS handles styling
+    // Format date with bold
     const formatDateDisplay = (dateInfo) => {
       if (dateInfo.isTomorrow) {
-        return `<u>Tomorrow, ${dateInfo.formatted}</u>`;
+        return `<strong>Tomorrow</strong>`;
       }
-      return `<u>${dateInfo.formatted}</u>`;
+      return `<strong>${dateInfo.formatted}</strong>`;
     };
 
     // Format location as "Suburb, Postcode" with underline
@@ -653,27 +680,38 @@ class DeliveryEstimateComponent extends Component {
       ? `<u>${this.selectedSuburb}, ${estimate.postcode}</u>`
       : `<u>${estimate.postcode}</u>`;
 
+    // Update main destination text
     if (estimate.type === 'express') {
+      this.destinationText.innerHTML = `${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+      
+      // Show countdown if available
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown and date
-        this.destinationText.innerHTML = `Order within <u>${estimate.timeRemaining}</u> to receive it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+        this.countdownText.textContent = `Order in the next ${estimate.timeRemaining} to get it ${estimate.dateInfo.isTomorrow ? 'today' : estimate.dateInfo.formatted.toLowerCase()}`;
+        this.countdownBox.style.display = 'flex';
       } else {
-        // After cutoff - show date
-        this.destinationText.innerHTML = `Get it by ${formatDateDisplay(estimate.dateInfo)} to ${locationDisplay}`;
+        this.countdownBox.style.display = 'none';
       }
     } else {
-      // Standard delivery with date range
+      // Standard delivery
       const earliestDisplay = formatDateDisplay(estimate.earliestInfo);
       const latestDisplay = formatDateDisplay(estimate.latestInfo);
       
+      this.destinationText.innerHTML = `${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+      
+      // Show countdown if available
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown and date range
-        this.destinationText.innerHTML = `Order within <u>${estimate.timeRemaining}</u> to receive it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+        const targetDate = estimate.earliestInfo.isTomorrow ? 'tomorrow' : estimate.earliestInfo.formatted.toLowerCase();
+        this.countdownText.textContent = `Order in the next ${estimate.timeRemaining} to get it ${targetDate}`;
+        this.countdownBox.style.display = 'flex';
       } else {
-        // After cutoff - show date range
-        this.destinationText.innerHTML = `Get it between ${earliestDisplay} - ${latestDisplay} to ${locationDisplay}`;
+        this.countdownBox.style.display = 'none';
       }
     }
+    
+    // Close input after calculation
+    this.inputWrapper.style.display = 'none';
+    this.toggleButton.classList.remove('expanded');
+    
     this.hideError();
   }
 
@@ -687,8 +725,8 @@ class DeliveryEstimateComponent extends Component {
   }
 
   hideResults() {
-    this.destinationText.textContent = 'Enter suburb or postcode to check delivery';
-    this.destinationText.style.color = '';
+    this.destinationText.textContent = 'Enter suburb or postcode';
+    this.countdownBox.style.display = 'none';
     this.hideError();
   }
 }
