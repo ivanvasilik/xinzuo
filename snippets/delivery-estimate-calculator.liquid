@@ -1,0 +1,272 @@
+
+{% liquid
+  assign cutoff_time = settings.cutoff_time | default: '12:00'
+  assign enable_public_holidays = settings.enable_public_holidays | default: true
+  assign show_icon = settings.show_icon | default: true
+  assign background_color = settings.background_color | default: '#292a33'
+  assign border_color = settings.border_color | default: '#3a3b47'
+  assign border_radius = settings.border_radius | default: 8
+%}
+
+<script src="{{ 'delivery-estimate.js' | asset_url }}" type="module"></script>
+
+<delivery-estimate-component
+  data-cutoff-time="{{ cutoff_time }}"
+  data-enable-holidays="{{ enable_public_holidays }}"
+>
+  <div
+    class="delivery-estimate-container"
+    style="
+      --delivery-bg-color: {{ background_color }};
+      --delivery-border-color: {{ border_color }};
+      --delivery-border-radius: {{ border_radius }}px;
+    "
+  >
+    <div class="delivery-estimate-content">
+      <div class="delivery-estimate-header">
+        <div class="delivery-estimate-badges">
+          <span class="delivery-badge">FREE DELIVERY</span>
+          <span class="stock-badge">
+            <span class="stock-badge-dot"></span>
+            IN STOCK
+          </span>
+        </div>
+        <p class="delivery-estimate-destination" ref="destinationText">
+          Enter postcode to see delivery date
+        </p>
+      </div>
+
+      <div class="delivery-estimate-input-group">
+        <input
+          type="text"
+          class="delivery-estimate-input"
+          placeholder="Postcode"
+          maxlength="4"
+          pattern="[0-9]{4}"
+          ref="postcodeInput"
+          aria-label="Postcode"
+        />
+        <button
+          type="button"
+          class="delivery-estimate-button delivery-estimate-button--icon"
+          ref="detectLocationButton"
+          aria-label="Detect my location"
+          title="Use my location"
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="delivery-estimate-button"
+          ref="checkButton"
+        >
+          Check
+        </button>
+      </div>
+
+      <div
+        class="delivery-estimate-error"
+        ref="errorContainer"
+        style="display: none;"
+      >
+        <p ref="errorMessage"></p>
+      </div>
+    </div>
+  </div>
+</delivery-estimate-component>
+
+<style>
+  .delivery-estimate-container {
+    padding: 12px 16px;
+    background-color: var(--delivery-bg-color);
+    border: 1px solid var(--delivery-border-color);
+    border-radius: var(--delivery-border-radius);
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .delivery-estimate-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .delivery-estimate-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .delivery-badge {
+    font-family: "Sen", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-family: "Sen", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #c9c9cc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stock-badge-dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #10b981;
+  }
+
+  .stock-badge-dot::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+  }
+
+  .delivery-estimate-destination {
+    margin: 0;
+    font-size: 13px;
+    color: #c9c9cc;
+    line-height: 1.4;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-input-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .delivery-estimate-input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: "Albert Sans", sans-serif;
+    background-color: #1f2029;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-input::placeholder {
+    color: #6b7280;
+  }
+
+  .delivery-estimate-input:focus {
+    border-color: #ffffff;
+  }
+
+  .delivery-estimate-button {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    font-family: "Sen", sans-serif;
+    flex-shrink: 0;
+  }
+
+  .delivery-estimate-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .delivery-estimate-button--icon {
+    padding: 8px;
+    width: 32px;
+    height: 32px;
+    background-color: #3a3b47;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .delivery-estimate-button--icon:hover {
+    background-color: #4a4b57;
+  }
+
+  .delivery-estimate-button--icon svg {
+    flex-shrink: 0;
+  }
+
+  .delivery-estimate-error {
+    padding: 6px 0;
+    color: #ef4444;
+    font-size: 12px;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-error p {
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-container {
+      padding: 10px 12px;
+    }
+
+    .delivery-badge {
+      font-size: 12px;
+    }
+
+    .stock-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+    }
+
+    .delivery-estimate-destination {
+      font-size: 12px;
+    }
+
+    .delivery-estimate-input {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+
+    .delivery-estimate-button {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .delivery-estimate-button--icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+
