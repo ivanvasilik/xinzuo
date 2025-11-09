@@ -27,9 +27,9 @@
 {% if block.settings.coupon %}
   {% render 'coupon-block',
     uid: block.id,
-    code: '{{ block.settings.coupon_code }}',
-    text: '{{ block.settings.coupon_text }}',
-    color: '{{ block.settings.coupon_color }}',
+    code: {{ block.settings.coupon_code }},
+    text: {{ block.settings.coupon_text }},
+    color: {{ block.settings.coupon_color }},
     border_style: 'dotted',
     stroke_width: 2,
     dot_gap: 7,
