@@ -387,16 +387,16 @@ class DeliveryEstimateComponent extends Component {
   showResult(estimate) {
     if (estimate.type === 'express') {
       if (estimate.timeRemaining) {
-        // Before cutoff - show countdown
-        this.destinationText.textContent = `Order within ${estimate.timeRemaining} to receive it by ${estimate.formattedDate}`;
+        // Before cutoff - show countdown with red time
+        this.destinationText.innerHTML = `Order within <span class="time-countdown">${estimate.timeRemaining}</span> to receive it by ${estimate.formattedDate}`;
       } else {
         // After cutoff - just show date
         this.destinationText.textContent = `Get it by ${estimate.formattedDate} to ${estimate.postcode}`;
       }
-      this.destinationText.style.color = '#10b981';
+      this.destinationText.style.color = '#ffffff';
     } else {
       this.destinationText.textContent = `Get it in ${estimate.days} days to ${estimate.postcode}`;
-      this.destinationText.style.color = '#10b981';
+      this.destinationText.style.color = '#ffffff';
     }
     this.hideError();
   }
