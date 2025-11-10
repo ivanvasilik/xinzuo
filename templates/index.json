@@ -256,6 +256,26 @@
       "name": "Home Products",
       "settings": {
         "heading": "Best Offers:",
+        "products": [
+          "hezhen-supreme-series-8-chef-knife",
+          "hezhen-retro-series-8-5-inch-chef-knife",
+          "xinzuo-mo-chef-knife-8-5-inch",
+          "xinzuo-lan-chef-knife-8-5-inch",
+          "products-hezhen-supreme-santoku-knife-7-inch",
+          "hezhen-retro-series-7-inch-santoku-knife",
+          "xinzuo-mo-santoku-knife-7-5-inch",
+          "xinzuo-lan-santoku-knife-7-inch",
+          "hezhen-supreme-carving-knife-8-inch",
+          "hezhen-retro-series-10-inch-carving-knife",
+          "xinzuo-mo-series-10-inch-carving-knife",
+          "xinzuo-lan-carving-knife-10-inch",
+          "xinzuo-lan-2-piece-knife-set-8-chef-5-utility",
+          "hezhen-supreme-2-piece-knife-set-8-chef-5-utility",
+          "xinzuo-mo-series-2-piece-knife-set",
+          "xinzuo-lan-3-piece-knife-set-8-chef-7-santoku-5-utility",
+          "hezhen-retro-series-3-piece-knife-set",
+          "xinzuo-mo-series-3-piece-knife-set"
+        ],
         "color_scheme": "scheme-5"
       }
     },
