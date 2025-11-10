@@ -59,6 +59,11 @@ input:hover {
   background-color: var(--color-input-hover-background);
 }
 
+.jdgm-paginate a {
+              background: black;
+            color: #fff;
+            border: 1px solid #cfcfcf;
+}
 /** override ios and firefox defaults */
 select {
   background-color: var(--color-background);
