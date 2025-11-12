@@ -122,6 +122,16 @@
                       </svg>
                     </span>
                   </div>
+                  <div class="header-category-div">
+                    {% for sublink in link.links %}
+                      {% assign collection_handle = childlink.url | split: "/" | last %}
+                      {% assign collection = collections[collection_handle] %}
+                      <a href="{{ collection.url }}">
+                        <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection-{{ collection.id }}">
+                        <h4>{{ collection.title }} ></h4>
+                      </a>
+                    {% endfor %}
+                  </div>
                 {%- else -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
