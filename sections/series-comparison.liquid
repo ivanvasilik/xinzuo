@@ -1,0 +1,1018 @@
+{% style %}
+  /* MOBILE FIRST BASE STYLES */
+  .series-comparison-{{ section.id }} {
+    padding: 40px 0;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 0 16px;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-header h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 130%;
+    color: #fff;
+    margin: 0 0 12px 0;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-header p {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #c9c9cc;
+    margin: 0;
+  }
+
+  /* Mobile Comparison Selectors */
+  .series-comparison-{{ section.id }} .mobile-comparison-selectors {
+    display: flex;
+    gap: 12px;
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-selector-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-selector-label {
+    font-family: "Sen";
+    font-size: 12px;
+    font-weight: 600;
+    color: #c9c9cc;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-select {
+    width: 100%;
+    padding: 12px 32px 12px 12px;
+    background: rgba(41, 42, 51, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen";
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+  /* Series Card - Mobile First */
+  .series-comparison-{{ section.id }} .series-card {
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .series-comparison-{{ section.id }} .series-card.visible {
+    display: flex;
+  }
+
+  .series-comparison-{{ section.id }} .series-card.left-position {
+    order: 1;
+  }
+
+  .series-comparison-{{ section.id }} .series-card.right-position {
+    order: 2;
+  }
+
+  .series-comparison-{{ section.id }} .series-selector {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .series-comparison-{{ section.id }} .series-selector-label {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .series-comparison-{{ section.id }} .series-image-link {
+    display: block;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .series-comparison-{{ section.id }} .series-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .series-comparison-{{ section.id }} .series-image-link:hover .series-image {
+    transform: scale(1.05);
+  }
+
+  .series-comparison-{{ section.id }} .series-content {
+    padding: 20px 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Rating Section - Mobile Optimized */
+  .series-comparison-{{ section.id }} .series-rating {
+    margin-bottom: 20px;
+  }
+
+  .series-comparison-{{ section.id }} .series-rating-header {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 13px;
+    color: #c9c9cc;
+    margin-bottom: 6px;
+  }
+
+  .series-comparison-{{ section.id }} .rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-wrap: wrap;
+  }
+
+  .series-comparison-{{ section.id }} .star {
+    color: #ff0004;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .series-comparison-{{ section.id }} .star.empty {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .series-comparison-{{ section.id }} .rating-text {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 13px;
+    color: #c9c9cc;
+    margin-left: 6px;
+    line-height: 1.4;
+  }
+
+  /* Features Section - Mobile Optimized */
+  .series-comparison-{{ section.id }} .series-features {
+    margin-bottom: 20px;
+  }
+
+  .series-comparison-{{ section.id }} .feature-item {
+    margin-bottom: 14px;
+  }
+
+  .series-comparison-{{ section.id }} .feature-label {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 13px;
+    color: #c9c9cc;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .series-comparison-{{ section.id }} .feature-value {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  .series-comparison-{{ section.id }} .feature-rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 4px;
+  }
+
+  .series-comparison-{{ section.id }} .feature-rating .star {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  /* Pricing Section - Mobile Optimized */
+  .series-comparison-{{ section.id }} .series-pricing {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .series-comparison-{{ section.id }} .pricing-label {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 13px;
+    color: #c9c9cc;
+    margin-bottom: 6px;
+  }
+
+  .series-comparison-{{ section.id }} .pricing-value {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .series-comparison-{{ section.id }} .buy-button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #ff0004;
+    border: none;
+    border-radius: 4px;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .series-comparison-{{ section.id }} .buy-button:active {
+    background-color: #aa0002;
+    transform: scale(0.98);
+  }
+
+  /* Footer Notes - Mobile First */
+  .series-comparison-{{ section.id }} .comparison-footer {
+    margin-top: 40px;
+    padding: 24px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .series-comparison-{{ section.id }} .footer-note-title {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .series-comparison-{{ section.id }} .footer-note-text {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #c9c9cc;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .series-comparison-{{ section.id }} .footer-note-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* TABLET - Progressive Enhancement */
+  @media screen and (min-width: 750px) {
+    .series-comparison-{{ section.id }} {
+      padding: 60px 0;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header {
+      margin-bottom: 40px;
+      padding: 0 24px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header h2 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header p {
+      font-size: 17px;
+    }
+
+    .series-comparison-{{ section.id }} .mobile-comparison-selectors {
+      display: none;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 0 24px;
+    }
+
+    .series-comparison-{{ section.id }} .series-card {
+      display: flex !important;
+    }
+
+    .series-comparison-{{ section.id }} .series-image-link,
+    .series-comparison-{{ section.id }} .series-image {
+      height: 220px;
+    }
+
+    .series-comparison-{{ section.id }} .series-content {
+      padding: 22px 20px;
+    }
+
+    .series-comparison-{{ section.id }} .series-selector {
+      padding: 14px 18px;
+    }
+
+    .series-comparison-{{ section.id }} .series-selector-label {
+      font-size: 15px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-footer {
+      margin-top: 50px;
+      padding: 28px 24px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+  }
+
+  /* DESKTOP - Full Enhancement */
+  @media screen and (min-width: 1024px) {
+    .series-comparison-{{ section.id }} {
+      padding: 80px 0;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header {
+      margin-bottom: 48px;
+      padding: 0 32px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header h2 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-header p {
+      font-size: 18px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 0 32px;
+      max-width: 1400px;
+    }
+
+    .series-comparison-{{ section.id }} .series-card {
+      display: flex !important;
+    }
+
+    .series-comparison-{{ section.id }} .series-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .series-comparison-{{ section.id }} .series-image-link,
+    .series-comparison-{{ section.id }} .series-image {
+      height: 250px;
+    }
+
+    .series-comparison-{{ section.id }} .series-content {
+      padding: 24px;
+    }
+
+    .series-comparison-{{ section.id }} .series-selector {
+      padding: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .series-selector-label {
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .star {
+      font-size: 20px;
+    }
+
+    .series-comparison-{{ section.id }} .rating-text {
+      font-size: 14px;
+      margin-left: 8px;
+    }
+
+    .series-comparison-{{ section.id }} .feature-label {
+      font-size: 14px;
+    }
+
+    .series-comparison-{{ section.id }} .feature-value {
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .feature-rating .star {
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .pricing-value {
+      font-size: 20px;
+    }
+
+    .series-comparison-{{ section.id }} .buy-button {
+      padding: 14px 24px;
+    }
+
+    .series-comparison-{{ section.id }} .buy-button:hover {
+      background-color: #cc0003;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-footer {
+      margin-top: 64px;
+      padding: 32px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .series-comparison-{{ section.id }} .footer-note-title {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .series-comparison-{{ section.id }} .footer-note-text {
+      margin-bottom: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="series-comparison-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+  
+  {% if section.settings.show_header %}
+    <div class="comparison-header">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
+    </div>
+  {% endif %}
+
+  <!-- Mobile Comparison Selectors -->
+  <div class="mobile-comparison-selectors">
+    <div class="comparison-selector-wrapper">
+      <div class="comparison-selector-label">Compare 1</div>
+      <select class="comparison-select" id="compare-select-1-{{ section.id }}" data-comparison-select="1" data-all-options='[{% for block in section.blocks %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]'>
+        {% for block in section.blocks %}
+          <option value="{{ block.id }}" {% if block.settings.series_name == "SUPREME SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="comparison-selector-wrapper">
+      <div class="comparison-selector-label">Compare 2</div>
+      <select class="comparison-select" id="compare-select-2-{{ section.id }}" data-comparison-select="2" data-all-options='[{% for block in section.blocks %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]'>
+        {% for block in section.blocks %}
+          <option value="{{ block.id }}" {% if block.settings.series_name == "RETRO SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="comparison-grid">
+    {% for block in section.blocks %}
+      <div class="series-card" data-series-id="{{ block.id }}" {{ block.shopify_attributes }}>
+        
+        <!-- Series Selector -->
+        <div class="series-selector">
+          <div class="series-selector-label">{{ block.settings.series_name }}</div>
+        </div>
+
+        <!-- Series Image -->
+        {% if block.settings.series_image %}
+          {% if block.settings.buy_now_link != blank %}
+            <a href="{{ block.settings.buy_now_link }}" class="series-image-link">
+              <img 
+                src="{{ block.settings.series_image | img_url: 'master' }}" 
+                alt="{{ block.settings.series_name }}"
+                class="series-image"
+                loading="lazy"
+              >
+            </a>
+          {% else %}
+            <img 
+              src="{{ block.settings.series_image | img_url: 'master' }}" 
+              alt="{{ block.settings.series_name }}"
+              class="series-image"
+              loading="lazy"
+            >
+          {% endif %}
+        {% else %}
+          <div class="series-image" style="background: rgba(255, 255, 255, 0.05);"></div>
+        {% endif %}
+
+        <!-- Series Content -->
+        <div class="series-content">
+          
+          <!-- Rating -->
+          <div class="series-rating">
+            <div class="series-rating-header">Rating</div>
+            <div class="rating-stars">
+              {% assign rating = block.settings.rating %}
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  <span class="star">★</span>
+                {% else %}
+                  <span class="star empty">★</span>
+                {% endif %}
+              {% endfor %}
+              <span class="rating-text">{{ block.settings.rating_value }} ({{ block.settings.review_count }} Reviews)</span>
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="series-features">
+            
+            <!-- Core Steel -->
+            <div class="feature-item">
+              <div class="feature-label">Core Steel</div>
+              <div class="feature-value">{{ block.settings.core_steel }}</div>
+            </div>
+
+            <!-- Hardness -->
+            <div class="feature-item">
+              <div class="feature-label">Hardness</div>
+              <div class="feature-value">{{ block.settings.hardness }}</div>
+            </div>
+
+            <!-- Toughness -->
+            <div class="feature-item">
+              <div class="feature-label">Toughness</div>
+              <div class="feature-rating">
+                {% assign toughness = block.settings.toughness_rating %}
+                {% for i in (1..5) %}
+                  {% if i <= toughness %}
+                    <span class="star">★</span>
+                  {% else %}
+                    <span class="star empty">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Edge Retention -->
+            <div class="feature-item">
+              <div class="feature-label">Edge Retention</div>
+              <div class="feature-rating">
+                {% assign edge_retention = block.settings.edge_retention_rating %}
+                {% for i in (1..5) %}
+                  {% if i <= edge_retention %}
+                    <span class="star">★</span>
+                  {% else %}
+                    <span class="star empty">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Corrosion Resistance -->
+            <div class="feature-item">
+              <div class="feature-label">Corrosion Resistance</div>
+              <div class="feature-rating">
+                {% assign corrosion = block.settings.corrosion_resistance_rating %}
+                {% for i in (1..5) %}
+                  {% if i <= corrosion %}
+                    <span class="star">★</span>
+                  {% else %}
+                    <span class="star empty">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Ease to Sharpen -->
+            <div class="feature-item">
+              <div class="feature-label">Ease to Sharpen</div>
+              <div class="feature-rating">
+                {% assign sharpen = block.settings.ease_to_sharpen_rating %}
+                {% for i in (1..5) %}
+                  {% if i <= sharpen %}
+                    <span class="star">★</span>
+                  {% else %}
+                    <span class="star empty">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pricing -->
+          <div class="series-pricing">
+            <div class="pricing-label">Pricing</div>
+            <div class="pricing-value">
+              {% if block.settings.pricing_product != blank %}
+                {{ block.settings.pricing_label | default: "Chef knife starts from" }} {{ block.settings.pricing_product.price | money }}
+              {% else %}
+                {{ block.settings.pricing | default: "Starts from $62.00" }}
+              {% endif %}
+            </div>
+            {% if block.settings.buy_now_link != blank %}
+              <a href="{{ block.settings.buy_now_link }}" class="buy-button">
+                SHOP NOW
+              </a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Footer Notes -->
+  {% if section.settings.show_footer_notes %}
+    <div class="comparison-footer">
+      {% if section.settings.footer_note_1_title != blank %}
+        <div class="footer-note-title">{{ section.settings.footer_note_1_title }}</div>
+        <div class="footer-note-text">{{ section.settings.footer_note_1_text }}</div>
+      {% endif %}
+      
+      {% if section.settings.footer_note_2_text != blank %}
+        <div class="footer-note-text">{{ section.settings.footer_note_2_text }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+</section>
+
+{% schema %}
+{
+  "name": "Series Comparison",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Know How Each Series Differ"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover which Xinzuo knife fits you best by comparing performance, durability, and ease of maintenance."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Footer Notes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer_notes",
+      "label": "Show Footer Notes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "footer_note_1_title",
+      "label": "Note 1 Title",
+      "default": "#1 Point Note Example:"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_note_1_text",
+      "label": "Note 1 Text",
+      "default": "Duis at justo sed neque suscipit vestibulum. Integer eros tellus, consequat vel mattis ac."
+    },
+    {
+      "type": "textarea",
+      "id": "footer_note_2_text",
+      "label": "Note 2 Text",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim, risus id blandit porta, nulla felis consequat quam, feugiat scelerisque."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "series",
+      "name": "Series",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Series Information"
+        },
+        {
+          "type": "text",
+          "id": "series_name",
+          "label": "Series Name",
+          "default": "SUPREME SERIES"
+        },
+        {
+          "type": "image_picker",
+          "id": "series_image",
+          "label": "Series Image"
+        },
+        {
+          "type": "url",
+          "id": "buy_now_link",
+          "label": "Buy Now Link"
+        },
+        {
+          "type": "header",
+          "content": "Rating"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star Rating (out of 5)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "rating_value",
+          "label": "Rating Value (e.g., 4.8 Stars)",
+          "default": "4.8 Stars"
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "Review Count",
+          "default": "124 Reviews"
+        },
+        {
+          "type": "header",
+          "content": "Steel & Hardness"
+        },
+        {
+          "type": "text",
+          "id": "core_steel",
+          "label": "Core Steel",
+          "default": "X50CrMoV15 (German)**"
+        },
+        {
+          "type": "text",
+          "id": "hardness",
+          "label": "Hardness",
+          "default": "56-58 HRC"
+        },
+        {
+          "type": "header",
+          "content": "Performance Ratings"
+        },
+        {
+          "type": "range",
+          "id": "toughness_rating",
+          "label": "Toughness (stars)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "edge_retention_rating",
+          "label": "Edge Retention (stars)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "corrosion_resistance_rating",
+          "label": "Corrosion Resistance (stars)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "ease_to_sharpen_rating",
+          "label": "Ease to Sharpen (stars)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "header",
+          "content": "Pricing"
+        },
+        {
+          "type": "product",
+          "id": "pricing_product",
+          "label": "Product for Pricing (e.g., Chef Knife)",
+          "info": "Select a product to pull dynamic pricing from. If not selected, uses manual pricing below."
+        },
+        {
+          "type": "text",
+          "id": "pricing_label",
+          "label": "Pricing Label",
+          "default": "Chef knife starts from",
+          "info": "Text that appears before the price (e.g., 'Chef knife starts from')"
+        },
+        {
+          "type": "text",
+          "id": "pricing",
+          "label": "Manual Pricing (Fallback)",
+          "default": "Starts from $62.00",
+          "info": "Only used if no product is selected above"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Series Comparison",
+      "blocks": [
+        {
+          "type": "series",
+          "settings": {
+            "series_name": "SUPREME SERIES",
+            "rating": 4,
+            "rating_value": "4.8 Stars",
+            "review_count": "124 Reviews",
+            "core_steel": "X50CrMoV15 (German)**",
+            "hardness": "56-58 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 2,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 3,
+            "pricing": "Starts from $62.00"
+          }
+        },
+        {
+          "type": "series",
+          "settings": {
+            "series_name": "RETRO SERIES",
+            "rating": 5,
+            "rating_value": "4.6 Stars",
+            "review_count": "88 Reviews",
+            "core_steel": "10Cr15CoMoV (3 layer)",
+            "hardness": "58-60 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 4,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 4,
+            "pricing": "Starts from $82.00"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+(function() {
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    const sectionId = '{{ section.id }}';
+    
+    const select1 = document.getElementById('compare-select-1-' + sectionId);
+    const select2 = document.getElementById('compare-select-2-' + sectionId);
+    
+    if (!select1 || !select2) {
+      return;
+    }
+
+    function updateDropdownOptions() {
+      const selected1 = select1.value;
+      const selected2 = select2.value;
+      
+      // Get all available options from data attribute
+      const allOptions1 = JSON.parse(select1.getAttribute('data-all-options') || '[]');
+      const allOptions2 = JSON.parse(select2.getAttribute('data-all-options') || '[]');
+      
+      // Rebuild select1 options (exclude what's selected in select2)
+      const currentValue1 = select1.value;
+      select1.innerHTML = '';
+      allOptions1.forEach(opt => {
+        if (opt.value !== selected2) {
+          const option = document.createElement('option');
+          option.value = opt.value;
+          option.textContent = opt.text;
+          if (opt.value === currentValue1) {
+            option.selected = true;
+          }
+          select1.appendChild(option);
+        }
+      });
+      
+      // Rebuild select2 options (exclude what's selected in select1)
+      const currentValue2 = select2.value;
+      select2.innerHTML = '';
+      allOptions2.forEach(opt => {
+        if (opt.value !== selected1) {
+          const option = document.createElement('option');
+          option.value = opt.value;
+          option.textContent = opt.text;
+          if (opt.value === currentValue2) {
+            option.selected = true;
+          }
+          select2.appendChild(option);
+        }
+      });
+    }
+
+    function updateComparison() {
+      const selected1 = select1.value;
+      const selected2 = select2.value;
+      
+      const section = document.querySelector('.series-comparison-' + sectionId.replace(/[^a-zA-Z0-9-_]/g, ''));
+      
+      if (!section) {
+        return;
+      }
+      
+      const cards = section.querySelectorAll('.series-card');
+      
+      // Hide all cards and remove position classes
+      cards.forEach(card => {
+        card.classList.remove('visible', 'left-position', 'right-position');
+      });
+      
+      // Show selected cards in correct positions
+      cards.forEach(card => {
+        const seriesId = card.getAttribute('data-series-id');
+        
+        if (seriesId === selected1) {
+          card.classList.add('visible', 'left-position');
+        } else if (seriesId === selected2) {
+          card.classList.add('visible', 'right-position');
+        }
+      });
+      
+      // Update dropdown options to prevent duplicates
+      updateDropdownOptions();
+    }
+
+    select1.addEventListener('change', updateComparison);
+    select2.addEventListener('change', updateComparison);
+
+    // Initialize on load
+    setTimeout(updateComparison, 100);
+  }
+})();
+</script>
+

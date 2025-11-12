@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "series_comparison": {
+      "type": "series-comparison",
+      "blocks": {
+        "supreme_series": {
+          "type": "series",
+          "settings": {
+            "series_name": "SUPREME SERIES",
+            "series_image": "shopify://shop_images/2-piece-knife-set-8-chef-5-utility-x02-5992146.jpg",
+            "buy_now_link": "shopify://collections/supreme-series",
+            "rating": 4,
+            "rating_value": "4.8 Stars",
+            "review_count": "124 Reviews",
+            "core_steel": "X50CrMoV15 (German)**",
+            "hardness": "56-58 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 2,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 3,
+            "pricing_product": "hezhen-supreme-series-8-chef-knife",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $62.00"
+          }
+        },
+        "retro_series": {
+          "type": "series",
+          "settings": {
+            "series_name": "RETRO SERIES",
+            "series_image": "shopify://shop_images/3-piece-knife-set-pm8s-8257845.jpg",
+            "buy_now_link": "shopify://collections/retro-series",
+            "rating": 5,
+            "rating_value": "4.6 Stars",
+            "review_count": "88 Reviews",
+            "core_steel": "10Cr15CoMoV (3 layer)",
+            "hardness": "58-60 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 4,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 4,
+            "pricing_product": "hezhen-retro-series-8-5-inch-chef-knife",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $82.00"
+          }
+        },
+        "mo_series": {
+          "type": "series",
+          "settings": {
+            "series_name": "MO SERIES",
+            "series_image": "shopify://shop_images/3-piece-knife-set-x06-4523297.jpg",
+            "buy_now_link": "shopify://collections/mo-series",
+            "rating": 5,
+            "rating_value": "4.7 Stars",
+            "review_count": "92 Reviews",
+            "core_steel": "AUS-10 (Japanese)",
+            "hardness": "58-60 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 4,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 3,
+            "pricing_product": "xinzuo-mo-chef-knife-8-5-inch",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $95.00"
+          }
+        },
+        "lan_series": {
+          "type": "series",
+          "settings": {
+            "series_name": "LAN SERIES",
+            "series_image": "shopify://shop_images/3-piece-knife-set-8-chef-7-santoku-5-utility-b37-5728130.jpg",
+            "buy_now_link": "shopify://collections/lan-series",
+            "rating": 5,
+            "rating_value": "4.9 Stars",
+            "review_count": "156 Reviews",
+            "core_steel": "VG10 (67 layer Damascus)",
+            "hardness": "60-62 HRC",
+            "toughness_rating": 3,
+            "edge_retention_rating": 5,
+            "corrosion_resistance_rating": 5,
+            "ease_to_sharpen_rating": 2,
+            "pricing_product": "xinzuo-lan-chef-knife-8-5-inch",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $120.00"
+          }
+        }
+      },
+      "block_order": [
+        "supreme_series",
+        "retro_series",
+        "mo_series",
+        "lan_series"
+      ],
+      "settings": {
+        "show_header": true,
+        "title": "Know How Each Series Differ",
+        "description": "Discover which Xinzuo knife fits you best by comparing performance, durability, and ease of maintenance.",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "show_footer_notes": true,
+        "footer_note_1_title": "#1 Point Note Example:",
+        "footer_note_1_text": "Duis at justo sed neque suscipit vestibulum. Integer eros tellus, consequat vel mattis ac.",
+        "footer_note_2_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim, risus id blandit porta, nulla felis consequat quam, feugiat scelerisque. Mauris nunc tortor, lacinia id euismod posuere, iaculis in augue. In imperdiet nulla ut nunc porttitor, id facilisis est sodales. Nulla et dui iaculis, finibus risus. Vestibulum lacinia nisl massa, nec iaculis nulla malesuada id."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "series_comparison"
+  ]
+}
