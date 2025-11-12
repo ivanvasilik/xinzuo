@@ -292,8 +292,7 @@
 </div>
 <div class="link-products">
   {% assign collection = product.collections.first %}
-  {% if collection.title == "Knives" %}
-    {{ collection.title }}
+  {% if collection.title contains "Series" %}
     {% for product_c in collection.products %}
       <a href="{{ product_c.url }}">
         <div class="link-product {% if product.id == product_c.id %}active{% endif %}">
