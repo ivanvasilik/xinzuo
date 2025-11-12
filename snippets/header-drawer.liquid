@@ -121,7 +121,7 @@
                     <summary
                       id="HeaderDrawer-{{ link.handle }}"
                       class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
-                      on:click="header-drawer/open"
+                      {% comment %} on:click="header-drawer/open" {% endcomment %}
                     >
                       <span class="menu-drawer__menu-item-text wrap-text">{{ link.title | escape }}</span>
                       <span class="svg-wrapper icon-caret icon-caret--forward">
@@ -209,7 +209,7 @@
                               "
                             >
                               {%- if childlink.links == blank -%}
-                                {% comment %} {% if product == blank and collection == blank %}
+                                {% if product == blank and collection == blank %}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                     href="{{ childlink.url }}"
@@ -374,7 +374,7 @@
                                       {%- endfor -%}
                                     </ul>
                                   {%- endif -%}
-                                {% elsif collection != blank and product == blank %} {% endcomment %}
+                                {% elsif collection != blank and product == blank %}
                                   {% liquid
                                     assign accordion_state = ''
                                     if first_accordion_open == false and block_settings.drawer_accordion and block_settings.drawer_accordion_expand_first
@@ -519,7 +519,7 @@
                                       {%- endfor -%}
                                     </ul>
                                   {%- endif -%}
-                                {% comment %} {%- endif -%} {% endcomment %}
+                                {%- endif -%}
                               {%- else -%}
                                 {% liquid
                                   assign accordion_state = ''
