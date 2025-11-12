@@ -292,14 +292,16 @@
 </div>
 <div class="link-products">
   {% assign collection = product.collections.first %}
-  {% for product_c in collection.products %}
-    <a href="{{ product_c.url }}">
-      <div class="link-product {% if product.id == product_c.id %}active{% endif %}">
-        <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
-        <h4>{{ product_c.title | split: " Knife" | first | split: ' ' | last }}</h4>
-      </div>
-    </a>
-  {% endfor %}
+  {% if collection.title == "Knives" %}
+    {% for product_c in collection.products %}
+      <a href="{{ product_c.url }}">
+        <div class="link-product {% if product.id == product_c.id %}active{% endif %}">
+          <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
+          <h4>{{ product_c.title | split: " Knife" | first | split: ' ' | last }}</h4>
+        </div>
+      </a>
+    {% endfor %}
+  {% endif %}
 </div>
 <media-gallery
   class="
