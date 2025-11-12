@@ -109,10 +109,7 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              <li
-                class="menu-drawer__list-item"
-                style="--menu-drawer-animation-index: {{ animation_index }};"
-              >
+              <li class="header-category-li">
                 {% if link.links != blank %}
                   <div class="header-category">
                     <span>{{ link.title | escape }}</span>
