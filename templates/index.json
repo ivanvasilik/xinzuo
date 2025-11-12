@@ -255,7 +255,7 @@
       "type": "compare_btn",
       "name": "Compare Btn",
       "settings": {
-        "heading": "What are the differences between each series?",
+        "heading": "Not sure where to start?",
         "link": "shopify://pages/series-comparison",
         "link_text": "Compare Now"
       }
