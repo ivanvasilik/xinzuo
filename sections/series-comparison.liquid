@@ -121,13 +121,13 @@
   .series-comparison-{{ section.id }} .series-image-link {
     display: block;
     width: 100%;
-    height: 200px;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
   }
 
   .series-comparison-{{ section.id }} .series-image {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
@@ -140,8 +140,9 @@
   .series-comparison-{{ section.id }} .series-content {
     padding: 20px 16px;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    align-content: start;
   }
 
   /* Rating Section - Mobile Optimized */
@@ -174,6 +175,21 @@
     color: rgba(255, 255, 255, 0.2);
   }
 
+  .series-comparison-{{ section.id }} .star.half {
+    position: relative;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .series-comparison-{{ section.id }} .star.half:before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #ff0004;
+  }
+
   .series-comparison-{{ section.id }} .rating-text {
     font-family: "Albert Sans";
     font-weight: 400;
@@ -186,10 +202,13 @@
   /* Features Section - Mobile Optimized */
   .series-comparison-{{ section.id }} .series-features {
     margin-bottom: 20px;
+    display: grid;
+    grid-template-rows: repeat(8, auto);
+    gap: 14px;
   }
 
   .series-comparison-{{ section.id }} .feature-item {
-    margin-bottom: 14px;
+    margin-bottom: 0;
   }
 
   .series-comparison-{{ section.id }} .feature-label {
@@ -223,9 +242,9 @@
 
   /* Pricing Section - Mobile Optimized */
   .series-comparison-{{ section.id }} .series-pricing {
-    margin-top: auto;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    align-self: end;
   }
 
   .series-comparison-{{ section.id }} .pricing-label {
@@ -248,13 +267,13 @@
   .series-comparison-{{ section.id }} .buy-button {
     display: block;
     width: 100%;
-    padding: 16px 24px;
+    padding: 12px 20px;
     background-color: #ff0004;
     border: none;
     border-radius: 4px;
     font-family: "Sen";
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -302,6 +321,92 @@
     margin-bottom: 0;
   }
 
+  /* Comparison Notes Styling */
+  .series-comparison-{{ section.id }} .comparison-notes-content h3 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+  }
+
+
+  .series-comparison-{{ section.id }} .comparison-notes-content p {
+    font-family: "Albert Sans";
+    font-size: 14px;
+    color: #c9c9cc;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-notes-content strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-notes-content ul {
+    margin: 8px 0 16px 0;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-notes-content li {
+    font-family: "Albert Sans";
+    font-size: 14px;
+    color: #c9c9cc;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-notes-content li:before {
+    content: "•";
+    color: #ff0004;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-notes-content > p:last-of-type {
+    padding: 12px 16px;
+    background: rgba(255, 0, 4, 0.1);
+    border-left: 3px solid #ff0004;
+    border-radius: 4px;
+    margin-bottom: 32px;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-shop-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-shop-btn {
+    display: block;
+    padding: 12px 16px;
+    background-color: #ff0004;
+    border: none;
+    border-radius: 4px;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .series-comparison-{{ section.id }} .comparison-shop-btn:active {
+    background-color: #aa0002;
+    transform: scale(0.98);
+  }
+
   /* TABLET - Progressive Enhancement */
   @media screen and (min-width: 750px) {
     .series-comparison-{{ section.id }} {
@@ -323,7 +428,15 @@
     }
 
     .series-comparison-{{ section.id }} .mobile-comparison-selectors {
-      display: none;
+      padding: 0 24px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-selector-label {
+      font-size: 13px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-select {
+      font-size: 14px;
     }
 
     .series-comparison-{{ section.id }} .comparison-grid {
@@ -332,14 +445,6 @@
       padding: 0 24px;
     }
 
-    .series-comparison-{{ section.id }} .series-card {
-      display: flex !important;
-    }
-
-    .series-comparison-{{ section.id }} .series-image-link,
-    .series-comparison-{{ section.id }} .series-image {
-      height: 220px;
-    }
 
     .series-comparison-{{ section.id }} .series-content {
       padding: 22px 20px;
@@ -358,6 +463,30 @@
       padding: 28px 24px;
       margin-left: 24px;
       margin-right: 24px;
+    }
+
+
+    .series-comparison-{{ section.id }} .comparison-notes-content p {
+      font-size: 15px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-notes-content li {
+      font-size: 15px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-notes-content > p:last-of-type {
+      font-size: 15px;
+      padding: 14px 20px;
+      margin-bottom: 36px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-shop-buttons {
+      gap: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-shop-btn {
+      padding: 13px 18px;
+      font-size: 15px;
     }
   }
 
@@ -384,15 +513,27 @@
       margin-right: auto;
     }
 
-    .series-comparison-{{ section.id }} .comparison-grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+    .series-comparison-{{ section.id }} .mobile-comparison-selectors {
       padding: 0 32px;
-      max-width: 1400px;
+      max-width: 1000px;
+      margin: 0 auto 40px;
     }
 
-    .series-comparison-{{ section.id }} .series-card {
-      display: flex !important;
+    .series-comparison-{{ section.id }} .comparison-selector-label {
+      font-size: 14px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-select {
+      font-size: 15px;
+      padding: 14px 36px 14px 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      padding: 0 32px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .series-comparison-{{ section.id }} .series-card:hover {
@@ -400,13 +541,9 @@
       border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .series-comparison-{{ section.id }} .series-image-link,
-    .series-comparison-{{ section.id }} .series-image {
-      height: 250px;
-    }
 
     .series-comparison-{{ section.id }} .series-content {
-      padding: 24px;
+      padding: 28px 24px;
     }
 
     .series-comparison-{{ section.id }} .series-selector {
@@ -414,36 +551,45 @@
     }
 
     .series-comparison-{{ section.id }} .series-selector-label {
-      font-size: 16px;
+      font-size: 18px;
+    }
+
+    .series-comparison-{{ section.id }} .series-rating-header {
+      font-size: 15px;
     }
 
     .series-comparison-{{ section.id }} .star {
-      font-size: 20px;
+      font-size: 27px;
     }
 
     .series-comparison-{{ section.id }} .rating-text {
-      font-size: 14px;
-      margin-left: 8px;
+      font-size: 16px;
+      margin-left: 10px;
     }
 
     .series-comparison-{{ section.id }} .feature-label {
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .series-comparison-{{ section.id }} .feature-value {
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .series-comparison-{{ section.id }} .feature-rating .star {
-      font-size: 16px;
+      font-size: 22px;
+    }
+
+    .series-comparison-{{ section.id }} .pricing-label {
+      font-size: 15px;
     }
 
     .series-comparison-{{ section.id }} .pricing-value {
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .series-comparison-{{ section.id }} .buy-button {
-      padding: 14px 24px;
+      padding: 16px 24px;
+      font-size: 17px;
     }
 
     .series-comparison-{{ section.id }} .buy-button:hover {
@@ -453,18 +599,49 @@
     .series-comparison-{{ section.id }} .comparison-footer {
       margin-top: 64px;
       padding: 32px;
-      max-width: 1400px;
+      max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
 
     .series-comparison-{{ section.id }} .footer-note-title {
-      font-size: 16px;
-      margin-bottom: 12px;
+      font-size: 18px;
+      margin-bottom: 14px;
     }
 
-    .series-comparison-{{ section.id }} .footer-note-text {
-      margin-bottom: 16px;
+    .series-comparison-{{ section.id }} .comparison-notes-content h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+
+    .series-comparison-{{ section.id }} .comparison-notes-content p {
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-notes-content li {
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-notes-content > p:last-of-type {
+      font-size: 16px;
+      padding: 16px 24px;
+      margin-bottom: 40px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-shop-buttons {
+      gap: 20px;
+      max-width: 800px;
+      margin: 20px auto 0;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-shop-btn {
+      padding: 14px 24px;
+      font-size: 16px;
+    }
+
+    .series-comparison-{{ section.id }} .comparison-shop-btn:hover {
+      background-color: #cc0003;
     }
   }
 {% endstyle %}
@@ -510,22 +687,33 @@
 
         <!-- Series Image -->
         {% if block.settings.series_image %}
+          {% liquid
+            assign sizes = '(min-width: 750px) 50vw, 100vw'
+            assign widths = '400, 600, 800, 1000, 1200'
+            assign loading = 'lazy'
+            
+            if block.settings.series_name == 'SUPREME SERIES' or block.settings.series_name == 'RETRO SERIES'
+              assign loading = 'eager'
+            endif
+          %}
           {% if block.settings.buy_now_link != blank %}
             <a href="{{ block.settings.buy_now_link }}" class="series-image-link">
-              <img 
-                src="{{ block.settings.series_image | img_url: 'master' }}" 
-                alt="{{ block.settings.series_name }}"
-                class="series-image"
-                loading="lazy"
-              >
+              {{ block.settings.series_image | image_url: width: 1200 | image_tag: 
+                loading: loading,
+                sizes: sizes,
+                widths: widths,
+                class: 'series-image',
+                alt: block.settings.series_name
+              }}
             </a>
           {% else %}
-            <img 
-              src="{{ block.settings.series_image | img_url: 'master' }}" 
-              alt="{{ block.settings.series_name }}"
-              class="series-image"
-              loading="lazy"
-            >
+            {{ block.settings.series_image | image_url: width: 1200 | image_tag: 
+              loading: loading,
+              sizes: sizes,
+              widths: widths,
+              class: 'series-image',
+              alt: block.settings.series_name
+            }}
           {% endif %}
         {% else %}
           <div class="series-image" style="background: rgba(255, 255, 255, 0.05);"></div>
@@ -536,12 +724,17 @@
           
           <!-- Rating -->
           <div class="series-rating">
-            <div class="series-rating-header">Rating</div>
+            <div class="series-rating-header">Customer Rating</div>
             <div class="rating-stars">
               {% assign rating = block.settings.rating %}
+              {% assign rating_floor = rating | floor %}
+              {% assign rating_ceil = rating | ceil %}
+              {% assign has_half = rating | modulo: 1 %}
               {% for i in (1..5) %}
-                {% if i <= rating %}
+                {% if i <= rating_floor %}
                   <span class="star">★</span>
+                {% elsif i == rating_ceil and has_half >= 0.5 %}
+                  <span class="star half">★</span>
                 {% else %}
                   <span class="star empty">★</span>
                 {% endif %}
@@ -553,26 +746,20 @@
           <!-- Features -->
           <div class="series-features">
             
-            <!-- Core Steel -->
+            <!-- Star Ratings First -->
+            <!-- Edge Retention -->
             <div class="feature-item">
-              <div class="feature-label">Core Steel</div>
-              <div class="feature-value">{{ block.settings.core_steel }}</div>
-            </div>
-
-            <!-- Hardness -->
-            <div class="feature-item">
-              <div class="feature-label">Hardness</div>
-              <div class="feature-value">{{ block.settings.hardness }}</div>
-            </div>
-
-            <!-- Toughness -->
-            <div class="feature-item">
-              <div class="feature-label">Toughness</div>
+              <div class="feature-label">Edge Retention</div>
               <div class="feature-rating">
-                {% assign toughness = block.settings.toughness_rating %}
+                {% assign edge_retention = block.settings.edge_retention_rating %}
+                {% assign edge_floor = edge_retention | floor %}
+                {% assign edge_ceil = edge_retention | ceil %}
+                {% assign has_half = edge_retention | modulo: 1 %}
                 {% for i in (1..5) %}
-                  {% if i <= toughness %}
+                  {% if i <= edge_floor %}
                     <span class="star">★</span>
+                  {% elsif i == edge_ceil and has_half >= 0.5 %}
+                    <span class="star half">★</span>
                   {% else %}
                     <span class="star empty">★</span>
                   {% endif %}
@@ -580,14 +767,19 @@
               </div>
             </div>
 
-            <!-- Edge Retention -->
+            <!-- Toughness -->
             <div class="feature-item">
-              <div class="feature-label">Edge Retention</div>
+              <div class="feature-label">Toughness</div>
               <div class="feature-rating">
-                {% assign edge_retention = block.settings.edge_retention_rating %}
+                {% assign toughness = block.settings.toughness_rating %}
+                {% assign toughness_floor = toughness | floor %}
+                {% assign toughness_ceil = toughness | ceil %}
+                {% assign has_half = toughness | modulo: 1 %}
                 {% for i in (1..5) %}
-                  {% if i <= edge_retention %}
+                  {% if i <= toughness_floor %}
                     <span class="star">★</span>
+                  {% elsif i == toughness_ceil and has_half >= 0.5 %}
+                    <span class="star half">★</span>
                   {% else %}
                     <span class="star empty">★</span>
                   {% endif %}
@@ -600,9 +792,14 @@
               <div class="feature-label">Corrosion Resistance</div>
               <div class="feature-rating">
                 {% assign corrosion = block.settings.corrosion_resistance_rating %}
+                {% assign corrosion_floor = corrosion | floor %}
+                {% assign corrosion_ceil = corrosion | ceil %}
+                {% assign has_half = corrosion | modulo: 1 %}
                 {% for i in (1..5) %}
-                  {% if i <= corrosion %}
+                  {% if i <= corrosion_floor %}
                     <span class="star">★</span>
+                  {% elsif i == corrosion_ceil and has_half >= 0.5 %}
+                    <span class="star half">★</span>
                   {% else %}
                     <span class="star empty">★</span>
                   {% endif %}
@@ -615,14 +812,44 @@
               <div class="feature-label">Ease to Sharpen</div>
               <div class="feature-rating">
                 {% assign sharpen = block.settings.ease_to_sharpen_rating %}
+                {% assign sharpen_floor = sharpen | floor %}
+                {% assign sharpen_ceil = sharpen | ceil %}
+                {% assign has_half = sharpen | modulo: 1 %}
                 {% for i in (1..5) %}
-                  {% if i <= sharpen %}
+                  {% if i <= sharpen_floor %}
                     <span class="star">★</span>
+                  {% elsif i == sharpen_ceil and has_half >= 0.5 %}
+                    <span class="star half">★</span>
                   {% else %}
                     <span class="star empty">★</span>
                   {% endif %}
                 {% endfor %}
               </div>
+            </div>
+
+            <!-- Text Fields After Stars -->
+            <!-- Core Steel -->
+            <div class="feature-item">
+              <div class="feature-label">Core Steel</div>
+              <div class="feature-value">{{ block.settings.core_steel }}</div>
+            </div>
+
+            <!-- Construction -->
+            <div class="feature-item">
+              <div class="feature-label">Construction</div>
+              <div class="feature-value">{{ block.settings.construction }}</div>
+            </div>
+
+            <!-- Hardness -->
+            <div class="feature-item">
+              <div class="feature-label">Hardness</div>
+              <div class="feature-value">{{ block.settings.hardness }}</div>
+            </div>
+
+            <!-- Handle Material -->
+            <div class="feature-item">
+              <div class="feature-label">Handle Material</div>
+              <div class="feature-value">{{ block.settings.handle_material }}</div>
             </div>
 
           </div>
@@ -649,17 +876,26 @@
     {% endfor %}
   </div>
 
-  <!-- Footer Notes -->
-  {% if section.settings.show_footer_notes %}
-    <div class="comparison-footer">
-      {% if section.settings.footer_note_1_title != blank %}
-        <div class="footer-note-title">{{ section.settings.footer_note_1_title }}</div>
-        <div class="footer-note-text">{{ section.settings.footer_note_1_text }}</div>
-      {% endif %}
-      
-      {% if section.settings.footer_note_2_text != blank %}
-        <div class="footer-note-text">{{ section.settings.footer_note_2_text }}</div>
-      {% endif %}
+  <!-- Dynamic Comparison Notes -->
+  {% if section.settings.show_comparison_notes %}
+    <div class="comparison-footer" id="comparison-notes-{{ section.id }}" 
+         data-supreme-retro="{{ section.settings.comparison_supreme_retro }}"
+         data-supreme-mo="{{ section.settings.comparison_supreme_mo }}"
+         data-supreme-lan="{{ section.settings.comparison_supreme_lan }}"
+         data-retro-mo="{{ section.settings.comparison_retro_mo }}"
+         data-retro-lan="{{ section.settings.comparison_retro_lan }}"
+         data-mo-lan="{{ section.settings.comparison_mo_lan }}">
+      <div class="comparison-notes-content">
+        <!-- Content will be dynamically inserted by JavaScript -->
+      </div>
+      <div class="comparison-shop-buttons">
+        <a href="#" class="comparison-shop-btn left-shop-btn" id="left-shop-btn-{{ section.id }}">
+          Shop Supreme
+        </a>
+        <a href="#" class="comparison-shop-btn right-shop-btn" id="right-shop-btn-{{ section.id }}">
+          Shop Retro
+        </a>
+      </div>
     </div>
   {% endif %}
 
@@ -715,31 +951,50 @@
     },
     {
       "type": "header",
-      "content": "Footer Notes"
+      "content": "Comparison Notes"
     },
     {
       "type": "checkbox",
-      "id": "show_footer_notes",
-      "label": "Show Footer Notes",
-      "default": true
+      "id": "show_comparison_notes",
+      "label": "Show Comparison Notes",
+      "default": true,
+      "info": "Shows dynamic notes based on which two series are being compared"
     },
     {
-      "type": "text",
-      "id": "footer_note_1_title",
-      "label": "Note 1 Title",
-      "default": "#1 Point Note Example:"
+      "type": "richtext",
+      "id": "comparison_supreme_retro",
+      "label": "Supreme vs Retro Comparison",
+      "default": "<h3>Supreme Series vs Retro Series</h3><p>Supreme uses German 1.4116 stainless steel at 57 HRC — the softest and most forgiving option with excellent toughness, corrosion resistance, and easy sharpening. Retro upgrades to a 3-layer 10Cr15CoMoV composite at 60 HRC with red wood and black buffalo horn handles, delivering noticeably better edge retention and a more premium feel while staying tough and easy to maintain.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Retro holds sharpness significantly longer</li><li><strong>Handle upgrade:</strong> Buffalo horn accent vs plain red wood</li><li><strong>Price:</strong> Small step up for noticeable performance gain</li></ul><p><strong>→ Choose Supreme</strong> for the best value workhorse<br><strong>→ Choose Retro</strong> for longer-lasting sharpness and premium materials without a big price jump</p>"
     },
     {
-      "type": "textarea",
-      "id": "footer_note_1_text",
-      "label": "Note 1 Text",
-      "default": "Duis at justo sed neque suscipit vestibulum. Integer eros tellus, consequat vel mattis ac."
+      "type": "richtext",
+      "id": "comparison_supreme_mo",
+      "label": "Supreme vs Mo Comparison",
+      "default": "<h3>Supreme Series vs Mo Series</h3><p>Supreme focuses on practicality with red wood handles and 1.4116 steel that is very tough, stain-resistant, and easy to live with for everyday home use. Mo series features 67-layer Damascus cladding over 10Cr15CoMoV at 60 HRC plus a burnt oak handle and deep freeze heat treatment, delivering stronger edge holding, more refined cutting feel, and a striking Damascus pattern.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Aesthetics:</strong> Mo's 67-layer Damascus vs Supreme's plain finish</li><li><strong>Edge holding:</strong> Mo maintains sharpness much longer</li><li><strong>Handle:</strong> Burnt oak vs red wood for different grip and style</li></ul><p><strong>→ Choose Supreme</strong> if budget and easy maintenance are priorities<br><strong>→ Choose Mo</strong> for noticeable performance and aesthetic upgrade at upper mid-range pricing</p>"
     },
     {
-      "type": "textarea",
-      "id": "footer_note_2_text",
-      "label": "Note 2 Text",
-      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim, risus id blandit porta, nulla felis consequat quam, feugiat scelerisque."
+      "type": "richtext",
+      "id": "comparison_supreme_lan",
+      "label": "Supreme vs Lan Comparison",
+      "default": "<h3>Supreme Series vs Lan Series</h3><p>Supreme sits at the entry point with 1.4116 steel that is tough, rust-resistant and quick to touch up — ideal for users who want a forgiving knife. Lan is the flagship series, built with 73-layer Damascus and a 14Cr14MoVNb powder steel core hardened to 62 HRC with deep freeze treatment and an olive wood handle. It trades some toughness for extreme edge retention and a very high-end look and feel.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Lan delivers razor-sharp performance that lasts significantly longer</li><li><strong>Hardness:</strong> 5 HRC difference for professional-grade hardness</li><li><strong>Construction:</strong> 73-layer Damascus vs monosteel for premium aesthetics</li><li><strong>Price:</strong> Top-tier investment vs entry-level value</li></ul><p><strong>→ Choose Supreme</strong> for simple, durable value<br><strong>→ Choose Lan</strong> for premium, high-hardness blade that holds a razor edge and sits at the top of the range</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "comparison_retro_mo",
+      "label": "Retro vs Mo Comparison",
+      "default": "<h3>Retro Series vs Mo Series</h3><p>Retro and Mo both use 10Cr15CoMoV at 60 HRC, so edge retention, toughness, corrosion resistance, and sharpening feel are very similar. Retro has 3-layer composite construction with red wood and black buffalo horn handles, giving a stylish yet traditional look at mid-level pricing. Mo pushes further into premium territory with 67-layer Damascus, deep freeze treatment, and a burnt oak handle — it feels more luxurious in hand and on the cutting board.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Construction:</strong> 67-layer Damascus (Mo) vs 3-layer composite (Retro)</li><li><strong>Handle style:</strong> Burnt oak vs red wood with buffalo horn</li><li><strong>Visual appeal:</strong> Mo's Damascus pattern for premium aesthetic</li><li><strong>Price:</strong> Mo positioned as more decorative, high-end finish</li></ul><p><strong>→ Choose Retro</strong> for great all-around performance and classic styling<br><strong>→ Choose Mo</strong> for the same steel with more luxurious Damascus finish</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "comparison_retro_lan",
+      "label": "Retro vs Lan Comparison",
+      "default": "<h3>Retro Series vs Lan Series</h3><p>Retro offers a balanced package: 10Cr15CoMoV composite steel at 60 HRC, four-star performance across toughness, edge holding, stain resistance and sharpening, plus handsome red wood and buffalo horn handles at mid-range pricing. Lan steps up to 14Cr14MoVNb powder steel core hardened higher, wrapped in 73-layer Damascus with deep freeze treatment and olive wood handles — delivering significantly longer edge life and a more exclusive look, with slightly less toughness than Retro.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel upgrade:</strong> Powder steel core (Lan) vs standard 10Cr15CoMoV (Retro)</li><li><strong>Edge retention:</strong> Lan holds sharpness much longer (5 stars vs 4 stars)</li><li><strong>Hardness:</strong> 2 HRC difference for pro-grade performance</li><li><strong>Price:</strong> Top-tier investment vs mid-range value</li></ul><p><strong>→ Choose Retro</strong> for everyday versatility and value<br><strong>→ Choose Lan</strong> for maximum performance and prestige at the top price point</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "comparison_mo_lan",
+      "label": "Mo vs Lan Comparison",
+      "default": "<h3>Mo Series vs Lan Series</h3><p>Mo features 67-layer Damascus with a 10Cr15CoMoV core at 60 HRC, giving very balanced performance and a striking burnt oak handle, positioned above Retro but below Lan in pricing. Lan raises hardness to 62 HRC with a 14Cr14MoVNb powder steel core and 73-layer Damascus, paired with olive wood and advanced heat treatment — delivering stronger edge retention and a more high-end feel while sacrificing a little toughness.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel core:</strong> Powder steel (Lan) vs 10Cr15CoMoV (Mo) for better edge holding</li><li><strong>Hardness:</strong> 2 HRC bump for professional hardness level</li><li><strong>Edge retention:</strong> Lan maintains sharpness longer between sharpening</li><li><strong>Handle wood:</strong> Olive wood vs burnt oak for different aesthetics</li></ul><p><strong>→ Choose Mo</strong> for a premium, forgiving all-rounder<br><strong>→ Choose Lan</strong> for the flagship option with the most aggressive edge holding and luxury presentation</p>"
     }
   ],
   "blocks": [
@@ -774,11 +1029,12 @@
         {
           "type": "range",
           "id": "rating",
-          "label": "Star Rating (out of 5)",
+          "label": "Customer Star Rating (out of 5)",
           "min": 1,
           "max": 5,
-          "step": 1,
-          "default": 5
+          "step": 0.5,
+          "default": 4.5,
+          "info": "Supports half stars (e.g., 4.5, 4.8 rounds to 4.5)"
         },
         {
           "type": "text",
@@ -794,19 +1050,31 @@
         },
         {
           "type": "header",
-          "content": "Steel & Hardness"
+          "content": "Specifications"
         },
         {
           "type": "text",
           "id": "core_steel",
           "label": "Core Steel",
-          "default": "X50CrMoV15 (German)**"
+          "default": "German Din 1.4116 Steel"
+        },
+        {
+          "type": "text",
+          "id": "construction",
+          "label": "Construction",
+          "default": "Monosteel"
         },
         {
           "type": "text",
           "id": "hardness",
-          "label": "Hardness",
-          "default": "56-58 HRC"
+          "label": "Hardness (use +/- format, e.g., 57 +/- 1 HRC)",
+          "default": "57 +/- 1 HRC"
+        },
+        {
+          "type": "text",
+          "id": "handle_material",
+          "label": "Handle Material",
+          "default": "Red Wood"
         },
         {
           "type": "header",
@@ -818,7 +1086,7 @@
           "label": "Toughness (stars)",
           "min": 1,
           "max": 5,
-          "step": 1,
+          "step": 0.5,
           "default": 4
         },
         {
@@ -827,7 +1095,7 @@
           "label": "Edge Retention (stars)",
           "min": 1,
           "max": 5,
-          "step": 1,
+          "step": 0.5,
           "default": 2
         },
         {
@@ -836,7 +1104,7 @@
           "label": "Corrosion Resistance (stars)",
           "min": 1,
           "max": 5,
-          "step": 1,
+          "step": 0.5,
           "default": 4
         },
         {
@@ -845,7 +1113,7 @@
           "label": "Ease to Sharpen (stars)",
           "min": 1,
           "max": 5,
-          "step": 1,
+          "step": 0.5,
           "default": 3
         },
         {
@@ -886,7 +1154,7 @@
             "rating": 4,
             "rating_value": "4.8 Stars",
             "review_count": "124 Reviews",
-            "core_steel": "X50CrMoV15 (German)**",
+            "core_steel": "X50CrMoV15 (German)",
             "hardness": "56-58 HRC",
             "toughness_rating": 4,
             "edge_retention_rating": 2,
@@ -903,12 +1171,44 @@
             "rating_value": "4.6 Stars",
             "review_count": "88 Reviews",
             "core_steel": "10Cr15CoMoV (3 layer)",
-            "hardness": "58-60 HRC",
+            "hardness": "59-61 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 5,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 4,
+            "pricing": "Starts from $82.00"
+          }
+        },
+        {
+          "type": "series",
+          "settings": {
+            "series_name": "LAN SERIES",
+            "rating": 5,
+            "rating_value": "4.9 Stars",
+            "review_count": "156 Reviews",
+            "core_steel": "VG10 (110 layer Damascus)",
+            "hardness": "59-61 HRC",
             "toughness_rating": 4,
             "edge_retention_rating": 4,
             "corrosion_resistance_rating": 4,
             "ease_to_sharpen_rating": 4,
-            "pricing": "Starts from $82.00"
+            "pricing": "Starts from $120.00"
+          }
+        },
+        {
+          "type": "series",
+          "settings": {
+            "series_name": "MO SERIES",
+            "rating": 5,
+            "rating_value": "4.7 Stars",
+            "review_count": "92 Reviews",
+            "core_steel": "AUS-10 (Japanese)",
+            "hardness": "59-61 HRC",
+            "toughness_rating": 4,
+            "edge_retention_rating": 4,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 4,
+            "pricing": "Starts from $95.00"
           }
         }
       ]
@@ -975,6 +1275,122 @@
       });
     }
 
+    function getSeriesName(seriesId, cards) {
+      for (let card of cards) {
+        if (card.getAttribute('data-series-id') === seriesId) {
+          const nameEl = card.querySelector('.series-selector-label');
+          return nameEl ? nameEl.textContent.trim().toUpperCase() : '';
+        }
+      }
+      return '';
+    }
+
+    function updateComparisonNotes(series1Name, series2Name) {
+      const notesContainer = document.getElementById('comparison-notes-' + sectionId);
+      if (!notesContainer) return;
+
+      const contentEl = notesContainer.querySelector('.comparison-notes-content');
+      if (!contentEl) return;
+
+      // Normalize series names for comparison
+      const normalize = (name) => name.replace(/\s+SERIES$/i, '').trim().toUpperCase();
+      const s1 = normalize(series1Name);
+      const s2 = normalize(series2Name);
+
+      // Create comparison key (order doesn't matter)
+      let comparisonKey = '';
+      const combinations = {
+        'SUPREME-RETRO': 'supreme-retro',
+        'RETRO-SUPREME': 'supreme-retro',
+        'SUPREME-MO': 'supreme-mo',
+        'MO-SUPREME': 'supreme-mo',
+        'SUPREME-LAN': 'supreme-lan',
+        'LAN-SUPREME': 'supreme-lan',
+        'RETRO-MO': 'retro-mo',
+        'MO-RETRO': 'retro-mo',
+        'RETRO-LAN': 'retro-lan',
+        'LAN-RETRO': 'retro-lan',
+        'MO-LAN': 'mo-lan',
+        'LAN-MO': 'mo-lan'
+      };
+
+      const key = s1 + '-' + s2;
+      comparisonKey = combinations[key];
+
+      if (comparisonKey) {
+        const content = notesContainer.getAttribute('data-' + comparisonKey);
+        if (content) {
+          contentEl.innerHTML = content;
+          notesContainer.style.display = 'block';
+        } else {
+          notesContainer.style.display = 'none';
+        }
+      } else {
+        notesContainer.style.display = 'none';
+      }
+    }
+
+    function getSeriesLink(seriesId, cards) {
+      for (let card of cards) {
+        if (card.getAttribute('data-series-id') === seriesId) {
+          const linkEl = card.querySelector('.buy-button');
+          return linkEl ? linkEl.getAttribute('href') : '#';
+        }
+      }
+      return '#';
+    }
+
+    function updateShopButtons(series1Name, series2Name, series1Link, series2Link) {
+      const leftBtn = document.getElementById('left-shop-btn-' + sectionId);
+      const rightBtn = document.getElementById('right-shop-btn-' + sectionId);
+      
+      if (leftBtn && rightBtn) {
+        leftBtn.textContent = 'Shop ' + series1Name.replace(/\s+SERIES$/i, '');
+        leftBtn.setAttribute('href', series1Link);
+        
+        rightBtn.textContent = 'Shop ' + series2Name.replace(/\s+SERIES$/i, '');
+        rightBtn.setAttribute('href', series2Link);
+      }
+    }
+
+    let alignTimeout;
+    function alignFeatureItems() {
+      clearTimeout(alignTimeout);
+      alignTimeout = setTimeout(function() {
+        const section = document.querySelector('.series-comparison-' + sectionId.replace(/[^a-zA-Z0-9-_]/g, ''));
+        if (!section) return;
+
+        const visibleCards = section.querySelectorAll('.series-card.visible');
+        if (visibleCards.length !== 2) return;
+
+        // Use requestAnimationFrame for smoother updates
+        requestAnimationFrame(function() {
+          // Reset any previous height adjustments
+          visibleCards.forEach(card => {
+            const items = card.querySelectorAll('.feature-item');
+            items.forEach(item => item.style.minHeight = '');
+          });
+
+          // Get feature items from both cards
+          const card1Items = visibleCards[0].querySelectorAll('.feature-item');
+          const card2Items = visibleCards[1].querySelectorAll('.feature-item');
+
+          // Equalize heights for matching feature items
+          const maxItems = Math.min(card1Items.length, card2Items.length);
+          for (let i = 0; i < maxItems; i++) {
+            const height1 = card1Items[i].offsetHeight;
+            const height2 = card2Items[i].offsetHeight;
+            const maxHeight = Math.max(height1, height2);
+            
+            if (height1 !== height2) {
+              card1Items[i].style.minHeight = maxHeight + 'px';
+              card2Items[i].style.minHeight = maxHeight + 'px';
+            }
+          }
+        });
+      }, 100);
+    }
+
     function updateComparison() {
       const selected1 = select1.value;
       const selected2 = select2.value;
@@ -1005,6 +1421,18 @@
       
       // Update dropdown options to prevent duplicates
       updateDropdownOptions();
+
+      // Update comparison notes and shop buttons based on selected series
+      const series1Name = getSeriesName(selected1, cards);
+      const series2Name = getSeriesName(selected2, cards);
+      const series1Link = getSeriesLink(selected1, cards);
+      const series2Link = getSeriesLink(selected2, cards);
+      
+      updateComparisonNotes(series1Name, series2Name);
+      updateShopButtons(series1Name, series2Name, series1Link, series2Link);
+
+      // Align feature items after cards are visible
+      alignFeatureItems();
     }
 
     select1.addEventListener('change', updateComparison);
@@ -1012,6 +1440,13 @@
 
     // Initialize on load
     setTimeout(updateComparison, 100);
+
+    // Re-align on window resize (debounced)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(alignFeatureItems, 200);
+    });
   }
 })();
 </script>
