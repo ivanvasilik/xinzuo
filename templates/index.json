@@ -255,7 +255,7 @@
       "type": "compare_btn",
       "name": "Compare Btn",
       "settings": {
-        "heading": "Not sure where to start?",
+        "heading": "Not sure where <br> to start?",
         "link": "shopify://pages/series-comparison",
         "link_text": "Compare Now"
       }
