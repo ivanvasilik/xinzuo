@@ -788,6 +788,41 @@
   </details>
 </header-drawer>
 
+{% style %}
+  .header-category-li {
+    padding-left: 24px;
+  }
+
+  .header-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    font-family: "Sen";
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+  }
+
+  .header-category-div {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 20px;
+  }
+
+  .header-category-div a {
+    width: calc(100% - 5px);
+  }
+
+  .header-category-div h4 {
+    font-family: "Sen";
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+  }
+{% endstyle %}
+
 {% stylesheet %}
   .header__icon--menu {
     position: initial;
