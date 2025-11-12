@@ -251,6 +251,15 @@
         "heading": "Trusted by Michelin Star Chefs Worldwide."
       }
     },
+    "compare_btn_QMrR93": {
+      "type": "compare_btn",
+      "name": "Compare Btn",
+      "settings": {
+        "heading": "What are the differences between each series?",
+        "link": "shopify://pages/series-comparison",
+        "link_text": "Compare Now"
+      }
+    },
     "home_products_3iCime": {
       "type": "home-products",
       "name": "Home Products",
@@ -755,6 +764,7 @@
     "hero_jVaWmY",
     "cw_hero_BD9KK7",
     "customer_GD7Dyr",
+    "compare_btn_QMrR93",
     "home_products_3iCime",
     "home_slider_g9dVGe",
     "quick_question_XyWDMB",
