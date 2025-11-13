@@ -794,12 +794,12 @@
 <script>
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
-    const headerCategorys = document.querySelectorAll(".header-category-div");
+    {% comment %} const headerCategorys = document.querySelectorAll(".header-category-div"); {% endcomment %}
     const isOpen = headerCategory.classList.contains('open');
-    headerCategorys.forEach(category => {
+    {% comment %} headerCategorys.forEach(category => {
       category.classList.remove('open');
       category.style.maxHeight = null;
-    });
+    }); {% endcomment %}
 
     if (!isOpen) {
       headerCategory.classList.add('open');
