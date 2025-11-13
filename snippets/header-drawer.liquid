@@ -111,7 +111,7 @@
               {% assign animation_index = animation_index | plus: 1 %}
               <li class="header-category-li">
                 {% if link.links != blank %}
-                  <div class="header-category">
+                  <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
                     <span>{{ link.title | escape }}</span>
                     <span>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +119,7 @@
                       </svg>
                     </span>
                   </div>
-                  <div class="header-category-div">
+                  <div class="header-category-div header-category-div-{{ forloop.index }}">
                     {% for sublink in link.links %}
                       {% assign collection_handle = sublink.url | split: "/" | last %}
                       {% assign collection = collections[collection_handle] %}
@@ -788,6 +788,13 @@
   </details>
 </header-drawer>
 
+<script>
+  const headerCategoryOpen = (num) => {
+    const headerCategory = document.querySelector(`.header-category-div-${num}`);
+    headerCategory.style.maxHeight = "auto";
+  }
+</script>
+
 {% style %}
   .header-category-li {
     padding-left: 24px;
@@ -809,7 +816,7 @@
     flex-wrap: wrap;
     row-gap: 20px;
     column-gap: 10px;
-    padding-bottom: 8px;
+    max-height: 0;
   }
 
   .header-category-div a {
