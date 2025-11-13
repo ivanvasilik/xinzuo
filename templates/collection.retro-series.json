@@ -16,7 +16,6 @@
         "width": "full",
         "heading": "RETRO SERIES",
         "title": "",
-        "video": "shopify://files/videos/pm8s-001.mp4",
         "color_scheme": "scheme-5"
       }
     },
@@ -148,6 +147,15 @@
         "padding-block-end": 32
       }
     },
+    "collection_video_Ti4pDp": {
+      "type": "collection_video",
+      "name": "Collection Video",
+      "settings": {
+        "width": "full",
+        "video": "shopify://files/videos/pm8s-001.mp4",
+        "color_scheme": "scheme-5"
+      }
+    },
     "collection_heading_Cr9UMW": {
       "type": "collection_heading",
       "name": "Collection Header",
@@ -250,6 +258,7 @@
   "order": [
     "collection_list_header_dFpQGQ",
     "main",
+    "collection_video_Ti4pDp",
     "collection_heading_Cr9UMW",
     "section"
   ]
