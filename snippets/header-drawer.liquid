@@ -791,7 +791,17 @@
 <script>
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
-    headerCategory.style.maxHeight = "auto";
+    const headerCategorys = document.querySelectorAll(".header-category-div");
+    const isOpen = headerCategory.classList.contains('open');
+    headerCategorys.forEach(category => {
+      category.classList.remove('open');
+      category.style.maxHeight = null;
+    });
+
+    if (!isOpen) {
+      headerCategory.classList.add('open');
+      headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
+    }
   }
 </script>
 
@@ -817,6 +827,7 @@
     row-gap: 20px;
     column-gap: 10px;
     max-height: 0;
+    overflow: hidden;
   }
 
   .header-category-div a {
