@@ -796,7 +796,7 @@
     const headerCategorys = document.querySelectorAll('.header-category-div');
     if(headerCategorys.length > 0) {
       headerCategorys.forEach(headerCategory => {
-        headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
+        headerCategory.style.maxHeight = (headerCategory.scrollHeight + 18) + 'px';
       })
     }
     console.log(headerCategorys)
