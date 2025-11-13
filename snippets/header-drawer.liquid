@@ -793,14 +793,14 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const headerCategorys = document.querySelector('.header-category-div');
+    const headerCategorys = document.querySelectorAll('.header-category-div');
     if(headerCategorys.length > 0) {
       headerCategorys.forEach(headerCategory => {
         headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
       })
     }
   })
-  
+
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
     const isOpen = headerCategory.classList.contains('open');
