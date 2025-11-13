@@ -119,7 +119,7 @@
                       </svg>
                     </span>
                   </div>
-                  <div class="header-category-div header-category-div-{{ forloop.index }}">
+                  <div class="header-category-div open header-category-div-{{ forloop.index }}">
                     {% for sublink in link.links %}
                       {% assign collection_handle = sublink.url | split: "/" | last %}
                       {% assign collection = collections[collection_handle] %}
@@ -829,7 +829,6 @@
     flex-wrap: wrap;
     row-gap: 20px;
     column-gap: 10px;
-    max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
   }
