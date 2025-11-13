@@ -1,0 +1,62 @@
+{% style %}
+    .section-{{ section.id }} .collection-list-header {
+        padding: 32px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section color-{{ section.settings.color_scheme }}">
+    <div class="collection-list-header">
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Collection Video",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection Video"
+        }
+    ]
+}
+{% endschema %}
