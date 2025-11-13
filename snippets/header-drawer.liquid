@@ -805,6 +805,10 @@
       headerCategory.classList.add('open');
       headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
     }
+    else {
+      headerCategory.classList.remove('open');
+      headerCategory.style.maxHeight = 0;
+    }
   }
 </script>
 
