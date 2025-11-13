@@ -796,11 +796,11 @@
     const headerCategorys = document.querySelectorAll('.header-category-div');
     if(headerCategorys.length > 0) {
       headerCategorys.forEach(headerCategory => {
-        headerCategory.style.maxHeight = (headerCategory.scrollHeight + 18) + 'px';
+        headerCategory.style.maxHeight = (headerCategory.scrollHeight) + 'px';
       })
     }
     console.log(headerCategorys)
-  }, 2000)
+  }, 3000)
 
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
