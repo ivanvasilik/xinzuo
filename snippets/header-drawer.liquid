@@ -792,14 +792,18 @@
 </header-drawer>
 
 <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headerCategorys = document.querySelector('.header-category-div');
+    if(headerCategorys.length > 0) {
+      headerCategorys.forEach(headerCategory => {
+        headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
+      })
+    }
+  })
+  
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
-    {% comment %} const headerCategorys = document.querySelectorAll(".header-category-div"); {% endcomment %}
     const isOpen = headerCategory.classList.contains('open');
-    {% comment %} headerCategorys.forEach(category => {
-      category.classList.remove('open');
-      category.style.maxHeight = null;
-    }); {% endcomment %}
 
     if (!isOpen) {
       headerCategory.classList.add('open');
