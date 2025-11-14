@@ -30,7 +30,7 @@ Controls (pass via render):
 {%- if panel_radius_value == blank -%}{%- assign panel_radius_value = radius | plus: 6 -%}{%- endif -%}
 
 <div id="coupon-{{ uid }}" class="coupon-ui"
-     style="--c: {{ color }}; --radius: {{ radius }}px; --panel-radius: {{ panel_radius_value }}px; --panel-pad: {{ panel_padding }}px; margin: {{ mt }}px 0 {{ mb }}px;">
+     style="--c: {{ color }}; --radius: {{ radius }}px; --panel-radius: {{ panel_radius_value }}px; --panel-pad: {{ panel_padding }}px; --text-size: {{ text_size | default: '0.8rem' }}; margin: {{ mt }}px 0 {{ mb }}px;">
   <div class="coupon-panel{% unless panel %} no-panel{% endunless %}" style="{% if panel %}--panel-bg: {{ panel_bg }};{% endif %}">
     {%- if panel and border_style != 'solid' -%}
     {%- assign half_sw = stroke_width | times: 0.5 -%}
@@ -199,7 +199,7 @@ Controls (pass via render):
     transform: translateY(1px); 
   }
 
-  .coupon-text{ margin: .6rem 0 0; font-size: {{ text_size | default: '0.8rem' }}; color: #c9c9cc; }
+  .coupon-text{ margin: .6rem 0 0; font-size: var(--text-size); color: #c9c9cc; }
 
   @media (max-width:640px){
     .coupon-row{ padding: .6rem .8rem; }
