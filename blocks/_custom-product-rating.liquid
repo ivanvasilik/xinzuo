@@ -1,0 +1,133 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+  
+  # Get rating data from Judge.me metafields
+  assign rating = product.metafields.reviews.rating.value.rating
+  assign rating_count = product.metafields.reviews.rating_count
+  
+  # Fallback for preview mode or missing data
+  if request.visual_preview_mode and rating == blank
+    assign rating = 4.8
+    assign rating_count = 124
+  endif
+-%}
+
+{%- if rating != blank and rating_count != blank -%}
+  {% liquid
+    assign rating_floor = rating | floor
+    assign rating_ceil = rating | ceil
+    assign has_half = rating | modulo: 1
+  %}
+
+  <div 
+    class="custom-product-rating"
+    {{ block.shopify_attributes }}
+  >
+    <div class="custom-rating-stars">
+      {% for i in (1..5) %}
+        {% if i <= rating_floor %}
+          <span class="custom-star filled">★</span>
+        {% elsif i == rating_ceil and has_half >= 0.5 %}
+          <span class="custom-star half">★</span>
+        {% else %}
+          <span class="custom-star empty">★</span>
+        {% endif %}
+      {% endfor %}
+      
+      <span class="custom-rating-value">{{ rating }} Stars</span>
+      
+      <a href="#judgeme_product_reviews" class="custom-rating-count">({{ rating_count }} reviews)</a>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .custom-product-rating {
+    width: 100%;
+  }
+
+  .custom-rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .custom-star {
+    color: #ff0004;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .custom-star.empty {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .custom-star.half {
+    position: relative;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .custom-star.half:before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #ff0004;
+  }
+
+  .custom-rating-value {
+    font-family: "Albert Sans";
+    font-size: 14px;
+    font-weight: 400;
+    color: #c9c9cc;
+    margin-left: 4px;
+  }
+
+  .custom-rating-count {
+    font-family: "Albert Sans";
+    font-size: 14px;
+    font-weight: 400;
+    color: #c9c9cc;
+    text-decoration: underline;
+    margin-left: 2px;
+  }
+
+  .custom-rating-count:hover {
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-star {
+      font-size: 20px;
+    }
+
+    .custom-rating-value,
+    .custom-rating-count {
+      font-size: 15px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .custom-star {
+      font-size: 22px;
+    }
+
+    .custom-rating-value,
+    .custom-rating-count {
+      font-size: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Product Rating",
+  "tag": null,
+  "settings": []
+}
+{% endschema %}
+
