@@ -792,7 +792,7 @@
 </header-drawer>
 
 <script>
-  {% comment %} setTimeout(() => {
+  setTimeout(() => {
     const headerCategorys = document.querySelectorAll('.header-category-div');
     if(headerCategorys.length > 0) {
       headerCategorys.forEach(headerCategory => {
@@ -800,7 +800,7 @@
       })
     }
     console.log(headerCategorys)
-  }, 4000) {% endcomment %}
+  }, 4000)
 
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
