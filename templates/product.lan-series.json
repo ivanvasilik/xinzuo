@@ -164,8 +164,7 @@
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
-                "gap": 12,
-                "row_gap": 12,
+                "gap": 24,
                 "icon_text_gap": 8,
                 "icon_color": "#c9c9cc",
                 "text_color": "#c9c9cc"
