@@ -195,7 +195,7 @@
               "name": "Coupon Discount",
               "settings": {
                 "coupon_code": "BFSALE20",
-                "coupon_text": "Black Friday Sale - Get 20% off your entire order at checkout.",
+                "coupon_text": "Black Friday Sale - 20% off your entire order at checkout.",
                 "text_size": "0.8rem",
                 "coupon_color": "#ff0004",
                 "border_style": "dotted",
