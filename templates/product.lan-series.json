@@ -156,6 +156,21 @@
               },
               "block_order": []
             },
+            "product_features": {
+              "type": "_product-features",
+              "settings": {
+                "feature_1_text": "30-day returns",
+                "feature_2_text": "Fast & free delivery",
+                "feature_3_text": "Lifetime warranty",
+                "icon_size": 20,
+                "text_size": 14,
+                "gap": 12,
+                "row_gap": 12,
+                "icon_text_gap": 8,
+                "icon_color": "#c9c9cc",
+                "text_color": "#c9c9cc"
+              }
+            },
             "delivery_estimate_Teaixf": {
               "type": "delivery-estimate",
               "name": "Delivery Estimate",
@@ -810,6 +825,7 @@
             "afterpay_custom",
             "variant_picker_nfG9H7",
             "buy_buttons_BPWXER",
+            "product_features",
             "delivery_estimate_Teaixf",
             "coupon_discount_lan",
             "detail_icons_custom",
