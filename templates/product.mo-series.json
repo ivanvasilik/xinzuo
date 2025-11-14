@@ -86,6 +86,19 @@
               "type": "_product-afterpay",
               "settings": {}
             },
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": true,
+                "detail_content": "67-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.",
+                "detail_icon1": "shopify://shop_images/StackSimple.png",
+                "detail_info1": "67-layer Damascus\nComposite",
+                "detail_icon2": "shopify://shop_images/Hammer.png",
+                "detail_info2": "60-62 HRC\nHardness",
+                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+                "detail_info3": "10Cr15CoMoV core\nCore Steel"
+              }
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -787,6 +800,7 @@
             "rating_custom",
             "price_custom",
             "afterpay_custom",
+            "detail_icons_custom",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "delivery_estimate_KgBFDy",
