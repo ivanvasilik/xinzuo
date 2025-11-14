@@ -91,6 +91,13 @@
               },
               "blocks": {}
             },
+            "detail_content_custom": {
+              "type": "_product-detail-content",
+              "settings": {
+                "detail_content": "<p>San Mai 3-layers composite chef knife offering refined sharpness & long-lasting edge retention.</p>"
+              },
+              "blocks": {}
+            },
             "price_custom": {
               "type": "_product-price-custom",
               "settings": {},
@@ -99,13 +106,6 @@
             "afterpay_custom": {
               "type": "_product-afterpay",
               "settings": {},
-              "blocks": {}
-            },
-            "detail_content_custom": {
-              "type": "_product-detail-content",
-              "settings": {
-                "detail_content": "<p>San Mai 3-layers composite chef knife offering refined sharpness & long-lasting edge retention.</p>"
-              },
               "blocks": {}
             },
             "variant_picker_R3rGDr": {
@@ -823,9 +823,9 @@
           "block_order": [
             "title_custom",
             "rating_custom",
+            "detail_content_custom",
             "price_custom",
             "afterpay_custom",
-            "detail_content_custom",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "delivery_estimate_agXMCB",
