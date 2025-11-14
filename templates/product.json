@@ -50,7 +50,7 @@
             "custom_width_mobile": 100,
             "height": "fit",
             "details_position": "flex-start",
-            "gap": 28,
+            "gap": 8,
             "sticky_details_desktop": true,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-1",
@@ -67,6 +67,37 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "title_custom": {
+              "type": "_product-title-custom",
+              "settings": {
+                "show_breadcrumbs": true,
+                "show_knives_link": true
+              }
+            },
+            "rating_custom": {
+              "type": "_custom-product-rating",
+              "settings": {}
+            },
+            "price_custom": {
+              "type": "_product-price-custom",
+              "settings": {}
+            },
+            "afterpay_custom": {
+              "type": "_product-afterpay",
+              "settings": {}
+            },
+            "detail_content_custom": {
+              "type": "_product-detail-content",
+              "settings": {
+                "detail_content": ""
+              }
+            },
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": false
+              }
+            },
             "variant_picker_qYHynj": {
               "type": "variant-picker",
               "name": "t:names.product_variant_picker",
@@ -117,6 +148,20 @@
                 }
               },
               "block_order": []
+            },
+            "product_features": {
+              "type": "_product-features",
+              "settings": {
+                "feature_1_text": "30-day returns",
+                "feature_2_text": "Fast & free delivery",
+                "feature_3_text": "Lifetime warranty",
+                "icon_size": 20,
+                "text_size": 14,
+                "gap": 24,
+                "icon_text_gap": 8,
+                "icon_color": "#c9c9cc",
+                "text_color": "#c9c9cc"
+              }
             },
             "delivery_estimate_block": {
               "type": "delivery-estimate",
@@ -683,10 +728,17 @@
             }
           },
           "block_order": [
+            "title_custom",
+            "rating_custom",
+            "detail_content_custom",
+            "price_custom",
+            "afterpay_custom",
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
+            "product_features",
             "delivery_estimate_block",
             "coupon_discount_block",
+            "detail_icons_custom",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",

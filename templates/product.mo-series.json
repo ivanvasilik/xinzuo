@@ -50,7 +50,7 @@
             "custom_width_mobile": 100,
             "height": "fit",
             "details_position": "flex-start",
-            "gap": 28,
+            "gap": 8,
             "sticky_details_desktop": true,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-1",
@@ -67,6 +67,43 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "title_custom": {
+              "type": "_product-title-custom",
+              "settings": {
+                "show_breadcrumbs": true,
+                "show_knives_link": true
+              }
+            },
+            "rating_custom": {
+              "type": "_custom-product-rating",
+              "settings": {}
+            },
+            "price_custom": {
+              "type": "_product-price-custom",
+              "settings": {}
+            },
+            "afterpay_custom": {
+              "type": "_product-afterpay",
+              "settings": {}
+            },
+            "detail_content_custom": {
+              "type": "_product-detail-content",
+              "settings": {
+                "detail_content": "<p>67-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.</p>"
+              }
+            },
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": true,
+                "detail_icon1": "shopify://shop_images/StackSimple.png",
+                "detail_info1": "<p><strong>67-layer Damascus</strong></p><p>Composite</p>",
+                "detail_icon2": "shopify://shop_images/Hammer.png",
+                "detail_info2": "<p><strong>60-62 HRC</strong></p><p>Hardness</p>",
+                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+                "detail_info3": "<p><strong>10Cr15CoMoV core</strong></p><p>Core Steel</p>"
+              }
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -116,6 +153,20 @@
                 }
               },
               "block_order": []
+            },
+            "product_features": {
+              "type": "_product-features",
+              "settings": {
+                "feature_1_text": "30-day returns",
+                "feature_2_text": "Fast & free delivery",
+                "feature_3_text": "Lifetime warranty",
+                "icon_size": 20,
+                "text_size": 14,
+                "gap": 24,
+                "icon_text_gap": 8,
+                "icon_color": "#c9c9cc",
+                "text_color": "#c9c9cc"
+              }
             },
             "delivery_estimate_KgBFDy": {
               "type": "delivery-estimate",
@@ -764,10 +815,17 @@
             }
           },
           "block_order": [
+            "title_custom",
+            "rating_custom",
+            "detail_content_custom",
+            "price_custom",
+            "afterpay_custom",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "product_features",
             "delivery_estimate_KgBFDy",
             "coupon_discount_mo",
+            "detail_icons_custom",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",

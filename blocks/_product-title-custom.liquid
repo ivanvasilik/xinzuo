@@ -1,0 +1,90 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+  assign collection = product.collections.first
+-%}
+
+<div class="product-title-custom" {{ block.shopify_attributes }}>
+  {% if block_settings.show_breadcrumbs %}
+    <div class="product-details-links">
+      <span>
+        <a href="/">Home</a>
+        <span>></span>
+        {% if block_settings.show_knives_link %}
+          <a href="/collections/all">KNIVES</a>
+          <span>></span>
+        {% endif %}
+        <span>{{ collection.title }}</span>
+      </span>
+    </div>
+  {% endif %}
+  
+  <h2 id="product-variant-title" class="product-title">{{ collection.title }} — {{ product.title }}</h2>
+</div>
+
+{% stylesheet %}
+  .product-title-custom {
+    width: 100%;
+  }
+
+  .product-details-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .product-details-links > span {
+    display: flex;
+    gap: 6px;
+  }
+
+  .product-details-links span {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 14px;
+    color: #c9c9cc;
+  }
+
+  .product-details-links a {
+    color: #c9c9cc;
+  }
+
+  .product-title {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 135%;
+    color: #fff;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 750px) {
+    .product-title {
+      font-size: 22px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Title",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show Breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_knives_link",
+      "label": "Show 'KNIVES' in Breadcrumbs",
+      "default": true,
+      "info": "Adds 'KNIVES' link between Home and Collection"
+    }
+  ]
+}
+{% endschema %}
+
