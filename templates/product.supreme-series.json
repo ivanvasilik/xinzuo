@@ -86,17 +86,22 @@
               "type": "_product-afterpay",
               "settings": {}
             },
+            "detail_content_custom": {
+              "type": "_product-detail-content",
+              "settings": {
+                "detail_content": "<p>This is your new kitchen workhorse. Tough German 1.4116 steel, super stain-resistant, and a total breeze to sharpen. The perfect no-fuss upgrade.</p>"
+              }
+            },
             "detail_icons_custom": {
               "type": "_product-detail-icons",
               "settings": {
                 "show_detail_icons": true,
-                "detail_content": "This is your new kitchen workhorse. Tough German 1.4116 steel, super stain-resistant, and a total breeze to sharpen. The perfect no-fuss upgrade.",
                 "detail_icon1": "shopify://shop_images/Angle.png",
-                "detail_info1": "15° Angle\nRazor Sharp",
+                "detail_info1": "<p><strong>15° Angle</strong></p><p>Razor Sharp</p>",
                 "detail_icon2": "shopify://shop_images/Triangle.png",
-                "detail_info2": "~2.2mm Spine\nPerfectly Balanced",
+                "detail_info2": "<p><strong>~2.2mm Spine</strong></p><p>Perfectly Balanced</p>",
                 "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-                "detail_info3": "German Steel\n1.4116 Stainless"
+                "detail_info3": "<p><strong>German Steel</strong></p><p>1.4116 Stainless</p>"
               }
             },
             "variant_picker_qYHynj": {
@@ -801,6 +806,7 @@
             "rating_custom",
             "price_custom",
             "afterpay_custom",
+            "detail_content_custom",
             "detail_icons_custom",
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",

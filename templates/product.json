@@ -86,6 +86,12 @@
               "type": "_product-afterpay",
               "settings": {}
             },
+            "detail_content_custom": {
+              "type": "_product-detail-content",
+              "settings": {
+                "detail_content": ""
+              }
+            },
             "detail_icons_custom": {
               "type": "_product-detail-icons",
               "settings": {
@@ -712,6 +718,7 @@
             "rating_custom",
             "price_custom",
             "afterpay_custom",
+            "detail_content_custom",
             "detail_icons_custom",
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
