@@ -61,7 +61,7 @@
 
   .custom-product-rating-{{ block.id }} .custom-rating-stars {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 4px;
     flex-wrap: wrap;
   }
@@ -70,6 +70,7 @@
     color: {{ block_settings.star_color | default: '#ff0004' }};
     font-size: {{ block_settings.star_size_mobile | default: 20 }}px;
     line-height: 1;
+    display: inline-block;
   }
 
   .custom-product-rating-{{ block.id }} .custom-star.empty {
