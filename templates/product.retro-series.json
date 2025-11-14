@@ -72,37 +72,30 @@
               "settings": {
                 "show_breadcrumbs": true,
                 "show_knives_link": true
-              }
+              },
+              "blocks": {}
             },
             "rating_custom": {
               "type": "_custom-product-rating",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "price_custom": {
               "type": "_product-price-custom",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "afterpay_custom": {
               "type": "_product-afterpay",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "detail_content_custom": {
               "type": "_product-detail-content",
               "settings": {
                 "detail_content": "<p>SamMai 3-layers composite chef knife offering refined sharpness, long-lasting edge retention, and comfortable balance for precise, professional-grade cooking.</p>"
-              }
-            },
-            "detail_icons_custom": {
-              "type": "_product-detail-icons",
-              "settings": {
-                "show_detail_icons": true,
-                "detail_icon1": "shopify://shop_images/StackSimple.png",
-                "detail_info1": "<p><strong>3-Layer Forged</strong></p><p>Composite</p>",
-                "detail_icon2": "shopify://shop_images/Hammer.png",
-                "detail_info2": "<p><strong>~60 ±1 HRC</strong></p><p>Blade Hardness</p>",
-                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-                "detail_info3": "<p>10Cr15CoMoV</p><p>VG10 equivalent</p>"
-              }
+              },
+              "blocks": {}
             },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
@@ -186,6 +179,19 @@
               },
               "blocks": {}
             },
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": true,
+                "detail_icon1": "shopify://shop_images/StackSimple.png",
+                "detail_info1": "<p><strong>3-Layer Forged</strong></p><p>Composite</p>",
+                "detail_icon2": "shopify://shop_images/Hammer.png",
+                "detail_info2": "<p><strong>~60 ±1 HRC</strong></p><p>Blade Hardness</p>",
+                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+                "detail_info3": "<p>10Cr15CoMoV</p><p>VG10 equivalent</p>"
+              },
+              "blocks": {}
+            },
             "payment_icons_hCKkQw": {
               "type": "payment-icons",
               "name": "t:names.payment_icons",
@@ -202,6 +208,7 @@
             "group_QVNfmK": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -286,6 +293,7 @@
             "group_pUXHfM": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -370,6 +378,7 @@
             "group_KJhaQF": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -806,11 +815,11 @@
             "price_custom",
             "afterpay_custom",
             "detail_content_custom",
-            "detail_icons_custom",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "delivery_estimate_agXMCB",
             "coupon_discount_retro",
+            "detail_icons_custom",
             "payment_icons_hCKkQw",
             "group_QVNfmK",
             "group_pUXHfM",
