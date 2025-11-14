@@ -22,6 +22,18 @@
 
   <div 
     class="custom-product-rating custom-product-rating-{{ block.id }}"
+    style="
+      --star-color: {{ block_settings.star_color | default: '#ff0004' }};
+      --star-empty-color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
+      --star-size-mobile: {{ block_settings.star_size_mobile | default: 20 }}px;
+      --star-size-tablet: {{ block_settings.star_size_tablet | default: 22 }}px;
+      --star-size-desktop: {{ block_settings.star_size_desktop | default: 24 }}px;
+      --text-color: {{ block_settings.text_color | default: '#c9c9cc' }};
+      --text-hover-color: {{ block_settings.text_hover_color | default: '#fff' }};
+      --text-size-mobile: {{ block_settings.text_size_mobile | default: 14 }}px;
+      --text-size-tablet: {{ block_settings.text_size_tablet | default: 15 }}px;
+      --text-size-desktop: {{ block_settings.text_size_desktop | default: 16 }}px;
+    "
     {{ block.shopify_attributes }}
   >
     <div class="custom-rating-stars">
