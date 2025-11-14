@@ -167,11 +167,12 @@
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
-                "gap": 24,
+                "gap": 12,
                 "icon_text_gap": 8,
                 "icon_color": "#c9c9cc",
                 "text_color": "#c9c9cc"
-              }
+              },
+              "blocks": {}
             },
             "delivery_estimate_QFz8gG": {
               "type": "delivery-estimate",
