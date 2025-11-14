@@ -67,6 +67,25 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "title_custom": {
+              "type": "_product-title-custom",
+              "settings": {
+                "show_breadcrumbs": true,
+                "show_knives_link": true
+              }
+            },
+            "rating_custom": {
+              "type": "_custom-product-rating",
+              "settings": {}
+            },
+            "price_custom": {
+              "type": "_product-price-custom",
+              "settings": {}
+            },
+            "afterpay_custom": {
+              "type": "_product-afterpay",
+              "settings": {}
+            },
             "variant_picker_qYHynj": {
               "type": "variant-picker",
               "name": "t:names.product_variant_picker",
@@ -765,6 +784,10 @@
             }
           },
           "block_order": [
+            "title_custom",
+            "rating_custom",
+            "price_custom",
+            "afterpay_custom",
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
             "delivery_estimate_QFz8gG",
