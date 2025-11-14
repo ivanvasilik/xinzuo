@@ -71,13 +71,13 @@
 
   @media screen and (max-width: 750px) {
     .features-row {
-      gap: {{ block_settings.gap | default: 16 }}px;
+      gap: 8px;
       row-gap: 12px;
     }
 
     .feature-item:nth-child(1),
     .feature-item:nth-child(2) {
-      flex: 1 1 calc(50% - 8px);
+      flex: 1 1 calc(50% - 4px);
       min-width: max-content;
     }
 
