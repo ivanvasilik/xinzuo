@@ -9,7 +9,7 @@ Controls (pass via render):
 {%- endcomment -%}
 
 {%- assign code = code | default: 'BF20' -%}
-{%- assign text = text | default: 'Black Friday 🎉 use the coupon above at checkout for 20% off' -%}
+{%- assign text = text | default: '' -%}
 {%- assign color = color | default: '#e60013' -%}
 {%- assign uid = uid | default: 'coupon' -%}
 {%- assign mt = margin_top | default: 12 -%}
@@ -105,7 +105,9 @@ Controls (pass via render):
       <button class="coupon-copy" type="button" data-copy="{{ code }}">COPY</button>
     </div>
   </div>
-  <p class="coupon-text">{{ text }}</p>
+  {% if text != blank and text != 'Black Friday 🎉 use the coupon above at checkout for 20% off' %}
+    <p class="coupon-text">{{ text }}</p>
+  {% endif %}
 </div>
 
 <style>
@@ -197,7 +199,7 @@ Controls (pass via render):
     transform: translateY(1px); 
   }
 
-  .coupon-text{ margin: .6rem 0 0; font-size: .95rem; color: #c9c9cc; }
+  .coupon-text{ margin: .6rem 0 0; font-size: {{ text_size | default: '0.8rem' }}; color: #c9c9cc; }
 
   @media (max-width:640px){
     .coupon-row{ padding: .6rem .8rem; }

@@ -11,6 +11,7 @@
     uid: block.id,
     code: block_settings.coupon_code,
     text: block_settings.coupon_text,
+    text_size: block_settings.text_size,
     color: block_settings.coupon_color,
     border_style: block_settings.border_style,
     stroke_width: block_settings.stroke_width,
@@ -51,8 +52,14 @@
       "type": "textarea",
       "id": "coupon_text",
       "label": "Coupon Description",
-      "default": "Use this coupon at checkout for 20% off your order",
-      "info": "Explain what the coupon does"
+      "info": "Explain what the coupon does. Leave empty to hide."
+    },
+    {
+      "type": "text",
+      "id": "text_size",
+      "label": "Description Text Size",
+      "default": "0.8rem",
+      "info": "CSS size value (e.g., 0.75rem, 12px, 14px)"
     },
     {
       "type": "color",

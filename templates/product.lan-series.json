@@ -72,41 +72,37 @@
               "settings": {
                 "show_breadcrumbs": true,
                 "show_knives_link": true
-              },
-              "blocks": {}
+              }
             },
             "rating_custom": {
               "type": "_custom-product-rating",
-              "settings": {
-                "star_size_mobile": 20,
-                "star_size_tablet": 22,
-                "star_size_desktop": 24,
-                "star_color": "#ff0004",
-                "star_empty_color": "#ffffff33",
-                "text_size_mobile": 14,
-                "text_size_tablet": 15,
-                "text_size_desktop": 16,
-                "text_color": "#c9c9cc",
-                "text_hover_color": "#ffffff"
-              },
-              "blocks": {}
+              "settings": {}
+            },
+            "price_custom": {
+              "type": "_product-price-custom",
+              "settings": {}
+            },
+            "afterpay_custom": {
+              "type": "_product-afterpay",
+              "settings": {}
             },
             "detail_content_custom": {
               "type": "_product-detail-content",
               "settings": {
                 "detail_content": "<p>73-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.</p>"
-              },
-              "blocks": {}
+              }
             },
-            "price_custom": {
-              "type": "_product-price-custom",
-              "settings": {},
-              "blocks": {}
-            },
-            "afterpay_custom": {
-              "type": "_product-afterpay",
-              "settings": {},
-              "blocks": {}
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": true,
+                "detail_icon1": "shopify://shop_images/StackSimple.png",
+                "detail_info1": "<p><strong>73-Layer Damascus</strong></p><p>Composite</p>",
+                "detail_icon2": "shopify://shop_images/Hammer.png",
+                "detail_info2": "<p><strong>62-64 HRC</strong></p><p>Extreme Hardness</p>",
+                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+                "detail_info3": "<p><strong>14Cr14MoVNb</strong></p><p>Powder Steel Core</p>"
+              }
             },
             "variant_picker_nfG9H7": {
               "type": "variant-picker",
@@ -192,19 +188,6 @@
               },
               "blocks": {}
             },
-            "detail_icons_custom": {
-              "type": "_product-detail-icons",
-              "settings": {
-                "show_detail_icons": true,
-                "detail_icon1": "shopify://shop_images/StackSimple.png",
-                "detail_info1": "<p><strong>73-Layer Damascus</strong></p><p>Composite</p>",
-                "detail_icon2": "shopify://shop_images/Hammer.png",
-                "detail_info2": "<p><strong>62-64 HRC</strong></p><p>Extreme Hardness</p>",
-                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-                "detail_info3": "<p><strong>14Cr14MoVNb</strong></p><p>Powder Steel Core</p>"
-              },
-              "blocks": {}
-            },
             "payment_icons_THQfk6": {
               "type": "payment-icons",
               "name": "t:names.payment_icons",
@@ -221,7 +204,6 @@
             "group_aNBpAK": {
               "type": "group",
               "name": "t:names.group",
-              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -306,7 +288,6 @@
             "group_hm6XUD": {
               "type": "group",
               "name": "t:names.group",
-              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -391,7 +372,6 @@
             "group_AgrzWU": {
               "type": "group",
               "name": "t:names.group",
-              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
