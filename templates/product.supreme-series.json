@@ -195,7 +195,7 @@
               "name": "Coupon Discount",
               "settings": {
                 "coupon_code": "BFSALE20",
-                "coupon_text": "*Use this code at checkout for 20% off",
+                "coupon_text": "<center>Use this code at checkout for 20% off </center>",
                 "text_size": "0.8rem",
                 "coupon_color": "#ff0004",
                 "border_style": "dotted",
