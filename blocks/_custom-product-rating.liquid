@@ -21,7 +21,7 @@
   %}
 
   <div 
-    class="custom-product-rating"
+    class="custom-product-rating custom-product-rating-{{ block.id }}"
     {{ block.shopify_attributes }}
   >
     <div class="custom-rating-stars">
@@ -43,33 +43,33 @@
 {%- endif -%}
 
 {% style %}
-  .custom-product-rating {
+  .custom-product-rating-{{ block.id }} {
     width: 100%;
   }
 
-  .custom-rating-stars {
+  .custom-product-rating-{{ block.id }} .custom-rating-stars {
     display: flex;
     align-items: center;
     gap: 4px;
     flex-wrap: wrap;
   }
 
-  .custom-star {
+  .custom-product-rating-{{ block.id }} .custom-star {
     color: {{ block_settings.star_color | default: '#ff0004' }};
     font-size: {{ block_settings.star_size_mobile | default: 20 }}px;
     line-height: 1;
   }
 
-  .custom-star.empty {
+  .custom-product-rating-{{ block.id }} .custom-star.empty {
     color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
   }
 
-  .custom-star.half {
+  .custom-product-rating-{{ block.id }} .custom-star.half {
     position: relative;
     color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
   }
 
-  .custom-star.half:before {
+  .custom-product-rating-{{ block.id }} .custom-star.half:before {
     content: '★';
     position: absolute;
     left: 0;
@@ -79,7 +79,7 @@
     color: {{ block_settings.star_color | default: '#ff0004' }};
   }
 
-  .custom-rating-value {
+  .custom-product-rating-{{ block.id }} .custom-rating-value {
     font-family: "Albert Sans";
     font-size: {{ block_settings.text_size_mobile | default: 14 }}px !important;
     font-weight: 400;
@@ -88,7 +88,7 @@
     line-height: 1.4 !important;
   }
 
-  .custom-rating-count {
+  .custom-product-rating-{{ block.id }} .custom-rating-count {
     font-family: "Albert Sans";
     font-size: {{ block_settings.text_size_mobile | default: 14 }}px !important;
     font-weight: 400;
@@ -100,28 +100,28 @@
     line-height: 1.4 !important;
   }
 
-  .custom-rating-count:hover {
+  .custom-product-rating-{{ block.id }} .custom-rating-count:hover {
     color: {{ block_settings.text_hover_color | default: '#fff' }};
   }
 
   @media screen and (min-width: 750px) {
-    .custom-star {
+    .custom-product-rating-{{ block.id }} .custom-star {
       font-size: {{ block_settings.star_size_tablet | default: 22 }}px;
     }
 
-    .custom-rating-value,
-    .custom-rating-count {
+    .custom-product-rating-{{ block.id }} .custom-rating-value,
+    .custom-product-rating-{{ block.id }} .custom-rating-count {
       font-size: {{ block_settings.text_size_tablet | default: 15 }}px !important;
     }
   }
 
   @media screen and (min-width: 1024px) {
-    .custom-star {
+    .custom-product-rating-{{ block.id }} .custom-star {
       font-size: {{ block_settings.star_size_desktop | default: 24 }}px;
     }
 
-    .custom-rating-value,
-    .custom-rating-count {
+    .custom-product-rating-{{ block.id }} .custom-rating-value,
+    .custom-product-rating-{{ block.id }} .custom-rating-count {
       font-size: {{ block_settings.text_size_desktop | default: 16 }}px !important;
     }
   }
