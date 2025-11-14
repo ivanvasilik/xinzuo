@@ -55,18 +55,18 @@
   }
 
   .custom-star {
-    color: #ff0004;
-    font-size: 18px;
+    color: {{ block_settings.star_color | default: '#ff0004' }};
+    font-size: {{ block_settings.star_size_mobile | default: 20 }}px;
     line-height: 1;
   }
 
   .custom-star.empty {
-    color: rgba(255, 255, 255, 0.2);
+    color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
   }
 
   .custom-star.half {
     position: relative;
-    color: rgba(255, 255, 255, 0.2);
+    color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
   }
 
   .custom-star.half:before {
@@ -76,49 +76,53 @@
     top: 0;
     width: 50%;
     overflow: hidden;
-    color: #ff0004;
+    color: {{ block_settings.star_color | default: '#ff0004' }};
   }
 
   .custom-rating-value {
     font-family: "Albert Sans";
-    font-size: 14px;
+    font-size: {{ block_settings.text_size_mobile | default: 14 }}px !important;
     font-weight: 400;
-    color: #c9c9cc;
+    color: {{ block_settings.text_color | default: '#c9c9cc' }};
     margin-left: 4px;
+    line-height: 1.4 !important;
   }
 
   .custom-rating-count {
     font-family: "Albert Sans";
-    font-size: 14px;
+    font-size: {{ block_settings.text_size_mobile | default: 14 }}px !important;
     font-weight: 400;
-    color: #c9c9cc;
-    text-decoration: underline;
+    color: {{ block_settings.text_color | default: '#c9c9cc' }};
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 2px !important;
     margin-left: 2px;
+    line-height: 1.4 !important;
   }
 
   .custom-rating-count:hover {
-    color: #fff;
+    color: {{ block_settings.text_hover_color | default: '#fff' }};
   }
 
   @media screen and (min-width: 750px) {
     .custom-star {
-      font-size: 20px;
+      font-size: {{ block_settings.star_size_tablet | default: 22 }}px;
     }
 
     .custom-rating-value,
     .custom-rating-count {
-      font-size: 15px;
+      font-size: {{ block_settings.text_size_tablet | default: 15 }}px !important;
     }
   }
 
   @media screen and (min-width: 1024px) {
     .custom-star {
-      font-size: 22px;
+      font-size: {{ block_settings.star_size_desktop | default: 24 }}px;
     }
 
     .custom-rating-value,
     .custom-rating-count {
-      font-size: 16px;
+      font-size: {{ block_settings.text_size_desktop | default: 16 }}px !important;
     }
   }
 {% endstylesheet %}
@@ -127,7 +131,100 @@
 {
   "name": "Custom Product Rating",
   "tag": null,
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Star Settings"
+    },
+    {
+      "type": "range",
+      "id": "star_size_mobile",
+      "label": "Star Size (Mobile)",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "star_size_tablet",
+      "label": "Star Size (Tablet)",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "star_size_desktop",
+      "label": "Star Size (Desktop)",
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#ff0004"
+    },
+    {
+      "type": "color",
+      "id": "star_empty_color",
+      "label": "Empty Star Color",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text Size (Mobile)",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_tablet",
+      "label": "Text Size (Tablet)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text Size (Desktop)",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#c9c9cc"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Review Link Hover Color",
+      "default": "#ffffff"
+    }
+  ]
 }
 {% endschema %}
 
