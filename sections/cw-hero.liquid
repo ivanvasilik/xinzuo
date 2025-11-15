@@ -1,19 +1,14 @@
 {% style %}
     .section-{{ section.id }} {
-        background-color: transparent;
+        background-color: #111111;
     }
 
     .section-{{ section.id }} .hero-banner {
-        /* Simplified: solid background matches nav bar (no complex gradients) */
-        /* This makes it easy to upload any hero image - they'll all look consistent */
-        /* Background only on hero-banner so it stays within max-width constraint */
-        background: rgb(41, 42, 51); /* #292a33 - matches header background */
+        background: radial-gradient(59.22% 45.55% at 100% 107.77%, #151515 0%, rgba(21, 21, 21, 0.00) 100%), linear-gradient(114deg, #252525 0.16%, rgba(37, 37, 37, 0.00) 26.55%, rgba(32, 32, 32, 0.00) 79.33%, #171717 105.71%), linear-gradient(250deg, #1E1E1E 0.63%, #222428 14.81%, #252527 36.15%, #252527 99.37%);
         display: flex;
         justify-content: flex-end;
         /* Best practice for ecommerce CRO: Shorter hero = users see products faster */
-        height: 550px;
-        min-height: 450px;
-        max-height: 600px;
+        height: calc(100vh - 77px);
         max-width: 1440px;
         margin: auto;
         position: relative;
@@ -59,10 +54,7 @@
         bottom: 0;
         right: 0;
         width: 58%;
-        height: 100%;
-        /* Contain shows full image without cropping - preserves text/graphics on image */
-        object-fit: contain;
-        object-position: center bottom;
+        object-fit: cover;
     }
 
     .section-{{ section.id }} .hero-banner-content a {
@@ -86,9 +78,7 @@
 
     .section-{{ section.id }} .mobile-hero {
         width: 100vw;
-        height: 100%;
-        object-fit: contain;
-        object-position: center center;
+        object-fit: cover;
         display: none;
     }
 
@@ -150,11 +140,6 @@
         .section-{{ section.id }} .hero-banner-content {
             left: 25px;
         }
-
-        .section-{{ section.id }} .hero-banner {
-            height: 500px;
-            min-height: 450px;
-        }
     }
 
     @media screen and (max-width: 480px) {
@@ -164,15 +149,6 @@
 
         .section-{{ section.id }} .mobile-hero {
             display: block;
-            object-fit: contain;
-            object-position: center center;
-        }
-
-        .section-{{ section.id }} .hero-banner {
-            /* Mobile CRO best practice: Shorter hero = faster content access */
-            height: 450px;
-            min-height: 400px;
-            max-height: 500px;
         }
     }
 {% endstyle %}
