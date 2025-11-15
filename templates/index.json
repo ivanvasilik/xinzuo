@@ -375,13 +375,13 @@
     "reviews_UMDUhc": {
       "type": "reviews",
       "blocks": {
-        "block_HigAQt": {
+        "block_L8cEcn": {
           "type": "block",
           "settings": {
-            "heading": "Precision in Every Cut",
-            "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.</p>",
-            "customer": "Chef Joshua Hitchcock",
-            "location": "— Head Chef, Salti Restaurant & Bar Daydream Island, QLD"
+            "heading": "Quality Control",
+            "content": "<p>Xinzuo stands out as one of the select few brands that have impressed me with their quality control and precise heat treatment of their knives.</p>",
+            "customer": "Chef Panko",
+            "location": "— YouTube Kitchen Knife Reviewer"
           }
         },
         "block_Ljni9A": {
@@ -393,20 +393,20 @@
             "location": "— Head Chef, Bellevue Kitchen & Bar Hamburg, Germany"
           }
         },
-        "block_L8cEcn": {
+        "block_HigAQt": {
           "type": "block",
           "settings": {
-            "heading": "Quality Control",
-            "content": "<p>Xinzuo stands out as one of the select few brands that have impressed me with their quality control and precise heat treatment of their knives.</p>",
-            "customer": "Chef Panko",
-            "location": "— YouTube Kitchen Knife Reviewer"
+            "heading": "Precision in Every Cut",
+            "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.</p>",
+            "customer": "Chef Adrian Korrin",
+            "location": "— Head Chef, Salti Restaurant & Bar Daydream Island, QLD"
           }
         }
       },
       "block_order": [
-        "block_HigAQt",
+        "block_L8cEcn",
         "block_Ljni9A",
-        "block_L8cEcn"
+        "block_HigAQt"
       ],
       "name": "Reviews",
       "settings": {
