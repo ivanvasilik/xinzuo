@@ -281,10 +281,10 @@
       <a href="/collections/accessories">ACCESSORIES</a>
     {% endif %}
     {% for collection in product.collections %}
-      {% unless collection.title contains "KNIVES" or collection.title contains "ACCESSORIES" %}
+      {% if collection.title != "KNIVES" or collection.title != "ACCESSORIES" %}
         <span>&gt;</span>
         <a href="{{ collection.url }}">{{ collection.title }}</a>
-      {% endunless %}
+      {% endif %}
     {% endfor %}
   </span>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
