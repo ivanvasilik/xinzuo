@@ -94,7 +94,7 @@
             "detail_content_custom": {
               "type": "_product-detail-content",
               "settings": {
-                "detail_content": "<p>Tough German 1.4116 steel, super stain-resistant, and a total breeze to sharpen.</p>"
+                "detail_content": "<p>This is your new kitchen workhorse. Tough German 1.4116 steel, super stain-resistant, and a total breeze to sharpen.</p>"
               },
               "blocks": {}
             },
@@ -167,12 +167,11 @@
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
-                "gap": 12,
+                "gap": 24,
                 "icon_text_gap": 8,
                 "icon_color": "#c9c9cc",
                 "text_color": "#c9c9cc"
-              },
-              "blocks": {}
+              }
             },
             "delivery_estimate_QFz8gG": {
               "type": "delivery-estimate",
@@ -195,7 +194,7 @@
               "name": "Coupon Discount",
               "settings": {
                 "coupon_code": "BFSALE20",
-                "coupon_text": "Black Friday Sale - 20% off your entire order at checkout.",
+                "coupon_text": "Use this code at checkout for 20% off",
                 "text_size": "0.8rem",
                 "coupon_color": "#ff0004",
                 "border_style": "dotted",
