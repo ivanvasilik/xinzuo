@@ -186,7 +186,11 @@ class HeaderComponent extends Component {
       if (isScrollingUp) {
         this.removeAttribute('data-animating');
 
-        if (this.getBoundingClientRect().top >= 0) {
+        // Add 10px buffer to prevent flickering when scrolling near the threshold
+        // Without buffer: top crosses 0px repeatedly → rapid state changes → flickering
+        // With buffer: only changes state when clearly above threshold → smooth transition
+        const headerTop = this.getBoundingClientRect().top;
+        if (headerTop >= 10) {
           // reset sticky state when header is scrolled up to natural position
           this.#offscreen = false;
           this.dataset.stickyState = 'inactive';
