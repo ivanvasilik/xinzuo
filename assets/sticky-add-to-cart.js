@@ -44,7 +44,6 @@ class StickyAddToCartBar extends Component {
 
       this.setupIntersectionObserver();
       this.bindEvents();
-      this.handleIOSSafariViewport();
     });
   }
 
@@ -105,28 +104,6 @@ class StickyAddToCartBar extends Component {
         this.stickyBar.style.display = 'block';
       }
     });
-  }
-
-  /**
-   * Handle iOS Safari's dynamic viewport (bottom bar shows/hides)
-   * Simple, clean solution using visualViewport API
-   */
-  handleIOSSafariViewport() {
-    // Only needed for iOS Safari
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (!isIOS || !window.visualViewport) return;
-
-    const updatePosition = () => {
-      // Calculate how much the viewport expanded (Safari UI hiding)
-      const viewportOffset = window.innerHeight - window.visualViewport.height;
-      // Move bar down by that amount to stick to visual bottom
-      this.stickyBar.style.bottom = `${viewportOffset}px`;
-    };
-
-    // Listen for Safari UI changes
-    window.visualViewport.addEventListener('resize', updatePosition);
-    window.visualViewport.addEventListener('scroll', updatePosition);
-    updatePosition();
   }
 
   /**
