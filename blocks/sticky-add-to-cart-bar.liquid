@@ -74,7 +74,7 @@
   /* Sticky bar - completely isolated */
   .sticky-add-to-cart-bar {
     position: fixed;
-    bottom: 0;
+    bottom: 0; /* Note: On iOS Safari, this sits above the bottom toolbar - this is Safari's default behavior. Even Shopify's own themes work this way. */
     left: 0;
     right: 0;
     z-index: 999;
