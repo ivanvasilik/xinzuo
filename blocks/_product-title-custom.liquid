@@ -1,7 +1,27 @@
 {%- liquid
   assign product = closest.product
   assign block_settings = block.settings
-  assign collection = product.collections.first
+  
+  # Get the correct collection - prioritize specific series collections over generic ones
+  # If accessed from collection page, use that collection. Otherwise, find the series collection.
+  if collection
+    assign current_collection = collection
+  else
+    # Filter out generic collections and find the series collection
+    assign current_collection = null
+    for coll in product.collections
+      # Skip generic "all" or "knives" collections - look for series-specific ones
+      unless coll.handle contains 'all' or coll.handle == 'knives'
+        assign current_collection = coll
+        break
+      endunless
+    endfor
+    
+    # Fallback to first collection if no series found
+    if current_collection == null
+      assign current_collection = product.collections.first
+    endif
+  endif
 -%}
 
 <div class="product-title-custom" {{ block.shopify_attributes }}>
@@ -14,12 +34,12 @@
           <a href="/collections/all">KNIVES</a>
           <span>></span>
         {% endif %}
-        <span>{{ collection.title }}</span>
+        <span>{{ current_collection.title }}</span>
       </span>
     </div>
   {% endif %}
   
-  <h2 id="product-variant-title" class="product-title">{{ collection.title }} — {{ product.title }}</h2>
+  <h2 id="product-variant-title" class="product-title">{{ current_collection.title }} — {{ product.title }}</h2>
 </div>
 
 {% stylesheet %}
