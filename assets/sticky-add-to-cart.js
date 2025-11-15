@@ -60,7 +60,7 @@ class StickyAddToCartBar extends Component {
       return;
     }
 
-    // Create observer with small threshold
+    // Create observer with buffer zone to prevent flickering
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -71,7 +71,7 @@ class StickyAddToCartBar extends Component {
       },
       {
         threshold: 0,
-        rootMargin: '0px',
+        rootMargin: '100px 0px 100px 0px', // 100px buffer zone (top/bottom) prevents flickering during slow scrolling
       }
     );
 
