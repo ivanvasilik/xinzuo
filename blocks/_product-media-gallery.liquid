@@ -281,7 +281,7 @@
       <a href="/collections/accessories">ACCESSORIES</a>
     {% endif %}
     {% for collection in product.collections %}
-      {% if collection.title != "KNIVES" or collection.title != "ACCESSORIES" %}
+      {% if collection.title != "KNIVES" and collection.title != "ACCESSORIES" %}
         <span>&gt;</span>
         <a href="{{ collection.url }}">{{ collection.title }}</a>
       {% endif %}
