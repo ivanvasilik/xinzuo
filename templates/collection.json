@@ -11,6 +11,7 @@
   "sections": {
     "collection_list_header_BM7QUU": {
       "type": "collection_list_header",
+      "disabled": true,
       "name": "Collection List Header",
       "settings": {
         "width": "page",
@@ -149,6 +150,7 @@
     },
     "collection_video_L6Pbzj": {
       "type": "collection_video",
+      "disabled": true,
       "name": "Collection Video",
       "settings": {
         "width": "full",
@@ -257,9 +259,9 @@
   },
   "order": [
     "collection_list_header_BM7QUU",
+    "collection_heading_Cr9UMW",
     "main",
     "collection_video_L6Pbzj",
-    "collection_heading_Cr9UMW",
     "section"
   ]
 }
