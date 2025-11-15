@@ -66,7 +66,12 @@ class StickyAddToCartBar extends Component {
         entries.forEach((entry) => {
           // Show sticky button when main button is NOT visible
           const shouldShow = !entry.isIntersecting;
-          this.button.setAttribute('data-visible', shouldShow.toString());
+          
+          // Only update if state actually changed (prevents unnecessary DOM updates)
+          if (this.button.getAttribute('data-visible') !== shouldShow.toString()) {
+            console.log('[Sticky Button] Visibility changed:', shouldShow);
+            this.button.setAttribute('data-visible', shouldShow.toString());
+          }
         });
       },
       {
