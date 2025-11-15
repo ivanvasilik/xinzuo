@@ -74,7 +74,7 @@
   /* Sticky bar - completely isolated */
   .sticky-add-to-cart-bar {
     position: fixed;
-    bottom: 0; /* Fallback for old browsers */
+    bottom: 0;
     left: 0;
     right: 0;
     z-index: 999;
@@ -85,14 +85,7 @@
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
     display: none;
-  }
-
-  /* Fix iOS Safari dynamic viewport issue (when UI chrome hides/shows) */
-  /* dvh = dynamic viewport height, adjusts when Safari bottom bar appears/disappears */
-  @supports (height: 100dvh) {
-    .sticky-add-to-cart-bar {
-      bottom: calc(100dvh - 100vh);
-    }
+    /* Note: bottom position dynamically adjusted via JavaScript for iOS Safari */
   }
 
   /* Show on mobile only */
