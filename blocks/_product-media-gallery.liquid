@@ -277,12 +277,15 @@
     <span>&gt;</span>
     {% if product.metafields.custom.isknife == true %}
       <a href="/collections/knives">KNIVES</a>
-      <span>&gt;</span>
     {% else %}
       <a href="/collections/accessories">ACCESSORIES</a>
-      <span>&gt;</span>
     {% endif %}
-    <a href="{{ product.collections.last.url }}">{{ product.collections.last.title }}</a>
+    {% for collection in product.collections %}
+      {% if collection.title != "KNIVES" or collection.title != "ACCESSORIES" %}
+        <span>&gt;</span>
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+      {% endif %}
+    {% endfor %}
   </span>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <g clip-path="url(#clip0_4592_48340)">
