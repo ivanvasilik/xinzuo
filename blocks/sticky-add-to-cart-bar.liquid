@@ -89,7 +89,7 @@
     background-color: #ff0004;
     border: none;
     border-radius: 50px; /* Pill shape */
-    color: #ffffff;
+    color: #ffffff !important;
     font-family: "Sen", sans-serif;
     font-size: 15px;
     font-weight: 600;
@@ -141,21 +141,26 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  /* Button text styling */
+  /* Button text styling - force white color */
   .sticky-button-text {
     font-weight: 600;
-    color: #ffffff;
+    color: #ffffff !important;
   }
 
   .sticky-button-separator {
     opacity: 0.8;
     font-weight: 400;
-    color: #ffffff;
+    color: #ffffff !important;
   }
 
   .sticky-button-price {
     font-weight: 700;
-    color: #ffffff;
+    color: #ffffff !important;
+  }
+
+  /* Ensure all button content is white */
+  .sticky-add-to-cart-button * {
+    color: #ffffff !important;
   }
 
   /* Extra safety - hide on desktop */
