@@ -275,8 +275,13 @@
   <span>
     <a href="/">Home</a>
     <span>&gt;</span>
-    <a href="/collections">KNIVES</a>
-    <span>&gt;</span>
+    {% if product.metafields.custom.isknife == true %}
+      <a href="/collections/knives">KNIVES</a>
+      <span>&gt;</span>
+    {% else %}
+      <a href="/collections/accessories">ACCESSORIES</a>
+      <span>&gt;</span>
+    {% endif %}
     <span>santoku-knife</span>
   </span>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
