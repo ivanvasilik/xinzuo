@@ -149,6 +149,7 @@
     },
     "collection_video_L6Pbzj": {
       "type": "collection_video",
+      "disabled": true,
       "name": "Collection Video",
       "settings": {
         "width": "full",
@@ -158,6 +159,7 @@
     },
     "collection_heading_Cr9UMW": {
       "type": "collection_heading",
+      "disabled": true,
       "name": "Collection Header",
       "settings": {
         "width": "full",
