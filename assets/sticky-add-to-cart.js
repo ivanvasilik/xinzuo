@@ -44,6 +44,7 @@ class StickyAddToCartBar extends Component {
 
       this.setupIntersectionObserver();
       this.bindEvents();
+      this.handleIOSSafariViewport();
     });
   }
 
@@ -104,6 +105,34 @@ class StickyAddToCartBar extends Component {
         this.stickyBar.style.display = 'block';
       }
     });
+  }
+
+  /**
+   * Handle iOS Safari's dynamic viewport (bottom bar shows/hides)
+   * Fallback for older iOS devices (13-15.3) that don't support dvh units
+   * Modern iOS (15.4+) uses CSS dvh units instead
+   */
+  handleIOSSafariViewport() {
+    // Only apply if browser doesn't support dvh units (CSS handles it on modern devices)
+    const supportsDVH = CSS.supports('height', '1dvh');
+    if (supportsDVH) return; // CSS @supports block handles it
+
+    // Fallback for older iOS (13-15.3)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (!isIOS || !window.visualViewport) return;
+
+    const updatePosition = () => {
+      // Calculate offset from bottom based on visual viewport vs layout viewport
+      const offset = window.innerHeight - window.visualViewport.height;
+      this.stickyBar.style.bottom = `${offset}px`;
+    };
+
+    // Update when Safari UI bar appears/disappears
+    window.visualViewport.addEventListener('resize', updatePosition);
+    window.visualViewport.addEventListener('scroll', updatePosition);
+    
+    // Initial positioning
+    updatePosition();
   }
 
   /**
