@@ -60,7 +60,7 @@ class StickyAddToCartBar extends Component {
       return;
     }
 
-    // Create observer with buffer zone to prevent flickering
+    // Create observer with large buffer zone to prevent flickering
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -68,15 +68,15 @@ class StickyAddToCartBar extends Component {
           const shouldShow = !entry.isIntersecting;
           
           // Only update if state actually changed (prevents unnecessary DOM updates)
-          if (this.button.getAttribute('data-visible') !== shouldShow.toString()) {
-            console.log('[Sticky Button] Visibility changed:', shouldShow);
+          const currentState = this.button.getAttribute('data-visible');
+          if (currentState !== shouldShow.toString()) {
             this.button.setAttribute('data-visible', shouldShow.toString());
           }
         });
       },
       {
         threshold: 0,
-        rootMargin: '100px 0px 100px 0px', // 100px buffer zone (top/bottom) prevents flickering during slow scrolling
+        rootMargin: '200px 0px 200px 0px', // Large buffer zone prevents flickering when scrolling near trigger points
       }
     );
 

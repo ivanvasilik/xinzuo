@@ -99,8 +99,8 @@
     /* Floating effect */
     box-shadow: 0 4px 16px rgba(255, 0, 4, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
     
-    /* Smooth animations */
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    /* Smooth animations - slightly slower to mask any rapid state changes */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 background-color 0.2s,
                 box-shadow 0.2s;
     
