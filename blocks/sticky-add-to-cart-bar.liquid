@@ -38,31 +38,27 @@
   data-product-id="{{ product.id }}"
   {{ block.shopify_attributes }}
 >
-  <div class="sticky-add-to-cart-bar" data-visible="false">
-    <div class="sticky-add-to-cart-content">
-      <div class="sticky-add-to-cart-info">
-        <span class="sticky-add-to-cart-title">{{ product.title | truncate: 40 }}</span>
-        <span class="sticky-add-to-cart-price">{{ variant.price | money }}</span>
-      </div>
-      
-      <form action="{{ routes.cart_add_url }}" method="post" class="sticky-add-to-cart-form">
-        <input type="hidden" name="id" value="{{ variant.id }}">
-        <input type="hidden" name="quantity" value="1">
-        
-        <button 
-          type="submit" 
-          class="sticky-add-to-cart-button"
-          {% unless can_add_to_cart %}disabled{% endunless %}
-        >
-          {% if can_add_to_cart %}
-            Add to Cart
-          {% else %}
-            Sold Out
-          {% endif %}
-        </button>
-      </form>
-    </div>
-  </div>
+  <form action="{{ routes.cart_add_url }}" method="post" class="sticky-add-to-cart-form">
+    <input type="hidden" name="id" value="{{ variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    
+    <button 
+      type="submit" 
+      class="sticky-add-to-cart-button"
+      data-visible="false"
+      {% unless can_add_to_cart %}disabled{% endunless %}
+    >
+      <span class="sticky-button-text">
+        {% if can_add_to_cart %}
+          Add to Cart
+        {% else %}
+          Sold Out
+        {% endif %}
+      </span>
+      <span class="sticky-button-separator">•</span>
+      <span class="sticky-button-price">{{ variant.price | money }}</span>
+    </button>
+  </form>
 </sticky-add-to-cart-bar>
 
 {% stylesheet %}
@@ -71,107 +67,97 @@
     display: contents;
   }
 
-  /* Sticky bar - completely isolated */
-  .sticky-add-to-cart-bar {
+  /* Form container - no styles */
+  .sticky-add-to-cart-form {
+    display: contents;
+  }
+
+  /* Modern floating button - intentionally positioned with space from bottom */
+  .sticky-add-to-cart-button {
     position: fixed;
-    bottom: 0; /* Note: On iOS Safari, this sits above the bottom toolbar - this is Safari's default behavior. Even Shopify's own themes work this way. */
-    left: 0;
-    right: 0;
+    bottom: 20px; /* Intentional spacing - works perfectly on all browsers including iOS Safari */
+    left: 50%;
+    transform: translateX(-50%) translateY(100px); /* Hidden by default */
     z-index: 999;
-    background-color: #292a33;
-    border-top: 1px solid #3a3b47;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Button styling */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background-color: #ff0004;
+    border: none;
+    border-radius: 50px; /* Pill shape */
+    color: #ffffff;
+    font-family: "Sen", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    
+    /* Floating effect */
+    box-shadow: 0 4px 16px rgba(255, 0, 4, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+    /* Smooth animations */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.2s,
+                box-shadow 0.2s;
+    
+    /* Performance optimization */
     will-change: transform;
+    
+    /* Hide on desktop */
     display: none;
   }
 
   /* Show on mobile only */
   @media screen and (max-width: 749px) {
-    .sticky-add-to-cart-bar {
-      display: block;
+    .sticky-add-to-cart-button {
+      display: inline-flex;
     }
   }
 
-  /* Visible state */
-  .sticky-add-to-cart-bar[data-visible="true"] {
-    transform: translateY(0);
+  /* Visible state - slide up into view */
+  .sticky-add-to-cart-button[data-visible="true"] {
+    transform: translateX(-50%) translateY(0);
   }
 
-  /* Content wrapper */
-  .sticky-add-to-cart-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
-    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
-    max-width: 100%;
-  }
-
-  /* Product info */
-  .sticky-add-to-cart-info {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .sticky-add-to-cart-title {
-    font-family: "Sen", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .sticky-add-to-cart-price {
-    font-family: "Sen", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-  }
-
-  /* Form */
-  .sticky-add-to-cart-form {
-    flex-shrink: 0;
-  }
-
-  /* Button - matches your theme */
-  .sticky-add-to-cart-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    background-color: #ff0004;
-    border: none;
-    border-radius: 4px;
-    color: #ffffff !important;
-    font-family: "Sen", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    white-space: nowrap;
-    text-align: center;
-    line-height: 1;
-  }
-
-  .sticky-add-to-cart-button:hover {
+  /* Hover effect */
+  .sticky-add-to-cart-button:hover:not(:disabled) {
     background-color: #dd0003;
+    box-shadow: 0 6px 20px rgba(255, 0, 4, 0.5), 0 3px 10px rgba(0, 0, 0, 0.25);
   }
 
+  /* Active/pressed state */
+  .sticky-add-to-cart-button:active:not(:disabled) {
+    transform: translateX(-50%) translateY(0) scale(0.98);
+  }
+
+  /* Disabled state */
   .sticky-add-to-cart-button:disabled {
     background-color: #6b7280;
     cursor: not-allowed;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  /* Hide on desktop - extra safety */
+  /* Button text styling */
+  .sticky-button-text {
+    font-weight: 600;
+  }
+
+  .sticky-button-separator {
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  .sticky-button-price {
+    font-weight: 700;
+  }
+
+  /* Extra safety - hide on desktop */
   @media screen and (min-width: 750px) {
-    .sticky-add-to-cart-bar {
+    .sticky-add-to-cart-button {
       display: none !important;
     }
   }
