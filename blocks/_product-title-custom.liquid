@@ -9,12 +9,18 @@
     <div class="product-details-links">
       <span>
         <a href="/">Home</a>
-        <span>></span>
-        {% if block_settings.show_knives_link %}
-          <a href="/collections/all">KNIVES</a>
-          <span>></span>
+        <span>&gt;</span>
+        {% if product.metafields.custom.isknife == true %}
+          <a href="/collections/knives">KNIVES</a>
+        {% else %}
+          <a href="/collections/accessories">ACCESSORIES</a>
         {% endif %}
-        <span>{{ collection.title }}</span>
+        {% for collection in product.collections %}
+          {% if collection.title != "KNIVES" and collection.title != "ACCESSORIES" %}
+            <span>&gt;</span>
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+          {% endif %}
+        {% endfor %}
       </span>
     </div>
   {% endif %}
