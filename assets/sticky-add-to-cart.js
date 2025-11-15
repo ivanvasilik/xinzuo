@@ -34,13 +34,13 @@ class StickyAddToCartBar extends Component {
     if (window.innerWidth >= 750) return;
 
     requestAnimationFrame(() => {
-      this.stickyBar = this.querySelector('.sticky-add-to-cart-bar');
-      this.priceElement = this.querySelector('.sticky-add-to-cart-price');
       this.button = this.querySelector('.sticky-add-to-cart-button');
+      this.priceElement = this.button?.querySelector('.sticky-button-price');
+      this.buttonText = this.button?.querySelector('.sticky-button-text');
       this.form = this.querySelector('.sticky-add-to-cart-form');
       this.hiddenInput = this.form?.querySelector('input[name="id"]');
 
-      if (!this.stickyBar) return;
+      if (!this.button) return;
 
       this.setupIntersectionObserver();
       this.bindEvents();
@@ -60,18 +60,23 @@ class StickyAddToCartBar extends Component {
       return;
     }
 
-    // Create observer with small threshold
+    // Create observer with large buffer zone to prevent flickering
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Show sticky bar when main button is NOT visible
+          // Show sticky button when main button is NOT visible
           const shouldShow = !entry.isIntersecting;
-          this.stickyBar.setAttribute('data-visible', shouldShow.toString());
+          
+          // Only update if state actually changed (prevents unnecessary DOM updates)
+          const currentState = this.button.getAttribute('data-visible');
+          if (currentState !== shouldShow.toString()) {
+            this.button.setAttribute('data-visible', shouldShow.toString());
+          }
         });
       },
       {
         threshold: 0,
-        rootMargin: '0px',
+        rootMargin: '200px 0px 200px 0px', // Large buffer zone prevents flickering when scrolling near trigger points
       }
     );
 
@@ -99,9 +104,9 @@ class StickyAddToCartBar extends Component {
     // Handle window resize (show/hide on desktop/mobile)
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 750) {
-        this.stickyBar.style.display = 'none';
+        this.button.style.display = 'none';
       } else {
-        this.stickyBar.style.display = 'block';
+        this.button.style.display = 'inline-flex';
       }
     });
   }
@@ -154,10 +159,10 @@ class StickyAddToCartBar extends Component {
     }
 
     // Update button state (availability)
-    if (this.button) {
+    if (this.button && this.buttonText) {
       const available = variant.available;
       this.button.disabled = !available;
-      this.button.textContent = available ? 'Add to Cart' : 'Sold Out';
+      this.buttonText.textContent = available ? 'Add to Cart' : 'Sold Out';
     }
   }
 

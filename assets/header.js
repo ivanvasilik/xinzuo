@@ -59,6 +59,13 @@ class HeaderComponent extends Component {
   #animationDelay = 150;
 
   /**
+   * Flag to prevent multiple requestAnimationFrame calls per frame
+   * Performance optimization added to prevent flickering on iOS Safari
+   * @type {boolean}
+   */
+  #scrollTicking = false;
+
+  /**
    * Keeps the global `--header-height` custom property up to date,
    * which other theme components can then consume
    */
@@ -125,60 +132,91 @@ class HeaderComponent extends Component {
     }
   }
 
+  /**
+   * PERFORMANCE OPTIMIZATION (Added by Dintyo team - Nov 2025)
+   * 
+   * Previous implementation: Called 60+ times/sec, forced reflows on every scroll event
+   * Issue: Caused flickering on iOS Safari (header, sticky button, thumbnails)
+   * 
+   * New implementation: Uses requestAnimationFrame to batch layout reads/writes
+   * - Limits execution to max 60fps (synchronized with browser repaint)
+   * - Prevents forced reflows during scroll events
+   * - Reduces flickering on mobile devices, especially iOS Safari
+   * 
+   * Pattern: Standard web performance best practice (Google, MDN recommended)
+   * 
+   * Future maintainers: Do NOT remove the requestAnimationFrame wrapper.
+   * It's essential for smooth scrolling performance on mobile.
+   */
   #handleWindowScroll = () => {
-    const stickyMode = this.getAttribute('sticky');
-    if (!this.#offscreen && stickyMode !== 'always') return;
+    // Prevent multiple rAF calls per frame (standard throttling pattern)
+    if (this.#scrollTicking) return;
+    this.#scrollTicking = true;
 
-    const scrollTop = document.scrollingElement?.scrollTop ?? 0;
-    const isScrollingUp = scrollTop < this.#lastScrollTop;
-    if (this.#timeout) {
-      clearTimeout(this.#timeout);
-      this.#timeout = null;
-    }
+    requestAnimationFrame(() => {
+      const stickyMode = this.getAttribute('sticky');
+      if (!this.#offscreen && stickyMode !== 'always') {
+        this.#scrollTicking = false;
+        return;
+      }
 
-    if (stickyMode === 'always') {
-      const isAtTop = this.getBoundingClientRect().top >= 0;
+      const scrollTop = document.scrollingElement?.scrollTop ?? 0;
+      const isScrollingUp = scrollTop < this.#lastScrollTop;
+      if (this.#timeout) {
+        clearTimeout(this.#timeout);
+        this.#timeout = null;
+      }
 
-      if (isAtTop) {
+      if (stickyMode === 'always') {
+        const isAtTop = this.getBoundingClientRect().top >= 0;
+
+        if (isAtTop) {
+          this.dataset.scrollDirection = 'none';
+        } else if (isScrollingUp) {
+          this.dataset.scrollDirection = 'up';
+        } else {
+          this.dataset.scrollDirection = 'down';
+        }
+
+        this.#lastScrollTop = scrollTop;
+        this.#scrollTicking = false;
+        return;
+      }
+
+      if (isScrollingUp) {
+        this.removeAttribute('data-animating');
+
+        // Add 10px buffer to prevent flickering when scrolling near the threshold
+        // Without buffer: top crosses 0px repeatedly → rapid state changes → flickering
+        // With buffer: only changes state when clearly above threshold → smooth transition
+        const headerTop = this.getBoundingClientRect().top;
+        if (headerTop >= 10) {
+          // reset sticky state when header is scrolled up to natural position
+          this.#offscreen = false;
+          this.dataset.stickyState = 'inactive';
+          this.dataset.scrollDirection = 'none';
+        } else {
+          // show sticky header when scrolling up
+          this.dataset.stickyState = 'active';
+          this.dataset.scrollDirection = 'up';
+        }
+      } else if (this.dataset.stickyState === 'active') {
         this.dataset.scrollDirection = 'none';
-      } else if (isScrollingUp) {
-        this.dataset.scrollDirection = 'up';
+        // delay transitioning to idle hidden state for hiding animation
+        this.setAttribute('data-animating', '');
+
+        this.#timeout = setTimeout(() => {
+          this.dataset.stickyState = 'idle';
+          this.removeAttribute('data-animating');
+        }, this.#animationDelay);
       } else {
-        this.dataset.scrollDirection = 'down';
+        this.dataset.scrollDirection = 'none';
+        this.dataset.stickyState = 'idle';
       }
 
       this.#lastScrollTop = scrollTop;
-      return;
-    }
-
-    if (isScrollingUp) {
-      this.removeAttribute('data-animating');
-
-      if (this.getBoundingClientRect().top >= 0) {
-        // reset sticky state when header is scrolled up to natural position
-        this.#offscreen = false;
-        this.dataset.stickyState = 'inactive';
-        this.dataset.scrollDirection = 'none';
-      } else {
-        // show sticky header when scrolling up
-        this.dataset.stickyState = 'active';
-        this.dataset.scrollDirection = 'up';
-      }
-    } else if (this.dataset.stickyState === 'active') {
-      this.dataset.scrollDirection = 'none';
-      // delay transitioning to idle hidden state for hiding animation
-      this.setAttribute('data-animating', '');
-
-      this.#timeout = setTimeout(() => {
-        this.dataset.stickyState = 'idle';
-        this.removeAttribute('data-animating');
-      }, this.#animationDelay);
-    } else {
-      this.dataset.scrollDirection = 'none';
-      this.dataset.stickyState = 'idle';
-    }
-
-    this.#lastScrollTop = scrollTop;
+      this.#scrollTicking = false;
+    });
   };
 
   connectedCallback() {
