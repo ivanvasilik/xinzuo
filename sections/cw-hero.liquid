@@ -1,12 +1,12 @@
 {% style %}
     .section-{{ section.id }} {
-        background-color: #111111;
+        background-color: #262933;
     }
 
     .section-{{ section.id }} .hero-banner {
         /* Simplified: solid background matches nav bar (no complex gradients) */
         /* This makes it easy to upload any hero image - they'll all look consistent */
-        background: #111111;
+        background: #262933;
         display: flex;
         justify-content: flex-end;
         /* Best practice for ecommerce CRO: Shorter hero = users see products faster */
@@ -59,9 +59,9 @@
         right: 0;
         width: 58%;
         height: 100%;
-        /* Best practice: contain shows full product without cropping */
-        object-fit: contain;
-        object-position: center bottom;
+        /* Cover maintains original layout but prevents side cropping with max-height constraint */
+        object-fit: cover;
+        object-position: center center;
     }
 
     .section-{{ section.id }} .hero-banner-content a {
