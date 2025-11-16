@@ -77,8 +77,10 @@
     }
 
     .section-{{ section.id }} .mobile-hero {
-        width: 100vw;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        object-position: center center;
         display: none;
     }
 
@@ -149,6 +151,12 @@
 
         .section-{{ section.id }} .mobile-hero {
             display: block;
+        }
+
+        .section-{{ section.id }} .hero-banner {
+            height: 500px;
+            min-height: 450px;
+            max-height: 550px;
         }
     }
 {% endstyle %}
