@@ -266,7 +266,7 @@
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
                 <p>Total Amount</p>
-                <span>
+                {% comment %} <span>
                   {{ cart.total_price | money }}
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <g clip-path="url(#clip0_4235_58860)">
@@ -278,7 +278,7 @@
                       </clipPath>
                     </defs>
                   </svg>
-                </span>
+                </span> {% endcomment %}
               </div>
               <div class="cart__ctas">
                 <button
