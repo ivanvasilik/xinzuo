@@ -612,11 +612,11 @@ header .cart-drawer__inner .cart-drawer-info {
         width: 100px;
     }
 
-    .cart-page .cart-items__table-row {
+    /* .cart-page .cart-items__table-row {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-    }
+    } */
 
     .cart-page .cart-items__media {
         width: 30%;
