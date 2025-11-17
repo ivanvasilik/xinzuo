@@ -294,7 +294,7 @@
                     <span>- {{ cart.total_discount | money }}</span>
                   </div>
                 {% endif %}
-                <div class="delivery-charge">
+                <div>
                   <p>Delivery Charges</p>
                   {% assign total_price = cart.total_price | divided_by: 100.00 %}
                   {% if total_price > settings.shipping_value %}
