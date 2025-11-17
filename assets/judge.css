@@ -933,6 +933,16 @@ aside {
     transform: translate(-50%);
 }
 
+.cart-page__items .cart-items__wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: "Sen";
+}
+
+.cart-page__items .cart-items__wrapper .cart-form {
+    order: -1;
+}
+
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
 .cart-drawer__items::-webkit-scrollbar-track       { background: #FAFAFA; }
 .cart-drawer__items::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
