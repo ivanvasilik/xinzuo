@@ -118,7 +118,7 @@
                 data-parent-key="{{ item.parent_relationship.parent.key }}"
                 data-key="{{ item.key }}"
               >
-                {% comment %} {% if type != "drawer" %}
+                {% if type != "drawer" %}
                   <td
                     class="cart-items__media"
                     role="cell"
@@ -451,7 +451,7 @@
                       %}
                     </div>
                   </td>
-                {% else %} {% endcomment %}
+                {% else %}
                   <td class="cart-drawer-img">
                     {% if item.image -%}
                       {% liquid
@@ -481,9 +481,6 @@
                   <td class="cart-drawer-info">
                     <div class="cart-drawer-info-div1">
                       <div class="cart-drawer-product">
-                        {% comment %} <a href="{{ item.url }}">
-                          <h5 class="cart-items__title">{{ item.title }}</h5>
-                        </a> {% endcomment %}
                         <p>
                           <a
                             href="{{ item.url }}"
@@ -566,7 +563,7 @@
                       </div>
                     </div>
                   </td>
-                {% comment %} {% endif %} {% endcomment %}
+                {% endif %}
               </tr>
             {% endfor %}
           </tbody>
@@ -670,12 +667,11 @@
     --cart-item-price-width: 6rem;
 
     display: grid;
-    grid-template-columns: 120px auto;
-    /* grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) minmax(var(--cart-item-price-width), auto);
+    grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) minmax(var(--cart-item-price-width), auto);
     grid-template-areas:
       'media details price'
       'media quantity price'
-      'media error error'; */
+      'media error error';
     column-gap: 25px;
     align-items: start;
     padding-bottom: var(--cart-items-gap);
@@ -865,13 +861,12 @@
     .cart-items__table-row {
       --cart-item-price-width: 6rem;
 
-      /* grid-template-columns: 10rem 1fr minmax(var(--cart-item-price-width), auto); */
-      grid-template-columns: 120px auto;
+      grid-template-columns: 10rem 1fr minmax(var(--cart-item-price-width), auto);
       grid-template-rows: min-content 1fr;
-      /* grid-template-areas:
+      grid-template-areas:
         'media details quantity price'
         'media details error error';
-    } */
+    }
 
     .cart-items__quantity,
     .cart-items__price {
