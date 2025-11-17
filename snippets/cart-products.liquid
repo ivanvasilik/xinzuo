@@ -235,7 +235,7 @@
                     {% endif %}
 
                     <div>
-                      {{ item.variant.metafields.custom.description.value | truncate: 50, "..." }}
+                      {{ item.description | truncate: 50, "..." }}
                     </div>
                     <div class="cart-description">
                       {% if item.variant.metafields.custom.angle %}
