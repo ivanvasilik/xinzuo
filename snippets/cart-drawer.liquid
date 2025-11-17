@@ -247,7 +247,7 @@
               class="cart-drawer__items"
             >
               {% render 'cart-products' type: "drawer" %}
-              {% if settings.drawer_recommend != blank %}
+              {% comment %} {% if settings.drawer_recommend != blank %}
                 <div class="drawer-recommend">
                   <h2>You might also like</h2>
                   {% for product in settings.drawer_recommend %}
@@ -275,7 +275,7 @@
                     </div>
                   {% endfor %}
                 </div>
-              {% endif %}
+              {% endif %} {% endcomment %}
             </scroll-hint>
 
             <div class="cart-drawer-footer">
