@@ -482,7 +482,7 @@
                     <div class="cart-drawer-info-div1">
                       <div class="cart-drawer-product">
                         <a href="{{ item.url }}">
-                          <h5 class="cart-items__title">{{ item.title | split: " - " | last }}</h5>
+                          <h5 class="cart-items__title">{{ item.product.title | split: " - " | last }}</h5>
                         </a>
                         {% comment %} <p>
                           <a
