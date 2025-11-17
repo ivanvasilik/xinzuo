@@ -118,7 +118,7 @@
                 data-parent-key="{{ item.parent_relationship.parent.key }}"
                 data-key="{{ item.key }}"
               >
-                {% comment %} {% if type != "drawer" %} {% endcomment %}
+                {% comment %} {% if type != "drawer" %}
                   <td
                     class="cart-items__media"
                     role="cell"
@@ -451,7 +451,7 @@
                       %}
                     </div>
                   </td>
-                {% comment %} {% else %} {% endcomment %}
+                {% else %} {% endcomment %}
                   <td class="cart-drawer-img">
                     {% if item.image -%}
                       {% liquid
