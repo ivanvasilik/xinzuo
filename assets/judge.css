@@ -392,7 +392,7 @@ header .cart-drawer__inner .cart-drawer-img {
     margin-right: 20px;
 }
 
-header .cart-drawer__inner .cart-drawer-info {
+.cart-drawer-info {
     display: flex;
     flex-direction: column;
     height: 100%;
