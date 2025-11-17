@@ -603,9 +603,9 @@ header .cart-drawer__inner .cart-drawer-info {
         width: auto;
     }
 
-    .cart-page .cart-items__table-row {
+    /* .cart-page .cart-items__table-row {
         grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) var(--cart-item-price-width);
-    }
+    } */
 
     .cart-page .quantity-selector {
         height: 40px;
