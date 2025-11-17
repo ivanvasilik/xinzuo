@@ -306,7 +306,7 @@
                   <p>Delivery Charges</p>
                   {% assign total_price = cart.total_price | divided_by: 100.00 %}
                   {% if total_price > settings.shipping_value %}
-                    <span>Free Shipping</span>
+                    <span>Free</span>
                   {% else %}
                     <span class="calculated">Calculated at checkout</span>
                   {% endif %}
