@@ -399,14 +399,14 @@ header .cart-drawer__inner .cart-drawer-info {
     justify-content: space-between;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div1 {
+.cart-drawer-info .cart-drawer-info-div1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div1 .cart-drawer-product a {
+.cart-drawer-info .cart-drawer-info-div1 .cart-drawer-product a {
     font-family: "Sen";
     font-weight: 600;
     font-size: 16px;
@@ -414,50 +414,50 @@ header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div1 .cart-drawer
     text-decoration: none;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div1 .cart-drawer-product span {
+.cart-drawer-info .cart-drawer-info-div1 .cart-drawer-product span {
     font-family: "Albert Sans";
     font-weight: 400;
     font-size: 14px;
     color: #c9c9cc;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div1 .cart-items__remove {
+.cart-drawer-info .cart-drawer-info-div1 .cart-items__remove {
     width: 20px;
     height: 20px;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 {
+.cart-drawer-info .cart-drawer-info-div2 {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 .cart-drawer-price span {
+.cart-drawer-info .cart-drawer-info-div2 .cart-drawer-price span {
     font-family: "Sen";
     font-weight: 600;
     font-size: 22px;
     color: #fff;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 .cart-drawer-price s {
+.cart-drawer-info .cart-drawer-info-div2 .cart-drawer-price s {
     font-family: "Sen";
     font-weight: 500;
     font-size: 14px;
     color: #c9c9cc;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity .quantity-selector {
+.cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity .quantity-selector {
     width: 90px;
     height: 30px;
     border: none;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity .quantity-selector button {
+.cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity .quantity-selector button {
     width: 30%;
     height: 100%;
 }
 
-header .cart-drawer__inner .cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity * {
+.cart-drawer-info .cart-drawer-info-div2 .cart-drawer-quantity * {
     font-family: "Sen";
     border: none;
     font-weight: 400;
