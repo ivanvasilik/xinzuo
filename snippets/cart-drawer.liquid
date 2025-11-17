@@ -288,18 +288,18 @@
                     <span>- {{ cart.total_discount | money }}</span>
                   </div>
                 {% endif %}
-                <div class="cart-total-price">
-                  <p>Total Amount</p>
-                  <span>{{ cart.total_price | money }}</span>
-                </div>
                 <div>
                   <p>Delivery Charges</p>
                   {% assign total_price = cart.total_price | divided_by: 100.00 %}
                   {% if total_price > settings.shipping_value %}
                     <span>Free Express Shipping</span>
                   {% else %}
-                    <span>Calcuated at checkout</span>
+                    <span>Calculated at checkout</span>
                   {% endif %}
+                </div>
+                <div class="cart-total-price">
+                  <p>Total Amount</p>
+                  <span>{{ cart.total_price | money }}</span>
                 </div>
               </div>
               <div class="cart__ctas">
