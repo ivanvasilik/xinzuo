@@ -219,7 +219,6 @@
             {%- liquid 
               assign total_price = cart.total_price | divided_by: 100.00
               assign shipping_value = settings.shipping_value
-              assign credit_value = settings.credit_value
               if total_price < shipping_value
                 assign balance = settings.shipping_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
@@ -227,13 +226,11 @@
               else
                 assign message = settings.complete_message
               endif
-              assign progress_value = shipping_value | times: 100 | divided_by: credit_value
             -%}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
               <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.shipping_value }}"></progress>
-              {% comment %} <div class="shipping-value" style="left: {{ progress_value }}%;"></div> {% endcomment %}
             </span>
           </div>
           
@@ -294,6 +291,15 @@
                 <div class="cart-total-price">
                   <p>Total Amount</p>
                   <span>{{ cart.total_price | money }}</span>
+                </div>
+                <div>
+                  <p>Delivery Charges</p>
+                  {% assign total_price = cart.total_price | divided_by: 100.00 %}
+                  {% if total_price > settings.shipping_value %}
+                    <span>Free Express Shipping</span>
+                  {% else %}
+                    <span>Calcuated at checkout</span>
+                  {% endif %}
                 </div>
               </div>
               <div class="cart__ctas">

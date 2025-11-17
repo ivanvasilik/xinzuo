@@ -1828,20 +1828,10 @@
         "type": "range",
         "id": "shipping_value",
         "label": "Shipping amount",
-        "default": 280,
-        "min": 100,
-        "max": 400,
-        "step": 5,
-        "unit": "$"
-      },
-      {
-        "type": "range",
-        "id": "credit_value",
-        "label": "Credit amount",
-        "default": 400,
-        "min": 0,
+        "default": 100,
+        "min": 50,
         "max": 500,
-        "step": 5,
+        "step": 10,
         "unit": "$"
       },
       {
@@ -1853,7 +1843,7 @@
       {
         "type": "richtext",
         "id": "credit_message",
-        "label": "Free Shipping Message",
+        "label": "Credit Message",
         "default": "<p>You've unlocked Free Delivery with your $280 order. Add just {PRICE} more to unlock up to $40 (10%) extra off.</p>",
       },
       {
