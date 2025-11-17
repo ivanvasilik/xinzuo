@@ -481,7 +481,10 @@
                   <td class="cart-drawer-info">
                     <div class="cart-drawer-info-div1">
                       <div class="cart-drawer-product">
-                        <p>
+                        <a href="{{ item.url }}">
+                          <h5 class="cart-items__title">{{ item.title }}</h5>
+                        </a>
+                        {% comment %} <p>
                           <a
                             href="{{ item.url }}"
                             class="cart-items__title"
@@ -491,7 +494,7 @@
                           >
                             {{ item.title }}
                           </a>
-                        </p>
+                        </p> {% endcomment %}
                         <span>{{ item.variant.metafields.custom.description.value | truncate: 25, "..." }}</span>
                       </div>
                       <div class="cart-product-remove">
