@@ -84,6 +84,11 @@
     justify-content: space-between;
   }
 
+  .delivery-charge p,span {
+    font-weight: 0;
+    color: #c9c9cc !important;
+  }
+
   .cart-drawer-total p {
     font-family: "Sen";
     font-weight: 400;
@@ -289,7 +294,7 @@
                     <span>- {{ cart.total_discount | money }}</span>
                   </div>
                 {% endif %}
-                <div class="delivery charge">
+                <div class="delivery-charge">
                   <p>Delivery Charges</p>
                   {% assign total_price = cart.total_price | divided_by: 100.00 %}
                   {% if total_price > settings.shipping_value %}
