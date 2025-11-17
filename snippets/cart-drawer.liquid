@@ -280,14 +280,6 @@
                   </svg> {% endcomment %}
                 </span>
               </div>
-              <div class="cart-drawer-total">
-                {% if cart.total_discount > 0 %}
-                  <span>Discount: -{{ cart.total_discount | money }}</span>
-                {% endif %}
-              </div>
-              <div class="cart-drawer-total">
-                <span>Total: {{ cart.total_price | money }}</span>
-              </div>
               <div class="cart__ctas">
                 <button
                   type="submit"
