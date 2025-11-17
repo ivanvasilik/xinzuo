@@ -74,10 +74,14 @@
   }
 
   .cart-drawer-total {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px 0;
+  }
+
+  .cart-drawer-total div {
+    display: flex;
+    justify-content: space-between;
   }
 
   .cart-drawer-total p {
@@ -265,20 +269,22 @@
 
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
-                <p>Total Amount</p>
-                <span>
-                  {{ cart.total_price | money }}
-                  {% comment %} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <g clip-path="url(#clip0_4235_58860)">
-                      <path d="M13 6L8 11L3 6" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4235_58860">
-                        <rect width="16" height="16" fill="white"/>
-                      </clipPath>
-                    </defs>
-                  </svg> {% endcomment %}
-                </span>
+                <div>
+                  <p>Subtotal Amount</p>
+                  <span>
+                    {{ cart.original_total_price | money }}
+                  </span>
+                </div>
+                {% if cart.total_discount > 0 %}
+                  <div>
+                    <p>Discount</p>
+                    <span>{{ cart.total_discount | money }}</span>
+                  </div>
+                {% endif %}
+                <div>
+                  <p>Total Amount</p>
+                  <span>{{ cart.total_price | money }}</span>
+                </div>
               </div>
               <div class="cart__ctas">
                 <button
