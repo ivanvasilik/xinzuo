@@ -86,7 +86,7 @@
 
   .cart-drawer-total p {
     font-family: "Sen";
-    font-weight: 600;
+    font-weight: 400;
     font-size: 16px;
     color: #c9c9cc;
     margin: 0;
@@ -99,6 +99,17 @@
     font-weight: 600;
     font-size: 16px;
     color: #fff;
+  }
+
+  .cart-total-price p {
+    font-size: 18px;
+    color: #ff0004;
+  }
+
+  .cart-total-price span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff0004;
   }
 
   .cart-drawer-footer .cart__checkout-button {
@@ -281,7 +292,7 @@
                     <span>- {{ cart.total_discount | money }}</span>
                   </div>
                 {% endif %}
-                <div>
+                <div class="cart-total-price">
                   <p>Total Amount</p>
                   <span>{{ cart.total_price | money }}</span>
                 </div>
