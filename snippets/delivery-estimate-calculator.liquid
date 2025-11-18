@@ -36,22 +36,26 @@
     <div class="delivery-estimate-content">
       <div class="delivery-estimate-header">
         <div class="delivery-estimate-badges">
-          <span class="delivery-badge">
-            <span class="badge-indicator">
-              <span class="badge-indicator-inner"></span>
+          {% if settings.free_delivery_state and free_delivery != blank %}
+            <span class="delivery-badge">
+              <span class="badge-indicator">
+                <span class="badge-indicator-inner"></span>
+              </span>
+              {{ free_delivery }}
             </span>
-            {{ free_delivery }}
-          </span>
-          <span 
-            class="stock-badge{% unless is_available %} stock-badge--hidden{% endunless %}" 
-            ref="stockBadge"
-            data-available="{{ is_available }}"
-          >
-            <span class="badge-indicator">
-              <span class="badge-indicator-inner"></span>
+          {% endif %}
+          {% if settings.in_stock_state and in_stock != blank %}
+            <span 
+              class="stock-badge{% unless is_available %} stock-badge--hidden{% endunless %}" 
+              ref="stockBadge"
+              data-available="{{ is_available }}"
+            >
+              <span class="badge-indicator">
+                <span class="badge-indicator-inner"></span>
+              </span>
+              {{ in_stock }}
             </span>
-            {{ in_stock }}
-          </span>
+          {% endif %}
         </div>
         
         <div class="delivery-estimate-main" ref="mainDisplay">
