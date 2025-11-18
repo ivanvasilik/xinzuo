@@ -178,7 +178,7 @@
               "type": "delivery-estimate",
               "settings": {
                 "cutoff_time": "12:00",
-                "free_delivery": "FREE DELIVERY",
+                "free_delivery": "FAST SHIPPING",
                 "in_stock": "IN STOCK",
                 "delivery_content": "Earliest delivery: Enter suburb or postcode",
                 "enable_public_holidays": true,
