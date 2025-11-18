@@ -37,21 +37,22 @@
     <div class="delivery-estimate-content">
       <div class="delivery-estimate-header">
         <div class="delivery-estimate-badges">
-          {% if total_price > settings.price %}
-            <span class="delivery-badge">
-              <span class="badge-indicator">
-                <span class="badge-indicator-inner"></span>
-              </span>
-              FREE SHIPPING
-            </span>
-          {% endif %}
           {% if settings.free_delivery_state and free_delivery != blank %}
-            <span class="delivery-badge">
-              <span class="badge-indicator">
-                <span class="badge-indicator-inner"></span>
+            {% if total_price > settings.price %}
+              <span class="delivery-badge">
+                <span class="badge-indicator">
+                  <span class="badge-indicator-inner"></span>
+                </span>
+                FREE SHIPPING
               </span>
-              {{ free_delivery }}
-            </span>
+            {% else %}
+              <span class="delivery-badge">
+                <span class="badge-indicator">
+                  <span class="badge-indicator-inner"></span>
+                </span>
+                {{ free_delivery }}
+              </span>
+            {% endif %}
           {% endif %}
           {% if settings.in_stock_state and in_stock != blank %}
             <span 
