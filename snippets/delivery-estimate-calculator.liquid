@@ -9,6 +9,7 @@
   assign free_delivery = settings.free_delivery
   assign in_stock = settings.in_stock
   assign delivery_content = settings.delivery_content
+  assign total_price = cart.total_price | divided_by: 100.00
   
   # Check if product is available (for stock badge)
   assign is_available = false
@@ -36,6 +37,14 @@
     <div class="delivery-estimate-content">
       <div class="delivery-estimate-header">
         <div class="delivery-estimate-badges">
+          {% if total_price > settings.price %}
+            <span class="delivery-badge">
+              <span class="badge-indicator">
+                <span class="badge-indicator-inner"></span>
+              </span>
+              FREE SHIPPING
+            </span>
+          {% endif %}
           {% if settings.free_delivery_state and free_delivery != blank %}
             <span class="delivery-badge">
               <span class="badge-indicator">
