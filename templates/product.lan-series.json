@@ -72,37 +72,41 @@
               "settings": {
                 "show_breadcrumbs": true,
                 "show_knives_link": true
-              }
+              },
+              "blocks": {}
             },
             "rating_custom": {
               "type": "_custom-product-rating",
-              "settings": {}
-            },
-            "price_custom": {
-              "type": "_product-price-custom",
-              "settings": {}
-            },
-            "afterpay_custom": {
-              "type": "_product-afterpay",
-              "settings": {}
+              "settings": {
+                "star_size_mobile": 20,
+                "star_size_tablet": 22,
+                "star_size_desktop": 24,
+                "star_color": "#ff0004",
+                "star_empty_color": "#ffffff33",
+                "text_size_mobile": 14,
+                "text_size_tablet": 15,
+                "text_size_desktop": 16,
+                "text_color": "#c9c9cc",
+                "text_hover_color": "#ffffff"
+              },
+              "blocks": {}
             },
             "detail_content_custom": {
               "type": "_product-detail-content",
               "settings": {
                 "detail_content": "<p>73-layer Damascus chef knife ensuring exceptional sharpness, balanced control, and lasting performance for slicing, chopping, and dicing.</p>"
-              }
+              },
+              "blocks": {}
             },
-            "detail_icons_custom": {
-              "type": "_product-detail-icons",
-              "settings": {
-                "show_detail_icons": true,
-                "detail_icon1": "shopify://shop_images/StackSimple.png",
-                "detail_info1": "<p><strong>73-Layer Damascus</strong></p><p>Composite</p>",
-                "detail_icon2": "shopify://shop_images/Hammer.png",
-                "detail_info2": "<p><strong>62-64 HRC</strong></p><p>Extreme Hardness</p>",
-                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-                "detail_info3": "<p><strong>14Cr14MoVNb</strong></p><p>Powder Steel Core</p>"
-              }
+            "price_custom": {
+              "type": "_product-price-custom",
+              "settings": {},
+              "blocks": {}
+            },
+            "afterpay_custom": {
+              "type": "_product-afterpay",
+              "settings": {},
+              "blocks": {}
             },
             "variant_picker_nfG9H7": {
               "type": "variant-picker",
@@ -160,7 +164,7 @@
               "type": "_product-features",
               "settings": {
                 "feature_1_text": "30-day returns",
-                "feature_2_text": "Fast & free delivery",
+                "feature_2_text": "Free shipping over $50",
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
@@ -168,7 +172,8 @@
                 "icon_text_gap": 8,
                 "icon_color": "#c9c9cc",
                 "text_color": "#c9c9cc"
-              }
+              },
+              "blocks": {}
             },
             "delivery_estimate_Teaixf": {
               "type": "delivery-estimate",
@@ -192,6 +197,7 @@
               "settings": {
                 "coupon_code": "BFSALE20",
                 "coupon_text": "Use this code at checkout for 20% off",
+                "text_size": "0.8rem",
                 "coupon_color": "#ff0004",
                 "border_style": "dotted",
                 "stroke_width": 2,
@@ -199,6 +205,19 @@
                 "panel_padding": 8,
                 "radius": 1,
                 "panel_radius": 14
+              },
+              "blocks": {}
+            },
+            "detail_icons_custom": {
+              "type": "_product-detail-icons",
+              "settings": {
+                "show_detail_icons": true,
+                "detail_icon1": "shopify://shop_images/StackSimple.png",
+                "detail_info1": "<p><strong>73-Layer Damascus</strong></p><p>Composite</p>",
+                "detail_icon2": "shopify://shop_images/Hammer.png",
+                "detail_info2": "<p><strong>62-64 HRC</strong></p><p>Extreme Hardness</p>",
+                "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
+                "detail_info3": "<p><strong>14Cr14MoVNb</strong></p><p>Powder Steel Core</p>"
               },
               "blocks": {}
             },
