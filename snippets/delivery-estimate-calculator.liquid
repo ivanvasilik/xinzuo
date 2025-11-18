@@ -1,4 +1,3 @@
-
 {% liquid
   assign cutoff_time = settings.cutoff_time | default: '12:00'
   assign enable_public_holidays = settings.enable_public_holidays | default: true
@@ -38,7 +37,7 @@
             <span class="badge-indicator">
               <span class="badge-indicator-inner"></span>
             </span>
-            FREE DELIVERY
+            {{ free_delivery }}
           </span>
           <span 
             class="stock-badge{% unless is_available %} stock-badge--hidden{% endunless %}" 
@@ -48,7 +47,7 @@
             <span class="badge-indicator">
               <span class="badge-indicator-inner"></span>
             </span>
-            IN STOCK
+            {{ in_stock }}
           </span>
         </div>
         
@@ -61,7 +60,7 @@
           >
             <div class="delivery-estimate-text-wrapper">
               <span class="delivery-estimate-full-text" ref="destinationText">
-                Earliest delivery: Enter suburb or postcode
+                {{ delivery_content }}
               </span>
             </div>
             <svg class="delivery-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -425,4 +424,3 @@
     }
   }
 </style>
-
