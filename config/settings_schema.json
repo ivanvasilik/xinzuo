@@ -1879,6 +1879,12 @@
         "id": "background_color",
         "label": "Progress Background Color",
         "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "dot_color",
+        "label": "Progress Dot Color",
+        "default": "#ffffff"
       }
     ]
   },

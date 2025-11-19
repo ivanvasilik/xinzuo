@@ -372,16 +372,6 @@ header .cart-drawer__inner .cart-drawer__header .progress-cart {
     accent-color: #ff0004;
 }
 
-header .cart-drawer__inner .cart-drawer__header .shipping-value {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: white;
-}
-
 header .cart-drawer__inner .cart-items__table-row {
     grid-template-columns: 120px auto 0;
     gap: 0;
