@@ -11,12 +11,20 @@
   "sections": {
     "collection_list_header_BM7QUU": {
       "type": "collection_list_header",
-      "disabled": true,
       "name": "Collection List Header",
       "settings": {
         "width": "page",
-        "heading": "SUPREME SERIES",
+        "heading": "ALL PRODUCTS",
         "title": "",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_heading_Cr9UMW": {
+      "type": "collection_heading",
+      "disabled": true,
+      "name": "Collection Header",
+      "settings": {
+        "width": "full",
         "color_scheme": "scheme-5"
       }
     },
@@ -155,14 +163,6 @@
       "settings": {
         "width": "full",
         "video": "shopify://files/videos/x02-001.mp4",
-        "color_scheme": "scheme-5"
-      }
-    },
-    "collection_heading_Cr9UMW": {
-      "type": "collection_heading",
-      "name": "Collection Header",
-      "settings": {
-        "width": "full",
         "color_scheme": "scheme-5"
       }
     },
