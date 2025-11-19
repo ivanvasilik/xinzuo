@@ -229,6 +229,7 @@
               assign total_price = cart.total_price | divided_by: 100.00
               assign shipping_value = settings.shipping_value
               assign express_value = settings.express_value
+              assign enable_express = settings.enable_express_tier | default: true
               assign message2 = ""
               
               # Calculate progress based on current stage
@@ -240,8 +241,8 @@
                 # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
                 assign state_value = total_price | times: 100 | divided_by: shipping_value
                 assign progress_value = 100
-              elsif total_price < express_value
-                # Stage 2: Working toward express shipping
+              elsif total_price < express_value and enable_express
+                # Stage 2: Working toward express shipping (only if enabled)
                 assign balance = settings.express_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
                 assign message = settings.express_message
@@ -252,8 +253,12 @@
                 assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
                 assign progress_value = 100
               else
-                # Stage 3: Express shipping unlocked
-                assign message = settings.complete_message
+                # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
+                if enable_express and total_price >= express_value
+                  assign message = settings.complete_message
+                else
+                  assign message = settings.express_message
+                endif
                 assign state_value = 100
                 assign progress_value = 100
               endif

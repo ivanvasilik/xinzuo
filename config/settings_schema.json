@@ -1845,6 +1845,13 @@
         "unit": "$"
       },
       {
+        "type": "checkbox",
+        "id": "enable_express_tier",
+        "label": "Enable Express Shipping Tier",
+        "info": "Show the second progress tier for express shipping",
+        "default": true
+      },
+      {
         "type": "richtext",
         "id": "shipping_message",
         "label": "Free Shipping Message",
