@@ -465,11 +465,6 @@ header .cart-drawer__inner .cart-drawer-img {
     align-items: center;
 }
 
-.drawer-progress-bar__wrapper #native-free-shipping-progress-bar {
-    width: 660px;
-    accent-color: #ff0004;
-}
-
 .drawer-progress-bar__wrapper .shipping-value {
     width: 8px;
     height: 8px;
