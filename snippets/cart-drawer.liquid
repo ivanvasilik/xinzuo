@@ -208,7 +208,7 @@
             class="cart-drawer__header"
             id="cart-drawer-header"
           >
-            <div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
               <span class="cart-drawer__heading h3">
                 Your Cart
                 {% render 'cart-bubble' %}
@@ -219,6 +219,7 @@
                 on:click="cart-drawer-component/close"
                 class="button close-button cart-drawer__close-button button-unstyled"
                 aria-label="{{ 'actions.close_dialog' | t }}" 
+                style="position: static;"
               >
                 <span class="svg-wrapper">
                   {{- 'icon-close.svg' | inline_asset_content -}}
