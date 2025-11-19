@@ -1831,7 +1831,17 @@
         "default": 100,
         "min": 50,
         "max": 500,
-        "step": 10,
+        "step": 5,
+        "unit": "$"
+      },
+      {
+        "type": "range",
+        "id": "express_value",
+        "label": "Express amount",
+        "default": 400,
+        "min": 0,
+        "max": 500,
+        "step": 5,
         "unit": "$"
       },
       {
@@ -1842,15 +1852,15 @@
       },
       {
         "type": "richtext",
-        "id": "credit_message",
-        "label": "Credit Message",
-        "default": "<p>You've unlocked Free Delivery with your $280 order. Add just {PRICE} more to unlock up to $40 (10%) extra off.</p>",
+        "id": "express_message",
+        "label": "Express Shipping Message",
+        "default": "<p>You've unlocked Express Delivery with your $50 order. Add just {PRICE} more to unlock up to Express Delivery.</p>",
       },
       {
         "type": "richtext",
         "id": "complete_message",
-        "label": "Unlocked Free Shipping Message",
-        "default": "<p>Congrats! You've unlocked up to $40 extra off.</p>",
+        "label": "Unlocked Express Shipping Message",
+        "default": "<p>Congrats! You've unlocked up to Express Delivery.</p>",
       },
       {
         "type": "product_list",
