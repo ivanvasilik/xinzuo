@@ -266,8 +266,11 @@
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
-              <div class="progress_bar">
-                <div class="progress_state" style="width: {{ state_value }}%;"></div>
+              <div class="progress_bar" data-stage="{% if total_price < shipping_value %}1{% elsif total_price < express_value %}2{% else %}3{% endif %}">
+                <div class="progress_state_base" style="width: {% if total_price >= shipping_value %}100{% else %}{{ state_value }}{% endif %}%;"></div>
+                {% if total_price >= shipping_value and enable_express %}
+                  <div class="progress_state_express" style="width: {{ state_value }}%;"></div>
+                {% endif %}
               </div>
               {% comment %} <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
               <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
@@ -398,7 +401,16 @@
     width: 100%;
     height: 12px;
     border-radius: 12px;
-    /* Modern striped background pattern - animated diagonal lines */
+    margin: 5px 0;
+    position: relative;
+    overflow: hidden;
+    /* Smooth rendering */
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
+  }
+
+  /* Stage 1: Gray background with animated stripes */
+  .progress_bar[data-stage="1"] {
     background: repeating-linear-gradient(
       45deg,
       rgba(255, 255, 255, 0.05),
@@ -409,58 +421,72 @@
     background-color: rgba(255, 255, 255, 0.08);
     background-size: 28px 28px;
     animation: progress-stripes 1s linear infinite;
-    margin: 5px 0;
-    position: relative;
-    overflow: hidden;
-    /* Smooth rendering */
-    -webkit-font-smoothing: antialiased;
-    transform: translateZ(0);
+  }
+
+  /* Stage 2: Red stays solid, no stripes (will animate via base layer) */
+  .progress_bar[data-stage="2"],
+  .progress_bar[data-stage="3"] {
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   @keyframes progress-stripes {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 28px 0;
-    }
+    0% { background-position: 0 0; }
+    100% { background-position: 28px 0; }
   }
 
-  .progress_state {
-    background: {{ settings.progress_color }};
+  /* Base layer (red - free shipping tier) */
+  .progress_state_base {
+    background: {{ settings.progress_color | default: '#ff0004' }};
     height: 100%;
     border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
     max-width: 100%;
-    /* Smooth transition for progress updates */
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Add subtle shine effect */
-    position: relative;
+  }
+
+  /* Add stripes to red when it's full and working toward express (Stage 2) */
+  .progress_bar[data-stage="2"] .progress_state_base {
+    background: repeating-linear-gradient(
+      45deg,
+      {{ settings.progress_color | default: '#ff0004' }},
+      {{ settings.progress_color | default: '#ff0004' }} 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 20px
+    );
+    background-size: 28px 28px;
+    animation: progress-stripes 1s linear infinite;
+  }
+
+  /* Express layer (gold - express shipping tier) */
+  .progress_state_express {
+    background: {{ settings.express_progress_color | default: '#FFA500' }};
+    height: 100%;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Shine effect on express layer */
     overflow: hidden;
   }
 
-  .progress_state::after {
+  .progress_state_express::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     animation: progress-shine 2s infinite;
   }
 
   @keyframes progress-shine {
-    0% {
-      left: -100%;
-    }
-    100% {
-      left: 100%;
-    }
+    0% { left: -100%; }
+    100% { left: 100%; }
   }
 
   /* Hide dot - no longer needed */

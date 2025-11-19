@@ -1886,8 +1886,15 @@
       {
         "type": "color",
         "id": "progress_color",
-        "label": "Progress Color",
+        "label": "Free Shipping Progress Color",
         "default": "#ff0004"
+      },
+      {
+        "type": "color",
+        "id": "express_progress_color",
+        "label": "Express Shipping Progress Color",
+        "info": "Color for the second tier (fills over red when working toward express)",
+        "default": "#FFA500"
       },
       {
         "type": "color",
