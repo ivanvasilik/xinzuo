@@ -230,20 +230,33 @@
               assign shipping_value = settings.shipping_value
               assign express_value = settings.express_value
               assign message2 = ""
+              
+              # Calculate progress based on current stage
               if total_price < shipping_value
+                # Stage 1: Working toward free shipping
                 assign balance = settings.shipping_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
                 assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+                # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
+                assign state_value = total_price | times: 100 | divided_by: shipping_value
+                assign progress_value = 100
               elsif total_price < express_value
+                # Stage 2: Working toward express shipping
                 assign balance = settings.express_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
                 assign message = settings.express_message
                 assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+                # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
+                assign remaining_range = express_value | minus: shipping_value
+                assign progress_in_range = total_price | minus: shipping_value
+                assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
+                assign progress_value = 100
               else
+                # Stage 3: Express shipping unlocked
                 assign message = settings.complete_message
+                assign state_value = 100
+                assign progress_value = 100
               endif
-              assign progress_value = shipping_value | times: 100 | divided_by: express_value
-              assign state_value = total_price | times: 100 | divided_by: express_value
             -%}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
