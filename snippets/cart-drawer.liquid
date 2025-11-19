@@ -229,27 +229,48 @@
               assign total_price = cart.total_price | divided_by: 100.00
               assign shipping_value = settings.shipping_value
               assign express_value = settings.express_value
+              assign enable_express = settings.enable_express_tier | default: true
               assign message2 = ""
+              
+              # Calculate progress based on current stage
               if total_price < shipping_value
+                # Stage 1: Working toward free shipping
                 assign balance = settings.shipping_value | minus: total_price
-                assign balance_txt = balance | times: 100.00 | money_with_currency
+                assign balance_txt = balance | times: 100.00 | money
                 assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
-              elsif total_price < express_value
+                # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
+                assign state_value = total_price | times: 100 | divided_by: shipping_value
+                assign progress_value = 100
+              elsif total_price < express_value and enable_express
+                # Stage 2: Working toward express shipping (only if enabled)
                 assign balance = settings.express_value | minus: total_price
-                assign balance_txt = balance | times: 100.00 | money_with_currency
+                assign balance_txt = balance | times: 100.00 | money
                 assign message = settings.express_message
-                assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+                assign message2 = settings.express_secondary_message | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+                # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
+                assign remaining_range = express_value | minus: shipping_value
+                assign progress_in_range = total_price | minus: shipping_value
+                assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
+                assign progress_value = 100
               else
-                assign message = settings.complete_message
+                # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
+                if enable_express and total_price >= express_value
+                  assign message = settings.complete_message
+                else
+                  assign message = settings.express_message
+                endif
+                assign state_value = 100
+                assign progress_value = 100
               endif
-              assign progress_value = shipping_value | times: 100 | divided_by: express_value
-              assign state_value = total_price | times: 100 | divided_by: express_value
             -%}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
-              <div class="progress_bar">
-                <div class="progress_state" style="width: {{ state_value }}%;"></div>
+              <div class="progress_bar" data-stage="{% if total_price < shipping_value %}1{% elsif total_price < express_value %}2{% else %}3{% endif %}">
+                <div class="progress_state_base" style="width: {% if total_price >= shipping_value %}100{% else %}{{ state_value }}{% endif %}%;"></div>
+                {% if total_price >= shipping_value and enable_express %}
+                  <div class="progress_state_express" style="width: {{ state_value }}%;"></div>
+                {% endif %}
               </div>
               {% comment %} <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
               <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
@@ -378,29 +399,99 @@
 {% style %}
   .progress_bar {
     width: 100%;
-    height: 14px;
-    border: 3px solid {{ settings.border_color }};
-    border-radius: 7px;
-    background-color: {{ settings.background_color }};
+    height: 12px;
+    border-radius: 12px;
     margin: 5px 0;
+    position: relative;
+    overflow: hidden;
+    /* Smooth rendering */
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
   }
 
-  .progress_state {
-    background-color: {{ settings.progress_color }};
-    height: 100%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    max-width: 100%;
+  /* Stage 1: Gray background with animated stripes */
+  .progress_bar[data-stage="1"] {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    background-color: rgba(255, 255, 255, 0.08);
+    background-size: 28px 28px;
+    animation: progress-stripes 1s linear infinite;
   }
-  
-  .shipping-value {
+
+  /* Stage 2: Red stays solid, no stripes (will animate via base layer) */
+  .progress_bar[data-stage="2"],
+  .progress_bar[data-stage="3"] {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes progress-stripes {
+    0% { background-position: 0 0; }
+    100% { background-position: 28px 0; }
+  }
+
+  /* Base layer (red - free shipping tier) */
+  .progress_state_base {
+    background: {{ settings.progress_color | default: '#ff0004' }};
+    height: 100%;
+    border-radius: 12px;
     position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: {{ settings.dot_color }};
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Add stripes to red when it's full and working toward express (Stage 2) */
+  .progress_bar[data-stage="2"] .progress_state_base {
+    background: repeating-linear-gradient(
+      45deg,
+      {{ settings.progress_color | default: '#ff0004' }},
+      {{ settings.progress_color | default: '#ff0004' }} 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 20px
+    );
+    background-size: 28px 28px;
+    animation: progress-stripes 1s linear infinite;
+  }
+
+  /* Express layer (gold - express shipping tier) */
+  .progress_state_express {
+    background: {{ settings.express_progress_color | default: '#FFA500' }};
+    height: 100%;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Shine effect on express layer */
+    overflow: hidden;
+  }
+
+  .progress_state_express::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: progress-shine 2s infinite;
+  }
+
+  @keyframes progress-shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Hide dot - no longer needed */
+  .shipping-value {
+    display: none;
   }
 {% endstyle %}
 
