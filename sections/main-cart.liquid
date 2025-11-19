@@ -34,6 +34,7 @@
           assign message = settings.complete_message
         endif
         assign progress_value = shipping_value | times: 100 | divided_by: express_value
+        assign state_value = total_price | times: 100 | divided_by: express_value
       -%}
 
       {%- unless cart.empty? -%}
