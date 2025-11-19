@@ -53,7 +53,7 @@
     <div class="cart-summary-prices">
       <div class="cart-summary-price">
         <span>Subtotal Amount</span>
-        <span>{{ cart.total_price | money }}</span>
+        <span>{{ cart.original_total_price | money }}</span>
       </div>
       <div class="cart-summary-price">
         {% assign discount = 0 %}
