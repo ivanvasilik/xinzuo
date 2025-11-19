@@ -66,7 +66,9 @@
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
         {% assign total_price = cart.total_price | divided_by: 100.00 %}
-        {% if total_price > settings.shipping_value %}
+        {% if total_price > settings.shipping_value and total_price < settings.express_value %}
+          <span>Free Shipping</span>
+        {% elsif total_price > settings.express_value %}
           <span>Free Express Shipping</span>
         {% else %}
           <span>Calcuated at checkout</span>
