@@ -365,8 +365,7 @@
                 </button>
               </div>
               <div class="cart-drawer-cart">
-                <a href="/cart" class="mobile:hidden">GO TO CART</a>
-                <button on:click="cart-drawer-component/close" class="desktop:hidden" style="width: 100%; padding: 10px 0; font-family: 'Sen'">KEEP SHOPPING</button>
+                <a href="/cart">GO TO CART</a>
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                     <g clip-path="url(#clip0_4235_58871)">
@@ -520,14 +519,29 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: var(--cart-drawer-padding);
+    /* Reduced padding for more compact header */
+    padding: 16px 24px 12px;
     border-bottom: var(--style-border-width) solid none;
     position: sticky;
     top: 0;
     z-index: 1;
+    gap: 8px;
 
     @media screen and (min-width: 750px) {
-      padding: var(--cart-drawer-padding-desktop);
+      padding: 20px 24px 14px;
+    }
+  }
+
+  /* Reduce heading size on mobile for more compact header */
+  .cart-drawer__heading {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .cart-drawer__heading {
+      font-size: 20px;
     }
   }
 
