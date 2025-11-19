@@ -71,7 +71,7 @@
     "express_value": 200,
     "shipping_message": "<p>Add just {PRICE} more for free shipping.</p>",
     "express_message": "<p>You've unlocked Free Shipping🎉</p>",
-    "complete_message": "<p>You've unlocked Free Express Delivery.</p>",
+    "complete_message": "<p>You've unlocked Free Express Delivery 🚀</p>",
     "drawer_color_scheme": "scheme-5",
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
