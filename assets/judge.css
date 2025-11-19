@@ -345,13 +345,14 @@ header .cart-drawer__inner .cart-bubble__background {
 header .cart-drawer__inner .cart-bubble__text {
     font-family: "Sen";
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
     color: #c9c9cc;
 }
 
 header .cart-drawer__inner .cart-drawer__heading {
-    margin-bottom: 36px;
-    margin-top: 24px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    font-size: 24px;
 }
 
 header .cart-drawer__inner .cart-drawer__heading .cart-bubble[data-maintain-ratio] {
@@ -370,6 +371,10 @@ header .cart-drawer__inner .cart-drawer__header p {
 header .cart-drawer__inner .cart-drawer__header .progress-cart {
     width: 100%;
     accent-color: #ff0004;
+}
+
+header .cart-drawer__inner .cart-drawer__header .cart-drawer__close-button .svg-wrapper {
+    width: 10px;
 }
 
 header .cart-drawer__inner .cart-items__table-row {
