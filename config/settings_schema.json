@@ -1854,13 +1854,21 @@
         "type": "richtext",
         "id": "express_message",
         "label": "Express Shipping Message",
-        "default": "<p>You've unlocked Express Delivery with your $50 AUD order. Add just {PRICE} more to unlock up to Express Delivery.</p>",
+        "info": "Main message when free shipping is unlocked",
+        "default": "<p>You've unlocked Free Shipping 🎉</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "express_secondary_message",
+        "label": "Express Shipping Secondary Message",
+        "info": "Shows below main message. Use {PRICE} for remaining amount",
+        "default": "<p>Add {PRICE} more to unlock Free Express Shipping.</p>"
       },
       {
         "type": "richtext",
         "id": "complete_message",
         "label": "Unlocked Express Shipping Message",
-        "default": "<p>Congrats! You've unlocked up to Express Delivery.</p>",
+        "default": "<p>Congrats! You've unlocked up to Express Delivery.</p>"
       },
       {
         "type": "color",

@@ -245,7 +245,7 @@
                 assign balance = settings.express_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
                 assign message = settings.express_message
-                assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+                assign message2 = settings.express_secondary_message | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
                 # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
                 assign remaining_range = express_value | minus: shipping_value
                 assign progress_in_range = total_price | minus: shipping_value
