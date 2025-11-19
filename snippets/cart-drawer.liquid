@@ -229,6 +229,7 @@
               assign total_price = cart.total_price | divided_by: 100.00
               assign shipping_value = settings.shipping_value
               assign express_value = settings.express_value
+              assign message2 = ""
               if total_price < shipping_value
                 assign balance = settings.shipping_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
@@ -236,7 +237,8 @@
               elsif total_price < express_value
                 assign balance = settings.express_value | minus: total_price
                 assign balance_txt = balance | times: 100.00 | money_with_currency
-                assign message = settings.express_message | replace: '{PRICE}', balance_txt
+                assign message = settings.express_message
+                assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
               else
                 assign message = settings.complete_message
               endif
@@ -248,6 +250,9 @@
               <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress>
               <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
             </span>
+            {% if message2 != blank %}
+              <p>{{ message2 }}</p>
+            {% endif %}
           </div>
           
           <div
@@ -307,8 +312,10 @@
                 <div>
                   <p>Delivery Charges</p>
                   {% assign total_price = cart.total_price | divided_by: 100.00 %}
-                  {% if total_price > settings.shipping_value %}
+                  {% if total_price > settings.shipping_value and total_price < settings.express_value %}
                     <span>Free</span>
+                  {% elsif total_price > settings.express_value %}
+                    <span>Free Express</span>
                   {% else %}
                     <span class="calculated">Calculated at checkout</span>
                   {% endif %}
