@@ -1862,11 +1862,24 @@
         "label": "Unlocked Express Shipping Message",
         "default": "<p>Congrats! You've unlocked up to Express Delivery.</p>",
       },
-      // {
-      //   "type": "product_list",
-      //   "id": "drawer_recommend",
-      //   "label": "Recommend Products",
-      // }
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Progress Border Color",
+        "default": "#6c757d"
+      },
+      {
+        "type": "color",
+        "id": "progress_color",
+        "label": "Progress Color",
+        "default": "#ff0004"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Progress Background Color",
+        "default": "#ffffff"
+      }
     ]
   },
   {

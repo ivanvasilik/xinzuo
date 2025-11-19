@@ -243,11 +243,15 @@
                 assign message = settings.complete_message
               endif
               assign progress_value = shipping_value | times: 100 | divided_by: express_value
+              assign state_value = total_price | times: 100 | divided_by: express_value
             -%}
             
             <p id="native-free-shipping-cta">{{ message }}</p>
             <span class="progress-bar-cart" style="position: relative">
-              <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress>
+              <div class="progress_bar">
+                <div class="progress_state" style="width: {{ state_value }};"></div>
+              </div>
+              {% comment %} <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
               <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
             </span>
             {% if message2 != blank %}
@@ -370,6 +374,23 @@
     </div>
   </dialog>
 </cart-drawer-component>
+
+{% style %}
+  .progress_bar {
+    width: 100%;
+    height: 14px;
+    border: 3px solid {{ settings.border_color }};
+    border-radius: 7px;
+    background-color: {{ settings.background_color }};
+  }
+
+  .progress_state {
+    background-color: {{ settings.progress_color }};
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+{% endstyle %}
 
 {% stylesheet %}
   .cart-items-component {
