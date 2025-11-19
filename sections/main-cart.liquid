@@ -70,9 +70,9 @@
             </div>
             {% comment %} <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
             <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
-            <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span>
+            {% comment %} <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span> {% endcomment %}
           </div>
-          <span style="text-align: center;">EXPRESS DELIVERY</span>
+          {% comment %} <span style="text-align: center;">EXPRESS DELIVERY</span> {% endcomment %}
         </span>
         {% if message2 != blank %}
           <p style="padding-top: 10px;">{{ message2 }}</p>
