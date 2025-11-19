@@ -41,6 +41,7 @@
           <span>$0</span>
           <div style="position: relative">
             <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.express_value }}"></progress>
+            <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
             <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span>
           </div>
           <span style="text-align: center;">EXPRESS DELIVERY</span>
