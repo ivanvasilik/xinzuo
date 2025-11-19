@@ -236,29 +236,37 @@
 
     #native-free-shipping-progress-bar {
       width: 660px;
-      height: 14px;
-      border: 3px solid {{ settings.border_color }};
-      border-radius: 7px;
+      height: 12px;
+      /* Modern clean design: thin border with larger radius for smooth edges */
+      border: 1px solid {{ settings.border_color }};
+      border-radius: 12px;
       background-color: {{ settings.background_color }};
       margin: 5px 0;
+      /* Prevent fuzzy/pixelated edges on retina screens */
+      -webkit-font-smoothing: antialiased;
+      transform: translateZ(0);
     }
 
     .progress_state {
       background-color: {{ settings.progress_color }};
       height: 100%;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
+      border-top-left-radius: 11px;
+      border-bottom-left-radius: 11px;
       max-width: 100%;
+      /* Smooth transition for progress updates */
+      transition: width 0.3s ease;
     }
     
     .shipping-value {
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: {{ settings.dot_color }};
+      /* Clean edges on dot */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     @media screen and (max-width: 1300px) {
