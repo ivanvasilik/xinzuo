@@ -19,6 +19,7 @@
         # Use section settings with fallback to global theme settings
         assign shipping_value = section.settings.free_shipping_threshold | default: settings.shipping_value | default: 50
         assign express_value = section.settings.express_shipping_threshold | default: settings.express_value | default: 200
+        assign enable_express = section.settings.enable_express_shipping | default: true
         assign total_price = cart.total_price | divided_by: 100.00
         assign message2 = ""
         assign show_bar = section.settings.show_progress_bar | default: true
@@ -32,8 +33,8 @@
           # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
           assign state_value = total_price | times: 100 | divided_by: shipping_value
           assign progress_value = 100
-        elsif total_price < express_value
-          # Stage 2: Working toward express shipping
+        elsif total_price < express_value and enable_express
+          # Stage 2: Working toward express shipping (only if express is enabled)
           assign balance = express_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money_with_currency
           assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
@@ -44,8 +45,12 @@
           assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
           assign progress_value = 100
         else
-          # Stage 3: Express shipping unlocked
-          assign message = section.settings.progress_message_stage3 | default: settings.complete_message | default: "Free Express Delivery Unlocked!"
+          # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
+          if enable_express and total_price >= express_value
+            assign message = section.settings.progress_message_stage3 | default: settings.complete_message | default: "Free Express Delivery Unlocked!"
+          else
+            assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
+          endif
           assign state_value = 100
           assign progress_value = 100
         endif
@@ -655,6 +660,13 @@
       "type": "checkbox",
       "id": "show_progress_bar",
       "label": "Show Progress Bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_express_shipping",
+      "label": "Enable Express Shipping Goal",
+      "info": "Show the second tier for free express shipping",
       "default": true
     }
   ]
