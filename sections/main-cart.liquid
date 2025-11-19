@@ -42,7 +42,7 @@
         <span class="progress-bar">
           <span>$0</span>
           <div style="position: relative">
-            <div class="progress_bar">
+            <div id="native-free-shipping-progress-bar">
               <div class="progress_state" style="width: {{ state_value }}%;"></div>
             </div>
             {% comment %} <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
@@ -233,8 +233,8 @@
       color: #c9c9cc;
     }
 
-    .progress_bar {
-      width: 100%;
+    #native-free-shipping-progress-bar {
+      width: 660px;
       height: 14px;
       border: 3px solid {{ settings.border_color }};
       border-radius: 7px;
