@@ -373,10 +373,6 @@ header .cart-drawer__inner .cart-drawer__header .progress-cart {
     accent-color: #ff0004;
 }
 
-header .cart-drawer__inner .cart-drawer__header .cart-drawer__close-button .svg-wrapper {
-    width: 10px;
-}
-
 header .cart-drawer__inner .cart-items__table-row {
     grid-template-columns: 120px auto 0;
     gap: 0;
