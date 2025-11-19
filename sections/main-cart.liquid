@@ -28,7 +28,7 @@
         if total_price < shipping_value
           # Stage 1: Working toward free shipping
           assign balance = shipping_value | minus: total_price
-          assign balance_txt = balance | times: 100.00 | money_with_currency
+          assign balance_txt = balance | times: 100.00 | money
           assign message = section.settings.progress_message_stage1 | default: settings.shipping_message | default: "Add {PRICE} more to unlock Free Delivery." | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
           assign state_value = total_price | times: 100 | divided_by: shipping_value
@@ -36,7 +36,7 @@
         elsif total_price < express_value and enable_express
           # Stage 2: Working toward express shipping (only if express is enabled)
           assign balance = express_value | minus: total_price
-          assign balance_txt = balance | times: 100.00 | money_with_currency
+          assign balance_txt = balance | times: 100.00 | money
           assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
           assign message2 = section.settings.progress_message_stage2_secondary | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
