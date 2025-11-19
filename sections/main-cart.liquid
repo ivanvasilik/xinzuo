@@ -16,18 +16,19 @@
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
       {%- liquid 
-        assign message = settings.shipping_message
+        # Use section settings with fallback to global theme settings
+        assign shipping_value = section.settings.free_shipping_threshold | default: settings.shipping_value | default: 50
+        assign express_value = section.settings.express_shipping_threshold | default: settings.express_value | default: 200
         assign total_price = cart.total_price | divided_by: 100.00
-        assign shipping_value = settings.shipping_value
-        assign express_value = settings.express_value
         assign message2 = ""
+        assign show_bar = section.settings.show_progress_bar | default: true
         
         # Calculate progress based on current stage
         if total_price < shipping_value
           # Stage 1: Working toward free shipping
           assign balance = shipping_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money_with_currency
-          assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+          assign message = section.settings.progress_message_stage1 | default: settings.shipping_message | default: "Add {PRICE} more to unlock Free Delivery." | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
           assign state_value = total_price | times: 100 | divided_by: shipping_value
           assign progress_value = 100
@@ -35,8 +36,8 @@
           # Stage 2: Working toward express shipping
           assign balance = express_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money_with_currency
-          assign message = settings.express_message
-          assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+          assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
+          assign message2 = section.settings.progress_message_stage2_secondary | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
           assign remaining_range = express_value | minus: shipping_value
           assign progress_in_range = total_price | minus: shipping_value
@@ -44,7 +45,7 @@
           assign progress_value = 100
         else
           # Stage 3: Express shipping unlocked
-          assign message = settings.complete_message
+          assign message = section.settings.progress_message_stage3 | default: settings.complete_message | default: "Free Express Delivery Unlocked!"
           assign state_value = 100
           assign progress_value = 100
         endif
@@ -280,7 +281,7 @@
     }
 
     .progress_state {
-      background: {{ settings.progress_color }};
+      background: {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }};
       height: 100%;
       border-radius: 12px;
       max-width: 100%;
@@ -591,6 +592,70 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Free Shipping Progress Bar"
+    },
+    {
+      "type": "range",
+      "id": "free_shipping_threshold",
+      "label": "Free Shipping Threshold",
+      "info": "Cart total needed for free standard shipping",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "unit": "$",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "express_shipping_threshold",
+      "label": "Free Express Shipping Threshold",
+      "info": "Cart total needed for free express shipping",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "unit": "$",
+      "default": 200
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage1",
+      "label": "Message: Working toward free shipping",
+      "info": "Use {PRICE} placeholder for remaining amount",
+      "default": "<p>Add {PRICE} more to unlock Free Delivery.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage2",
+      "label": "Message: Free shipping unlocked",
+      "default": "<p>🎉 Free Delivery Unlocked!</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage2_secondary",
+      "label": "Message: Working toward express shipping",
+      "info": "Use {PRICE} placeholder for remaining amount",
+      "default": "<p>Add {PRICE} more to unlock Free Express Delivery.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage3",
+      "label": "Message: Express shipping unlocked",
+      "default": "<p>🚀 Free Express Delivery Unlocked!</p>"
+    },
+    {
+      "type": "color",
+      "id": "progress_bar_color",
+      "label": "Progress Bar Color",
+      "default": "#ff0004"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show Progress Bar",
+      "default": true
     }
   ]
 }
