@@ -1854,7 +1854,7 @@
         "type": "richtext",
         "id": "express_message",
         "label": "Express Shipping Message",
-        "default": "<p>You've unlocked Express Delivery with your $50 order. Add just {PRICE} more to unlock up to Express Delivery.</p>",
+        "default": "<p>You've unlocked Express Delivery with your $50 AUD order. Add just {PRICE} more to unlock up to Express Delivery.</p>",
       },
       {
         "type": "richtext",
