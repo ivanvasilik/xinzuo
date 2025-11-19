@@ -16,16 +16,22 @@
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
       {%- liquid 
-         assign message = settings.shipping_message
-         assign total_price = cart.total_price | divided_by: 100.00
-         assign shipping_value = settings.shipping_value
-         if total_price < shipping_value
+        assign message = settings.shipping_message
+        assign total_price = cart.total_price | divided_by: 100.00
+        assign shipping_value = settings.shipping_value
+        assign express_value = settings.express_value
+        if total_price < shipping_value
           assign balance = shipping_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money_with_currency
           assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
-         else
+        elsif total_price < express_value
+          assign balance = express_value | minus: total_price
+          assign balance_txt = balance | times: 100.00 | money_with_currency
+          assign message = settings.express_message | replace: '{PRICE}', balance_txt
+        else
           assign message = settings.complete_message
-         endif
+        endif
+        assign progress_value = shipping_value | times: 100 | divided_by: express_value
       -%}
 
       {%- unless cart.empty? -%}
@@ -35,9 +41,9 @@
           <span>$0</span>
           <div style="position: relative">
             <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.shipping_value }}"></progress>
-            <span style="right: 0;{% if total_price > shipping_value %}color: #fff;{% endif %}">Free Shipping</span>
+            <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span>
           </div>
-          {% comment %} <span style="text-align: center;">Free Shipping</span> {% endcomment %}
+          <span style="text-align: center;">EXPRESS DELIVERY</span>
         </span>
       </div>
       {%- endunless -%}
