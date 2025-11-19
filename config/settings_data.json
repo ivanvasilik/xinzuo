@@ -68,6 +68,7 @@
     "show_accelerated_checkout_buttons": true,
     "cart_thumbnail_border": "none",
     "shipping_value": 50,
+    "express_value": 100,
     "shipping_message": "<p>Add just {PRICE} more to unlock up to Free Delivery.</p>",
     "express_message": "<p>You've unlocked Free Delivery with your $50 AUD order. Add just {PRICE} more to unlock up to Free Express Delivery.</p>",
     "complete_message": "<p>Congrats! You've unlocked up to Free Express Delivery.</p>",
