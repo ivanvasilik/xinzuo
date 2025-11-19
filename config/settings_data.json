@@ -68,14 +68,10 @@
     "show_accelerated_checkout_buttons": true,
     "cart_thumbnail_border": "none",
     "shipping_value": 50,
+    "express_value": 100,
     "shipping_message": "<p>Add just {PRICE} more to unlock up to Free Delivery.</p>",
-    "complete_message": "<p>Congrats! You've unlocked up to Free Delivery.</p>",
-    "drawer_recommend": [
-      "hezhen-retro-series-10-inch-carving-knife",
-      "xinzuo-mo-series-10-inch-carving-knife",
-      "xinzuo-w-series-whetstone-sharpening-stone",
-      "xinzuo-hezhen-end-grain-chopping-board-xl"
-    ],
+    "express_message": "<p>You've unlocked Free Shipping 🎉.</p>",
+    "complete_message": "<p>Congrats! You've unlocked up to Free Express Delivery.</p>",
     "drawer_color_scheme": "scheme-5",
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
@@ -97,6 +93,12 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "drawer_recommend": [
+      "hezhen-retro-series-10-inch-carving-knife",
+      "xinzuo-mo-series-10-inch-carving-knife",
+      "xinzuo-w-series-whetstone-sharpening-stone",
+      "xinzuo-hezhen-end-grain-chopping-board-xl"
+    ],
     "content_for_index": [],
     "blocks": {
       "14060646107696862457": {
