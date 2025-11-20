@@ -178,7 +178,10 @@
               "name": "Delivery Estimate",
               "settings": {
                 "cutoff_time": "12:00",
+                "price": 60,
+                "free_delivery_state": true,
                 "free_delivery": "FAST SHIPPING",
+                "in_stock_state": true,
                 "in_stock": "IN STOCK",
                 "delivery_content": "Earliest delivery: Enter suburb or postcode",
                 "enable_public_holidays": true,
@@ -963,7 +966,7 @@
       "name": "Product Info",
       "settings": {
         "width": "page",
-        "image": "shopify://shop_images/product-pm8s-003_2x_a3d0418e-6c2d-45f2-84dc-7e9a4d2be98f.png",
+        "image": "shopify://shop_images/03.jpg",
         "header_type": "left",
         "heading": "",
         "content": "<p>It's all about <strong>smart performance</strong>. The high-carbon core holds a razor edge, while the alloys keep it <strong>tough and chip-free</strong>. </p>",
