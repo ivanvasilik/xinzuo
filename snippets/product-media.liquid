@@ -48,9 +48,9 @@
       style: focal_point_style
   }}
 
-  {% if product.compare_at_price and product.compare_at_price > product.price %}
-    {% assign discount = product.compare_at_price | minus: product.price %}
-    {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+  {% if selected_product.compare_at_price and selected_product.compare_at_price > selected_product.price %}
+    {% assign discount = selected_product.compare_at_price | minus: selected_product.price %}
+    {% assign percent = discount | times: 100 | divided_by: selected_product.compare_at_price %}
     <span class="price-off">{{ percent }}% OFF</span>
   {% endif %}
 
