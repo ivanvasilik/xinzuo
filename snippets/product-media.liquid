@@ -48,6 +48,7 @@
       style: focal_point_style
   }}
 
+  {{ selected_product | json }}
   {% if selected_product.compare_at_price and selected_product.compare_at_price > selected_product.price %}
     {% assign discount = selected_product.compare_at_price | minus: selected_product.price %}
     {% assign percent = discount | times: 100 | divided_by: selected_product.compare_at_price %}
