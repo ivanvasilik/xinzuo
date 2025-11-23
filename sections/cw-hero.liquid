@@ -81,6 +81,10 @@
         display: none;
     }
 
+    .section-{{ section.id }} .header-title {
+        
+    }
+
     @media screen and (max-width: 1150px) {
         .section-{{ section.id }} .hero-banner-content {
             width: 400px;
@@ -154,6 +158,9 @@
 
 <section class="section-{{ section.id }}">
     <div>
+        {% if section.settings.header_title != blank %}
+            <p class="header-title">{{ section.settings.header_title }}</p>
+        {% endif %}
         <div class="hero-banner">
             <div class="hero-banner-content">
                 <span class="desktop">{{ section.settings.heading_desktop }}</span>
@@ -217,6 +224,11 @@
 {
     "name": "CW Hero",
     "settings": [
+        {
+            "type": "text",
+            "id": "header_title",
+            "label": "Header Title"
+        },
         {
             "type": "richtext",
             "id": "heading_desktop",
