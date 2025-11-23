@@ -235,7 +235,9 @@
                             {% if product.available == false %}
                                 <span class="sold">Sold Out</span>
                             {% endif %}
-                            <span class="price-off">20% OFF</span>
+                            {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                <span class="price-off">20% OFF</span>
+                            {% endif %}
                         </a>
                         <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
 
