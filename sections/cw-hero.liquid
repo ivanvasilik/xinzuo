@@ -88,6 +88,9 @@
         padding: 5px 0;
         font-family: "Sen";
         font-size: {{ section.settings.header_size }}px;
+        max-width: 1440px;
+        margin: auto;
+        background-color: {{ section.settings.header_background }};
     }
 
     @media screen and (max-width: 1150px) {
@@ -263,6 +266,12 @@
             "id": "header_color",
             "label": "Header Font Color",
             "default": "#ff0004"
+        },
+        {
+            "type": "color",
+            "id": "header_background",
+            "label": "Header Background",
+            "default": "#000000"
         },
         {
             "type": "richtext",
