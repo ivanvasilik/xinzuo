@@ -272,7 +272,7 @@
                           <li><a href="{{ collection.url }}">view all</a></li>
                         {% endif %}
                       </ul>
-                      <div>
+                      <div class="menu-img">
                         {% if collection.featured_image != blank %}
                           <img
                             src="{{ collection.featured_image | img_url: 'master' }}"
@@ -448,6 +448,20 @@
     margin: 0;
     padding: 0;
     align-items: center;
+  }
+
+  .menu-img {
+    position: relative;
+  }
+
+  .menu-img .price-off {
+    position: absolute;
+    background-color: #ff0004;
+    padding: 5px 10px;
+    border-radius: 20px;
+    top: 10px;
+    left: 15px;
+    font-size: 12px;
   }
 {% endstyle %}
 
