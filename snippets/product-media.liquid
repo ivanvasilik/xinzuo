@@ -48,6 +48,8 @@
       style: focal_point_style
   }}
 
+  <span class="price-off">20% OFF</span>
+
   {% unless preview_image_only %}
     {%- case media.media_type -%}
       {% when 'model' %}
@@ -210,5 +212,14 @@
   ::view-transition-old(gallery-item),
   ::view-transition-new(gallery-item) {
     animation-duration: 0ms;
+  }
+
+  .product-media .price-off {
+    position: absolute;
+    background-color: #ff0004;
+    padding: 5px 15px;
+    border-radius: 20px;
+    top: 10px;
+    left: 15px;
   }
 {% endstylesheet %}
