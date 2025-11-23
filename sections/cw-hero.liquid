@@ -83,11 +83,11 @@
 
     .section-{{ section.id }} .header-title {
         text-align: center;
-        color: #ff0004;
+        color: {{ section.settings.header_color }};
         margin: 0;
         padding: 5px 0;
         font-family: "Sen";
-        font-size: 16px;
+        font-size: {{ section.settings.header_size }}px;
     }
 
     @media screen and (max-width: 1150px) {
@@ -233,6 +233,22 @@
             "type": "text",
             "id": "header_title",
             "label": "Header Title"
+        },
+        {
+            "type": "range",
+            "id": "header_size",
+            "label": "Header Font Size",
+            "min": 14,
+            "max": 24,
+            "unit": "px",
+            "step": 1,
+            "default": 16
+        },
+        {
+            "type": "color",
+            "id": "header_color",
+            "label": "Header Font Color",
+            "default": "#ff0004"
         },
         {
             "type": "richtext",
