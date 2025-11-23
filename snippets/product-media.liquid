@@ -48,7 +48,11 @@
       style: focal_point_style
   }}
 
-  <span class="price-off">20% OFF</span>
+  {% if product.compare_at_price and product.compare_at_price > product.price %}
+    {% assign discount = product.compare_at_price | minus: product.price %}
+    {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+    <span class="price-off">{{ percent }}% OFF</span>
+  {% endif %}
 
   {% unless preview_image_only %}
     {%- case media.media_type -%}
