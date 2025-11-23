@@ -150,7 +150,7 @@
         }
 
         .section-{{ section.id }} .header-title {
-            font-size: 14px;
+            font-size: {{ section.settings.header_mobile_size }}px;
         }
     }
 
@@ -247,6 +247,16 @@
             "unit": "px",
             "step": 1,
             "default": 16
+        },
+        {
+            "type": "range",
+            "id": "header_mobile_size",
+            "label": "Header Font Size(mobile)",
+            "min": 12,
+            "max": 20,
+            "unit": "px",
+            "step": 1,
+            "default": 14
         },
         {
             "type": "color",
