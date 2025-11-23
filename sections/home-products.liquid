@@ -236,7 +236,9 @@
                                 <span class="sold">Sold Out</span>
                             {% endif %}
                             {% if product.compare_at_price and product.compare_at_price > product.price %}
-                                <span class="price-off">20% OFF</span>
+                                {% assign discount = product.compare_at_price | minus: product.price %}
+                                {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                                <span class="price-off">{{ percent }}% OFF</span>
                             {% endif %}
                         </a>
                         <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
