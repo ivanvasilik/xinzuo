@@ -124,7 +124,9 @@
                       {% assign collection_handle = sublink.url | split: "/" | last %}
                       {% assign collection = collections[collection_handle] %}
                       <a href="{{ collection.url }}">
-                        <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection-{{ collection.id }}">
+                        <div>
+                          <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection-{{ collection.id }}">
+                        </div>
                         <h4>{{ sublink.title }} ></h4>
                       </a>
                     {% endfor %}
