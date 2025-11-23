@@ -178,7 +178,10 @@
               "type": "delivery-estimate",
               "settings": {
                 "cutoff_time": "12:00",
+                "price": 60,
+                "free_delivery_state": true,
                 "free_delivery": "FAST SHIPPING",
+                "in_stock_state": true,
                 "in_stock": "IN STOCK",
                 "delivery_content": "Earliest delivery: Enter suburb or postcode",
                 "enable_public_holidays": true,
@@ -194,6 +197,7 @@
             },
             "coupon_discount_block": {
               "type": "coupon-discount",
+              "disabled": true,
               "settings": {
                 "coupon_code": "BFSALE20",
                 "coupon_text": "Use this code at checkout for 20% off",

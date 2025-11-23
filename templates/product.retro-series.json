@@ -198,6 +198,7 @@
             "coupon_discount_retro": {
               "type": "coupon-discount",
               "name": "Coupon Discount",
+              "disabled": true,
               "settings": {
                 "coupon_code": "BFSALE20",
                 "coupon_text": "Use this code at checkout for 20% off",
