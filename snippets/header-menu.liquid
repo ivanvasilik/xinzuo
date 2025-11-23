@@ -289,6 +289,16 @@
                             alt="{{ firstimage.title | escape }}"
                           >
                         {% endif %}
+                        {% assign sum = 0 %}
+                        {% for product in collection.products %}
+                          {% if product.compare_at_price and product.compare_at_price > product.price %}
+                            {% assign discount = product.compare_at_price | minus: product.price %}
+                            {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                            {% assign sum = sum | plus: percent %}
+                          {% endif %}
+                        {% endfor %}
+                        {% assign sum = sum | divided_by: collection.products.size %}
+                          <span class="price-off">{{ sum }}% OFF</span>
                       </div>
                     {% endif %}
                   </li>
