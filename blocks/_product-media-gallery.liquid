@@ -344,10 +344,10 @@
         -%}
         {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
           <div class="product-media-constraint-wrapper">
-            {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+            {%- render 'product-media', media: media, product: product, sizes: media_sizes, is_main_product_media: forloop.first -%}
           </div>
         {% else %}
-          {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+          {%- render 'product-media', media: media, product: product, sizes: media_sizes, is_main_product_media: forloop.first -%}
         {% endif %}
       {% endcapture %}
       {% capture class %}
@@ -449,10 +449,10 @@
           -%}
           {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
             <div class="product-media-constraint-wrapper">
-              {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+              {%- render 'product-media', media: media, product: product, sizes: media_sizes, is_main_product_media: forloop.first -%}
             </div>
           {% else %}
-            {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+            {%- render 'product-media', media: media, product: product, sizes: media_sizes, is_main_product_media: forloop.first -%}
           {% endif %}
         </li>
       {% endfor %}
@@ -541,6 +541,7 @@
                 <drag-zoom-wrapper class="product-media__drag-zoom-wrapper">
                   {%- render 'product-media',
                     media: media,
+                    product: product,
                     sizes: '100vw',
                     loading: 'lazy',
                     is_main_product_media: forloop.first
@@ -549,6 +550,7 @@
               {% else %}
                 {%- render 'product-media',
                   media: media,
+                  product: product,
                   sizes: '100vw',
                   loading: 'lazy',
                   is_main_product_media: forloop.first

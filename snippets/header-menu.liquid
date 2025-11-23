@@ -272,22 +272,34 @@
                           <li><a href="{{ collection.url }}">view all</a></li>
                         {% endif %}
                       </ul>
-                      {% if collection.featured_image != blank %}
-                        <img
-                          src="{{ collection.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ collection.title | escape }}"
-                        >
-                      {% else %}
-                        {% assign firstimage = collection.collections.first %}
-                        <img
-                          src="{{ firstimage.featured_image | img_url: 'master' }}"
-                          width="100%"
-                          height="100%"
-                          alt="{{ firstimage.title | escape }}"
-                        >
-                      {% endif %}
+                      <div class="menu-img">
+                        {% if collection.featured_image != blank %}
+                          <img
+                            src="{{ collection.featured_image | img_url: 'master' }}"
+                            width="100%"
+                            height="100%"
+                            alt="{{ collection.title | escape }}"
+                          >
+                        {% else %}
+                          {% assign firstimage = collection.collections.first %}
+                          <img
+                            src="{{ firstimage.featured_image | img_url: 'master' }}"
+                            width="100%"
+                            height="100%"
+                            alt="{{ firstimage.title | escape }}"
+                          >
+                        {% endif %}
+                        {% assign sum = 0 %}
+                        {% for product in collection.products %}
+                          {% if product.compare_at_price and product.compare_at_price > product.price %}
+                            {% assign discount = product.compare_at_price | minus: product.price %}
+                            {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                            {% assign sum = sum | plus: percent %}
+                          {% endif %}
+                        {% endfor %}
+                        {% assign sum = sum | divided_by: collection.products.size %}
+                        <span class="price-off">{{ sum }}% OFF</span>
+                      </div>
                     {% endif %}
                   </li>
                 {% endfor %}
@@ -436,6 +448,20 @@
     margin: 0;
     padding: 0;
     align-items: center;
+  }
+
+  .menu-img {
+    position: relative;
+  }
+
+  .menu-img .price-off {
+    position: absolute;
+    background-color: #ff0004;
+    padding: 5px 10px;
+    border-radius: 20px;
+    top: 10px;
+    left: 15px;
+    font-size: 12px;
   }
 {% endstyle %}
 

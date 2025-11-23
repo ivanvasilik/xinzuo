@@ -335,6 +335,20 @@
         border-bottom: 1px solid #c9c9cc;
     }
 
+    .section-{{ section.id }} .relative-product {
+        position: relative;
+    }
+
+    .section-{{ section.id }} .relative-product .price-off {
+        position: absolute;
+        background-color: #ff0004;
+        padding: 5px 10px;
+        border-radius: 20px;
+        top: 10px;
+        left: 15px;
+        font-size: 12px;
+    }
+
     @media screen and (max-width: 1025px) {
         .section-{{ section.id }} .swiper-slide h2 {
             font-size: 22px;
@@ -403,7 +417,14 @@
                 <div class="swiper-wrapper">
                     {% for product in collection.products %}
                         <div class="swiper-slide swiper-slide-{{ forloop.index }}">
-                            <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}"></a>
+                            <a href="{{ product.url }}" class="relative-product">
+                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
+                                {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                    {% assign discount = product.compare_at_price | minus: product.price %}
+                                    {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                                    <span class="price-off">{{ percent }}% OFF</span>
+                                {% endif %}
+                            </a>
                             <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
                             <!-- Start of Judge.me Rating Widget -->
                             <div class="jdgm-widget jdgm-preview-badge" 

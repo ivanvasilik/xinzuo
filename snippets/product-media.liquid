@@ -48,6 +48,12 @@
       style: focal_point_style
   }}
 
+  {% if product.compare_at_price and product.compare_at_price > product.price %}
+    {% assign discount = product.compare_at_price | minus: product.price %}
+    {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+    <span class="price-off">{{ percent }}% OFF</span>
+  {% endif %}
+
   {% unless preview_image_only %}
     {%- case media.media_type -%}
       {% when 'model' %}
@@ -210,5 +216,15 @@
   ::view-transition-old(gallery-item),
   ::view-transition-new(gallery-item) {
     animation-duration: 0ms;
+  }
+
+  .product-media .price-off {
+    position: absolute;
+    background-color: #ff0004;
+    padding: 5px 10px;
+    border-radius: 20px;
+    top: 10px;
+    left: 15px;
+    font-size: 12px;
   }
 {% endstylesheet %}
