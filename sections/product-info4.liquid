@@ -403,7 +403,10 @@
                 <div class="swiper-wrapper">
                     {% for product in collection.products %}
                         <div class="swiper-slide swiper-slide-{{ forloop.index }}">
-                            <a href="{{ product.url }}" style="position: relative;"><img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}"></a>
+                            <a href="{{ product.url }}" class="relative-product">
+                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product slider {{ forloop.index }}">
+                                <span class="price-off">20% OFF</span>
+                            </a>
                             <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
                             <!-- Start of Judge.me Rating Widget -->
                             <div class="jdgm-widget jdgm-preview-badge" 
