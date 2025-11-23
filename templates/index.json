@@ -133,6 +133,7 @@
       "type": "cw-hero",
       "name": "CW Hero",
       "settings": {
+        "header_title": "🔥 BLACK FRIDAY UP TO 20% OFF STOREWIDE 🔥",
         "heading_desktop": "<h2>Look Sharp, Australia.</h2>",
         "content_desktop": "<p>We’re the official home of Xinzuo in Australia, bringing game-changing sharpness straight to your door.</p>",
         "heading_mobile": "<h2>Look Sharp, Australia.</h2>",
