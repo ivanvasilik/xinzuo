@@ -45,7 +45,7 @@
     </div>
   {% endif %}
   
-  <h2 id="product-variant-title" class="product-title">{{ current_collection.title }} — {{ product.title | split: " - " | last }}</h2>
+  <h2 id="product-variant-title" class="product-title">{% unless current_collection == "ACCESSORIES" %}{{ current_collection.title }} — {% endunless %}{{ product.title | split: " - " | last }}</h2>
 </div>
 
 {% stylesheet %}
