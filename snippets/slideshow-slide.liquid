@@ -38,5 +38,11 @@
   {% endif %}
   {{ attributes }}
 > {% endcomment %}
+<div
+  {% if class != blank %}
+    class="{{ class }}"
+  {% endif %}
+>
   {{ children }}
+</div>
 {% comment %} </slideshow-slide> {% endcomment %}
