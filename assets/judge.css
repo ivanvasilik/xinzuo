@@ -960,6 +960,11 @@ aside {
     background-color: white !important;
 }
 
+#clsxngxzl0oj .cl-po--option {
+    padding: 5px 10px;
+    border: 1px solid grey;
+}
+
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
 .cart-drawer__items::-webkit-scrollbar-track       { background: #FAFAFA; }
 .cart-drawer__items::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
