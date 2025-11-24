@@ -158,6 +158,12 @@
               },
               "block_order": []
             },
+            "live_product_options_app_block_cPGYiW": {
+              "type": "shopify://apps/live-product-options/blocks/app-block/88bfdf40-5e27-4962-a966-70c8d1e87757",
+              "settings": {
+                "product": "{{closest.product}}"
+              }
+            },
             "product_features": {
               "type": "_product-features",
               "settings": {
@@ -851,6 +857,7 @@
             "afterpay_custom",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "live_product_options_app_block_cPGYiW",
             "product_features",
             "delivery_estimate_agXMCB",
             "coupon_discount_retro",
@@ -873,26 +880,6 @@
         "equal_columns": false,
         "limit_details_width": false,
         "is_knife": true,
-        "shipping_title1": "Earliest Delivery Tomorrow to",
-        "shipping_title2": "Carina, 4152",
-        "shipping_icon1": "shopify://shop_images/ClockCounterClockwise_7c120623-bc70-461d-a26e-3764c1069a3b.png",
-        "shipping_content1": "18 hours left, for get it by tomorrow",
-        "shipping_icon2": "shopify://shop_images/Truck_08a77173-2c8e-48af-9d47-2036c9c77ed4.png",
-        "shipping_content2": "Free Delivery on order worth $400",
-        "detail_content": "SamMai 3-layers composite chef knife offering refined sharpness, long-lasting edge retention, and comfortable balance for precise, professional-grade cooking.",
-        "detail_icon1": "shopify://shop_images/StackSimple.png",
-        "detail_info1": "<p><strong>3-Layer Forged</strong></p><p>Composite</p>",
-        "detail_icon2": "shopify://shop_images/Hammer.png",
-        "detail_info2": "<p><strong>~60 ±1 HRC</strong></p><p>Blade Hardness</p>",
-        "detail_icon3": "shopify://shop_images/PuzzlePiece.png",
-        "detail_info3": "<p>10Cr15CoMoV</p><p>VG10 equivalent </p>",
-        "contact_heading": "Have any question",
-        "contact_icon1": "shopify://shop_images/Phone_1.png",
-        "contact_info1": "<p>Phone</p><p>+ 123 456 7890</p>",
-        "contact_icon2": "shopify://shop_images/EnvelopeSimple_1.png",
-        "contact_info2": "<p>Email</p><p>support@xinzuo.com.au</p>",
-        "contact_icon3": "shopify://shop_images/Headset_1.png",
-        "contact_info3": "<p>Support</p><p>Mon-Fri: 8am-10pm</p>",
         "gap": 48,
         "color_scheme": "scheme-5",
         "padding-block-start": 0,
