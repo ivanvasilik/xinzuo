@@ -948,8 +948,8 @@ aside {
     border: none;
 }
 
-.cl-po--option .choices__inner, .cl-po--option .choices__list--dropdown .choices__item {
-    padding: 5px 0 !important;
+.choices__list--dropdown .choices__list {
+    overflow: hidden;
 }
 
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
