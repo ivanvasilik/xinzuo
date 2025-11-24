@@ -19,7 +19,7 @@
   assign style = style | strip | strip_newlines
 -%}
 
-<slideshow-slide
+{% comment %} <slideshow-slide
   ref="slides[]"
   aria-hidden="{% if index == 0 %}false{% else %}true{% endif %}"
   style="view-timeline-name: --slide-{{ index }}; --product-media-fit: {{ media_fit | default: 'cover' }};"
@@ -37,6 +37,6 @@
     hidden
   {% endif %}
   {{ attributes }}
->
+> {% endcomment %}
   {{ children }}
-</slideshow-slide>
+{% comment %} </slideshow-slide> {% endcomment %}
