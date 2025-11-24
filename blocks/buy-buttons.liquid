@@ -71,6 +71,8 @@
           class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
           style="{% render 'spacing-style', settings: block_settings %}"
         >
+          {% content_for 'block', type: 'add-custom-text', id: 'add-custom-text' %}
+
           {% content_for 'block', type: 'quantity', id: 'quantity' %}
 
           {% content_for 'block',
