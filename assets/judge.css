@@ -931,11 +931,17 @@ aside {
 
 #clsxngxzl0oj .cl-po--collapse.cl-po--edit {
     border: none !important;
+    padding-top: 5px;
+    padding-left: 5px;
 }
 
 .cl-po--open+.cl-po--panel.cl-po--edit {
     border: none;
     padding: 0 !important;
+}
+
+#clsxngxzl0oj .cl-po--swatch {
+    border: none;
 }
 
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
