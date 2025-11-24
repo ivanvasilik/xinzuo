@@ -949,7 +949,7 @@ aside {
 }
 
 .choices__list--dropdown .choices__list {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
