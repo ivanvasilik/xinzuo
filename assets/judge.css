@@ -944,6 +944,10 @@ aside {
     border: none;
 }
 
+#clsxngxzl0oj .cl-po--input {
+    border: none;
+}
+
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
 .cart-drawer__items::-webkit-scrollbar-track       { background: #FAFAFA; }
 .cart-drawer__items::-webkit-scrollbar-thumb       { background: rgba(32, 74, 52, 0.5); }
