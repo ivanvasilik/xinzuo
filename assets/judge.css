@@ -957,7 +957,7 @@ aside {
 }
 
 .cl-po--font-selector .choices[data-type*=select-one] .choices__inner {
-    background-color: white;
+    background-color: white !important;
 }
 
 .cart-drawer__items::-webkit-scrollbar             { width: 10px; }
