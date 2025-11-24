@@ -472,10 +472,9 @@
                         href="{{ item.url }}"
                         class="cart-items__media-container"
                       >
-                        {{ item | json }}
-                        {% comment %} {%- liquid
+                        {%- liquid
                           echo item.image | image_url: width: 250 | image_tag: class: 'cart-items__media-image border-style', style: border_override
-                        -%} {% endcomment %}
+                        -%}
                       </a>
                     {%- endif %}
                   </td>
