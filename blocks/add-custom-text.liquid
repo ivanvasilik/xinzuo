@@ -1,0 +1,30 @@
+{% liquid
+    assign class = 'add-to-cart-button ' | append: block.settings.style_class
+    assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+%}
+
+<span
+    {{ block.shopify_attributes }}
+    style="--add-to-cart-font-case: {{ settings.button_text_case }};"
+>
+    Add custom Text
+</span>
+
+{% schema %}
+{
+    "name": "t:names.add_to_cart",
+    "tag": null,
+    "settings": [
+        {
+            "type": "select",
+            "id": "style_class",
+            "label": "t:settings.style",
+            "options": [
+                { "value": "button", "label": "t:options.primary" },
+                { "value": "button-secondary", "label": "t:options.secondary" }
+            ],
+            "default": "button-secondary"
+        }
+    ]
+}
+{% endschema %}
