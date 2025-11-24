@@ -122,12 +122,6 @@
               },
               "blocks": {}
             },
-            "live_product_options_app_block_cgEWxa": {
-              "type": "shopify://apps/live-product-options/blocks/app-block/88bfdf40-5e27-4962-a966-70c8d1e87757",
-              "settings": {
-                "product": "{{closest.product}}"
-              }
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -164,6 +158,12 @@
                 }
               },
               "block_order": []
+            },
+            "live_product_options_app_block_cgEWxa": {
+              "type": "shopify://apps/live-product-options/blocks/app-block/88bfdf40-5e27-4962-a966-70c8d1e87757",
+              "settings": {
+                "product": "{{closest.product}}"
+              }
             },
             "product_features": {
               "type": "_product-features",
@@ -769,8 +769,8 @@
             "price_custom",
             "afterpay_custom",
             "variant_picker_qYHynj",
-            "live_product_options_app_block_cgEWxa",
             "buy_buttons_eYQEYi",
+            "live_product_options_app_block_cgEWxa",
             "product_features",
             "delivery_estimate_block",
             "coupon_discount_block",
