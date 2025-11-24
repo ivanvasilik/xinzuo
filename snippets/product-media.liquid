@@ -20,7 +20,7 @@
   assign widths = widths | default: '240, 352, 832, 1200, 1600, 1920, 2560, 3840'
 %}
 
-{% comment %} <div
+<div
   class="product-media"
   style="--ratio: {{ media.aspect_ratio }}"
   data-media-id="{{ media.id }}"
@@ -137,22 +137,7 @@
         -%}
     {% endcase %}
   {% endunless %}
-</div> {% endcomment %}
-
-  {{
-    media.preview_image
-    | image_url: width: 3840
-    | image_tag:
-      widths: widths,
-      alt: media.alt,
-      sizes: sizes,
-      loading: loading,
-      class: 'product-media__image',
-      transitionToProduct: settings.transition_to_main_product,
-      data_max_resolution: high_res_url,
-      fetchpriority: fetch_priority,
-      style: focal_point_style
-  }}
+</div>
 
 {% stylesheet %}
   .product-media {
