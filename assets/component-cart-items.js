@@ -128,20 +128,31 @@ class CartItemsComponent extends Component {
 
         const feeItem = items.find(i => i.id === 43776032178227);
         if (!feeItem) return;
-        console.log(mainItem.quantity);
 
         const feeQty = feeItem.quantity + quantity - mainItem.quantity;
         console.log(feeQty);
-        const feeLine = items.indexOf(feeItem) + 1;
-        await fetch("/cart/change.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            line: feeLine,
-            quantity: feeQty
-          })
-        });
-        
+        if(quantity != 0) {
+          const feeLine = items.indexOf(feeItem) + 1;
+          await fetch("/cart/change.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              line: feeLine,
+              quantity: feeQty
+            })
+          });
+        } else {
+          const feeLine = items.indexOf(feeItem);
+          await fetch("/cart/change.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              line: feeLine,
+              quantity: feeQty
+            })
+          });
+        }
+
         const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
         const sections = await sectionsRes.json();
 
