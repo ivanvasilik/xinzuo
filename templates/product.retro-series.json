@@ -133,6 +133,14 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "engraving-option": {
+                  "type": "engraving-option",
+                  "static": true,
+                  "settings": {
+                    "engraving_title": "<p>Text for engraving<br/><strong>Maximum 20 characters.</strong> Text only - no images or emojis.</p>"
+                  },
+                  "blocks": {}
+                },
                 "quantity": {
                   "type": "quantity",
                   "disabled": true,
