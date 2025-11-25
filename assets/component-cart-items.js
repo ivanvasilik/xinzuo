@@ -141,7 +141,7 @@ class CartItemsComponent extends Component {
             })
           });
         } else {
-          const mainLine = item.indexOf(mainItem);
+          const mainLine = items.indexOf(mainItem);
           const feeLine = items.indexOf(feeItem);
           if(mainLine > feeLine) {
             console.log(feeLine);
