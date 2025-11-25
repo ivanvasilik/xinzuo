@@ -47,36 +47,61 @@
         window.engravingText = e.target.value;
     });
 
-    {% comment %} document.addEventListener("DOMContentLoaded", () => {
-        const engraveBlock = document.querySelector(".engrave-btns");
-        if(!engraveBlock) return;
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector('form[data-type="add-to-cart-form"]');
+        if (!form) return;
 
-        const form = engraveBlock.closest("form");
-        if(!form) return;
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            event.stopPropagation();
 
-        const addBtn = form.querySelector("button[name='add']");
-        if(!addBtn) return;
+            const quantity = Number(form.querySelector("[name='quantity']")?.value || 1);
+            const variantId = form.querySelector("[name='id']")?.value;
+            const FEE_VARIANT_ID = 43776032178227;
 
-        const FEE_VARIANT_ID = 43776032178227;
-        addBtn.addEventListener("click", () => {
-            if(!window.engravingSelected) return;
-            
-            fetch("/cart/add.js", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id: FEE_VARIANT_ID,
-                    quantity: 1,
-                }),
-            }).then(() => {
-                setTimeout(() => {
-                    window.dispatchEvent(new CustomEvent("cart:refresh"));
-                }, 1000)
-            }).catch((err) =>
-                console.error("Failed to add engraving fee product:", err)
-            );
-        })
-    }) {% endcomment %}
+            if (!variantId) return;
+
+            try {
+                const btn = form.querySelector(".add-to-cart-button");
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerText = "Adding...";
+                }
+
+                await fetch("/cart/add.js", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        id: variantId,
+                        quantity: quantity,
+                        properties: window.engravingSelected
+                            ? { "Engraving Text": window.engravingText }
+                            : {}
+                    })
+                });
+
+                if (window.engravingSelected && window.engravingText !== "") {
+                    await fetch("/cart/add.js", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            id: FEE_VARIANT_ID,
+                            quantity: quantity,
+                            properties: {
+                                "Engraving Text": window.engravingText
+                            }
+                        })
+                    });
+                }
+
+                window.location.href = "/cart";
+
+            } catch (err) {
+                console.error("Engraving add error:", err);
+            }
+        }, { capture: true });
+    })
 </script>
 
 {% schema %}
