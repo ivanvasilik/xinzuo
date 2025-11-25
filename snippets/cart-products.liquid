@@ -529,7 +529,11 @@
                       <div class="cart-drawer-price">
                         {% if item.original_price != item.final_price %}
                           <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
-                          <span>{{ item.final_price | money }}</span>
+                          {% if item.properties["Engraving Fee"] %}
+                            <span>{{ item.final_price | plus: item.properties["Engraving Fee"] | money }}</span>
+                          {% else %}
+                            <span>{{ item.final_price | money }}</span>
+                          {% endif %}
                           <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
                           <s class="compare-at-price">
                             {% if item.variant.compare_at_price > item.original_price %}
@@ -540,7 +544,6 @@
                           </s>
                         {% else %}
                           <span>{{ item.original_price | money }}</span>
-                          {{ item.properties["Engraving Fee"] }}
                           {% if item.variant.compare_at_price > item.original_price %}
                             <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
                           {% else %}
