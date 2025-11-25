@@ -95,8 +95,8 @@
     document.querySelector('#engravedInput').addEventListener("input", e => {
         window.engravingText = e.target.value;
         const countSpan = document.querySelector(".engraving-count");
-        countText = window.engravingText.length;
-        console.log(countText);
+        totalLength = countSpan.textContent.split("/")[1];
+        countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
     });
 
     {% comment %} document.addEventListener("cart:update", async () => {
