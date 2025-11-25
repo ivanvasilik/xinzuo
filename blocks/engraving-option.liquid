@@ -85,6 +85,7 @@
             if (num == 0) {
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
+                window.engravingText = "";
             } else {
                 engraveDiv.style.display = "block";
                 window.engravingSelected = true;
@@ -98,21 +99,6 @@
         totalLength = countSpan.textContent.split("/")[1];
         countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
     });
-
-    {% comment %} document.addEventListener("cart:update", async () => {
-        const changed = await syncEngravingFeeQuantity();
-        if (changed) {
-            setTimeout(async () => {
-            const res = await fetch("/?sections=cart-drawer,cart-icon-bubble");
-            const sections = await res.json();
-            document.dispatchEvent(
-                new CustomEvent("cart:update", {
-                    detail: { data: { sections } },
-                })
-            );
-            }, 60);
-        }
-    }); {% endcomment %}
 </script>
 
 {% schema %}
