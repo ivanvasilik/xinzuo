@@ -22,6 +22,7 @@
 
 <script>
     window.engravingSelected = false;
+    window.engravingText = "";
     const engrave = (num) => {
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
@@ -42,7 +43,11 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector('#engravedInput').addEventListener("input", e => {
+        window.engravingText = e.target.value;
+    });
+
+    {% comment %} document.addEventListener("DOMContentLoaded", () => {
         const engraveBlock = document.querySelector(".engrave-btns");
         if(!engraveBlock) return;
 
@@ -71,7 +76,7 @@
                 console.error("Failed to add engraving fee product:", err)
             );
         })
-    })
+    }) {% endcomment %}
 </script>
 
 {% schema %}
