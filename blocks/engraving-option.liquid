@@ -8,7 +8,7 @@
         <span>{{ block.settings.engraving_title }}</span>
         <input type="text" name="properties[Engraving Message]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
     </div>
-    <input type="text" name="properties[Engraving Fee]">
+    <input type="hidden" name="properties[Engraving Fee]" id="engravingFee" value="0">
 </div>
 
 {% style %}
@@ -25,6 +25,7 @@
     const engrave = (num) => {
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
+        const engraveFee = document.getElementById("engravingFee");
         if (engraves.length > 0) {
             engraves.forEach(engrave => {
                 engrave.classList.remove('active');
@@ -35,9 +36,11 @@
             if (num == 0) {
                 engraveDiv.style.display = "none";
                 updatePrice(false);
+                engraveFee.value = '0';
             } else {
                 engraveDiv.style.display = "block";
                 updatePrice(true);
+                engraveFee.value = '15';
             }
         }
     }
