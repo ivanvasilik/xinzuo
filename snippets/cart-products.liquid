@@ -525,7 +525,7 @@
                         </button>
                       </div>
                     </div>
-                    {% if item.properties["Engraving Text"] %}
+                    {% if item.properties["Engraving Text"] != blank %}
                       <p>Engraving Text: <span>{{ item.properties["Engraving Text"] }}</span></p>
                     {% endif %}
                     <div class="cart-drawer-info-div2">
