@@ -267,6 +267,26 @@ class ProductFormComponent extends Component {
               sections: response.sections,
             })
           );
+
+          if (window.engravingSelected && window.engravingText) {
+            const feeVariantId = 43776032178227;
+
+            fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                id: feeVariantId,
+                quantity: Number(formData.get("quantity")) || 1,
+                properties: {
+                  "Engraving Text": window.engravingText
+                }
+              })
+            })
+            .then(() => {
+              document.dispatchEvent(new CustomEvent("cart:update"));
+            })
+            .catch(err => console.error("Fee product add error:", err));
+          }
         }
       })
       .catch((error) => {

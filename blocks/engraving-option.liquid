@@ -47,7 +47,7 @@
         window.engravingText = e.target.value;
     });
 
-    document.addEventListener("CartAddEvent", async () => {
+    {% comment %} document.addEventListener("CartAddEvent", async () => {
         if (!window.engravingSelected || !window.engravingText) return;
 
         const FEE_VARIANT_ID = 43776032178227;
@@ -65,7 +65,7 @@
         });
 
         document.dispatchEvent(new CustomEvent("cart:update"));
-    });
+    }); {% endcomment %}
 
     {% comment %} document.addEventListener("DOMContentLoaded", () => {
         const form = document.querySelector('form[data-type="add-to-cart-form"]');
