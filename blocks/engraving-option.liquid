@@ -75,6 +75,7 @@
     const engrave = (num) => {
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
+        const engraveInput = document.getElementById("engravedInput");
         if (engraves.length > 0) {
             engraves.forEach(engrave => {
                 engrave.classList.remove('active');
@@ -86,6 +87,7 @@
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
                 window.engravingText = "";
+                engraveInput.value = "";
             } else {
                 engraveDiv.style.display = "block";
                 window.engravingSelected = true;
