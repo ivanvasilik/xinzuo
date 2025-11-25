@@ -51,14 +51,14 @@
   <div class="cart-summary-block">
     <p class="cart-summary-block-header">Price Details</p>
     <div class="cart-summary-prices">
+      {% assign engraving_total = 0 %}
+      {% for item in cart.items %}
+        {% if item.properties["Engraving Fee"] %}
+          {% assign engraving_total = engraving_total | plus: item.properties["Engraving Fee"] | plus: 0 %}
+        {% endif %}
+      {% endfor %}
       <div class="cart-summary-price">
         <span>Subtotal Amount</span>
-        {% assign engraving_total = 0 %}
-        {% for item in cart.items %}
-          {% if item.properties["Engraving Fee"] %}
-            {% assign engraving_total = engraving_total | plus: item.properties["Engraving Fee"] | plus: 0 %}
-          {% endif %}
-        {% endfor %}
         <span>{{ engraving_total | times: 100 | plus: cart.original_total_price | money }}</span>
       </div>
       <div class="cart-summary-price">
@@ -83,7 +83,7 @@
     </div>
     <div class="cart-summary-total">
       <p>Total Amount</p>
-      <span>{{ cart.total_price | money }}</span>
+      <span>{{ engraving_total | times: 100 | plus: cart.total_price | money }}</span>
     </div>
   </div>
   {% comment %} <div class="cart__original-total-container cart-primary-typography">
