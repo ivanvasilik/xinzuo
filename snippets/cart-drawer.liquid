@@ -323,10 +323,16 @@
 
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
+                {% assign engraving_total = 0 %}
+                {% for item in cart.items %}
+                  {% if item.properties["Engraving Fee"] %}
+                    {% assign engraving_total = engraving_total | plus: item.properties["Engraving Fee"] | plus: 0 %}
+                  {% endif %}
+                {% endfor %}
                 <div>
                   <p>Subtotal Amount</p>
                   <span>
-                    {{ cart.original_total_price | money }}
+                    {{ engraving_total | times: 100 | plus: cart.original_total_price | money }}
                   </span>
                 </div>
                 {% if cart.total_discount > 0 %}
@@ -348,7 +354,7 @@
                 </div>
                 <div class="cart-total-price">
                   <p>Total Amount</p>
-                  <span>{{ cart.total_price | money }}</span>
+                  <span>{{ engraving_total | times: 100 | plus: cart.total_price | money }}</span>
                 </div>
               </div>
               <div class="cart__ctas">
