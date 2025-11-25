@@ -350,20 +350,18 @@ class ProductFormComponent extends Component {
 
     addMainProduct()
       .then(addFeeProduct)
-      .then(() => {
+      .then(async () => {
+        const cart = await fetch("/cart.js").then(r => r.json());
+
         document.dispatchEvent(
-          new CustomEvent("cart:add", {
-            detail: {
-              productId: variantId,
-              quantity,
-              source: "product-form-component"
-            }
+          new CartAddEvent({}, variantId, {
+            source: "product-form-component",
+            itemCount: cart.item_count,
+            productId: variantId,
+            sections: [],
           })
         );
-
-        return new Promise(resolve => setTimeout(resolve, 150));
       })
-      .then(refreshCartDrawer)
       .catch(err => console.error("Add to cart error:", err));
   }
 
