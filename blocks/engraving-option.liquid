@@ -63,6 +63,8 @@
                     id: FEE_VARIANT_ID,
                     quantity: 1,
                 }),
+            }).then(() => {
+                window.dispatchEvent(new CustomEvent("cart:refresh"));
             }).catch((err) =>
                 console.error("Failed to add engraving fee product:", err)
             );
