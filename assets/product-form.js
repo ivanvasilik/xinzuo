@@ -159,7 +159,7 @@ class ProductFormComponent extends Component {
    *
    * @param {Event} event - The submit event.
    */
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const { addToCartTextError } = this.refs;
     // Stop default behaviour from the browser
     event.preventDefault();
@@ -267,6 +267,31 @@ class ProductFormComponent extends Component {
               sections: response.sections,
             })
           );
+
+          if (window.engravingSelected === true && window.engravingText) {
+            const feeVariantId = 43776032178227;
+            const engravingText = window.engravingText;
+
+            await fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                id: feeVariantId,
+                quantity: Number(formData.get("quantity")) || 1,
+                properties: {
+                  "Engraving Text": engravingText
+                }
+              })
+            });
+
+            document.dispatchEvent(
+              new CartUpdateEvent({}, this.sectionId, {
+                source: "engraving-addon",
+                sections_url: window.location.pathname,
+                sections: {}
+              })
+            );
+          }
         }
       })
       .catch((error) => {
