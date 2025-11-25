@@ -8,6 +8,7 @@
         <span>{{ block.settings.engraving_title }}</span>
         <input type="text" name="properties[Engraving Message]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
     </div>
+    <input type="text" name="properties[Engraving Fee]">
 </div>
 
 {% style %}
@@ -33,8 +34,27 @@
         if (engraveDiv) {
             if (num == 0) {
                 engraveDiv.style.display = "none";
+                updatePrice(false);
             } else {
                 engraveDiv.style.display = "block";
+                updatePrice(true);
+            }
+        }
+    }
+
+    const updatePrice = (state) => {
+        const priceDiv = document.querySelector(".product-details-prices");
+        if(priceDiv) {
+            const realPriceElement = priceDiv.querySelector("h2");
+            const comparePriceElement = priceDiv.querySelector("h4");
+            const realPrice = parseFloat(realPriceElement.textContent.replace(/[^0-9.]/g, ""));
+            const comparePrice = parseFloat(comparePriceElement.textContent.replace(/[^0-9.]/g, ""));
+            if(state) {
+                realPriceElement.textContent = `$${realPrice + 15.0}`;
+                comparePriceElement.textContent = `$${comparePrice + 15.0}`;
+            } else {
+                realPriceElement.textContent = `$${realPrice - 15.0}`;
+                comparePriceElement.textContent = `$${comparePrice - 15.0}`;
             }
         }
     }
