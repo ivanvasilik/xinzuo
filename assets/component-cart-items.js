@@ -115,6 +115,7 @@ class CartItemsComponent extends Component {
 
     const { line, quantity } = config;
 
+    console.log(line, quantity);
     fetch("/cart.js")
       .then(r => r.json())
       .then(async cart => {
