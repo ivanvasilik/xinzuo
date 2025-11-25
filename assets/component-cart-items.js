@@ -129,9 +129,9 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
 
         const feeQty = feeItem.quantity + quantity - mainItem.quantity;
-        console.log(feeLine);
         if(quantity != 0) {
           const feeLine = items.indexOf(feeItem) + 1;
+          console.log(feeLine);
           await fetch("/cart/change.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -142,6 +142,7 @@ class CartItemsComponent extends Component {
           });
         } else {
           const feeLine = items.indexOf(feeItem);
+          console.log(feeLine);
           await fetch("/cart/change.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
