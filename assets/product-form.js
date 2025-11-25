@@ -186,9 +186,6 @@ class ProductFormComponent extends Component {
         body: JSON.stringify({
           id: feeVariantId,
           quantity: Number(formData.get("quantity")) || 1,
-          properties: {
-            "Engraving Text": window.engravingText
-          }
         })
       })
       .catch(err => console.error("Fee product add error:", err));
