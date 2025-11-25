@@ -115,7 +115,6 @@ class CartItemsComponent extends Component {
 
     const { line, quantity } = config;
 
-    console.log(line, quantity);
     fetch("/cart.js")
       .then(r => r.json())
       .then(async cart => {
@@ -130,13 +129,15 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
         console.log(feeItem);
 
+        const updatedQty = quantity - mainItem.quantity;
+        const feeQty = feeItem.quantity + updatedQty;
         const feeLine = items.indexOf(feeItem) + 1;
         await fetch("/cart/change.js", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             line: feeLine,
-            quantity: quantity
+            quantity: feeQty
           })
         });
         
