@@ -129,11 +129,12 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
         console.log(feeItem);
 
+        const feeLine = items.indexOf(feeItem) + 1;
         await fetch("/cart/change.js", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            line: feeItem.line,
+            line: feeLine,
             quantity: quantity
           })
         });
