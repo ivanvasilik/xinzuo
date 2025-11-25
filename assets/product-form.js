@@ -188,6 +188,16 @@ class ProductFormComponent extends Component {
           quantity: Number(formData.get("quantity")) || 1,
         })
       })
+      .then(async cart=> {
+        const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+        const sections = await sectionsRes.json();
+
+        document.dispatchEvent(
+          new CustomEvent("cart:update", {
+            detail: { data: { sections } }
+          })
+        );
+      })
       .catch(err => console.error("Fee product add error:", err));
     }
     
