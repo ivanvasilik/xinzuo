@@ -95,7 +95,7 @@
     document.querySelector('#engravedInput').addEventListener("input", e => {
         window.engravingText = e.target.value;
         const countSpan = document.querySelector(".engraving-count");
-        countText = parseInt(countSpan.textContent.split("/")[0]);
+        countText = window.engravingText.length;
         console.log(countText);
     });
 
