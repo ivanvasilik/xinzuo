@@ -149,6 +149,17 @@
                   },
                   "blocks": {}
                 },
+                "engraving-option": {
+                  "type": "engraving-option",
+                  "static": true,
+                  "settings": {
+                    "btn1": "Without engraving",
+                    "btn2": "Engrave text (+$15)",
+                    "engraving_text": "Letters, numbers, and basic punctuation only (. , ! ? ' -)",
+                    "engraving_length": 20
+                  },
+                  "blocks": {}
+                },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
                   "disabled": true,
@@ -158,12 +169,6 @@
                 }
               },
               "block_order": []
-            },
-            "live_product_options_app_block_N99bpQ": {
-              "type": "shopify://apps/live-product-options/blocks/app-block/88bfdf40-5e27-4962-a966-70c8d1e87757",
-              "settings": {
-                "product": "{{closest.product}}"
-              }
             },
             "product_features": {
               "type": "_product-features",
@@ -858,7 +863,6 @@
             "afterpay_custom",
             "variant_picker_qYHynj",
             "buy_buttons_eYQEYi",
-            "live_product_options_app_block_N99bpQ",
             "product_features",
             "delivery_estimate_QFz8gG",
             "coupon_discount_supreme",
