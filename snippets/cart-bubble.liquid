@@ -33,7 +33,13 @@
       data-testid="cart-bubble"
     >
       {%- if limit == blank or cart.item_count < limit %}
-        {{- cart.item_count -}}
+        {% assign fee_quantity = 0 %}
+        {% for item in cart.items %}
+          {% if item.variant_id == 43776032178227 %}
+            {% assign fee_quantity = item.quantity %}
+          {% endif %}
+        {% endfor %}
+        {{- cart.item_count | minus: fee_quantity -}}
       {%- endif -%}
     </span>
     {% if limit == blank or cart.item_count < limit %}
