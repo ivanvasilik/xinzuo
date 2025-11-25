@@ -283,7 +283,16 @@ class ProductFormComponent extends Component {
               })
             })
             .then(() => {
-              document.dispatchEvent(new CustomEvent("cart:update"));
+              const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
+              const data = await res.json();
+
+              document.dispatchEvent(
+                new CustomEvent("cart:update", {
+                  detail: {
+                    sections: data
+                  }
+                })
+              );
             })
             .catch(err => console.error("Fee product add error:", err));
           }
