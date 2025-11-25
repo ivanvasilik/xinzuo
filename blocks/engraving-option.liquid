@@ -44,12 +44,12 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         const engraveBlock = document.querySelector(".engrave-btns");
-        if(engraveBlock) return;
+        if(!engraveBlock) return;
 
         const form = engraveBlock.closest("form");
         if(!form) return;
 
-        const addBtn = form.querySelector("button.add-to-cart-button");
+        const addBtn = form.querySelector("button[name='add']");
         if(!addBtn) return;
 
         const FEE_VARIANT_ID = 43776032178227;
