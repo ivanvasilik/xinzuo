@@ -159,7 +159,7 @@ class ProductFormComponent extends Component {
    *
    * @param {Event} event - The submit event.
    */
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const { addToCartTextError } = this.refs;
     // Stop default behaviour from the browser
     event.preventDefault();
@@ -259,6 +259,15 @@ class ProductFormComponent extends Component {
             }, 5000);
           }
 
+          this.dispatchEvent(
+            new CartAddEvent({}, id.toString(), {
+              source: 'product-form-component',
+              itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
+              productId: this.dataset.productId,
+              sections: response.sections,
+            })
+          );
+
           if (window.engravingSelected === true) {
             const feeVariantId = 43776032178227;
             const engravingText = window.engravingText || "";
@@ -274,16 +283,9 @@ class ProductFormComponent extends Component {
                 }
               })
             });
-          }
 
-          this.dispatchEvent(
-            new CartAddEvent({}, id.toString(), {
-              source: 'product-form-component',
-              itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
-              productId: this.dataset.productId,
-              sections: response.sections,
-            })
-          );
+            window.dispatchEvent(new CustomEvent("cart:refresh"));
+          }
         }
       })
       .catch((error) => {
