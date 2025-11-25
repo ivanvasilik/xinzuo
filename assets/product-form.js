@@ -348,10 +348,15 @@ class ProductFormComponent extends Component {
       );
     };
 
-    // 🚀 REAL FIX: EXACT ORDER, NO RACE CONDITIONS
     addMainProduct()
       .then(addFeeProduct)
-      .then(() => new Promise(r => setTimeout(r, 60)))
+      .then(() => {
+        return new Promise(resolve => {
+          document.addEventListener("cart:drawer-open", () => {
+            setTimeout(resolve, 150);
+          }, {once: true});
+        });
+      })
       .then(refreshCartDrawer)
       .catch(err => console.error("Add to cart error:", err));
   }
