@@ -177,6 +177,7 @@ class ProductFormComponent extends Component {
     const formData = new FormData(form);
 
     if (window.engravingSelected && window.engravingText) {
+      console.log("fee added.")
       const feeVariantId = 43776032178227;
 
       fetch("/cart/add.js", {
