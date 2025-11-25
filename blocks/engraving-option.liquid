@@ -47,7 +47,7 @@
         window.engravingText = e.target.value;
     });
 
-    document.addEventListener("cart:update", async () => {
+    {% comment %} document.addEventListener("cart:update", async () => {
         const changed = await syncEngravingFeeQuantity();
         if (changed) {
             setTimeout(async () => {
@@ -60,7 +60,7 @@
             );
             }, 60);
         }
-    });
+    }); {% endcomment %}
 </script>
 
 {% schema %}
