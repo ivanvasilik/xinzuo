@@ -7,12 +7,53 @@
     {{ block.shopify_attributes }}
     style="--add-to-cart-font-case: {{ settings.button_text_case }};"
 >
-    Add custom Text
+    <p>Engraving option</p>
+    <div class="engrave-btns">
+        <button class="engrave-btn" onclick="engrave(0)">Without engraving</button>
+        <button class="engrave-btn" onclick="engrave(1)">Engrave text (+$15)</button>
+    </div>
+    <div class="engrave-div">
+        <span>{{ block.settings.engraving_title }}</span>
+        <input type="text" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
+    </div>
 </span>
+
+{% style %}
+    .engrave-btns {
+        display: flex;
+    }
+
+    .engrave-div {
+        display: none;
+    }
+{% endstyle %}
+
+<script>
+    const engrave = (num) => {
+        const engraves = document.querySelectorAll("engrave-btn");
+        const engraveDiv = document.querySelector("engrave-div");
+        engraves.foreach(engrave => {
+            engrave.classList.remove('active');
+        })
+        engraves[num].classList.add('active');
+        if (num == 0) {
+            engraveDiv.style.display = "none";
+        } else {
+            engraveDiv.style.display = "block";
+        }
+    }
+</script>
 
 {% schema %}
 {
     "name": "Engraving option",
-    "tag": null
+    "tag": null,
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "engraving_title",
+            "label": "Engraving title"
+        }
+    ]
 }
 {% endschema %}
