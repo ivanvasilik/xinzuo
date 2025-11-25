@@ -47,67 +47,20 @@
         window.engravingText = e.target.value;
     });
 
-    {% comment %} document.addEventListener("CartAddEvent", async () => {
-        if (!window.engravingSelected || !window.engravingText) return;
-
-        const FEE_VARIANT_ID = 43776032178227;
-
-        await fetch("/cart/add.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id: FEE_VARIANT_ID,
-                quantity: 1,
-                properties: {
-                    "Engraving Text": window.engravingText
-                }
-            })
-        });
-
-        document.dispatchEvent(new CustomEvent("cart:update"));
-    }); {% endcomment %}
-
-    {% comment %} document.addEventListener("DOMContentLoaded", () => {
-        const form = document.querySelector('form[data-type="add-to-cart-form"]');
-        if (!form) return;
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            event.stopPropagation();
-
-            const variantId = form.querySelector("[name='id']").value;
-            const quantity = Number(form.querySelector("[name='quantity']")?.value || 1);
-
-            await fetch("/cart/add.js", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id: variantId,
-                    quantity: quantity,
-                    properties: window.engravingSelected
-                        ? { "Engraving Text": window.engravingText }
-                        : {}
+    document.addEventListener("cart:update", async () => {
+        const changed = await syncEngravingFeeQuantity();
+        if (changed) {
+            setTimeout(async () => {
+            const res = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+            const sections = await res.json();
+            document.dispatchEvent(
+                new CustomEvent("cart:update", {
+                    detail: { data: { sections } },
                 })
-            });
-
-            if (window.engravingSelected && window.engravingText !== "") {
-                await fetch("/cart/add.js", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        id: FEE_VARIANT_ID,
-                        quantity: quantity,
-                        properties: {
-                            "Engraving Text": window.engravingText
-                        }
-                    })
-                });
-            }
-
-            window.dispatchEvent(new CustomEvent("cart:refresh"));
-        }, { capture: true });
-    }) {% endcomment %}
+            );
+            }, 60);
+        }
+    });
 </script>
 
 {% schema %}
