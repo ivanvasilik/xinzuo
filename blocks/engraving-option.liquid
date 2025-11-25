@@ -25,7 +25,7 @@
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
         if (engraves.length > 0) {
-            engraves.foreach(engrave => {
+            engraves.forEach(engrave => {
                 engrave.classList.remove('active');
             })
             engraves[num].classList.add('active');
