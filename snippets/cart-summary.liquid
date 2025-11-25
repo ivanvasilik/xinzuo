@@ -67,14 +67,16 @@
           <span>{{ fee_product.original_line_price | money }}</span>
         </div>
       {% endif %}
-      <div class="cart-summary-price">
-        {% assign discount = 0 %}
-        {% for discount_application in cart.cart_level_discount_applications %}
-          {% assign discount = discount | plus: discount_application.total_allocated_amount %}
-        {% endfor %}
-        <span>Coupon discount</span>
-        <span style="color: #34a853;">{{ discount | money }}</span>
-      </div>
+      {% if cart.total_discount > 0 %}
+        <div class="cart-summary-price">
+          {% assign discount = 0 %}
+          {% for discount_application in cart.cart_level_discount_applications %}
+            {% assign discount = discount | plus: discount_application.total_allocated_amount %}
+          {% endfor %}
+          <span>Coupon discount</span>
+          <span style="color: #34a853;">{{ discount | money }}</span>
+        </div>
+      {% endif %}
       <div class="cart-summary-price">
         <span>Delivery Charges</span>
         {% assign total_price = cart.total_price | divided_by: 100.00 %}
