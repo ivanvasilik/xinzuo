@@ -125,11 +125,13 @@ class CartItemsComponent extends Component {
           i.properties &&
           i.properties["Engraving Text"]
         );
+        console.log(mainItem);
 
         if (!mainItem) return;
 
         const feeItem = items.find(i => i.id === 43776032178227);
         if (!feeItem) return;
+        console.log(feeItem);
 
         if (feeItem.quantity !== quantity) {
           await fetch("/cart/change.js", {
