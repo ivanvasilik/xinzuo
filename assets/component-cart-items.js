@@ -120,14 +120,10 @@ class CartItemsComponent extends Component {
       .then(async cart => {
         const items = cart.items;
 
-        const mainItem = items.find(i =>
-          i.line === line &&
-          i.properties &&
-          i.properties["Engraving Text"]
-        );
-        console.log(mainItem);
-
-        if (!mainItem) return;
+        const mainItem = items[line - 1];
+        if (!mainItem || !mainItem.properties || !mainItem.properties["Engraving Text"]) {
+          return;
+        }
 
         const feeItem = items.find(i => i.id === 43776032178227);
         if (!feeItem) return;
