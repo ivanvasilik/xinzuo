@@ -525,9 +525,9 @@
                         </button>
                       </div>
                     </div>
-                    {% if item.properties["Engraving Fee"] and item.properties["Engraving Fee"] > 0 %}
+                    {% comment %} {% if item.properties["Engraving Fee"] and item.properties["Engraving Fee"] > 0 %} {% endcomment %}
                       <p>Engraving Fee: <span>{{ item.properties["Engraving Fee"] | times: 100 | money }}</span></p>
-                    {% endif %}
+                    {% comment %} {% endif %} {% endcomment %}
                     <div class="cart-drawer-info-div2">
                       <div class="cart-drawer-price">
                         {% if item.original_price != item.final_price %}
