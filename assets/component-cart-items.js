@@ -141,16 +141,29 @@ class CartItemsComponent extends Component {
             })
           });
         } else {
+          const mainLine = item.indexOf(mainItem);
           const feeLine = items.indexOf(feeItem);
-          console.log(feeLine);
-          await fetch("/cart/change.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              line: feeLine,
-              quantity: feeQty
-            })
-          });
+          if(mainLine > feeLine) {
+            console.log(feeLine);
+            await fetch("/cart/change.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                line: feeLine + 1,
+                quantity: feeQty
+              })
+            });
+          } else {
+            console.log(feeLine);
+            await fetch("/cart/change.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                line: feeLine,
+                quantity: feeQty
+              })
+            });
+          }
         }
 
         const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
