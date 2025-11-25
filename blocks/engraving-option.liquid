@@ -4,10 +4,12 @@
         <button type="button" class="engrave-btn" onclick="engrave(1)">{{ block.settings.btn2 }}</button>
     </div>
     <div class="engrave-div">
-        <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
-        <span class="engraving-count"></span>
+        <div>
+            <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
+            <span class="engraving-count"></span>
+        </div>
+        <p>{{ block.settings.engraving_text }}</p>
     </div>
-    <p>{{ block.settings.engraving_text }}</p>
 </div>
 
 {% style %}
@@ -39,6 +41,10 @@
     .engrave-div {
         display: none;
         margin-top: 12px;
+    }
+
+    .engrave-div div {
+        display: flex;
         gap: 8px;
         align-items: center;
     }
@@ -61,7 +67,7 @@
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
             } else {
-                engraveDiv.style.display = "flex";
+                engraveDiv.style.display = "block";
                 window.engravingSelected = true;
             }
         }
