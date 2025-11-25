@@ -530,7 +530,7 @@
                         {% if item.original_price != item.final_price %}
                           <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
                           {% if item.properties["Engraving Fee"] %}
-                            <span>{{ item.final_price | plus: item.properties["Engraving Fee"] | times: 100 | money }}</span>
+                            <span>{{ item.properties["Engraving Fee"] | times: 100 | plus: item.final_price | money }}</span>
                           {% else %}
                             <span>{{ item.final_price | money }}</span>
                           {% endif %}
@@ -544,7 +544,7 @@
                           </s>
                         {% else %}
                           {% if item.properties["Engraving Fee"] %}
-                            <span>{{ item.original_price | plus: item.properties["Engraving Fee"] | times: 100 | money }}</span>
+                            <span>{{ item.properties["Engraving Fee"] | times: 100 | plus: item.original_price | money }}</span>
                           {% else %}
                             <span>{{ item.original_price | money }}</span>
                           {% endif %}
