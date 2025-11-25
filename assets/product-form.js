@@ -267,6 +267,14 @@ class ProductFormComponent extends Component {
               sections: response.sections,
             })
           );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        // add more thing to do in here if needed.
+        cartPerformance.measureFromEvent('add:user-action', event);
 
           if (window.engravingSelected && window.engravingText) {
             const feeVariantId = 43776032178227;
@@ -283,27 +291,19 @@ class ProductFormComponent extends Component {
               })
             })
             .then(() => {
-              const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
-              const data = await res.json();
+              // const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
+              // const data = await res.json();
 
-              document.dispatchEvent(
-                new CustomEvent("cart:update", {
-                  detail: {
-                    sections: data
-                  }
-                })
-              );
+              // document.dispatchEvent(
+              //   new CustomEvent("cart:update", {
+              //     detail: {
+              //       sections: data
+              //     }
+              //   })
+              // );
             })
             .catch(err => console.error("Fee product add error:", err));
           }
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        // add more thing to do in here if needed.
-        cartPerformance.measureFromEvent('add:user-action', event);
       });
   }
 
