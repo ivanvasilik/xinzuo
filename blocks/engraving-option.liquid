@@ -47,7 +47,7 @@
         window.engravingText = e.target.value;
     });
 
-    document.addEventListener("DOMContentLoaded", () => {
+    {% comment %} document.addEventListener("DOMContentLoaded", () => {
         const form = document.querySelector('form[data-type="add-to-cart-form"]');
         if (!form) return;
 
@@ -87,7 +87,7 @@
 
             window.dispatchEvent(new CustomEvent("cart:refresh"));
         }, { capture: true });
-    })
+    }) {% endcomment %}
 </script>
 
 {% schema %}
