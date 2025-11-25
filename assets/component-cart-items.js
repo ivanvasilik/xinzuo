@@ -138,6 +138,15 @@ class CartItemsComponent extends Component {
             quantity: quantity
           })
         });
+        
+        const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+        const sections = await sectionsRes.json();
+
+        document.dispatchEvent(
+          new CustomEvent("cart:update", {
+            detail: { data: { sections } }
+          })
+        );
     });
 
     const { cartTotal } = this.refs;
