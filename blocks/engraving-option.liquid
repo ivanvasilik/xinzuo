@@ -32,14 +32,18 @@
     const engrave = (num) => {
         const engraves = document.querySelectorAll("engrave-btn");
         const engraveDiv = document.querySelector("engrave-div");
-        engraves.foreach(engrave => {
-            engrave.classList.remove('active');
-        })
-        engraves[num].classList.add('active');
-        if (num == 0) {
-            engraveDiv.style.display = "none";
-        } else {
-            engraveDiv.style.display = "block";
+        if (engraves.length > 0) {
+            engraves.foreach(engrave => {
+                engrave.classList.remove('active');
+            })
+            engraves[num].classList.add('active');
+        }
+        if (engraveDiv) {
+            if (num == 0) {
+                engraveDiv.style.display = "none";
+            } else {
+                engraveDiv.style.display = "block";
+            }
         }
     }
 </script>
