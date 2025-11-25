@@ -46,7 +46,6 @@
   {% endif %}
   
   <h2 id="product-variant-title" class="product-title">{% if current_collection.handle != "accessories" %}{{ current_collection.title }} — {% endif %}{{ product.title | split: " - " | last }}</h2>
-  {{ product.selected_or_first_available_variant.id }}
 </div>
 
 {% stylesheet %}
