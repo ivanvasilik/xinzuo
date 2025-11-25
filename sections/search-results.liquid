@@ -30,15 +30,17 @@
 
       {% capture children %}
         {% for product in products %}
-          <li
-            id="{{ section.id }}-{{ product.id }}"
-            class="product-grid__item product-grid__item--{{ forloop.index0 }}"
-            data-page="{{ paginate.current_page }}"
-            data-product-id="{{ product.id }}"
-            ref="cards[]"
-          >
-            {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-          </li>
+          {% unless product.tags contains 'engraving-fee' %}
+            <li
+              id="{{ section.id }}-{{ product.id }}"
+              class="product-grid__item product-grid__item--{{ forloop.index0 }}"
+              data-page="{{ paginate.current_page }}"
+              data-product-id="{{ product.id }}"
+              ref="cards[]"
+            >
+              {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
+            </li>
+          {% endunless %}
         {% endfor %}
       {% endcapture %}
 
