@@ -543,7 +543,11 @@
                             {% endif %}
                           </s>
                         {% else %}
-                          <span>{{ item.original_price | money }}</span>
+                          {% if item.properties["Engraving Fee"] %}
+                            <span>{{ item.original_price | plus: item.properties["Engraving Fee"] | money }}</span>
+                          {% else %}
+                            <span>{{ item.original_price | money }}</span>
+                          {% endif %}
                           {% if item.variant.compare_at_price > item.original_price %}
                             <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
                           {% else %}
