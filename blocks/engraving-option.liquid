@@ -1,7 +1,4 @@
-<span
-    {{ block.shopify_attributes }}
-    style="--add-to-cart-font-case: {{ settings.button_text_case }};"
->
+<div>
     <p>Engraving option</p>
     <div class="engrave-btns">
         <button class="engrave-btn" onclick="engrave(0)">Without engraving</button>
@@ -11,7 +8,7 @@
         <span>{{ block.settings.engraving_title }}</span>
         <input type="text" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
     </div>
-</span>
+</div>
 
 {% style %}
     .engrave-btns {
