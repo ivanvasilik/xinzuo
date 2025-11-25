@@ -130,8 +130,8 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
         console.log(mainItem.quantity);
 
-        const updatedQty = quantity - mainItem.quantity;
-        const feeQty = feeItem.quantity + updatedQty;
+        const feeQty = feeItem.quantity + quantity - mainItem.quantity;
+        console.log(feeQty);
         const feeLine = items.indexOf(feeItem) + 1;
         await fetch("/cart/change.js", {
           method: "POST",
