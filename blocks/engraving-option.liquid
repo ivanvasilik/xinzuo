@@ -8,7 +8,6 @@
         <span>{{ block.settings.engraving_title }}</span>
         <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
     </div>
-    <input type="hidden" name="properties[Engraving Fee]" id="engravingFee" value="0">
 </div>
 
 {% style %}
@@ -22,10 +21,10 @@
 {% endstyle %}
 
 <script>
+    window.engravingSelected = false;
     const engrave = (num) => {
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
-        const engraveFee = document.getElementById("engravingFee");
         if (engraves.length > 0) {
             engraves.forEach(engrave => {
                 engrave.classList.remove('active');
@@ -35,32 +34,40 @@
         if (engraveDiv) {
             if (num == 0) {
                 engraveDiv.style.display = "none";
-                updatePrice(false);
-                engraveFee.value = '0';
+                window.engravingSelected = false;
             } else {
                 engraveDiv.style.display = "block";
-                updatePrice(true);
-                engraveFee.value = '15';
+                window.engravingSelected = true;
             }
         }
     }
 
-    const updatePrice = (state) => {
-        const priceDiv = document.querySelector(".product-details-prices");
-        if(priceDiv) {
-            const realPriceElement = priceDiv.querySelector("h2");
-            const comparePriceElement = priceDiv.querySelector("h4");
-            const realPrice = parseFloat(realPriceElement.textContent.replace(/[^0-9.]/g, ""));
-            const comparePrice = parseFloat(comparePriceElement.textContent.replace(/[^0-9.]/g, ""));
-            if(state) {
-                realPriceElement.textContent = `$${realPrice + 15.0}`;
-                comparePriceElement.textContent = `$${comparePrice + 15.0}`;
-            } else {
-                realPriceElement.textContent = `$${realPrice - 15.0}`;
-                comparePriceElement.textContent = `$${comparePrice - 15.0}`;
-            }
-        }
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+        const engraveBlock = document.querySelector(".engrave-btns");
+        if(engraveBlock) return;
+
+        const form = engraveBlock.closest("form");
+        if(!form) return;
+
+        const addBtn = form.querySelector("button.add-to-cart-button");
+        if(!addBtn) return;
+
+        const FEE_VARIANT_ID = 43776032178227;
+        addBtn.addEventListener("click", () => {
+            if(!window.engravingSelected) return;
+            
+            fetch("/cart/add.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: FEE_VARIANT_ID,
+                    quantity: 1,
+                }),
+            }).catch((err) =>
+                console.error("Failed to add engraving fee product:", err)
+            );
+        })
+    })
 </script>
 
 {% schema %}
