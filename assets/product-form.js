@@ -176,6 +176,23 @@ class ProductFormComponent extends Component {
 
     const formData = new FormData(form);
 
+    if (window.engravingSelected && window.engravingText) {
+      const feeVariantId = 43776032178227;
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: feeVariantId,
+          quantity: Number(formData.get("quantity")) || 1,
+          properties: {
+            "Engraving Text": window.engravingText
+          }
+        })
+      })
+      .catch(err => console.error("Fee product add error:", err));
+    }
+    
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
     let cartItemComponentsSectionIds = [];
     cartItemsComponents.forEach((item) => {
@@ -275,35 +292,6 @@ class ProductFormComponent extends Component {
       .finally(() => {
         // add more thing to do in here if needed.
         cartPerformance.measureFromEvent('add:user-action', event);
-
-          if (window.engravingSelected && window.engravingText) {
-            const feeVariantId = 43776032178227;
-
-            fetch("/cart/add.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                id: feeVariantId,
-                quantity: Number(formData.get("quantity")) || 1,
-                properties: {
-                  "Engraving Text": window.engravingText
-                }
-              })
-            })
-            .then(() => {
-              // const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
-              // const data = await res.json();
-
-              // document.dispatchEvent(
-              //   new CustomEvent("cart:update", {
-              //     detail: {
-              //       sections: data
-              //     }
-              //   })
-              // );
-            })
-            .catch(err => console.error("Fee product add error:", err));
-          }
       });
   }
 
