@@ -76,6 +76,7 @@
         const engraves = document.querySelectorAll(".engrave-btn");
         const engraveDiv = document.querySelector(".engrave-div");
         const engraveInput = document.getElementById("engravedInput");
+        const engraveSpan = document.querySelector(".engraving-count");
         if (engraves.length > 0) {
             engraves.forEach(engrave => {
                 engrave.classList.remove('active');
@@ -84,10 +85,12 @@
         }
         if (engraveDiv) {
             if (num == 0) {
+                const engraveLength = engraveSpan.textContent.split("/")[1];
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
                 window.engravingText = "";
                 engraveInput.value = "";
+                engraveSpan.textContent = `0/${engraveLength}`;
             } else {
                 engraveDiv.style.display = "block";
                 window.engravingSelected = true;
@@ -98,7 +101,7 @@
     document.querySelector('#engravedInput').addEventListener("input", e => {
         window.engravingText = e.target.value;
         const countSpan = document.querySelector(".engraving-count");
-        totalLength = countSpan.textContent.split("/")[1];
+        const totalLength = countSpan.textContent.split("/")[1];
         countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
     });
 </script>
