@@ -59,8 +59,7 @@
             {% assign engraving_total = engraving_total | plus: item.properties["Engraving Fee"] | plus: 0 %}
           {% endif %}
         {% endfor %}
-        {{ engraving_total }}
-        <span>{{ cart.original_total_price | money }}</span>
+        <span>{{ engraving_total | times: 100 | plus: cart.original_total_price | money }}</span>
       </div>
       <div class="cart-summary-price">
         {% assign discount = 0 %}
