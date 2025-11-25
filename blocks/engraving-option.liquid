@@ -56,50 +56,36 @@
             event.stopImmediatePropagation();
             event.stopPropagation();
 
+            const variantId = form.querySelector("[name='id']").value;
             const quantity = Number(form.querySelector("[name='quantity']")?.value || 1);
-            const variantId = form.querySelector("[name='id']")?.value;
-            const FEE_VARIANT_ID = 43776032178227;
 
-            if (!variantId) return;
+            await fetch("/cart/add.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: variantId,
+                    quantity: quantity,
+                    properties: window.engravingSelected
+                        ? { "Engraving Text": window.engravingText }
+                        : {}
+                })
+            });
 
-            try {
-                const btn = form.querySelector(".add-to-cart-button");
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerText = "Adding...";
-                }
-
+            if (window.engravingSelected && window.engravingText !== "") {
                 await fetch("/cart/add.js", {
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        id: variantId,
+                        id: FEE_VARIANT_ID,
                         quantity: quantity,
-                        properties: window.engravingSelected
-                            ? { "Engraving Text": window.engravingText }
-                            : {}
+                        properties: {
+                            "Engraving Text": window.engravingText
+                        }
                     })
                 });
-
-                if (window.engravingSelected && window.engravingText !== "") {
-                    await fetch("/cart/add.js", {
-                        method: "POST",
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify({
-                            id: FEE_VARIANT_ID,
-                            quantity: quantity,
-                            properties: {
-                                "Engraving Text": window.engravingText
-                            }
-                        })
-                    });
-                }
-
-                window.location.href = "/cart";
-
-            } catch (err) {
-                console.error("Engraving add error:", err);
             }
+
+            window.dispatchEvent(new CustomEvent("cart:refresh"));
         }, { capture: true });
     })
 </script>
