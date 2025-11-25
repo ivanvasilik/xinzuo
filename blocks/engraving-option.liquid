@@ -1,6 +1,6 @@
 <div>
     <div class="engrave-btns">
-        <button type="button" class="engrave-btn" onclick="engrave(0)">{{ block.settings.btn1 }}</button>
+        <button type="button" class="engrave-btn active" onclick="engrave(0)">{{ block.settings.btn1 }}</button>
         <button type="button" class="engrave-btn" onclick="engrave(1)">{{ block.settings.btn2 }}</button>
     </div>
     <div class="engrave-div">
@@ -38,6 +38,9 @@
 
     .engrave-div {
         display: none;
+        margin-top: 12px;
+        gap: 8px;
+        align-items: center;
     }
 {% endstyle %}
 
@@ -58,7 +61,7 @@
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
             } else {
-                engraveDiv.style.display = "block";
+                engraveDiv.style.display = "flex";
                 window.engravingSelected = true;
             }
         }
