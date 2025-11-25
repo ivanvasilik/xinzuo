@@ -114,6 +114,35 @@ class CartItemsComponent extends Component {
     this.#disableCartItems();
 
     const { line, quantity } = config;
+
+    fetch("/cart.js")
+      .then(r => r.json())
+      .then(async cart => {
+        const items = cart.items;
+
+        const mainItem = items.find(i =>
+          i.line === line &&
+          i.properties &&
+          i.properties["Engraving Text"]
+        );
+
+        if (!mainItem) return;
+
+        const feeItem = items.find(i => i.id === 43776032178227);
+        if (!feeItem) return;
+
+        if (feeItem.quantity !== quantity) {
+          await fetch("/cart/change.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              line: feeItem.line,
+              quantity: quantity
+            })
+          });
+        }
+    });
+
     const { cartTotal } = this.refs;
 
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
