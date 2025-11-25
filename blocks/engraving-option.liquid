@@ -6,7 +6,7 @@
     <div class="engrave-div">
         <div>
             <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
-            <span class="engraving-count"></span>
+            <span class="engraving-count">0/{{ block.settings.engraving_length }}</span>
         </div>
         <p>{{ block.settings.engraving_text }}</p>
     </div>
