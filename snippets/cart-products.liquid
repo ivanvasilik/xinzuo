@@ -525,8 +525,8 @@
                         </button>
                       </div>
                     </div>
-                    {% if item.properties["Engraving Fee"] > 0 %}
-                      <p>Engraving Fee: <span>{{ item.properties["Engraving Fee"] | times: 100 | money }}</span></p>
+                    {% if item.properties["Engraving Text"] %}
+                      <p>Engraving Text: <span>{{ item.properties["Engraving Text"] }}</span></p>
                     {% endif %}
                     <div class="cart-drawer-info-div2">
                       <div class="cart-drawer-price">
