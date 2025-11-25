@@ -71,8 +71,6 @@
           class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
           style="{% render 'spacing-style', settings: block_settings %}"
         >
-          {% content_for 'block', type: 'engraving-option', id: 'engraving-option' %}
-
           {% content_for 'block', type: 'quantity', id: 'quantity' %}
 
           {% content_for 'block',
@@ -81,6 +79,7 @@
             can_add_to_cart: can_add_to_cart,
             add_to_cart_text: add_to_cart_text
           %}
+          {% content_for 'block', type: 'engraving-option', id: 'engraving-option' %}
           {%- unless block_settings.gift_card_form and product.gift_card? -%}
             <span
               class="product-form-text__error hidden"
