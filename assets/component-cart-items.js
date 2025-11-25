@@ -114,7 +114,6 @@ class CartItemsComponent extends Component {
     this.#disableCartItems();
 
     const { line, quantity } = config;
-    console.log(quantity);
 
     fetch("/cart.js")
       .then(r => r.json())
@@ -130,7 +129,7 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
 
         const feeQty = feeItem.quantity + quantity - mainItem.quantity;
-        console.log(feeQty);
+        console.log(feeLine);
         if(quantity != 0) {
           const feeLine = items.indexOf(feeItem) + 1;
           await fetch("/cart/change.js", {
