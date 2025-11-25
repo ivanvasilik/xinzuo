@@ -1,13 +1,13 @@
 <div>
-    <p>Engraving option</p>
     <div class="engrave-btns">
-        <button type="button" class="engrave-btn" onclick="engrave(0)">Without engraving</button>
-        <button type="button" class="engrave-btn" onclick="engrave(1)">Engrave text (+$15)</button>
+        <button type="button" class="engrave-btn" onclick="engrave(0)">{{ block.settings.btn1 }}</button>
+        <button type="button" class="engrave-btn" onclick="engrave(1)">{{ block.settings.btn2 }}</button>
     </div>
     <div class="engrave-div">
-        <span>{{ block.settings.engraving_title }}</span>
         <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="20">
+        <span class="engraving-count"></span>
     </div>
+    <p>{{ block.settings.engraving_text }}</p>
 </div>
 
 {% style %}
@@ -69,9 +69,31 @@
     "tag": null,
     "settings": [
         {
-            "type": "richtext",
-            "id": "engraving_title",
-            "label": "Engraving title"
+            "type": "text",
+            "id": "btn1",
+            "label": "First Button",
+            "default": "Without engraving"
+        },
+        {
+            "type": "text",
+            "id": "btn2",
+            "label": "Second Button",
+            "default": "Engrave text (+$15)"
+        },
+        {
+            "type": "text",
+            "id": "engraving_text",
+            "label": "Engraving title",
+            "default": "Letters, numbers, and basic punctuation only (. , ! ? ' -)"
+        },
+        {
+            "type": "range",
+            "id": "engraving_length",
+            "label": "Engraving Length",
+            "min": 10,
+            "max": 40,
+            "default": 20,
+            "step": 1
         }
     ]
 }
