@@ -319,10 +319,7 @@ class ProductFormComponent extends Component {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: variantId,
-          quantity,
-          properties: SHOW_FEE
-            ? { "Engraving Text": window.engravingText }
-            : {}
+          quantity
         })
       });
     };
