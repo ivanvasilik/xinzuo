@@ -323,12 +323,24 @@
 
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
+                {% assign fee_product = "" %}
+                {% for item in cart.items %}
+                  {% if item.variant_id == "43776032178227" %}
+                    {% assign fee_product = item %}
+                  {% endif %}
+                {% endfor %}
                 <div>
                   <p>Subtotal Amount</p>
                   <span>
-                    {{ cart.original_total_price | money }}
+                    {{ cart.original_total_price | minus: fee_product.original_line_price | money }}
                   </span>
                 </div>
+                {% if fee_product.original_line_price > 0 %}
+                  <div>
+                    <p>Engraving Fee:</p>
+                    <span>{{ fee_product.original_line_price | money }}</span>
+                  </div>
+                {% endif %}
                 {% if cart.total_discount > 0 %}
                   <div>
                     <p>Discount</p>
