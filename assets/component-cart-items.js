@@ -129,16 +129,14 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
         console.log(feeItem);
 
-        if (feeItem.quantity !== quantity) {
-          await fetch("/cart/change.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              line: feeItem.line,
-              quantity: quantity
-            })
-          });
-        }
+        await fetch("/cart/change.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            line: feeItem.line,
+            quantity: quantity
+          })
+        });
     });
 
     const { cartTotal } = this.refs;
