@@ -114,6 +114,7 @@ class CartItemsComponent extends Component {
     this.#disableCartItems();
 
     const { line, quantity } = config;
+    console.log(quantity);
 
     fetch("/cart.js")
       .then(r => r.json())
@@ -127,7 +128,7 @@ class CartItemsComponent extends Component {
 
         const feeItem = items.find(i => i.id === 43776032178227);
         if (!feeItem) return;
-        console.log(feeItem);
+        console.log(mainItem.quantity);
 
         const updatedQty = quantity - mainItem.quantity;
         const feeQty = feeItem.quantity + updatedQty;
