@@ -1,8 +1,8 @@
 <div>
     <p>Engraving option</p>
     <div class="engrave-btns">
-        <button class="engrave-btn" onclick="engrave(0)">Without engraving</button>
-        <button class="engrave-btn" onclick="engrave(1)">Engrave text (+$15)</button>
+        <button type="button" class="engrave-btn" onclick="engrave(0)">Without engraving</button>
+        <button type="button" class="engrave-btn" onclick="engrave(1)">Engrave text (+$15)</button>
     </div>
     <div class="engrave-div">
         <span>{{ block.settings.engraving_title }}</span>
@@ -22,8 +22,8 @@
 
 <script>
     const engrave = (num) => {
-        const engraves = document.querySelectorAll("engrave-btn");
-        const engraveDiv = document.querySelector("engrave-div");
+        const engraves = document.querySelectorAll(".engrave-btn");
+        const engraveDiv = document.querySelector(".engrave-div");
         if (engraves.length > 0) {
             engraves.foreach(engrave => {
                 engrave.classList.remove('active');
