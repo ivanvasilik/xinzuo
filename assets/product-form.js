@@ -350,14 +350,11 @@ class ProductFormComponent extends Component {
 
     addMainProduct()
       .then(addFeeProduct)
-      .then(() => {
-        return new Promise(resolve => {
-          document.addEventListener("cart:drawer-open", () => {
-            setTimeout(resolve, 150);
-          }, {once: true});
-        });
+      .then(async () => {
+        document.dispatchEvent(new CustomEvent("cart:open"));
+        await new Promise(res => setTimeout(res, 150));
+        await refreshCartDrawer();
       })
-      .then(refreshCartDrawer)
       .catch(err => console.error("Add to cart error:", err));
   }
 
