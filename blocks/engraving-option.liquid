@@ -64,7 +64,9 @@
                     quantity: 1,
                 }),
             }).then(() => {
-                window.dispatchEvent(new CustomEvent("cart:refresh"));
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent("cart:refresh"));
+                }, 1000)
             }).catch((err) =>
                 console.error("Failed to add engraving fee product:", err)
             );
