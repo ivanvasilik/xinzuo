@@ -53,6 +53,13 @@
     <div class="cart-summary-prices">
       <div class="cart-summary-price">
         <span>Subtotal Amount</span>
+        {% assign engraving_total = 0 %}
+        {% for item in cart.items %}
+          {% if item.properties["Engraving Fee"] %}
+            {% assign engraving_total = engraving_total | plus: item.properties["Engraving Fee"] | plus: 0 %}
+          {% endif %}
+        {% endfor %}
+        {{ engraving_total }}
         <span>{{ cart.original_total_price | money }}</span>
       </div>
       <div class="cart-summary-price">
