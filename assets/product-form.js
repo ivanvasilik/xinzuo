@@ -159,123 +159,210 @@ class ProductFormComponent extends Component {
    *
    * @param {Event} event - The submit event.
    */
+  // handleSubmit(event) {
+  //   const { addToCartTextError } = this.refs;
+  //   // Stop default behaviour from the browser
+  //   event.preventDefault();
+
+  //   if (this.#timeout) clearTimeout(this.#timeout);
+
+  //   // Check if the add to cart button is disabled and do an early return if it is
+  //   if (this.refs.addToCartButtonContainer?.refs.addToCartButton?.getAttribute('disabled') === 'true') return;
+
+  //   // Send the add to cart information to the cart
+  //   const form = this.querySelector('form');
+
+  //   if (!form) throw new Error('Product form element missing');
+
+  //   const formData = new FormData(form);
+
+  //   if (window.engravingSelected && window.engravingText) {
+  //     console.log("fee added.")
+  //     const feeVariantId = 43776032178227;
+
+  //     fetch("/cart/add.js", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         id: feeVariantId,
+  //         quantity: Number(formData.get("quantity")) || 1,
+  //       })
+  //     })
+  //     .then(async cart=> {
+  //       const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+  //       const sections = await sectionsRes.json();
+
+  //       document.dispatchEvent(
+  //         new CustomEvent("cart:update", {
+  //           detail: { data: { sections } }
+  //         })
+  //       );
+  //     })
+  //     .catch(err => console.error("Fee product add error:", err));
+  //   }
+    
+  //   const cartItemsComponents = document.querySelectorAll('cart-items-component');
+  //   let cartItemComponentsSectionIds = [];
+  //   cartItemsComponents.forEach((item) => {
+  //     if (item instanceof HTMLElement && item.dataset.sectionId) {
+  //       cartItemComponentsSectionIds.push(item.dataset.sectionId);
+  //     }
+  //     formData.append('sections', cartItemComponentsSectionIds.join(','));
+  //   });
+
+  //   const fetchCfg = fetchConfig('javascript', { body: formData });
+
+  //   fetch(Theme.routes.cart_add_url, {
+  //     ...fetchCfg,
+  //     headers: {
+  //       ...fetchCfg.headers,
+  //       Accept: 'text/html',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       if (response.status) {
+  //         this.dispatchEvent(
+  //           new CartErrorEvent(form.getAttribute('id') || '', response.message, response.description, response.errors)
+  //         );
+
+  //         if (!addToCartTextError) return;
+  //         addToCartTextError.classList.remove('hidden');
+
+  //         // Reuse the text node if the user is spam-clicking
+  //         const textNode = addToCartTextError.childNodes[2];
+  //         if (textNode) {
+  //           textNode.textContent = response.message;
+  //         } else {
+  //           const newTextNode = document.createTextNode(response.message);
+  //           addToCartTextError.appendChild(newTextNode);
+  //         }
+
+  //         // Create or get existing error live region for screen readers
+  //         this.#setLiveRegionText(response.message);
+
+  //         this.#timeout = setTimeout(() => {
+  //           if (!addToCartTextError) return;
+  //           addToCartTextError.classList.add('hidden');
+
+  //           // Clear the announcement
+  //           this.#clearLiveRegionText();
+  //         }, 10000);
+
+  //         // When we add more than the maximum amount of items to the cart, we need to dispatch a cart update event
+  //         // because our back-end still adds the max allowed amount to the cart.
+  //         this.dispatchEvent(
+  //           new CartAddEvent({}, this.id, {
+  //             didError: true,
+  //             source: 'product-form-component',
+  //             itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
+  //             productId: this.dataset.productId,
+  //           })
+  //         );
+
+  //         return;
+  //       } else {
+  //         const id = formData.get('id');
+
+  //         if (addToCartTextError) {
+  //           addToCartTextError.classList.add('hidden');
+  //           addToCartTextError.removeAttribute('aria-live');
+  //         }
+
+  //         if (!id) throw new Error('Form ID is required');
+
+  //         // Add aria-live region to inform screen readers that the item was added
+  //         if (this.refs.addToCartButtonContainer?.refs.addToCartButton) {
+  //           const addToCartButton = this.refs.addToCartButtonContainer.refs.addToCartButton;
+  //           const addedTextElement = addToCartButton.querySelector('.add-to-cart-text--added');
+  //           const addedText = addedTextElement?.textContent?.trim() || Theme.translations.added;
+
+  //           this.#setLiveRegionText(addedText);
+
+  //           setTimeout(() => {
+  //             this.#clearLiveRegionText();
+  //           }, 5000);
+  //         }
+
+  //         this.dispatchEvent(
+  //           new CartAddEvent({}, id.toString(), {
+  //             source: 'product-form-component',
+  //             itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
+  //             productId: this.dataset.productId,
+  //             sections: response.sections,
+  //           })
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     })
+  //     .finally(() => {
+  //       // add more thing to do in here if needed.
+  //       cartPerformance.measureFromEvent('add:user-action', event);
+  //     });
+  // }
   handleSubmit(event) {
-    const { addToCartTextError } = this.refs;
-    // Stop default behaviour from the browser
     event.preventDefault();
 
-    if (this.#timeout) clearTimeout(this.#timeout);
-
-    // Check if the add to cart button is disabled and do an early return if it is
-    if (this.refs.addToCartButtonContainer?.refs.addToCartButton?.getAttribute('disabled') === 'true') return;
-
-    // Send the add to cart information to the cart
-    const form = this.querySelector('form');
-
-    if (!form) throw new Error('Product form element missing');
-
+    const form = this.querySelector("form");
     const formData = new FormData(form);
+    const quantity = Number(formData.get("quantity")) || 1;
+    const variantId = formData.get("id");
 
-    const cartItemsComponents = document.querySelectorAll('cart-items-component');
-    let cartItemComponentsSectionIds = [];
-    cartItemsComponents.forEach((item) => {
-      if (item instanceof HTMLElement && item.dataset.sectionId) {
-        cartItemComponentsSectionIds.push(item.dataset.sectionId);
-      }
-      formData.append('sections', cartItemComponentsSectionIds.join(','));
-    });
+    const SHOW_FEE = window.engravingSelected && window.engravingText;
+    const FEE_ID = 43776032178227;
 
-    const fetchCfg = fetchConfig('javascript', { body: formData });
-
-    fetch(Theme.routes.cart_add_url, {
-      ...fetchCfg,
-      headers: {
-        ...fetchCfg.headers,
-        Accept: 'text/html',
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.status) {
-          this.dispatchEvent(
-            new CartErrorEvent(form.getAttribute('id') || '', response.message, response.description, response.errors)
-          );
-
-          if (!addToCartTextError) return;
-          addToCartTextError.classList.remove('hidden');
-
-          // Reuse the text node if the user is spam-clicking
-          const textNode = addToCartTextError.childNodes[2];
-          if (textNode) {
-            textNode.textContent = response.message;
-          } else {
-            const newTextNode = document.createTextNode(response.message);
-            addToCartTextError.appendChild(newTextNode);
-          }
-
-          // Create or get existing error live region for screen readers
-          this.#setLiveRegionText(response.message);
-
-          this.#timeout = setTimeout(() => {
-            if (!addToCartTextError) return;
-            addToCartTextError.classList.add('hidden');
-
-            // Clear the announcement
-            this.#clearLiveRegionText();
-          }, 10000);
-
-          // When we add more than the maximum amount of items to the cart, we need to dispatch a cart update event
-          // because our back-end still adds the max allowed amount to the cart.
-          this.dispatchEvent(
-            new CartAddEvent({}, this.id, {
-              didError: true,
-              source: 'product-form-component',
-              itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
-              productId: this.dataset.productId,
-            })
-          );
-
-          return;
-        } else {
-          const id = formData.get('id');
-
-          if (addToCartTextError) {
-            addToCartTextError.classList.add('hidden');
-            addToCartTextError.removeAttribute('aria-live');
-          }
-
-          if (!id) throw new Error('Form ID is required');
-
-          // Add aria-live region to inform screen readers that the item was added
-          if (this.refs.addToCartButtonContainer?.refs.addToCartButton) {
-            const addToCartButton = this.refs.addToCartButtonContainer.refs.addToCartButton;
-            const addedTextElement = addToCartButton.querySelector('.add-to-cart-text--added');
-            const addedText = addedTextElement?.textContent?.trim() || Theme.translations.added;
-
-            this.#setLiveRegionText(addedText);
-
-            setTimeout(() => {
-              this.#clearLiveRegionText();
-            }, 5000);
-          }
-
-          this.dispatchEvent(
-            new CartAddEvent({}, id.toString(), {
-              source: 'product-form-component',
-              itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
-              productId: this.dataset.productId,
-              sections: response.sections,
-            })
-          );
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        // add more thing to do in here if needed.
-        cartPerformance.measureFromEvent('add:user-action', event);
+    const addMainProduct = () => {
+      return fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: variantId,
+          quantity,
+          properties: SHOW_FEE
+            ? { "Engraving Text": window.engravingText }
+            : {}
+        })
       });
+    };
+
+    const addFeeProduct = () => {
+      if (!SHOW_FEE) return Promise.resolve();
+
+      return fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: FEE_ID,
+          quantity
+        })
+      });
+    };
+
+    const refreshCartDrawer = async () => {
+      const res = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+      const sections = await res.json();
+      document.dispatchEvent(
+        new CustomEvent("cart:update", { detail: { data: { sections } } })
+      );
+    };
+
+    addMainProduct()
+      .then(addFeeProduct)
+      .then(async () => {
+        const cart = await fetch("/cart.js").then(r => r.json());
+
+        document.dispatchEvent(
+          new CartAddEvent({}, variantId, {
+            source: "product-form-component",
+            itemCount: cart.item_count,
+            productId: variantId,
+            sections: [],
+          })
+        );
+      })
+      .catch(err => console.error("Add to cart error:", err));
   }
 
   /**

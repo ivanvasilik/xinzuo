@@ -79,6 +79,7 @@
             can_add_to_cart: can_add_to_cart,
             add_to_cart_text: add_to_cart_text
           %}
+          {% content_for 'block', type: 'engraving-option', id: 'engraving-option' %}
           {%- unless block_settings.gift_card_form and product.gift_card? -%}
             <span
               class="product-form-text__error hidden"

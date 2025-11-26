@@ -151,6 +151,17 @@
                   },
                   "blocks": {}
                 },
+                "engraving-option": {
+                  "type": "engraving-option",
+                  "static": true,
+                  "settings": {
+                    "btn1": "Without engraving",
+                    "btn2": "Engrave text (+$19)",
+                    "engraving_text": "Letters, numbers, and basic punctuation only (. , ! ? ' -)",
+                    "engraving_length": 20
+                  },
+                  "blocks": {}
+                },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
                   "disabled": true,

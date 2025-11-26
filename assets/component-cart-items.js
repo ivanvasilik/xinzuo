@@ -114,6 +114,68 @@ class CartItemsComponent extends Component {
     this.#disableCartItems();
 
     const { line, quantity } = config;
+
+    fetch("/cart.js")
+      .then(r => r.json())
+      .then(async cart => {
+        const items = cart.items;
+
+        const mainItem = items[line - 1];
+        if (!mainItem || !mainItem.properties || !mainItem.properties["Engraving Text"]) {
+          return;
+        }
+
+        const feeItem = items.find(i => i.id === 43776032178227);
+        if (!feeItem) return;
+
+        const feeQty = feeItem.quantity + quantity - mainItem.quantity;
+        if(quantity != 0) {
+          const feeLine = items.indexOf(feeItem) + 1;
+          console.log(feeLine);
+          await fetch("/cart/change.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              line: feeLine,
+              quantity: feeQty
+            })
+          });
+        } else {
+          const mainLine = items.indexOf(mainItem);
+          const feeLine = items.indexOf(feeItem);
+          if(mainLine > feeLine) {
+            console.log(feeLine);
+            await fetch("/cart/change.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                line: feeLine + 1,
+                quantity: feeQty
+              })
+            });
+          } else {
+            console.log(feeLine);
+            await fetch("/cart/change.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                line: feeLine,
+                quantity: feeQty
+              })
+            });
+          }
+        }
+
+        const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
+        const sections = await sectionsRes.json();
+
+        document.dispatchEvent(
+          new CustomEvent("cart:update", {
+            detail: { data: { sections } }
+          })
+        );
+    });
+
     const { cartTotal } = this.refs;
 
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
