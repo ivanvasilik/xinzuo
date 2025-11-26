@@ -154,7 +154,7 @@
                   "static": true,
                   "settings": {
                     "btn1": "Without engraving",
-                    "btn2": "Engrave text (+$15)",
+                    "btn2": "Engrave text (+$19)",
                     "engraving_text": "Letters, numbers, and basic punctuation only (. , ! ? ' -)",
                     "engraving_length": 20
                   },
