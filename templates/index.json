@@ -256,15 +256,6 @@
         "heading": "Trusted by Michelin Star Chefs Worldwide."
       }
     },
-    "compare_btn_QMrR93": {
-      "type": "compare_btn",
-      "name": "Compare Btn",
-      "settings": {
-        "heading": "Not sure where <br>to start?",
-        "link": "shopify://pages/series-comparison",
-        "link_text": "Compare Now"
-      }
-    },
     "home_products_3iCime": {
       "type": "home-products",
       "name": "Home Products",
@@ -291,6 +282,15 @@
           "xinzuo-mo-series-3-piece-knife-set"
         ],
         "color_scheme": "scheme-5"
+      }
+    },
+    "compare_btn_QMrR93": {
+      "type": "compare_btn",
+      "name": "Compare Btn",
+      "settings": {
+        "heading": "Not sure which knife is perfect for you?",
+        "link": "shopify://pages/series-comparison",
+        "link_text": "Compare Now"
       }
     },
     "home_slider_g9dVGe": {
@@ -769,8 +769,8 @@
     "hero_jVaWmY",
     "cw_hero_BD9KK7",
     "customer_GD7Dyr",
-    "compare_btn_QMrR93",
     "home_products_3iCime",
+    "compare_btn_QMrR93",
     "home_slider_g9dVGe",
     "quick_question_XyWDMB",
     "reviews_UMDUhc",
