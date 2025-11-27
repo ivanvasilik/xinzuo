@@ -178,7 +178,7 @@ class ProductFormComponent extends Component {
 
   //   if (window.engravingSelected && window.engravingText) {
   //     console.log("fee added.")
-  //     const feeVariantId = 43776032178227;
+  //     const feeVariantId = 43781283217459;
 
   //     fetch("/cart/add.js", {
   //       method: "POST",
@@ -311,7 +311,7 @@ class ProductFormComponent extends Component {
     const variantId = formData.get("id");
 
     const SHOW_FEE = window.engravingSelected && window.engravingText;
-    const FEE_ID = 43776032178227;
+    const FEE_ID = 43781283217459;
 
     const addMainProduct = () => {
       return fetch("/cart/add.js", {
