@@ -1,11 +1,24 @@
 <div>
-    <div class="engrave-btns">
-        <button type="button" class="engrave-btn active" onclick="engrave(0)">{{ block.settings.btn1 }}</button>
-        <button type="button" class="engrave-btn" onclick="engrave(1)">{{ block.settings.btn2 }}</button>
+    <div>
+        <input type="checkbox" id="engrave-state">
+        <label>Engraving Text</label>
     </div>
     <div class="engrave-div">
-        <div>
-            <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}">
+        <div class="engrave-radios">
+            <div>
+                <input type="radio" name="engrave-radio" id="engrave-one" value="one-line">
+                <label>One Line</label>
+            </div>
+            <div>
+                <input type="radio" name="engrave-radio" id="engrave-two" value="two-line">
+                <label>Two Line</label>
+            </div>
+        </div>
+        <div class="engrave-inputs">
+            <div>
+                <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}">
+                <input type="text" name="properties[Engraving Text2]" placeholder="Enter text, e.g.: Chef" id="engravedInput2" maxlength="{{ block.settings.engraving_length }}">
+            </div>
             <span class="engraving-count">0/{{ block.settings.engraving_length }}</span>
         </div>
         <p>{{ block.settings.engraving_text }}</p>
@@ -13,31 +26,6 @@
 </div>
 
 {% style %}
-    .engrave-btns {
-        display: flex;
-        gap: 8px;
-    }
-
-    .engrave-btn {
-        padding: 12px 16px;
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        color: #c9c9cc;
-        font-family: "Sen";
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-align: center;
-    }
-
-    .engrave-btn.active {
-        background-color: #292a33;
-        border-color: #ffffff;
-        color: #ffffff;
-    }
-
     .engrave-div {
         display: none;
         margin-top: 12px;
@@ -71,32 +59,37 @@
 
 <script>
     window.engravingSelected = false;
+    window.engravingSecondSelected = false;
     window.engravingText = "";
-    const engrave = (num) => {
-        const engraves = document.querySelectorAll(".engrave-btn");
-        const engraveDiv = document.querySelector(".engrave-div");
-        const engraveInput = document.getElementById("engravedInput");
-        const engraveSpan = document.querySelector(".engraving-count");
-        if (engraves.length > 0) {
-            engraves.forEach(engrave => {
-                engrave.classList.remove('active');
-            })
-            engraves[num].classList.add('active');
-        }
+    window.engravingText2 = "";
+
+    const engraveDiv = document.querySelector(".engrave-div");
+    const engraveCheck = document.getElementById("engrave-state");
+    const engraveRadio = document.getElementById("engrave-one");
+    const engraveSecondRadio = document.getElementById("engrave-two");
+
+    const engraveInput = document.getElementById("engravedInput");
+    const engraveSecondInput = document.getElementById("engravedInput2");
+    const engraveSpan = document.querySelector(".engraving-count");
+
+    engraveCheck.addEventListener("change", () => {
         if (engraveDiv) {
-            if (num == 0) {
+            if (engraveCheck.checked) {
                 const engraveLength = engraveSpan.textContent.split("/")[1];
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
+                window.engravingSecondSelected = false;
                 window.engravingText = "";
+                window.engravingText2 = "";
                 engraveInput.value = "";
+                engraveSecondInput.value = "";
                 engraveSpan.textContent = `0/${engraveLength}`;
             } else {
                 engraveDiv.style.display = "block";
                 window.engravingSelected = true;
             }
         }
-    }
+    })
 
     document.querySelector('#engravedInput').addEventListener("input", e => {
         window.engravingText = e.target.value;
