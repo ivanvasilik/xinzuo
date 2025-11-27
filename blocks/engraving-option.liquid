@@ -16,8 +16,8 @@
         </div>
         <div class="engrave-inputs">
             <div>
-                <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}">
-                <input type="text" name="properties[Engraving Text2]" placeholder="Enter text, e.g.: Chef" id="engravedInput2" maxlength="{{ block.settings.engraving_length }}">
+                <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}" checked>
+                <input type="text" name="properties[Engraving Text2]" placeholder="Enter text, e.g.: Chef" id="engravedInput2" maxlength="{{ block.settings.engraving_length }}" style="display: none;">
             </div>
             <span class="engraving-count">0/{{ block.settings.engraving_length }}</span>
         </div>
@@ -88,6 +88,18 @@
                 engraveSecondInput.value = "";
                 engraveSpan.textContent = `0/${engraveLength}`;
             }
+        }
+    })
+
+    engraveRadio.addEventListener("change", () => {
+        if (engraveRadio.checked) {
+            engraveSecondInput.style.display = "none";
+        }
+    })
+
+    engraveSecondRadio.addEventListener("change", () => {
+        if (engraveSecondRadio.checked) {
+            engraveSecondInput.style.display = "block";
         }
     })
 
