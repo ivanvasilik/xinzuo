@@ -6,7 +6,7 @@
     <div class="engrave-div">
         <div class="engrave-radios">
             <div>
-                <input type="radio" name="engrave-radio" id="engrave-one" value="one-line">
+                <input type="radio" name="engrave-radio" id="engrave-one" value="one-line" checked>
                 <label>One Line</label>
             </div>
             <div>
@@ -16,7 +16,7 @@
         </div>
         <div class="engrave-inputs">
             <div>
-                <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}" checked>
+                <input type="text" name="properties[Engraving Text]" placeholder="Enter text, e.g.: Chef" id="engravedInput" maxlength="{{ block.settings.engraving_length }}">
                 <input type="text" name="properties[Engraving Text2]" placeholder="Enter text, e.g.: Chef" id="engravedInput2" maxlength="{{ block.settings.engraving_length }}" style="display: none;">
             </div>
             <span class="engraving-count">0/{{ block.settings.engraving_length }}</span>
