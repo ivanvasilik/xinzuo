@@ -75,6 +75,9 @@
     engraveCheck.addEventListener("change", () => {
         if (engraveDiv) {
             if (engraveCheck.checked) {
+                engraveDiv.style.display = "block";
+                window.engravingSelected = true;
+            } else {
                 const engraveLength = engraveSpan.textContent.split("/")[1];
                 engraveDiv.style.display = "none";
                 window.engravingSelected = false;
@@ -84,9 +87,6 @@
                 engraveInput.value = "";
                 engraveSecondInput.value = "";
                 engraveSpan.textContent = `0/${engraveLength}`;
-            } else {
-                engraveDiv.style.display = "block";
-                window.engravingSelected = true;
             }
         }
     })
