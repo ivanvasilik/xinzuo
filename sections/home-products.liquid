@@ -203,7 +203,11 @@
         }
 
         .section-{{ section.id }} .product-item {
-            width: calc(50% - 5px);
+            width: 100%;
+        }
+
+        .section-{{ section.id }} .product-item h2 {
+            font-size: 24px;
         }
 
         .section-{{ section.id }} .collection-price {
@@ -241,7 +245,7 @@
                                 <span class="price-off">{{ percent }}% OFF</span>
                             {% endif %}
                         </a>
-                        <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+                        <h2>{{ product.title | split: " - " | strip_html | truncate: 20, "..." }}</h2>
 
                         <!-- Start of Judge.me Rating Widget -->
                         <div class="jdgm-widget jdgm-preview-badge" 
