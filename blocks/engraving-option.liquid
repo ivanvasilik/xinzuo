@@ -124,12 +124,15 @@
     engraveRadio.addEventListener("change", () => {
         if (engraveRadio.checked) {
             engraveSecondInput.style.display = "none";
+            window.engravingSecondSelected = false;
+            window.engravingText2 = "";
         }
     })
 
     engraveSecondRadio.addEventListener("change", () => {
         if (engraveSecondRadio.checked) {
             engraveSecondInput.style.display = "block";
+            window.engravingSecondSelected = true;
         }
     })
 
@@ -137,8 +140,19 @@
         window.engravingText = e.target.value;
         const countSpan = document.querySelector(".engraving-count");
         const totalLength = countSpan.textContent.split("/")[1];
-        countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
+        if(window.engravingSecondSelected) {
+            countSpan.textContent = `${window.engravingText.length + window.engravingText2.length}/${totalLength}`;
+        } else {
+            countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
+        }
     });
+
+    document.querySelector("#engravedInput2").addEventListener("input", e => {
+        window.engravingText2 = e.target.value;
+        const countSpan = document.querySelector(".engraving-count");
+        const totalLength = countSpan.textContent.split("/")[1];
+        countSpan.textContent = `${window.engravingText.length + window.engravingText2.length}/${totalLength}`;
+    })
 </script>
 
 {% schema %}
