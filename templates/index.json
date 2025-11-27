@@ -286,9 +286,10 @@
     },
     "compare_btn_QMrR93": {
       "type": "compare_btn",
+      "custom_css": [],
       "name": "Compare Btn",
       "settings": {
-        "heading": "Not sure which knife is perfect for you?",
+        "heading": "Find your perfect knife.",
         "link": "shopify://pages/series-comparison",
         "link_text": "Compare Now"
       }
