@@ -127,6 +127,9 @@
             window.engravingSecondSelected = false;
             window.engravingText2 = "";
             engraveSecondInput.value = "";
+            const countSpan = document.querySelector(".engraving-count");
+            const totalLength = countSpan.textContent.split("/")[1];
+            countSpan.textContent = `${window.engravingText.length}/${totalLength}`;
         }
     })
 
