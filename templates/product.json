@@ -151,6 +151,7 @@
                 },
                 "engraving-option": {
                   "type": "engraving-option",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "btn1": "Without engraving",
