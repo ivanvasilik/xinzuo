@@ -1,5 +1,5 @@
 <div>
-    <div>
+    <div class="engrave-check">
         <input type="checkbox" id="engrave-state">
         <label>Engraving Text</label>
     </div>
@@ -26,8 +26,16 @@
 </div>
 
 {% style %}
+    .engrave-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .engrave-div {
         display: none;
+        flex-direction: column;
+        gap: 10px;
         margin-top: 12px;
     }
 
@@ -35,6 +43,18 @@
         display: flex;
         gap: 8px;
         align-items: center;
+    }
+
+    .engrave-radios {
+        gap: 40px;
+    }
+
+    .engrave-inputs div {
+        width: 100%;
+    }
+
+    .engrave-inputs input {
+        width: 100%;
     }
 
     .engrave-div input {
@@ -45,7 +65,10 @@
         color: #ffffff;
         font-family: "Sen", sans-serif;
         font-size: 14px;
-        width: 100%;
+    }
+
+    .engrave-inputs input::placeholder {
+        color: grey;
     }
 
     .engrave-div p {
@@ -75,7 +98,7 @@
     engraveCheck.addEventListener("change", () => {
         if (engraveDiv) {
             if (engraveCheck.checked) {
-                engraveDiv.style.display = "block";
+                engraveDiv.style.display = "flex";
                 window.engravingSelected = true;
             } else {
                 const engraveLength = engraveSpan.textContent.split("/")[1];
