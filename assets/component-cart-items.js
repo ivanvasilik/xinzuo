@@ -131,7 +131,6 @@ class CartItemsComponent extends Component {
         } else {
           feeId = 43781283217459;
         }
-        console.log(feeId)
         const feeItem = items.find(i => i.id === feeId);
         if (!feeItem) return;
 
@@ -151,7 +150,6 @@ class CartItemsComponent extends Component {
           const mainLine = items.indexOf(mainItem);
           const feeLine = items.indexOf(feeItem);
           if(mainLine > feeLine) {
-            console.log(feeLine);
             await fetch("/cart/change.js", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -161,7 +159,6 @@ class CartItemsComponent extends Component {
               })
             });
           } else {
-            console.log(feeLine);
             await fetch("/cart/change.js", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
