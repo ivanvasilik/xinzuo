@@ -111,7 +111,7 @@
 
           <tbody role="rowgroup">
             {% for item in cart.items %}
-              {% if item.variant_id != 43776032178227 %}
+              {% if item.handle != "engraving-fee" %}
                 <tr
                   role="row"
                   class="cart-items__table-row{% if item.parent_relationship.parent != null %} cart-items__nested-line{% endif %}"
@@ -149,7 +149,6 @@
                     <div class="cart-drawer-info-div1">
                       <div class="cart-drawer-product">
                         <a href="{{ item.url }}">
-                          {{ item | json }}
                           <h5 class="cart-items__title">{{ item.title }}</h5>
                         </a>
                         <span>{{ item.variant.metafields.custom.description.value | truncate: 25, "..." }}</span>
