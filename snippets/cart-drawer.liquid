@@ -335,7 +335,7 @@
                     {{ cart.original_total_price | minus: fee_price | money }}
                   </span>
                 </div>
-                {% if fee_price > 0 %}
+                {% if fee_price != 0 %}
                   <div>
                     <p>Engraving Fee:</p>
                     <span>{{ fee_price | money }}</span>
