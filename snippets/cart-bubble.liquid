@@ -36,7 +36,7 @@
         {% assign fee_quantity = 0 %}
         {% for item in cart.items %}
           {% if item.variant_id == 43781283217459 or item.variant_id == 43781283250227 %}
-            {% assign fee_quantity = item.quantity %}
+            {% assign fee_quantity = fee_quantity | plus: item.quantity %}
           {% endif %}
         {% endfor %}
         {{- cart.item_count | minus: fee_quantity -}}
