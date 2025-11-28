@@ -51,20 +51,20 @@
   <div class="cart-summary-block">
     <p class="cart-summary-block-header">Price Details</p>
     <div class="cart-summary-prices">
-      {% assign fee_product = "" %}
+      {% assign fee_price = 0 %}
       {% for item in cart.items %}
-        {% if item.product_id == 7718263914547 %}
-          {% assign fee_product = item %}
+        {% if item.variant_id == 43781283217459 or item.variant_id == 43781283250227 %}
+          {% assign fee_price = fee_price | plus: item.original_line_price %}
         {% endif %}
       {% endfor %}
       <div class="cart-summary-price">
         <span>Subtotal Amount</span>
-        <span>{{ cart.original_total_price | minus: fee_product.original_line_price | money }}</span>
+        <span>{{ cart.original_total_price | minus: fee_price | money }}</span>
       </div>
-      {% if fee_product != blank %}
+      {% if fee_price != 0 %}
         <div class="cart-summary-price">
-          <span>Engraving Fee ({{ fee_product.quantity }})</span>
-          <span>{{ fee_product.original_line_price | money }}</span>
+          <span>Engraving Fee</span>
+          <span>{{ fee_price | money }}</span>
         </div>
       {% endif %}
       {% if cart.total_discount > 0 %}
