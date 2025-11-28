@@ -131,7 +131,7 @@ class CartItemsComponent extends Component {
         } else {
           feeId = 43781283217459;
         }
-        const feeItem = items.find(i => i.id === 43776032178227);
+        const feeItem = items.find(i => i.id === feeId);
         if (!feeItem) return;
 
         const feeQty = feeItem.quantity + quantity - mainItem.quantity;
