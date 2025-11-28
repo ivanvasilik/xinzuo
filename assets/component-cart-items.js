@@ -131,6 +131,7 @@ class CartItemsComponent extends Component {
         } else {
           feeId = 43781283217459;
         }
+        console.log(feeId)
         const feeItem = items.find(i => i.id === feeId);
         if (!feeItem) return;
 
