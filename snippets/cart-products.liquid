@@ -528,13 +528,13 @@
                       </div>
                       {% if item.properties["Engraving Text"] != blank %}
                         {% if item.properties["Engraving Text2"] != blank %}
-                          <p style="display: flex; gap: 5px;">
+                          <div style="display: flex; gap: 5px;">
                             Engraving Text: 
                             <div style="display: flex; flex-direction: column;">
                               <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span>
                               <span style="color: #ff0004;">{{ item.properties["Engraving Text2"] }}</span>
                             </div>
-                          </p>
+                          </div>
                         {% else %}
                           <p>Engraving Text: <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span></p>
                         {% endif %}
