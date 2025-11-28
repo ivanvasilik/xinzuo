@@ -149,6 +149,7 @@
                     <div class="cart-drawer-info-div1">
                       <div class="cart-drawer-product">
                         <a href="{{ item.url }}">
+                          {{ item.handle }}
                           <h5 class="cart-items__title">{{ item.title }}</h5>
                         </a>
                         <span>{{ item.variant.metafields.custom.description.value | truncate: 25, "..." }}</span>
