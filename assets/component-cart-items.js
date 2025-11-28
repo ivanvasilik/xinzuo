@@ -125,6 +125,12 @@ class CartItemsComponent extends Component {
           return;
         }
 
+        let feeId;
+        if(mainItem.properties["Engraving Text2"]) {
+          feeId = 43781283250227;
+        } else {
+          feeId = 43781283217459;
+        }
         const feeItem = items.find(i => i.id === 43776032178227);
         if (!feeItem) return;
 
