@@ -124,7 +124,6 @@ class CartItemsComponent extends Component {
         if (!mainItem || !mainItem.properties || !mainItem.properties["Engraving Text"]) {
           return;
         }
-        console.log(mainItem);
 
         let feeId;
         if(mainItem.properties["Engraving Text2"]) {
