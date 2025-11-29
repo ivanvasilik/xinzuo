@@ -171,7 +171,6 @@ class ProductFormComponent extends Component {
     const SHOW_FEE2 = window.engravingSecondSelected && window.engravingText2;
     const FEE_ID = 43781283217459;
     const FEE_ID2 = 43781283250227;
-    console.log(productMetafieldValue)
 
     const addMainProduct = () => {
       return fetch("/cart/add.js", {
