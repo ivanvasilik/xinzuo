@@ -124,6 +124,7 @@ class CartItemsComponent extends Component {
         if (!mainItem || !mainItem.properties || !mainItem.properties["Engraving Text"]) {
           return;
         }
+        console.log(mainItem);
 
         let feeId;
         if(mainItem.properties["Engraving Text2"]) {
@@ -137,7 +138,6 @@ class CartItemsComponent extends Component {
         const feeQty = feeItem.quantity + quantity - mainItem.quantity;
         if(quantity != 0) {
           const feeLine = items.indexOf(feeItem) + 1;
-          console.log(feeLine);
           await fetch("/cart/change.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
