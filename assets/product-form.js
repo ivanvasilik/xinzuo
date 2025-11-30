@@ -171,6 +171,7 @@ class ProductFormComponent extends Component {
     const SHOW_FEE2 = window.engravingSecondSelected && window.engravingText2;
     const FEE_ID = 43781283217459;
     const FEE_ID2 = 43781283250227;
+    const knife_num = window.knife_num;
 
     const addMainProduct = () => {
       return fetch("/cart/add.js", {
@@ -197,7 +198,7 @@ class ProductFormComponent extends Component {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: FEE_ID,
-            quantity
+            quantity: quantity * knife_num
           })
         });
       } else {
@@ -206,7 +207,7 @@ class ProductFormComponent extends Component {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: FEE_ID2,
-            quantity
+            quantity: quantity * knife_num
           })
         });
       }
