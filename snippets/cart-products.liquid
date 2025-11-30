@@ -111,7 +111,7 @@
 
           <tbody role="rowgroup">
             {% for item in cart.items %}
-              {% if item.product_id != 7718263914547 %}
+              {% comment %} {% if item.product_id != 7718263914547 %} {% endcomment %}
                 <tr
                   role="row"
                   class="cart-items__table-row{% if item.parent_relationship.parent != null %} cart-items__nested-line{% endif %}"
@@ -236,7 +236,7 @@
                     </div>
                   </td>
                 </tr>
-              {% endif %}
+              {% comment %} {% endif %} {% endcomment %}
             {% endfor %}
           </tbody>
         </table>
