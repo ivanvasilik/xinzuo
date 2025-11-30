@@ -134,7 +134,7 @@ class CartItemsComponent extends Component {
         const feeItem = items.find(i => i.id === feeId);
         if (!feeItem) return;
 
-        const feeQty = feeItem.quantity + quantity - mainItem.quantity * mainItem.properties["Knife Quantity"];
+        const feeQty = feeItem.quantity + quantity * mainItem.properties["Knife Quantity"] - mainItem.quantity;
         console.log(mainItem.properties["Knife Quantity"])
         console.log(feeQty)
         if(quantity != 0) {
