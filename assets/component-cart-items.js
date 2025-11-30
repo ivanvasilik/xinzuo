@@ -135,6 +135,8 @@ class CartItemsComponent extends Component {
         if (!feeItem) return;
 
         const feeQty = feeItem.quantity + quantity - mainItem.quantity * mainItem.properties["Knife Quantity"];
+        console.log(mainItem.properties["Knife Quantity"])
+        console.log(feeQty)
         if(quantity != 0) {
           const feeLine = items.indexOf(feeItem) + 1;
           await fetch("/cart/change.js", {
