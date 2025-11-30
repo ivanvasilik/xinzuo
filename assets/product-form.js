@@ -182,9 +182,9 @@ class ProductFormComponent extends Component {
           quantity,
           properties: SHOW_FEE
             ? SHOW_FEE2
-            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2 }
-            : { "Engraving Text": window.engravingText }
-            : {}
+            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
+            : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
+            : { "Knife Quantity": window.knife_num }
         })
       });
     };
