@@ -63,7 +63,17 @@
         "products": [],
         "color_scheme": "scheme-5",
         "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-end": 64,
+        "free_shipping_threshold": 100,
+        "express_shipping_threshold": 250,
+        "progress_message_stage1": "<p>Add &lcub;PRICE&rcub; more to unlock Free Delivery.</p>",
+        "progress_message_stage2": "<p>🎉 Free Delivery Unlocked!</p>",
+        "progress_message_stage2_secondary": "<p>Add &lcub;PRICE&rcub; more to unlock Free Express Delivery.</p>",
+        "progress_message_stage3": "<p>🚀 Free Express Delivery Unlocked!</p>",
+        "progress_bar_color": "#ff0004",
+        "express_bar_color": "#ffa500",
+        "show_progress_bar": true,
+        "enable_express_shipping": true
       }
     }
   },
