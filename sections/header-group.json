@@ -17,21 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Free Shipping on Orders $50+",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "1rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
-        },
-        "announcement_HqdfTQ": {
-          "type": "_announcement",
-          "name": "t:names.announcement",
-          "settings": {
-            "text": "Black Friday → Up To 20% Off 🔪",
+            "text": "Free Shipping on Orders over $100",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
@@ -43,8 +29,7 @@
         }
       },
       "block_order": [
-        "announcement_BxgCk9",
-        "announcement_HqdfTQ"
+        "announcement_BxgCk9"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
