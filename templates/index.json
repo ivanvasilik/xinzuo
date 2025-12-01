@@ -133,7 +133,7 @@
       "type": "cw-hero",
       "name": "CW Hero",
       "settings": {
-        "header_title": "🔥 BLACK FRIDAY UP TO 20% OFF STOREWIDE 🔥",
+        "header_title": "",
         "header_size": 16,
         "header_mobile_size": 14,
         "header_color": "#ff0004",
