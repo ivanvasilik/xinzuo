@@ -250,7 +250,7 @@
                     {% assign collection_handle = sublink.url | split: '/' | last %}
                     {% assign collection = collections[collection_handle] %}
                     {% if collection != blank %}
-                      <ul
+                      {% comment %} <ul
                         class="list-unstyled"
                         {% if should_break_columns %}
                           style="column-count: {{ column_span }};"
@@ -271,7 +271,7 @@
                         {% if collection.products.size > 5 %}
                           <li><a href="{{ collection.url }}">view all</a></li>
                         {% endif %}
-                      </ul>
+                      </ul> {% endcomment %}
                       <div class="menu-img">
                         {% if collection.featured_image != blank %}
                           <img
