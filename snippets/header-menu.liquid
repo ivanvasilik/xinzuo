@@ -250,7 +250,7 @@
                     {% assign collection_handle = sublink.url | split: '/' | last %}
                     {% assign collection = collections[collection_handle] %}
                     {% if collection != blank %}
-                      <ul
+                      {% comment %} <ul
                         class="list-unstyled"
                         {% if should_break_columns %}
                           style="column-count: {{ column_span }};"
@@ -271,8 +271,8 @@
                         {% if collection.products.size > 5 %}
                           <li><a href="{{ collection.url }}">view all</a></li>
                         {% endif %}
-                      </ul>
-                      <div class="menu-img">
+                      </ul> {% endcomment %}
+                      <a class="menu-img" href="{{ sublink.url }}">
                         {% if collection.featured_image != blank %}
                           <img
                             src="{{ collection.featured_image | img_url: 'master' }}"
@@ -301,7 +301,7 @@
                         {% if sum != 0 %}
                           <span class="price-off">{{ sum }}% OFF</span>
                         {% endif %}
-                      </div>
+                      </a>
                     {% endif %}
                   </li>
                 {% endfor %}
@@ -378,7 +378,7 @@
   .header-dropdown > ul {
     display: flex;
     flex-wrap: wrap;
-    padding: 48px 0;
+    padding: 10px 0 48px;
     list-style: none;
     margin: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -386,7 +386,7 @@
 
   .header-dropdown > ul > li {
     width: 25%;
-    padding: 0 32px;
+    padding: 30px 32px 0;
     display: flex;
     flex-direction: column;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
