@@ -17,19 +17,18 @@
       </div>
       {%- liquid 
         # Use section settings with fallback to global theme settings
-        assign shipping_value = section.settings.free_shipping_threshold | default: settings.shipping_value | default: 50
-        assign express_value = section.settings.express_shipping_threshold | default: settings.express_value | default: 200
+        assign shipping_value = settings.shipping_value
+        assign express_value = settings.express_value
         assign enable_express = section.settings.enable_express_shipping | default: true
         assign total_price = cart.total_price | divided_by: 100.00
         assign message2 = ""
-        assign show_bar = section.settings.show_progress_bar | default: true
         
         # Calculate progress based on current stage
         if total_price < shipping_value
           # Stage 1: Working toward free shipping
           assign balance = shipping_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money
-          assign message = section.settings.progress_message_stage1 | default: settings.shipping_message | default: "Add {PRICE} more to unlock Free Delivery." | replace: '{PRICE}', balance_txt
+          assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
           assign state_value = total_price | times: 100 | divided_by: shipping_value
           assign progress_value = 100
@@ -37,8 +36,8 @@
           # Stage 2: Working toward express shipping (only if express is enabled)
           assign balance = express_value | minus: total_price
           assign balance_txt = balance | times: 100.00 | money
-          assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
-          assign message2 = section.settings.progress_message_stage2_secondary | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+          assign message = settings.express_message
+          assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
           # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
           assign remaining_range = express_value | minus: shipping_value
           assign progress_in_range = total_price | minus: shipping_value
@@ -47,7 +46,7 @@
         else
           # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
           if enable_express and total_price >= express_value
-            assign message = section.settings.progress_message_stage3 | default: settings.complete_message | default: "Free Express Delivery Unlocked!"
+            assign message = settings.complete_message
           else
             assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
           endif
