@@ -135,7 +135,9 @@
                             {% endif %}
                           {% endfor %}
                           {% assign sum = sum | divided_by: collection.products.size %}
-                          <span class="price-off">{{ sum }}% OFF</span>
+                          {% if sum != 0 %}
+                            <span class="price-off">{{ sum }}% OFF</span>
+                          {% endif %}
                         </div>
                         <h4>{{ sublink.title }} ></h4>
                       </a>
