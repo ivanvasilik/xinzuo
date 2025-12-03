@@ -88,8 +88,8 @@
   >
     <ul class="home-menu-ul">
       {% for link in block_settings.menu.links %}
-        <li class="menu-list__list-item">
-          {% if link.title != "BEST SELLER" %}
+        {% if link.title != "BEST SELLER" %}
+          <li class="menu-list__list-item">
             {% if link.title != 'Logo' %}
               {% if link.links == blank %}
                 <a
@@ -309,8 +309,8 @@
                 </ul>
               </div>
             {%- endif -%}
-          {% endif %}
-        </li>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>
