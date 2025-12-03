@@ -64,7 +64,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Reviews</h2>",
+            "text": "<h2>All Reviews</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
