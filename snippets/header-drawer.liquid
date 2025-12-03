@@ -109,7 +109,7 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              <li class="header-category-li">
+              <li class="header-category-li" {% if link.title == "BEST SELLER" %}style="padding-top: 20px;"{% endif %}>
                 {% if link.links != blank %}
                   <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
                     <span>{{ link.title | escape }}</span>
