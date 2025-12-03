@@ -108,7 +108,7 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              <li class="header-category-li" {% if link.title == "BEST SELLER" %}style="padding-top: 20px;"{% endif %}>
+              <li class="header-category-li" {% if link.title == "BEST SELLER" %}id="header_drawer_padding" style="padding-top: 20px"{% endif %}>
                 {% if link.links != blank %}
                   <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
                     <span>{{ link.title | escape }}</span>
@@ -147,7 +147,7 @@
                   </div>
                 {%- else -%}
                   <a
-                    id="HeaderDrawer-{{ link.handle }}{% if link.title == "BEST SELLER" %} review-header{% endif %}"
+                    id="HeaderDrawer-{{ link.handle }}"
                     href="{{ link.url }}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                     {% if link.current %}
@@ -817,15 +817,18 @@
 
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
+    const menuitem = document.getElementById("header_drawer_padding");
     const isOpen = headerCategory.classList.contains('open');
 
     if (!isOpen) {
       headerCategory.classList.add('open');
       headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
+      menuItem.style.marginTop = "20px";
     }
     else {
       headerCategory.classList.remove('open');
       headerCategory.style.maxHeight = 0;
+      menuItem.style.marginTop = 0;
     }
   }
 </script>
