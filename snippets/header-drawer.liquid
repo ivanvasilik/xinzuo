@@ -75,12 +75,11 @@
       "
     >
       <div class="header-drawer-header">
-        <span class="header-drawer-close">
+        <span class="header-drawer-close" on:click="/close">
           <button
             class="button button-unstyled close-button menu-drawer__close-button"
             type="button"
             aria-label="{{ 'actions.close' | t }}"
-            on:click="/close"
           >
             <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
               {{- 'icon-close.svg' | inline_asset_content -}}
