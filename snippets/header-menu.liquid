@@ -88,7 +88,7 @@
   >
     <ul class="home-menu-ul">
       {% for link in block_settings.menu.links %}
-        {% if link.title != "BEST SELLER" %}
+        {% if link.title != "BEST SELLER" and link.title != "REVIEWS" %}
           <li class="menu-list__list-item">
             {% if link.title != 'Logo' %}
               {% if link.links == blank %}
