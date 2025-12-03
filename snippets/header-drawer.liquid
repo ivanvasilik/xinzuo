@@ -823,12 +823,16 @@
     if (!isOpen) {
       headerCategory.classList.add('open');
       headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
-      menuItem.style.paddingTop = "20px";
+      if(num == 2 && menuitem) {
+        menuitem.style.paddingTop = "20px";
+      }
     }
     else {
       headerCategory.classList.remove('open');
       headerCategory.style.maxHeight = 0;
-      menuItem.style.paddingTop = 0;
+      if(num == 2 && menuitem) {
+        menuitem.style.paddingTop = 0;
+      }
     }
   }
 </script>
