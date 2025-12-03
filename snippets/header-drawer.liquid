@@ -147,7 +147,7 @@
                   </div>
                 {%- else -%}
                   <a
-                    id="HeaderDrawer-{{ link.handle }}"
+                    id="HeaderDrawer-{{ link.handle }}{% if link.title == "BEST SELLER" %} review-header{% endif %}"
                     href="{{ link.url }}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                     {% if link.current %}
