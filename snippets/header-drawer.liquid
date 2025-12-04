@@ -143,6 +143,10 @@
                     {% endfor %}
                     {% if link.title == "KNIVES" %}
                       <a class="header-compare" href="/pages/series-comparison">COMPARE KNIVES ></a>
+                      <a class="header-view-all" href="/collections/all">VIEW ALL KNIVES ></a>
+                    {% endif %}
+                    {% if link.title == "ACCESSORIES" %}
+                      <a class="header-view-all" href="/collections/all">VIEW ALL ACCESSORIES ></a>
                     {% endif %}
                   </div>
                 {%- else -%}
@@ -885,6 +889,27 @@
     padding: 10px 20px;
     width: fit-content !important;
     margin: 5px auto 10px;
+  }
+
+  .header-view-all {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    width: fit-content !important;
+    margin: 5px auto 10px;
+    font-family: "Sen";
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .header-view-all:hover {
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   .menu-img-mobile {

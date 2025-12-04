@@ -113,6 +113,40 @@
         color: #ffffffbb;
     }
 
+    .section-{{ section.id }} #view-all-products {
+        display: none;
+        width: fit-content;
+        margin: 20px auto 0;
+        padding: 12px 24px;
+        font-family: 'Sen';
+        font-weight: 600;
+        font-size: 18px;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        text-decoration: none;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .section-{{ section.id }} #view-all-products svg {
+        width: 20px;
+        height: 20px;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} #view-all-products:hover {
+        background-color: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .section-{{ section.id }} #view-all-products:active {
+        transform: translateY(0);
+    }
+
     .section-{{ section.id }} .product-img {
         position: relative;
         display: flex;
@@ -189,6 +223,11 @@
         .section-{{ section.id }} #load-more {
             font-size: 16px;
         }
+
+        .section-{{ section.id }} #view-all-products {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
     }
     
     @media screen and (max-width: 750px) {
@@ -216,6 +255,11 @@
 
         .section-{{ section.id }} .collection-link {
             width: fit-content;
+        }
+
+        .section-{{ section.id }} #view-all-products {
+            font-size: 14px;
+            padding: 10px 18px;
         }
     }
 {% endstyle %}
@@ -281,6 +325,20 @@
                 {% endfor %}
             </div>
             <button id="load-more" data-page="1">Load more</button>
+            <a href="/collections/all" id="view-all-products" class="view-all-link">
+                <span>View All Products</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <g clip-path="url(#clip0_shop_all)">
+                        <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_shop_all">
+                            <rect width="20" height="20" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </a>
         </div>
     </div>
 </div>
@@ -288,6 +346,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const btn = document.querySelector('#load-more');
+        const viewAllBtn = document.querySelector('#view-all-products');
         const products = document.querySelectorAll('#home-products .product-item');
         let visible = 4;
 
@@ -305,7 +364,10 @@
             btn.disabled = false;
             btn.textContent = 'Load more';
 
-            if (visible >= products.length) btn.remove();
+            if (visible >= products.length) {
+                btn.remove();
+                viewAllBtn.style.display = 'flex';
+            }
             }, 1000);
         });
     });
