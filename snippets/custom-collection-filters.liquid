@@ -393,8 +393,11 @@
       initCustomFilters();
     }
 
+    // Generic selector to catch all product tiles, even if markup changes or pagination loads more
+    const PRODUCT_SELECTOR = '.product-grid__item, .collection-grid__item, .grid__item';
+
     function initCustomFilters() {
-      const products = document.querySelectorAll('.product-grid__item');
+      const products = document.querySelectorAll(PRODUCT_SELECTOR);
       if (!products.length) return;
 
       // Extract filter data from products
@@ -404,7 +407,7 @@
       buildFilterUI(filters);
       
       // Set up event listeners
-      setupEventListeners(products, filters);
+      setupEventListeners(filters);
       
       // Setup mobile drawer
       setupMobileDrawer();
@@ -416,60 +419,7 @@
       const categories = new Set();
 
       products.forEach(product => {
-        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
-        if (!titleEl) return;
-        
-        const title = titleEl.textContent.trim();
-
-        // Extract knife type from title
-        const knifeTypePatterns = [
-          { pattern: /Chef Knife/i, value: 'Chef Knife' },
-          { pattern: /Santoku/i, value: 'Santoku' },
-          { pattern: /Bread Knife/i, value: 'Bread Knife' },
-          { pattern: /Carving Knife/i, value: 'Carving Knife' },
-          { pattern: /Utility Knife/i, value: 'Utility Knife' },
-          { pattern: /Paring Knife/i, value: 'Paring Knife' },
-          { pattern: /Nakiri/i, value: 'Nakiri' },
-          { pattern: /Cleaver/i, value: 'Cleaver' },
-          { pattern: /Bunka/i, value: 'Bunka' },
-          { pattern: /Knife Set/i, value: 'Knife Sets' },
-        ];
-
-        knifeTypePatterns.forEach(({pattern, value}) => {
-          if (pattern.test(title)) {
-            knifeTypes.add(value);
-            product.dataset.knifeType = value;
-          }
-        });
-
-        // Extract series from title
-        if (/Supreme Series|Supreme/i.test(title)) {
-          series.add('Supreme');
-          product.dataset.series = 'Supreme';
-        } else if (/Retro Series|Retro/i.test(title)) {
-          series.add('Retro');
-          product.dataset.series = 'Retro';
-        } else if (/MO Series/i.test(title)) {
-          series.add('MO');
-          product.dataset.series = 'MO';
-        } else if (/LAN Series/i.test(title)) {
-          series.add('LAN');
-          product.dataset.series = 'LAN';
-        }
-
-        // Extract category
-        if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
-          categories.add('Accessories');
-          product.dataset.category = 'Accessories';
-        } else if (/Knife/i.test(title)) {
-          if (/Set/i.test(title)) {
-            categories.add('Knife Sets');
-            product.dataset.category = 'Knife Sets';
-          } else {
-            categories.add('Single Knives');
-            product.dataset.category = 'Single Knives';
-          }
-        }
+        ensureProductAttributes(product, { knifeTypes, series, categories });
       });
 
       return {
@@ -477,6 +427,62 @@
         series: Array.from(series).sort(),
         categories: Array.from(categories).sort()
       };
+    }
+
+    // Ensure data attributes are set for a product tile, extracting from its title
+    function ensureProductAttributes(product, sets) {
+      const { knifeTypes, series, categories } = sets || {};
+      const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
+      if (!titleEl) return;
+      
+      const title = titleEl.textContent.trim();
+
+      const knifeTypePatterns = [
+        { pattern: /Chef Knife/i, value: 'Chef Knife' },
+        { pattern: /Santoku/i, value: 'Santoku' },
+        { pattern: /Bread Knife/i, value: 'Bread Knife' },
+        { pattern: /Carving Knife/i, value: 'Carving Knife' },
+        { pattern: /Utility Knife/i, value: 'Utility Knife' },
+        { pattern: /Paring Knife/i, value: 'Paring Knife' },
+        { pattern: /Nakiri/i, value: 'Nakiri' },
+        { pattern: /Cleaver/i, value: 'Cleaver' },
+        { pattern: /Bunka/i, value: 'Bunka' },
+        { pattern: /Knife Set/i, value: 'Knife Sets' },
+      ];
+
+      knifeTypePatterns.forEach(({pattern, value}) => {
+        if (pattern.test(title)) {
+          if (knifeTypes) knifeTypes.add(value);
+          product.dataset.knifeType = value;
+        }
+      });
+
+      if (/Supreme Series|Supreme/i.test(title)) {
+        if (series) series.add('Supreme');
+        product.dataset.series = 'Supreme';
+      } else if (/Retro Series|Retro/i.test(title)) {
+        if (series) series.add('Retro');
+        product.dataset.series = 'Retro';
+      } else if (/MO Series/i.test(title)) {
+        if (series) series.add('MO');
+        product.dataset.series = 'MO';
+      } else if (/LAN Series/i.test(title)) {
+        if (series) series.add('LAN');
+        product.dataset.series = 'LAN';
+      }
+
+      if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+        if (categories) categories.add('Accessories');
+        product.dataset.category = 'Accessories';
+      } else if (/Knife/i.test(title)) {
+        if (/Set/i.test(title)) {
+          if (categories) categories.add('Knife Sets');
+          product.dataset.category = 'Knife Sets';
+        } else {
+          if (categories) categories.add('Single Knives');
+          product.dataset.category = 'Single Knives';
+        }
+      }
     }
 
     function buildFilterUI(filters) {
@@ -513,13 +519,13 @@
       `;
     }
 
-    function setupEventListeners(products, filters) {
+    function setupEventListeners(filters) {
       const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-          applyFilters(products);
+          applyFilters();
           updateClearAllButton();
           updateFilterCount();
         });
@@ -529,7 +535,7 @@
         checkboxes.forEach(cb => cb.checked = false);
         // Also clear the cloned mobile checkboxes
         document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
-        applyFilters(products);
+        applyFilters();
         updateClearAllButton();
         updateFilterCount();
       });
@@ -542,7 +548,10 @@
       });
     }
 
-    function applyFilters(products) {
+    function applyFilters() {
+      const products = document.querySelectorAll(PRODUCT_SELECTOR);
+      if (!products.length) return;
+
       const activeFilters = {
         knifeType: [],
         series: [],
@@ -562,6 +571,8 @@
       let visibleCount = 0;
 
       products.forEach(product => {
+        // Make sure newly loaded products have data attributes
+        ensureProductAttributes(product, {});
         let show = true;
 
         // Apply AND logic between filter types, OR within same type
