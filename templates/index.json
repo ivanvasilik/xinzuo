@@ -80,8 +80,8 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "EXPLORE PRODUCTS",
-            "link": "shopify://collections/all",
+            "label": "Shop Now",
+            "link": "shopify://collections/all-products",
             "open_in_new_tab": false,
             "style_class": "link",
             "btn_icon": "below",

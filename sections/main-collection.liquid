@@ -32,14 +32,9 @@
   {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
 
   <div
-    class="collection-wrapper grid gap-style"
+    class="collection-wrapper grid gap-style custom-filter-layout"
   >
-    {% content_for 'block',
-      type: 'filters',
-      id: 'filters',
-      results: collection,
-      results_size: collection.products_count
-    %}
+    {% render 'custom-collection-filters' %}
 
     {% paginate collection.products by 24 %}
       {% capture children %}
@@ -71,8 +66,23 @@
 </results-list>
 
 {% stylesheet %}
+  .custom-filter-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (min-width: 750px) {
+    .custom-filter-layout {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+
   .main-collection-grid {
     grid-column: var(--grid-column--mobile);
+    flex: 1;
 
     @media screen and (min-width: 750px) {
       grid-column: var(--grid-column--desktop);

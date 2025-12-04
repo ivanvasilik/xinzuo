@@ -1,0 +1,679 @@
+{% comment %}
+  Custom Collection Filters
+  Extracts filter data from product titles and creates a sidebar filtering system
+  No apps required - pure JavaScript filtering
+{% endcomment %}
+
+<div class="custom-filters-sidebar" id="custom-filters">
+  <div class="filters-header">
+    <h4>Filters</h4>
+    <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
+  </div>
+  
+  <div class="filter-section" id="knife-type-filter">
+    <div class="filter-section-header">
+      <span>Knife Type</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="knife-type-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+  
+  <div class="filter-section" id="series-filter">
+    <div class="filter-section-header">
+      <span>Series</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="series-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+  
+  <div class="filter-section" id="category-filter">
+    <div class="filter-section-header">
+      <span>Category</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="category-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</div>
+
+<div class="filter-mobile-trigger">
+  <button class="mobile-filter-btn" id="open-mobile-filters">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M2.5 5H17.5M5 10H15M7.5 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span>Filters</span>
+    <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
+  </button>
+</div>
+
+<div class="filter-mobile-drawer" id="mobile-filter-drawer">
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <h3>Filters</h3>
+      <button class="drawer-close" id="close-drawer">×</button>
+    </div>
+    <div class="drawer-body" id="mobile-filters-body">
+      <!-- Filters will be cloned here -->
+    </div>
+    <div class="drawer-footer">
+      <button class="clear-filters-btn" id="mobile-clear-filters">Clear All</button>
+      <button class="apply-filters-btn" id="apply-filters">Apply Filters</button>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  /* Desktop Sidebar */
+  .custom-filters-sidebar {
+    width: 280px;
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+
+  .filters-header h4 {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .clear-all-btn {
+    background: none;
+    border: none;
+    color: #c9c9cc;
+    font-family: "Sen", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  .clear-all-btn:hover {
+    color: #fff;
+  }
+
+  .filter-section {
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .filter-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 12px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .filter-chevron {
+    color: #c9c9cc;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .filter-section.collapsed .filter-chevron {
+    transform: rotate(-90deg);
+  }
+
+  .filter-section.collapsed .filter-options {
+    display: none;
+  }
+
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .filter-checkbox {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .filter-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .filter-option input[type="checkbox"]:checked + .filter-checkbox {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+  }
+
+  .filter-option input[type="checkbox"]:checked + .filter-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .filter-label {
+    font-family: "Albert Sans", sans-serif;
+    font-size: 14px;
+    color: #c9c9cc;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .filter-count {
+    font-family: "Sen", sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .filter-option:hover .filter-label {
+    color: #fff;
+  }
+
+  /* Mobile Filter Button */
+  .filter-mobile-trigger {
+    display: none;
+  }
+
+  .mobile-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .filter-count-badge {
+    background-color: #ff0004;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Mobile Drawer */
+  .filter-mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .filter-mobile-drawer.active {
+    display: block;
+  }
+
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .drawer-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border-radius: 16px 16px 0 0;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .filter-mobile-drawer.active .drawer-content {
+    transform: translateY(0);
+  }
+
+  .drawer-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drawer-header h3 {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+  }
+
+  .drawer-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+  }
+
+  .drawer-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 12px;
+  }
+
+  .clear-filters-btn,
+  .apply-filters-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 6px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .clear-filters-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .apply-filters-btn {
+    background-color: #ff0004;
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 749px) {
+    .custom-filters-sidebar {
+      display: none;
+    }
+
+    .filter-mobile-trigger {
+      display: block;
+      margin-bottom: 16px;
+    }
+  }
+
+  @media (min-width: 750px) {
+    .filter-mobile-trigger {
+      display: none;
+    }
+  }
+
+  /* Scrollbar styling */
+  .custom-filters-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+{% endstyle %}
+
+{% javascript %}
+  (function() {
+    // Initialize filters when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCustomFilters);
+    } else {
+      initCustomFilters();
+    }
+
+    function initCustomFilters() {
+      const products = document.querySelectorAll('.product-grid__item');
+      if (!products.length) return;
+
+      // Extract filter data from products
+      const filters = extractFilters(products);
+      
+      // Build filter UI
+      buildFilterUI(filters);
+      
+      // Set up event listeners
+      setupEventListeners(products, filters);
+      
+      // Setup mobile drawer
+      setupMobileDrawer();
+    }
+
+    function extractFilters(products) {
+      const knifeTypes = new Set();
+      const series = new Set();
+      const categories = new Set();
+
+      products.forEach(product => {
+        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
+        if (!titleEl) return;
+        
+        const title = titleEl.textContent.trim();
+
+        // Extract knife type from title
+        const knifeTypePatterns = [
+          { pattern: /Chef Knife/i, value: 'Chef Knife' },
+          { pattern: /Santoku/i, value: 'Santoku' },
+          { pattern: /Bread Knife/i, value: 'Bread Knife' },
+          { pattern: /Carving Knife/i, value: 'Carving Knife' },
+          { pattern: /Utility Knife/i, value: 'Utility Knife' },
+          { pattern: /Paring Knife/i, value: 'Paring Knife' },
+          { pattern: /Nakiri/i, value: 'Nakiri' },
+          { pattern: /Cleaver/i, value: 'Cleaver' },
+          { pattern: /Bunka/i, value: 'Bunka' },
+          { pattern: /Knife Set/i, value: 'Knife Sets' },
+        ];
+
+        knifeTypePatterns.forEach(({pattern, value}) => {
+          if (pattern.test(title)) {
+            knifeTypes.add(value);
+            product.dataset.knifeType = value;
+          }
+        });
+
+        // Extract series from title
+        if (/Supreme Series|Supreme/i.test(title)) {
+          series.add('Supreme');
+          product.dataset.series = 'Supreme';
+        } else if (/Retro Series|Retro/i.test(title)) {
+          series.add('Retro');
+          product.dataset.series = 'Retro';
+        } else if (/MO Series/i.test(title)) {
+          series.add('MO');
+          product.dataset.series = 'MO';
+        } else if (/LAN Series/i.test(title)) {
+          series.add('LAN');
+          product.dataset.series = 'LAN';
+        }
+
+        // Extract category
+        if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+          categories.add('Accessories');
+          product.dataset.category = 'Accessories';
+        } else if (/Knife/i.test(title)) {
+          if (/Set/i.test(title)) {
+            categories.add('Knife Sets');
+            product.dataset.category = 'Knife Sets';
+          } else {
+            categories.add('Single Knives');
+            product.dataset.category = 'Single Knives';
+          }
+        }
+      });
+
+      return {
+        knifeTypes: Array.from(knifeTypes).sort(),
+        series: Array.from(series).sort(),
+        categories: Array.from(categories).sort()
+      };
+    }
+
+    function buildFilterUI(filters) {
+      // Build knife type filters
+      const knifeTypeContainer = document.getElementById('knife-type-options');
+      filters.knifeTypes.forEach((type, index) => {
+        const count = document.querySelectorAll(`[data-knife-type="${type}"]`).length;
+        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index);
+      });
+
+      // Build series filters
+      const seriesContainer = document.getElementById('series-options');
+      filters.series.forEach((s, index) => {
+        const count = document.querySelectorAll(`[data-series="${s}"]`).length;
+        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index);
+      });
+
+      // Build category filters
+      const categoryContainer = document.getElementById('category-options');
+      filters.categories.forEach((cat, index) => {
+        const count = document.querySelectorAll(`[data-category="${cat}"]`).length;
+        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index);
+      });
+    }
+
+    function createFilterOption(type, value, label, count, index) {
+      return `
+        <label class="filter-option">
+          <input type="checkbox" data-filter-type="${type}" data-filter-value="${value}" id="${type}-${index}">
+          <span class="filter-checkbox"></span>
+          <span class="filter-label">${label}</span>
+          <span class="filter-count">(${count})</span>
+        </label>
+      `;
+    }
+
+    function setupEventListeners(products, filters) {
+      // Use only the desktop sidebar as the single source of truth
+      const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
+      const clearAllBtn = document.getElementById('clear-all-filters');
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          applyFilters(products);
+          updateClearAllButton();
+          updateFilterCount();
+        });
+      });
+
+      clearAllBtn.addEventListener('click', () => {
+        checkboxes.forEach(cb => cb.checked = false);
+        applyFilters(products);
+        updateClearAllButton();
+        updateFilterCount();
+      });
+
+      // Collapsible sections
+      document.querySelectorAll('.filter-section-header').forEach(header => {
+        header.addEventListener('click', () => {
+          header.parentElement.classList.toggle('collapsed');
+        });
+      });
+    }
+
+    function applyFilters(products) {
+      const activeFilters = {
+        knifeType: [],
+        series: [],
+        category: []
+      };
+
+      document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
+        const type = checkbox.dataset.filterType;
+        const value = checkbox.dataset.filterValue;
+        
+        if (type === 'knife-type') activeFilters.knifeType.push(value);
+        else if (type === 'series') activeFilters.series.push(value);
+        else if (type === 'category') activeFilters.category.push(value);
+      });
+
+      let visibleCount = 0;
+
+      products.forEach(product => {
+        let show = true;
+
+        // Apply AND logic between filter types, OR within same type
+        if (activeFilters.knifeType.length > 0) {
+          show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
+        }
+
+        if (activeFilters.series.length > 0) {
+          show = show && activeFilters.series.includes(product.dataset.series);
+        }
+
+        if (activeFilters.category.length > 0) {
+          show = show && activeFilters.category.includes(product.dataset.category);
+        }
+
+        if (show) {
+          product.style.display = '';
+          visibleCount++;
+        } else {
+          product.style.display = 'none';
+        }
+      });
+
+      // Update product count
+      const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
+      if (countEl) {
+        countEl.textContent = `${visibleCount} items`;
+      }
+    }
+
+    function updateClearAllButton() {
+      const anyChecked = document.querySelector('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked');
+      const clearBtn = document.getElementById('clear-all-filters');
+      clearBtn.style.display = anyChecked ? 'block' : 'none';
+    }
+
+    function updateFilterCount() {
+      const checkedCount = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').length;
+      const badge = document.getElementById('filter-count-badge');
+      
+      if (checkedCount > 0) {
+        badge.textContent = checkedCount;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function setupMobileDrawer() {
+      const openBtn = document.getElementById('open-mobile-filters');
+      const closeBtn = document.getElementById('close-drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      const drawer = document.getElementById('mobile-filter-drawer');
+      const applyBtn = document.getElementById('apply-filters');
+      const mobileClearBtn = document.getElementById('mobile-clear-filters');
+      const mobileFiltersBody = document.getElementById('mobile-filters-body');
+
+      if (!openBtn) return;
+
+      // Clone filters to mobile drawer
+      const desktopFilters = document.querySelectorAll('.filter-section');
+      desktopFilters.forEach(section => {
+        const clone = section.cloneNode(true);
+        mobileFiltersBody.appendChild(clone);
+      });
+
+      // Sync checkboxes between desktop and mobile
+      const syncCheckboxes = () => {
+        const desktopCheckboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input');
+        const mobileCheckboxes = document.querySelectorAll('.drawer-body .filter-option input');
+        
+        desktopCheckboxes.forEach((desktopCb, index) => {
+          if (mobileCheckboxes[index]) {
+            mobileCheckboxes[index].checked = desktopCb.checked;
+          }
+        });
+      };
+
+      openBtn.addEventListener('click', () => {
+        syncCheckboxes();
+        drawer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      const closeDrawer = () => {
+        drawer.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+
+      applyBtn.addEventListener('click', () => {
+        // Sync mobile selections back to desktop
+        const mobileCheckboxes = document.querySelectorAll('.drawer-body .filter-option input');
+        const desktopCheckboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input');
+        
+        mobileCheckboxes.forEach((mobileCb, index) => {
+          if (desktopCheckboxes[index]) {
+            desktopCheckboxes[index].checked = mobileCb.checked;
+          }
+        });
+
+        const products = document.querySelectorAll('.product-grid__item');
+        applyFilters(products);
+        updateClearAllButton();
+        updateFilterCount();
+        closeDrawer();
+      });
+
+      mobileClearBtn.addEventListener('click', () => {
+        document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
+      });
+    }
+  })();
+{% endjavascript %}
+
