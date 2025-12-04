@@ -283,9 +283,25 @@
       font-weight: 600 !important;
     }
 
-    /* Hide button row in grid view - keep cards compact */
+    /* Button row in grid view - compact stacked layout */
     .product-grid.mobile-view-grid .mobile-btn-row {
-      display: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+      margin-top: 8px !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-btn {
+      flex: none !important;
+      width: 100% !important;
+      padding: 8px 6px !important;
+      font-size: 0.5625rem !important;
+      letter-spacing: 0.03em !important;
+    }
+
+    /* Make Add to Cart slightly more prominent */
+    .product-grid.mobile-view-grid .mobile-btn--primary {
+      order: -1; /* Move Add to Cart to top */
     }
 
     /* Image container in grid view */
