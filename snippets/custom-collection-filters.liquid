@@ -58,6 +58,24 @@
     <span>Filters</span>
     <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
   </button>
+  
+  <!-- Grid Toggle (Mobile Only) -->
+  <div class="grid-toggle" id="grid-toggle">
+    <button class="grid-toggle-btn active" data-view="single" aria-label="Single column view" title="Single column">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+    <button class="grid-toggle-btn" data-view="grid" aria-label="Two column grid view" title="Two column grid">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="2" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+    </button>
+  </div>
+  
   <div class="sort-dropdown-wrapper">
     <select class="sort-dropdown" id="sort-dropdown">
       <option value="best-sellers">Best Sellers</option>
@@ -292,6 +310,46 @@
     display: inline-block;
   }
 
+  /* Grid Toggle (Mobile Only) */
+  .grid-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    align-items: center;
+    gap: 4px;
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 4px;
+  }
+
+  .grid-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .grid-toggle-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .grid-toggle-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .grid-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
   .sort-dropdown {
     padding: 10px 32px 10px 12px;
     background-color: rgba(41, 42, 51, 0.5);
@@ -434,6 +492,11 @@
       flex: 1;
       min-width: 0;
     }
+
+    /* Show grid toggle on mobile */
+    .grid-toggle {
+      display: flex;
+    }
   }
 
   @media (min-width: 750px) {
@@ -492,6 +555,49 @@
     let isLoadingProducts = false; // Flag to prevent infinite loop during product loading
     let isApplyingFilters = false; // Flag to prevent concurrent filter applications
     let allProductsLoaded = false; // Flag to track if all products have been loaded
+
+    // ============================================
+    // GRID TOGGLE FUNCTIONALITY (Mobile Only)
+    // ============================================
+    function initGridToggle() {
+      const gridToggle = document.getElementById('grid-toggle');
+      if (!gridToggle) return;
+
+      const buttons = gridToggle.querySelectorAll('.grid-toggle-btn');
+      const productGrid = document.querySelector('.product-grid');
+      if (!productGrid) return;
+
+      // Get saved preference (default to 'single')
+      const savedView = localStorage.getItem('collection-grid-view') || 'single';
+      setGridView(savedView, buttons, productGrid);
+
+      // Handle button clicks
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          setGridView(view, buttons, productGrid);
+          localStorage.setItem('collection-grid-view', view);
+        });
+      });
+    }
+
+    function setGridView(view, buttons, productGrid) {
+      // Update button states
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === view);
+      });
+
+      // Update grid class
+      productGrid.classList.remove('mobile-view-single', 'mobile-view-grid');
+      productGrid.classList.add(`mobile-view-${view}`);
+    }
+
+    // Initialize grid toggle on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGridToggle);
+    } else {
+      initGridToggle();
+    }
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {

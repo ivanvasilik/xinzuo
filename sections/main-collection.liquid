@@ -197,25 +197,108 @@
 
 {% stylesheet %}
   /* =============================================
-     MOBILE: Single Column, Compact & Aligned
+     MOBILE: Grid View Toggle Support
      ============================================= */
   @media screen and (max-width: 749px) {
-    /* Single column grid */
-    .product-grid {
+    /* ===== SINGLE VIEW (Default) ===== */
+    .product-grid.mobile-view-single,
+    .product-grid:not(.mobile-view-grid) {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
     }
     
-    /* Card container with subtle divider */
-    .product-grid__item {
+    .product-grid.mobile-view-single .product-grid__item,
+    .product-grid:not(.mobile-view-grid) .product-grid__item {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 16px !important;
       margin-bottom: 16px !important;
     }
     
-    .product-grid__item:last-child {
+    .product-grid.mobile-view-single .product-grid__item:last-child,
+    .product-grid:not(.mobile-view-grid) .product-grid__item:last-child {
       border-bottom: none;
       margin-bottom: 0 !important;
+    }
+
+    /* ===== GRID VIEW (2-up) ===== */
+    .product-grid.mobile-view-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+
+    .product-grid.mobile-view-grid .product-grid__item {
+      border-bottom: none !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 12px !important;
+    }
+
+    /* Hide the mobile-info-row (horizontal layout) in grid view */
+    .product-grid.mobile-view-grid .mobile-info-row {
+      display: none !important;
+    }
+
+    /* Hide button row in grid view for cleaner cards */
+    .product-grid.mobile-view-grid .mobile-btn-row {
+      display: none !important;
+    }
+
+    /* Show the default product card content in grid view */
+    .product-grid.mobile-view-grid .product-card__content {
+      display: flex !important;
+      flex-direction: column !important;
+      padding-top: 8px !important;
+    }
+
+    /* Title styling in grid view */
+    .product-grid.mobile-view-grid .product-card__content .text-block.rte,
+    .product-grid.mobile-view-grid .product-card__content a.contents .text-block {
+      font-size: 0.75rem !important;
+      line-height: 1.3 !important;
+      overflow: hidden !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      white-space: normal !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.6em !important;
+    }
+
+    .product-grid.mobile-view-grid .product-card__content .text-block.rte p,
+    .product-grid.mobile-view-grid .product-card__content a.contents p {
+      margin: 0 !important;
+      font-size: 0.75rem !important;
+      white-space: normal !important;
+    }
+
+    /* Price styling in grid view */
+    .product-grid.mobile-view-grid .product-card__content product-price .price {
+      font-size: 0.8125rem !important;
+      font-weight: 600 !important;
+      margin-top: 4px !important;
+    }
+
+    /* Image container in grid view */
+    .product-grid.mobile-view-grid .product-grid__item .card-gallery {
+      border-radius: 6px !important;
+      aspect-ratio: 1 / 1 !important;
+      overflow: hidden !important;
+    }
+
+    .product-grid.mobile-view-grid .product-grid__item .card-gallery img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    /* Card link in grid view - make whole card clickable */
+    .product-grid.mobile-view-grid .product-card__link {
+      position: relative !important;
+    }
+
+    /* ===== Common Mobile Styles (both views) ===== */
+    /* Card container base */
+    .product-grid__item {
+      /* Base styles, overridden by view-specific */
     }
     
     /* Keep card gap tight */
