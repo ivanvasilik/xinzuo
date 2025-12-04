@@ -36,7 +36,7 @@
 
     <a
       class="button cart-items__empty-button"
-      href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
+      href="{{ settings.empty_cart_button_link | default: '/collections/all-products' }}"
     >
       {{ 'actions.continue_shopping' | t }}
     </a>
