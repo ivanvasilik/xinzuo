@@ -465,6 +465,7 @@
     // Module-level variables
     let globalProductsData = [];
     let collectionHandle = '';
+    let isSorting = false; // Flag to prevent infinite loop during sorting
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
@@ -552,6 +553,9 @@
       if (!productGrid) return;
 
       const observer = new MutationObserver((mutations) => {
+        // Skip if we're currently sorting (to prevent infinite loop)
+        if (isSorting) return;
+        
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
             if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
@@ -567,7 +571,7 @@
 
       observer.observe(productGrid, {
         childList: true,
-        subtree: true
+        subtree: false // Changed to false - only watch direct children
       });
     }
 
@@ -868,10 +872,18 @@
         }
       });
       
+      // Set flag to prevent MutationObserver from triggering during reorder
+      isSorting = true;
+      
       // Reorder DOM
       products.forEach(product => {
         productGrid.appendChild(product);
       });
+      
+      // Reset flag after a small delay to ensure DOM updates complete
+      setTimeout(() => {
+        isSorting = false;
+      }, 100);
     }
 
     async function loadAllRemainingProducts() {
