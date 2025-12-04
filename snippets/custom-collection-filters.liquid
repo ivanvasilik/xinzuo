@@ -635,7 +635,7 @@
       });
     }
 
-    function applyFilters(products) {
+    async function applyFilters(products) {
       const activeFilters = {
         knifeType: [],
         series: [],
@@ -650,6 +650,16 @@
         else if (type === 'series') activeFilters.series.push(value);
         else if (type === 'category') activeFilters.category.push(value);
       });
+
+      const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
+
+      // If filters are active and we don't have all products loaded yet, load them all
+      if (hasActiveFilters && products.length < 60) {
+        console.log('[Filter] Loading all products to show complete results...');
+        await loadAllRemainingProducts();
+        // Re-query products after loading all
+        products = document.querySelectorAll('.product-grid__item');
+      }
 
       let visibleCount = 0;
 
@@ -682,6 +692,27 @@
       if (countEl) {
         countEl.textContent = `${visibleCount} items`;
       }
+    }
+
+    async function loadAllRemainingProducts() {
+      // Trigger loading of all remaining pages by scrolling multiple times
+      return new Promise((resolve) => {
+        let scrollCount = 0;
+        const maxScrolls = 5; // Max 5 pages (60 products / 24 per page = 2.5 pages)
+        
+        const scrollInterval = setInterval(() => {
+          const currentCount = document.querySelectorAll('.product-grid__item').length;
+          
+          if (currentCount >= 60 || scrollCount >= maxScrolls) {
+            clearInterval(scrollInterval);
+            setTimeout(resolve, 1000); // Wait for final products to load and be tagged
+            return;
+          }
+          
+          window.scrollTo(0, document.body.scrollHeight);
+          scrollCount++;
+        }, 800); // Scroll every 800ms
+      });
     }
 
     function updateClearAllButton() {
