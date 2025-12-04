@@ -125,13 +125,20 @@ class CartItemsComponent extends Component {
           return;
         }
 
-        const feeItem = items.find(i => i.id === 43781283217459);
+        let feeId;
+        if(mainItem.properties["Engraving Text2"]) {
+          feeId = 43781283250227;
+        } else {
+          feeId = 43781283217459;
+        }
+        const feeItem = items.find(i => i.id === feeId);
         if (!feeItem) return;
 
-        const feeQty = feeItem.quantity + quantity - mainItem.quantity;
+        const feeQty = feeItem.quantity + (quantity - mainItem.quantity) * mainItem.properties["Knife Quantity"];
+        console.log(mainItem.properties["Knife Quantity"])
+        console.log(feeQty)
         if(quantity != 0) {
           const feeLine = items.indexOf(feeItem) + 1;
-          console.log(feeLine);
           await fetch("/cart/change.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -144,7 +151,6 @@ class CartItemsComponent extends Component {
           const mainLine = items.indexOf(mainItem);
           const feeLine = items.indexOf(feeItem);
           if(mainLine > feeLine) {
-            console.log(feeLine);
             await fetch("/cart/change.js", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -154,7 +160,6 @@ class CartItemsComponent extends Component {
               })
             });
           } else {
-            console.log(feeLine);
             await fetch("/cart/change.js", {
               method: "POST",
               headers: { "Content-Type": "application/json" },

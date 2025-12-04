@@ -1,0 +1,16 @@
+# API credentials - NEVER commit these!
+.shopify-credentials.txt
+.api-credentials.txt
+mcp.json
+
+# Environment variables
+.env
+.env.local
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
