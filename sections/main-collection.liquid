@@ -243,10 +243,11 @@
       margin-top: 8px !important;
     }
 
-    /* Title in grid view - allow wrapping, 2 lines max */
+    /* Title in grid view - fixed height for 2 lines to ensure alignment */
     .product-grid.mobile-view-grid .mobile-info-row > a.contents {
       flex: none !important;
       width: 100% !important;
+      min-height: 2.6em !important; /* Fixed height for 2 lines */
     }
 
     .product-grid.mobile-view-grid .mobile-info-row a.contents .text-block {
@@ -272,10 +273,11 @@
       overflow: hidden !important;
     }
 
-    /* Price in grid view */
+    /* Price in grid view - fixed height to ensure alignment */
     .product-grid.mobile-view-grid .mobile-info-row > product-price {
       flex-shrink: 0 !important;
       margin-top: 2px !important;
+      min-height: 1.2em !important; /* Consistent price height */
     }
 
     .product-grid.mobile-view-grid .mobile-info-row product-price .price {
