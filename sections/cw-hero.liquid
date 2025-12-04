@@ -59,26 +59,30 @@
     .section-{{ section.id }} .hero-cta-button {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 24px;
+        gap: 8px;
+        padding: 12px 20px;
         background-color: #ff0004;
         border: none;
         border-radius: 4px;
         font-family: "Sen";
         font-weight: 600;
-        font-size: 16px;
-        letter-spacing: 0.5px;
-        color: #fff;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        color: #fff !important;
         text-decoration: none;
         transition: all 0.3s ease;
         margin-top: 8px;
         width: max-content;
     }
 
+    .section-{{ section.id }} .hero-cta-button span {
+        color: #fff !important;
+    }
+
     .section-{{ section.id }} .hero-cta-button svg {
-        width: 20px;
-        height: 20px;
-        color: #fff;
+        width: 18px;
+        height: 18px;
+        color: #fff !important;
     }
 
     .section-{{ section.id }} .hero-cta-button:hover {
@@ -138,8 +142,13 @@
         }
 
         .section-{{ section.id }} .hero-cta-button {
-            font-size: 14px;
-            padding: 12px 20px;
+            font-size: 13px;
+            padding: 10px 18px;
+        }
+
+        .section-{{ section.id }} .hero-cta-button svg {
+            width: 16px;
+            height: 16px;
         }
     }
 
