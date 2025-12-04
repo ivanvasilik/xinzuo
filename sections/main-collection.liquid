@@ -234,20 +234,23 @@
 
     /* ===== GRID VIEW: Title + Price (Stacked Layout) ===== */
     
-    /* Show mobile-info-row but convert to stacked layout */
+    /* Show mobile-info-row - fixed height container for title + price */
     .product-grid.mobile-view-grid .mobile-info-row {
       display: flex !important;
       flex-direction: column !important;
       align-items: flex-start !important;
+      justify-content: flex-start !important;
       gap: 2px !important;
       margin-top: 8px !important;
+      min-height: 52px !important; /* Fixed height: 2 lines title (~36px) + price (~16px) */
     }
 
-    /* Title in grid view - fixed height for 2 lines to ensure alignment */
+    /* Title in grid view - allow wrapping, 2 lines max */
     .product-grid.mobile-view-grid .mobile-info-row > a.contents {
       flex: none !important;
       width: 100% !important;
-      min-height: 2.6em !important; /* Fixed height for 2 lines */
+      height: 36px !important; /* Fixed height for exactly 2 lines */
+      overflow: hidden !important;
     }
 
     .product-grid.mobile-view-grid .mobile-info-row a.contents .text-block {
@@ -273,11 +276,9 @@
       overflow: hidden !important;
     }
 
-    /* Price in grid view - fixed height to ensure alignment */
+    /* Price in grid view */
     .product-grid.mobile-view-grid .mobile-info-row > product-price {
       flex-shrink: 0 !important;
-      margin-top: 2px !important;
-      min-height: 1.2em !important; /* Consistent price height */
     }
 
     .product-grid.mobile-view-grid .mobile-info-row product-price .price {
