@@ -388,7 +388,8 @@
   (function() {
     // Generic selector to catch all product tiles, even if markup changes or pagination loads more
     // Use var to avoid temporal dead zone issues in some bundling orders.
-    var PRODUCT_SELECTOR = '.product-grid__item, .collection-grid__item, .grid__item';
+    // Use a strict selector so we only toggle actual product tiles (not wrappers)
+    var PRODUCT_SELECTOR = '.product-grid__item';
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
@@ -445,12 +446,18 @@
         { pattern: /Carving Knife/i, value: 'Carving Knife' },
         { pattern: /Utility Knife/i, value: 'Utility Knife' },
         { pattern: /Paring Knife/i, value: 'Paring Knife' },
+        { pattern: /Pairing Knife/i, value: 'Paring Knife' }, /* catch typos */
+        { pattern: /Steak Knife/i, value: 'Steak Knife' },
+        { pattern: /Boning Knife/i, value: 'Boning Knife' },
+        { pattern: /Fillet Knife|Filleting Knife/i, value: 'Fillet Knife' },
         { pattern: /Nakiri/i, value: 'Nakiri' },
         { pattern: /Cleaver/i, value: 'Cleaver' },
         { pattern: /Bunka/i, value: 'Bunka' },
         { pattern: /Knife Set/i, value: 'Knife Sets' },
       ];
 
+      // default to unset before matching so stale values don't linger
+      delete product.dataset.knifeType;
       knifeTypePatterns.forEach(({pattern, value}) => {
         if (pattern.test(title)) {
           if (knifeTypes) knifeTypes.add(value);
