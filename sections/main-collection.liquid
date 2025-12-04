@@ -70,15 +70,26 @@
   @media screen and (max-width: 749px) {
     .product-grid {
       grid-template-columns: 1fr !important;
-      gap: 20px !important;
+      gap: 0 !important;
+    }
+    
+    /* Card separation - subtle divider */
+    .product-grid__item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .product-grid__item:last-child {
+      border-bottom: none;
     }
     
     /* Card spacing */
     .product-grid__item .product-grid__card {
-      gap: 8px !important;
+      gap: 10px !important;
     }
     
-    /* Title + Price row using flexbox */
+    /* Title + Price row */
     .product-grid__item .product-card__content > a.contents,
     .product-grid__item .product-card__content > .text-block {
       display: inline !important;
@@ -100,7 +111,7 @@
       display: inline !important;
     }
     
-    /* Price styling - inline right */
+    /* Price styling */
     .product-grid__item product-price {
       display: inline-block !important;
     }
@@ -111,21 +122,52 @@
       color: var(--color-foreground) !important;
     }
     
-    /* Shop Now CTA */
+    /* Button row container */
+    .product-grid__item .product-card {
+      position: relative;
+    }
+    
     .product-grid__item .product-card::after {
-      content: 'Shop Now →';
-      display: block;
+      content: 'View Details';
+      display: inline-block;
       clear: both;
-      margin-top: 8px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: #dc2626;
-      transition: color 0.2s ease;
+      margin-top: 12px;
+      padding: 10px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #dc2626;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      margin-right: 8px;
     }
     
     .product-grid__item .product-card:hover::after {
-      color: #b91c1c;
+      background: #b91c1c;
+    }
+    
+    /* Second button using ::before on the content wrapper */
+    .product-grid__item .product-card__content::after {
+      content: 'Add to Cart';
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #dc2626;
+      background: transparent;
+      border: 1px solid #dc2626;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .product-grid__item .product-card__content:hover::after {
+      background: #dc2626;
+      color: #fff;
     }
   }
 
