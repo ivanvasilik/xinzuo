@@ -38,7 +38,23 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap"></noscript>
     <link rel="stylesheet" href="{{ 'judge.css' | asset_url }}">
 
+    {% comment %} Critical CSS: Prevent layout shift on product pages {% endcomment %}
     {% if request.path contains '/products/' %}
+      <style>
+        /* Prevent layout shift: hide mobile-hidden elements immediately on mobile */
+        @media screen and (max-width: 749px) {
+          .mobile\:hidden,
+          .hidden--mobile {
+            display: none !important;
+          }
+          
+          /* Force center positioning for slideshow controls on mobile from the start */
+          slideshow-controls[pagination-position="left"] {
+            position: static !important;
+          }
+        }
+      </style>
+      
       <script>
         const imageThumbnail = () => {
             const thumbnail = document.querySelector("slideshow-controls");
