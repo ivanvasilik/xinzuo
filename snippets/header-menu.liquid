@@ -176,10 +176,15 @@
                 </div>
                 <ul>
                   {% for sublink in link.links %}
+                    {% comment %} Title overrides for navigation links {% endcomment %}
+                    {% assign display_title = sublink.title %}
+                    {% if sublink.title == "Wood Chopping" %}
+                      {% assign display_title = "Chopping Boards" %}
+                    {% endif %}
                     <li class="menu-dropdown-list">
                       <a href="{{ sublink.url }}" class="mega-dropdown">
                         <span class="mega-dropdown-title">
-                          {{ sublink.title }}
+                          {{ display_title }}
                         </span>
                       </a>
                       {% if sublink.links != blank %}

@@ -36,7 +36,7 @@
 
     <a
       class="button cart-items__empty-button"
-      href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
+      href="{{ settings.empty_cart_button_link | default: '/collections/all-products' }}"
     >
       {{ 'actions.continue_shopping' | t }}
     </a>
@@ -182,16 +182,49 @@
                       </div>
                     </div>
                     {% if item.properties["Engraving Text"] != blank %}
-                      {% if item.properties["Engraving Text2"] != blank %}
-                        <div style="display: flex; gap: 5px;">
-                          Engraving Text: 
-                          <div style="display: flex; flex-direction: column;">
-                            <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span>
-                            <span style="color: #ff0004;">{{ item.properties["Engraving Text2"] }}</span>
+                      <div class="cart-engraving-display">
+                        <span class="cart-engraving-label">Engraving Text:</span>
+                        {% if item.properties["Engraving Text2"] != blank %}
+                          <div class="cart-engraving-lines">
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 1:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text"] }}</span></span>
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 2:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text2"] }}</span></span>
                           </div>
-                        </div>
-                      {% else %}
-                        <p>Engraving Text: <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span></p>
+                        {% else %}
+                          <div class="cart-engraving-lines">
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 1:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text"] }}</span></span>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% else %}
+                      {% comment %} Check if item is a single knife (engravable) {% endcomment %}
+                      {% assign is_knife = false %}
+                      {% assign is_set = false %}
+                      {% assign item_tags = item.product.tags | join: ',' | downcase %}
+                      
+                      {% if item_tags contains 'knife-type:' %}
+                        {% assign is_knife = true %}
+                      {% endif %}
+                      
+                      {% if item_tags contains 'knife-type:set' %}
+                        {% assign is_set = true %}
+                      {% endif %}
+                      
+                      {% comment %} Show "Add Engraving" button for single knives only {% endcomment %}
+                      {% if is_knife and is_set == false %}
+                        <button 
+                          type="button"
+                          class="cart-add-engraving-btn"
+                          data-item-key="{{ item.key }}"
+                          data-variant-id="{{ item.variant_id }}"
+                          data-quantity="{{ item.quantity }}"
+                          data-product-title="{{ item.product.title | escape }}"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                          </svg>
+                          Add Engraving
+                        </button>
                       {% endif %}
                     {% endif %}
                     <div class="cart-drawer-info-div2">

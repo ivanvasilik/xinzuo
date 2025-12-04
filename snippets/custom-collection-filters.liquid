@@ -5,6 +5,15 @@
 {% endcomment %}
 
 <div class="custom-filters-sidebar" id="custom-filters">
+  <div class="desktop-sort-wrapper">
+    <label for="desktop-sort-dropdown">Sort by:</label>
+    <select class="sort-dropdown" id="desktop-sort-dropdown">
+      <option value="best-sellers">Best Sellers</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+    </select>
+  </div>
+  
   <div class="filters-header">
     <h4>Filters</h4>
     <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
@@ -49,6 +58,31 @@
     <span>Filters</span>
     <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
   </button>
+  
+  <div class="sort-dropdown-wrapper">
+    <select class="sort-dropdown" id="sort-dropdown">
+      <option value="best-sellers">Best Sellers</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+    </select>
+  </div>
+  
+  <!-- Grid Toggle (Mobile Only) -->
+  <div class="grid-toggle" id="grid-toggle">
+    <button class="grid-toggle-btn active" data-view="single" aria-label="Single column view" title="Single column">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+    <button class="grid-toggle-btn" data-view="grid" aria-label="Two column grid view" title="Two column grid">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="2" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <div class="filter-mobile-drawer" id="mobile-filter-drawer">
@@ -78,6 +112,28 @@
     max-height: calc(100vh - 140px);
     overflow-y: auto;
     padding: 0;
+  }
+
+  /* Desktop Sort Dropdown */
+  .desktop-sort-wrapper {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .desktop-sort-wrapper label {
+    display: block;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .desktop-sort-wrapper .sort-dropdown {
+    width: 100%;
   }
 
   .filters-header {
@@ -215,25 +271,30 @@
     color: #fff;
   }
 
-  /* Mobile Filter Button */
+  /* Mobile Filter Button & Sort Bar */
   .filter-mobile-trigger {
     display: none;
+    flex-wrap: nowrap; /* Keep everything on one line */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
   }
 
   .mobile-filter-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 6px;
+    padding: 10px 12px;
     background-color: rgba(41, 42, 51, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     color: #fff;
     font-family: "Sen", sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
     position: relative;
+    flex-shrink: 0;
   }
 
   .filter-count-badge {
@@ -243,6 +304,85 @@
     padding: 2px 8px;
     font-size: 12px;
     font-weight: 600;
+  }
+
+  /* Sort Dropdown */
+  .sort-dropdown-wrapper {
+    display: inline-block;
+  }
+
+  /* Grid Toggle (Mobile Only) */
+  .grid-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    align-items: center;
+    gap: 2px;
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+
+  .grid-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .grid-toggle-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .grid-toggle-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .grid-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sort-dropdown {
+    padding: 10px 32px 10px 12px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  .sort-dropdown:focus {
+    outline: none !important;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: none !important;
+  }
+
+  .sort-dropdown:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .sort-dropdown option {
+    background-color: #1a1a1a;
+    color: #fff;
   }
 
   /* Mobile Drawer */
@@ -353,14 +493,30 @@
     }
 
     .filter-mobile-trigger {
-      display: block;
-      margin-bottom: 16px;
+      display: flex;
+    }
+
+    .filter-mobile-trigger .sort-dropdown-wrapper {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .filter-mobile-trigger .sort-dropdown {
+      width: 100%;
+      padding: 10px 28px 10px 10px;
+      font-size: 13px;
+    }
+
+    /* Show grid toggle on mobile */
+    .grid-toggle {
+      display: flex;
     }
   }
 
   @media (min-width: 750px) {
+    /* Hide mobile trigger completely on desktop - we have the sort dropdown in sidebar */
     .filter-mobile-trigger {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -382,10 +538,81 @@
   .custom-filters-sidebar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
   }
+
+  /* Product card title truncation - no forced height */
+  .product-grid__item a[href*="/products/"] p,
+  .product-grid__item .product-card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Keep collection title on one line on mobile */
+  .collection-list-title h2 {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 749px) {
+    .collection-list-title h2 {
+      font-size: clamp(28px, 8vw, 48px);
+    }
+  }
 {% endstyle %}
 
 {% javascript %}
   (function() {
+    // Module-level variables
+    let globalProductsData = [];
+    let collectionHandle = '';
+    let isSorting = false; // Flag to prevent infinite loop during sorting
+    let isLoadingProducts = false; // Flag to prevent infinite loop during product loading
+    let isApplyingFilters = false; // Flag to prevent concurrent filter applications
+    let allProductsLoaded = false; // Flag to track if all products have been loaded
+
+    // ============================================
+    // GRID TOGGLE FUNCTIONALITY (Mobile Only)
+    // ============================================
+    function initGridToggle() {
+      const gridToggle = document.getElementById('grid-toggle');
+      if (!gridToggle) return;
+
+      const buttons = gridToggle.querySelectorAll('.grid-toggle-btn');
+      const productGrid = document.querySelector('.product-grid');
+      if (!productGrid) return;
+
+      // Get saved preference (default to 'single')
+      const savedView = localStorage.getItem('collection-grid-view') || 'single';
+      setGridView(savedView, buttons, productGrid);
+
+      // Handle button clicks
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          setGridView(view, buttons, productGrid);
+          localStorage.setItem('collection-grid-view', view);
+        });
+      });
+    }
+
+    function setGridView(view, buttons, productGrid) {
+      // Update button states
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === view);
+      });
+
+      // Update grid class
+      productGrid.classList.remove('mobile-view-single', 'mobile-view-grid');
+      productGrid.classList.add(`mobile-view-${view}`);
+    }
+
+    // Initialize grid toggle on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGridToggle);
+    } else {
+      initGridToggle();
+    }
+
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCustomFilters);
@@ -393,112 +620,257 @@
       initCustomFilters();
     }
 
-    function initCustomFilters() {
-      const products = document.querySelectorAll('.product-grid__item');
-      if (!products.length) return;
+    async function initCustomFilters() {
+      // Fetch ALL products from collection via Shopify API
+      collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
+      globalProductsData = await fetchAllProducts(collectionHandle);
+      
+      const visibleProducts = document.querySelectorAll('.product-grid__item');
+      if (!visibleProducts.length) return;
 
-      // Extract filter data from products
-      const filters = extractFilters(products);
+      // Tag visible DOM products with data attributes
+      tagVisibleProducts(visibleProducts, globalProductsData);
+
+      // Extract filter data from ALL products for counts
+      const filters = extractFiltersFromData(globalProductsData);
       
       // Build filter UI
       buildFilterUI(filters);
       
-      // Set up event listeners
-      setupEventListeners(products, filters);
+      // Set up event listeners (filtering visible products)
+      setupEventListeners(visibleProducts, filters);
       
       // Setup mobile drawer
       setupMobileDrawer();
+      
+      // Watch for new products being added (infinite scroll)
+      watchForNewProducts();
+      
+      // Apply filters from URL parameters (e.g., ?filter=knives or ?filter=accessories)
+      // This also handles initial sorting
+      await applyFiltersFromUrl();
+      
+      // If no URL filters were applied, just do initial sort
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.get('filter')) {
+        sortProducts();
+      }
     }
 
-    function extractFilters(products) {
-      const knifeTypes = new Set();
-      const series = new Set();
-      const categories = new Set();
-
-      products.forEach(product => {
-        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
-        if (!titleEl) return;
+    async function applyFiltersFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const filterParam = urlParams.get('filter');
+      
+      if (!filterParam) return;
+      
+      // Map URL param to category filter values (specifically target Category section)
+      const categoryMap = {
+        'knives': ['Single Knives', 'Knife Sets'],
+        'accessories': ['Accessories']
+      };
+      
+      const categoryValues = categoryMap[filterParam.toLowerCase()];
+      if (!categoryValues) return;
+      
+      // Check all corresponding checkboxes (specifically in Category section)
+      categoryValues.forEach(categoryValue => {
+        // Target specifically the Category section (#category-filter)
+        const checkbox = document.querySelector(
+          `#category-filter [data-filter-value="${categoryValue}"]`
+        );
         
-        const title = titleEl.textContent.trim();
-
-        // Extract knife type from title
-        const knifeTypePatterns = [
-          { pattern: /Chef Knife/i, value: 'Chef Knife' },
-          { pattern: /Santoku/i, value: 'Santoku' },
-          { pattern: /Bread Knife/i, value: 'Bread Knife' },
-          { pattern: /Carving Knife/i, value: 'Carving Knife' },
-          { pattern: /Utility Knife/i, value: 'Utility Knife' },
-          { pattern: /Paring Knife/i, value: 'Paring Knife' },
-          { pattern: /Nakiri/i, value: 'Nakiri' },
-          { pattern: /Cleaver/i, value: 'Cleaver' },
-          { pattern: /Bunka/i, value: 'Bunka' },
-          { pattern: /Knife Set/i, value: 'Knife Sets' },
-        ];
-
-        knifeTypePatterns.forEach(({pattern, value}) => {
-          if (pattern.test(title)) {
-            knifeTypes.add(value);
-            product.dataset.knifeType = value;
+        if (checkbox && !checkbox.checked) {
+          checkbox.checked = true;
+          
+          // Sync to mobile drawer if exists
+          const mobileCheckbox = document.querySelector(
+            `#mobile-filters-body [data-filter-value="${categoryValue}"]`
+          );
+          if (mobileCheckbox) {
+            mobileCheckbox.checked = true;
           }
-        });
-
-        // Extract series from title
-        if (/Supreme Series|Supreme/i.test(title)) {
-          series.add('Supreme');
-          product.dataset.series = 'Supreme';
-        } else if (/Retro Series|Retro/i.test(title)) {
-          series.add('Retro');
-          product.dataset.series = 'Retro';
-        } else if (/MO Series/i.test(title)) {
-          series.add('MO');
-          product.dataset.series = 'MO';
-        } else if (/LAN Series/i.test(title)) {
-          series.add('LAN');
-          product.dataset.series = 'LAN';
         }
+      });
+      
+      // Trigger the filter application once after all checkboxes are set
+      await applyFiltersAndSort();
+      updateClearAllButton();
+      updateFilterCount();
+    }
 
-        // Extract category
-        if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
-          categories.add('Accessories');
-          product.dataset.category = 'Accessories';
-        } else if (/Knife/i.test(title)) {
-          if (/Set/i.test(title)) {
-            categories.add('Knife Sets');
-            product.dataset.category = 'Knife Sets';
-          } else {
-            categories.add('Single Knives');
-            product.dataset.category = 'Single Knives';
-          }
+    function watchForNewProducts() {
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+
+      const observer = new MutationObserver((mutations) => {
+        // Skip if we're currently sorting or loading products (to prevent infinite loop)
+        if (isSorting || isLoadingProducts) return;
+        
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
+              // New product added - tag it
+              tagVisibleProducts([node], globalProductsData);
+              
+              // Re-apply active filters and sort
+              applyFiltersAndSort();
+            }
+          });
+        });
+      });
+
+      observer.observe(productGrid, {
+        childList: true,
+        subtree: false // Changed to false - only watch direct children
+      });
+    }
+
+    function tagVisibleProducts(visibleProducts, allProductsData) {
+      visibleProducts.forEach((product, index) => {
+        // Get product handle from link URL
+        const link = product.querySelector('a[href*="/products/"]');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        const handle = href.split('/products/')[1]?.split('?')[0];
+        if (!handle) return;
+        
+        // Find matching product in API data by handle
+        const productData = allProductsData.find(p => p.handle === handle);
+        if (productData) {
+          if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
+          if (productData.series) product.dataset.series = productData.series;
+          if (productData.category) product.dataset.category = productData.category;
+          
+          // Add price, sold-out status, and position for sorting
+          product.dataset.price = productData.price || '0';
+          product.dataset.soldOut = productData.soldOut ? 'true' : 'false';
+          product.dataset.position = productData.position || index.toString();
+        }
+      });
+    }
+
+    async function fetchAllProducts(collectionHandle) {
+      try {
+        const response = await fetch(`/collections/${collectionHandle}/products.json?limit=250`);
+        const data = await response.json();
+        
+        // Return products with analyzed data
+        return data.products.map((product, index) => {
+          const analyzed = analyzeProduct(product.title);
+          // Get price from first variant
+          const price = product.variants?.[0]?.price || '0';
+          // Check if all variants are sold out
+          const soldOut = !product.variants?.some(v => v.available);
+          
+          return {
+            title: product.title,
+            handle: product.handle,
+            price: price,
+            soldOut: soldOut,
+            position: index, // Original position in collection (usually best seller order)
+            ...analyzed
+          };
+        });
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+        return [];
+      }
+    }
+
+    function analyzeProduct(title) {
+      const result = {};
+      
+      // Extract knife type
+      const knifeTypePatterns = [
+        { pattern: /Chef Knife/i, value: 'Chef Knife' },
+        { pattern: /Santoku/i, value: 'Santoku' },
+        { pattern: /Bread Knife/i, value: 'Bread Knife' },
+        { pattern: /Carving Knife/i, value: 'Carving Knife' },
+        { pattern: /Utility Knife/i, value: 'Utility Knife' },
+        { pattern: /Pa[ir]+ng Knife/i, value: 'Paring Knife' }, // Handles both "Paring" and "Pairing"
+        { pattern: /Nakiri/i, value: 'Nakiri' },
+        { pattern: /Cleaver/i, value: 'Cleaver' },
+        { pattern: /Bunka/i, value: 'Bunka' },
+        { pattern: /Knife Set/i, value: 'Knife Sets' },
+      ];
+
+      for (const {pattern, value} of knifeTypePatterns) {
+        if (pattern.test(title)) {
+          result.knifeType = value;
+          break;
+        }
+      }
+
+      // Extract series
+      if (/Supreme Series|Supreme/i.test(title)) {
+        result.series = 'Supreme';
+      } else if (/Retro Series|Retro/i.test(title)) {
+        result.series = 'Retro';
+      } else if (/MO Series/i.test(title)) {
+        result.series = 'MO';
+      } else if (/LAN Series/i.test(title)) {
+        result.series = 'LAN';
+      }
+
+      // Extract category
+      if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+        result.category = 'Accessories';
+      } else if (/Knife/i.test(title)) {
+        if (/Set/i.test(title)) {
+          result.category = 'Knife Sets';
+        } else {
+          result.category = 'Single Knives';
+        }
+      }
+
+      return result;
+    }
+
+    function extractFiltersFromData(productsData) {
+      const knifeTypes = new Map();
+      const series = new Map();
+      const categories = new Map();
+
+      productsData.forEach(product => {
+        if (product.knifeType) {
+          knifeTypes.set(product.knifeType, (knifeTypes.get(product.knifeType) || 0) + 1);
+        }
+        if (product.series) {
+          series.set(product.series, (series.get(product.series) || 0) + 1);
+        }
+        if (product.category) {
+          categories.set(product.category, (categories.get(product.category) || 0) + 1);
         }
       });
 
       return {
-        knifeTypes: Array.from(knifeTypes).sort(),
-        series: Array.from(series).sort(),
-        categories: Array.from(categories).sort()
+        knifeTypes: new Map([...knifeTypes.entries()].sort()),
+        series: new Map([...series.entries()].sort()),
+        categories: new Map([...categories.entries()].sort())
       };
     }
 
     function buildFilterUI(filters) {
       // Build knife type filters
       const knifeTypeContainer = document.getElementById('knife-type-options');
-      filters.knifeTypes.forEach((type, index) => {
-        const count = document.querySelectorAll(`[data-knife-type="${type}"]`).length;
-        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index);
+      let index = 0;
+      filters.knifeTypes.forEach((count, type) => {
+        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index++);
       });
 
       // Build series filters
       const seriesContainer = document.getElementById('series-options');
-      filters.series.forEach((s, index) => {
-        const count = document.querySelectorAll(`[data-series="${s}"]`).length;
-        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index);
+      index = 0;
+      filters.series.forEach((count, s) => {
+        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index++);
       });
 
       // Build category filters
       const categoryContainer = document.getElementById('category-options');
-      filters.categories.forEach((cat, index) => {
-        const count = document.querySelectorAll(`[data-category="${cat}"]`).length;
-        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index);
+      index = 0;
+      filters.categories.forEach((count, cat) => {
+        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index++);
       });
     }
 
@@ -517,10 +889,12 @@
       // Use only the desktop sidebar as the single source of truth
       const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
+      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+      const mobileSortDropdown = document.getElementById('sort-dropdown');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-          applyFilters(products);
+          applyFiltersAndSort();
           updateClearAllButton();
           updateFilterCount();
         });
@@ -528,10 +902,28 @@
 
       clearAllBtn.addEventListener('click', () => {
         checkboxes.forEach(cb => cb.checked = false);
-        applyFilters(products);
+        applyFiltersAndSort();
         updateClearAllButton();
         updateFilterCount();
       });
+
+      // Desktop sort dropdown listener
+      if (desktopSortDropdown) {
+        desktopSortDropdown.addEventListener('change', () => {
+          // Sync to mobile dropdown
+          if (mobileSortDropdown) mobileSortDropdown.value = desktopSortDropdown.value;
+          applyFiltersAndSort();
+        });
+      }
+
+      // Mobile sort dropdown listener
+      if (mobileSortDropdown) {
+        mobileSortDropdown.addEventListener('change', () => {
+          // Sync to desktop dropdown
+          if (desktopSortDropdown) desktopSortDropdown.value = mobileSortDropdown.value;
+          applyFiltersAndSort();
+        });
+      }
 
       // Collapsible sections
       document.querySelectorAll('.filter-section-header').forEach(header => {
@@ -541,52 +933,189 @@
       });
     }
 
-    function applyFilters(products) {
-      const activeFilters = {
-        knifeType: [],
-        series: [],
-        category: []
-      };
-
-      document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
-        const type = checkbox.dataset.filterType;
-        const value = checkbox.dataset.filterValue;
+    async function applyFiltersAndSort() {
+      // Prevent concurrent executions
+      if (isApplyingFilters) return;
+      isApplyingFilters = true;
+      
+      try {
+        // Get current sort selection (prefer desktop dropdown as source of truth)
+        const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+        const mobileSortDropdown = document.getElementById('sort-dropdown');
+        const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
         
-        if (type === 'knife-type') activeFilters.knifeType.push(value);
-        else if (type === 'series') activeFilters.series.push(value);
-        else if (type === 'category') activeFilters.category.push(value);
+        // Gather active filters
+        const activeFilters = {
+          knifeType: [],
+          series: [],
+          category: []
+        };
+
+        document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
+          const type = checkbox.dataset.filterType;
+          const value = checkbox.dataset.filterValue;
+          
+          if (type === 'knife-type') activeFilters.knifeType.push(value);
+          else if (type === 'series') activeFilters.series.push(value);
+          else if (type === 'category') activeFilters.category.push(value);
+        });
+
+        const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
+        const needsAllProducts = hasActiveFilters || sortValue !== 'best-sellers';
+        
+        // Load all products if needed for filtering or non-default sorting
+        if (needsAllProducts && !allProductsLoaded) {
+          await loadAllRemainingProducts();
+        }
+        
+        // Re-query products after potential load
+        let products = document.querySelectorAll('.product-grid__item');
+        
+        // Apply filters
+        let visibleCount = 0;
+        products.forEach(product => {
+          let show = true;
+
+          if (activeFilters.knifeType.length > 0) {
+            show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
+          }
+
+          if (activeFilters.series.length > 0) {
+            show = show && activeFilters.series.includes(product.dataset.series);
+          }
+
+          if (activeFilters.category.length > 0) {
+            show = show && activeFilters.category.includes(product.dataset.category);
+          }
+
+          if (show) {
+            product.style.display = '';
+            visibleCount++;
+          } else {
+            product.style.display = 'none';
+          }
+        });
+
+        // Update product count
+        const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
+        if (countEl) {
+          countEl.textContent = `${visibleCount} items`;
+        }
+        
+        // Apply sorting
+        sortProducts();
+      } finally {
+        isApplyingFilters = false;
+      }
+    }
+
+    function sortProducts() {
+      // Get current sort selection (prefer desktop dropdown as source of truth)
+      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+      const mobileSortDropdown = document.getElementById('sort-dropdown');
+      const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
+      
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+      
+      const products = Array.from(productGrid.querySelectorAll('.product-grid__item'));
+      if (products.length === 0) return;
+      
+      // Sort products
+      products.sort((a, b) => {
+        // First: Always put sold-out products at the end
+        const aIsSoldOut = a.dataset.soldOut === 'true';
+        const bIsSoldOut = b.dataset.soldOut === 'true';
+        
+        if (aIsSoldOut && !bIsSoldOut) return 1;
+        if (!aIsSoldOut && bIsSoldOut) return -1;
+        
+        // If both have same availability, sort by selected criteria
+        const aPrice = parseFloat(a.dataset.price) || 0;
+        const bPrice = parseFloat(b.dataset.price) || 0;
+        const aPosition = parseInt(a.dataset.position) || 0;
+        const bPosition = parseInt(b.dataset.position) || 0;
+        
+        switch (sortValue) {
+          case 'price-low':
+            return aPrice - bPrice;
+          case 'price-high':
+            return bPrice - aPrice;
+          case 'best-sellers':
+          default:
+            // Use original position (Shopify default order which is usually best sellers)
+            return aPosition - bPosition;
+        }
       });
-
-      let visibleCount = 0;
-
+      
+      // Set flag to prevent MutationObserver from triggering during reorder
+      isSorting = true;
+      
+      // Reorder DOM
       products.forEach(product => {
-        let show = true;
-
-        // Apply AND logic between filter types, OR within same type
-        if (activeFilters.knifeType.length > 0) {
-          show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
-        }
-
-        if (activeFilters.series.length > 0) {
-          show = show && activeFilters.series.includes(product.dataset.series);
-        }
-
-        if (activeFilters.category.length > 0) {
-          show = show && activeFilters.category.includes(product.dataset.category);
-        }
-
-        if (show) {
-          product.style.display = '';
-          visibleCount++;
-        } else {
-          product.style.display = 'none';
-        }
+        productGrid.appendChild(product);
       });
+      
+      // Reset flag after a small delay to ensure DOM updates complete
+      setTimeout(() => {
+        isSorting = false;
+      }, 100);
+    }
 
-      // Update product count
-      const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
-      if (countEl) {
-        countEl.textContent = `${visibleCount} items`;
+    async function loadAllRemainingProducts() {
+      // Prevent multiple simultaneous loads
+      if (allProductsLoaded || isLoadingProducts) return;
+      
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+
+      // Set flag to prevent MutationObserver from triggering
+      isLoadingProducts = true;
+
+      try {
+        // Use the globalProductsData length for accurate total count
+        const totalProducts = globalProductsData.length;
+        const productsPerPage = 24;
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
+        const currentCount = document.querySelectorAll('.product-grid__item').length;
+        const currentPage = Math.ceil(currentCount / productsPerPage);
+
+        // Load remaining pages via AJAX
+        for (let page = currentPage + 1; page <= totalPages; page++) {
+          try {
+            const response = await fetch(`/collections/${collectionHandle}?page=${page}`);
+            if (!response.ok) continue;
+            
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newProducts = doc.querySelectorAll('.product-grid__item');
+            
+            // If no new products found on this page, we've loaded all
+            if (newProducts.length === 0) break;
+            
+            // Append new products to grid
+            newProducts.forEach(product => {
+              // Check if product already exists (by product ID)
+              const productId = product.dataset.productId;
+              const exists = productGrid.querySelector(`[data-product-id="${productId}"]`);
+              
+              if (!exists) {
+                productGrid.appendChild(product);
+                // Tag with filter data
+                tagVisibleProducts([product], globalProductsData);
+              }
+            });
+          } catch (error) {
+            console.error(`Failed to load page ${page}:`, error);
+            // Continue with next page even if one fails
+          }
+        }
+        
+        // Mark all products as loaded
+        allProductsLoaded = true;
+      } finally {
+        isLoadingProducts = false;
       }
     }
 
@@ -663,8 +1192,7 @@
           }
         });
 
-        const products = document.querySelectorAll('.product-grid__item');
-        applyFilters(products);
+        applyFiltersAndSort();
         updateClearAllButton();
         updateFilterCount();
         closeDrawer();

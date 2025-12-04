@@ -20,6 +20,136 @@
       { once: true }
     );
   }
+
+  // Mobile product card buttons and layout
+  function initMobileProductButtons() {
+    if (window.innerWidth >= 750) return;
+    
+    const productCards = document.querySelectorAll('.product-grid__item');
+    
+    productCards.forEach(card => {
+      // Skip if already processed
+      if (card.querySelector('.mobile-btn-row')) return;
+      
+      const content = card.querySelector('.product-card__content');
+      if (!content) return;
+      
+      const productLink = card.querySelector('a[href*="/products/"]');
+      if (!productLink) return;
+      
+      const productUrl = productLink.getAttribute('href');
+      const variantMatch = productUrl.match(/variant=(\d+)/);
+      const variantId = variantMatch ? variantMatch[1] : null;
+      
+      // Find the title link and price elements
+      const titleLink = content.querySelector('a.contents.user-select-text');
+      const priceEl = content.querySelector('product-price.text-block');
+      
+      // Create info row wrapper for title + price
+      if (titleLink && priceEl) {
+        const infoRow = document.createElement('div');
+        infoRow.className = 'mobile-info-row';
+        
+        // Insert before titleLink, then move title and price into it
+        titleLink.parentNode.insertBefore(infoRow, titleLink);
+        infoRow.appendChild(titleLink);
+        infoRow.appendChild(priceEl);
+      }
+      
+      // Create button row
+      const btnRow = document.createElement('div');
+      btnRow.className = 'mobile-btn-row';
+      
+      // View Details button (secondary/subtle)
+      const viewBtn = document.createElement('a');
+      viewBtn.href = productUrl;
+      viewBtn.className = 'mobile-btn mobile-btn--secondary';
+      viewBtn.textContent = 'View Details';
+      viewBtn.addEventListener('click', (e) => e.stopPropagation());
+      
+      // Add to Cart button (primary/red)
+      const cartBtn = document.createElement('button');
+      cartBtn.type = 'button';
+      cartBtn.className = 'mobile-btn mobile-btn--primary';
+      cartBtn.textContent = 'Add to Cart';
+      cartBtn.dataset.variantId = variantId;
+      
+      cartBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (!variantId) {
+          window.location.href = productUrl;
+          return;
+        }
+        
+        cartBtn.textContent = 'Adding...';
+        cartBtn.disabled = true;
+        
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: [{ id: parseInt(variantId), quantity: 1 }] })
+          });
+          
+          if (response.ok) {
+            cartBtn.textContent = 'Added ✓';
+            
+            // Fetch updated cart to get total item count
+            const cartResponse = await fetch('/cart.js');
+            const cart = await cartResponse.json();
+            
+            // Dispatch cart:update event (theme's expected event)
+            document.dispatchEvent(new CustomEvent('cart:update', {
+              bubbles: true,
+              detail: {
+                data: {
+                  itemCount: cart.item_count,
+                  source: 'mobile-add-to-cart'
+                }
+              }
+            }));
+            
+            setTimeout(() => {
+              cartBtn.textContent = 'Add to Cart';
+              cartBtn.disabled = false;
+            }, 2000);
+          } else {
+            throw new Error('Failed to add');
+          }
+        } catch (err) {
+          cartBtn.textContent = 'View Options';
+          cartBtn.addEventListener('click', () => window.location.href = productUrl, { once: true });
+        }
+      });
+      
+      btnRow.appendChild(viewBtn);
+      btnRow.appendChild(cartBtn);
+      
+      // Insert button row at the end of content
+      content.appendChild(btnRow);
+    });
+  }
+  
+  // Initialize on load and after dynamic content loads
+  document.addEventListener('DOMContentLoaded', initMobileProductButtons);
+  
+  // Re-run for infinite scroll
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        setTimeout(initMobileProductButtons, 100);
+      }
+    });
+  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.product-grid');
+    if (grid) {
+      observer.observe(grid, { childList: true, subtree: true });
+    }
+  });
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
@@ -66,6 +196,394 @@
 </results-list>
 
 {% stylesheet %}
+  /* =============================================
+     MOBILE: Grid View Toggle Support
+     ============================================= */
+  @media screen and (max-width: 749px) {
+    /* ===== SINGLE VIEW (Default) ===== */
+    .product-grid.mobile-view-single,
+    .product-grid:not(.mobile-view-grid) {
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+    
+    .product-grid.mobile-view-single .product-grid__item,
+    .product-grid:not(.mobile-view-grid) .product-grid__item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .product-grid.mobile-view-single .product-grid__item:last-child,
+    .product-grid:not(.mobile-view-grid) .product-grid__item:last-child {
+      border-bottom: none;
+      margin-bottom: 0 !important;
+    }
+
+    /* ===== GRID VIEW (2-up) ===== */
+    .product-grid.mobile-view-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+
+    .product-grid.mobile-view-grid .product-grid__item {
+      border-bottom: none !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 12px !important;
+    }
+
+    /* ===== GRID VIEW: Flexbox alignment (buttons pushed to bottom) ===== */
+    
+    /* Make each card a flex column that stretches */
+    .product-grid.mobile-view-grid .product-grid__item {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .product-grid.mobile-view-grid .product-grid__item > * {
+      width: 100% !important;
+    }
+
+    /* Card content - flex grow to push buttons down */
+    .product-grid.mobile-view-grid .product-card__content {
+      display: flex !important;
+      flex-direction: column !important;
+      flex-grow: 1 !important;
+    }
+
+    /* Info row - grows to fill available space */
+    .product-grid.mobile-view-grid .mobile-info-row {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 2px !important;
+      margin-top: 8px !important;
+      flex-grow: 1 !important; /* This pushes buttons to bottom */
+    }
+
+    /* Title in grid view - allow wrapping, 2 lines max */
+    .product-grid.mobile-view-grid .mobile-info-row > a.contents {
+      flex: none !important;
+      width: 100% !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-info-row a.contents .text-block {
+      white-space: normal !important;
+      overflow: hidden !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-info-row .text-block.rte p,
+    .product-grid.mobile-view-grid .mobile-info-row a.contents p {
+      font-size: 0.8125rem !important; /* 13px */
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      white-space: normal !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    /* Price in grid view */
+    .product-grid.mobile-view-grid .mobile-info-row > product-price {
+      flex-shrink: 0 !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-info-row product-price .price {
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+    }
+
+    /* Button row - always at bottom, no grow */
+    .product-grid.mobile-view-grid .mobile-btn-row {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+      margin-top: 8px !important;
+      flex-shrink: 0 !important; /* Don't shrink, stay at bottom */
+    }
+
+    .product-grid.mobile-view-grid .mobile-btn {
+      flex: none !important;
+      width: 100% !important;
+      padding: 8px 6px !important;
+      font-size: 0.5625rem !important;
+      letter-spacing: 0.03em !important;
+    }
+
+    /* Make Add to Cart slightly more prominent */
+    .product-grid.mobile-view-grid .mobile-btn--primary {
+      order: -1; /* Move Add to Cart to top */
+    }
+
+    /* Image container in grid view */
+    .product-grid.mobile-view-grid .product-grid__item .card-gallery {
+      border-radius: 6px !important;
+      aspect-ratio: 1 / 1 !important;
+      overflow: hidden !important;
+    }
+
+    .product-grid.mobile-view-grid .product-grid__item .card-gallery img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    /* Card link in grid view - make whole card clickable */
+    .product-grid.mobile-view-grid .product-card__link {
+      position: relative !important;
+    }
+
+    /* ===== Common Mobile Styles (both views) ===== */
+    /* Card container base */
+    .product-grid__item {
+      /* Base styles, overridden by view-specific */
+    }
+    
+    /* Keep card gap tight */
+    .product-grid__item .product-grid__card {
+      --product-card-gap: 8px !important;
+    }
+    
+    /* Hide default quick-add on mobile */
+    .product-grid__item .quick-add {
+      display: none !important;
+    }
+    
+    /* Hide zoom-out details (desktop only feature) */
+    .product-grid__item .product-grid-view-zoom-out--details {
+      display: none !important;
+    }
+    
+    /* ===== Mobile Image - Single image, no slider ===== */
+    /* Hide slideshow arrows/controls on mobile */
+    .product-grid__item slideshow-arrows,
+    .product-grid__item .slideshow-control,
+    .product-grid__item slideshow-controls {
+      display: none !important;
+    }
+    
+    /* Show only first image, hide others */
+    .product-grid__item slideshow-slide:not(:first-child) {
+      display: none !important;
+    }
+    
+    /* Disable swipe/scroll on slideshow */
+    .product-grid__item slideshow-slides {
+      overflow: hidden !important;
+      scroll-snap-type: none !important;
+    }
+    
+    /* Fix image container to fill properly */
+    .product-grid__item .card-gallery {
+      overflow: hidden !important;
+      border-radius: 8px;
+    }
+    
+    .product-grid__item .card-gallery img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    
+    /* Remove any gap/spacing that might cause the line */
+    .product-grid__item slideshow-component {
+      gap: 0 !important;
+    }
+    
+    .product-grid__item .product-media-container {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    /* ===== Title + Price Row ===== */
+    .mobile-info-row {
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      width: 100% !important;
+    }
+    
+    /* Title - left side, truncate */
+    .mobile-info-row > a.contents {
+      flex: 1 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+    
+    .mobile-info-row a.contents .text-block {
+      width: auto !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      --width: auto !important;
+    }
+    
+    /* Normalize ALL product titles on mobile - knives AND accessories */
+    .product-grid__item .text-block.rte,
+    .product-grid__item a.contents .text-block,
+    .product-grid__item .product-card__content .text-block,
+    .mobile-info-row .text-block.rte,
+    .mobile-info-row a.contents .text-block {
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      --padding-block-start: 0 !important;
+      --padding-block-end: 0 !important;
+    }
+    
+    /* Style title paragraph - ensure it shows with consistent size */
+    .product-grid__item .text-block.rte p,
+    .product-grid__item a.contents p,
+    .product-grid__item .product-card__content p,
+    .mobile-info-row .text-block.rte p,
+    .mobile-info-row a.contents p {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      font-size: 0.875rem !important;
+    }
+    
+    /* Price - right side */
+    .mobile-info-row > product-price {
+      flex-shrink: 0 !important;
+      width: auto !important;
+      --width: auto !important;
+    }
+    
+    .mobile-info-row product-price .price {
+      font-size: 0.875rem !important;
+      font-weight: 600 !important;
+      color: var(--color-foreground) !important;
+      white-space: nowrap;
+    }
+    
+    /* ===== Button Row ===== */
+    .mobile-btn-row {
+      display: flex !important;
+      gap: 8px !important;
+      margin-top: 10px !important;
+      clear: both !important;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .mobile-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Remove tap highlight from card when clicking buttons */
+    .product-grid__item .product-card__link {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .product-grid__item .product-card {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .product-grid__item a.contents {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* View Details: white outline, subtle */
+    .mobile-btn--secondary {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    
+    .mobile-btn--secondary:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #fff;
+    }
+    
+    .mobile-btn--secondary:active {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(0.98);
+    }
+    
+    /* Add to Cart: red background, primary CTA */
+    .mobile-btn--primary {
+      background: #dc2626;
+      color: #fff;
+      border: 1px solid #dc2626;
+    }
+    
+    .mobile-btn--primary:hover {
+      background: #b91c1c;
+      border-color: #b91c1c;
+    }
+    
+    .mobile-btn--primary:active {
+      background: #991b1b;
+      transform: scale(0.98);
+    }
+    
+    .mobile-btn--primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  /* =============================================
+     DESKTOP: Multi-column grid
+     ============================================= */
+  @media screen and (min-width: 750px) {
+    /* Normalize ALL product titles - knives AND accessories */
+    .product-grid__item .text-block.rte p,
+    .product-grid__item a.contents p,
+    .product-grid__item .product-card__title,
+    .product-grid__item [class*="product"] p,
+    .product-grid__item .product-card__content p {
+      font-size: 0.9375rem !important;
+      font-weight: 500 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+    }
+    
+    .product-grid__item product-price .price {
+      font-size: 0.875rem !important;
+      font-weight: 400 !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .product-grid__item product-price .price--on-sale .price__sale {
+      font-weight: 500 !important;
+      color: var(--color-foreground) !important;
+    }
+  }
+
   .custom-filter-layout {
     display: flex;
     flex-direction: column;

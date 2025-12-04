@@ -108,79 +108,12 @@ class CartItemsComponent extends Component {
    * @param {number} config.quantity - The quantity.
    * @param {string} config.action - The action.
    */
-  updateQuantity(config) {
+  async updateQuantity(config) {
     const cartPerformaceUpdateMarker = cartPerformance.createStartingMarker(`${config.action}:user-action`);
 
     this.#disableCartItems();
 
     const { line, quantity } = config;
-
-    fetch("/cart.js")
-      .then(r => r.json())
-      .then(async cart => {
-        const items = cart.items;
-
-        const mainItem = items[line - 1];
-        if (!mainItem || !mainItem.properties || !mainItem.properties["Engraving Text"]) {
-          return;
-        }
-
-        let feeId;
-        if(mainItem.properties["Engraving Text2"]) {
-          feeId = 43781283250227;
-        } else {
-          feeId = 43781283217459;
-        }
-        const feeItem = items.find(i => i.id === feeId);
-        if (!feeItem) return;
-
-        const feeQty = feeItem.quantity + (quantity - mainItem.quantity) * mainItem.properties["Knife Quantity"];
-        console.log(mainItem.properties["Knife Quantity"])
-        console.log(feeQty)
-        if(quantity != 0) {
-          const feeLine = items.indexOf(feeItem) + 1;
-          await fetch("/cart/change.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              line: feeLine,
-              quantity: feeQty
-            })
-          });
-        } else {
-          const mainLine = items.indexOf(mainItem);
-          const feeLine = items.indexOf(feeItem);
-          if(mainLine > feeLine) {
-            await fetch("/cart/change.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                line: feeLine + 1,
-                quantity: feeQty
-              })
-            });
-          } else {
-            await fetch("/cart/change.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                line: feeLine,
-                quantity: feeQty
-              })
-            });
-          }
-        }
-
-        const sectionsRes = await fetch("/?sections=cart-drawer,cart-icon-bubble");
-        const sections = await sectionsRes.json();
-
-        document.dispatchEvent(
-          new CustomEvent("cart:update", {
-            detail: { data: { sections } }
-          })
-        );
-    });
-
     const { cartTotal } = this.refs;
 
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
@@ -200,46 +133,105 @@ class CartItemsComponent extends Component {
 
     cartTotal?.shimmer();
 
-    fetch(`${Theme.routes.cart_change_url}`, fetchConfig('json', { body }))
-      .then((response) => {
-        return response.text();
+    try {
+      // Single API call to update quantity and get sections
+      const response = await fetch(`${Theme.routes.cart_change_url}`, fetchConfig('json', { body }));
+      const parsedResponseText = JSON.parse(await response.text());
+
+      resetShimmer(this);
+
+      if (parsedResponseText.errors) {
+        this.#handleCartError(line, parsedResponseText);
+        return;
+      }
+
+      // Handle engraving fee updates if needed (uses cart data from response)
+      await this.#updateEngravingFeeIfNeeded(parsedResponseText, line, quantity, sectionsToUpdate);
+
+      const newSectionHTML = new DOMParser().parseFromString(
+        parsedResponseText.sections[this.sectionId],
+        'text/html'
+      );
+
+      // Grab the new cart item count from a hidden element
+      const newCartHiddenItemCount = newSectionHTML.querySelector('[ref="cartItemCount"]')?.textContent;
+      const newCartItemCount = newCartHiddenItemCount ? parseInt(newCartHiddenItemCount, 10) : 0;
+
+      this.dispatchEvent(
+        new CartUpdateEvent({}, this.sectionId, {
+          itemCount: newCartItemCount,
+          source: 'cart-items-component',
+          sections: parsedResponseText.sections,
+        })
+      );
+
+      morphSection(this.sectionId, parsedResponseText.sections[this.sectionId]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.#enableCartItems();
+      cartPerformance.measureFromMarker(cartPerformaceUpdateMarker);
+    }
+  }
+
+  /**
+   * Updates engraving fee quantity if the updated item has engraving.
+   * Only makes an API call if engraving fee adjustment is needed.
+   * @param {Object} cartResponse - The cart response from the main update.
+   * @param {number} originalLine - The original line that was updated.
+   * @param {number} newQuantity - The new quantity of the main item.
+   * @param {Set<string>} sectionsToUpdate - Sections to include in the update.
+   */
+  async #updateEngravingFeeIfNeeded(cartResponse, originalLine, newQuantity, sectionsToUpdate) {
+    const items = cartResponse.items;
+    if (!items) return;
+
+    // Find an item with engraving text that might need fee adjustment
+    const engravingItem = items.find(item => 
+      item.properties && item.properties["Engraving Text"]
+    );
+    
+    if (!engravingItem) return;
+
+    // Determine which fee variant to look for
+    const feeId = engravingItem.properties["Engraving Text2"] ? 43781283250227 : 43781283217459;
+    const feeItem = items.find(i => i.variant_id === feeId);
+    
+    if (!feeItem) return;
+
+    // Calculate expected fee quantity based on all engraving items
+    let expectedFeeQty = 0;
+    items.forEach(item => {
+      if (item.properties && item.properties["Engraving Text"]) {
+        const knifeQty = parseInt(item.properties["Knife Quantity"]) || 1;
+        expectedFeeQty += item.quantity * knifeQty;
+      }
+    });
+
+    // Only update if fee quantity is incorrect
+    if (feeItem.quantity === expectedFeeQty) return;
+
+    const feeLine = items.indexOf(feeItem) + 1;
+    
+    // Update the engraving fee quantity
+    const feeUpdateResponse = await fetch("/cart/change.js", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        line: feeLine,
+        quantity: expectedFeeQty,
+        sections: Array.from(sectionsToUpdate).join(','),
+        sections_url: window.location.pathname,
       })
-      .then((responseText) => {
-        const parsedResponseText = JSON.parse(responseText);
+    });
 
-        resetShimmer(this);
-
-        if (parsedResponseText.errors) {
-          this.#handleCartError(line, parsedResponseText);
-          return;
-        }
-
-        const newSectionHTML = new DOMParser().parseFromString(
-          parsedResponseText.sections[this.sectionId],
-          'text/html'
-        );
-
-        // Grab the new cart item count from a hidden element
-        const newCartHiddenItemCount = newSectionHTML.querySelector('[ref="cartItemCount"]')?.textContent;
-        const newCartItemCount = newCartHiddenItemCount ? parseInt(newCartHiddenItemCount, 10) : 0;
-
-        this.dispatchEvent(
-          new CartUpdateEvent({}, this.sectionId, {
-            itemCount: newCartItemCount,
-            source: 'cart-items-component',
-            sections: parsedResponseText.sections,
-          })
-        );
-
-        morphSection(this.sectionId, parsedResponseText.sections[this.sectionId]);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        this.#enableCartItems();
-        cartPerformance.measureFromMarker(cartPerformaceUpdateMarker);
-      });
+    // Update the sections in the original response with the new sections
+    const feeUpdateData = await feeUpdateResponse.json();
+    if (feeUpdateData.sections) {
+      Object.assign(cartResponse.sections, feeUpdateData.sections);
+      cartResponse.items = feeUpdateData.items;
+      cartResponse.item_count = feeUpdateData.item_count;
+    }
   }
 
   /**

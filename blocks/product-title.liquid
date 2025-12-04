@@ -5,7 +5,8 @@
   {% assign product_title = '<p>' | append: text | append: '</p>' %}
   {% render 'text', fallback_text: product_title, block: block %}
 {% elsif closest.product != blank %}
-  {% assign product_title = '<p>' | append: closest.product.title | split: " - " | last | append: '</p>' %}
+  {% comment %} Show full title with series prefix (just remove " Series" to make it shorter) {% endcomment %}
+  {% assign product_title = '<p>' | append: closest.product.title | replace: ' Series', '' | append: '</p>' %}
   <a
     class="contents user-select-text"
     ref="productTitleLink"
