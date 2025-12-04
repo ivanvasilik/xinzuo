@@ -261,11 +261,13 @@
       
       await addToCart(feeVariantId, feeQuantity, {});
       
-      // Step 4: Refresh the cart drawer
-      await refreshCartDrawer();
-      
-      // Close modal
+      // Engraving added successfully - close modal first
       closeModal();
+      
+      // Step 4: Refresh the cart drawer (non-blocking, errors handled gracefully)
+      refreshCartDrawer().catch(err => {
+        console.warn('Cart refresh failed, but engraving was added:', err);
+      });
       
     } catch (error) {
       console.error('Error adding engraving:', error);
@@ -329,24 +331,16 @@
    */
   async function refreshCartDrawer() {
     try {
-      // Fetch updated cart sections
-      const response = await fetch('/?sections=cart-drawer,cart-icon-bubble');
-      const sections = await response.json();
+      // Fetch cart data and sections in parallel
+      const [sectionsResponse, cartResponse] = await Promise.all([
+        fetch('/?sections=cart-drawer,cart-icon-bubble'),
+        fetch('/cart.js')
+      ]);
       
-      // Dispatch cart:update event to refresh the drawer
-      document.dispatchEvent(
-        new CustomEvent('cart:update', {
-          detail: {
-            data: { sections }
-          }
-        })
-      );
-      
-      // Also fetch cart count for the bubble
-      const cartResponse = await fetch('/cart.js');
+      const sections = await sectionsResponse.json();
       const cartData = await cartResponse.json();
       
-      // Dispatch another event with item count
+      // Dispatch cart:update event to refresh the drawer with all data
       document.dispatchEvent(
         new CustomEvent('cart:update', {
           detail: {
@@ -359,7 +353,7 @@
       );
     } catch (error) {
       console.error('Error refreshing cart:', error);
-      // Fallback: reload the page
+      // Fallback: reload the page if refresh fails
       window.location.reload();
     }
   }
