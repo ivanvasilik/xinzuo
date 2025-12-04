@@ -6,6 +6,12 @@
 (function() {
   'use strict';
 
+  // Prevent multiple script initializations (in case script is loaded twice)
+  if (window.__cartEngravingInitialized) {
+    return;
+  }
+  window.__cartEngravingInitialized = true;
+
   // Constants
   const FEE_ONE_LINE = 43781283217459;
   const FEE_TWO_LINES = 43781283250227;
@@ -13,8 +19,8 @@
 
   // State
   let currentItemData = null;
-  let isInitialized = false;
   let isProcessing = false; // Prevent double submissions
+  let cleanupInProgress = false; // Prevent concurrent cleanups
 
   // DOM Elements (cached after init)
   let dialog = null;
@@ -28,8 +34,6 @@
   let oneLineRadio = null;
   let twoLinesRadio = null;
   let confirmBtn = null;
-  let cancelBtn = null;
-  let closeBtn = null;
 
   /**
    * Initialize the engraving module
@@ -47,18 +51,9 @@
     oneLineRadio = document.getElementById('engraving-one-line');
     twoLinesRadio = document.getElementById('engraving-two-lines');
     confirmBtn = document.getElementById('engraving-modal-confirm');
-    cancelBtn = document.getElementById('engraving-modal-cancel');
-    closeBtn = document.getElementById('engraving-modal-close');
 
     if (!dialog || !modal) {
-      console.warn('Engraving modal elements not found');
       return;
-    }
-
-    // Only set up event listeners once
-    if (!isInitialized) {
-      setupEventListeners();
-      isInitialized = true;
     }
   }
 
@@ -66,65 +61,72 @@
    * Set up all event listeners (only called once)
    */
   function setupEventListeners() {
-    // Close buttons - use named function for potential cleanup
-    document.addEventListener('click', handleCloseClick);
-    
-    // Close on backdrop click
-    dialog?.addEventListener('click', (e) => {
-      if (e.target === dialog) {
-        closeModal();
+    // Use event delegation for all clicks to avoid duplicate handlers
+    document.addEventListener('click', handleAllClicks);
+
+    // Handle dialog close event (Escape key is handled automatically by native dialog)
+    document.addEventListener('close', (e) => {
+      if (e.target && e.target.id === 'engraving-modal-dialog') {
+        currentItemData = null;
+        isProcessing = false;
+        setLoading(false);
+      }
+    }, true);
+
+    // Radio button changes - use delegation
+    document.addEventListener('change', (e) => {
+      if (e.target.id === 'engraving-one-line' || e.target.id === 'engraving-two-lines') {
+        handleLineSelection();
       }
     });
 
-    // Handle dialog close event (Escape key is handled automatically by native dialog)
-    dialog?.addEventListener('close', () => {
-      currentItemData = null;
-      isProcessing = false;
-      setLoading(false);
+    // Text input changes - use delegation
+    document.addEventListener('input', (e) => {
+      if (e.target.id === 'engraving-text-1') {
+        updateCounter(textInput1, counter1);
+        validateForm();
+      } else if (e.target.id === 'engraving-text-2') {
+        updateCounter(textInput2, counter2);
+        validateForm();
+      }
     });
-
-    // Radio button changes
-    oneLineRadio?.addEventListener('change', handleLineSelection);
-    twoLinesRadio?.addEventListener('change', handleLineSelection);
-
-    // Text input changes
-    textInput1?.addEventListener('input', () => {
-      updateCounter(textInput1, counter1);
-      validateForm();
-    });
-
-    textInput2?.addEventListener('input', () => {
-      updateCounter(textInput2, counter2);
-      validateForm();
-    });
-
-    // Confirm button
-    confirmBtn?.addEventListener('click', handleConfirm);
-
-    // Listen for "Add Engraving" button clicks (delegated)
-    document.addEventListener('click', handleAddEngravingClick);
   }
 
   /**
-   * Handle close button clicks
+   * Handle all click events via delegation
    */
-  function handleCloseClick(e) {
-    if (e.target.closest('#engraving-modal-close') || e.target.closest('#engraving-modal-cancel')) {
-      closeModal();
-    }
-  }
-
-  /**
-   * Handle "Add Engraving" button clicks
-   */
-  function handleAddEngravingClick(e) {
-    const btn = e.target.closest('.cart-add-engraving-btn');
-    if (btn) {
+  function handleAllClicks(e) {
+    const target = e.target;
+    
+    // Handle confirm button click
+    if (target.closest('#engraving-modal-confirm')) {
       e.preventDefault();
-      const itemKey = btn.dataset.itemKey;
-      const variantId = btn.dataset.variantId;
-      const quantity = parseInt(btn.dataset.quantity, 10) || 1;
-      const productTitle = btn.dataset.productTitle;
+      e.stopPropagation();
+      handleConfirm();
+      return;
+    }
+    
+    // Handle close/cancel button clicks
+    if (target.closest('#engraving-modal-close') || target.closest('#engraving-modal-cancel')) {
+      e.preventDefault();
+      closeModal();
+      return;
+    }
+    
+    // Handle backdrop click (clicking on dialog itself, not its contents)
+    if (target.id === 'engraving-modal-dialog') {
+      closeModal();
+      return;
+    }
+    
+    // Handle "Add Engraving" button click
+    const addEngravingBtn = target.closest('.cart-add-engraving-btn');
+    if (addEngravingBtn) {
+      e.preventDefault();
+      const itemKey = addEngravingBtn.dataset.itemKey;
+      const variantId = addEngravingBtn.dataset.variantId;
+      const quantity = parseInt(addEngravingBtn.dataset.quantity, 10) || 1;
+      const productTitle = addEngravingBtn.dataset.productTitle;
       
       openModal({
         itemKey,
@@ -139,6 +141,12 @@
    * Handle line selection change
    */
   function handleLineSelection() {
+    // Re-cache elements in case they changed
+    inputGroup2 = document.getElementById('engraving-input-group-2');
+    textInput2 = document.getElementById('engraving-text-2');
+    twoLinesRadio = document.getElementById('engraving-two-lines');
+    counter2 = document.getElementById('engraving-counter-2');
+    
     if (twoLinesRadio?.checked) {
       inputGroup2?.classList.remove('engraving-modal__input-group--hidden');
       textInput2?.focus();
@@ -163,6 +171,12 @@
    * Validate form and update confirm button state
    */
   function validateForm() {
+    // Re-cache elements
+    confirmBtn = document.getElementById('engraving-modal-confirm');
+    textInput1 = document.getElementById('engraving-text-1');
+    textInput2 = document.getElementById('engraving-text-2');
+    twoLinesRadio = document.getElementById('engraving-two-lines');
+    
     if (!confirmBtn || !textInput1) return;
     
     const text1 = textInput1.value.trim();
@@ -173,7 +187,7 @@
     // If two lines selected, must have text in line 2 as well
     const isValid = text1.length > 0 && (!isTwoLines || text2.length > 0);
     
-    confirmBtn.disabled = !isValid;
+    confirmBtn.disabled = !isValid || isProcessing;
   }
 
   /**
@@ -181,8 +195,16 @@
    * @param {Object} itemData - Data about the cart item
    */
   function openModal(itemData) {
+    // Re-cache dialog
+    dialog = document.getElementById('engraving-modal-dialog');
+    modal = document.getElementById('engraving-modal');
+    productNameEl = document.getElementById('engraving-modal-product');
+    textInput1 = document.getElementById('engraving-text-1');
+    
     if (!dialog || !modal) return;
     
+    // Reset processing flag when opening new modal
+    isProcessing = false;
     currentItemData = itemData;
     
     // Set product name
@@ -204,6 +226,7 @@
    * Close the engraving modal
    */
   function closeModal() {
+    dialog = document.getElementById('engraving-modal-dialog');
     if (!dialog) return;
     
     dialog.close();
@@ -218,6 +241,14 @@
    * Reset form to initial state
    */
   function resetForm() {
+    textInput1 = document.getElementById('engraving-text-1');
+    textInput2 = document.getElementById('engraving-text-2');
+    oneLineRadio = document.getElementById('engraving-one-line');
+    twoLinesRadio = document.getElementById('engraving-two-lines');
+    inputGroup2 = document.getElementById('engraving-input-group-2');
+    counter1 = document.getElementById('engraving-counter-1');
+    counter2 = document.getElementById('engraving-counter-2');
+    
     if (textInput1) textInput1.value = '';
     if (textInput2) textInput2.value = '';
     if (oneLineRadio) oneLineRadio.checked = true;
@@ -234,6 +265,7 @@
    * Set loading state on confirm button
    */
   function setLoading(isLoading) {
+    confirmBtn = document.getElementById('engraving-modal-confirm');
     if (!confirmBtn) return;
     
     if (isLoading) {
@@ -249,8 +281,21 @@
    * Handle confirm button click
    */
   async function handleConfirm() {
-    // Prevent double submissions
-    if (!currentItemData || isProcessing) return;
+    // Strict guard against double submissions
+    if (isProcessing) {
+      console.log('Already processing engraving, ignoring duplicate click');
+      return;
+    }
+    
+    if (!currentItemData) {
+      console.log('No item data, ignoring click');
+      return;
+    }
+    
+    // Re-cache inputs
+    textInput1 = document.getElementById('engraving-text-1');
+    textInput2 = document.getElementById('engraving-text-2');
+    twoLinesRadio = document.getElementById('engraving-two-lines');
     
     const text1 = textInput1?.value.trim() || '';
     const text2 = twoLinesRadio?.checked ? (textInput2?.value.trim() || '') : '';
@@ -258,13 +303,18 @@
     
     if (!text1) return;
     
-    // Lock to prevent duplicate processing
+    // Lock immediately to prevent any duplicate processing
     isProcessing = true;
     setLoading(true);
     
+    // Store item data locally in case it gets cleared
+    const itemKey = currentItemData.itemKey;
+    const variantId = currentItemData.variantId;
+    const quantity = currentItemData.quantity;
+    
     try {
       // Step 1: Remove the original item from cart
-      await removeCartItem(currentItemData.itemKey);
+      await removeCartItem(itemKey);
       
       // Step 2: Add the item back with engraving properties
       const properties = {
@@ -276,18 +326,17 @@
         properties['Engraving Text2'] = text2;
       }
       
-      await addToCart(currentItemData.variantId, currentItemData.quantity, properties);
+      await addToCart(variantId, quantity, properties);
       
       // Step 3: Add the engraving fee product
       const feeVariantId = isTwoLines ? FEE_TWO_LINES : FEE_ONE_LINE;
-      const feeQuantity = currentItemData.quantity; // 1 fee per knife
       
-      await addToCart(feeVariantId, feeQuantity, {});
+      await addToCart(feeVariantId, quantity, {});
       
-      // Engraving added successfully - close modal first
+      // Engraving added successfully - close modal
       closeModal();
       
-      // Step 4: Refresh the cart drawer (non-blocking, errors handled gracefully)
+      // Step 4: Refresh the cart drawer (non-blocking)
       refreshCartDrawer().catch(err => {
         console.warn('Cart refresh failed, but engraving was added:', err);
       });
@@ -387,6 +436,10 @@
    * Orphaned fees are engraving fee products without a matching knife with "Engraving Text"
    */
   async function cleanupOrphanedEngravingFees() {
+    // Prevent concurrent cleanup operations
+    if (cleanupInProgress) return;
+    cleanupInProgress = true;
+    
     try {
       const response = await fetch('/cart.js');
       const cart = await response.json();
@@ -417,22 +470,21 @@
       const currentOneFees = feeOneItem ? feeOneItem.quantity : 0;
       const currentTwoFees = feeTwoItem ? feeTwoItem.quantity : 0;
       
-      // Calculate if we have orphans
-      const orphanOneFees = currentOneFees - requiredOneLineFees;
-      const orphanTwoFees = currentTwoFees - requiredTwoLineFees;
+      // Calculate differences
+      const extraOneFees = currentOneFees - requiredOneLineFees;
+      const extraTwoFees = currentTwoFees - requiredTwoLineFees;
       
-      // Remove orphans if any
+      // Remove extras if any
       const updates = {};
       
-      if (orphanOneFees > 0) {
-        // Set to required amount (could be 0 if no knives need it)
+      if (extraOneFees > 0) {
         updates[FEE_ONE_LINE] = requiredOneLineFees;
-        console.log(`Removing ${orphanOneFees} orphaned one-line engraving fees`);
+        console.log(`Adjusting one-line engraving fees: ${currentOneFees} -> ${requiredOneLineFees}`);
       }
       
-      if (orphanTwoFees > 0) {
+      if (extraTwoFees > 0) {
         updates[FEE_TWO_LINES] = requiredTwoLineFees;
-        console.log(`Removing ${orphanTwoFees} orphaned two-line engraving fees`);
+        console.log(`Adjusting two-line engraving fees: ${currentTwoFees} -> ${requiredTwoLineFees}`);
       }
       
       if (Object.keys(updates).length > 0) {
@@ -449,8 +501,13 @@
       }
     } catch (error) {
       console.error('Error cleaning up orphaned engraving fees:', error);
+    } finally {
+      cleanupInProgress = false;
     }
   }
+
+  // Set up event listeners once
+  setupEventListeners();
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
@@ -465,10 +522,13 @@
     cleanupOrphanedEngravingFees();
   }
 
-  // Re-initialize after cart updates (in case modal HTML was replaced)
+  // Run cleanup after cart updates (handles item deletion)
   document.addEventListener('cart:update', () => {
-    // Small delay to ensure DOM is updated
-    setTimeout(init, 100);
+    // Small delay to ensure cart is updated
+    setTimeout(() => {
+      init(); // Re-cache DOM elements
+      cleanupOrphanedEngravingFees(); // Clean up orphaned fees
+    }, 300);
   });
 
   // Expose functions for external use if needed
@@ -478,4 +538,3 @@
     cleanup: cleanupOrphanedEngravingFees
   };
 })();
-
