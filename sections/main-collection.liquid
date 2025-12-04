@@ -258,6 +258,10 @@
       --width: auto !important;
     }
     
+    /* Normalize ALL product titles on mobile - knives AND accessories */
+    .product-grid__item .text-block.rte,
+    .product-grid__item a.contents .text-block,
+    .product-grid__item .product-card__content .text-block,
     .mobile-info-row .text-block.rte,
     .mobile-info-row a.contents .text-block {
       font-size: 0.875rem !important;
@@ -269,7 +273,10 @@
       --padding-block-end: 0 !important;
     }
     
-    /* Style title paragraph - ensure it shows */
+    /* Style title paragraph - ensure it shows with consistent size */
+    .product-grid__item .text-block.rte p,
+    .product-grid__item a.contents p,
+    .product-grid__item .product-card__content p,
     .mobile-info-row .text-block.rte p,
     .mobile-info-row a.contents p {
       margin: 0 !important;
@@ -278,6 +285,7 @@
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       white-space: nowrap !important;
+      font-size: 0.875rem !important;
     }
     
     /* Price - right side */
