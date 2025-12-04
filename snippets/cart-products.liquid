@@ -527,7 +527,17 @@
                         </div>
                       </div>
                       {% if item.properties["Engraving Text"] != blank %}
-                        <p>Engraving Text: <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span></p>
+                        {% if item.properties["Engraving Text2"] != blank %}
+                          <p>
+                            Engraving Text: 
+                            <div>
+                              <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span>
+                              <span style="color: #ff0004;">{{ item.properties["Engraving Text2"] }}</span>
+                            </div>
+                          </p>
+                        {% else %}
+                          <p>Engraving Text: <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span></p>
+                        {% endif %}
                       {% endif %}
                       <div class="cart-drawer-info-div2">
                         <div class="cart-drawer-price">
