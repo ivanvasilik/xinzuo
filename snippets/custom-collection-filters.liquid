@@ -386,6 +386,10 @@
 
 {% javascript %}
   (function() {
+    // Module-level variables
+    let globalProductsData = [];
+    let collectionHandle = '';
+
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCustomFilters);
@@ -395,17 +399,17 @@
 
     async function initCustomFilters() {
       // Fetch ALL products from collection via Shopify API
-      const collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
-      const allProductsData = await fetchAllProducts(collectionHandle);
+      collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
+      globalProductsData = await fetchAllProducts(collectionHandle);
       
       const visibleProducts = document.querySelectorAll('.product-grid__item');
       if (!visibleProducts.length) return;
 
       // Tag visible DOM products with data attributes
-      tagVisibleProducts(visibleProducts, allProductsData);
+      tagVisibleProducts(visibleProducts, globalProductsData);
 
       // Extract filter data from ALL products for counts
-      const filters = extractFiltersFromData(allProductsData);
+      const filters = extractFiltersFromData(globalProductsData);
       
       // Build filter UI
       buildFilterUI(filters);
@@ -417,11 +421,11 @@
       setupMobileDrawer();
       
       // Watch for new products being added (infinite scroll)
-      watchForNewProducts(allProductsData);
+      watchForNewProducts();
     }
 
-    function watchForNewProducts(allProductsData) {
-      const productGrid = document.querySelector('.product-grid, [class*="grid"]');
+    function watchForNewProducts() {
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;
 
       const observer = new MutationObserver((mutations) => {
@@ -429,7 +433,7 @@
           mutation.addedNodes.forEach((node) => {
             if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
               // New product added - tag it
-              tagVisibleProducts([node], allProductsData);
+              tagVisibleProducts([node], globalProductsData);
               
               // Re-apply active filters to new product
               const visibleProducts = document.querySelectorAll('.product-grid__item');
@@ -679,24 +683,44 @@
     }
 
     async function loadAllRemainingProducts() {
-      // Trigger loading of all remaining pages by scrolling multiple times
-      return new Promise((resolve) => {
-        let scrollCount = 0;
-        const maxScrolls = 5; // Max 5 pages (60 products / 24 per page = 2.5 pages)
-        
-        const scrollInterval = setInterval(() => {
-          const currentCount = document.querySelectorAll('.product-grid__item').length;
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+
+      const currentCount = document.querySelectorAll('.product-grid__item').length;
+      const totalPages = Math.ceil(60 / 24); // Assuming 24 products per page
+      const currentPage = Math.ceil(currentCount / 24);
+
+      // Load remaining pages via AJAX
+      for (let page = currentPage + 1; page <= totalPages; page++) {
+        try {
+          const response = await fetch(`/collections/${collectionHandle}?page=${page}`);
+          if (!response.ok) continue;
           
-          if (currentCount >= 60 || scrollCount >= maxScrolls) {
-            clearInterval(scrollInterval);
-            setTimeout(resolve, 1000); // Wait for final products to load and be tagged
-            return;
-          }
+          const html = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newProducts = doc.querySelectorAll('.product-grid__item');
           
-          window.scrollTo(0, document.body.scrollHeight);
-          scrollCount++;
-        }, 800); // Scroll every 800ms
-      });
+          // Append new products to grid
+          newProducts.forEach(product => {
+            // Check if product already exists (by product ID)
+            const productId = product.dataset.productId;
+            const exists = productGrid.querySelector(`[data-product-id="${productId}"]`);
+            
+            if (!exists) {
+              productGrid.appendChild(product);
+              // Tag with filter data
+              tagVisibleProducts([product], globalProductsData);
+            }
+          });
+        } catch (error) {
+          console.error(`Failed to load page ${page}:`, error);
+          // Continue with next page even if one fails
+        }
+      }
+      
+      // Small delay to ensure all products are in DOM
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     function updateClearAllButton() {
