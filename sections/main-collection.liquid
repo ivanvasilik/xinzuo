@@ -21,7 +21,7 @@
     );
   }
 
-  // Mobile product card buttons
+  // Mobile product card buttons and layout
   function initMobileProductButtons() {
     if (window.innerWidth >= 750) return;
     
@@ -31,13 +31,30 @@
       // Skip if already processed
       if (card.querySelector('.mobile-btn-row')) return;
       
+      const content = card.querySelector('.product-card__content');
+      if (!content) return;
+      
       const productLink = card.querySelector('a[href*="/products/"]');
-      const productCard = card.querySelector('product-card');
-      if (!productLink || !productCard) return;
+      if (!productLink) return;
       
       const productUrl = productLink.getAttribute('href');
       const variantMatch = productUrl.match(/variant=(\d+)/);
       const variantId = variantMatch ? variantMatch[1] : null;
+      
+      // Find the title link and price elements
+      const titleLink = content.querySelector('a.contents.user-select-text');
+      const priceEl = content.querySelector('product-price.text-block');
+      
+      // Create info row wrapper for title + price
+      if (titleLink && priceEl) {
+        const infoRow = document.createElement('div');
+        infoRow.className = 'mobile-info-row';
+        
+        // Insert before titleLink, then move title and price into it
+        titleLink.parentNode.insertBefore(infoRow, titleLink);
+        infoRow.appendChild(titleLink);
+        infoRow.appendChild(priceEl);
+      }
       
       // Create button row
       const btnRow = document.createElement('div');
@@ -96,11 +113,8 @@
       btnRow.appendChild(viewBtn);
       btnRow.appendChild(cartBtn);
       
-      // Insert after product-card content
-      const content = card.querySelector('.product-card__content') || productCard;
-      if (content) {
-        content.appendChild(btnRow);
-      }
+      // Insert button row at the end of content
+      content.appendChild(btnRow);
     });
   }
   
@@ -206,31 +220,38 @@
     }
     
     /* ===== Title + Price Row ===== */
-    /* Wrapper for title link and price - make them inline */
-    .product-grid__item .product-card__content > a.contents.user-select-text,
-    .product-grid__item .product-card__content > product-price.text-block {
-      display: inline !important;
-      vertical-align: baseline !important;
+    .mobile-info-row {
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      width: 100% !important;
     }
     
-    /* Float price to right */
-    .product-grid__item .product-card__content > product-price.text-block {
-      float: right !important;
-      margin-left: 12px !important;
+    /* Title - left side, truncate if needed */
+    .mobile-info-row > a.contents {
+      flex: 1 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
     }
     
-    /* Title styling */
-    .product-grid__item .text-block.rte p,
-    .product-grid__item a.contents p {
+    .mobile-info-row .text-block.rte p,
+    .mobile-info-row a.contents p {
       font-size: 0.875rem !important;
       font-weight: 500 !important;
-      line-height: 1.4 !important;
+      line-height: 1.3 !important;
       margin: 0 !important;
-      display: inline !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
-    /* Price styling */
-    .product-grid__item product-price .price {
+    /* Price - right side */
+    .mobile-info-row > product-price {
+      flex-shrink: 0 !important;
+    }
+    
+    .mobile-info-row product-price .price {
       font-size: 0.875rem !important;
       font-weight: 600 !important;
       color: var(--color-foreground) !important;
