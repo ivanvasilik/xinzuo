@@ -41,16 +41,42 @@
     {% comment %} Critical CSS: Prevent layout shift on product pages {% endcomment %}
     {% if request.path contains '/products/' %}
       <style>
-        /* Prevent layout shift: hide mobile-hidden elements immediately on mobile */
+        /* Prevent layout shift: Force correct mobile layout before JavaScript runs */
         @media screen and (max-width: 749px) {
+          /* Hide desktop-only elements immediately */
           .mobile\:hidden,
           .hidden--mobile {
             display: none !important;
           }
           
-          /* Force center positioning for slideshow controls on mobile from the start */
-          slideshow-controls[pagination-position="left"] {
-            position: static !important;
+          /* Override grid layout for thumbnails on mobile - force flow layout */
+          slideshow-component:has(slideshow-controls[pagination-position="left"]),
+          slideshow-component:has(slideshow-controls[pagination-position="right"]) {
+            display: block !important;
+            grid-template: none !important;
+          }
+          
+          /* Force thumbnails to center position styling on mobile */
+          slideshow-controls[thumbnails][pagination-position="left"],
+          slideshow-controls[thumbnails][pagination-position="right"] {
+            order: 0 !important;
+            display: block !important;
+            height: auto !important;
+            min-height: 0 !important;
+          }
+          
+          /* Force thumbnail container to horizontal scroll on mobile */
+          slideshow-controls[thumbnails][pagination-position="left"] .slideshow-controls__thumbnails-container,
+          slideshow-controls[thumbnails][pagination-position="right"] .slideshow-controls__thumbnails-container {
+            overflow: auto hidden !important;
+          }
+          
+          /* Force thumbnails to horizontal layout on mobile */
+          slideshow-controls[thumbnails][pagination-position="left"] .slideshow-controls__thumbnails,
+          slideshow-controls[thumbnails][pagination-position="right"] .slideshow-controls__thumbnails {
+            flex-direction: row !important;
+            padding-inline: var(--slideshow-thumbnails-padding-inline, var(--padding-sm)) !important;
+            padding-block: var(--slideshow-thumbnails-padding-block, var(--padding-sm)) !important;
           }
         }
       </style>
