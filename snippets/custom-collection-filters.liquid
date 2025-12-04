@@ -430,7 +430,6 @@
             if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
               // New product added - tag it
               tagVisibleProducts([node], allProductsData);
-              console.log('[Filter Debug] Tagged newly loaded product');
               
               // Re-apply active filters to new product
               const visibleProducts = document.querySelectorAll('.product-grid__item');
@@ -447,23 +446,14 @@
     }
 
     function tagVisibleProducts(visibleProducts, allProductsData) {
-      console.log('[Filter Debug] Tagging', visibleProducts.length, 'products with', allProductsData.length, 'API products');
-      
-      let taggedCount = 0;
-      visibleProducts.forEach((product, index) => {
+      visibleProducts.forEach((product) => {
         // Get product handle from link URL
         const link = product.querySelector('a[href*="/products/"]');
-        if (!link) {
-          console.warn('[Filter Debug] Product', index, 'has no link');
-          return;
-        }
+        if (!link) return;
         
         const href = link.getAttribute('href');
         const handle = href.split('/products/')[1]?.split('?')[0];
-        if (!handle) {
-          console.warn('[Filter Debug] Product', index, 'failed to extract handle from', href);
-          return;
-        }
+        if (!handle) return;
         
         // Find matching product in API data by handle
         const productData = allProductsData.find(p => p.handle === handle);
@@ -471,13 +461,8 @@
           if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
           if (productData.series) product.dataset.series = productData.series;
           if (productData.category) product.dataset.category = productData.category;
-          taggedCount++;
-        } else {
-          console.warn('[Filter Debug] No match found for handle:', handle);
         }
       });
-      
-      console.log('[Filter Debug] Tagged', taggedCount, 'of', visibleProducts.length, 'products');
     }
 
     async function fetchAllProducts(collectionHandle) {
@@ -655,7 +640,6 @@
 
       // If filters are active and we don't have all products loaded yet, load them all
       if (hasActiveFilters && products.length < 60) {
-        console.log('[Filter] Loading all products to show complete results...');
         await loadAllRemainingProducts();
         // Re-query products after loading all
         products = document.querySelectorAll('.product-grid__item');
