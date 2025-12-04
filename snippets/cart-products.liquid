@@ -182,17 +182,19 @@
                       </div>
                     </div>
                     {% if item.properties["Engraving Text"] != blank %}
-                      {% if item.properties["Engraving Text2"] != blank %}
-                        <div style="display: flex; gap: 5px;">
-                          Engraving Text: 
-                          <div style="display: flex; flex-direction: column;">
-                            <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span>
-                            <span style="color: #ff0004;">{{ item.properties["Engraving Text2"] }}</span>
+                      <div class="cart-engraving-display">
+                        <span class="cart-engraving-label">Engraving Text:</span>
+                        {% if item.properties["Engraving Text2"] != blank %}
+                          <div class="cart-engraving-lines">
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 1:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text"] }}</span></span>
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 2:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text2"] }}</span></span>
                           </div>
-                        </div>
-                      {% else %}
-                        <p>Engraving Text: <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span></p>
-                      {% endif %}
+                        {% else %}
+                          <div class="cart-engraving-lines">
+                            <span class="cart-engraving-line"><span class="cart-engraving-line-label">Line 1:</span> <span class="cart-engraving-text">{{ item.properties["Engraving Text"] }}</span></span>
+                          </div>
+                        {% endif %}
+                      </div>
                     {% else %}
                       {% comment %} Check if item is a single knife (engravable) {% endcomment %}
                       {% assign is_knife = false %}
