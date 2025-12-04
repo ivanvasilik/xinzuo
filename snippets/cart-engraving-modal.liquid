@@ -1,0 +1,453 @@
+{% comment %}
+  Cart Engraving Modal
+  Allows users to add custom laser engraving to knives directly from the cart
+{% endcomment %}
+
+<div class="engraving-modal-overlay" id="engraving-modal-overlay">
+  <div class="engraving-modal" id="engraving-modal">
+    <div class="engraving-modal__header">
+      <h3 class="engraving-modal__title">Add Custom Engraving</h3>
+      <button type="button" class="engraving-modal__close" id="engraving-modal-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="engraving-modal__product" id="engraving-modal-product">
+      <!-- Product name will be inserted here -->
+    </div>
+    
+    <div class="engraving-modal__content">
+      <div class="engraving-modal__options">
+        <label class="engraving-modal__option">
+          <input type="radio" name="engraving-lines" value="one" checked id="engraving-one-line">
+          <span class="engraving-modal__option-radio"></span>
+          <span class="engraving-modal__option-text">
+            <span class="engraving-modal__option-title">One Line</span>
+            <span class="engraving-modal__option-price">+$19</span>
+          </span>
+        </label>
+        
+        <label class="engraving-modal__option">
+          <input type="radio" name="engraving-lines" value="two" id="engraving-two-lines">
+          <span class="engraving-modal__option-radio"></span>
+          <span class="engraving-modal__option-text">
+            <span class="engraving-modal__option-title">Two Lines</span>
+            <span class="engraving-modal__option-price">+$29</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="engraving-modal__inputs">
+        <div class="engraving-modal__input-group">
+          <input 
+            type="text" 
+            class="engraving-modal__input" 
+            id="engraving-text-1"
+            placeholder="Enter text, e.g.: Chef"
+            maxlength="20"
+            autocomplete="off"
+          >
+          <span class="engraving-modal__counter" id="engraving-counter-1">0/20</span>
+        </div>
+        
+        <div class="engraving-modal__input-group engraving-modal__input-group--hidden" id="engraving-input-group-2">
+          <input 
+            type="text" 
+            class="engraving-modal__input" 
+            id="engraving-text-2"
+            placeholder="Second line, e.g.: Master Chef"
+            maxlength="20"
+            autocomplete="off"
+          >
+          <span class="engraving-modal__counter" id="engraving-counter-2">0/20</span>
+        </div>
+      </div>
+      
+      <p class="engraving-modal__note">Letters, numbers, and basic punctuation only (. , ! ? ' -)</p>
+    </div>
+    
+    <div class="engraving-modal__actions">
+      <button type="button" class="engraving-modal__btn engraving-modal__btn--cancel" id="engraving-modal-cancel">
+        Cancel
+      </button>
+      <button type="button" class="engraving-modal__btn engraving-modal__btn--confirm" id="engraving-modal-confirm" disabled>
+        <span class="engraving-modal__btn-text">Add Engraving</span>
+        <span class="engraving-modal__btn-loading" style="display: none;">
+          <svg class="engraving-modal__spinner" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="31.4 31.4" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden data for JS -->
+<div id="engraving-modal-data" 
+  data-fee-one="{{ 43781283217459 }}" 
+  data-fee-two="{{ 43781283250227 }}"
+  style="display: none;">
+</div>
+
+{% style %}
+  /* Modal Overlay */
+  .engraving-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .engraving-modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Modal Container */
+  .engraving-modal {
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.25s ease;
+  }
+
+  .engraving-modal-overlay.is-open .engraving-modal {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Header */
+  .engraving-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+  }
+
+  .engraving-modal__title {
+    font-family: "Sen", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .engraving-modal__close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+
+  .engraving-modal__close:hover {
+    color: #ffffff;
+  }
+
+  /* Product Name */
+  .engraving-modal__product {
+    padding: 12px 20px 16px;
+    font-family: "Albert Sans", sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Content */
+  .engraving-modal__content {
+    padding: 20px;
+  }
+
+  /* Radio Options */
+  .engraving-modal__options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .engraving-modal__option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .engraving-modal__option:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .engraving-modal__option:has(input:checked) {
+    border-color: #ff0004;
+    background-color: rgba(255, 0, 4, 0.08);
+  }
+
+  .engraving-modal__option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .engraving-modal__option-radio {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+  }
+
+  .engraving-modal__option:has(input:checked) .engraving-modal__option-radio {
+    border-color: #ff0004;
+  }
+
+  .engraving-modal__option-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    background-color: #ff0004;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .engraving-modal__option:has(input:checked) .engraving-modal__option-radio::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .engraving-modal__option-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .engraving-modal__option-title {
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .engraving-modal__option-price {
+    font-family: "Albert Sans", sans-serif;
+    font-size: 13px;
+    color: #ff0004;
+    font-weight: 500;
+  }
+
+  /* Input Fields */
+  .engraving-modal__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .engraving-modal__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .engraving-modal__input-group--hidden {
+    display: none;
+  }
+
+  .engraving-modal__input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: "Albert Sans", sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .engraving-modal__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .engraving-modal__input:focus {
+    border-color: #ff0004;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .engraving-modal__counter {
+    font-family: "Sen", sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: right;
+    letter-spacing: 0.5px;
+  }
+
+  /* Note */
+  .engraving-modal__note {
+    font-family: "Albert Sans", sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Action Buttons */
+  .engraving-modal__actions {
+    display: flex;
+    gap: 12px;
+    padding: 0 20px 20px;
+  }
+
+  .engraving-modal__btn {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .engraving-modal__btn--cancel {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .engraving-modal__btn--cancel:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+  }
+
+  .engraving-modal__btn--confirm {
+    background-color: #ff0004;
+    border: none;
+    color: #ffffff;
+  }
+
+  .engraving-modal__btn--confirm:hover:not(:disabled) {
+    background-color: #e00004;
+  }
+
+  .engraving-modal__btn--confirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .engraving-modal__btn--confirm.is-loading {
+    pointer-events: none;
+  }
+
+  .engraving-modal__btn--confirm.is-loading .engraving-modal__btn-text {
+    display: none;
+  }
+
+  .engraving-modal__btn--confirm.is-loading .engraving-modal__btn-loading {
+    display: block !important;
+  }
+
+  /* Spinner */
+  .engraving-modal__spinner {
+    width: 20px;
+    height: 20px;
+    animation: engraving-spin 1s linear infinite;
+  }
+
+  @keyframes engraving-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 480px) {
+    .engraving-modal-overlay {
+      padding: 12px;
+      align-items: flex-end;
+    }
+
+    .engraving-modal {
+      max-width: 100%;
+      border-radius: 16px 16px 0 0;
+      max-height: 85vh;
+    }
+
+    .engraving-modal__options {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .engraving-modal__option {
+      padding: 12px 14px;
+    }
+  }
+
+  /* Add Engraving Button (in cart items) */
+  .cart-add-engraving-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #ff0004;
+    font-family: "Sen", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 0;
+    margin-top: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .cart-add-engraving-btn:hover {
+    opacity: 0.8;
+  }
+
+  .cart-add-engraving-btn:active {
+    opacity: 0.6;
+  }
+
+  .cart-add-engraving-btn svg {
+    flex-shrink: 0;
+  }
+{% endstyle %}
+
