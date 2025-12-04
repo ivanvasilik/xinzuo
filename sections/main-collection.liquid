@@ -106,12 +106,22 @@
     position: relative;
   }
 
+  .product-grid__item .product-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-grid__item product-price {
+    margin-top: auto;
+  }
+
   .product-grid__item .product-card::after {
     content: 'SHOP NOW';
     display: block;
     width: 100%;
     padding: 10px 0;
-    margin-top: 12px;
+    margin-top: 8px;
     text-align: center;
     font-size: 0.75rem;
     font-weight: 600;
@@ -125,6 +135,11 @@
 
   .product-grid__item .product-card:hover::after {
     background: #e5e5e5;
+  }
+
+  /* Ensure title link takes full space for consistent alignment */
+  .product-grid__item a.contents {
+    display: block;
   }
 
   .custom-filter-layout {
