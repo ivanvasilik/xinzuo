@@ -134,5 +134,8 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    {% comment %} Cart engraving modal - must be at body level to appear above cart drawer dialog {% endcomment %}
+    {% render 'cart-engraving-modal' %}
   </body>
 </html>
