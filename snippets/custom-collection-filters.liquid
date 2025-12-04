@@ -10,7 +10,7 @@
     <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
   </div>
   
-  <div class="filter-section" id="knife-type-filter" data-filter-group="knife-type">
+  <div class="filter-section" id="knife-type-filter">
     <div class="filter-section-header">
       <span>Knife Type</span>
       <span class="filter-chevron">▼</span>
@@ -20,7 +20,7 @@
     </div>
   </div>
   
-  <div class="filter-section" id="series-filter" data-filter-group="series">
+  <div class="filter-section" id="series-filter">
     <div class="filter-section-header">
       <span>Series</span>
       <span class="filter-chevron">▼</span>
@@ -30,7 +30,7 @@
     </div>
   </div>
   
-  <div class="filter-section" id="category-filter" data-filter-group="category">
+  <div class="filter-section" id="category-filter">
     <div class="filter-section-header">
       <span>Category</span>
       <span class="filter-chevron">▼</span>
@@ -386,11 +386,6 @@
 
 {% javascript %}
   (function() {
-    // Generic selector to catch all product tiles, even if markup changes or pagination loads more
-    // Use var to avoid temporal dead zone issues in some bundling orders.
-    // Use a selector that catches product list items across templates
-    var PRODUCT_SELECTOR = '.product-grid__item, li.product-grid__item, li[class*="product-grid__item"], .collection-grid__item, .grid__item';
-
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCustomFilters);
@@ -399,7 +394,7 @@
     }
 
     function initCustomFilters() {
-      const products = document.querySelectorAll(PRODUCT_SELECTOR);
+      const products = document.querySelectorAll('.product-grid__item');
       if (!products.length) return;
 
       // Extract filter data from products
@@ -409,7 +404,7 @@
       buildFilterUI(filters);
       
       // Set up event listeners
-      setupEventListeners(filters);
+      setupEventListeners(products, filters);
       
       // Setup mobile drawer
       setupMobileDrawer();
@@ -421,7 +416,60 @@
       const categories = new Set();
 
       products.forEach(product => {
-        ensureProductAttributes(product, { knifeTypes, series, categories });
+        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
+        if (!titleEl) return;
+        
+        const title = titleEl.textContent.trim();
+
+        // Extract knife type from title
+        const knifeTypePatterns = [
+          { pattern: /Chef Knife/i, value: 'Chef Knife' },
+          { pattern: /Santoku/i, value: 'Santoku' },
+          { pattern: /Bread Knife/i, value: 'Bread Knife' },
+          { pattern: /Carving Knife/i, value: 'Carving Knife' },
+          { pattern: /Utility Knife/i, value: 'Utility Knife' },
+          { pattern: /Paring Knife/i, value: 'Paring Knife' },
+          { pattern: /Nakiri/i, value: 'Nakiri' },
+          { pattern: /Cleaver/i, value: 'Cleaver' },
+          { pattern: /Bunka/i, value: 'Bunka' },
+          { pattern: /Knife Set/i, value: 'Knife Sets' },
+        ];
+
+        knifeTypePatterns.forEach(({pattern, value}) => {
+          if (pattern.test(title)) {
+            knifeTypes.add(value);
+            product.dataset.knifeType = value;
+          }
+        });
+
+        // Extract series from title
+        if (/Supreme Series|Supreme/i.test(title)) {
+          series.add('Supreme');
+          product.dataset.series = 'Supreme';
+        } else if (/Retro Series|Retro/i.test(title)) {
+          series.add('Retro');
+          product.dataset.series = 'Retro';
+        } else if (/MO Series/i.test(title)) {
+          series.add('MO');
+          product.dataset.series = 'MO';
+        } else if (/LAN Series/i.test(title)) {
+          series.add('LAN');
+          product.dataset.series = 'LAN';
+        }
+
+        // Extract category
+        if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+          categories.add('Accessories');
+          product.dataset.category = 'Accessories';
+        } else if (/Knife/i.test(title)) {
+          if (/Set/i.test(title)) {
+            categories.add('Knife Sets');
+            product.dataset.category = 'Knife Sets';
+          } else {
+            categories.add('Single Knives');
+            product.dataset.category = 'Single Knives';
+          }
+        }
       });
 
       return {
@@ -429,77 +477,6 @@
         series: Array.from(series).sort(),
         categories: Array.from(categories).sort()
       };
-    }
-
-    // Ensure data attributes are set for a product tile, extracting from its title
-    function ensureProductAttributes(product, sets) {
-      const { knifeTypes, series, categories } = sets || {};
-      const titleEl = product.querySelector(
-        '[data-product-title], .product-card__heading, .product-card__title, .card__heading, .product-card h3, .product-card h2, h3, h2, .product-title, [class*="title"]'
-      );
-      const rawTitle = titleEl ? titleEl.textContent : product.textContent;
-      if (!rawTitle) return;
-      
-      const title = rawTitle.trim();
-
-      const knifeTypePatterns = [
-        { pattern: /Bunka/i, value: 'Bunka' },
-        { pattern: /Chef Knife/i, value: 'Chef Knife' },
-        { pattern: /Granton-Edge/i, value: 'Chef Knife' },
-        { pattern: /Santoku/i, value: 'Santoku' },
-        { pattern: /Bread Knife/i, value: 'Bread Knife' },
-        { pattern: /Carving Knife/i, value: 'Carving Knife' },
-        { pattern: /Utility Knife/i, value: 'Utility Knife' },
-        { pattern: /Paring Knife/i, value: 'Paring Knife' },
-        { pattern: /Pairing Knife/i, value: 'Paring Knife' }, /* catch typo */
-        { pattern: /Paring/i, value: 'Paring Knife' }, /* broader catch */
-        { pattern: /Pairing/i, value: 'Paring Knife' }, /* broader catch */
-        { pattern: /Steak Knife/i, value: 'Steak Knife' },
-        { pattern: /Boning Knife/i, value: 'Boning Knife' },
-        { pattern: /Fillet Knife|Filleting Knife/i, value: 'Fillet Knife' },
-        { pattern: /Nakiri/i, value: 'Nakiri' },
-        { pattern: /Cai Dao|Vegetable Cleaver/i, value: 'Chinese Cleaver' },
-        { pattern: /Butcher's Cleaver|Bone Chopper|Chopper/i, value: 'Butcher Cleaver' },
-        { pattern: /Cleaver/i, value: 'Cleaver' },
-        { pattern: /Knife Set|Piece Knife Set/i, value: 'Knife Sets' },
-      ];
-
-      // default to unset before matching so stale values don't linger
-      delete product.dataset.knifeType;
-      for (const {pattern, value} of knifeTypePatterns) {
-        if (pattern.test(title)) {
-          if (knifeTypes) knifeTypes.add(value);
-          product.dataset.knifeType = value;
-          break; // first match wins to avoid overwrites
-        }
-      }
-
-      if (/Supreme Series|Supreme/i.test(title)) {
-        if (series) series.add('Supreme');
-        product.dataset.series = 'Supreme';
-      } else if (/Retro Series|Retro/i.test(title)) {
-        if (series) series.add('Retro');
-        product.dataset.series = 'Retro';
-      } else if (/MO Series/i.test(title)) {
-        if (series) series.add('MO');
-        product.dataset.series = 'MO';
-      } else if (/LAN Series/i.test(title)) {
-        if (series) series.add('LAN');
-        product.dataset.series = 'LAN';
-      }
-
-      if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
-        if (categories) categories.add('Accessories');
-        product.dataset.category = 'Accessories';
-      } else if (/Knife/i.test(title)) {
-        if (/Set/i.test(title)) {
-          if (categories) categories.add('Knife Sets');
-          product.dataset.category = 'Knife Sets';
-        } else {
-          if (categories) categories.add('Single Knives');
-          product.dataset.category = 'Single Knives';
-        }
-      }
     }
 
     function buildFilterUI(filters) {
@@ -536,13 +513,14 @@
       `;
     }
 
-    function setupEventListeners(filters) {
+    function setupEventListeners(products, filters) {
+      // Use only the desktop sidebar as the single source of truth
       const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-          applyFilters();
+          applyFilters(products);
           updateClearAllButton();
           updateFilterCount();
         });
@@ -550,9 +528,7 @@
 
       clearAllBtn.addEventListener('click', () => {
         checkboxes.forEach(cb => cb.checked = false);
-        // Also clear the cloned mobile checkboxes
-        document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
-        applyFilters();
+        applyFilters(products);
         updateClearAllButton();
         updateFilterCount();
       });
@@ -565,17 +541,13 @@
       });
     }
 
-    function applyFilters() {
-      const products = document.querySelectorAll(PRODUCT_SELECTOR);
-      if (!products.length) return;
-
+    function applyFilters(products) {
       const activeFilters = {
         knifeType: [],
         series: [],
         category: []
       };
 
-      // Use only desktop checkboxes to avoid double-counting the cloned mobile inputs
       document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
         const type = checkbox.dataset.filterType;
         const value = checkbox.dataset.filterValue;
@@ -588,8 +560,6 @@
       let visibleCount = 0;
 
       products.forEach(product => {
-        // Make sure newly loaded products have data attributes
-        ensureProductAttributes(product, {});
         let show = true;
 
         // Apply AND logic between filter types, OR within same type
@@ -627,7 +597,6 @@
     }
 
     function updateFilterCount() {
-      // Count only desktop checkboxes so the badge matches actual active filters
       const checkedCount = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').length;
       const badge = document.getElementById('filter-count-badge');
       
@@ -651,8 +620,7 @@
       if (!openBtn) return;
 
       // Clone filters to mobile drawer
-      const desktopFilters = document.querySelectorAll('.custom-filters-sidebar .filter-section');
-      mobileFiltersBody.innerHTML = '';
+      const desktopFilters = document.querySelectorAll('.filter-section');
       desktopFilters.forEach(section => {
         const clone = section.cloneNode(true);
         mobileFiltersBody.appendChild(clone);
@@ -704,8 +672,6 @@
 
       mobileClearBtn.addEventListener('click', () => {
         document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
-        document.querySelectorAll('.custom-filters-sidebar .filter-option input').forEach(cb => cb.checked = false);
-        updateFilterCount();
       });
     }
   })();
