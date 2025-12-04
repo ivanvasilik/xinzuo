@@ -5,6 +5,15 @@
 {% endcomment %}
 
 <div class="custom-filters-sidebar" id="custom-filters">
+  <div class="desktop-sort-wrapper">
+    <label for="desktop-sort-dropdown">Sort by:</label>
+    <select class="sort-dropdown" id="desktop-sort-dropdown">
+      <option value="best-sellers">Best Sellers</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+    </select>
+  </div>
+  
   <div class="filters-header">
     <h4>Filters</h4>
     <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
@@ -85,6 +94,28 @@
     max-height: calc(100vh - 140px);
     overflow-y: auto;
     padding: 0;
+  }
+
+  /* Desktop Sort Dropdown */
+  .desktop-sort-wrapper {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .desktop-sort-wrapper label {
+    display: block;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .desktop-sort-wrapper .sort-dropdown {
+    width: 100%;
   }
 
   .filters-header {
@@ -746,7 +777,8 @@
       // Use only the desktop sidebar as the single source of truth
       const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
-      const sortDropdown = document.getElementById('sort-dropdown');
+      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+      const mobileSortDropdown = document.getElementById('sort-dropdown');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
@@ -763,9 +795,20 @@
         updateFilterCount();
       });
 
-      // Sort dropdown listener
-      if (sortDropdown) {
-        sortDropdown.addEventListener('change', () => {
+      // Desktop sort dropdown listener
+      if (desktopSortDropdown) {
+        desktopSortDropdown.addEventListener('change', () => {
+          // Sync to mobile dropdown
+          if (mobileSortDropdown) mobileSortDropdown.value = desktopSortDropdown.value;
+          applyFiltersAndSort();
+        });
+      }
+
+      // Mobile sort dropdown listener
+      if (mobileSortDropdown) {
+        mobileSortDropdown.addEventListener('change', () => {
+          // Sync to desktop dropdown
+          if (desktopSortDropdown) desktopSortDropdown.value = mobileSortDropdown.value;
           applyFiltersAndSort();
         });
       }
@@ -784,9 +827,10 @@
       isApplyingFilters = true;
       
       try {
-        // Get current sort selection
-        const sortDropdown = document.getElementById('sort-dropdown');
-        const sortValue = sortDropdown ? sortDropdown.value : 'best-sellers';
+        // Get current sort selection (prefer desktop dropdown as source of truth)
+        const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+        const mobileSortDropdown = document.getElementById('sort-dropdown');
+        const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
         
         // Gather active filters
         const activeFilters = {
@@ -854,8 +898,10 @@
     }
 
     function sortProducts() {
-      const sortDropdown = document.getElementById('sort-dropdown');
-      const sortValue = sortDropdown ? sortDropdown.value : 'best-sellers';
+      // Get current sort selection (prefer desktop dropdown as source of truth)
+      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
+      const mobileSortDropdown = document.getElementById('sort-dropdown');
+      const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
       
       const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;

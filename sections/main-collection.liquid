@@ -381,8 +381,12 @@
      DESKTOP: Multi-column grid
      ============================================= */
   @media screen and (min-width: 750px) {
+    /* Normalize ALL product titles - knives AND accessories */
     .product-grid__item .text-block.rte p,
-    .product-grid__item a.contents p {
+    .product-grid__item a.contents p,
+    .product-grid__item .product-card__title,
+    .product-grid__item [class*="product"] p,
+    .product-grid__item .product-card__content p {
       font-size: 0.9375rem !important;
       font-weight: 500 !important;
       line-height: 1.35 !important;
