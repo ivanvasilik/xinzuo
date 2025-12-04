@@ -780,69 +780,72 @@
       isApplyingFilters = true;
       
       try {
-        const products = document.querySelectorAll('.product-grid__item');
-        await applyFilters(products);
+        // Get current sort selection
+        const sortDropdown = document.getElementById('sort-dropdown');
+        const sortValue = sortDropdown ? sortDropdown.value : 'best-sellers';
+        
+        // Gather active filters
+        const activeFilters = {
+          knifeType: [],
+          series: [],
+          category: []
+        };
+
+        document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
+          const type = checkbox.dataset.filterType;
+          const value = checkbox.dataset.filterValue;
+          
+          if (type === 'knife-type') activeFilters.knifeType.push(value);
+          else if (type === 'series') activeFilters.series.push(value);
+          else if (type === 'category') activeFilters.category.push(value);
+        });
+
+        const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
+        const needsAllProducts = hasActiveFilters || sortValue !== 'best-sellers';
+        
+        // Load all products if needed for filtering or non-default sorting
+        if (needsAllProducts && !allProductsLoaded) {
+          await loadAllRemainingProducts();
+        }
+        
+        // Re-query products after potential load
+        let products = document.querySelectorAll('.product-grid__item');
+        
+        // Apply filters
+        let visibleCount = 0;
+        products.forEach(product => {
+          let show = true;
+
+          if (activeFilters.knifeType.length > 0) {
+            show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
+          }
+
+          if (activeFilters.series.length > 0) {
+            show = show && activeFilters.series.includes(product.dataset.series);
+          }
+
+          if (activeFilters.category.length > 0) {
+            show = show && activeFilters.category.includes(product.dataset.category);
+          }
+
+          if (show) {
+            product.style.display = '';
+            visibleCount++;
+          } else {
+            product.style.display = 'none';
+          }
+        });
+
+        // Update product count
+        const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
+        if (countEl) {
+          countEl.textContent = `${visibleCount} items`;
+        }
+        
+        // Apply sorting
         sortProducts();
       } finally {
         isApplyingFilters = false;
-      }
-    }
-
-    async function applyFilters(products) {
-      const activeFilters = {
-        knifeType: [],
-        series: [],
-        category: []
-      };
-
-      document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
-        const type = checkbox.dataset.filterType;
-        const value = checkbox.dataset.filterValue;
-        
-        if (type === 'knife-type') activeFilters.knifeType.push(value);
-        else if (type === 'series') activeFilters.series.push(value);
-        else if (type === 'category') activeFilters.category.push(value);
-      });
-
-      const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
-
-      // If filters are active and we don't have all products loaded yet, load them all
-      if (hasActiveFilters && !allProductsLoaded) {
-        await loadAllRemainingProducts();
-        // Re-query products after loading all
-        products = document.querySelectorAll('.product-grid__item');
-      }
-
-      let visibleCount = 0;
-
-      products.forEach(product => {
-        let show = true;
-
-        // Apply AND logic between filter types, OR within same type
-        if (activeFilters.knifeType.length > 0) {
-          show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
-        }
-
-        if (activeFilters.series.length > 0) {
-          show = show && activeFilters.series.includes(product.dataset.series);
-        }
-
-        if (activeFilters.category.length > 0) {
-          show = show && activeFilters.category.includes(product.dataset.category);
-        }
-
-        if (show) {
-          product.style.display = '';
-          visibleCount++;
-        } else {
-          product.style.display = 'none';
-        }
-      });
-
-      // Update product count
-      const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
-      if (countEl) {
-        countEl.textContent = `${visibleCount} items`;
       }
     }
 

@@ -269,9 +269,15 @@
       --padding-block-end: 0 !important;
     }
     
+    /* Style title paragraph - ensure it shows */
     .mobile-info-row .text-block.rte p,
     .mobile-info-row a.contents p {
-      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
     }
     
     /* Price - right side */
