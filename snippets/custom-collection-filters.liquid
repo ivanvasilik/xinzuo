@@ -415,6 +415,31 @@
       
       // Setup mobile drawer
       setupMobileDrawer();
+      
+      // Watch for new products being added (infinite scroll)
+      watchForNewProducts(allProductsData);
+    }
+
+    function watchForNewProducts(allProductsData) {
+      const productGrid = document.querySelector('.product-grid, [class*="grid"]');
+      if (!productGrid) return;
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
+              // New product added - tag it
+              tagVisibleProducts([node], allProductsData);
+              console.log('[Filter Debug] Tagged newly loaded product');
+            }
+          });
+        });
+      });
+
+      observer.observe(productGrid, {
+        childList: true,
+        subtree: true
+      });
     }
 
     function tagVisibleProducts(visibleProducts, allProductsData) {
