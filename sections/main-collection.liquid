@@ -249,6 +249,15 @@
       padding-top: 8px !important;
     }
 
+    /* Force visibility of title elements in grid view */
+    .product-grid.mobile-view-grid .product-card__content a.contents,
+    .product-grid.mobile-view-grid .product-card__content .text-block.rte,
+    .product-grid.mobile-view-grid .product-card__content product-price {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
     /* Title styling in grid view */
     .product-grid.mobile-view-grid .product-card__content .text-block.rte,
     .product-grid.mobile-view-grid .product-card__content a.contents .text-block {
@@ -261,6 +270,7 @@
       white-space: normal !important;
       text-overflow: ellipsis !important;
       max-height: 2.6em !important;
+      width: 100% !important;
     }
 
     .product-grid.mobile-view-grid .product-card__content .text-block.rte p,
@@ -268,13 +278,19 @@
       margin: 0 !important;
       font-size: 0.75rem !important;
       white-space: normal !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
     }
 
     /* Price styling in grid view */
+    .product-grid.mobile-view-grid .product-card__content product-price,
     .product-grid.mobile-view-grid .product-card__content product-price .price {
       font-size: 0.8125rem !important;
       font-weight: 600 !important;
       margin-top: 4px !important;
+      display: block !important;
     }
 
     /* Image container in grid view */
