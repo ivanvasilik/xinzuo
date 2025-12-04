@@ -190,58 +190,46 @@
       margin-bottom: 0 !important;
     }
     
-    /* Ensure card structure displays properly */
+    /* Keep card gap tight */
     .product-grid__item .product-grid__card {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 8px !important;
+      --product-card-gap: 8px !important;
     }
     
-    /* Ensure product card and images show */
-    .product-grid__item .product-card {
-      display: block !important;
+    /* Hide default quick-add on mobile */
+    .product-grid__item .quick-add {
+      display: none !important;
     }
     
-    .product-grid__item .product-card__image,
-    .product-grid__item .product-card__media,
-    .product-grid__item a[href*="/products/"] > div:first-child {
-      display: block !important;
-      width: 100% !important;
+    /* Hide zoom-out details (desktop only feature) */
+    .product-grid__item .product-grid-view-zoom-out--details {
+      display: none !important;
     }
     
-    /* Content section - inline title + price */
-    .product-grid__item .product-card__content {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      gap: 12px !important;
+    /* ===== Title + Price Row ===== */
+    /* Wrapper for title link and price - make them inline */
+    .product-grid__item .product-card__content > a.contents.user-select-text,
+    .product-grid__item .product-card__content > product-price.text-block {
+      display: inline !important;
+      vertical-align: baseline !important;
     }
     
-    /* Title - left side, truncated */
-    .product-grid__item .product-card__content > a.contents,
-    .product-grid__item .product-card__content > .text-block {
-      flex: 1 !important;
-      min-width: 0 !important;
-      overflow: hidden !important;
+    /* Float price to right */
+    .product-grid__item .product-card__content > product-price.text-block {
+      float: right !important;
+      margin-left: 12px !important;
     }
     
+    /* Title styling */
     .product-grid__item .text-block.rte p,
     .product-grid__item a.contents p {
       font-size: 0.875rem !important;
       font-weight: 500 !important;
-      line-height: 1.3 !important;
+      line-height: 1.4 !important;
       margin: 0 !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: inline !important;
     }
     
-    /* Price - right side */
-    .product-grid__item product-price {
-      flex-shrink: 0 !important;
-    }
-    
+    /* Price styling */
     .product-grid__item product-price .price {
       font-size: 0.875rem !important;
       font-weight: 600 !important;
@@ -249,16 +237,12 @@
       white-space: nowrap;
     }
     
-    /* Hide default quick-add */
-    .product-grid__item .quick-add {
-      display: none !important;
-    }
-    
-    /* ---- Button Row ---- */
+    /* ===== Button Row ===== */
     .mobile-btn-row {
       display: flex !important;
       gap: 8px !important;
       margin-top: 10px !important;
+      clear: both !important;
     }
     
     .mobile-btn {
