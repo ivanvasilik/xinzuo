@@ -56,19 +56,39 @@
         object-fit: cover;
     } */
 
-    .section-{{ section.id }} .hero-banner-content a {
-        font-family: "Sen";
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: 2px;
-        line-height: 250%;
-        display: flex;
+    .section-{{ section.id }} .hero-cta-button {
+        display: inline-flex;
         align-items: center;
-        padding: 12px 0;
-        gap: 6px;
+        gap: 10px;
+        padding: 14px 24px;
+        background-color: #ff0004;
+        border: none;
+        border-radius: 4px;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.5px;
         color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 8px;
         width: max-content;
-        color: #ff0004;
+    }
+
+    .section-{{ section.id }} .hero-cta-button svg {
+        width: 20px;
+        height: 20px;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} .hero-cta-button:hover {
+        background-color: #cc0003;
+        transform: translateY(-2px);
+    }
+
+    .section-{{ section.id }} .hero-cta-button:active {
+        background-color: #aa0002;
+        transform: translateY(0);
     }
 
     .section-{{ section.id }} .hero-banner-img img {
@@ -117,8 +137,9 @@
             width: 250px;
         }
 
-        .section-{{ section.id }} .hero-banner-content a {
-            font-size: 13px;
+        .section-{{ section.id }} .hero-cta-button {
+            font-size: 14px;
+            padding: 12px 20px;
         }
     }
 
@@ -128,7 +149,7 @@
             width: calc(100% - 100px);
         }
 
-        .section-{{ section.id }} .hero-banner-content a {
+        .section-{{ section.id }} .hero-cta-button {
             margin-bottom: 60px;
         }
 
@@ -179,15 +200,15 @@
                 <span class="mobile">{{ section.settings.heading_mobile }}</span>
                 <span class="desktop">{{ section.settings.content_desktop }}</span>
                 <span class="mobile">{{ section.settings.content_mobile }}</span>
-                <a href="#meet">
-                    {{ section.settings.link_text }}
+                <a href="/collections/all" class="hero-cta-button">
+                    <span>SHOP ALL</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g clip-path="url(#clip0_6018_26608)">
-                            <path d="M10 3.125V16.875" stroke="#FF0004" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M4.375 11.25L10 16.875L15.625 11.25" stroke="#FF0004" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <g clip-path="url(#clip0_hero_cta)">
+                            <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
                         <defs>
-                            <clipPath id="clip0_6018_26608">
+                            <clipPath id="clip0_hero_cta">
                                 <rect width="20" height="20" fill="white"/>
                             </clipPath>
                         </defs>
