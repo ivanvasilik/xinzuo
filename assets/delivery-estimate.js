@@ -192,7 +192,14 @@ class DeliveryEstimateComponent extends Component {
     this.postcodeDataLoading = true;
     
     try {
-      const response = await fetch('/cdn/shop/t/7/assets/australian_postcodes.json');
+      const postcodeDataUrl = this.dataset.postcodeDataUrl;
+      if (!postcodeDataUrl) {
+        console.error('Postcode data URL not configured');
+        this.postcodeDataLoading = false;
+        return;
+      }
+      
+      const response = await fetch(postcodeDataUrl);
       if (!response.ok) {
         console.error('Failed to load postcode data');
         this.postcodeDataLoading = false;

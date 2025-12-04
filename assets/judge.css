@@ -656,7 +656,7 @@ aside {
 }
 
 results-list.section {
-    padding: 0 20px;
+    padding: 0 20px 30px;
 }
 
 .product-information {
@@ -675,7 +675,7 @@ footer footer {
     }
 
     results-list.section {
-        padding: 0 20px;
+        padding: 0 20px 30px;
     }
 }
 
@@ -685,7 +685,7 @@ footer footer {
     }
 
     results-list.section {
-        padding: 0 20px;
+        padding: 0 20px 30px;
     }
 }
 

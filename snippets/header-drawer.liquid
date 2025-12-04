@@ -75,12 +75,11 @@
       "
     >
       <div class="header-drawer-header">
-        <span class="header-drawer-close">
+        <span class="header-drawer-close" on:click="/close">
           <button
             class="button button-unstyled close-button menu-drawer__close-button"
             type="button"
             aria-label="{{ 'actions.close' | t }}"
-            on:click="/close"
           >
             <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
               {{- 'icon-close.svg' | inline_asset_content -}}
@@ -109,7 +108,7 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              <li class="header-category-li">
+              <li class="header-category-li" {% if link.title == "BEST SELLER" %}id="header_drawer_padding" style="padding-top: 20px"{% endif %}>
                 {% if link.links != blank %}
                   <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
                     <span>{{ link.title | escape }}</span>
@@ -135,7 +134,9 @@
                             {% endif %}
                           {% endfor %}
                           {% assign sum = sum | divided_by: collection.products.size %}
-                          <span class="price-off">{{ sum }}% OFF</span>
+                          {% if sum != 0 %}
+                            <span class="price-off">{{ sum }}% OFF</span>
+                          {% endif %}
                         </div>
                         <h4>{{ sublink.title }} ></h4>
                       </a>
@@ -816,15 +817,22 @@
 
   const headerCategoryOpen = (num) => {
     const headerCategory = document.querySelector(`.header-category-div-${num}`);
+    const menuitem = document.getElementById("header_drawer_padding");
     const isOpen = headerCategory.classList.contains('open');
 
     if (!isOpen) {
       headerCategory.classList.add('open');
       headerCategory.style.maxHeight = headerCategory.scrollHeight + 'px';
+      if(num == 2 && menuitem) {
+        menuitem.style.paddingTop = "20px";
+      }
     }
     else {
       headerCategory.classList.remove('open');
       headerCategory.style.maxHeight = 0;
+      if(num == 2 && menuitem) {
+        menuitem.style.paddingTop = 0;
+      }
     }
   }
 </script>

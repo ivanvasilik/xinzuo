@@ -176,7 +176,7 @@
               "type": "_product-features",
               "settings": {
                 "feature_1_text": "30-day returns",
-                "feature_2_text": "Free shipping over $50",
+                "feature_2_text": "Free shipping over $100",
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
@@ -256,6 +256,7 @@
             "group_aNBpAK": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -340,6 +341,7 @@
             "group_hm6XUD": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -424,6 +426,7 @@
             "group_AgrzWU": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,

@@ -151,6 +151,7 @@
                 },
                 "engraving-option": {
                   "type": "engraving-option",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "btn1": "Without engraving",
@@ -174,7 +175,7 @@
               "type": "_product-features",
               "settings": {
                 "feature_1_text": "30-day returns",
-                "feature_2_text": "Fast & free delivery",
+                "feature_2_text": "Free shipping over $100",
                 "feature_3_text": "Lifetime warranty",
                 "icon_size": 20,
                 "text_size": 14,
