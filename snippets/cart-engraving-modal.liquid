@@ -101,6 +101,16 @@
     max-width: 420px;
     width: calc(100% - 32px);
     max-height: 90vh;
+    /* Center the dialog on desktop */
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .engraving-modal-dialog[open] {
+    display: flex;
   }
 
   .engraving-modal-dialog::backdrop {
@@ -110,7 +120,7 @@
   /* Modal Container */
   .engraving-modal {
     background-color: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     width: 100%;
     max-height: 90vh;
@@ -190,8 +200,8 @@
   }
 
   .engraving-modal__option:has(input:checked) {
-    border-color: #ff0004;
-    background-color: rgba(255, 0, 4, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   .engraving-modal__option input {
@@ -211,7 +221,7 @@
   }
 
   .engraving-modal__option:has(input:checked) .engraving-modal__option-radio {
-    border-color: #ff0004;
+    border-color: #ffffff;
   }
 
   .engraving-modal__option-radio::after {
@@ -222,7 +232,7 @@
     transform: translate(-50%, -50%) scale(0);
     width: 8px;
     height: 8px;
-    background-color: #ff0004;
+    background-color: #ffffff;
     border-radius: 50%;
     transition: transform 0.2s ease;
   }
@@ -247,7 +257,7 @@
   .engraving-modal__option-price {
     font-family: "Albert Sans", sans-serif;
     font-size: 13px;
-    color: #ff0004;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
   }
 
@@ -384,9 +394,16 @@
 
   /* Mobile Adjustments */
   @media (max-width: 480px) {
-    .engraving-modal-overlay {
-      padding: 12px;
-      align-items: flex-end;
+    .engraving-modal-dialog {
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: none;
     }
 
     .engraving-modal {
