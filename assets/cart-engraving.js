@@ -13,6 +13,8 @@
 
   // State
   let currentItemData = null;
+  let isInitialized = false;
+  let isProcessing = false; // Prevent double submissions
 
   // DOM Elements (cached after init)
   let dialog = null;
@@ -53,17 +55,19 @@
       return;
     }
 
-    // Set up event listeners
-    setupEventListeners();
+    // Only set up event listeners once
+    if (!isInitialized) {
+      setupEventListeners();
+      isInitialized = true;
+    }
   }
 
   /**
-   * Set up all event listeners
+   * Set up all event listeners (only called once)
    */
   function setupEventListeners() {
-    // Close buttons
-    closeBtn?.addEventListener('click', closeModal);
-    cancelBtn?.addEventListener('click', closeModal);
+    // Close buttons - use named function for potential cleanup
+    document.addEventListener('click', handleCloseClick);
     
     // Close on backdrop click
     dialog?.addEventListener('click', (e) => {
@@ -75,6 +79,7 @@
     // Handle dialog close event (Escape key is handled automatically by native dialog)
     dialog?.addEventListener('close', () => {
       currentItemData = null;
+      isProcessing = false;
       setLoading(false);
     });
 
@@ -97,23 +102,37 @@
     confirmBtn?.addEventListener('click', handleConfirm);
 
     // Listen for "Add Engraving" button clicks (delegated)
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.cart-add-engraving-btn');
-      if (btn) {
-        e.preventDefault();
-        const itemKey = btn.dataset.itemKey;
-        const variantId = btn.dataset.variantId;
-        const quantity = parseInt(btn.dataset.quantity, 10) || 1;
-        const productTitle = btn.dataset.productTitle;
-        
-        openModal({
-          itemKey,
-          variantId,
-          quantity,
-          productTitle
-        });
-      }
-    });
+    document.addEventListener('click', handleAddEngravingClick);
+  }
+
+  /**
+   * Handle close button clicks
+   */
+  function handleCloseClick(e) {
+    if (e.target.closest('#engraving-modal-close') || e.target.closest('#engraving-modal-cancel')) {
+      closeModal();
+    }
+  }
+
+  /**
+   * Handle "Add Engraving" button clicks
+   */
+  function handleAddEngravingClick(e) {
+    const btn = e.target.closest('.cart-add-engraving-btn');
+    if (btn) {
+      e.preventDefault();
+      const itemKey = btn.dataset.itemKey;
+      const variantId = btn.dataset.variantId;
+      const quantity = parseInt(btn.dataset.quantity, 10) || 1;
+      const productTitle = btn.dataset.productTitle;
+      
+      openModal({
+        itemKey,
+        variantId,
+        quantity,
+        productTitle
+      });
+    }
   }
 
   /**
@@ -189,6 +208,7 @@
     
     dialog.close();
     currentItemData = null;
+    isProcessing = false;
     
     // Reset loading state
     setLoading(false);
@@ -229,7 +249,8 @@
    * Handle confirm button click
    */
   async function handleConfirm() {
-    if (!currentItemData) return;
+    // Prevent double submissions
+    if (!currentItemData || isProcessing) return;
     
     const text1 = textInput1?.value.trim() || '';
     const text2 = twoLinesRadio?.checked ? (textInput2?.value.trim() || '') : '';
@@ -237,6 +258,8 @@
     
     if (!text1) return;
     
+    // Lock to prevent duplicate processing
+    isProcessing = true;
     setLoading(true);
     
     try {
@@ -271,6 +294,7 @@
       
     } catch (error) {
       console.error('Error adding engraving:', error);
+      isProcessing = false;
       setLoading(false);
       alert('Sorry, there was an error adding engraving. Please try again.');
     }
