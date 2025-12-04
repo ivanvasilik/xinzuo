@@ -437,17 +437,9 @@
   }
 
   @media (min-width: 750px) {
+    /* Hide mobile trigger completely on desktop - we have the sort dropdown in sidebar */
     .filter-mobile-trigger {
-      display: flex;
-      margin-bottom: 0;
-    }
-    
-    .filter-mobile-trigger .mobile-filter-btn {
-      display: none;
-    }
-    
-    .filter-mobile-trigger .sort-dropdown-wrapper {
-      margin-left: auto;
+      display: none !important;
     }
   }
 
