@@ -10,7 +10,7 @@
     <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
   </div>
   
-  <div class="filter-section" id="knife-type-filter">
+  <div class="filter-section" id="knife-type-filter" data-filter-group="knife-type">
     <div class="filter-section-header">
       <span>Knife Type</span>
       <span class="filter-chevron">▼</span>
@@ -20,7 +20,7 @@
     </div>
   </div>
   
-  <div class="filter-section" id="series-filter">
+  <div class="filter-section" id="series-filter" data-filter-group="series">
     <div class="filter-section-header">
       <span>Series</span>
       <span class="filter-chevron">▼</span>
@@ -30,7 +30,7 @@
     </div>
   </div>
   
-  <div class="filter-section" id="category-filter">
+  <div class="filter-section" id="category-filter" data-filter-group="category">
     <div class="filter-section-header">
       <span>Category</span>
       <span class="filter-chevron">▼</span>
@@ -537,7 +537,7 @@
     }
 
     function setupEventListeners(filters) {
-      const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
 
       checkboxes.forEach(checkbox => {
@@ -651,7 +651,8 @@
       if (!openBtn) return;
 
       // Clone filters to mobile drawer
-      const desktopFilters = document.querySelectorAll('.filter-section');
+      const desktopFilters = document.querySelectorAll('.custom-filters-sidebar .filter-section');
+      mobileFiltersBody.innerHTML = '';
       desktopFilters.forEach(section => {
         const clone = section.cloneNode(true);
         mobileFiltersBody.appendChild(clone);
