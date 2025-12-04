@@ -20,6 +20,108 @@
       { once: true }
     );
   }
+
+  // Mobile product card buttons
+  function initMobileProductButtons() {
+    if (window.innerWidth >= 750) return;
+    
+    const productCards = document.querySelectorAll('.product-grid__item');
+    
+    productCards.forEach(card => {
+      // Skip if already processed
+      if (card.querySelector('.mobile-btn-row')) return;
+      
+      const productLink = card.querySelector('a[href*="/products/"]');
+      const productCard = card.querySelector('product-card');
+      if (!productLink || !productCard) return;
+      
+      const productUrl = productLink.getAttribute('href');
+      const variantMatch = productUrl.match(/variant=(\d+)/);
+      const variantId = variantMatch ? variantMatch[1] : null;
+      
+      // Create button row
+      const btnRow = document.createElement('div');
+      btnRow.className = 'mobile-btn-row';
+      
+      // View Details button
+      const viewBtn = document.createElement('a');
+      viewBtn.href = productUrl;
+      viewBtn.className = 'mobile-btn mobile-btn--primary';
+      viewBtn.textContent = 'View Details';
+      
+      // Add to Cart button
+      const cartBtn = document.createElement('button');
+      cartBtn.type = 'button';
+      cartBtn.className = 'mobile-btn mobile-btn--secondary';
+      cartBtn.textContent = 'Add to Cart';
+      cartBtn.dataset.variantId = variantId;
+      
+      cartBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (!variantId) {
+          window.location.href = productUrl;
+          return;
+        }
+        
+        cartBtn.textContent = 'Adding...';
+        cartBtn.disabled = true;
+        
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: [{ id: parseInt(variantId), quantity: 1 }] })
+          });
+          
+          if (response.ok) {
+            cartBtn.textContent = 'Added ✓';
+            setTimeout(() => {
+              cartBtn.textContent = 'Add to Cart';
+              cartBtn.disabled = false;
+            }, 2000);
+            
+            // Update cart count if cart icon exists
+            document.dispatchEvent(new CustomEvent('cart:refresh'));
+          } else {
+            throw new Error('Failed to add');
+          }
+        } catch (err) {
+          cartBtn.textContent = 'View Options';
+          cartBtn.addEventListener('click', () => window.location.href = productUrl, { once: true });
+        }
+      });
+      
+      btnRow.appendChild(viewBtn);
+      btnRow.appendChild(cartBtn);
+      
+      // Insert after product-card content
+      const content = card.querySelector('.product-card__content') || productCard;
+      if (content) {
+        content.appendChild(btnRow);
+      }
+    });
+  }
+  
+  // Initialize on load and after dynamic content loads
+  document.addEventListener('DOMContentLoaded', initMobileProductButtons);
+  
+  // Re-run for infinite scroll
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        setTimeout(initMobileProductButtons, 100);
+      }
+    });
+  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.product-grid');
+    if (grid) {
+      observer.observe(grid, { childList: true, subtree: true });
+    }
+  });
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
@@ -66,112 +168,133 @@
 </results-list>
 
 {% stylesheet %}
-  /* Mobile: Single column layout */
+  /* =============================================
+     MOBILE: Single Column Product Grid
+     ============================================= */
   @media screen and (max-width: 749px) {
+    /* Single column grid */
     .product-grid {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
     }
     
-    /* Card separation - subtle divider */
+    /* Card container with divider */
     .product-grid__item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 20px !important;
-      margin-bottom: 20px !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0 0 24px 0 !important;
+      margin-bottom: 24px !important;
     }
     
     .product-grid__item:last-child {
       border-bottom: none;
+      margin-bottom: 0 !important;
     }
     
-    /* Card spacing */
+    /* Card content layout */
     .product-grid__item .product-grid__card {
-      gap: 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
     }
     
-    /* Title + Price row */
+    /* Info section (title + price) - flexbox row */
+    .product-grid__item .product-card__content {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: baseline !important;
+      gap: 8px 16px !important;
+    }
+    
+    /* Title - takes available space */
     .product-grid__item .product-card__content > a.contents,
     .product-grid__item .product-card__content > .text-block {
-      display: inline !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
     }
     
-    .product-grid__item .product-card__content > a.contents + product-price,
-    .product-grid__item .product-card__content > .text-block + product-price {
-      float: right !important;
-      margin-top: 0 !important;
-    }
-    
-    /* Title styling */
     .product-grid__item .text-block.rte p,
     .product-grid__item a.contents p {
       font-size: 1rem !important;
       font-weight: 500 !important;
-      line-height: 1.35 !important;
+      line-height: 1.4 !important;
       margin: 0 !important;
-      display: inline !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
-    /* Price styling */
+    /* Price - right aligned */
     .product-grid__item product-price {
-      display: inline-block !important;
+      flex: 0 0 auto !important;
+      margin-left: auto !important;
     }
     
     .product-grid__item product-price .price {
       font-size: 1rem !important;
       font-weight: 600 !important;
       color: var(--color-foreground) !important;
+      white-space: nowrap;
     }
     
-    /* Button row container */
-    .product-grid__item .product-card {
-      position: relative;
+    /* Hide default quick-add if any */
+    .product-grid__item .quick-add {
+      display: none !important;
     }
     
-    .product-grid__item .product-card::after {
-      content: 'View Details';
-      display: inline-block;
-      clear: both;
-      margin-top: 12px;
-      padding: 10px 16px;
-      font-size: 0.75rem;
+    /* ---- Button Row ---- */
+    .mobile-btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      width: 100%;
+    }
+    
+    .mobile-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      font-size: 0.8125rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: #fff;
-      background: #dc2626;
-      border-radius: 4px;
-      transition: background 0.2s ease;
-      margin-right: 8px;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      text-align: center;
     }
     
-    .product-grid__item .product-card:hover::after {
+    .mobile-btn--primary {
+      background: #dc2626;
+      color: #fff;
+    }
+    
+    .mobile-btn--primary:hover {
       background: #b91c1c;
     }
     
-    /* Second button using ::before on the content wrapper */
-    .product-grid__item .product-card__content::after {
-      content: 'Add to Cart';
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: #dc2626;
+    .mobile-btn--secondary {
       background: transparent;
-      border: 1px solid #dc2626;
-      border-radius: 4px;
-      transition: all 0.2s ease;
+      color: #dc2626;
+      border: 1.5px solid #dc2626;
     }
     
-    .product-grid__item .product-card__content:hover::after {
+    .mobile-btn--secondary:hover {
       background: #dc2626;
       color: #fff;
     }
+    
+    .mobile-btn--secondary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 
-  /* Desktop styling */
+  /* =============================================
+     DESKTOP: Multi-column grid
+     ============================================= */
   @media screen and (min-width: 750px) {
     .product-grid__item .text-block.rte p,
     .product-grid__item a.contents p {
