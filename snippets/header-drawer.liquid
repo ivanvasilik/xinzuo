@@ -120,6 +120,11 @@
                   </div>
                   <div class="header-category-div open header-category-div-{{ forloop.index }}">
                     {% for sublink in link.links %}
+                      {% comment %} Title overrides for navigation links {% endcomment %}
+                      {% assign display_title = sublink.title %}
+                      {% if sublink.title == "Wood Chopping" %}
+                        {% assign display_title = "Chopping Boards" %}
+                      {% endif %}
                       {% assign collection_handle = sublink.url | split: "/" | last %}
                       {% assign collection = collections[collection_handle] %}
                       <a href="{{ collection.url }}">
@@ -138,7 +143,7 @@
                             <span class="price-off">{{ sum }}% OFF</span>
                           {% endif %}
                         </div>
-                        <h4>{{ sublink.title }} ></h4>
+                        <h4>{{ display_title }} ></h4>
                       </a>
                     {% endfor %}
                     {% if link.title == "KNIVES" %}
