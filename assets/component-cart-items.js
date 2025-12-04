@@ -175,8 +175,8 @@ class CartItemsComponent extends Component {
   }
 
   /**
-   * Updates engraving fee quantity if the updated item has engraving.
-   * Only makes an API call if engraving fee adjustment is needed.
+   * Updates engraving fee quantities for both one-line and two-line fees.
+   * Only makes an API call if fee adjustment is needed.
    * @param {Object} cartResponse - The cart response from the main update.
    * @param {number} originalLine - The original line that was updated.
    * @param {number} newQuantity - The new quantity of the main item.
@@ -186,40 +186,51 @@ class CartItemsComponent extends Component {
     const items = cartResponse.items;
     if (!items) return;
 
-    // Find an item with engraving text that might need fee adjustment
-    const engravingItem = items.find(item => 
-      item.properties && item.properties["Engraving Text"]
-    );
-    
-    if (!engravingItem) return;
+    const FEE_ONE_LINE = 43781283217459;
+    const FEE_TWO_LINES = 43781283250227;
 
-    // Determine which fee variant to look for
-    const feeId = engravingItem.properties["Engraving Text2"] ? 43781283250227 : 43781283217459;
-    const feeItem = items.find(i => i.variant_id === feeId);
-    
-    if (!feeItem) return;
+    // Calculate required quantities for BOTH fee types
+    let requiredOneLine = 0;
+    let requiredTwoLine = 0;
 
-    // Calculate expected fee quantity based on all engraving items
-    let expectedFeeQty = 0;
     items.forEach(item => {
       if (item.properties && item.properties["Engraving Text"]) {
         const knifeQty = parseInt(item.properties["Knife Quantity"]) || 1;
-        expectedFeeQty += item.quantity * knifeQty;
+        const qty = item.quantity * knifeQty;
+        
+        if (item.properties["Engraving Text2"]) {
+          requiredTwoLine += qty;
+        } else {
+          requiredOneLine += qty;
+        }
       }
     });
 
-    // Only update if fee quantity is incorrect
-    if (feeItem.quantity === expectedFeeQty) return;
+    // Find current fee items
+    const feeOneItem = items.find(i => i.variant_id === FEE_ONE_LINE);
+    const feeTwoItem = items.find(i => i.variant_id === FEE_TWO_LINES);
 
-    const feeLine = items.indexOf(feeItem) + 1;
-    
-    // Update the engraving fee quantity
-    const feeUpdateResponse = await fetch("/cart/change.js", {
+    const currentOneLine = feeOneItem?.quantity || 0;
+    const currentTwoLine = feeTwoItem?.quantity || 0;
+
+    // Build updates object for any fees that need adjustment
+    const updates = {};
+    if (currentOneLine !== requiredOneLine) {
+      updates[FEE_ONE_LINE] = requiredOneLine;
+    }
+    if (currentTwoLine !== requiredTwoLine) {
+      updates[FEE_TWO_LINES] = requiredTwoLine;
+    }
+
+    // Only make API call if updates are needed
+    if (Object.keys(updates).length === 0) return;
+
+    // Use /cart/update.js to update both fee types in a single request
+    const feeUpdateResponse = await fetch("/cart/update.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        line: feeLine,
-        quantity: expectedFeeQty,
+        updates,
         sections: Array.from(sectionsToUpdate).join(','),
         sections_url: window.location.pathname,
       })
