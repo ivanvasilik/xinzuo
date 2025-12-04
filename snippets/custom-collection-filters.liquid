@@ -419,13 +419,16 @@
 
     function tagVisibleProducts(visibleProducts, allProductsData) {
       visibleProducts.forEach(product => {
-        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
-        if (!titleEl) return;
+        // Get product handle from link URL
+        const link = product.querySelector('a[href*="/products/"]');
+        if (!link) return;
         
-        const title = titleEl.textContent.trim();
+        const href = link.getAttribute('href');
+        const handle = href.split('/products/')[1]?.split('?')[0];
+        if (!handle) return;
         
-        // Find matching product in API data
-        const productData = allProductsData.find(p => p.title === title);
+        // Find matching product in API data by handle
+        const productData = allProductsData.find(p => p.handle === handle);
         if (productData) {
           if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
           if (productData.series) product.dataset.series = productData.series;
@@ -444,6 +447,7 @@
           const analyzed = analyzeProduct(product.title);
           return {
             title: product.title,
+            handle: product.handle,
             ...analyzed
           };
         });
