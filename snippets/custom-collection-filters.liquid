@@ -453,37 +453,39 @@
       
       if (!filterParam) return;
       
-      // Map URL param to category filter value
+      // Map URL param to category filter values (can be multiple)
       const categoryMap = {
-        'knives': 'Single Knives',
-        'accessories': 'Accessories'
+        'knives': ['Single Knives', 'Knife Sets'],
+        'accessories': ['Accessories']
       };
       
-      const categoryValue = categoryMap[filterParam.toLowerCase()];
-      if (!categoryValue) return;
+      const categoryValues = categoryMap[filterParam.toLowerCase()];
+      if (!categoryValues) return;
       
-      // Find and check the corresponding checkbox
-      const checkbox = document.querySelector(
-        `.custom-filters-sidebar [data-filter-value="${categoryValue}"]`
-      );
-      
-      if (checkbox && !checkbox.checked) {
-        checkbox.checked = true;
-        
-        // Trigger the filter application
-        const visibleProducts = document.querySelectorAll('.product-grid__item');
-        applyFilters(visibleProducts);
-        updateClearAllButton();
-        updateFilterCount();
-        
-        // Sync to mobile drawer if exists
-        const mobileCheckbox = document.querySelector(
-          `#mobile-filters-body [data-filter-value="${categoryValue}"]`
+      // Check all corresponding checkboxes
+      categoryValues.forEach(categoryValue => {
+        const checkbox = document.querySelector(
+          `.custom-filters-sidebar [data-filter-value="${categoryValue}"]`
         );
-        if (mobileCheckbox) {
-          mobileCheckbox.checked = true;
+        
+        if (checkbox && !checkbox.checked) {
+          checkbox.checked = true;
+          
+          // Sync to mobile drawer if exists
+          const mobileCheckbox = document.querySelector(
+            `#mobile-filters-body [data-filter-value="${categoryValue}"]`
+          );
+          if (mobileCheckbox) {
+            mobileCheckbox.checked = true;
+          }
         }
-      }
+      });
+      
+      // Trigger the filter application once after all checkboxes are set
+      const visibleProducts = document.querySelectorAll('.product-grid__item');
+      applyFilters(visibleProducts);
+      updateClearAllButton();
+      updateFilterCount();
     }
 
     function watchForNewProducts() {
