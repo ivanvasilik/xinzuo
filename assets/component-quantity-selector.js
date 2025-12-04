@@ -20,25 +20,8 @@ class QuantitySelectorComponent extends Component {
     event.preventDefault();
     this.refs.quantityInput.stepUp();
     this.#onQuantityChange();
-    const swiper = document.querySelector(".cart-swiper");
-    const cartswiper = new Swiper('.cart-swiper', {
-      slidesPerView: 2,
-      spaceBetween: 10,
-      breakpoints: {
-        768: {
-          slidesPerView: 2.5,
-          spaceBetween: 20,
-        },
-        1025: {
-          slidesPerView: 3.5,
-          spaceBetween: 30,
-        },
-      },
-      navigation: {
-        nextEl: '.cart-swiper-button-next',
-        prevEl: '.cart-swiper-button-prev',
-      },
-    });
+    // Note: Swiper is initialized once on DOMContentLoaded in main-cart.liquid
+    // No need to reinitialize on every quantity change
   }
 
   /**
@@ -51,25 +34,8 @@ class QuantitySelectorComponent extends Component {
     event.preventDefault();
     this.refs.quantityInput.stepDown();
     this.#onQuantityChange();
-    const swiper = document.querySelector(".cart-swiper");
-    const cartswiper = new Swiper('.cart-swiper', {
-      slidesPerView: 2,
-      spaceBetween: 10,
-      breakpoints: {
-        768: {
-          slidesPerView: 2.5,
-          spaceBetween: 20,
-        },
-        1025: {
-          slidesPerView: 3.5,
-          spaceBetween: 30,
-        },
-      },
-      navigation: {
-        nextEl: '.cart-swiper-button-next',
-        prevEl: '.cart-swiper-button-prev',
-      },
-    });
+    // Note: Swiper is initialized once on DOMContentLoaded in main-cart.liquid
+    // No need to reinitialize on every quantity change
   }
 
   /**

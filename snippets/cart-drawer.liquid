@@ -321,6 +321,10 @@
               {% endif %} {% endcomment %}
             </scroll-hint>
 
+            <!-- Container for third-party app blocks (Essential Upsell, etc.) -->
+            <!-- data-skip-subtree-update prevents morph.js from removing app-injected content -->
+            <div class="cart-drawer-app-blocks" data-skip-subtree-update data-skip-node-update></div>
+
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
                 {% assign fee_price = 0 %}
