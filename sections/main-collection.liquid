@@ -66,6 +66,27 @@
 </results-list>
 
 {% stylesheet %}
+  /* Product card visual hierarchy */
+  .product-grid__item .text-block.rte p,
+  .product-grid__item a.contents p {
+    font-size: 0.875rem !important; /* 14px */
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    color: var(--color-foreground) !important;
+    margin-bottom: 4px;
+  }
+
+  .product-grid__item product-price,
+  .product-grid__item product-price .price {
+    font-size: 0.8125rem !important; /* 13px */
+    font-weight: 400 !important;
+    opacity: 0.85;
+  }
+
+  .product-grid__item product-price .price--on-sale .price__sale {
+    font-weight: 500 !important;
+  }
+
   .custom-filter-layout {
     display: flex;
     flex-direction: column;
