@@ -71,12 +71,16 @@
     .product-grid {
       grid-template-columns: 1fr !important;
     }
+    
+    /* Tighter card spacing on mobile */
+    .product-grid__card {
+      gap: 4px !important;
+    }
   }
 
-  /* Product card visual hierarchy */
-  .product-grid__item .product-card__content {
-    display: flex;
-    flex-direction: column;
+  /* Product card - tighter spacing */
+  .product-grid__item .product-grid__card {
+    --product-card-gap: 4px;
   }
 
   /* Title styling */
@@ -84,44 +88,25 @@
   .product-grid__item a.contents p {
     font-size: 0.9375rem !important; /* 15px */
     font-weight: 500 !important;
-    line-height: 1.4 !important;
-    color: var(--color-foreground) !important;
+    line-height: 1.3 !important;
     margin: 0 !important;
   }
 
-  /* Price styling */
-  .product-grid__item product-price,
+  /* Price styling - tight to title */
+  .product-grid__item product-price {
+    margin-top: 2px !important;
+    padding: 0 !important;
+  }
+  
   .product-grid__item product-price .price {
     font-size: 0.875rem !important; /* 14px */
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.7) !important;
-    margin-top: 2px;
   }
 
   .product-grid__item product-price .price--on-sale .price__sale {
     font-weight: 500 !important;
     color: var(--color-foreground) !important;
-  }
-
-  /* Subtle CTA - appears after price */
-  .product-grid__item .product-card::after {
-    content: 'View Details →';
-    display: block;
-    margin-top: 8px;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.5);
-    transition: color 0.2s ease;
-  }
-
-  .product-grid__item .product-card:hover::after {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  /* Ensure title link takes full space */
-  .product-grid__item a.contents {
-    display: block;
   }
 
   .custom-filter-layout {

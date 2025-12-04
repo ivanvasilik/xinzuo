@@ -383,24 +383,13 @@
     background: rgba(255, 255, 255, 0.3);
   }
 
-  /* Normalize product card titles for visual consistency */
-  .product-grid__item a[href*="/products/"] p,
-  .product-grid__item .product-card__title,
-  .product-grid__item [class*="text--"] p {
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-    font-weight: 400 !important;
-  }
-
-  /* Ensure truncation for long titles */
+  /* Product card title truncation - no forced height */
   .product-grid__item a[href*="/products/"] p,
   .product-grid__item .product-card__title {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 2.8em;
   }
 
   /* Keep collection title on one line on mobile */
