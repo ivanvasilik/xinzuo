@@ -431,6 +431,10 @@
               // New product added - tag it
               tagVisibleProducts([node], allProductsData);
               console.log('[Filter Debug] Tagged newly loaded product');
+              
+              // Re-apply active filters to new product
+              const visibleProducts = document.querySelectorAll('.product-grid__item');
+              applyFilters(visibleProducts);
             }
           });
         });
