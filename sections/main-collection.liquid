@@ -232,51 +232,39 @@
       margin-bottom: 12px !important;
     }
 
-    /* Hide the mobile-info-row (horizontal layout) in grid view */
+    /* ===== GRID VIEW: Title + Price (Stacked Layout) ===== */
+    
+    /* Show mobile-info-row but convert to stacked layout */
     .product-grid.mobile-view-grid .mobile-info-row {
-      display: none !important;
-    }
-
-    /* Hide button row in grid view for cleaner cards */
-    .product-grid.mobile-view-grid .mobile-btn-row {
-      display: none !important;
-    }
-
-    /* Show the default product card content in grid view */
-    .product-grid.mobile-view-grid .product-card__content {
       display: flex !important;
       flex-direction: column !important;
-      padding-top: 8px !important;
+      align-items: flex-start !important;
+      gap: 2px !important;
+      margin-top: 8px !important;
     }
 
-    /* Force visibility of title elements in grid view */
-    .product-grid.mobile-view-grid .product-card__content a.contents,
-    .product-grid.mobile-view-grid .product-card__content .text-block.rte,
-    .product-grid.mobile-view-grid .product-card__content product-price {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
-
-    /* Title styling in grid view */
-    .product-grid.mobile-view-grid .product-card__content .text-block.rte,
-    .product-grid.mobile-view-grid .product-card__content a.contents .text-block {
-      font-size: 0.75rem !important;
-      line-height: 1.3 !important;
-      overflow: hidden !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
-      -webkit-box-orient: vertical !important;
-      white-space: normal !important;
-      text-overflow: ellipsis !important;
-      max-height: 2.6em !important;
+    /* Title in grid view - allow wrapping, 2 lines max */
+    .product-grid.mobile-view-grid .mobile-info-row > a.contents {
+      flex: none !important;
       width: 100% !important;
     }
 
-    .product-grid.mobile-view-grid .product-card__content .text-block.rte p,
-    .product-grid.mobile-view-grid .product-card__content a.contents p {
+    .product-grid.mobile-view-grid .mobile-info-row a.contents .text-block {
+      white-space: normal !important;
+      overflow: hidden !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-info-row .text-block.rte p,
+    .product-grid.mobile-view-grid .mobile-info-row a.contents p {
+      font-size: 0.6875rem !important;
+      line-height: 1.3 !important;
       margin: 0 !important;
-      font-size: 0.75rem !important;
       white-space: normal !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 2 !important;
@@ -284,13 +272,20 @@
       overflow: hidden !important;
     }
 
-    /* Price styling in grid view */
-    .product-grid.mobile-view-grid .product-card__content product-price,
-    .product-grid.mobile-view-grid .product-card__content product-price .price {
-      font-size: 0.8125rem !important;
+    /* Price in grid view */
+    .product-grid.mobile-view-grid .mobile-info-row > product-price {
+      flex-shrink: 0 !important;
+      margin-top: 2px !important;
+    }
+
+    .product-grid.mobile-view-grid .mobile-info-row product-price .price {
+      font-size: 0.75rem !important;
       font-weight: 600 !important;
-      margin-top: 4px !important;
-      display: block !important;
+    }
+
+    /* Hide button row in grid view - keep cards compact */
+    .product-grid.mobile-view-grid .mobile-btn-row {
+      display: none !important;
     }
 
     /* Image container in grid view */
