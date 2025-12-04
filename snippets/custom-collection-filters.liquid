@@ -418,14 +418,23 @@
     }
 
     function tagVisibleProducts(visibleProducts, allProductsData) {
-      visibleProducts.forEach(product => {
+      console.log('[Filter Debug] Tagging', visibleProducts.length, 'products with', allProductsData.length, 'API products');
+      
+      let taggedCount = 0;
+      visibleProducts.forEach((product, index) => {
         // Get product handle from link URL
         const link = product.querySelector('a[href*="/products/"]');
-        if (!link) return;
+        if (!link) {
+          console.warn('[Filter Debug] Product', index, 'has no link');
+          return;
+        }
         
         const href = link.getAttribute('href');
         const handle = href.split('/products/')[1]?.split('?')[0];
-        if (!handle) return;
+        if (!handle) {
+          console.warn('[Filter Debug] Product', index, 'failed to extract handle from', href);
+          return;
+        }
         
         // Find matching product in API data by handle
         const productData = allProductsData.find(p => p.handle === handle);
@@ -433,8 +442,13 @@
           if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
           if (productData.series) product.dataset.series = productData.series;
           if (productData.category) product.dataset.category = productData.category;
+          taggedCount++;
+        } else {
+          console.warn('[Filter Debug] No match found for handle:', handle);
         }
       });
+      
+      console.log('[Filter Debug] Tagged', taggedCount, 'of', visibleProducts.length, 'products');
     }
 
     async function fetchAllProducts(collectionHandle) {
