@@ -466,6 +466,7 @@
     let globalProductsData = [];
     let collectionHandle = '';
     let isSorting = false; // Flag to prevent infinite loop during sorting
+    let isLoadingProducts = false; // Flag to prevent infinite loop during product loading
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
@@ -553,8 +554,8 @@
       if (!productGrid) return;
 
       const observer = new MutationObserver((mutations) => {
-        // Skip if we're currently sorting (to prevent infinite loop)
-        if (isSorting) return;
+        // Skip if we're currently sorting or loading products (to prevent infinite loop)
+        if (isSorting || isLoadingProducts) return;
         
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
@@ -890,6 +891,9 @@
       const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;
 
+      // Set flag to prevent MutationObserver from triggering
+      isLoadingProducts = true;
+
       const currentCount = document.querySelectorAll('.product-grid__item').length;
       const totalPages = Math.ceil(60 / 24); // Assuming 24 products per page
       const currentPage = Math.ceil(currentCount / 24);
@@ -923,8 +927,10 @@
         }
       }
       
-      // Small delay to ensure all products are in DOM
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Reset flag after a small delay
+      setTimeout(() => {
+        isLoadingProducts = false;
+      }, 100);
     }
 
     function updateClearAllButton() {
