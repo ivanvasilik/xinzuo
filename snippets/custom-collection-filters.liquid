@@ -393,33 +393,54 @@
       initCustomFilters();
     }
 
-    function initCustomFilters() {
-      const products = document.querySelectorAll('.product-grid__item');
-      if (!products.length) return;
+    async function initCustomFilters() {
+      // Fetch ALL products from collection via Shopify API
+      const collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
+      const allProducts = await fetchAllProducts(collectionHandle);
+      
+      const visibleProducts = document.querySelectorAll('.product-grid__item');
+      if (!visibleProducts.length) return;
 
-      // Extract filter data from products
-      const filters = extractFilters(products);
+      // Extract filter data from ALL products
+      const filters = extractFilters(allProducts);
       
       // Build filter UI
       buildFilterUI(filters);
       
-      // Set up event listeners
-      setupEventListeners(products, filters);
+      // Set up event listeners (filtering visible products)
+      setupEventListeners(visibleProducts, filters);
       
       // Setup mobile drawer
       setupMobileDrawer();
     }
 
+    async function fetchAllProducts(collectionHandle) {
+      try {
+        const response = await fetch(`/collections/${collectionHandle}/products.json?limit=250`);
+        const data = await response.json();
+        
+        // Convert JSON products to virtual DOM elements with same data structure
+        return data.products.map(product => ({
+          title: product.title,
+          dataset: {},
+          querySelector: () => ({ textContent: { trim: () => product.title } })
+        }));
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+        // Fallback to visible products
+        return Array.from(document.querySelectorAll('.product-grid__item'));
+      }
+    }
+
     function extractFilters(products) {
-      const knifeTypes = new Set();
-      const series = new Set();
-      const categories = new Set();
+      const knifeTypes = new Map(); // Use Map to store counts
+      const series = new Map();
+      const categories = new Map();
 
       products.forEach(product => {
-        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
-        if (!titleEl) return;
-        
-        const title = titleEl.textContent.trim();
+        // Handle both real DOM elements and virtual product objects
+        const title = product.title || product.querySelector('h2, .product-title, [class*="title"]')?.textContent?.trim();
+        if (!title) return;
 
         // Extract knife type from title
         const knifeTypePatterns = [
@@ -437,68 +458,68 @@
 
         knifeTypePatterns.forEach(({pattern, value}) => {
           if (pattern.test(title)) {
-            knifeTypes.add(value);
-            product.dataset.knifeType = value;
+            knifeTypes.set(value, (knifeTypes.get(value) || 0) + 1);
+            if (product.dataset) product.dataset.knifeType = value;
           }
         });
 
         // Extract series from title
         if (/Supreme Series|Supreme/i.test(title)) {
-          series.add('Supreme');
-          product.dataset.series = 'Supreme';
+          series.set('Supreme', (series.get('Supreme') || 0) + 1);
+          if (product.dataset) product.dataset.series = 'Supreme';
         } else if (/Retro Series|Retro/i.test(title)) {
-          series.add('Retro');
-          product.dataset.series = 'Retro';
+          series.set('Retro', (series.get('Retro') || 0) + 1);
+          if (product.dataset) product.dataset.series = 'Retro';
         } else if (/MO Series/i.test(title)) {
-          series.add('MO');
-          product.dataset.series = 'MO';
+          series.set('MO', (series.get('MO') || 0) + 1);
+          if (product.dataset) product.dataset.series = 'MO';
         } else if (/LAN Series/i.test(title)) {
-          series.add('LAN');
-          product.dataset.series = 'LAN';
+          series.set('LAN', (series.get('LAN') || 0) + 1);
+          if (product.dataset) product.dataset.series = 'LAN';
         }
 
         // Extract category
         if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
-          categories.add('Accessories');
-          product.dataset.category = 'Accessories';
+          categories.set('Accessories', (categories.get('Accessories') || 0) + 1);
+          if (product.dataset) product.dataset.category = 'Accessories';
         } else if (/Knife/i.test(title)) {
           if (/Set/i.test(title)) {
-            categories.add('Knife Sets');
-            product.dataset.category = 'Knife Sets';
+            categories.set('Knife Sets', (categories.get('Knife Sets') || 0) + 1);
+            if (product.dataset) product.dataset.category = 'Knife Sets';
           } else {
-            categories.add('Single Knives');
-            product.dataset.category = 'Single Knives';
+            categories.set('Single Knives', (categories.get('Single Knives') || 0) + 1);
+            if (product.dataset) product.dataset.category = 'Single Knives';
           }
         }
       });
 
       return {
-        knifeTypes: Array.from(knifeTypes).sort(),
-        series: Array.from(series).sort(),
-        categories: Array.from(categories).sort()
+        knifeTypes: new Map([...knifeTypes.entries()].sort()),
+        series: new Map([...series.entries()].sort()),
+        categories: new Map([...categories.entries()].sort())
       };
     }
 
     function buildFilterUI(filters) {
       // Build knife type filters
       const knifeTypeContainer = document.getElementById('knife-type-options');
-      filters.knifeTypes.forEach((type, index) => {
-        const count = document.querySelectorAll(`[data-knife-type="${type}"]`).length;
-        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index);
+      let index = 0;
+      filters.knifeTypes.forEach((count, type) => {
+        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index++);
       });
 
       // Build series filters
       const seriesContainer = document.getElementById('series-options');
-      filters.series.forEach((s, index) => {
-        const count = document.querySelectorAll(`[data-series="${s}"]`).length;
-        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index);
+      index = 0;
+      filters.series.forEach((count, s) => {
+        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index++);
       });
 
       // Build category filters
       const categoryContainer = document.getElementById('category-options');
-      filters.categories.forEach((cat, index) => {
-        const count = document.querySelectorAll(`[data-category="${cat}"]`).length;
-        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index);
+      index = 0;
+      filters.categories.forEach((count, cat) => {
+        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index++);
       });
     }
 
