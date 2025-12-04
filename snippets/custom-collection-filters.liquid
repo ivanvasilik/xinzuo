@@ -388,8 +388,8 @@
   (function() {
     // Generic selector to catch all product tiles, even if markup changes or pagination loads more
     // Use var to avoid temporal dead zone issues in some bundling orders.
-    // Use a strict selector so we only toggle actual product tiles (not wrappers)
-    var PRODUCT_SELECTOR = '.product-grid__item';
+    // Use a selector that catches product list items across templates
+    var PRODUCT_SELECTOR = '.product-grid__item, li.product-grid__item, li[class*="product-grid__item"], .collection-grid__item, .grid__item';
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
@@ -434,10 +434,13 @@
     // Ensure data attributes are set for a product tile, extracting from its title
     function ensureProductAttributes(product, sets) {
       const { knifeTypes, series, categories } = sets || {};
-      const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
-      if (!titleEl) return;
+      const titleEl = product.querySelector(
+        '[data-product-title], .product-card__heading, .product-card__title, .card__heading, .product-card h3, .product-card h2, h3, h2, .product-title, [class*="title"]'
+      );
+      const rawTitle = titleEl ? titleEl.textContent : product.textContent;
+      if (!rawTitle) return;
       
-      const title = titleEl.textContent.trim();
+      const title = rawTitle.trim();
 
       const knifeTypePatterns = [
         { pattern: /Bunka/i, value: 'Bunka' },
