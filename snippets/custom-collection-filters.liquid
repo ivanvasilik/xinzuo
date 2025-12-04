@@ -396,13 +396,16 @@
     async function initCustomFilters() {
       // Fetch ALL products from collection via Shopify API
       const collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
-      const allProducts = await fetchAllProducts(collectionHandle);
+      const allProductsData = await fetchAllProducts(collectionHandle);
       
       const visibleProducts = document.querySelectorAll('.product-grid__item');
       if (!visibleProducts.length) return;
 
-      // Extract filter data from ALL products
-      const filters = extractFilters(allProducts);
+      // Tag visible DOM products with data attributes
+      tagVisibleProducts(visibleProducts, allProductsData);
+
+      // Extract filter data from ALL products for counts
+      const filters = extractFiltersFromData(allProductsData);
       
       // Build filter UI
       buildFilterUI(filters);
@@ -414,82 +417,105 @@
       setupMobileDrawer();
     }
 
+    function tagVisibleProducts(visibleProducts, allProductsData) {
+      visibleProducts.forEach(product => {
+        const titleEl = product.querySelector('h2, .product-title, [class*="title"]');
+        if (!titleEl) return;
+        
+        const title = titleEl.textContent.trim();
+        
+        // Find matching product in API data
+        const productData = allProductsData.find(p => p.title === title);
+        if (productData) {
+          if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
+          if (productData.series) product.dataset.series = productData.series;
+          if (productData.category) product.dataset.category = productData.category;
+        }
+      });
+    }
+
     async function fetchAllProducts(collectionHandle) {
       try {
         const response = await fetch(`/collections/${collectionHandle}/products.json?limit=250`);
         const data = await response.json();
         
-        // Convert JSON products to virtual DOM elements with same data structure
-        return data.products.map(product => ({
-          title: product.title,
-          dataset: {},
-          querySelector: () => ({ textContent: { trim: () => product.title } })
-        }));
+        // Return products with analyzed data
+        return data.products.map(product => {
+          const analyzed = analyzeProduct(product.title);
+          return {
+            title: product.title,
+            ...analyzed
+          };
+        });
       } catch (error) {
         console.error('Failed to fetch products:', error);
-        // Fallback to visible products
-        return Array.from(document.querySelectorAll('.product-grid__item'));
+        return [];
       }
     }
 
-    function extractFilters(products) {
-      const knifeTypes = new Map(); // Use Map to store counts
+    function analyzeProduct(title) {
+      const result = {};
+      
+      // Extract knife type
+      const knifeTypePatterns = [
+        { pattern: /Chef Knife/i, value: 'Chef Knife' },
+        { pattern: /Santoku/i, value: 'Santoku' },
+        { pattern: /Bread Knife/i, value: 'Bread Knife' },
+        { pattern: /Carving Knife/i, value: 'Carving Knife' },
+        { pattern: /Utility Knife/i, value: 'Utility Knife' },
+        { pattern: /Paring Knife/i, value: 'Paring Knife' },
+        { pattern: /Nakiri/i, value: 'Nakiri' },
+        { pattern: /Cleaver/i, value: 'Cleaver' },
+        { pattern: /Bunka/i, value: 'Bunka' },
+        { pattern: /Knife Set/i, value: 'Knife Sets' },
+      ];
+
+      for (const {pattern, value} of knifeTypePatterns) {
+        if (pattern.test(title)) {
+          result.knifeType = value;
+          break;
+        }
+      }
+
+      // Extract series
+      if (/Supreme Series|Supreme/i.test(title)) {
+        result.series = 'Supreme';
+      } else if (/Retro Series|Retro/i.test(title)) {
+        result.series = 'Retro';
+      } else if (/MO Series/i.test(title)) {
+        result.series = 'MO';
+      } else if (/LAN Series/i.test(title)) {
+        result.series = 'LAN';
+      }
+
+      // Extract category
+      if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+        result.category = 'Accessories';
+      } else if (/Knife/i.test(title)) {
+        if (/Set/i.test(title)) {
+          result.category = 'Knife Sets';
+        } else {
+          result.category = 'Single Knives';
+        }
+      }
+
+      return result;
+    }
+
+    function extractFiltersFromData(productsData) {
+      const knifeTypes = new Map();
       const series = new Map();
       const categories = new Map();
 
-      products.forEach(product => {
-        // Handle both real DOM elements and virtual product objects
-        const title = product.title || product.querySelector('h2, .product-title, [class*="title"]')?.textContent?.trim();
-        if (!title) return;
-
-        // Extract knife type from title
-        const knifeTypePatterns = [
-          { pattern: /Chef Knife/i, value: 'Chef Knife' },
-          { pattern: /Santoku/i, value: 'Santoku' },
-          { pattern: /Bread Knife/i, value: 'Bread Knife' },
-          { pattern: /Carving Knife/i, value: 'Carving Knife' },
-          { pattern: /Utility Knife/i, value: 'Utility Knife' },
-          { pattern: /Paring Knife/i, value: 'Paring Knife' },
-          { pattern: /Nakiri/i, value: 'Nakiri' },
-          { pattern: /Cleaver/i, value: 'Cleaver' },
-          { pattern: /Bunka/i, value: 'Bunka' },
-          { pattern: /Knife Set/i, value: 'Knife Sets' },
-        ];
-
-        knifeTypePatterns.forEach(({pattern, value}) => {
-          if (pattern.test(title)) {
-            knifeTypes.set(value, (knifeTypes.get(value) || 0) + 1);
-            if (product.dataset) product.dataset.knifeType = value;
-          }
-        });
-
-        // Extract series from title
-        if (/Supreme Series|Supreme/i.test(title)) {
-          series.set('Supreme', (series.get('Supreme') || 0) + 1);
-          if (product.dataset) product.dataset.series = 'Supreme';
-        } else if (/Retro Series|Retro/i.test(title)) {
-          series.set('Retro', (series.get('Retro') || 0) + 1);
-          if (product.dataset) product.dataset.series = 'Retro';
-        } else if (/MO Series/i.test(title)) {
-          series.set('MO', (series.get('MO') || 0) + 1);
-          if (product.dataset) product.dataset.series = 'MO';
-        } else if (/LAN Series/i.test(title)) {
-          series.set('LAN', (series.get('LAN') || 0) + 1);
-          if (product.dataset) product.dataset.series = 'LAN';
+      productsData.forEach(product => {
+        if (product.knifeType) {
+          knifeTypes.set(product.knifeType, (knifeTypes.get(product.knifeType) || 0) + 1);
         }
-
-        // Extract category
-        if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
-          categories.set('Accessories', (categories.get('Accessories') || 0) + 1);
-          if (product.dataset) product.dataset.category = 'Accessories';
-        } else if (/Knife/i.test(title)) {
-          if (/Set/i.test(title)) {
-            categories.set('Knife Sets', (categories.get('Knife Sets') || 0) + 1);
-            if (product.dataset) product.dataset.category = 'Knife Sets';
-          } else {
-            categories.set('Single Knives', (categories.get('Single Knives') || 0) + 1);
-            if (product.dataset) product.dataset.category = 'Single Knives';
-          }
+        if (product.series) {
+          series.set(product.series, (series.get(product.series) || 0) + 1);
+        }
+        if (product.category) {
+          categories.set(product.category, (categories.get(product.category) || 0) + 1);
         }
       });
 
