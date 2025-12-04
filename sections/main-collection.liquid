@@ -95,13 +95,26 @@
           
           if (response.ok) {
             cartBtn.textContent = 'Added ✓';
+            
+            // Fetch updated cart to get total item count
+            const cartResponse = await fetch('/cart.js');
+            const cart = await cartResponse.json();
+            
+            // Dispatch cart:update event (theme's expected event)
+            document.dispatchEvent(new CustomEvent('cart:update', {
+              bubbles: true,
+              detail: {
+                data: {
+                  itemCount: cart.item_count,
+                  source: 'mobile-add-to-cart'
+                }
+              }
+            }));
+            
             setTimeout(() => {
               cartBtn.textContent = 'Add to Cart';
               cartBtn.disabled = false;
             }, 2000);
-            
-            // Update cart count if cart icon exists
-            document.dispatchEvent(new CustomEvent('cart:refresh'));
           } else {
             throw new Error('Failed to add');
           }
