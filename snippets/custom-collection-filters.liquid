@@ -453,7 +453,7 @@
       
       if (!filterParam) return;
       
-      // Map URL param to category filter values (can be multiple)
+      // Map URL param to category filter values (specifically target Category section)
       const categoryMap = {
         'knives': ['Single Knives', 'Knife Sets'],
         'accessories': ['Accessories']
@@ -462,10 +462,11 @@
       const categoryValues = categoryMap[filterParam.toLowerCase()];
       if (!categoryValues) return;
       
-      // Check all corresponding checkboxes
+      // Check all corresponding checkboxes (specifically in Category section)
       categoryValues.forEach(categoryValue => {
+        // Target specifically the Category section (#category-filter)
         const checkbox = document.querySelector(
-          `.custom-filters-sidebar [data-filter-value="${categoryValue}"]`
+          `#category-filter [data-filter-value="${categoryValue}"]`
         );
         
         if (checkbox && !checkbox.checked) {
