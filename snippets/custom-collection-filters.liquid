@@ -504,13 +504,17 @@
       watchForNewProducts();
       
       // Apply filters from URL parameters (e.g., ?filter=knives or ?filter=accessories)
-      applyFiltersFromUrl();
+      // This also handles initial sorting
+      await applyFiltersFromUrl();
       
-      // Apply initial sort (sold-out products always last)
-      sortProducts();
+      // If no URL filters were applied, just do initial sort
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.get('filter')) {
+        sortProducts();
+      }
     }
 
-    function applyFiltersFromUrl() {
+    async function applyFiltersFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       const filterParam = urlParams.get('filter');
       
@@ -546,7 +550,7 @@
       });
       
       // Trigger the filter application once after all checkboxes are set
-      applyFiltersAndSort();
+      await applyFiltersAndSort();
       updateClearAllButton();
       updateFilterCount();
     }
