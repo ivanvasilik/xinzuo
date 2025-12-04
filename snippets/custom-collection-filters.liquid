@@ -442,6 +442,48 @@
       
       // Watch for new products being added (infinite scroll)
       watchForNewProducts();
+      
+      // Apply filters from URL parameters (e.g., ?filter=knives or ?filter=accessories)
+      applyFiltersFromUrl();
+    }
+
+    function applyFiltersFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const filterParam = urlParams.get('filter');
+      
+      if (!filterParam) return;
+      
+      // Map URL param to category filter value
+      const categoryMap = {
+        'knives': 'Single Knives',
+        'accessories': 'Accessories'
+      };
+      
+      const categoryValue = categoryMap[filterParam.toLowerCase()];
+      if (!categoryValue) return;
+      
+      // Find and check the corresponding checkbox
+      const checkbox = document.querySelector(
+        `.custom-filters-sidebar [data-filter-value="${categoryValue}"]`
+      );
+      
+      if (checkbox && !checkbox.checked) {
+        checkbox.checked = true;
+        
+        // Trigger the filter application
+        const visibleProducts = document.querySelectorAll('.product-grid__item');
+        applyFilters(visibleProducts);
+        updateClearAllButton();
+        updateFilterCount();
+        
+        // Sync to mobile drawer if exists
+        const mobileCheckbox = document.querySelector(
+          `#mobile-filters-body [data-filter-value="${categoryValue}"]`
+        );
+        if (mobileCheckbox) {
+          mobileCheckbox.checked = true;
+        }
+      }
     }
 
     function watchForNewProducts() {
