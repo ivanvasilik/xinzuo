@@ -49,6 +49,13 @@
     <span>Filters</span>
     <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
   </button>
+  <div class="sort-dropdown-wrapper">
+    <select class="sort-dropdown" id="sort-dropdown">
+      <option value="best-sellers">Best Sellers</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+    </select>
+  </div>
 </div>
 
 <div class="filter-mobile-drawer" id="mobile-filter-drawer">
@@ -215,9 +222,13 @@
     color: #fff;
   }
 
-  /* Mobile Filter Button */
+  /* Mobile Filter Button & Sort Bar */
   .filter-mobile-trigger {
     display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .mobile-filter-btn {
@@ -243,6 +254,38 @@
     padding: 2px 8px;
     font-size: 12px;
     font-weight: 600;
+  }
+
+  /* Sort Dropdown */
+  .sort-dropdown-wrapper {
+    display: inline-block;
+  }
+
+  .sort-dropdown {
+    padding: 10px 32px 10px 12px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  .sort-dropdown:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .sort-dropdown option {
+    background-color: #1a1a1a;
+    color: #fff;
   }
 
   /* Mobile Drawer */
@@ -353,14 +396,27 @@
     }
 
     .filter-mobile-trigger {
-      display: block;
-      margin-bottom: 16px;
+      display: flex;
+    }
+
+    .filter-mobile-trigger .sort-dropdown {
+      flex: 1;
+      min-width: 0;
     }
   }
 
   @media (min-width: 750px) {
     .filter-mobile-trigger {
+      display: flex;
+      margin-bottom: 0;
+    }
+    
+    .filter-mobile-trigger .mobile-filter-btn {
       display: none;
+    }
+    
+    .filter-mobile-trigger .sort-dropdown-wrapper {
+      margin-left: auto;
     }
   }
 
@@ -445,6 +501,9 @@
       
       // Apply filters from URL parameters (e.g., ?filter=knives or ?filter=accessories)
       applyFiltersFromUrl();
+      
+      // Apply initial sort (sold-out products always last)
+      sortProducts();
     }
 
     function applyFiltersFromUrl() {
@@ -483,8 +542,7 @@
       });
       
       // Trigger the filter application once after all checkboxes are set
-      const visibleProducts = document.querySelectorAll('.product-grid__item');
-      applyFilters(visibleProducts);
+      applyFiltersAndSort();
       updateClearAllButton();
       updateFilterCount();
     }
@@ -500,9 +558,8 @@
               // New product added - tag it
               tagVisibleProducts([node], globalProductsData);
               
-              // Re-apply active filters to new product
-              const visibleProducts = document.querySelectorAll('.product-grid__item');
-              applyFilters(visibleProducts);
+              // Re-apply active filters and sort
+              applyFiltersAndSort();
             }
           });
         });
@@ -515,7 +572,7 @@
     }
 
     function tagVisibleProducts(visibleProducts, allProductsData) {
-      visibleProducts.forEach((product) => {
+      visibleProducts.forEach((product, index) => {
         // Get product handle from link URL
         const link = product.querySelector('a[href*="/products/"]');
         if (!link) return;
@@ -530,6 +587,11 @@
           if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
           if (productData.series) product.dataset.series = productData.series;
           if (productData.category) product.dataset.category = productData.category;
+          
+          // Add price, sold-out status, and position for sorting
+          product.dataset.price = productData.price || '0';
+          product.dataset.soldOut = productData.soldOut ? 'true' : 'false';
+          product.dataset.position = productData.position || index.toString();
         }
       });
     }
@@ -540,11 +602,19 @@
         const data = await response.json();
         
         // Return products with analyzed data
-        return data.products.map(product => {
+        return data.products.map((product, index) => {
           const analyzed = analyzeProduct(product.title);
+          // Get price from first variant
+          const price = product.variants?.[0]?.price || '0';
+          // Check if all variants are sold out
+          const soldOut = !product.variants?.some(v => v.available);
+          
           return {
             title: product.title,
             handle: product.handle,
+            price: price,
+            soldOut: soldOut,
+            position: index, // Original position in collection (usually best seller order)
             ...analyzed
           };
         });
@@ -665,10 +735,11 @@
       // Use only the desktop sidebar as the single source of truth
       const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
+      const sortDropdown = document.getElementById('sort-dropdown');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-          applyFilters(products);
+          applyFiltersAndSort();
           updateClearAllButton();
           updateFilterCount();
         });
@@ -676,10 +747,17 @@
 
       clearAllBtn.addEventListener('click', () => {
         checkboxes.forEach(cb => cb.checked = false);
-        applyFilters(products);
+        applyFiltersAndSort();
         updateClearAllButton();
         updateFilterCount();
       });
+
+      // Sort dropdown listener
+      if (sortDropdown) {
+        sortDropdown.addEventListener('change', () => {
+          applyFiltersAndSort();
+        });
+      }
 
       // Collapsible sections
       document.querySelectorAll('.filter-section-header').forEach(header => {
@@ -687,6 +765,12 @@
           header.parentElement.classList.toggle('collapsed');
         });
       });
+    }
+
+    async function applyFiltersAndSort() {
+      const products = document.querySelectorAll('.product-grid__item');
+      await applyFilters(products);
+      sortProducts();
     }
 
     async function applyFilters(products) {
@@ -745,6 +829,49 @@
       if (countEl) {
         countEl.textContent = `${visibleCount} items`;
       }
+    }
+
+    function sortProducts() {
+      const sortDropdown = document.getElementById('sort-dropdown');
+      const sortValue = sortDropdown ? sortDropdown.value : 'best-sellers';
+      
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+      
+      const products = Array.from(productGrid.querySelectorAll('.product-grid__item'));
+      if (products.length === 0) return;
+      
+      // Sort products
+      products.sort((a, b) => {
+        // First: Always put sold-out products at the end
+        const aIsSoldOut = a.dataset.soldOut === 'true';
+        const bIsSoldOut = b.dataset.soldOut === 'true';
+        
+        if (aIsSoldOut && !bIsSoldOut) return 1;
+        if (!aIsSoldOut && bIsSoldOut) return -1;
+        
+        // If both have same availability, sort by selected criteria
+        const aPrice = parseFloat(a.dataset.price) || 0;
+        const bPrice = parseFloat(b.dataset.price) || 0;
+        const aPosition = parseInt(a.dataset.position) || 0;
+        const bPosition = parseInt(b.dataset.position) || 0;
+        
+        switch (sortValue) {
+          case 'price-low':
+            return aPrice - bPrice;
+          case 'price-high':
+            return bPrice - aPrice;
+          case 'best-sellers':
+          default:
+            // Use original position (Shopify default order which is usually best sellers)
+            return aPosition - bPosition;
+        }
+      });
+      
+      // Reorder DOM
+      products.forEach(product => {
+        productGrid.appendChild(product);
+      });
     }
 
     async function loadAllRemainingProducts() {
@@ -861,8 +988,7 @@
           }
         });
 
-        const products = document.querySelectorAll('.product-grid__item');
-        applyFilters(products);
+        applyFiltersAndSort();
         updateClearAllButton();
         updateFilterCount();
         closeDrawer();
