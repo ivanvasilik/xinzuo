@@ -364,11 +364,87 @@
     }
   }
 
+  /**
+   * Check for and remove orphaned engraving fees from cart
+   * Orphaned fees are engraving fee products without a matching knife with "Engraving Text"
+   */
+  async function cleanupOrphanedEngravingFees() {
+    try {
+      const response = await fetch('/cart.js');
+      const cart = await response.json();
+      
+      // Find all knives with engraving
+      let requiredOneLineFees = 0;
+      let requiredTwoLineFees = 0;
+      
+      cart.items.forEach(item => {
+        if (item.properties && item.properties['Engraving Text']) {
+          const knifeQty = parseInt(item.properties['Knife Quantity'], 10) || 1;
+          const qty = item.quantity;
+          
+          if (item.properties['Engraving Text2']) {
+            // Two line engraving
+            requiredTwoLineFees += qty * knifeQty;
+          } else {
+            // One line engraving
+            requiredOneLineFees += qty * knifeQty;
+          }
+        }
+      });
+      
+      // Find current fee items in cart
+      const feeOneItem = cart.items.find(item => item.variant_id === FEE_ONE_LINE);
+      const feeTwoItem = cart.items.find(item => item.variant_id === FEE_TWO_LINES);
+      
+      const currentOneFees = feeOneItem ? feeOneItem.quantity : 0;
+      const currentTwoFees = feeTwoItem ? feeTwoItem.quantity : 0;
+      
+      // Calculate if we have orphans
+      const orphanOneFees = currentOneFees - requiredOneLineFees;
+      const orphanTwoFees = currentTwoFees - requiredTwoLineFees;
+      
+      // Remove orphans if any
+      const updates = {};
+      
+      if (orphanOneFees > 0) {
+        // Set to required amount (could be 0 if no knives need it)
+        updates[FEE_ONE_LINE] = requiredOneLineFees;
+        console.log(`Removing ${orphanOneFees} orphaned one-line engraving fees`);
+      }
+      
+      if (orphanTwoFees > 0) {
+        updates[FEE_TWO_LINES] = requiredTwoLineFees;
+        console.log(`Removing ${orphanTwoFees} orphaned two-line engraving fees`);
+      }
+      
+      if (Object.keys(updates).length > 0) {
+        const updateResponse = await fetch('/cart/update.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ updates })
+        });
+        
+        if (updateResponse.ok) {
+          // Refresh cart drawer after cleanup
+          await refreshCartDrawer();
+        }
+      }
+    } catch (error) {
+      console.error('Error cleaning up orphaned engraving fees:', error);
+    }
+  }
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+      init();
+      // Run cleanup on page load
+      cleanupOrphanedEngravingFees();
+    });
   } else {
     init();
+    // Run cleanup on page load
+    cleanupOrphanedEngravingFees();
   }
 
   // Re-initialize after cart updates (in case modal HTML was replaced)
@@ -377,10 +453,11 @@
     setTimeout(init, 100);
   });
 
-  // Expose openModal for external use if needed
+  // Expose functions for external use if needed
   window.CartEngraving = {
     open: openModal,
-    close: closeModal
+    close: closeModal,
+    cleanup: cleanupOrphanedEngravingFees
   };
 })();
 

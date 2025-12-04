@@ -586,4 +586,81 @@
     bottom: 0;
     z-index: 1;
   }
+
+  /* Hide engraving product from Essential Upsell recommendations */
+  /* Target by product ID, variant ID, or common patterns */
+  [data-product-id="7718263914547"],
+  [data-variant-id="43781283217459"],
+  [data-variant-id="43781283250227"],
+  [href*="engraving-fee"],
+  [href*="/products/engraving"],
+  .eu-upsell-item[data-product-id="7718263914547"] {
+    display: none !important;
+  }
 {% endstylesheet %}
+
+<script>
+  // Hide engraving product from any upsell/recommendation widgets
+  (function() {
+    const ENGRAVING_PRODUCT_ID = '7718263914547';
+    const ENGRAVING_VARIANTS = ['43781283217459', '43781283250227'];
+    const ENGRAVING_KEYWORDS = ['engraving', 'engraving-fee', 'laser-engraving'];
+
+    function hideEngravingUpsells() {
+      // Look for upsell items by various selectors
+      const upsellSelectors = [
+        '[data-product-id]',
+        '[data-variant-id]',
+        '.eu-upsell-item',
+        '.upsell-product',
+        '.product-upsell',
+        '[class*="upsell"] [data-product]',
+        '[class*="upsell"] a[href*="/products/"]'
+      ];
+
+      upsellSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          const productId = el.dataset?.productId || el.getAttribute('data-product-id');
+          const variantId = el.dataset?.variantId || el.getAttribute('data-variant-id');
+          const href = el.getAttribute('href') || '';
+          const text = el.textContent?.toLowerCase() || '';
+
+          const isEngraving = 
+            productId === ENGRAVING_PRODUCT_ID ||
+            ENGRAVING_VARIANTS.includes(variantId) ||
+            ENGRAVING_KEYWORDS.some(kw => href.includes(kw) || text.includes(kw));
+
+          if (isEngraving) {
+            // Find the parent upsell item container and hide it
+            const container = el.closest('[class*="upsell"]') || 
+                             el.closest('[class*="recommend"]') ||
+                             el.closest('.eu-upsell-item') ||
+                             el;
+            container.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Run on load
+    hideEngravingUpsells();
+
+    // Observe for dynamically added content
+    const observer = new MutationObserver((mutations) => {
+      let shouldCheck = false;
+      mutations.forEach(m => {
+        if (m.addedNodes.length > 0) shouldCheck = true;
+      });
+      if (shouldCheck) {
+        setTimeout(hideEngravingUpsells, 100);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also run after cart updates
+    document.addEventListener('cart:update', () => {
+      setTimeout(hideEngravingUpsells, 500);
+    });
+  })();
+</script>

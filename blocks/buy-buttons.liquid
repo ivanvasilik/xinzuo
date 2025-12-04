@@ -6,6 +6,13 @@
     assign product = collections.all.products.first
   endif
 
+  # Check if this is the engraving fee product (cannot be purchased directly)
+  assign engraving_product_id = 7718263914547
+  assign is_engraving_product = false
+  if product.id == engraving_product_id
+    assign is_engraving_product = true
+  endif
+
   assign variant = closest.product.selected_or_first_available_variant
   assign inventory_quantity = variant.inventory_quantity
   assign inventory_policy = variant.inventory_policy
@@ -37,6 +44,47 @@
   endif
 %}
 
+{% if is_engraving_product %}
+<span
+  class="buy-buttons-block buy-buttons-block--{{ block.id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="engraving-not-purchasable">
+    <div class="engraving-notice">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <p>Engraving can only be added from product pages or cart.</p>
+    </div>
+  </div>
+  <style>
+    .engraving-not-purchasable {
+      margin-top: 20px;
+    }
+    .engraving-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255, 0, 4, 0.08);
+      border: 1px solid rgba(255, 0, 4, 0.2);
+      border-radius: 8px;
+      color: var(--color-foreground);
+    }
+    .engraving-notice svg {
+      flex-shrink: 0;
+      color: #ff0004;
+    }
+    .engraving-notice p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</span>
+{% else %}
 <span
   class="buy-buttons-block buy-buttons-block--{{ block.id }}"
   {{ block.shopify_attributes }}
@@ -215,6 +263,7 @@
       </dialog-component>
     {% endif %}
   </local-pickup>
+{% endif %}
 {% endif %}
 
 {% stylesheet %}
