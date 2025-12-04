@@ -440,30 +440,34 @@
       const title = titleEl.textContent.trim();
 
       const knifeTypePatterns = [
+        { pattern: /Bunka/i, value: 'Bunka' },
         { pattern: /Chef Knife/i, value: 'Chef Knife' },
+        { pattern: /Granton-Edge/i, value: 'Chef Knife' },
         { pattern: /Santoku/i, value: 'Santoku' },
         { pattern: /Bread Knife/i, value: 'Bread Knife' },
         { pattern: /Carving Knife/i, value: 'Carving Knife' },
         { pattern: /Utility Knife/i, value: 'Utility Knife' },
         { pattern: /Paring Knife/i, value: 'Paring Knife' },
-        { pattern: /Pairing Knife/i, value: 'Paring Knife' }, /* catch typos */
+        { pattern: /Pairing Knife/i, value: 'Paring Knife' }, /* catch typo */
         { pattern: /Steak Knife/i, value: 'Steak Knife' },
         { pattern: /Boning Knife/i, value: 'Boning Knife' },
         { pattern: /Fillet Knife|Filleting Knife/i, value: 'Fillet Knife' },
         { pattern: /Nakiri/i, value: 'Nakiri' },
+        { pattern: /Cai Dao|Vegetable Cleaver/i, value: 'Chinese Cleaver' },
+        { pattern: /Butcher's Cleaver|Bone Chopper|Chopper/i, value: 'Butcher Cleaver' },
         { pattern: /Cleaver/i, value: 'Cleaver' },
-        { pattern: /Bunka/i, value: 'Bunka' },
-        { pattern: /Knife Set/i, value: 'Knife Sets' },
+        { pattern: /Knife Set|Piece Knife Set/i, value: 'Knife Sets' },
       ];
 
       // default to unset before matching so stale values don't linger
       delete product.dataset.knifeType;
-      knifeTypePatterns.forEach(({pattern, value}) => {
+      for (const {pattern, value} of knifeTypePatterns) {
         if (pattern.test(title)) {
           if (knifeTypes) knifeTypes.add(value);
           product.dataset.knifeType = value;
+          break; // first match wins to avoid overwrites
         }
-      });
+      }
 
       if (/Supreme Series|Supreme/i.test(title)) {
         if (series) series.add('Supreme');
