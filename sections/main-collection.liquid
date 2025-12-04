@@ -233,6 +233,49 @@
       display: none !important;
     }
     
+    /* ===== Mobile Image - Single image, no slider ===== */
+    /* Hide slideshow arrows/controls on mobile */
+    .product-grid__item slideshow-arrows,
+    .product-grid__item .slideshow-control,
+    .product-grid__item slideshow-controls {
+      display: none !important;
+    }
+    
+    /* Show only first image, hide others */
+    .product-grid__item slideshow-slide:not(:first-child) {
+      display: none !important;
+    }
+    
+    /* Disable swipe/scroll on slideshow */
+    .product-grid__item slideshow-slides {
+      overflow: hidden !important;
+      scroll-snap-type: none !important;
+    }
+    
+    /* Fix image container to fill properly */
+    .product-grid__item .card-gallery {
+      overflow: hidden !important;
+      border-radius: 8px;
+    }
+    
+    .product-grid__item .card-gallery img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    
+    /* Remove any gap/spacing that might cause the line */
+    .product-grid__item slideshow-component {
+      gap: 0 !important;
+    }
+    
+    .product-grid__item .product-media-container {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
     /* ===== Title + Price Row ===== */
     .mobile-info-row {
       display: flex !important;
