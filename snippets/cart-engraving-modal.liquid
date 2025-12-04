@@ -101,15 +101,16 @@
     max-width: 420px;
     width: calc(100% - 32px);
     max-height: 90vh;
-    /* Let native dialog handle centering - this puts it dead center of viewport */
-    margin: auto;
-    inset: 0;
+    /* Dead center of entire viewport */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
   }
 
   .engraving-modal-dialog[open] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
   }
 
   .engraving-modal-dialog::backdrop {
