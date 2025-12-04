@@ -528,9 +528,9 @@
                       </div>
                       {% if item.properties["Engraving Text"] != blank %}
                         {% if item.properties["Engraving Text2"] != blank %}
-                          <div>
+                          <div style="display: flex; gap: 5px;">
                             <p>Engraving Text: </p>
-                            <div>
+                            <div style="display: flex; flex-direction: column;">
                               <span style="color: #ff0004;">{{ item.properties["Engraving Text"] }}</span>
                               <span style="color: #ff0004;">{{ item.properties["Engraving Text2"] }}</span>
                             </div>
