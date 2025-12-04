@@ -527,6 +527,8 @@
 
       clearAllBtn.addEventListener('click', () => {
         checkboxes.forEach(cb => cb.checked = false);
+        // Also clear the cloned mobile checkboxes
+        document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
         applyFilters(products);
         updateClearAllButton();
         updateFilterCount();
@@ -547,7 +549,8 @@
         category: []
       };
 
-      document.querySelectorAll('.filter-option input[type="checkbox"]:checked').forEach(checkbox => {
+      // Use only desktop checkboxes to avoid double-counting the cloned mobile inputs
+      document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
         const type = checkbox.dataset.filterType;
         const value = checkbox.dataset.filterValue;
         
@@ -590,13 +593,14 @@
     }
 
     function updateClearAllButton() {
-      const anyChecked = document.querySelector('.filter-option input[type="checkbox"]:checked');
+      const anyChecked = document.querySelector('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked');
       const clearBtn = document.getElementById('clear-all-filters');
       clearBtn.style.display = anyChecked ? 'block' : 'none';
     }
 
     function updateFilterCount() {
-      const checkedCount = document.querySelectorAll('.filter-option input[type="checkbox"]:checked').length;
+      // Count only desktop checkboxes so the badge matches actual active filters
+      const checkedCount = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').length;
       const badge = document.getElementById('filter-count-badge');
       
       if (checkedCount > 0) {
@@ -671,6 +675,8 @@
 
       mobileClearBtn.addEventListener('click', () => {
         document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.custom-filters-sidebar .filter-option input').forEach(cb => cb.checked = false);
+        updateFilterCount();
       });
     }
   })();
