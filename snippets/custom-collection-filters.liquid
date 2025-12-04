@@ -386,15 +386,15 @@
 
 {% javascript %}
   (function() {
+    // Generic selector to catch all product tiles, even if markup changes or pagination loads more
+    const PRODUCT_SELECTOR = '.product-grid__item, .collection-grid__item, .grid__item';
+
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCustomFilters);
     } else {
       initCustomFilters();
     }
-
-    // Generic selector to catch all product tiles, even if markup changes or pagination loads more
-    const PRODUCT_SELECTOR = '.product-grid__item, .collection-grid__item, .grid__item';
 
     function initCustomFilters() {
       const products = document.querySelectorAll(PRODUCT_SELECTOR);
