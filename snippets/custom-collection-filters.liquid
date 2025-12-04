@@ -467,6 +467,8 @@
     let collectionHandle = '';
     let isSorting = false; // Flag to prevent infinite loop during sorting
     let isLoadingProducts = false; // Flag to prevent infinite loop during product loading
+    let isApplyingFilters = false; // Flag to prevent concurrent filter applications
+    let allProductsLoaded = false; // Flag to track if all products have been loaded
 
     // Initialize filters when DOM is ready
     if (document.readyState === 'loading') {
@@ -773,9 +775,17 @@
     }
 
     async function applyFiltersAndSort() {
-      const products = document.querySelectorAll('.product-grid__item');
-      await applyFilters(products);
-      sortProducts();
+      // Prevent concurrent executions
+      if (isApplyingFilters) return;
+      isApplyingFilters = true;
+      
+      try {
+        const products = document.querySelectorAll('.product-grid__item');
+        await applyFilters(products);
+        sortProducts();
+      } finally {
+        isApplyingFilters = false;
+      }
     }
 
     async function applyFilters(products) {
@@ -797,7 +807,7 @@
       const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
 
       // If filters are active and we don't have all products loaded yet, load them all
-      if (hasActiveFilters && products.length < 60) {
+      if (hasActiveFilters && !allProductsLoaded) {
         await loadAllRemainingProducts();
         // Re-query products after loading all
         products = document.querySelectorAll('.product-grid__item');
@@ -888,49 +898,60 @@
     }
 
     async function loadAllRemainingProducts() {
+      // Prevent multiple simultaneous loads
+      if (allProductsLoaded || isLoadingProducts) return;
+      
       const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;
 
       // Set flag to prevent MutationObserver from triggering
       isLoadingProducts = true;
 
-      const currentCount = document.querySelectorAll('.product-grid__item').length;
-      const totalPages = Math.ceil(60 / 24); // Assuming 24 products per page
-      const currentPage = Math.ceil(currentCount / 24);
+      try {
+        // Use the globalProductsData length for accurate total count
+        const totalProducts = globalProductsData.length;
+        const productsPerPage = 24;
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
+        const currentCount = document.querySelectorAll('.product-grid__item').length;
+        const currentPage = Math.ceil(currentCount / productsPerPage);
 
-      // Load remaining pages via AJAX
-      for (let page = currentPage + 1; page <= totalPages; page++) {
-        try {
-          const response = await fetch(`/collections/${collectionHandle}?page=${page}`);
-          if (!response.ok) continue;
-          
-          const html = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const newProducts = doc.querySelectorAll('.product-grid__item');
-          
-          // Append new products to grid
-          newProducts.forEach(product => {
-            // Check if product already exists (by product ID)
-            const productId = product.dataset.productId;
-            const exists = productGrid.querySelector(`[data-product-id="${productId}"]`);
+        // Load remaining pages via AJAX
+        for (let page = currentPage + 1; page <= totalPages; page++) {
+          try {
+            const response = await fetch(`/collections/${collectionHandle}?page=${page}`);
+            if (!response.ok) continue;
             
-            if (!exists) {
-              productGrid.appendChild(product);
-              // Tag with filter data
-              tagVisibleProducts([product], globalProductsData);
-            }
-          });
-        } catch (error) {
-          console.error(`Failed to load page ${page}:`, error);
-          // Continue with next page even if one fails
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newProducts = doc.querySelectorAll('.product-grid__item');
+            
+            // If no new products found on this page, we've loaded all
+            if (newProducts.length === 0) break;
+            
+            // Append new products to grid
+            newProducts.forEach(product => {
+              // Check if product already exists (by product ID)
+              const productId = product.dataset.productId;
+              const exists = productGrid.querySelector(`[data-product-id="${productId}"]`);
+              
+              if (!exists) {
+                productGrid.appendChild(product);
+                // Tag with filter data
+                tagVisibleProducts([product], globalProductsData);
+              }
+            });
+          } catch (error) {
+            console.error(`Failed to load page ${page}:`, error);
+            // Continue with next page even if one fails
+          }
         }
-      }
-      
-      // Reset flag after a small delay
-      setTimeout(() => {
+        
+        // Mark all products as loaded
+        allProductsLoaded = true;
+      } finally {
         isLoadingProducts = false;
-      }, 100);
+      }
     }
 
     function updateClearAllButton() {
