@@ -66,47 +66,95 @@
 </results-list>
 
 {% stylesheet %}
-  /* Mobile: Single column layout */
+  /* Mobile: Single column with optimized card layout */
   @media screen and (max-width: 749px) {
     .product-grid {
       grid-template-columns: 1fr !important;
+      gap: 24px !important;
     }
     
-    /* Tighter card spacing on mobile */
-    .product-grid__card {
-      gap: 4px !important;
+    /* Card content wrapper */
+    .product-grid__item .product-grid__card {
+      gap: 8px !important;
+    }
+    
+    /* Title + Price inline row */
+    .product-grid__item .product-card__content {
+      display: grid !important;
+      grid-template-columns: 1fr auto !important;
+      grid-template-rows: auto auto !important;
+      gap: 4px 12px !important;
+      align-items: start !important;
+    }
+    
+    /* Title - left column */
+    .product-grid__item a.contents {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    
+    .product-grid__item .text-block.rte p,
+    .product-grid__item a.contents p {
+      font-size: 1rem !important; /* 16px */
+      font-weight: 500 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+    }
+    
+    /* Price - right column */
+    .product-grid__item product-price {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right !important;
+    }
+    
+    .product-grid__item product-price .price {
+      font-size: 1rem !important; /* 16px */
+      font-weight: 600 !important;
+      color: var(--color-foreground) !important;
+    }
+    
+    /* Shop Now CTA - spans full width below */
+    .product-grid__item .product-card::after {
+      content: 'Shop Now →';
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: block;
+      margin-top: 6px;
+      font-size: 0.8125rem; /* 13px */
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #dc2626; /* Red */
+      transition: color 0.2s ease;
+    }
+    
+    .product-grid__item .product-card:hover::after {
+      color: #b91c1c; /* Darker red on hover */
     }
   }
 
-  /* Product card - tighter spacing */
-  .product-grid__item .product-grid__card {
-    --product-card-gap: 4px;
-  }
-
-  /* Title styling */
-  .product-grid__item .text-block.rte p,
-  .product-grid__item a.contents p {
-    font-size: 0.9375rem !important; /* 15px */
-    font-weight: 500 !important;
-    line-height: 1.3 !important;
-    margin: 0 !important;
-  }
-
-  /* Price styling - tight to title */
-  .product-grid__item product-price {
-    margin-top: 2px !important;
-    padding: 0 !important;
-  }
-  
-  .product-grid__item product-price .price {
-    font-size: 0.875rem !important; /* 14px */
-    font-weight: 400 !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-  }
-
-  .product-grid__item product-price .price--on-sale .price__sale {
-    font-weight: 500 !important;
-    color: var(--color-foreground) !important;
+  /* Desktop: Keep existing 3-column with tighter styling */
+  @media screen and (min-width: 750px) {
+    /* Title styling */
+    .product-grid__item .text-block.rte p,
+    .product-grid__item a.contents p {
+      font-size: 0.9375rem !important; /* 15px */
+      font-weight: 500 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+    }
+    
+    /* Price styling */
+    .product-grid__item product-price .price {
+      font-size: 0.875rem !important; /* 14px */
+      font-weight: 400 !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .product-grid__item product-price .price--on-sale .price__sale {
+      font-weight: 500 !important;
+      color: var(--color-foreground) !important;
+    }
   }
 
   .custom-filter-layout {
