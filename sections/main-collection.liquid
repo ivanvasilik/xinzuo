@@ -66,25 +66,27 @@
 </results-list>
 
 {% stylesheet %}
+  /* Mobile: Single column layout */
+  @media screen and (max-width: 749px) {
+    .product-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
   /* Product card visual hierarchy */
   .product-grid__item .product-card__content {
     display: flex;
     flex-direction: column;
   }
 
-  /* Title styling - consistent 2-line height */
+  /* Title styling */
   .product-grid__item .text-block.rte p,
   .product-grid__item a.contents p {
-    font-size: 0.875rem !important; /* 14px */
+    font-size: 0.9375rem !important; /* 15px */
     font-weight: 500 !important;
     line-height: 1.4 !important;
     color: var(--color-foreground) !important;
     margin: 0 !important;
-    min-height: 2.8em; /* Reserve space for 2 lines */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   /* Price styling */
@@ -92,8 +94,8 @@
   .product-grid__item product-price .price {
     font-size: 0.875rem !important; /* 14px */
     font-weight: 400 !important;
-    color: rgba(255, 255, 255, 0.75) !important;
-    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-top: 2px;
   }
 
   .product-grid__item product-price .price--on-sale .price__sale {
@@ -101,43 +103,23 @@
     color: var(--color-foreground) !important;
   }
 
-  /* Shop Now button */
-  .product-grid__item .product-card {
-    position: relative;
-  }
-
-  .product-grid__item .product-card__content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-grid__item product-price {
-    margin-top: auto;
-  }
-
+  /* Subtle CTA - appears after price */
   .product-grid__item .product-card::after {
-    content: 'SHOP NOW';
+    content: 'View Details →';
     display: block;
-    width: 100%;
-    padding: 10px 0;
     margin-top: 8px;
-    text-align: center;
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #000;
-    background: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s ease;
   }
 
   .product-grid__item .product-card:hover::after {
-    background: #e5e5e5;
+    color: rgba(255, 255, 255, 0.85);
   }
 
-  /* Ensure title link takes full space for consistent alignment */
+  /* Ensure title link takes full space */
   .product-grid__item a.contents {
     display: block;
   }
