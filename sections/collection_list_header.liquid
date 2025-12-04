@@ -65,7 +65,29 @@
 <section class="section-{{ section.id }} section color-{{ section.settings.color_scheme }}">
     <div class="collection-list-header">
         <div class="collection-list-title">
-            <h2>{{ section.settings.heading }}</h2>
+            {% comment %} Use section heading if set, otherwise fall back to collection title {% endcomment %}
+            {% assign display_heading = section.settings.heading %}
+            {% if display_heading == blank %}
+              {% assign display_heading = collection.title %}
+            {% endif %}
+            {% comment %} Title mapping for better display names {% endcomment %}
+            {% case collection.handle %}
+              {% when 'chopping-boards' %}
+                {% assign display_heading = 'CHOPPING BOARDS' %}
+              {% when 'knife-holders' %}
+                {% assign display_heading = 'KNIFE HOLDERS' %}
+              {% when 'knife-sharpening-tools' %}
+                {% assign display_heading = 'SHARPENING TOOLS' %}
+              {% when 'kitchen-scissors' %}
+                {% assign display_heading = 'KITCHEN SCISSORS' %}
+              {% when 'chef-knife-roll-bags' %}
+                {% assign display_heading = 'KNIFE ROLL BAGS' %}
+              {% when 'wood-knife-sheaths' %}
+                {% assign display_heading = 'KNIFE SHEATHS' %}
+              {% when 'chef-aprons' %}
+                {% assign display_heading = 'CHEF APRONS' %}
+            {% endcase %}
+            <h2>{{ display_heading }}</h2>
             <span>{{ section.settings.title }}</span>
         </div>
     </div>
