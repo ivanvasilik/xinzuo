@@ -65,6 +65,7 @@
       viewBtn.href = productUrl;
       viewBtn.className = 'mobile-btn mobile-btn--secondary';
       viewBtn.textContent = 'View Details';
+      viewBtn.addEventListener('click', (e) => e.stopPropagation());
       
       // Add to Cart button (primary/red)
       const cartBtn = document.createElement('button');
@@ -280,6 +281,8 @@
       gap: 8px !important;
       margin-top: 10px !important;
       clear: both !important;
+      position: relative;
+      z-index: 2;
     }
     
     .mobile-btn {
@@ -297,6 +300,22 @@
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
+      position: relative;
+      z-index: 3;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Remove tap highlight from card when clicking buttons */
+    .product-grid__item .product-card__link {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .product-grid__item .product-card {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .product-grid__item a.contents {
+      -webkit-tap-highlight-color: transparent;
     }
     
     /* View Details: white outline, subtle */
@@ -311,6 +330,11 @@
       color: #fff;
     }
     
+    .mobile-btn--secondary:active {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(0.98);
+    }
+    
     /* Add to Cart: red background, primary CTA */
     .mobile-btn--primary {
       background: #dc2626;
@@ -321,6 +345,11 @@
     .mobile-btn--primary:hover {
       background: #b91c1c;
       border-color: #b91c1c;
+    }
+    
+    .mobile-btn--primary:active {
+      background: #991b1b;
+      transform: scale(0.98);
     }
     
     .mobile-btn--primary:disabled {
