@@ -35,18 +35,22 @@
 
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .compare-btn {
-            padding: 32px 20px 32px;
+            padding-top: 32px !important;
+            padding-bottom: 32px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
         }
 
         .section-{{ section.id }} .compare-btn h2 {
             font-size: 22px;
             line-height: 1.2;
-            margin: 0 0 18px 0;
+            margin: 0 0 18px 0 !important;
         }
 
         .section-{{ section.id }} .compare-btn a {
             font-size: 14px;
             padding: 10px 20px;
+            margin-bottom: 0 !important;
         }
     }
 {% endstyle %}
