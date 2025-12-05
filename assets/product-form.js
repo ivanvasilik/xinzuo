@@ -161,6 +161,7 @@ class ProductFormComponent extends Component {
    */
   handleSubmit(event) {
     event.preventDefault();
+    console.log(event)
 
     const form = this.querySelector("form");
     const formData = new FormData(form);
@@ -174,7 +175,6 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
-      console.log("added main product");
       return fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
