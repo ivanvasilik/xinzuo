@@ -1,9 +1,9 @@
-{% style %}
-    .section-{{ section.id }} {
+<style>
+    .compare-btn-section-{{ section.id }} {
         background-color: #111;
     }
 
-    .section-{{ section.id }} .compare-btn {
+    .compare-btn-section-{{ section.id }} .compare-btn-container {
         max-width: 1440px;
         margin: 0 auto;
         background-color: #292a33;
@@ -11,7 +11,7 @@
         text-align: center;
     }
     
-    .section-{{ section.id }} .compare-btn h2 {
+    .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
         font-family: "Sen";
         font-weight: 600;
         font-size: 48px;
@@ -21,7 +21,7 @@
         margin: 0 0 30px 0;
     }
 
-    .section-{{ section.id }} .compare-btn a {
+    .compare-btn-section-{{ section.id }} .compare-btn-container a {
         display: inline-block;
         padding: 12px 24px;
         font-family: 'Sen';
@@ -34,29 +34,25 @@
     }
 
     @media screen and (max-width: 750px) {
-        .section-{{ section.id }} .compare-btn {
-            padding-top: 32px !important;
-            padding-bottom: 32px !important;
-            padding-left: 20px !important;
-            padding-right: 20px !important;
+        .compare-btn-section-{{ section.id }} .compare-btn-container {
+            padding: 32px 20px 32px 20px !important;
         }
 
-        .section-{{ section.id }} .compare-btn h2 {
+        .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
             font-size: 22px;
             line-height: 1.2;
             margin: 0 0 18px 0 !important;
         }
 
-        .section-{{ section.id }} .compare-btn a {
+        .compare-btn-section-{{ section.id }} .compare-btn-container a {
             font-size: 14px;
             padding: 10px 20px;
-            margin-bottom: 0 !important;
         }
     }
-{% endstyle %}
+</style>
 
-<div class="section-{{ section.id }}">
-    <div class="compare-btn">
+<div class="compare-btn-section-{{ section.id }}">
+    <div class="compare-btn-container">
         <h2>{{ section.settings.heading }}</h2>
         <a href="{{ section.settings.link }}">{{ section.settings.link_text }}</a>
     </div>
