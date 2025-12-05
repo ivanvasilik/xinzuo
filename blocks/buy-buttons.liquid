@@ -112,6 +112,7 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
+        <input type="hidden" name="isMain" value=true>
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
         {%- endif -%}
