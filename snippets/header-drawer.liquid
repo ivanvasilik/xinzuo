@@ -112,6 +112,7 @@
           {% render 'search', style: 'default', class: 'custom-class' %}
         </span>
       </div>
+       <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a>
       <nav
         class="menu-drawer__navigation"
         style="
@@ -127,7 +128,6 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a>
               <li class="header-category-li" {% if link.title == "BEST SELLERS" %}id="header_drawer_padding" style="padding-top: 20px"{% endif %}>
                 {% if link.links != blank %}
                   <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
