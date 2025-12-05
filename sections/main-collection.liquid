@@ -22,115 +22,115 @@
   }
 
   // Mobile product card buttons and layout
-  function initMobileProductButtons() {
-    if (window.innerWidth >= 750) return;
+  // function initMobileProductButtons() {
+  //   if (window.innerWidth >= 750) return;
     
-    const productCards = document.querySelectorAll('.product-grid__item');
+  //   const productCards = document.querySelectorAll('.product-grid__item');
     
-    productCards.forEach(card => {
-      // Skip if already processed
-      if (card.querySelector('.mobile-btn-row')) return;
+  //   productCards.forEach(card => {
+  //     // Skip if already processed
+  //     if (card.querySelector('.mobile-btn-row')) return;
       
-      const content = card.querySelector('.product-card__content');
-      if (!content) return;
+  //     const content = card.querySelector('.product-card__content');
+  //     if (!content) return;
       
-      const productLink = card.querySelector('a[href*="/products/"]');
-      if (!productLink) return;
+  //     const productLink = card.querySelector('a[href*="/products/"]');
+  //     if (!productLink) return;
       
-      const productUrl = productLink.getAttribute('href');
-      const variantMatch = productUrl.match(/variant=(\d+)/);
-      const variantId = variantMatch ? variantMatch[1] : null;
+  //     const productUrl = productLink.getAttribute('href');
+  //     const variantMatch = productUrl.match(/variant=(\d+)/);
+  //     const variantId = variantMatch ? variantMatch[1] : null;
       
-      // Find the title link and price elements
-      const titleLink = content.querySelector('a.contents.user-select-text');
-      const priceEl = content.querySelector('product-price.text-block');
+  //     // Find the title link and price elements
+  //     const titleLink = content.querySelector('a.contents.user-select-text');
+  //     const priceEl = content.querySelector('product-price.text-block');
       
-      // Create info row wrapper for title + price
-      if (titleLink && priceEl) {
-        const infoRow = document.createElement('div');
-        infoRow.className = 'mobile-info-row';
+  //     // Create info row wrapper for title + price
+  //     if (titleLink && priceEl) {
+  //       const infoRow = document.createElement('div');
+  //       infoRow.className = 'mobile-info-row';
         
-        // Insert before titleLink, then move title and price into it
-        titleLink.parentNode.insertBefore(infoRow, titleLink);
-        infoRow.appendChild(titleLink);
-        infoRow.appendChild(priceEl);
-      }
+  //       // Insert before titleLink, then move title and price into it
+  //       titleLink.parentNode.insertBefore(infoRow, titleLink);
+  //       infoRow.appendChild(titleLink);
+  //       infoRow.appendChild(priceEl);
+  //     }
       
-      // Create button row
-      const btnRow = document.createElement('div');
-      btnRow.className = 'mobile-btn-row';
+  //     // Create button row
+  //     const btnRow = document.createElement('div');
+  //     btnRow.className = 'mobile-btn-row';
       
-      // View Details button (secondary/subtle)
-      const viewBtn = document.createElement('a');
-      viewBtn.href = productUrl;
-      viewBtn.className = 'mobile-btn mobile-btn--secondary';
-      viewBtn.textContent = 'View Details';
-      viewBtn.addEventListener('click', (e) => e.stopPropagation());
+  //     // View Details button (secondary/subtle)
+  //     const viewBtn = document.createElement('a');
+  //     viewBtn.href = productUrl;
+  //     viewBtn.className = 'mobile-btn mobile-btn--secondary';
+  //     viewBtn.textContent = 'View Details';
+  //     viewBtn.addEventListener('click', (e) => e.stopPropagation());
       
-      // Add to Cart button (primary/red)
-      const cartBtn = document.createElement('button');
-      cartBtn.type = 'button';
-      cartBtn.className = 'mobile-btn mobile-btn--primary';
-      cartBtn.textContent = 'Add to Cart';
-      cartBtn.dataset.variantId = variantId;
+  //     // Add to Cart button (primary/red)
+  //     const cartBtn = document.createElement('button');
+  //     cartBtn.type = 'button';
+  //     cartBtn.className = 'mobile-btn mobile-btn--primary';
+  //     cartBtn.textContent = 'Add to Cart';
+  //     cartBtn.dataset.variantId = variantId;
       
-      cartBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+  //     cartBtn.addEventListener('click', async (e) => {
+  //       e.preventDefault();
+  //       e.stopPropagation();
         
-        if (!variantId) {
-          window.location.href = productUrl;
-          return;
-        }
+  //       if (!variantId) {
+  //         window.location.href = productUrl;
+  //         return;
+  //       }
         
-        cartBtn.textContent = 'Adding...';
-        cartBtn.disabled = true;
+  //       cartBtn.textContent = 'Adding...';
+  //       cartBtn.disabled = true;
         
-        try {
-          const response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ items: [{ id: parseInt(variantId), quantity: 1 }] })
-          });
+  //       try {
+  //         const response = await fetch('/cart/add.js', {
+  //           method: 'POST',
+  //           headers: { 'Content-Type': 'application/json' },
+  //           body: JSON.stringify({ items: [{ id: parseInt(variantId), quantity: 1 }] })
+  //         });
           
-          if (response.ok) {
-            cartBtn.textContent = 'Added ✓';
+  //         if (response.ok) {
+  //           cartBtn.textContent = 'Added ✓';
             
-            // Fetch updated cart to get total item count
-            const cartResponse = await fetch('/cart.js');
-            const cart = await cartResponse.json();
+  //           // Fetch updated cart to get total item count
+  //           const cartResponse = await fetch('/cart.js');
+  //           const cart = await cartResponse.json();
             
-            // Dispatch cart:update event (theme's expected event)
-            document.dispatchEvent(new CustomEvent('cart:update', {
-              bubbles: true,
-              detail: {
-                data: {
-                  itemCount: cart.item_count,
-                  source: 'mobile-add-to-cart'
-                }
-              }
-            }));
+  //           // Dispatch cart:update event (theme's expected event)
+  //           document.dispatchEvent(new CustomEvent('cart:update', {
+  //             bubbles: true,
+  //             detail: {
+  //               data: {
+  //                 itemCount: cart.item_count,
+  //                 source: 'mobile-add-to-cart'
+  //               }
+  //             }
+  //           }));
             
-            setTimeout(() => {
-              cartBtn.textContent = 'Add to Cart';
-              cartBtn.disabled = false;
-            }, 2000);
-          } else {
-            throw new Error('Failed to add');
-          }
-        } catch (err) {
-          cartBtn.textContent = 'View Options';
-          cartBtn.addEventListener('click', () => window.location.href = productUrl, { once: true });
-        }
-      });
+  //           setTimeout(() => {
+  //             cartBtn.textContent = 'Add to Cart';
+  //             cartBtn.disabled = false;
+  //           }, 2000);
+  //         } else {
+  //           throw new Error('Failed to add');
+  //         }
+  //       } catch (err) {
+  //         cartBtn.textContent = 'View Options';
+  //         cartBtn.addEventListener('click', () => window.location.href = productUrl, { once: true });
+  //       }
+  //     });
       
-      btnRow.appendChild(viewBtn);
-      btnRow.appendChild(cartBtn);
+  //     btnRow.appendChild(viewBtn);
+  //     btnRow.appendChild(cartBtn);
       
-      // Insert button row at the end of content
-      content.appendChild(btnRow);
-    });
-  }
+  //     // Insert button row at the end of content
+  //     content.appendChild(btnRow);
+  //   });
+  // }
   
   // Initialize on load and after dynamic content loads
   document.addEventListener('DOMContentLoaded', initMobileProductButtons);
