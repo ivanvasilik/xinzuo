@@ -1,5 +1,8 @@
 <style>
-    .compare-btn-section-{{ section.id }} {
+    /* Target the Shopify section wrapper directly */
+    #shopify-section-{{ section.id }} {
+        position: relative;
+        z-index: 1;
         background-color: #292a33;
         padding: 50px 20px;
     }
@@ -33,7 +36,7 @@
     }
 
     @media screen and (max-width: 750px) {
-        .compare-btn-section-{{ section.id }} {
+        #shopify-section-{{ section.id }} {
             padding: 32px 20px;
         }
 
