@@ -139,6 +139,8 @@ class ProductFormComponent extends Component {
   /** @type {number | undefined} */
   #timeout;
 
+  let isMain = false;
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -146,6 +148,16 @@ class ProductFormComponent extends Component {
     const target = this.closest('.shopify-section, dialog, product-card');
     target?.addEventListener(ThemeEvents.variantUpdate, this.#onVariantUpdate, { signal });
     target?.addEventListener(ThemeEvents.variantSelected, this.#onVariantSelected, { signal });
+
+    document.querySelector('#mainAddBtn')?.addEventListener('click', () => {
+      isMain = true;
+      console.log('Main product added');
+    });
+
+    document.querySelector('[data-essential-upsell-element="add-to-cart-button"]')?.addEventListener('click', () => {
+      isMain = false;
+      console.log('Upsell product added');
+    });
   }
 
   disconnectedCallback() {
@@ -159,6 +171,19 @@ class ProductFormComponent extends Component {
    *
    * @param {Event} event - The submit event.
    */
+
+  let isMain = false;
+  document.querySelector('#main-product-add-button').addEventListener('click', function() {
+    isMain = true;  // Set isMain to true because the main product was clicked
+    console.log('Main product added');
+  });
+
+  // Event listener for the upsell product "Add to Cart" button
+  document.querySelector('[data-essential-upsell-element="add-to-cart-button"]').addEventListener('click', function() {
+    isMain = false;  // Set isMain to false because the upsell product was clicked
+    console.log('Upsell product added');
+});
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -174,22 +199,19 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
-      if(window.mainId == variantId) {
-        console.log(true);
-        return fetch("/cart/add.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: variantId,
-            quantity,
-            properties: SHOW_FEE
-              ? SHOW_FEE2
-              ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
-              : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
-              : { "Knife Quantity": window.knife_num }
-          })
-        });
-      }
+      return fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: variantId,
+          quantity,
+          properties: SHOW_FEE
+            ? SHOW_FEE2
+            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
+            : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
+            : { "Knife Quantity": window.knife_num }
+        })
+      });
     };
 
     const addFeeProduct = () => {
