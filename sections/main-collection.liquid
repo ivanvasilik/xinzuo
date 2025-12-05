@@ -241,6 +241,20 @@
   </div>
 </results-list>
 
+{% comment %} Apply single view preference immediately after grid is rendered {% endcomment %}
+<script>
+(function() {
+  var savedView = localStorage.getItem('collection-grid-view');
+  if (savedView === 'single') {
+    var grid = document.querySelector('.product-grid');
+    if (grid) {
+      grid.classList.remove('mobile-view-grid');
+      grid.classList.add('mobile-view-single');
+    }
+  }
+})();
+</script>
+
 {% stylesheet %}
   /* =============================================
      MOBILE: Grid View Toggle Support

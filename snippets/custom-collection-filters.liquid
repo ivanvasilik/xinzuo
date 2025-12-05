@@ -112,33 +112,6 @@
   </div>
 </div>
 
-{% comment %} 
-  Apply saved grid view immediately to prevent layout shift.
-  The product-grid has mobile-view-grid by default (server-side).
-  This script only needs to switch to single view if that's the user's preference.
-{% endcomment %}
-<script>
-  (function() {
-    var savedView = localStorage.getItem('collection-grid-view');
-    // Only act if user explicitly chose single view (grid is default)
-    if (savedView === 'single') {
-      var applyClass = function() {
-        var grid = document.querySelector('.product-grid');
-        if (grid) {
-          grid.classList.remove('mobile-view-grid');
-          grid.classList.add('mobile-view-single');
-        }
-      };
-      // Try immediately, fallback to DOMContentLoaded
-      if (document.querySelector('.product-grid')) {
-        applyClass();
-      } else {
-        document.addEventListener('DOMContentLoaded', applyClass, { once: true });
-      }
-    }
-  })();
-</script>
-
 {% style %}
   /* Desktop Sidebar */
   .custom-filters-sidebar {
