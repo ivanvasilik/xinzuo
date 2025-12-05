@@ -189,22 +189,19 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
-      if(this.isMain) {
-        console.log("Main added!!!");
-        return fetch("/cart/add.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: variantId,
-            quantity,
-            properties: SHOW_FEE
-              ? SHOW_FEE2
-              ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
-              : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
-              : { "Knife Quantity": window.knife_num }
-          })
-        });
-      }
+      return fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: variantId,
+          quantity,
+          properties: SHOW_FEE
+            ? SHOW_FEE2
+            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
+            : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
+            : { "Knife Quantity": window.knife_num }
+        })
+      });
     };
 
     const addFeeProduct = () => {
@@ -239,9 +236,24 @@ class ProductFormComponent extends Component {
       );
     };
 
-    addMainProduct()
-      .then(addFeeProduct)
-      .then(async () => {
+    if(this.isMain) {
+      addMainProduct()
+        .then(addFeeProduct)
+        .then(async () => {
+          const cart = await fetch("/cart.js").then(r => r.json());
+  
+          document.dispatchEvent(
+            new CartAddEvent({}, variantId, {
+              source: "product-form-component",
+              itemCount: cart.item_count,
+              productId: variantId,
+              sections: [],
+            })
+          );
+        })
+        .catch(err => console.error("Add to cart error:", err));
+    } else {
+      async () => {
         const cart = await fetch("/cart.js").then(r => r.json());
 
         document.dispatchEvent(
@@ -252,8 +264,8 @@ class ProductFormComponent extends Component {
             sections: [],
           })
         );
-      })
-      .catch(err => console.error("Add to cart error:", err));
+      }
+    }
   }
 
   /**
