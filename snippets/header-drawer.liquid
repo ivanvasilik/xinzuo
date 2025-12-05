@@ -158,8 +158,7 @@
                               {% assign discount = product.compare_at_price | minus: product.price %}
                               {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
                               {% comment %} {% assign sum = sum | plus: percent %} {% endcomment %}
-                               {% for product in percent %}
-                               {% endfor %}
+                          
                             {% endif %}
                           {% endfor %}
                           {% assign sum = sum | divided_by: collection.products.size %}
