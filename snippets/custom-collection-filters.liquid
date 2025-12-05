@@ -102,6 +102,26 @@
   </div>
 </div>
 
+{% comment %} 
+  Apply saved grid view immediately to prevent layout shift.
+  This runs before the page renders to avoid a visual flash.
+{% endcomment %}
+<script>
+  (function() {
+    var savedView = localStorage.getItem('collection-grid-view') || 'single';
+    var grid = document.querySelector('.product-grid');
+    if (grid) {
+      grid.classList.add('mobile-view-' + savedView);
+    } else {
+      // If grid doesn't exist yet, add class when it's available
+      document.addEventListener('DOMContentLoaded', function() {
+        var g = document.querySelector('.product-grid');
+        if (g) g.classList.add('mobile-view-' + savedView);
+      }, { once: true });
+    }
+  })();
+</script>
+
 {% style %}
   /* Desktop Sidebar */
   .custom-filters-sidebar {
@@ -583,7 +603,9 @@
 
       // Get saved preference (default to 'single')
       const savedView = localStorage.getItem('collection-grid-view') || 'single';
-      setGridView(savedView, buttons, productGrid);
+      
+      // Only update button states - grid class is already applied by inline script
+      updateGridToggleButtons(savedView, buttons);
 
       // Handle button clicks
       buttons.forEach(btn => {
@@ -594,12 +616,16 @@
         });
       });
     }
-
-    function setGridView(view, buttons, productGrid) {
-      // Update button states
+    
+    function updateGridToggleButtons(view, buttons) {
       buttons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.view === view);
       });
+    }
+
+    function setGridView(view, buttons, productGrid) {
+      // Update button states
+      updateGridToggleButtons(view, buttons);
 
       // Update grid class
       productGrid.classList.remove('mobile-view-single', 'mobile-view-grid');
@@ -650,11 +676,9 @@
       // This also handles initial sorting
       await applyFiltersFromUrl();
       
-      // If no URL filters were applied, just do initial sort
-      const urlParams = new URLSearchParams(window.location.search);
-      if (!urlParams.get('filter')) {
-        sortProducts();
-      }
+      // Note: We do NOT call sortProducts() on initial load when sort is "best-sellers"
+      // because products are already in Shopify's default order (best sellers).
+      // This prevents an unnecessary DOM reorder that causes a visual flash.
     }
 
     async function applyFiltersFromUrl() {
@@ -1021,6 +1045,9 @@
       const products = Array.from(productGrid.querySelectorAll('.product-grid__item'));
       if (products.length === 0) return;
       
+      // Create a copy for sorting comparison
+      const originalOrder = [...products];
+      
       // Sort products
       products.sort((a, b) => {
         // First: Always put sold-out products at the end
@@ -1047,6 +1074,10 @@
             return aPosition - bPosition;
         }
       });
+      
+      // Check if order actually changed - if not, skip DOM manipulation
+      const orderChanged = products.some((product, index) => product !== originalOrder[index]);
+      if (!orderChanged) return;
       
       // Set flag to prevent MutationObserver from triggering during reorder
       isSorting = true;
