@@ -166,6 +166,7 @@ class ProductFormComponent extends Component {
     const formData = new FormData(form);
     const quantity = Number(formData.get("quantity")) || 1;
     const variantId = formData.get("id");
+    console.log(formData)
 
     const SHOW_FEE = window.engravingSelected && window.engravingText;
     const SHOW_FEE2 = window.engravingSecondSelected && window.engravingText2;
