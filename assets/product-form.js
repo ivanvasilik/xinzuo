@@ -171,19 +171,6 @@ class ProductFormComponent extends Component {
    *
    * @param {Event} event - The submit event.
    */
-
-  let isMain = false;
-  document.querySelector('#main-product-add-button').addEventListener('click', function() {
-    isMain = true;  // Set isMain to true because the main product was clicked
-    console.log('Main product added');
-  });
-
-  // Event listener for the upsell product "Add to Cart" button
-  document.querySelector('[data-essential-upsell-element="add-to-cart-button"]').addEventListener('click', function() {
-    isMain = false;  // Set isMain to false because the upsell product was clicked
-    console.log('Upsell product added');
-});
-
   handleSubmit(event) {
     event.preventDefault();
 
