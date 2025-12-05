@@ -114,7 +114,6 @@
       </div>
       <div class="header-drawer-title">MENU</div>
       <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a>
-
       <nav
         class="menu-drawer__navigation"
         style="
@@ -869,24 +868,26 @@
 
 {% style %}
   .header-category-li {
-    padding-left: 24px;
+    padding-left: 0;
   }
 
+  /* Category Header (KNIVES, ACCESSORIES) - Most prominent */
   .header-category {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
     font-family: "Sen";
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 18px;
     color: white;
+    letter-spacing: 0.5px;
   }
 
   .header-category-div {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 20px;
+    row-gap: 16px;
     column-gap: 10px;
     overflow: hidden;
     /* max-height: 0; */
@@ -897,37 +898,56 @@
     width: calc(50% - 5px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
+  /* Series Links (Supreme, Retro, etc.) - Secondary, softer */
   .header-category-div h4 {
     font-family: "Sen";
     font-weight: 500;
     font-size: 14px;
     text-align: center;
-    color: white;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
 
+  /* Compare Knives - Primary CTA */
   .header-compare {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
-    border: 1px solid white;
-    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
     width: fit-content !important;
-    margin: 5px auto 10px;
+    margin: 12px auto 15px;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
   }
 
+  .header-compare:hover {
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* CTA Buttons - Distinct action items */
   .header-view-all {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
     width: fit-content !important;
-    margin: 5px auto 10px;
+    margin: 12px auto 15px;
     font-family: "Sen";
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 13px;
     text-align: center;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
     display: block;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -1155,13 +1175,7 @@
     margin: 0 24px;
   }
 
-  .menu-drawer__menu.has-submenu > * {
-    border-left: 1px solid #828282;
-  }
-
-  .menu-drawer__menu--childlist > * {
-    border-left: 1px solid #828282;
-  }
+  /* Removed left border (vertical line) for cleaner flat menu */
 
   .menu-drawer__list-item--divider {
     border-block-end: 1px solid var(--color-border);

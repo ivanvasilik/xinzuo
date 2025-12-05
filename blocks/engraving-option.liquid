@@ -1,32 +1,33 @@
 <div class="engraving-container" {{ block.shopify_attributes }}>
-    <div class="engraving-header">
-        <label class="engraving-checkbox-wrapper">
-            <input type="checkbox" id="engrave-state" class="engraving-checkbox">
-            <span class="engraving-checkbox-custom"></span>
-            <span class="engraving-label">Add Custom Laser Engraving</span>
-        </label>
+    <!-- Main Toggle: No Engraving / Add Engraving -->
+    <div class="engraving-toggle-group">
+        <button type="button" class="engraving-toggle-btn selected" id="btn-no-engraving">
+            No Engraving
+        </button>
+        <button type="button" class="engraving-toggle-btn" id="btn-add-engraving">
+            Add Engraving
+        </button>
     </div>
     
+    <!-- Hidden checkbox for form compatibility -->
+    <input type="checkbox" id="engrave-state" class="engraving-checkbox-hidden" style="display: none;">
+    
     <div class="engraving-content" id="engrave-div" style="display: none;">
-        <div class="engraving-options">
-            <label class="engraving-radio-option">
-                <input type="radio" name="engrave-radio" id="engrave-one" value="one-line" checked>
-                <span class="radio-custom"></span>
-                <span class="radio-label">
-                    <span class="radio-title">One Line</span>
-                    <span class="radio-price">+${{ product.metafields.custom.knife_num | times: 19 }}</span>
-                </span>
-            </label>
-            
-            <label class="engraving-radio-option">
-                <input type="radio" name="engrave-radio" id="engrave-two" value="two-line">
-                <span class="radio-custom"></span>
-                <span class="radio-label">
-                    <span class="radio-title">Two Lines</span>
-                    <span class="radio-price">+${{ product.metafields.custom.knife_num | times: 29 }}</span>
-                </span>
-            </label>
+        <!-- Line Count Toggle: One Line / Two Lines -->
+        <div class="engraving-line-toggle">
+            <button type="button" class="engraving-line-btn selected" id="btn-one-line" data-lines="one">
+                <span class="line-btn-title">One Line</span>
+                <span class="line-btn-price">+${{ product.metafields.custom.knife_num | times: 19 }}</span>
+            </button>
+            <button type="button" class="engraving-line-btn" id="btn-two-lines" data-lines="two">
+                <span class="line-btn-title">Two Lines</span>
+                <span class="line-btn-price">+${{ product.metafields.custom.knife_num | times: 29 }}</span>
+            </button>
         </div>
+        
+        <!-- Hidden radios for form compatibility -->
+        <input type="radio" name="engrave-radio" id="engrave-one" value="one-line" checked style="display: none;">
+        <input type="radio" name="engrave-radio" id="engrave-two" value="two-line" style="display: none;">
         
         <div class="engraving-inputs">
             <div class="input-group">
@@ -64,60 +65,36 @@
         margin-top: 16px;
     }
 
-    .engraving-header {
-        margin-bottom: 12px;
+    /* Main Toggle Group: No Engraving / Add Engraving */
+    .engraving-toggle-group {
+        display: flex;
+        gap: 10px;
     }
 
-    /* Custom Checkbox */
-    .engraving-checkbox-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+    .engraving-toggle-btn {
+        flex: 1;
+        padding: 12px 16px;
+        background-color: rgba(41, 42, 51, 0.8);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        color: #c9c9cc;
+        font-family: "Sen", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
         cursor: pointer;
+        transition: all 0.2s ease;
         user-select: none;
     }
 
-    .engraving-checkbox {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .engraving-checkbox-custom {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .engraving-checkbox:checked + .engraving-checkbox-custom {
-        background-color: rgba(255, 255, 255, 0.15);
-        border-color: #ffffff;
-    }
-
-    .engraving-checkbox:checked + .engraving-checkbox-custom::after {
-        content: '';
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 2.5px 2.5px 0;
-        transform: rotate(45deg) translateY(-1px);
-    }
-
-    .engraving-label {
-        font-family: "Sen", sans-serif;
-        font-weight: 600;
-        font-size: 15px;
+    .engraving-toggle-btn:hover {
+        border-color: rgba(255, 255, 255, 0.4);
         color: #ffffff;
-        letter-spacing: 0.3px;
-        line-height: 1.2;
+    }
+
+    .engraving-toggle-btn.selected {
+        border-color: #ffffff;
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.08);
     }
 
     /* Content Area */
@@ -129,80 +106,39 @@
         margin-top: 12px;
     }
 
-    /* Radio Options */
-    .engraving-options {
+    /* Line Count Toggle: One Line / Two Lines */
+    .engraving-line-toggle {
         display: flex;
-        gap: 12px;
+        gap: 10px;
         margin-bottom: 16px;
-        flex-wrap: wrap;
     }
 
-    .engraving-radio-option {
+    .engraving-line-btn {
         flex: 1;
-        min-width: 140px;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        gap: 4px;
         padding: 12px 14px;
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(41, 42, 51, 0.8);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         user-select: none;
     }
 
-    .engraving-radio-option input[type="radio"] {
-        position: absolute;
-        opacity: 0;
+    .engraving-line-btn:hover {
+        border-color: rgba(255, 255, 255, 0.4);
     }
 
-    .engraving-radio-option input[type="radio"]:checked ~ .radio-custom {
-        border-color: #ffffff;
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .engraving-radio-option input[type="radio"]:checked ~ .radio-custom::after {
-        opacity: 1;
-    }
-
-    .engraving-radio-option:has(input:checked) {
+    .engraving-line-btn.selected {
         border-color: #ffffff;
         background-color: rgba(255, 255, 255, 0.08);
     }
 
-    .radio-custom {
-        position: relative;
-        width: 18px;
-        height: 18px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-    }
-
-    .radio-custom::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 8px;
-        height: 8px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .radio-label {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        flex: 1;
-    }
-
-    .radio-title {
+    .line-btn-title {
         font-family: "Sen", sans-serif;
         font-weight: 600;
         font-size: 14px;
@@ -210,11 +146,15 @@
         line-height: 1.2;
     }
 
-    .radio-price {
+    .line-btn-price {
         font-family: "Albert Sans", sans-serif;
         font-weight: 400;
         font-size: 13px;
         color: #c9c9cc;
+    }
+
+    .engraving-line-btn.selected .line-btn-price {
+        color: #ffffff;
     }
 
     /* Input Fields */
@@ -345,54 +285,81 @@
         const countLine1 = document.getElementById("count-line1");
         const countLine2 = document.getElementById("count-line2");
         const inputGroup2 = document.getElementById("input-group-2");
+        
+        // New button elements
+        const btnNoEngraving = document.getElementById("btn-no-engraving");
+        const btnAddEngraving = document.getElementById("btn-add-engraving");
+        const btnOneLine = document.getElementById("btn-one-line");
+        const btnTwoLines = document.getElementById("btn-two-lines");
 
         if (!engraveDiv || !engraveCheck || !engraveInput || !engraveSecondInput) {
             console.warn('Engraving elements not found');
             return;
         }
 
-        // Toggle engraving section
-        engraveCheck.addEventListener("change", () => {
-            if (engraveCheck.checked) {
-                engraveDiv.style.display = "block";
-                window.engravingSelected = true;
-                // Focus first input for better UX
-                requestAnimationFrame(() => engraveInput.focus());
-            } else {
-                const maxLength = {{ block.settings.engraving_length }};
-                engraveDiv.style.display = "none";
-                window.engravingSelected = false;
-                window.engravingSecondSelected = false;
-                window.engravingText = "";
-                window.engravingText2 = "";
-                engraveInput.value = "";
-                engraveSecondInput.value = "";
-                if (countLine1) countLine1.textContent = `0/${maxLength}`;
-                if (countLine2) countLine2.textContent = `0/${maxLength}`;
-                engraveRadio.checked = true;
-                inputGroup2.style.display = "none";
-            }
+        // Helper to reset engraving state
+        function resetEngraving() {
+            const maxLength = {{ block.settings.engraving_length }};
+            engraveDiv.style.display = "none";
+            engraveCheck.checked = false;
+            window.engravingSelected = false;
+            window.engravingSecondSelected = false;
+            window.engravingText = "";
+            window.engravingText2 = "";
+            engraveInput.value = "";
+            engraveSecondInput.value = "";
+            if (countLine1) countLine1.textContent = `0/${maxLength}`;
+            if (countLine2) countLine2.textContent = `0/${maxLength}`;
+            engraveRadio.checked = true;
+            engraveSecondRadio.checked = false;
+            inputGroup2.style.display = "none";
+            
+            // Reset line buttons
+            btnOneLine.classList.add('selected');
+            btnTwoLines.classList.remove('selected');
+        }
+
+        // No Engraving button
+        btnNoEngraving.addEventListener("click", () => {
+            btnNoEngraving.classList.add('selected');
+            btnAddEngraving.classList.remove('selected');
+            resetEngraving();
         });
 
-        // One line option
-        engraveRadio.addEventListener("change", () => {
-            if (engraveRadio.checked) {
-                inputGroup2.style.display = "none";
-                window.engravingSecondSelected = false;
-                window.engravingText2 = "";
-                engraveSecondInput.value = "";
-                updateCharacterCount();
-            }
+        // Add Engraving button
+        btnAddEngraving.addEventListener("click", () => {
+            btnAddEngraving.classList.add('selected');
+            btnNoEngraving.classList.remove('selected');
+            engraveDiv.style.display = "block";
+            engraveCheck.checked = true;
+            window.engravingSelected = true;
+            // Focus first input for better UX
+            requestAnimationFrame(() => engraveInput.focus());
         });
 
-        // Two line option
-        engraveSecondRadio.addEventListener("change", () => {
-            if (engraveSecondRadio.checked) {
-                inputGroup2.style.display = "flex";
-                window.engravingSecondSelected = true;
-                requestAnimationFrame(() => engraveSecondInput.focus());
-                updateCharacterCount();
-            }
+        // One Line button
+        btnOneLine.addEventListener("click", () => {
+            btnOneLine.classList.add('selected');
+            btnTwoLines.classList.remove('selected');
+            engraveRadio.checked = true;
+            engraveSecondRadio.checked = false;
+            inputGroup2.style.display = "none";
+            window.engravingSecondSelected = false;
+            window.engravingText2 = "";
+            engraveSecondInput.value = "";
+            updateCharacterCount();
+        });
+
+        // Two Lines button
+        btnTwoLines.addEventListener("click", () => {
+            btnTwoLines.classList.add('selected');
+            btnOneLine.classList.remove('selected');
+            engraveSecondRadio.checked = true;
+            engraveRadio.checked = false;
+            inputGroup2.style.display = "flex";
+            window.engravingSecondSelected = true;
+            requestAnimationFrame(() => engraveSecondInput.focus());
+            updateCharacterCount();
         });
 
         // Update character count for each line

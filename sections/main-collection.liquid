@@ -22,6 +22,10 @@
   }
 
   // Mobile product card buttons and layout
+  // Store pending operations to batch them
+  const pendingCardUpdates = [];
+  let isProcessingCards = false;
+  
   function initMobileProductButtons() {
     if (window.innerWidth >= 750) return;
     
@@ -29,7 +33,8 @@
     
     productCards.forEach(card => {
       // Skip if already processed
-      if (card.querySelector('.mobile-btn-row')) return;
+      if (card.dataset.mobileProcessed === 'true') return;
+      card.dataset.mobileProcessed = 'true';
       
       const content = card.querySelector('.product-card__content');
       if (!content) return;
@@ -45,8 +50,28 @@
       const titleLink = content.querySelector('a.contents.user-select-text');
       const priceEl = content.querySelector('product-price.text-block');
       
-      // Create info row wrapper for title + price
-      if (titleLink && priceEl) {
+      // Queue this card for processing
+      pendingCardUpdates.push({ card, content, titleLink, priceEl, productUrl, variantId });
+    });
+    
+    // Process all cards in a single batch
+    if (pendingCardUpdates.length > 0 && !isProcessingCards) {
+      isProcessingCards = true;
+      requestAnimationFrame(() => {
+        processPendingCards();
+        isProcessingCards = false;
+      });
+    }
+  }
+  
+  function processPendingCards() {
+    // Use DocumentFragment to batch DOM operations
+    pendingCardUpdates.forEach(({ card, content, titleLink, priceEl, productUrl, variantId }) => {
+      // Skip if already has button row (double-check)
+      if (card.querySelector('.mobile-btn-row')) return;
+      
+      // Create info row wrapper for title + price (only if both exist)
+      if (titleLink && priceEl && !content.querySelector('.mobile-info-row')) {
         const infoRow = document.createElement('div');
         infoRow.className = 'mobile-info-row';
         
@@ -130,26 +155,47 @@
       // Insert button row at the end of content
       content.appendChild(btnRow);
     });
+    
+    // Clear the queue
+    pendingCardUpdates.length = 0;
   }
   
-  // Initialize on load and after dynamic content loads
-  document.addEventListener('DOMContentLoaded', initMobileProductButtons);
+  // Initialize immediately if DOM is ready, otherwise wait
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileProductButtons, { once: true });
+  } else {
+    // Run immediately but in next frame to not block rendering
+    requestAnimationFrame(initMobileProductButtons);
+  }
   
-  // Re-run for infinite scroll
+  // Re-run for infinite scroll (debounced)
+  let scrollTimeout = null;
   const observer = new MutationObserver((mutations) => {
+    let hasNewProducts = false;
     mutations.forEach((mutation) => {
-      if (mutation.addedNodes.length) {
-        setTimeout(initMobileProductButtons, 100);
-      }
+      if (mutation.addedNodes.length) hasNewProducts = true;
     });
+    
+    if (hasNewProducts) {
+      // Debounce to batch multiple additions
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(initMobileProductButtons, 50);
+    }
   });
   
-  document.addEventListener('DOMContentLoaded', () => {
+  // Set up observer
+  const setupObserver = () => {
     const grid = document.querySelector('.product-grid');
     if (grid) {
       observer.observe(grid, { childList: true, subtree: true });
     }
-  });
+  };
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupObserver, { once: true });
+  } else {
+    setupObserver();
+  }
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
@@ -195,27 +241,38 @@
   </div>
 </results-list>
 
+{% comment %} Apply single view preference immediately after grid is rendered {% endcomment %}
+<script>
+(function() {
+  var savedView = localStorage.getItem('collection-grid-view');
+  if (savedView === 'single') {
+    var grid = document.querySelector('.product-grid');
+    if (grid) {
+      grid.classList.remove('mobile-view-grid');
+      grid.classList.add('mobile-view-single');
+    }
+  }
+})();
+</script>
+
 {% stylesheet %}
   /* =============================================
      MOBILE: Grid View Toggle Support
      ============================================= */
   @media screen and (max-width: 749px) {
-    /* ===== SINGLE VIEW (Default) ===== */
-    .product-grid.mobile-view-single,
-    .product-grid:not(.mobile-view-grid) {
+    /* ===== SINGLE VIEW (Opt-in) ===== */
+    .product-grid.mobile-view-single {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
     }
     
-    .product-grid.mobile-view-single .product-grid__item,
-    .product-grid:not(.mobile-view-grid) .product-grid__item {
+    .product-grid.mobile-view-single .product-grid__item {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 16px !important;
       margin-bottom: 16px !important;
     }
     
-    .product-grid.mobile-view-single .product-grid__item:last-child,
-    .product-grid:not(.mobile-view-grid) .product-grid__item:last-child {
+    .product-grid.mobile-view-single .product-grid__item:last-child {
       border-bottom: none;
       margin-bottom: 0 !important;
     }
@@ -236,8 +293,8 @@
     
     /* Make each card a flex column that stretches */
     .product-grid.mobile-view-grid .product-grid__item {
-      display: flex !important;
-      flex-direction: column !important;
+      display: flex;
+      flex-direction: column;
     }
 
     .product-grid.mobile-view-grid .product-grid__item > * {
