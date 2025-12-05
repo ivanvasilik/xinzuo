@@ -92,7 +92,6 @@
           {% render 'search', style: 'default', class: 'custom-class' %}
         </span>
       </div>
-      <div class="header-drawer-title">MENU</div>
       <nav
         class="menu-drawer__navigation"
         style="
@@ -847,7 +846,7 @@
 
 {% style %}
   .header-category-li {
-    padding-left: 24px;
+    padding-left: 0;
   }
 
   .header-category {
@@ -1132,13 +1131,7 @@
     margin: 0 24px;
   }
 
-  .menu-drawer__menu.has-submenu > * {
-    border-left: 1px solid #828282;
-  }
-
-  .menu-drawer__menu--childlist > * {
-    border-left: 1px solid #828282;
-  }
+  /* Removed left border (vertical line) for cleaner flat menu */
 
   .menu-drawer__list-item--divider {
     border-block-end: 1px solid var(--color-border);
