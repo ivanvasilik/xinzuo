@@ -301,13 +301,23 @@
 <div class="link-products">
   {% for collection in product.collections %}
     {% if collection.title contains "Series" %}
+      {% comment %} First, render the current/active product {% endcomment %}
+      <a href="{{ product.url }}">
+        <div class="link-product active">
+          <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%">
+          <h4>{{ product.title | split: " Knife" | first | split: ' ' | last }}</h4>
+        </div>
+      </a>
+      {% comment %} Then, render all other products in the collection {% endcomment %}
       {% for product_c in collection.products %}
-        <a href="{{ product_c.url }}">
-          <div class="link-product {% if product.id == product_c.id %}active{% endif %}">
-            <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
-            <h4>{{ product_c.title | split: " Knife" | first | split: ' ' | last }}</h4>
-          </div>
-        </a>
+        {% unless product.id == product_c.id %}
+          <a href="{{ product_c.url }}">
+            <div class="link-product">
+              <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
+              <h4>{{ product_c.title | split: " Knife" | first | split: ' ' | last }}</h4>
+            </div>
+          </a>
+        {% endunless %}
       {% endfor %}
     {% endif %}
   {% endfor %}

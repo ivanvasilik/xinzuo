@@ -1,30 +1,31 @@
-{% style %}
-    .section-{{ section.id }} {
-        background-color: #111;
+<style>
+    /* Target the Shopify section wrapper directly */
+    #shopify-section-{{ section.id }} {
+        position: relative;
+        z-index: 1;
+        background-color: #292a33;
+        padding: 50px 20px;
     }
 
-    .section-{{ section.id }} .compare-btn {
+    .compare-btn-section-{{ section.id }} .compare-btn-container {
         max-width: 1440px;
         margin: 0 auto;
-        background-color: #292a33;
-        padding: 50px 0;
         text-align: center;
     }
     
-    .section-{{ section.id }} .compare-btn h2 {
+    .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
         font-family: "Sen";
         font-weight: 600;
         font-size: 48px;
         color: white;
         text-align: center;
         line-height: 135%;
-        padding: 0 16px;
-        margin-bottom: 40px;
+        margin: 0 0 30px 0;
     }
 
-    .section-{{ section.id }} .compare-btn a {
-        width: fit-content;
-        padding: 10px 20px;
+    .compare-btn-section-{{ section.id }} .compare-btn-container a {
+        display: inline-block;
+        padding: 12px 24px;
         font-family: 'Sen';
         font-weight: 600;
         font-size: 24px;
@@ -32,22 +33,28 @@
         background-color: #ff0004;
         border: none;
         border-radius: 4px;
-        margin: auto;
     }
 
-    @media screen and (max-width: 1025px) {
-        .section-{{ section.id }} .compare-btn h2 {
-            font-size: 24px;
+    @media screen and (max-width: 750px) {
+        #shopify-section-{{ section.id }} {
+            padding: 32px 20px;
         }
 
-        .section-{{ section.id }} .compare-btn a {
-            font-size: 16px;
+        .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
+            font-size: 22px;
+            line-height: 1.2;
+            margin: 0 0 18px 0;
+        }
+
+        .compare-btn-section-{{ section.id }} .compare-btn-container a {
+            font-size: 14px;
+            padding: 10px 20px;
         }
     }
-{% endstyle %}
+</style>
 
-<div class="section-{{ section.id }}">
-    <div class="compare-btn">
+<div class="compare-btn-section-{{ section.id }}">
+    <div class="compare-btn-container">
         <h2>{{ section.settings.heading }}</h2>
         <a href="{{ section.settings.link }}">{{ section.settings.link_text }}</a>
     </div>

@@ -321,6 +321,10 @@
               {% endif %} {% endcomment %}
             </scroll-hint>
 
+            <!-- Container for third-party app blocks (Essential Upsell, etc.) -->
+            <!-- data-skip-subtree-update prevents morph.js from removing app-injected content -->
+            <div class="cart-drawer-app-blocks" data-skip-subtree-update data-skip-node-update></div>
+
             <div class="cart-drawer-footer">
               <div class="cart-drawer-total">
                 {% assign fee_price = 0 %}
@@ -577,4 +581,117 @@
     bottom: 0;
     z-index: 1;
   }
+
+  /* Hide engraving product from Essential Upsell recommendations */
+  /* Target by product ID, variant ID, or common patterns */
+  [data-product-id="7718263914547"],
+  [data-variant-id="43781283217459"],
+  [data-variant-id="43781283250227"],
+  [href*="engraving-fee"],
+  [href*="/products/engraving"],
+  .eu-upsell-item[data-product-id="7718263914547"] {
+    display: none !important;
+  }
 {% endstylesheet %}
+
+<script>
+  // Hide engraving product from any upsell/recommendation widgets (including Essential Upsell)
+  (function() {
+    const ENGRAVING_PRODUCT_ID = '7718263914547';
+    const ENGRAVING_VARIANTS = ['43781283217459', '43781283250227'];
+    const ENGRAVING_KEYWORDS = ['engraving', 'engraving-fee', 'one line', 'two line'];
+    const ENGRAVING_PRICE = '$19.00';
+
+    function hideEngravingUpsells() {
+      // Method 1: Standard upsell selectors
+      const standardSelectors = [
+        '[data-product-id]',
+        '[data-variant-id]',
+        '.eu-upsell-item',
+        '.upsell-product',
+        '.product-upsell'
+      ];
+
+      standardSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          const productId = el.dataset?.productId || el.getAttribute('data-product-id');
+          const variantId = el.dataset?.variantId || el.getAttribute('data-variant-id');
+          const href = el.getAttribute('href') || '';
+
+          if (productId === ENGRAVING_PRODUCT_ID || ENGRAVING_VARIANTS.includes(variantId) || href.includes('engraving-fee')) {
+            const container = el.closest('[class*="upsell"]') || el.closest('[class*="recommend"]') || el;
+            container.style.display = 'none';
+          }
+        });
+      });
+
+      // Method 2: Essential Upsell specific - find items containing engraving-related text
+      // Essential Upsell uses dynamic class names like x1ghz6dp
+      const euElements = document.querySelectorAll('[class*="x1ghz6dp"]');
+      euElements.forEach(el => {
+        // Check if this element or its children contain the engraving variant
+        const text = el.textContent || '';
+        const hasEngravingText = text.includes('One Line') && text.includes('$19.00');
+        const hasEngravingVariant = el.querySelector('option[value="43781283217459"], option[value="43781283250227"]');
+        
+        if (hasEngravingText || hasEngravingVariant) {
+          // Find the specific upsell item container (not the whole carousel)
+          // Walk up to find the item that contains only engraving
+          let itemContainer = el;
+          
+          // Check if this is an individual item (not the whole container)
+          // by checking if the text is relatively short (single item) vs the whole widget
+          if (text.length < 200 && hasEngravingText) {
+            // This is likely an individual item - hide it
+            while (itemContainer && !itemContainer.classList?.contains('x1heor9')) {
+              itemContainer = itemContainer.parentElement;
+            }
+            if (itemContainer && itemContainer.textContent.includes('One Line') && 
+                !itemContainer.textContent.includes('Chef Knife') && 
+                !itemContainer.textContent.includes('Santoku')) {
+              itemContainer.style.display = 'none';
+            }
+          }
+        }
+      });
+
+      // Method 3: Hide by looking for specific price and variant combination
+      document.querySelectorAll('select').forEach(select => {
+        const options = select.querySelectorAll('option');
+        options.forEach(opt => {
+          if (opt.value === '43781283217459' || opt.value === '43781283250227' || 
+              opt.textContent.includes('One Line') || opt.textContent.includes('Two Line')) {
+            // Find the parent upsell card and hide it
+            let card = select.closest('[class*="x1heor9"]') || select.closest('[class*="upsell"]');
+            if (card) {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    }
+
+    // Run on load
+    hideEngravingUpsells();
+
+    // Observe for dynamically added content
+    const observer = new MutationObserver((mutations) => {
+      let shouldCheck = false;
+      mutations.forEach(m => {
+        if (m.addedNodes.length > 0) shouldCheck = true;
+      });
+      if (shouldCheck) {
+        setTimeout(hideEngravingUpsells, 100);
+        setTimeout(hideEngravingUpsells, 500); // Run again after app fully loads
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also run after cart updates
+    document.addEventListener('cart:update', () => {
+      setTimeout(hideEngravingUpsells, 300);
+      setTimeout(hideEngravingUpsells, 800);
+    });
+  })();
+</script>
