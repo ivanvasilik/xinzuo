@@ -139,11 +139,6 @@ class ProductFormComponent extends Component {
   /** @type {number | undefined} */
   #timeout;
 
-  constructor() {
-    super();
-    this.isMain = false;
-  }
-
   connectedCallback() {
     super.connectedCallback();
 
@@ -151,16 +146,6 @@ class ProductFormComponent extends Component {
     const target = this.closest('.shopify-section, dialog, product-card');
     target?.addEventListener(ThemeEvents.variantUpdate, this.#onVariantUpdate, { signal });
     target?.addEventListener(ThemeEvents.variantSelected, this.#onVariantSelected, { signal });
-
-    document.querySelector('#mainAddBtn')?.addEventListener('click', () => {
-      this.isMain = true;
-      console.log('Main product added');
-    });
-
-    document.querySelector('[data-essential-upsell-element="add-to-cart-button"]')?.addEventListener('click', () => {
-      this.isMain = false;
-      console.log('Upsell product added');
-    });
   }
 
   disconnectedCallback() {
@@ -236,24 +221,9 @@ class ProductFormComponent extends Component {
       );
     };
 
-    if(this.isMain) {
-      addMainProduct()
-        .then(addFeeProduct)
-        .then(async () => {
-          const cart = await fetch("/cart.js").then(r => r.json());
-  
-          document.dispatchEvent(
-            new CartAddEvent({}, variantId, {
-              source: "product-form-component",
-              itemCount: cart.item_count,
-              productId: variantId,
-              sections: [],
-            })
-          );
-        })
-        .catch(err => console.error("Add to cart error:", err));
-    } else {
-      async () => {
+    addMainProduct()
+      .then(addFeeProduct)
+      .then(async () => {
         const cart = await fetch("/cart.js").then(r => r.json());
 
         document.dispatchEvent(
@@ -264,8 +234,8 @@ class ProductFormComponent extends Component {
             sections: [],
           })
         );
-      }
-    }
+      })
+      .catch(err => console.error("Add to cart error:", err));
   }
 
   /**
