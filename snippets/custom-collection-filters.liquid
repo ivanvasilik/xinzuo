@@ -114,20 +114,27 @@
 
 {% comment %} 
   Apply saved grid view immediately to prevent layout shift.
-  This runs before the page renders to avoid a visual flash.
+  The product-grid has mobile-view-grid by default (server-side).
+  This script only needs to switch to single view if that's the user's preference.
 {% endcomment %}
 <script>
   (function() {
-    var savedView = localStorage.getItem('collection-grid-view') || 'single';
-    var grid = document.querySelector('.product-grid');
-    if (grid) {
-      grid.classList.add('mobile-view-' + savedView);
-    } else {
-      // If grid doesn't exist yet, add class when it's available
-      document.addEventListener('DOMContentLoaded', function() {
-        var g = document.querySelector('.product-grid');
-        if (g) g.classList.add('mobile-view-' + savedView);
-      }, { once: true });
+    var savedView = localStorage.getItem('collection-grid-view');
+    // Only act if user explicitly chose single view (grid is default)
+    if (savedView === 'single') {
+      var applyClass = function() {
+        var grid = document.querySelector('.product-grid');
+        if (grid) {
+          grid.classList.remove('mobile-view-grid');
+          grid.classList.add('mobile-view-single');
+        }
+      };
+      // Try immediately, fallback to DOMContentLoaded
+      if (document.querySelector('.product-grid')) {
+        applyClass();
+      } else {
+        document.addEventListener('DOMContentLoaded', applyClass, { once: true });
+      }
     }
   })();
 </script>
@@ -657,8 +664,8 @@
       const productGrid = document.querySelector('.product-grid');
       if (!productGrid) return;
 
-      // Get saved preference (default to 'single')
-      const savedView = localStorage.getItem('collection-grid-view') || 'single';
+      // Get saved preference (default to 'grid')
+      const savedView = localStorage.getItem('collection-grid-view') || 'grid';
       
       // Only update button states - grid class is already applied by inline script
       updateGridToggleButtons(savedView, buttons);

@@ -246,22 +246,19 @@
      MOBILE: Grid View Toggle Support
      ============================================= */
   @media screen and (max-width: 749px) {
-    /* ===== SINGLE VIEW (Default) ===== */
-    .product-grid.mobile-view-single,
-    .product-grid:not(.mobile-view-grid) {
+    /* ===== SINGLE VIEW (Opt-in) ===== */
+    .product-grid.mobile-view-single {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
     }
     
-    .product-grid.mobile-view-single .product-grid__item,
-    .product-grid:not(.mobile-view-grid) .product-grid__item {
+    .product-grid.mobile-view-single .product-grid__item {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 16px !important;
       margin-bottom: 16px !important;
     }
     
-    .product-grid.mobile-view-single .product-grid__item:last-child,
-    .product-grid:not(.mobile-view-grid) .product-grid__item:last-child {
+    .product-grid.mobile-view-single .product-grid__item:last-child {
       border-bottom: none;
       margin-bottom: 0 !important;
     }
