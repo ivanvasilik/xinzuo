@@ -174,6 +174,7 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
+      if(window.mainId == variantId)
       return fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
