@@ -213,7 +213,8 @@
   }
 
   /**
-   * Clean up orphaned engraving fees
+   * Clean up orphaned engraving fees (runs on page load only)
+   * Real-time updates are handled by component-cart-items.js
    */
   async function cleanupOrphanedFees() {
     try {
@@ -253,7 +254,8 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ updates })
         });
-        refreshCart();
+        // Don't call refreshCart() - let page reload naturally or user interaction trigger refresh
+        // This prevents cascading cart:update events
       }
     } catch (error) {
       console.error('Error cleaning up fees:', error);
@@ -319,16 +321,13 @@
       }
     });
 
-    // Cleanup on cart updates
-    document.addEventListener('cart:update', () => {
-      setTimeout(cleanupOrphanedFees, 500);
-    });
   }
 
   // Initialize
   setupEventListeners();
   
-  // Run initial cleanup
+  // Run cleanup only on initial page load (safety net)
+  // Real-time fee updates are handled by component-cart-items.js
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', cleanupOrphanedFees);
   } else {

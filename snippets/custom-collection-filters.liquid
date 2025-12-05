@@ -6,12 +6,18 @@
 
 <div class="custom-filters-sidebar" id="custom-filters">
   <div class="desktop-sort-wrapper">
-    <label for="desktop-sort-dropdown">Sort by:</label>
-    <select class="sort-dropdown" id="desktop-sort-dropdown">
-      <option value="best-sellers">Best Sellers</option>
-      <option value="price-low">Price: Low to High</option>
-      <option value="price-high">Price: High to Low</option>
-    </select>
+    <label>Sort by:</label>
+    <div class="custom-dropdown" id="desktop-sort-dropdown-custom">
+      <button class="custom-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span class="custom-dropdown__text">Best Sellers</span>
+        <svg class="custom-dropdown__arrow" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M6 8L2 4h8z"/></svg>
+      </button>
+      <ul class="custom-dropdown__menu" role="listbox" tabindex="-1">
+        <li class="custom-dropdown__option selected" data-value="best-sellers" role="option" aria-selected="true">Best Sellers</li>
+        <li class="custom-dropdown__option" data-value="price-low" role="option" aria-selected="false">Price: Low to High</li>
+        <li class="custom-dropdown__option" data-value="price-high" role="option" aria-selected="false">Price: High to Low</li>
+      </ul>
+    </div>
   </div>
   
   <div class="filters-header">
@@ -59,12 +65,16 @@
     <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
   </button>
   
-  <div class="sort-dropdown-wrapper">
-    <select class="sort-dropdown" id="sort-dropdown">
-      <option value="best-sellers">Best Sellers</option>
-      <option value="price-low">Price: Low to High</option>
-      <option value="price-high">Price: High to Low</option>
-    </select>
+  <div class="custom-dropdown" id="sort-dropdown-custom">
+    <button class="custom-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="custom-dropdown__text">Best Sellers</span>
+      <svg class="custom-dropdown__arrow" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M6 8L2 4h8z"/></svg>
+    </button>
+    <ul class="custom-dropdown__menu" role="listbox" tabindex="-1">
+      <li class="custom-dropdown__option selected" data-value="best-sellers" role="option" aria-selected="true">Best Sellers</li>
+      <li class="custom-dropdown__option" data-value="price-low" role="option" aria-selected="false">Price: Low to High</li>
+      <li class="custom-dropdown__option" data-value="price-high" role="option" aria-selected="false">Price: High to Low</li>
+    </ul>
   </div>
   
   <!-- Grid Toggle (Mobile Only) -->
@@ -101,6 +111,33 @@
     </div>
   </div>
 </div>
+
+{% comment %} 
+  Apply saved grid view immediately to prevent layout shift.
+  The product-grid has mobile-view-grid by default (server-side).
+  This script only needs to switch to single view if that's the user's preference.
+{% endcomment %}
+<script>
+  (function() {
+    var savedView = localStorage.getItem('collection-grid-view');
+    // Only act if user explicitly chose single view (grid is default)
+    if (savedView === 'single') {
+      var applyClass = function() {
+        var grid = document.querySelector('.product-grid');
+        if (grid) {
+          grid.classList.remove('mobile-view-grid');
+          grid.classList.add('mobile-view-single');
+        }
+      };
+      // Try immediately, fallback to DOMContentLoaded
+      if (document.querySelector('.product-grid')) {
+        applyClass();
+      } else {
+        document.addEventListener('DOMContentLoaded', applyClass, { once: true });
+      }
+    }
+  })();
+</script>
 
 {% style %}
   /* Desktop Sidebar */
@@ -306,9 +343,84 @@
     font-weight: 600;
   }
 
-  /* Sort Dropdown */
-  .sort-dropdown-wrapper {
+  /* Custom Dropdown (replaces native select for full styling control) */
+  .custom-dropdown {
+    position: relative;
     display: inline-block;
+  }
+
+  .custom-dropdown__trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 140px;
+    justify-content: space-between;
+  }
+
+  .custom-dropdown__trigger:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .custom-dropdown__trigger:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .custom-dropdown__arrow {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .custom-dropdown.open .custom-dropdown__arrow {
+    transform: rotate(180deg);
+  }
+
+  .custom-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: none;
+  }
+
+  .custom-dropdown.open .custom-dropdown__menu {
+    display: block;
+  }
+
+  .custom-dropdown__option {
+    padding: 10px 12px;
+    color: #c9c9cc;
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .custom-dropdown__option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .custom-dropdown__option.selected {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   /* Grid Toggle (Mobile Only) */
@@ -350,39 +462,6 @@
   .grid-toggle-btn svg {
     width: 18px;
     height: 18px;
-  }
-
-  .sort-dropdown {
-    padding: 10px 32px 10px 12px;
-    background-color: rgba(41, 42, 51, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: #fff;
-    font-family: "Sen", sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-  }
-
-  .sort-dropdown:focus {
-    outline: none !important;
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: none !important;
-  }
-
-  .sort-dropdown:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  .sort-dropdown option {
-    background-color: #1a1a1a;
-    color: #fff;
   }
 
   /* Mobile Drawer */
@@ -496,15 +575,19 @@
       display: flex;
     }
 
-    .filter-mobile-trigger .sort-dropdown-wrapper {
+    .filter-mobile-trigger .custom-dropdown {
       flex: 1;
       min-width: 0;
     }
 
-    .filter-mobile-trigger .sort-dropdown {
+    .filter-mobile-trigger .custom-dropdown__trigger {
       width: 100%;
-      padding: 10px 28px 10px 10px;
+      padding: 10px 10px;
       font-size: 13px;
+    }
+    
+    .filter-mobile-trigger .custom-dropdown__menu {
+      min-width: 100%;
     }
 
     /* Show grid toggle on mobile */
@@ -581,9 +664,11 @@
       const productGrid = document.querySelector('.product-grid');
       if (!productGrid) return;
 
-      // Get saved preference (default to 'single')
-      const savedView = localStorage.getItem('collection-grid-view') || 'single';
-      setGridView(savedView, buttons, productGrid);
+      // Get saved preference (default to 'grid')
+      const savedView = localStorage.getItem('collection-grid-view') || 'grid';
+      
+      // Only update button states - grid class is already applied by inline script
+      updateGridToggleButtons(savedView, buttons);
 
       // Handle button clicks
       buttons.forEach(btn => {
@@ -594,12 +679,16 @@
         });
       });
     }
-
-    function setGridView(view, buttons, productGrid) {
-      // Update button states
+    
+    function updateGridToggleButtons(view, buttons) {
       buttons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.view === view);
       });
+    }
+
+    function setGridView(view, buttons, productGrid) {
+      // Update button states
+      updateGridToggleButtons(view, buttons);
 
       // Update grid class
       productGrid.classList.remove('mobile-view-single', 'mobile-view-grid');
@@ -650,11 +739,9 @@
       // This also handles initial sorting
       await applyFiltersFromUrl();
       
-      // If no URL filters were applied, just do initial sort
-      const urlParams = new URLSearchParams(window.location.search);
-      if (!urlParams.get('filter')) {
-        sortProducts();
-      }
+      // Note: We do NOT call sortProducts() on initial load when sort is "best-sellers"
+      // because products are already in Shopify's default order (best sellers).
+      // This prevents an unnecessary DOM reorder that causes a visual flash.
     }
 
     async function applyFiltersFromUrl() {
@@ -889,8 +976,6 @@
       // Use only the desktop sidebar as the single source of truth
       const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
       const clearAllBtn = document.getElementById('clear-all-filters');
-      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
-      const mobileSortDropdown = document.getElementById('sort-dropdown');
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
@@ -907,23 +992,8 @@
         updateFilterCount();
       });
 
-      // Desktop sort dropdown listener
-      if (desktopSortDropdown) {
-        desktopSortDropdown.addEventListener('change', () => {
-          // Sync to mobile dropdown
-          if (mobileSortDropdown) mobileSortDropdown.value = desktopSortDropdown.value;
-          applyFiltersAndSort();
-        });
-      }
-
-      // Mobile sort dropdown listener
-      if (mobileSortDropdown) {
-        mobileSortDropdown.addEventListener('change', () => {
-          // Sync to desktop dropdown
-          if (desktopSortDropdown) desktopSortDropdown.value = mobileSortDropdown.value;
-          applyFiltersAndSort();
-        });
-      }
+      // Initialize custom dropdowns
+      initCustomDropdowns();
 
       // Collapsible sections
       document.querySelectorAll('.filter-section-header').forEach(header => {
@@ -932,6 +1002,103 @@
         });
       });
     }
+    
+    // Custom dropdown functionality
+    function initCustomDropdowns() {
+      const dropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.custom-dropdown__trigger');
+        const menu = dropdown.querySelector('.custom-dropdown__menu');
+        const options = dropdown.querySelectorAll('.custom-dropdown__option');
+        const textEl = dropdown.querySelector('.custom-dropdown__text');
+        
+        // Toggle dropdown
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          // Close other dropdowns
+          dropdowns.forEach(d => {
+            if (d !== dropdown) d.classList.remove('open');
+          });
+          
+          dropdown.classList.toggle('open');
+          trigger.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+        });
+        
+        // Option selection
+        options.forEach(option => {
+          option.addEventListener('click', () => {
+            const value = option.dataset.value;
+            const text = option.textContent;
+            
+            // Update selected state
+            options.forEach(o => {
+              o.classList.remove('selected');
+              o.setAttribute('aria-selected', 'false');
+            });
+            option.classList.add('selected');
+            option.setAttribute('aria-selected', 'true');
+            
+            // Update trigger text
+            textEl.textContent = text;
+            
+            // Close dropdown
+            dropdown.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            
+            // Sync other dropdown
+            syncDropdowns(dropdown, value, text);
+            
+            // Apply filters and sort
+            applyFiltersAndSort();
+          });
+        });
+      });
+      
+      // Close on outside click
+      document.addEventListener('click', () => {
+        dropdowns.forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.custom-dropdown__trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      });
+      
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          dropdowns.forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.custom-dropdown__trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+    }
+    
+    function syncDropdowns(sourceDropdown, value, text) {
+      const allDropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      allDropdowns.forEach(dropdown => {
+        if (dropdown === sourceDropdown) return;
+        
+        const textEl = dropdown.querySelector('.custom-dropdown__text');
+        const options = dropdown.querySelectorAll('.custom-dropdown__option');
+        
+        textEl.textContent = text;
+        
+        options.forEach(o => {
+          const isSelected = o.dataset.value === value;
+          o.classList.toggle('selected', isSelected);
+          o.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        });
+      });
+    }
+    
+    function getSelectedSortValue() {
+      const dropdown = document.querySelector('.custom-dropdown');
+      const selectedOption = dropdown?.querySelector('.custom-dropdown__option.selected');
+      return selectedOption?.dataset.value || 'best-sellers';
+    }
 
     async function applyFiltersAndSort() {
       // Prevent concurrent executions
@@ -939,10 +1106,8 @@
       isApplyingFilters = true;
       
       try {
-        // Get current sort selection (prefer desktop dropdown as source of truth)
-        const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
-        const mobileSortDropdown = document.getElementById('sort-dropdown');
-        const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
+        // Get current sort selection from custom dropdown
+        const sortValue = getSelectedSortValue();
         
         // Gather active filters
         const activeFilters = {
@@ -1010,16 +1175,17 @@
     }
 
     function sortProducts() {
-      // Get current sort selection (prefer desktop dropdown as source of truth)
-      const desktopSortDropdown = document.getElementById('desktop-sort-dropdown');
-      const mobileSortDropdown = document.getElementById('sort-dropdown');
-      const sortValue = desktopSortDropdown?.value || mobileSortDropdown?.value || 'best-sellers';
+      // Get current sort selection from custom dropdown
+      const sortValue = getSelectedSortValue();
       
       const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;
       
       const products = Array.from(productGrid.querySelectorAll('.product-grid__item'));
       if (products.length === 0) return;
+      
+      // Create a copy for sorting comparison
+      const originalOrder = [...products];
       
       // Sort products
       products.sort((a, b) => {
@@ -1047,6 +1213,10 @@
             return aPosition - bPosition;
         }
       });
+      
+      // Check if order actually changed - if not, skip DOM manipulation
+      const orderChanged = products.some((product, index) => product !== originalOrder[index]);
+      if (!orderChanged) return;
       
       // Set flag to prevent MutationObserver from triggering during reorder
       isSorting = true;
