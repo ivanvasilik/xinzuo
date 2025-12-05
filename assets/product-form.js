@@ -174,20 +174,22 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
-      if(window.mainId == variantId)
-      return fetch("/cart/add.js", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: variantId,
-          quantity,
-          properties: SHOW_FEE
-            ? SHOW_FEE2
-            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
-            : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
-            : { "Knife Quantity": window.knife_num }
-        })
-      });
+      if(window.mainId == variantId) {
+        console.log(true);
+        return fetch("/cart/add.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: variantId,
+            quantity,
+            properties: SHOW_FEE
+              ? SHOW_FEE2
+              ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
+              : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
+              : { "Knife Quantity": window.knife_num }
+          })
+        });
+      }
     };
 
     const addFeeProduct = () => {
