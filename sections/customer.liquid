@@ -103,21 +103,28 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.mySwiper_u', {
+        var swiperContainer = document.querySelector('.section-{{ section.id }} .mySwiper_u');
+        if (!swiperContainer) return;
+
+        var swiper = new Swiper(swiperContainer, {
             slidesPerView: 'auto',
             spaceBetween: 30,
             loop: true,
-            speed: 5000, // Duration of the transition (5 seconds)
+            speed: 5000,
             autoplay: {
-                delay: 0, // No delay between transitions
+                delay: 0,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: false,
             },
             freeMode: {
                 enabled: true,
                 momentum: false,
             },
             grabCursor: false,
-            allowTouchMove: false, // Disable touch/mouse interaction
+            allowTouchMove: false,
+            watchSlidesProgress: true,
+            observer: true,
+            observeParents: true,
             breakpoints: {
                 320: {
                     spaceBetween: 20
@@ -130,6 +137,26 @@
                 }
             },
         });
+
+        // Ensure autoplay keeps running
+        function ensureAutoplay() {
+            if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                swiper.autoplay.start();
+            }
+        }
+
+        // Restart autoplay when page becomes visible again
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                ensureAutoplay();
+            }
+        });
+
+        // Check periodically that autoplay is still running
+        setInterval(ensureAutoplay, 3000);
+
+        // Restart on focus
+        window.addEventListener('focus', ensureAutoplay);
     });
 </script>
 
