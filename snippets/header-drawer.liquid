@@ -37,6 +37,19 @@
   endif
 %}
 
+
+{% style %}
+  .header-drawer-button  {
+    color: white;
+    text-align: center;
+    padding: 5px 20px;
+    border: 1px solid;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+{% endstyle %}
+
 <script
   src="{{ 'header-drawer.js' | asset_url }}"
   type="module"
@@ -93,7 +106,7 @@
         </span>
       </div>
       <div class="header-drawer-title">MENU</div>
-      <a href="">SHOP ALL</a>
+      <a class="header-drawer-button" href="" >SHOP ALL</a>
       <nav
         class="menu-drawer__navigation"
         style="
