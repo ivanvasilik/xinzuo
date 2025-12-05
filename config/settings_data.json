@@ -137,10 +137,12 @@
         "disabled": true,
         "settings": {}
       },
-      "22230382528836309": {
-        "type": "shopify://apps/xb-ai-cart-upsell/blocks/core_script/e9179814-5d2a-40d0-a03d-245bcb819e73",
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
         "disabled": false,
-        "settings": {}
+        "settings": {
+          "storefrontAccessToken": ""
+        }
       }
     },
     "color_schemes": {
