@@ -111,7 +111,7 @@
           {% render 'search', style: 'default', class: 'custom-class' %}
         </span>
       </div>
-      <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a>
+      
       <nav
         class="menu-drawer__navigation"
         style="
@@ -123,6 +123,7 @@
           class="menu-drawer__menu has-submenu"
           role="list"
         >
+          <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a>
           {% assign animation_index = 0 %}
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
