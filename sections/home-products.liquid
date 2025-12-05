@@ -344,7 +344,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    {% comment %} document.addEventListener('DOMContentLoaded', () => {
         const btn = document.querySelector('#load-more');
         const viewAllBtn = document.querySelector('#view-all-products');
         const products = document.querySelectorAll('#home-products .product-item');
@@ -370,7 +370,7 @@
             }
             }, 1000);
         });
-    });
+    }); {% endcomment %}
 </script>
 
 {% schema %}
