@@ -118,11 +118,6 @@
           "position": "right"
         }
       },
-      "144831480468751239": {
-        "type": "shopify://apps/essential-upsell/blocks/app-embed/50627fd9-24fd-4250-8614-accc12826d80",
-        "disabled": false,
-        "settings": {}
-      },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": true,
@@ -140,6 +135,11 @@
       "1787840288555608609": {
         "type": "shopify://apps/live-product-options/blocks/app-embed/88bfdf40-5e27-4962-a966-70c8d1e87757",
         "disabled": true,
+        "settings": {}
+      },
+      "14429071373314833104": {
+        "type": "shopify://apps/candy-rack/blocks/head/cb9c657f-334f-4905-80c2-f69cca01460c",
+        "disabled": false,
         "settings": {}
       }
     },
