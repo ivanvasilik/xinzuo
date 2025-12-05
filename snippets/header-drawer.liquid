@@ -159,10 +159,12 @@
                               {% assign discount = product.compare_at_price | minus: product.price %}
                               {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
                               {% comment %} {% assign sum = sum | plus: percent %} {% endcomment %}
-                          
+                              {% if percent > max_percent %}
+                              {% assign max_percent = percent %}
+                              {% endif %}
                             {% endif %}
                           {% endfor %}
-                          {% assign sum = sum | divided_by: collection.products.size %}
+                          {% comment %} {% assign sum = sum | divided_by: collection.products.size %} {% endcomment %}
                           {% if sum != 0 %}
                             <span class="price-off">{{ sum }}% OFF</span>
                           {% endif %}
