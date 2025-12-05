@@ -139,7 +139,10 @@ class ProductFormComponent extends Component {
   /** @type {number | undefined} */
   #timeout;
 
-  let isMain = false;
+  constructor() {
+    super();
+    this.isMain = false;
+  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -150,12 +153,12 @@ class ProductFormComponent extends Component {
     target?.addEventListener(ThemeEvents.variantSelected, this.#onVariantSelected, { signal });
 
     document.querySelector('#mainAddBtn')?.addEventListener('click', () => {
-      isMain = true;
+      this.isMain = true;
       console.log('Main product added');
     });
 
     document.querySelector('[data-essential-upsell-element="add-to-cart-button"]')?.addEventListener('click', () => {
-      isMain = false;
+      this.isMain = false;
       console.log('Upsell product added');
     });
   }
@@ -186,19 +189,22 @@ class ProductFormComponent extends Component {
     const knife_num = window.knife_num;
 
     const addMainProduct = () => {
-      return fetch("/cart/add.js", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: variantId,
-          quantity,
-          properties: SHOW_FEE
-            ? SHOW_FEE2
-            ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
-            : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
-            : { "Knife Quantity": window.knife_num }
-        })
-      });
+      if(this.isMain) {
+        console.log("Main added!!!");
+        return fetch("/cart/add.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: variantId,
+            quantity,
+            properties: SHOW_FEE
+              ? SHOW_FEE2
+              ? { "Engraving Text": window.engravingText, "Engraving Text2": window.engravingText2, "Knife Quantity": window.knife_num }
+              : { "Engraving Text": window.engravingText, "Knife Quantity": window.knife_num }
+              : { "Knife Quantity": window.knife_num }
+          })
+        });
+      }
     };
 
     const addFeeProduct = () => {
