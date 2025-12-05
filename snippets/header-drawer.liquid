@@ -108,7 +108,6 @@
           {%- for link in linklist.links -%}
             {% if link.title != "Logo" %}
               {% assign animation_index = animation_index | plus: 1 %}
-              {% comment %} <a class="header-drawer-button" href="/collections/all-products" >SHOP ALL</a> {% endcomment %}
               <li class="header-category-li" {% if link.title == "BEST SELLERS" %}id="header_drawer_padding" style="padding-top: 20px"{% endif %}>
                 {% if link.links != blank %}
                   <div class="header-category" onclick="headerCategoryOpen({{ forloop.index }})">
