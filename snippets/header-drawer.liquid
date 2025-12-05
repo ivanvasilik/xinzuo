@@ -153,6 +153,7 @@
                         <div class="menu-img-mobile">
                           <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection-{{ collection.id }}">
                           {% assign sum = 0 %}
+                          {% assign max_percent = 0 %}
                           {% for product in collection.products %}
                             {% if product.compare_at_price and product.compare_at_price > product.price %}
                               {% assign discount = product.compare_at_price | minus: product.price %}
