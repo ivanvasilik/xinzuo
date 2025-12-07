@@ -393,6 +393,7 @@ p:empty {
   min-height: var(--section-min-height, 'auto');
 }
 
+
 /* Place all direct children in the center column by default */
 .section > * {
   grid-column: 2;
