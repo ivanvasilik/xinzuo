@@ -34,6 +34,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        pointer-events: auto;
+    }
+    
+    .section-{{ section.id }} .swiper-slide img {
+        pointer-events: auto;
+        user-select: none;
+        -webkit-user-select: none;
     }
 
     .section-{{ section.id }} .customer-imgs {
@@ -113,6 +120,8 @@
                 delay: 0,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: false,
+                stopOnLastSlide: false,
+                reverseDirection: false,
             },
             freeMode: {
                 enabled: true,
@@ -120,6 +129,10 @@
             },
             grabCursor: false,
             allowTouchMove: false,
+            simulateTouch: false,
+            preventClicks: false,
+            preventClicksPropagation: false,
+            preventInteractionOnTransition: true,
             watchSlidesProgress: true,
             observer: true,
             observeParents: true,
@@ -134,14 +147,24 @@
                     spaceBetween: 40
                 }
             },
-            // Listen for autoplay stop event and restart immediately
+            // Prevent autoplay from stopping on any interaction
             on: {
                 autoplayStop: function() {
-                    // Restart autoplay immediately when it stops
+                    // Immediately restart if autoplay stops for any reason
                     if (swiper && swiper.autoplay) {
-                        setTimeout(function() {
-                            swiper.autoplay.start();
-                        }, 100);
+                        swiper.autoplay.start();
+                    }
+                },
+                touchStart: function() {
+                    // Prevent touch from stopping autoplay
+                    if (swiper && swiper.autoplay) {
+                        swiper.autoplay.start();
+                    }
+                },
+                click: function() {
+                    // Prevent clicks from stopping autoplay
+                    if (swiper && swiper.autoplay) {
+                        swiper.autoplay.start();
                     }
                 }
             }
@@ -154,25 +177,26 @@
             }
         }
 
-        // Add click handlers to all slides to restart autoplay immediately
+        // Prevent clicks on slides/images from stopping autoplay
         var slides = swiperContainer.querySelectorAll('.swiper-slide');
         slides.forEach(function(slide) {
+            // Prevent click events from propagating to Swiper
             slide.addEventListener('click', function(e) {
-                // Restart autoplay immediately after click
-                setTimeout(function() {
-                    ensureAutoplay();
-                }, 50);
-            });
+                // Don't let clicks stop autoplay
+                if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                    swiper.autoplay.start();
+                }
+            }, true); // Use capture phase to intercept before Swiper
             
-            // Also handle clicks on images inside slides
+            // Also handle clicks on images
             var images = slide.querySelectorAll('img');
             images.forEach(function(img) {
                 img.addEventListener('click', function(e) {
-                    // Restart autoplay immediately after click
-                    setTimeout(function() {
-                        ensureAutoplay();
-                    }, 50);
-                });
+                    // Don't let clicks stop autoplay
+                    if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                        swiper.autoplay.start();
+                    }
+                }, true); // Use capture phase
             });
         });
 
