@@ -134,6 +134,17 @@
                     spaceBetween: 40
                 }
             },
+            // Listen for autoplay stop event and restart immediately
+            on: {
+                autoplayStop: function() {
+                    // Restart autoplay immediately when it stops
+                    if (swiper && swiper.autoplay) {
+                        setTimeout(function() {
+                            swiper.autoplay.start();
+                        }, 100);
+                    }
+                }
+            }
         });
 
         // Ensure autoplay keeps running
@@ -142,6 +153,28 @@
                 swiper.autoplay.start();
             }
         }
+
+        // Add click handlers to all slides to restart autoplay immediately
+        var slides = swiperContainer.querySelectorAll('.swiper-slide');
+        slides.forEach(function(slide) {
+            slide.addEventListener('click', function(e) {
+                // Restart autoplay immediately after click
+                setTimeout(function() {
+                    ensureAutoplay();
+                }, 50);
+            });
+            
+            // Also handle clicks on images inside slides
+            var images = slide.querySelectorAll('img');
+            images.forEach(function(img) {
+                img.addEventListener('click', function(e) {
+                    // Restart autoplay immediately after click
+                    setTimeout(function() {
+                        ensureAutoplay();
+                    }, 50);
+                });
+            });
+        });
 
         // Restart autoplay when page becomes visible again
         document.addEventListener('visibilitychange', function() {
