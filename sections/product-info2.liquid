@@ -415,21 +415,7 @@
         </div>
         {% if section.settings.image_video == "image" %}
             <div class="product-info2-img">
-                {%- if section.settings.img != blank -%}
-                    {% liquid
-                        assign image = section.settings.img
-                        assign widths = '400, 600, 800, 1000, 1200'
-                        assign sizes = '(min-width: 1025px) 50vw, (min-width: 750px) 50vw, 100vw'
-                        assign loading = 'lazy'
-                    %}
-                    {{ image | image_url: width: 1200 | image_tag: 
-                        widths: widths,
-                        sizes: sizes,
-                        loading: loading,
-                        alt: image.alt | default: 'Product information',
-                        class: 'product-info2-main-image'
-                    }}
-                {%- endif -%}
+                <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="product-info2">
                 <div class="product-info2-blocks">
                     {% if section.blocks.size > 0 %}
                         {% for block in section.blocks %}
@@ -437,22 +423,7 @@
                                 {% if section.settings.block_type == "text" %}
                                     <h2>{{ block.settings.heading }}</h2>
                                 {% else %}
-                                    {%- if block.settings.image != blank -%}
-                                        {% liquid
-                                            assign icon_image = block.settings.image
-                                            assign icon_widths = '56, 112'
-                                            assign icon_sizes = '56px'
-                                        %}
-                                        {{ icon_image | image_url: width: 112 | image_tag: 
-                                            widths: icon_widths,
-                                            sizes: icon_sizes,
-                                            loading: 'lazy',
-                                            alt: icon_image.alt | default: 'Icon',
-                                            width: 56,
-                                            height: 56,
-                                            class: 'product-info2-block-icon'
-                                        }}
-                                    {%- endif -%}
+                                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block icon">
                                 {% endif %}
                                 <span>{{ block.settings.content }}</span>
                             </div>
@@ -473,42 +444,12 @@
                 <div class="product-info2-footer2">
                     {% if section.settings.additional_footer %}
                         <div class="product-info2-left">
-                            {%- if section.settings.additional_image1 != blank -%}
-                                {% liquid
-                                    assign add_image1 = section.settings.additional_image1
-                                    assign add_widths = '48, 96'
-                                    assign add_sizes = '48px'
-                                %}
-                                {{ add_image1 | image_url: width: 96 | image_tag: 
-                                    widths: add_widths,
-                                    sizes: add_sizes,
-                                    loading: 'lazy',
-                                    alt: add_image1.alt | default: 'Additional information',
-                                    width: 48,
-                                    height: 48,
-                                    class: 'product-info2-additional-image'
-                                }}
-                            {%- endif -%}
+                            <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
                             <div class="product-block-line"></div>
                             <span>{{ section.settings.additional_content1 }}</span>
                         </div>
                         <div class="product-info2-right">
-                            {%- if section.settings.additional_image2 != blank -%}
-                                {% liquid
-                                    assign add_image2 = section.settings.additional_image2
-                                    assign add_widths = '48, 96'
-                                    assign add_sizes = '48px'
-                                %}
-                                {{ add_image2 | image_url: width: 96 | image_tag: 
-                                    widths: add_widths,
-                                    sizes: add_sizes,
-                                    loading: 'lazy',
-                                    alt: add_image2.alt | default: 'Additional information',
-                                    width: 48,
-                                    height: 48,
-                                    class: 'product-info2-additional-image'
-                                }}
-                            {%- endif -%}
+                            <img src="{{ section.settings.additional_image2 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image2">
                             <div class="product-block-line"></div>
                             <span>{{ section.settings.additional_content2 }}</span>
                         </div>
@@ -531,42 +472,12 @@
                     {% if section.settings.additional_footer %}
                         <div>
                             <div class="product-info2-left">
-                                {%- if section.settings.additional_image1 != blank -%}
-                                    {% liquid
-                                        assign add_image1 = section.settings.additional_image1
-                                        assign add_widths = '48, 96'
-                                        assign add_sizes = '48px'
-                                    %}
-                                    {{ add_image1 | image_url: width: 96 | image_tag: 
-                                        widths: add_widths,
-                                        sizes: add_sizes,
-                                        loading: 'lazy',
-                                        alt: add_image1.alt | default: 'Additional information',
-                                        width: 48,
-                                        height: 48,
-                                        class: 'product-info2-additional-image'
-                                    }}
-                                {%- endif -%}
+                                <img src="{{ section.settings.additional_image1 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image1">
                                 <div class="product-block-line"></div>
                                 <span>{{ section.settings.additional_content1 }}</span>
                             </div>
                             <div class="product-info2-right">
-                                {%- if section.settings.additional_image2 != blank -%}
-                                    {% liquid
-                                        assign add_image2 = section.settings.additional_image2
-                                        assign add_widths = '48, 96'
-                                        assign add_sizes = '48px'
-                                    %}
-                                    {{ add_image2 | image_url: width: 96 | image_tag: 
-                                        widths: add_widths,
-                                        sizes: add_sizes,
-                                        loading: 'lazy',
-                                        alt: add_image2.alt | default: 'Additional information',
-                                        width: 48,
-                                        height: 48,
-                                        class: 'product-info2-additional-image'
-                                    }}
-                                {%- endif -%}
+                                <img src="{{ section.settings.additional_image2 | img_url: 'master' }}" width="100%" height="100%" alt="Additional Block Image2">
                                 <div class="product-block-line"></div>
                                 <span>{{ section.settings.additional_content2 }}</span>
                             </div>
