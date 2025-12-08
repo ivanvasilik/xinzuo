@@ -1,445 +1,453 @@
 {% style %}
-    .section-{{ section.id }} {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
 
-    .section-{{ section.id }} .product-info {
-        display: flex;
-        flex-direction: column;
-        gap: 64px;
-    }
+  .section-{{ section.id }} .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+  }
 
-    .section-{{ section.id }} .product-info > img {
-        width: 100%;
-        height: auto;
-        padding: 40px 0;
-    }
+  .section-{{ section.id }} .product-info > img {
+      /* width: 100%;
+      height: auto; */
+      max-width: 90%;
+      margin: 0 auto;
+      max-height: 900px;
+      padding: 40px 0;
+  }
 
-    .section-{{ section.id }} .product-info > div {
-        width: 100%;
-        max-width: 1080px;
-        padding: 0 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 80px;
-        margin: auto;
-    }
+  .section-{{ section.id }} .product-info > div {
+      width: 100%;
+      max-width: 1080px;
+      padding: 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      margin: auto;
+  }
 
-    .section-{{ section.id }} .product-info-header > h2 {
-        font-family: "Sen";
-        font-weight: 600;
-        font-size: 64px;
-        {% if section.settings.header_type == "left" %}
-            color: #fff;
-        {% else %}
-            color: white;
-            text-align: center;
-        {% endif %}
-        line-height: 125%;
-        margin: 0;
-    }
+  .section-{{ section.id }} .product-info-header > h2 {
+      font-family: "Sen";
+      font-weight: 600;
+      font-size: 64px;
+      {% if section.settings.header_type == "left" %}
+          color: #fff;
+      {% else %}
+          color: white;
+          text-align: center;
+      {% endif %}
+      line-height: 125%;
+      margin: 0;
+  }
 
-    {% if section.settings.header_type == "center" %}
-        .section-{{ section.id }} .product-info-header {
-            display: block;
-            margin-bottom: 32px;
-        }
-    {% endif %}
+  {% if section.settings.header_type == "center" %}
+      .section-{{ section.id }} .product-info-header {
+          display: block;
+          margin-bottom: 32px;
+      }
+  {% endif %}
 
-    .section-{{ section.id }} .product-info-headerdiv {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 32px;
-    }
+  .section-{{ section.id }} .product-info-headerdiv {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 32px;
+  }
 
-    .section-{{ section.id }} .product-info-icons {
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 80px;
-        row-gap: 64px;
-    }
+  .section-{{ section.id }} .product-info-icons {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 80px;
+      row-gap: 64px;
+  }
 
-    .section-{{ section.id }} .product-info-icon {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        padding-right: 16px;
-        {% if section.settings.first_num == "2" %}
-            width: calc(50% - 40px);
-        {% else %}
-            width: calc(100% / 3 - 160px / 3);
-        {% endif %}
-    }
+  .section-{{ section.id }} .product-info-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-right: 16px;
+      {% if section.settings.first_num == "2" %}
+          width: calc(50% - 40px);
+      {% else %}
+          width: calc(100% / 3 - 160px / 3);
+      {% endif %}
+  }
 
-    .section-{{ section.id }} .product-info-span {
-        {% if section.settings.header_type == "left" %}
-            max-width: 840px;
-        {% else %}
-            width: 100%;
-            text-align: center;
-        {% endif %}
-    }
-    
-    .section-{{ section.id }} .product-info-icon img {
-        width: 40px;
-        height: 40px;
-    }
+  .section-{{ section.id }} .product-info-span {
+      {% if section.settings.header_type == "left" %}
+          max-width: 840px;
+      {% else %}
+          width: 100%;
+          text-align: center;
+      {% endif %}
+  }
 
-    .section-{{ section.id }} span, .section-{{ section.id }} p {
-        font-family: "Albert Sans";
-        font-weight: 400;
-        font-size: 18px;
-        color: #c9c9cc;
-        line-height: 150%;
-    }
+  .section-{{ section.id }} .product-info-icon img {
+      width: 40px;
+      height: 40px;
+  }
 
-    .section-{{ section.id }} .product-info-icon span {
-        max-width: 360px;
-    }
+  .section-{{ section.id }} span, .section-{{ section.id }} p {
+      font-family: "Albert Sans";
+      font-weight: 400;
+      font-size: 18px;
+      color: #c9c9cc;
+      line-height: 150%;
+  }
 
-    .section-{{ section.id }} strong {
-        font-weight: 700;
-        color: #fff;
-    }
+  .section-{{ section.id }} .product-info-icon span {
+      max-width: 360px;
+  }
 
-    .section-{{ section.id }} h2 {
-        font-family: "Sen";
-        font-weight: 600;
-        font-size: 36px;
-        color: #fff;
-        margin: 12px 0;
-    }
+  .section-{{ section.id }} strong {
+      font-weight: 700;
+      color: #fff;
+  }
 
-    .section-{{ section.id }} .product-info-divs {
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 80px;
-        row-gap: 64px;
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width: unset !important;
-    }
+  .section-{{ section.id }} h2 {
+      font-family: "Sen";
+      font-weight: 600;
+      font-size: 36px;
+      color: #fff;
+      margin: 12px 0;
+  }
 
-    .section-{{ section.id }} .product-info-div {
-        display: flex;
-        flex-direction: column;
-        padding-top: 32px;
-        {% if section.settings.second_num == "2" %}
-            width: calc(50% - 40px);
-        {% else %}
-            width: calc(100% / 3 - 160px / 3);
-        {% endif %}
-        position: relative;
-    }
+  .section-{{ section.id }} .product-info-divs {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 80px;
+      row-gap: 64px;
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: unset !important;
+  }
 
-    .section-{{ section.id }} .product-info-div span {
-        max-width: 200px;
-    }
+  .section-{{ section.id }} .product-info-div {
+      display: flex;
+      flex-direction: column;
+      padding-top: 32px;
+      {% if section.settings.second_num == "2" %}
+          width: calc(50% - 40px);
+      {% else %}
+          width: calc(100% / 3 - 160px / 3);
+      {% endif %}
+      position: relative;
+  }
 
-    .section-{{ section.id }} .product-info-div:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: 240px;
-        height: 1px;
-        background-color: #ff0004;
-    }
+  .section-{{ section.id }} .product-info-div span {
+      max-width: 200px;
+  }
 
-    {% if section.settings.width == "full" %}
-        .section-{{ section.id }} {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-        }
-    {% endif %}
+  .section-{{ section.id }} .product-info-div:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 240px;
+      height: 1px;
+      background-color: #ff0004;
+  }
 
-    @media screen and (max-width: 1025px) {
-        .section-{{ section.id }} {
-            padding: 48px 0;
-        }
+  {% if section.settings.width == "full" %}
+      .section-{{ section.id }} {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+      }
+  {% endif %}
 
-        .section-{{ section.id }} .product-info {
-            gap: 40px;
-        }
+  @media screen and (max-width: 1025px) {
+      .section-{{ section.id }} {
+          padding: 48px 0;
+      }
 
-        .section-{{ section.id }} .product-info > img {
-            padding: 24px 0;
-        }
+      .section-{{ section.id }} .product-info {
+          gap: 40px;
+      }
 
-        .section-{{ section.id }} .product-info > div {
-            gap: 48px;
-        }
+      .section-{{ section.id }} .product-info > img {
+          padding: 24px 0;
+      }
 
-        .section-{{ section.id }}  .product-info-icons {
-            column-gap: 40px;
-            row-gap: 48px;
-        }
+      .section-{{ section.id }} .product-info > div {
+          gap: 48px;
+      }
 
-        .section-{{ section.id }} .product-info-icon {
-            width: calc(50% - 20px);
-        }
+      .section-{{ section.id }}  .product-info-icons {
+          column-gap: 40px;
+          row-gap: 48px;
+      }
 
-        .section-{{ section.id }} .product-info-divs {
-            column-gap: 40px;
-            row-gap: 48px;
-        }
+      .section-{{ section.id }} .product-info-icon {
+          width: calc(50% - 20px);
+      }
 
-        .section-{{ section.id }} .product-info-div {
-            width: calc(50% - 20px);
-        }
+      .section-{{ section.id }} .product-info-divs {
+          column-gap: 40px;
+          row-gap: 48px;
+      }
 
-        .section-{{ section.id }} .product-info-header > h2 {
-            font-size: 40px;
-        }
+      .section-{{ section.id }} .product-info-div {
+          width: calc(50% - 20px);
+      }
 
-        .section-{{ section.id }} .product-info-div h2 {
-            font-size: 22px;
-        }
-    }
+      .section-{{ section.id }} .product-info-header > h2 {
+          font-size: 40px;
+      }
 
-    @media screen and (max-width: 750px) {
-        .section-{{ section.id }} .product-info-icons {
-            flex-direction: column;
-        }
+      .section-{{ section.id }} .product-info-div h2 {
+          font-size: 22px;
+      }
+  }
 
-        .section-{{ section.id }} .product-info-icon {
-            width: 100%;
-            gap: 20px;
-        }
-        
-        .section-{{ section.id }} .product-info-header > h2 {
-            font-size: 32px;
-        }
+  @media screen and (max-width: 750px) {
+      .section-{{ section.id }} .product-info-icons {
+          flex-direction: column;
+      }
 
-        .section-{{ section.id }} .product-info-divs {
-            flex-direction: column;
-        }
+      .section-{{ section.id }} .product-info-icon {
+          width: 100%;
+          gap: 20px;
+      }
 
-        .section-{{ section.id }} .product-info-div {
-            width: 100%;
-            padding-top: 24px;
-        }
+      .section-{{ section.id }} .product-info-header > h2 {
+          font-size: 32px;
+      }
 
-        .section-{{ section.id }} .product-info-headerdiv {
-            padding: 0;
-        }
+      .section-{{ section.id }} .product-info-divs {
+          flex-direction: column;
+      }
 
-        .section-{{ section.id }} .product-info-div span {
-            max-width: unset;
-        }
+      .section-{{ section.id }} .product-info-div {
+          width: 100%;
+          padding-top: 24px;
+      }
 
-        .section-{{ section.id }} .product-info-div:before {
-            max-width: unset;
-        }
-    }
+      .section-{{ section.id }} .product-info-headerdiv {
+          padding: 0;
+      }
+
+      .section-{{ section.id }} .product-info-div span {
+          max-width: unset;
+      }
+
+      .section-{{ section.id }} .product-info-div:before {
+          max-width: unset;
+      }
+  }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
-    <div class="product-info">
-        <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
-        <div>
-            {% if section.settings.header_type == "left" %}
-                {% if section.settings.heading != blank %}
-                    <span class="product-info-header">{{ section.settings.heading }}</span>
-                {% endif %}
-                {% if section.settings.icon_block_state %}
-                    <div class="product-info-icons">
-                        {% for block in section.blocks %}
-                            {% if block.type == "icon" %}
-                                <div class="product-info-icon">
-                                    <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="block image">
-                                    <span>{{ block.settings.content }}</span>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <span class="product-info-span">{{ section.settings.content }}</span>
-            {% else %}
-                <div class="product-info-headerdiv">
-                    {% if section.settings.heading != blank %}
-                        <span class="product-info-header">{{ section.settings.heading }}</span>
-                    {% endif %}
-                    <span class="product-info-span">{{ section.settings.content }}</span>
+  <div class="product-info">
+    <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
+    <div>
+      {% if section.settings.header_type == 'left' %}
+        {% if section.settings.heading != blank %}
+          <span class="product-info-header">{{ section.settings.heading }}</span>
+        {% endif %}
+        {% if section.settings.icon_block_state %}
+          <div class="product-info-icons">
+            {% for block in section.blocks %}
+              {% if block.type == 'icon' %}
+                <div class="product-info-icon">
+                  <img
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    width="100%"
+                    height="100%"
+                    alt="block image"
+                  >
+                  <span>{{ block.settings.content }}</span>
                 </div>
-            {% endif %}
-            <div class="product-info-divs">
-                {% for block in section.blocks %}
-                    {% if block.type == "block" %}
-                        <div class="product-info-div">
-                            <span>{{ block.settings.header }}</span>
-                            <h2>{{ block.settings.content }}</h2>
-                            <span>{{ block.settings.footer }}</span>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <span class="product-info-span">{{ section.settings.content }}</span>
+      {% else %}
+        <div class="product-info-headerdiv">
+          {% if section.settings.heading != blank %}
+            <span class="product-info-header">{{ section.settings.heading }}</span>
+          {% endif %}
+          <span class="product-info-span">{{ section.settings.content }}</span>
         </div>
+      {% endif %}
+      <div class="product-info-divs">
+        {% for block in section.blocks %}
+          {% if block.type == 'block' %}
+            <div class="product-info-div">
+              <span>{{ block.settings.header }}</span>
+              <h2>{{ block.settings.content }}</h2>
+              <span>{{ block.settings.footer }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
+  </div>
 </section>
 
 {% schema %}
 {
-    "name": "Product Info",
-    "settings": [
+  "name": "Product Info",
+  "settings": [
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
         {
-            "type": "select",
-            "id": "width",
-            "label": "Width",
-            "options": [
-                {
-                    "label": "Page",
-                    "value": "page"
-                },
-                {
-                    "label": "Full",
-                    "value": "full"
-                }
-            ],
-            "default": "page"
+          "label": "Page",
+          "value": "page"
         },
         {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-        },
-        {
-            "type": "select",
-            "id": "header_type",
-            "label": "Header Type",
-            "options": [
-                {
-                    "label": "Left",
-                    "value": "left"
-                },
-                {
-                    "label": "Center",
-                    "value": "center"
-                }
-            ],
-            "default": "left",
-        },
-        {
-            "type": "richtext",
-            "id": "heading",
-            "label": "Heading"
-        },
-        {
-            "type": "richtext",
-            "id": "content",
-            "label": "Content"
-        },
-        {
-            "type": "checkbox",
-            "id": "icon_block_state",
-            "label": "Icon Block State",
-            "default": true
-        },
-        {
-            "type": "select",
-            "id": "first_num",
-            "label": "First Block columns",
-            "options": [
-                {
-                    "label": "2",
-                    "value": "2"
-                },
-                {
-                    "label": "3",
-                    "value": "3"
-                }
-            ],
-            "default": "3"
-        },
-        {
-            "type": "select",
-            "id": "second_num",
-            "label": "Second Block columns",
-            "options": [
-                {
-                    "label": "2",
-                    "value": "2"
-                },
-                {
-                    "label": "3",
-                    "value": "3"
-                }
-            ],
-            "default": "3"
-        },
-        {
-            "type": "color_scheme",
-            "id": "color_scheme",
-            "label": "t:settings.color_scheme",
-            "default": "scheme-1"
-        },
-        {
-            "type": "range",
-            "id": "padding_top",
-            "label": "Padding Top",
-            "min": 30,
-            "max": 120,
-            "step": 2,
-            "unit": "px",
-            "default": 80
-        },
-        {
-            "type": "range",
-            "id": "padding_bottom",
-            "label": "Padding Bottom",
-            "min": 30,
-            "max": 120,
-            "step": 2,
-            "unit": "px",
-            "default": 80
+          "label": "Full",
+          "value": "full"
         }
-    ],
-    "blocks": [
+      ],
+      "default": "page"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "header_type",
+      "label": "Header Type",
+      "options": [
         {
-            "type": "icon",
-            "name": "Icon Block",
-            "settings": [
-                {
-                    "type": "image_picker",
-                    "id": "image",
-                    "label": "Image"
-                },
-                {
-                    "type": "richtext",
-                    "id": "content",
-                    "label": "Content"
-                },
-            ]
+          "label": "Left",
+          "value": "left"
         },
         {
-            "type": "block",
-            "name": "Block",
-            "settings": [
-                {
-                    "type": "text",
-                    "id": "header",
-                    "label": "Header"
-                },
-                {
-                    "type": "text",
-                    "id": "content",
-                    "label": "Content"
-                },
-                {
-                    "type": "text",
-                    "id": "footer",
-                    "label": "Footer"
-                }
-            ]
+          "label": "Center",
+          "value": "center"
         }
-    ],
-    "presets": [
+      ],
+      "default": "left"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_block_state",
+      "label": "Icon Block State",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "first_num",
+      "label": "First Block columns",
+      "options": [
         {
-            "name": "Product Info"
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
         }
-    ]
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "second_num",
+      "label": "Second Block columns",
+      "options": [
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "header",
+          "label": "Header"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "footer",
+          "label": "Footer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Info"
+    }
+  ]
 }
 {% endschema %}
