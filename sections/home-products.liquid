@@ -7,7 +7,7 @@
         background-color: black;
         position: relative;
     }
-    
+
     .section-{{ section.id }} .home-products-gradient {
         background: linear-gradient(0deg, #0C0C0C 0%, #292A33 99.48%);
         width: 100%;
@@ -75,7 +75,7 @@
         font-size: 36px;
         color: #fff
     }
-        
+
     .section-{{ section.id }} .collection-price span.compare-price {
         font-size: 22px;
         text-decoration: line-through;
@@ -228,7 +228,18 @@
             padding: 10px 20px;
         }
     }
-    
+
+      @media screen and (max-width: 1250px) {
+      .section-{{ section.id }} .product-img img {
+          height:380px !important;
+         }
+
+    .section-{{ section.id }} .product-item {
+            width: calc(50% - 70px);
+        }
+
+    }
+
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} .home-products-div {
             padding: 30px 18px 60px;
@@ -265,140 +276,152 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
-    <div class="home-products">
-        <div class="home-products-gradient"></div>
-        <div class="home-products-div">
-            <h2>{{ section.settings.heading }}</h2>
-            <div class="home-grid" id="home-products">
-                {% assign counter = 0 %}
-                {% assign products_to_show = section.settings.products | default: collections.all.products %}
-                {% for product in products_to_show %}
-                    {% assign counter = counter | plus: 1 %}
-                    <div class="product-item" {% if counter > 4 %}style="display:none"{% endif %}>
-                        <a class="product-img" href="{{ product.url }}">
-                            {% if product.featured_image != blank %}
-                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="product-{{ product.id }}" loading="lazy">
-                            {% endif %}
-                            {% if product.available == false %}
-                                <span class="sold">Sold Out</span>
-                            {% endif %}
-                            {% if product.compare_at_price and product.compare_at_price > product.price %}
-                                {% assign discount = product.compare_at_price | minus: product.price %}
-                                {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
-                                <span class="price-off">{{ percent }}% OFF</span>
-                            {% endif %}
-                        </a>
-                        <h2>{{ product.title }}</h2>
-
-                        <!-- Start of Judge.me Rating Widget -->
-                        <div class="jdgm-widget jdgm-preview-badge" 
-                        data-id="{{ collection.id }}" 
-                        data-auto-install="false"
-                        style="padding: 12px;"
-                        >
-                        {{ product.metafields.judgeme.badge }}
-                        </div>
-                        <!-- End of Judge.me Rating Widget -->
-
-                        <div class="collection-price">
-                            <span class="prices">
-                                <span class="sale-price">{{ product.price | money }}</span>
-                                <span class="compare-price">{{ product.compare_at_price | money }}</span>
-                            </span>
-                            <a class="collection-link" href="{{ product.url }}">
-                                <span>SHOP NOW</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <g clip-path="url(#clip0_6018_26691)">
-                                        <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_6018_26691">
-                                        <rect width="20" height="20" fill="white"/>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <a id="load-more" href="/collections/all-products" data-page="1">SHOP ALL</a>
-            <a href="/collections/all-products" id="view-all-products" class="view-all-link">
-                <span>View All Products</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <g clip-path="url(#clip0_shop_all)">
-                        <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_shop_all">
-                            <rect width="20" height="20" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
+  <div class="home-products">
+    <div class="home-products-gradient"></div>
+    <div class="home-products-div">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="home-grid" id="home-products">
+        {% assign counter = 0 %}
+        {% assign products_to_show = section.settings.products | default: collections.all.products %}
+        {% for product in products_to_show %}
+          {% assign counter = counter | plus: 1 %}
+          <div
+            class="product-item"
+            {% if counter > 4 %}
+              style="display:none"
+            {% endif %}
+          >
+            <a class="product-img" href="{{ product.url }}">
+              {% if product.featured_image != blank %}
+                <img
+                  src="{{ product.featured_image | img_url: 'master' }}"
+                  width="100%"
+                  height="100%"
+                  alt="product-{{ product.id }}"
+                  loading="lazy"
+                >
+              {% endif %}
+              {% if product.available == false %}
+                <span class="sold">Sold Out</span>
+              {% endif %}
+              {% if product.compare_at_price and product.compare_at_price > product.price %}
+                {% assign discount = product.compare_at_price | minus: product.price %}
+                {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                <span class="price-off">{{ percent }}% OFF</span>
+              {% endif %}
             </a>
-        </div>
+            <h2>{{ product.title }}</h2>
+
+            <!-- Start of Judge.me Rating Widget -->
+            <div
+              class="jdgm-widget jdgm-preview-badge"
+              data-id="{{ collection.id }}"
+              data-auto-install="false"
+              style="padding: 12px;"
+            >
+              {{ product.metafields.judgeme.badge }}
+            </div>
+            <!-- End of Judge.me Rating Widget -->
+
+            <div class="collection-price">
+              <span class="prices">
+                <span class="sale-price">{{ product.price | money }}</span>
+                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+              </span>
+              <a class="collection-link" href="{{ product.url }}">
+                <span>SHOP NOW</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <g clip-path="url(#clip0_6018_26691)">
+                      <path d="M5 15L15 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M6.875 5H15V13.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                      <clipPath id="clip0_6018_26691">
+                      <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <a id="load-more" href="/collections/all-products" data-page="1">SHOP ALL</a>
+      <a href="/collections/all-products" id="view-all-products" class="view-all-link">
+        <span>View All Products</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <g clip-path="url(#clip0_shop_all)">
+              <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+              <clipPath id="clip0_shop_all">
+                  <rect width="20" height="20" fill="white"/>
+              </clipPath>
+          </defs>
+        </svg>
+      </a>
     </div>
+  </div>
 </div>
 
 <script>
-    {% comment %} document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.querySelector('#load-more');
-        const viewAllBtn = document.querySelector('#view-all-products');
-        const products = document.querySelectorAll('#home-products .product-item');
-        let visible = 4;
+  {% comment %} document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('#load-more');
+      const viewAllBtn = document.querySelector('#view-all-products');
+      const products = document.querySelectorAll('#home-products .product-item');
+      let visible = 4;
 
-        btn.addEventListener('click', () => {
-            btn.disabled = true;
-            btn.textContent = 'Loading...';
+      btn.addEventListener('click', () => {
+          btn.disabled = true;
+          btn.textContent = 'Loading...';
 
-            setTimeout(() => {
-            for (let i = visible; i < visible + 4; i++) {
-                if (products[i]) products[i].style.display = 'block';
-            }
+          setTimeout(() => {
+          for (let i = visible; i < visible + 4; i++) {
+              if (products[i]) products[i].style.display = 'block';
+          }
 
-            visible += 4;
+          visible += 4;
 
-            btn.disabled = false;
-            btn.textContent = 'Load more';
+          btn.disabled = false;
+          btn.textContent = 'Load more';
 
-            if (visible >= products.length) {
-                btn.remove();
-                viewAllBtn.style.display = 'flex';
-            }
-            }, 1000);
-        });
-    }); {% endcomment %}
+          if (visible >= products.length) {
+              btn.remove();
+              viewAllBtn.style.display = 'flex';
+          }
+          }, 1000);
+      });
+  }); {% endcomment %}
 </script>
 
 {% schema %}
 {
-    "name": "Home Products",
-    "settings": [
-        {
-            "type": "text",
-            "id": "heading",
-            "label": "Heading"
-        },
-        {
-            "type": "product_list",
-            "id": "products",
-            "label": "Products to Display",
-            "limit": 24,
-            "info": "Select products and drag to reorder. Leave empty to show all products."
-        },
-        {
-            "type": "color_scheme",
-            "id": "color_scheme",
-            "label": "t:settings.color_scheme",
-            "default": "scheme-1"
-        }
-    ],
-    "presets": [
-        {
-            "name": "Home Products"
-        }
-    ]
+  "name": "Home Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products to Display",
+      "limit": 24,
+      "info": "Select products and drag to reorder. Leave empty to show all products."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Products"
+    }
+  ]
 }
 {% endschema %}
