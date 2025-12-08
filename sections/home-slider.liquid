@@ -175,7 +175,7 @@
     width: 100%;
     object-fit: cover;
   }
-  
+
   .section-{{ section.id }} .swiper-buttons {
     display: flex;
     margin-top: 64px;
@@ -220,7 +220,7 @@
     font-size: 36px;
     color: #fff
   }
-      
+
   .section-{{ section.id }} .collection-price span.compare-price {
     font-size: 22px;
     text-decoration: line-through;
@@ -243,6 +243,13 @@
     .section-{{ section.id }} > div {
       padding: 48px 30px;
     }
+
+    .section-{{ section.id }} .collection-price span.prices {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 26px;
+    color: #fff
+  }
   }
 
   @media screen and (max-width: 1025px) {
@@ -290,7 +297,7 @@
       font-size: 28px;
       margin-bottom: 12px;
     }
-    
+
     .section-{{ section.id }} .home-menu-list {
       margin-bottom: 48px;
     }
@@ -323,30 +330,32 @@
             </li>
           {% endfor %}
         </ul>
-        {% comment %} <div class="collection-products-div1" onclick="collectinUlPrev()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-            <g clip-path="url(#clip0_4235_8014)">
-              <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4235_8014">
-                <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </div>
-        <div class="collection-products-div2" onclick="collectinUlNext()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-            <g clip-path="url(#clip0_4235_8014)">
-              <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_4235_8014">
-                <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </div> {% endcomment %}
+        {% comment %}
+          <div class="collection-products-div1" onclick="collectinUlPrev()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+              <g clip-path="url(#clip0_4235_8014)">
+                <path d="M12.5 3.91602L6.25 10.166L12.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_4235_8014">
+                  <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <div class="collection-products-div2" onclick="collectinUlNext()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+              <g clip-path="url(#clip0_4235_8014)">
+                <path d="M7.5 3.91602L13.75 10.166L7.5 16.416" stroke="#c9c9cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_4235_8014">
+                  <rect width="20" height="20" fill="white" transform="translate(0 0.166016)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        {% endcomment %}
       </div>
     </div>
     {% for block in section.blocks %}
@@ -356,15 +365,23 @@
           <div class="swiper-wrapper">
             {% for product in collection.products %}
               <div class="swiper-slide">
-                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="home slider {{ forloop.index }}"></a>
-                <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+                <a href="{{ product.url }}"
+                  ><img
+                    src="{{ product.featured_image | img_url: 'master' }}"
+                    width="100%"
+                    height="100%"
+                    loading="lazy"
+                    alt="home slider {{ forloop.index }}"
+                ></a>
+                <h2>{{ product.title | strip_html | truncate: 20, '...' }}</h2>
                 <!-- Start of Judge.me Rating Widget -->
-                <div class="jdgm-widget jdgm-preview-badge" 
-                  data-id="{{ collection.id }}" 
+                <div
+                  class="jdgm-widget jdgm-preview-badge"
+                  data-id="{{ collection.id }}"
                   data-auto-install="false"
                   style="padding: 12px;"
                 >
-                {{ product.metafields.judgeme.badge }}
+                  {{ product.metafields.judgeme.badge }}
                 </div>
                 <!-- End of Judge.me Rating Widget -->
                 <div class="collection-price">
@@ -441,7 +458,7 @@
       prevEl: '.swiper-button-prev',
     },
   });
-  
+
   const homeslider = (num) => {
     const homeCollections = document.querySelectorAll('.home-collection');
     const homeSliders = document.querySelectorAll('.home-slider');
