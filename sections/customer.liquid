@@ -52,7 +52,9 @@
     .section-{{ section.id }} .customer-imgs img {
         width: auto;
         height: 60px;
+        max-width: 200px;
         display: block;
+        object-fit: contain;
     }
 
     @media screen and (max-width: 750px) {
@@ -79,6 +81,7 @@
 
         .section-{{ section.id }} .customer-imgs img {
             height: 55px;
+            max-width: 150px;
         }
     }
 {% endstyle %}
@@ -90,15 +93,30 @@
             <div class="swiper swiper-container mySwiper_u" >    
                 <div class="swiper-wrapper">
                     {%- for block in section.blocks -%}
-                        <div class="swiper-slide">
-                            <img src="{{ block.settings.image | img_url:'master' }}" width="100%" height="100%" loading="lazy" alt="Customer image">
-                        </div>
-                    {%- endfor -%}
-                    {%- comment -%} Duplicate slides for seamless loop {%- endcomment -%}
-                    {%- for block in section.blocks -%}
-                        <div class="swiper-slide">
-                            <img src="{{ block.settings.image | img_url:'master' }}" width="100%" height="100%" loading="lazy" alt="Customer image">
-                        </div>
+                        {%- if block.settings.image != blank -%}
+                            <div class="swiper-slide">
+                                {% liquid
+                                    assign image = block.settings.image
+                                    assign alt_text = image.alt | default: 'Customer logo'
+                                    assign widths = '150, 200, 300, 400'
+                                    assign sizes = '(min-width: 750px) 200px, 150px'
+                                    assign loading = 'lazy'
+                                    if forloop.index <= 3
+                                        assign loading = 'eager'
+                                    endif
+                                %}
+                                {{ image | image_url: width: 400 | image_tag: 
+                                    widths: widths,
+                                    sizes: sizes,
+                                    loading: loading,
+                                    alt: alt_text,
+                                    width: 200,
+                                    height: 60,
+                                    class: 'customer-logo',
+                                    style: 'max-width: 200px; height: 60px; object-fit: contain;'
+                                }}
+                            </div>
+                        {%- endif -%}
                     {%- endfor -%}
                 </div>
             </div>
@@ -107,11 +125,21 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var swiperContainer = document.querySelector('.section-{{ section.id }} .mySwiper_u');
-        if (!swiperContainer) return;
+    (function() {
+        'use strict';
+        
+        // Wait for Swiper library to load
+        function initCustomerCarousel() {
+            if (typeof Swiper === 'undefined') {
+                // Retry after a short delay if Swiper not loaded yet
+                setTimeout(initCustomerCarousel, 100);
+                return;
+            }
+            
+            var swiperContainer = document.querySelector('.section-{{ section.id }} .mySwiper_u');
+            if (!swiperContainer) return;
 
-        var swiper = new Swiper(swiperContainer, {
+            var swiper = new Swiper(swiperContainer, {
             slidesPerView: 'auto',
             spaceBetween: 30,
             loop: true,
@@ -170,49 +198,80 @@
             }
         });
 
-        // Ensure autoplay keeps running
-        function ensureAutoplay() {
-            if (swiper && swiper.autoplay && !swiper.autoplay.running) {
-                swiper.autoplay.start();
-            }
-        }
-
-        // Prevent clicks on slides/images from stopping autoplay
-        var slides = swiperContainer.querySelectorAll('.swiper-slide');
-        slides.forEach(function(slide) {
-            // Prevent click events from propagating to Swiper
-            slide.addEventListener('click', function(e) {
-                // Don't let clicks stop autoplay
+            // Ensure autoplay keeps running
+            function ensureAutoplay() {
                 if (swiper && swiper.autoplay && !swiper.autoplay.running) {
                     swiper.autoplay.start();
                 }
-            }, true); // Use capture phase to intercept before Swiper
+            }
+
+            // Prevent clicks on slides/images from stopping autoplay
+            var slides = swiperContainer.querySelectorAll('.swiper-slide');
+            var clickHandlers = [];
             
-            // Also handle clicks on images
-            var images = slide.querySelectorAll('img');
-            images.forEach(function(img) {
-                img.addEventListener('click', function(e) {
-                    // Don't let clicks stop autoplay
+            slides.forEach(function(slide) {
+                var clickHandler = function(e) {
                     if (swiper && swiper.autoplay && !swiper.autoplay.running) {
                         swiper.autoplay.start();
                     }
-                }, true); // Use capture phase
+                };
+                slide.addEventListener('click', clickHandler, true);
+                clickHandlers.push({ element: slide, handler: clickHandler });
+                
+                var images = slide.querySelectorAll('img');
+                images.forEach(function(img) {
+                    var imgClickHandler = function(e) {
+                        if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                            swiper.autoplay.start();
+                        }
+                    };
+                    img.addEventListener('click', imgClickHandler, true);
+                    clickHandlers.push({ element: img, handler: imgClickHandler });
+                });
             });
-        });
 
-        // Restart autoplay when page becomes visible again
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
+            // Visibility change handler
+            var visibilityHandler = function() {
+                if (!document.hidden) {
+                    ensureAutoplay();
+                }
+            };
+            document.addEventListener('visibilitychange', visibilityHandler);
+
+            // Periodic check with cleanup
+            var autoplayInterval = setInterval(ensureAutoplay, 3000);
+
+            // Focus handler
+            var focusHandler = function() {
                 ensureAutoplay();
-            }
-        });
+            };
+            window.addEventListener('focus', focusHandler);
 
-        // Check periodically that autoplay is still running
-        setInterval(ensureAutoplay, 3000);
+            // Cleanup on section removal (for Section Rendering API)
+            var observer = new MutationObserver(function() {
+                if (!document.contains(swiperContainer)) {
+                    clearInterval(autoplayInterval);
+                    clickHandlers.forEach(function(item) {
+                        item.element.removeEventListener('click', item.handler, true);
+                    });
+                    document.removeEventListener('visibilitychange', visibilityHandler);
+                    window.removeEventListener('focus', focusHandler);
+                    if (swiper && swiper.destroy) {
+                        swiper.destroy(true, true);
+                    }
+                    observer.disconnect();
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
 
-        // Restart on focus
-        window.addEventListener('focus', ensureAutoplay);
-    });
+        // Initialize when DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCustomerCarousel);
+        } else {
+            initCustomerCarousel();
+        }
+    })();
 </script>
 
 {% schema %}
