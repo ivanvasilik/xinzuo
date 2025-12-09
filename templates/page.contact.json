@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h2>{{ closest.page.title }}</h2>",
+            "text": "<h3>Contact Us from the form below:</h3>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -38,13 +38,13 @@
           },
           "blocks": {}
         },
-        "content": {
+        "text_LWRbza": {
           "type": "text",
           "name": "t:names.content",
           "settings": {
-            "text": "{{ closest.page.content }}",
+            "text": "<p>{{ closest.page.content }}</p>",
             "width": "100%",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-primary--family)",
@@ -67,7 +67,7 @@
       },
       "block_order": [
         "title",
-        "content"
+        "text_LWRbza"
       ],
       "settings": {
         "content_direction": "column",
