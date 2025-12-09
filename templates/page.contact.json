@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h3>Contact Us from the form below:</h3>",
+            "text": "<h2>Contact Us</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
