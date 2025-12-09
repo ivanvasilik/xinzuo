@@ -451,7 +451,13 @@
   .menu-list__list-item ul {
     max-height: calc(100vh - 100px);
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+
+  .menu-list__list-item ul::-webkit-scrollbar {
+  display: none;
+}
 
   .home-menu-ul {
     display: flex;
