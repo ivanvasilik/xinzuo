@@ -3,7 +3,7 @@
     display:flex;
     width:100%;
     justify-content:center;
-    align-content:center;
+    align-items:center;
   }
 {% endstyle %}
 
@@ -19,6 +19,7 @@
       contact-layout-custom
     "
     style="
+      width:100%; align-items:center;
       {% render 'layout-panel-style', settings: section.settings %}
       {% render 'spacing-style', settings: section.settings %}
     "
