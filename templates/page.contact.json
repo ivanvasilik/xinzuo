@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h2>Contact Us</h2>",
+            "text": "<h2>{{ closest.page.title }}</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -38,13 +38,13 @@
           },
           "blocks": {}
         },
-        "text_LWRbza": {
+        "content": {
           "type": "text",
           "name": "t:names.content",
           "settings": {
-            "text": "<p>{{ closest.page.content }}</p>",
+            "text": "{{ closest.page.content }}",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "narrow",
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-primary--family)",
@@ -67,14 +67,14 @@
       },
       "block_order": [
         "title",
-        "text_LWRbza"
+        "content"
       ],
       "settings": {
         "content_direction": "column",
-        "gap": 32,
+        "gap": 24,
         "color_scheme": "scheme-5",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "padding-block-start": 60,
+        "padding-block-end": 24
       }
     },
     "form": {
@@ -84,7 +84,7 @@
           "type": "contact-form",
           "settings": {
             "width": "custom",
-            "custom_width": 50,
+            "custom_width": 100,
             "width_mobile": "custom",
             "custom_width_mobile": 100,
             "inherit_color_scheme": true,
@@ -119,12 +119,12 @@
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
+        "gap": 48,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -140,7 +140,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 32,
+        "padding-block-start": 48,
         "padding-block-end": 84
       }
     }
