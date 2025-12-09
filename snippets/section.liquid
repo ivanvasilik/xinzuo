@@ -50,13 +50,13 @@
     {% endif %}
 
     <div
-      style="display:flex !important; width:100%; justify-content:center !important; align-items:center !important;"
       class="
         spacing-style
         layout-panel-flex
         layout-panel-flex--{{ section.settings.content_direction }}
         section-content-wrapper contact-us
         {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
+         contact-layout-custom
       "
       style="
         {% render 'layout-panel-style', settings: section.settings %}
