@@ -54,9 +54,8 @@
         spacing-style
         layout-panel-flex
         layout-panel-flex--{{ section.settings.content_direction }}
-        section-content-wrapper contact-us
+        section-content-wrapper
         {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
-         contact-layout-custom
       "
       style="
         {% render 'layout-panel-style', settings: section.settings %}
@@ -70,12 +69,6 @@
 </div>
 
 {% stylesheet %}
-.contact-layout-custom {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
   .section-wrapper {
     --section-height-offset: 0px;
   }
