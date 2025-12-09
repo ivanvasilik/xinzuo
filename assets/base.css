@@ -359,6 +359,13 @@ p:empty {
   --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
 }
 
+.contact-layout-custom {
+  display:flex;
+  width:100%;
+  justify-content:center;
+  align-content:center;
+}
+
 /* Section width full vs. page
    The reason we use a grid to contain the section is to allow for the section to have a
    full-width background image even if the section content is constrained by the page width. Do not try
