@@ -127,43 +127,331 @@
 </div>
 
 {% stylesheet %}
+  /* Contact Form Styles */
+  .template-page-contact .contact-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .contact-form__form {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-md);
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .contact-form__form-row {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-md);
+    gap: 1.5rem;
 
     @media screen and (min-width: 750px) {
       flex-direction: row;
-      align-items: center;
+      gap: 1.25rem;
     }
+  }
+
+  .contact-form__form-row .contact-form__input {
+    flex: 1;
   }
 
   .contact-form__input {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--color-input-text);
-    background-color: rgb(18 17 17);
-    padding: var(--padding-lg) var(--padding-xl);
-    border-radius: var(--style-border-radius-inputs);
+    color: var(--color-input-text, #ffffff);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .contact-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+  }
+
+  .contact-form__input:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .contact-form__input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
   }
 
   .contact-form__input--textarea {
     resize: vertical;
-    min-height: var(--input-textarea-min-height);
+    min-height: 150px;
+    font-family: inherit;
   }
 
   .contact-form__error,
   .contact-form__success {
     display: flex;
     align-items: center;
-    gap: var(--gap-xs);
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .contact-form__error {
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    color: #fca5a5;
+  }
+
+  .contact-form__success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86efac;
+  }
+
+  .contact-form__error svg,
+  .contact-form__success svg {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Contact Page Content Styling - Force centering */
+  .template-page-contact .section {
+    display: grid !important;
+  }
+
+  .template-page-contact .section > * {
+    grid-column: 2;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+  }
+
+  .template-page-contact .section-content-wrapper {
+    max-width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .template-page-contact .layout-panel-flex {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .template-page-contact .text-block {
+    text-align: center !important;
+    /* max-width: 800px !important; */
+    margin: 0 auto !important;
+    /* width: 100% !important; */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .template-page-contact .text-block > * {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .template-page-contact .text-block .rte {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .template-page-contact .text-block .rte > * {
+    text-align: center !important;
+  }
+
+  .template-page-contact .text-block h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .template-page-contact .text-block h2 + h2 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .template-page-contact .text-block p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+  }
+
+  .template-page-contact .text-block strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .template-page-contact .text-block strong:first-of-type {
+    margin-top: 0;
+  }
+
+  .template-page-contact .text-block p strong + *,
+  .template-page-contact .text-block strong + * {
+    text-align: center;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Center all text content including address lines */
+  .template-page-contact .text-block p,
+  .template-page-contact .text-block div,
+  .template-page-contact .text-block span {
+    text-align: center;
+  }
+
+  /* Ensure address and contact info are centered */
+  .template-page-contact .text-block br + * {
+    text-align: center;
+  }
+
+  .template-page-contact .text-block a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .template-page-contact .text-block a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  /* Center submit button */
+  .contact-form__form .submit-button {
+    align-self: center;
+    margin-top: 0.5rem;
+  }
+
+  /* Contact page section improvements - Override grid system */
+  .template-page-contact .section[data-section-type="section"],
+  .template-page-contact .section[data-section-type="main-page"] {
+    display: grid !important;
+  }
+
+  .template-page-contact .section[data-section-type="section"] > *,
+  .template-page-contact .section[data-section-type="main-page"] > * {
+    grid-column: 2;
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .template-page-contact .section[data-section-type="section"] .section-content-wrapper,
+  .template-page-contact .section[data-section-type="main-page"] .section-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Main page section centering */
+  .template-page-contact .section[data-section-type="main-page"] .section-content-wrapper {
+    max-width: 800px;
+    padding: 0 1.5rem;
+  }
+
+  /* Ensure all blocks are centered */
+  .template-page-contact .section-content-wrapper > * {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Override any width constraints on blocks */
+  .template-page-contact .text-block[style*="--width"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Improve spacing between sections */
+  .template-page-contact .section + .section {
+    margin-top: 2rem;
+  }
+
+  /* Better spacing for contact info items */
+  .template-page-contact .text-block p {
+    margin-bottom: 1.5rem;
+  }
+
+  .template-page-contact .text-block strong {
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Responsive improvements */
+  @media screen and (max-width: 749px) {
+    .template-page-contact .text-block {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+
+    .template-page-contact .text-block h2 {
+      font-size: 2rem;
+    }
+
+    .template-page-contact .text-block h2 + h2 {
+      font-size: 1.75rem;
+    }
+
+    .template-page-contact .text-block p {
+      font-size: 1rem;
+    }
+
+    .contact-form__input {
+      padding: 0.875rem 1rem;
+      font-size: 0.9375rem;
+    }
+
+    .contact-form__form {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
   }
 {% endstylesheet %}
