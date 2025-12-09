@@ -12,6 +12,31 @@
 {% stylesheet %}
   .submit-button {
     min-width: max-content;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .submit-button:active {
+    transform: translateY(0);
+  }
+
+  @media screen and (max-width: 749px) {
+    .submit-button {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 {% endstylesheet %}
 
