@@ -58,9 +58,9 @@
         {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
       "
       style="
+      display:flex; width:100%; justify-content:center; align-items:center;
         {% render 'layout-panel-style', settings: section.settings %}
         {% render 'spacing-style', settings: section.settings %}
-         display:flex; width:100%; justify-content:center; align-items:center;
       "
       data-testid="section-content"
     >
