@@ -1262,8 +1262,8 @@
         "footer_type": "second",
         "footer_left": "<p>Crafted with North American desert ironwood or refined redwood, seamlessly paired with buffalo horn, the Retro Series handle blends natural strength and timeless beauty. A hammered finish enhances its grip, delivering both artistry and utility.</p>",
         "footer_right": "<h2>Durable</h2><p>Desert ironwood ensures lasting strength.</p><h2>Balanced</h2><p>Buffalo horn adds weight harmony.</p><h2>Distinctive</h2><p>Hammered finish for unique style.</p>",
-        "padding_top": 80,
-        "padding_bottom": 80,
+        // "padding_top": 80,
+        // "padding_bottom": 80,
         "additional_footer": false,
         "additional_content1": "",
         "additional_content2": ""
@@ -1286,8 +1286,8 @@
         "right_title": "<h2>Elegant</h2>",
         "right_content": "<p>The Lan Series handle blends rich olive wood with copper-flower rivets, hand-finished for luxury. Ergonomic shaping ensures a fatigue-free grip, while natural warmth and fine detailing balance comfort, artistry, and enduring sophistication.</p>",
         "color_scheme": "scheme-5",
-        "padding_top": 80,
-        "padding_bottom": 80
+        // "padding_top": 80,
+        // "padding_bottom": 80
       }
     },
     "product_info2_GjRq8Y": {
