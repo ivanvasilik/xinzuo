@@ -305,7 +305,7 @@
       <a href="{{ product.url }}">
         <div class="link-product active">
           <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%">
-          <h4>{{ product.title | split: " Knife" | first | split: ' ' | last }}</h4>
+          <h4>{{ product.title | split: " - " | first | replace: '" ', '|' | split: '|' | last | replace: ' Knife', '' }}</h4>
         </div>
       </a>
       {% comment %} Then, render all other products in the collection {% endcomment %}
@@ -314,7 +314,7 @@
           <a href="{{ product_c.url }}">
             <div class="link-product">
               <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
-              <h4>{{ product_c.title | split: " Knife" | first | split: ' ' | last }}</h4>
+              <h4>{{ product_c.title | split: " - " | first | replace: '" ', '|' | split: '|' | last | replace: ' Knife', '' }}</h4>
             </div>
           </a>
         {% endunless %}
