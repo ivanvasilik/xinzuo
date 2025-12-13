@@ -949,6 +949,7 @@
         "block_XD86y8",
         "block_pXdtFM"
       ],
+      "disabled": true,
       "name": "Product Info",
       "settings": {
         "width": "page",
@@ -966,6 +967,7 @@
     },
     "product_info2_8biKrj": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "width": "page",
@@ -991,6 +993,7 @@
     },
     "product_info3_Gx89LP": {
       "type": "product-info3",
+      "disabled": true,
       "name": "Product Info3",
       "settings": {
         "width": "page",
@@ -1034,6 +1037,7 @@
     },
     "product_info2_GjRq8Y": {
       "type": "product-info2",
+      "disabled": true,
       "name": "Product Info2",
       "settings": {
         "width": "page",
@@ -1059,6 +1063,7 @@
     },
     "product_info4_nYeXEB": {
       "type": "product-info4",
+      "disabled": true,
       "name": "Product Info4",
       "settings": {
         "width": "page",
