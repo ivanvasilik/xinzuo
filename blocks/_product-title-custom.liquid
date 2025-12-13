@@ -2,25 +2,42 @@
   assign product = closest.product
   assign block_settings = block.settings
   
-  # Get the correct collection - prioritize specific series collections over generic ones
-  # If accessed from collection page, use that collection. Otherwise, find the series collection.
-  if collection
-    assign current_collection = collection
-  else
-    # Filter out generic collections and find the series collection
-    assign current_collection = null
+  # Always find the knife series collection
+  # Look for collections with "-series" in handle (e.g., "xinzuo-supreme-series-knives")
+  # This ensures we show the correct series, not "Best Sellers" or other collections
+  assign series_collection = null
+  for coll in product.collections
+    # Check if handle contains "-series" (e.g., "xinzuo-supreme-series-knives")
+    # Use "-series" to avoid matching "best-sellers" which contains "series"
+    if coll.handle contains '-series'
+      assign series_collection = coll
+      break
+    endif
+  endfor
+  
+  # If no series found, look for collections with "Series" in title
+  if series_collection == null
     for coll in product.collections
-      # Skip generic "all" or "knives" collections - look for series-specific ones
-      unless coll.handle contains 'all' or coll.handle == 'knives'
-        assign current_collection = coll
+      if coll.title contains "Series"
+        assign series_collection = coll
+        break
+      endif
+    endfor
+  endif
+  
+  # Fallback to non-generic collection if no series found
+  if series_collection == null
+    for coll in product.collections
+      unless coll.handle contains 'all' or coll.handle == 'knives' or coll.handle contains 'best-sellers'
+        assign series_collection = coll
         break
       endunless
     endfor
-    
-    # Fallback to first collection if no series found
-    if current_collection == null
-      assign current_collection = product.collections.first
-    endif
+  endif
+  
+  # Final fallback
+  if series_collection == null
+    assign series_collection = product.collections.first
   endif
 -%}
 
@@ -35,17 +52,16 @@
         {% else %}
           <a href="/collections/accessories">ACCESSORIES</a>
         {% endif %}
-        {% for collection in product.collections %}
-          {% if collection.title != "KNIVES" and collection.title != "ACCESSORIES" and collection.title != "All Products" %}
-            <span>&gt;</span>
-            <a href="{{ collection.url }}">{{ collection.title }}</a>
-          {% endif %}
-        {% endfor %}
+        {% comment %} Only show the series collection in breadcrumbs {% endcomment %}
+        {% if series_collection and series_collection.handle contains '-series' %}
+          <span>&gt;</span>
+          <a href="{{ series_collection.url }}">{{ series_collection.title }}</a>
+        {% endif %}
       </span>
     </div>
   {% endif %}
   
-  <h2 id="product-variant-title" class="product-title">{% if current_collection.handle != "accessories" %}{{ current_collection.title }} — {% endif %}{{ product.title | split: " - " | last }}</h2>
+  <h2 id="product-variant-title" class="product-title">{{ product.title }}</h2>
 </div>
 
 {% stylesheet %}
