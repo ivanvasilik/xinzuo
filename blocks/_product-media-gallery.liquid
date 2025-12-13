@@ -299,80 +299,122 @@
   </svg>
 </div>
 <div class="link-products">
-  {% for collection in product.collections %}
-    {% if collection.title contains "Series" %}
+  {% comment %} Only show circular menu for knives {% endcomment %}
+  {% if product.metafields.custom.isknife == true %}
+    {% for collection in product.collections %}
+      {% if collection.title contains "Series" %}
+        {% comment %} Extract the series identifier from current product title {% endcomment %}
+        {%- liquid
+          assign current_series = ""
+          if product.title contains "(X02)"
+            assign current_series = "X02"
+          elsif product.title contains "(X03)"
+            assign current_series = "X03"
+          elsif product.title contains "(X06)"
+            assign current_series = "X06"
+          elsif product.title contains "(PM8S)"
+            assign current_series = "PM8S"
+          elsif product.title contains "(B37)"
+            assign current_series = "B37"
+          endif
+        -%}
+      
       {% comment %} First, render the current/active product {% endcomment %}
       <a href="{{ product.url }}">
         <div class="link-product active">
           <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%">
           {%- liquid
-            assign display_name = product.title | split: " - " | first
-            if display_name contains '-Piece'
-              assign display_name = display_name | split: ' ' | first
+            # Check for custom metafield first
+            if product.metafields.custom.thumbnail_label != blank
+              assign display_name = product.metafields.custom.thumbnail_label
             else
-              assign has_size = false
-              if display_name contains '1"' or display_name contains '2"' or display_name contains '3"' or display_name contains '4"' or display_name contains '5"' or display_name contains '6"' or display_name contains '7"' or display_name contains '8"' or display_name contains '9"'
-                assign has_size = true
-              endif
-              if has_size
-                assign parts = display_name | split: '" '
-                if parts.size > 1
-                  assign display_name = parts[1]
-                endif
-              endif
-              if display_name contains 'Granton'
-                assign display_name = 'Granton'
-              elsif display_name contains 'Cai Dao'
-                assign display_name = 'Cai Dao'
-              elsif display_name contains "Butcher's"
-                assign display_name = "Butcher's"
-              else
+              # Fallback to parsing logic
+              assign display_name = product.title | split: " - " | first
+              if display_name contains '-Piece'
                 assign display_name = display_name | split: ' ' | first
+              else
+                assign has_size = false
+                if display_name contains '"'
+                  assign has_size = true
+                endif
+                if has_size
+                  assign parts = display_name | split: '" '
+                  if parts.size > 1
+                    assign display_name = parts[1]
+                  endif
+                endif
+                if display_name contains 'Granton'
+                  assign display_name = 'Granton'
+                elsif display_name contains 'Cai Dao'
+                  assign display_name = 'Cai Dao'
+                elsif display_name contains "Butcher's"
+                  assign display_name = "Butcher's"
+                else
+                  assign display_name = display_name | split: ' ' | first
+                endif
               endif
             endif
           -%}
           <h4>{{ display_name }}</h4>
         </div>
       </a>
-      {% comment %} Then, render all other products in the collection {% endcomment %}
+      {% comment %} Then, render all other products in the SAME series {% endcomment %}
       {% for product_c in collection.products %}
         {% unless product.id == product_c.id %}
-          <a href="{{ product_c.url }}">
-            <div class="link-product">
-              <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
-              {%- liquid
-                assign display_name = product_c.title | split: " - " | first
-                if display_name contains '-Piece'
-                  assign display_name = display_name | split: ' ' | first
-                else
-                  assign has_size = false
-                  if display_name contains '1"' or display_name contains '2"' or display_name contains '3"' or display_name contains '4"' or display_name contains '5"' or display_name contains '6"' or display_name contains '7"' or display_name contains '8"' or display_name contains '9"'
-                    assign has_size = true
-                  endif
-                  if has_size
-                    assign parts = display_name | split: '" '
-                    if parts.size > 1
-                      assign display_name = parts[1]
+          {% comment %} Only show if product is in the same series {% endcomment %}
+          {%- liquid
+            assign show_product = false
+            if current_series != "" and product_c.title contains current_series
+              assign show_product = true
+            endif
+          -%}
+          
+          {% if show_product %}
+            <a href="{{ product_c.url }}">
+              <div class="link-product">
+                <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
+                {%- liquid
+                  # Check for custom metafield first
+                  if product_c.metafields.custom.thumbnail_label != blank
+                    assign display_name = product_c.metafields.custom.thumbnail_label
+                  else
+                    # Fallback to parsing logic
+                    assign display_name = product_c.title | split: " - " | first
+                    if display_name contains '-Piece'
+                      assign display_name = display_name | split: ' ' | first
+                    else
+                      assign has_size = false
+                      if display_name contains '"'
+                        assign has_size = true
+                      endif
+                      if has_size
+                        assign parts = display_name | split: '" '
+                        if parts.size > 1
+                          assign display_name = parts[1]
+                        endif
+                      endif
+                      if display_name contains 'Granton'
+                        assign display_name = 'Granton'
+                      elsif display_name contains 'Cai Dao'
+                        assign display_name = 'Cai Dao'
+                      elsif display_name contains "Butcher's"
+                        assign display_name = "Butcher's"
+                      else
+                        assign display_name = display_name | split: ' ' | first
+                      endif
                     endif
                   endif
-                  if display_name contains 'Granton'
-                    assign display_name = 'Granton'
-                  elsif display_name contains 'Cai Dao'
-                    assign display_name = 'Cai Dao'
-                  elsif display_name contains "Butcher's"
-                    assign display_name = "Butcher's"
-                  else
-                    assign display_name = display_name | split: ' ' | first
-                  endif
-                endif
-              -%}
-              <h4>{{ display_name }}</h4>
-            </div>
-          </a>
+                -%}
+                <h4>{{ display_name }}</h4>
+              </div>
+            </a>
+          {% endif %}
         {% endunless %}
       {% endfor %}
+      {% break %}
     {% endif %}
   {% endfor %}
+  {% endif %}
 </div>
 <media-gallery
   class="
@@ -674,16 +716,55 @@
   .link-products {
     display: none;
     width: 100%;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    /* Enable smooth scrolling */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .link-products::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  /* Subtle gradient fade to indicate more content */
+  .link-products::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(var(--color-background), 1) 0%, rgba(var(--color-background), 0) 100%);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+  
+  /* Hide gradient when scrolled to end */
+  .link-products.scrolled-end::after {
+    opacity: 0;
   }
 
   .link-product {
     width: 90px;
+    min-width: 90px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding-bottom: 8px;
     margin-bottom: 8px;
+    margin-right: 12px;
+  }
+  
+  .link-product:last-child {
+    margin-right: 0;
   }
 
   .link-product.active {
@@ -731,6 +812,46 @@
     }
   }
 {% endstyle %}
+
+<script>
+  // Handle gradient fade for circular menu scroll indicator
+  document.addEventListener('DOMContentLoaded', function() {
+    const linkProducts = document.querySelector('.link-products');
+    if (!linkProducts) return;
+    
+    // Check if there's content to scroll
+    function hasScrollableContent() {
+      return linkProducts.scrollWidth > linkProducts.clientWidth;
+    }
+    
+    // Update gradient visibility based on scroll position
+    function updateScrollIndicator() {
+      if (!hasScrollableContent()) {
+        linkProducts.classList.add('scrolled-end');
+        return;
+      }
+      
+      const scrollLeft = linkProducts.scrollLeft;
+      const maxScroll = linkProducts.scrollWidth - linkProducts.clientWidth;
+      
+      // Hide gradient if scrolled near the end (within 20px)
+      if (scrollLeft >= maxScroll - 20) {
+        linkProducts.classList.add('scrolled-end');
+      } else {
+        linkProducts.classList.remove('scrolled-end');
+      }
+    }
+    
+    // Listen for scroll events
+    linkProducts.addEventListener('scroll', updateScrollIndicator);
+    
+    // Initial check
+    updateScrollIndicator();
+    
+    // Recheck on window resize
+    window.addEventListener('resize', updateScrollIndicator);
+  });
+</script>
 
 {% stylesheet %}
   .dialog-zoomed-gallery {
