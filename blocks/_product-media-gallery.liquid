@@ -305,7 +305,33 @@
       <a href="{{ product.url }}">
         <div class="link-product active">
           <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%">
-          <h4>{{ product.title | split: " - " | first | replace: '" ', '|' | split: '|' | last | replace: ' Knife', '' }}</h4>
+          {%- liquid
+            assign display_name = product.title | split: " - " | first
+            if display_name contains '-Piece'
+              assign display_name = display_name | split: ' ' | first
+            else
+              assign has_size = false
+              if display_name contains '1"' or display_name contains '2"' or display_name contains '3"' or display_name contains '4"' or display_name contains '5"' or display_name contains '6"' or display_name contains '7"' or display_name contains '8"' or display_name contains '9"'
+                assign has_size = true
+              endif
+              if has_size
+                assign parts = display_name | split: '" '
+                if parts.size > 1
+                  assign display_name = parts[1]
+                endif
+              endif
+              if display_name contains 'Granton'
+                assign display_name = 'Granton'
+              elsif display_name contains 'Cai Dao'
+                assign display_name = 'Cai Dao'
+              elsif display_name contains "Butcher's"
+                assign display_name = "Butcher's"
+              else
+                assign display_name = display_name | split: ' ' | first
+              endif
+            endif
+          -%}
+          <h4>{{ display_name }}</h4>
         </div>
       </a>
       {% comment %} Then, render all other products in the collection {% endcomment %}
@@ -314,7 +340,33 @@
           <a href="{{ product_c.url }}">
             <div class="link-product">
               <img src="{{ product_c.featured_image | img_url: 'master' }}" width="100%" height="100%">
-              <h4>{{ product_c.title | split: " - " | first | replace: '" ', '|' | split: '|' | last | replace: ' Knife', '' }}</h4>
+              {%- liquid
+                assign display_name = product_c.title | split: " - " | first
+                if display_name contains '-Piece'
+                  assign display_name = display_name | split: ' ' | first
+                else
+                  assign has_size = false
+                  if display_name contains '1"' or display_name contains '2"' or display_name contains '3"' or display_name contains '4"' or display_name contains '5"' or display_name contains '6"' or display_name contains '7"' or display_name contains '8"' or display_name contains '9"'
+                    assign has_size = true
+                  endif
+                  if has_size
+                    assign parts = display_name | split: '" '
+                    if parts.size > 1
+                      assign display_name = parts[1]
+                    endif
+                  endif
+                  if display_name contains 'Granton'
+                    assign display_name = 'Granton'
+                  elsif display_name contains 'Cai Dao'
+                    assign display_name = 'Cai Dao'
+                  elsif display_name contains "Butcher's"
+                    assign display_name = "Butcher's"
+                  else
+                    assign display_name = display_name | split: ' ' | first
+                  endif
+                endif
+              -%}
+              <h4>{{ display_name }}</h4>
             </div>
           </a>
         {% endunless %}
