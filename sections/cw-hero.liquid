@@ -172,15 +172,16 @@
             max-width: fit-content;
         }
 
-        .desktop-hero {
-            display: none;
-        }
-        .mobile-hero {
-            display: block;
-        }
-
         .section-{{ section.id }} .header-title {
             font-size: {{ section.settings.header_mobile_size }}px;
+        }
+
+         .section-{{ section.id }} .desktop-hero {
+            display: none;
+        }
+
+        .section-{{ section.id }} .mobile-hero {
+            display: block;
         }
     }
 
