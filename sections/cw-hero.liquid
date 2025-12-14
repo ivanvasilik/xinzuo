@@ -164,11 +164,7 @@
       }
   }
 
-  @media screen and (max-width: 760px) {
-
-      .section-{{ section.id }} .hero-banner-content {
-          left: 25px;
-      }
+   @media screen and (max-width: 850px) {
 
       .section-{{ section.id }} .desktop-hero {
         display: none;
@@ -176,6 +172,14 @@
 
       .section-{{ section.id }} .middle-desktop-hero {
         display:block;
+      }
+
+   }
+
+  @media screen and (max-width: 760px) {
+
+      .section-{{ section.id }} .hero-banner-content {
+          left: 25px;
       }
 
       .section-{{ section.id }} .hero-banner {
@@ -199,7 +203,7 @@
 
      .section-{{ section.id }} .middle-desktop-hero {
         display:none;
-      } 
+      }
 
       .section-{{ section.id }} .mobile-hero {
           display: block;
