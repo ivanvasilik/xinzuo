@@ -769,21 +769,43 @@
       const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
       if (!productGrid) return;
 
+      // Debounce timer to batch multiple product additions
+      let debounceTimer = null;
+
       const observer = new MutationObserver((mutations) => {
         // Skip if we're currently sorting or loading products (to prevent infinite loop)
         if (isSorting || isLoadingProducts) return;
         
+        let hasNewProducts = false;
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
             if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
               // New product added - tag it
               tagVisibleProducts([node], globalProductsData);
-              
-              // Re-apply active filters and sort
-              applyFiltersAndSort();
+              hasNewProducts = true;
             }
           });
         });
+
+        // Only re-apply filters/sort if there are active filters or non-default sorting
+        if (hasNewProducts) {
+          // Clear existing debounce timer
+          clearTimeout(debounceTimer);
+          
+          // Debounce to batch multiple additions
+          debounceTimer = setTimeout(() => {
+            // Check if there are active filters or non-default sorting
+            const hasActiveFilters = document.querySelector('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked');
+            const sortValue = getSelectedSortValue();
+            const isNonDefaultSort = sortValue !== 'best-sellers';
+            
+            // Only re-apply if filters are active or sorting is non-default
+            if (hasActiveFilters || isNonDefaultSort) {
+              applyFiltersAndSort();
+            }
+            // Otherwise, just tag the products and leave them as-is (no refresh)
+          }, 100); // Small delay to batch multiple additions
+        }
       });
 
       observer.observe(productGrid, {
