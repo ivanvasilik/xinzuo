@@ -1171,6 +1171,37 @@
         
         // Apply sorting
         sortProducts();
+        
+        // Scroll to top of product grid when filters are applied
+        // This prevents the page from staying at the bottom after filtering
+        if (hasActiveFilters) {
+          // Use requestAnimationFrame to ensure DOM updates are complete
+          requestAnimationFrame(() => {
+            // Small delay to ensure sorting is complete
+            setTimeout(() => {
+              // Try to scroll to ResultsList (product grid container)
+              const resultsList = document.getElementById('ResultsList');
+              if (resultsList) {
+                const rect = resultsList.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = rect.top + scrollTop - 100; // 100px offset from top
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              } else {
+                // Fallback: scroll to product grid or collection wrapper
+                const productGrid = document.querySelector('.product-grid, .collection-wrapper, .main-collection-grid');
+                if (productGrid) {
+                  const rect = productGrid.getBoundingClientRect();
+                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                  const targetY = rect.top + scrollTop - 100; // 100px offset from top
+                  window.scrollTo({ top: targetY, behavior: 'smooth' });
+                } else {
+                  // Last resort: scroll to top of page
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }
+            }, 50); // Small delay to ensure DOM updates are complete
+          });
+        }
       } finally {
         isApplyingFilters = false;
       }
