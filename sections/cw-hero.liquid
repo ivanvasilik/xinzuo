@@ -240,6 +240,8 @@
           decoding="async"
           class="desktop-hero"
         >
+
+        
         <img
           srcset="
             {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
@@ -335,6 +337,11 @@
       "type": "image_picker",
       "id": "desktop_img",
       "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "middle_desktop_img",
+      "label": "Middle Desktop Image"
     },
     {
       "type": "image_picker",
