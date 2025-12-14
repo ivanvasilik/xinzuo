@@ -309,6 +309,7 @@
           >
             <a class="product-img" href="{{ product.url }}">
               {% if product.featured_image != blank %}
+                { product.tag }
                 <img
                   src="{{ product.featured_image | img_url: 'master' }}"
                   width="100%"
@@ -316,6 +317,7 @@
                   alt="product-{{ product.id }}"
                   loading="lazy"
                 >
+                {% comment %} {% endif %} {% endcomment %}
               {% endif %}
               {% if product.available == false %}
                 <span class="sold">Sold Out</span>
