@@ -309,7 +309,7 @@
           >
             <a class="product-img" href="{{ product.url }}">
               {% if product.featured_image != blank %}
-                {% comment %} {{ product | json}}  {% endcomment %}
+          
                 <img
                   src="{{ product.featured_image | img_url: 'master' }}"
                   width="100%"
@@ -317,11 +317,13 @@
                   alt="product-{{ product.id }}"
                   loading="lazy"
                 >
-                {% comment %} {% endif %} {% endcomment %}
               {% endif %}
               {% if product.available == false %}
                 <span class="sold">Sold Out</span>
               {% endif %}
+              {% if product.tags contains 'New' -%}
+                <span class="price-off">New</span>
+              {%- endif %}
               {% if product.compare_at_price and product.compare_at_price > product.price %}
                 {% assign discount = product.compare_at_price | minus: product.price %}
                 {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
