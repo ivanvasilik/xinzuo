@@ -28,7 +28,7 @@
     .section-{{ section.id }} .hero-banner-content span {
         width: 450px;
     }
-    
+
     .section-{{ section.id }} .hero-banner-content h2 {
         color: #fff;
         font-family: "Sen";
@@ -172,6 +172,13 @@
             max-width: fit-content;
         }
 
+        .desktop-hero {
+            display: none;
+        }
+        .mobile-hero {
+            display: block;
+        }
+
         .section-{{ section.id }} .header-title {
             font-size: {{ section.settings.header_mobile_size }}px;
         }
@@ -189,150 +196,154 @@
 {% endstyle %}
 
 <section class="section-{{ section.id }}">
-    <div>
-        {% if section.settings.header_title != blank %}
-            <p class="header-title">{{ section.settings.header_title }}</p>
-        {% endif %}
-        <div class="hero-banner">
-            <div class="hero-banner-content">
-                <span class="desktop">{{ section.settings.heading_desktop }}</span>
-                <span class="mobile">{{ section.settings.heading_mobile }}</span>
-                <span class="desktop">{{ section.settings.content_desktop }}</span>
-                <span class="mobile">{{ section.settings.content_mobile }}</span>
-                <a href="/collections/all-products" class="hero-cta-button">
-                    <span>SHOP ALL</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g clip-path="url(#clip0_hero_cta)">
-                            <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_hero_cta">
-                                <rect width="20" height="20" fill="white"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </a>
-            </div>
-            <div class="hero-banner-img">
-                <img
-                    srcset="
-                    {{ section.settings.desktop_img | image_url: width: 800 }} 800w,
-                    {{ section.settings.desktop_img | image_url: width: 1200 }} 1200w,
-                    {{ section.settings.desktop_img | image_url: width: 1600 }} 1600w,
-                    {{ section.settings.desktop_img | image_url: width: 2000 }} 2000w"
-                    sizes="100vw"
-                    src="{{ section.settings.desktop_img | image_url: width: 1600 }}"
-                    alt="Desktop hero"
-                    width="100%"
-                    height="auto"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="desktop-hero"
-                >
-                <img
-                    srcset="
-                    {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
-                    {{ section.settings.mobile_img | image_url: width: 800 }} 800w,
-                    {{ section.settings.mobile_img | image_url: width: 1200 }} 1200w"
-                    sizes="100vw"
-                    src="{{ section.settings.mobile_img | image_url: width: 800 }}"
-                    alt="Mobile hero"
-                    width="100%"
-                    height="auto"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="mobile-hero"
-                >
-                {% comment %} <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
-                <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero"> {% endcomment %}
-            </div>
-        </div>
+  <div>
+    {% if section.settings.header_title != blank %}
+      <p class="header-title">{{ section.settings.header_title }}</p>
+    {% endif %}
+    <div class="hero-banner">
+      <div class="hero-banner-content">
+        <span class="desktop">{{ section.settings.heading_desktop }}</span>
+        <span class="mobile">{{ section.settings.heading_mobile }}</span>
+        <span class="desktop">{{ section.settings.content_desktop }}</span>
+        <span class="mobile">{{ section.settings.content_mobile }}</span>
+        <a href="/collections/all-products" class="hero-cta-button">
+          <span>SHOP ALL</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <g clip-path="url(#clip0_hero_cta)">
+                <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_hero_cta">
+                    <rect width="20" height="20" fill="white"/>
+                </clipPath>
+            </defs>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-banner-img">
+        <img
+          srcset="
+            {{ section.settings.desktop_img | image_url: width: 800 }} 800w,
+            {{ section.settings.desktop_img | image_url: width: 1200 }} 1200w,
+            {{ section.settings.desktop_img | image_url: width: 1600 }} 1600w,
+            {{ section.settings.desktop_img | image_url: width: 2000 }} 2000w
+          "
+          sizes="100vw"
+          src="{{ section.settings.desktop_img | image_url: width: 1600 }}"
+          alt="Desktop hero"
+          width="100%"
+          height="auto"
+          fetchpriority="high"
+          decoding="async"
+          class="desktop-hero"
+        >
+        <img
+          srcset="
+            {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
+            {{ section.settings.mobile_img | image_url: width: 800 }} 800w,
+            {{ section.settings.mobile_img | image_url: width: 1200 }} 1200w
+          "
+          sizes="100vw"
+          src="{{ section.settings.mobile_img | image_url: width: 800 }}"
+          alt="Mobile hero"
+          width="100%"
+          height="auto"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="mobile-hero"
+        >
+        {% comment %}
+          <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
+          <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero">
+        {% endcomment %}
+      </div>
     </div>
+  </div>
 </section>
 
 {% schema %}
 {
-    "name": "CW Hero",
-    "settings": [
-        {
-            "type": "text",
-            "id": "header_title",
-            "label": "Header Title"
-        },
-        {
-            "type": "range",
-            "id": "header_size",
-            "label": "Header Font Size",
-            "min": 14,
-            "max": 24,
-            "unit": "px",
-            "step": 1,
-            "default": 16
-        },
-        {
-            "type": "range",
-            "id": "header_mobile_size",
-            "label": "Header Font Size(mobile)",
-            "min": 12,
-            "max": 20,
-            "unit": "px",
-            "step": 1,
-            "default": 14
-        },
-        {
-            "type": "color",
-            "id": "header_color",
-            "label": "Header Font Color",
-            "default": "#ff0004"
-        },
-        {
-            "type": "color",
-            "id": "header_background",
-            "label": "Header Background",
-            "default": "#000000"
-        },
-        {
-            "type": "richtext",
-            "id": "heading_desktop",
-            "label": "Desktop Header"
-        },
-        {
-            "type": "richtext",
-            "id": "content_desktop",
-            "label": "Desktop Content"
-        },
-        {
-            "type": "richtext",
-            "id": "heading_mobile",
-            "label": "Mobile Header"
-        },
-        {
-            "type": "richtext",
-            "id": "content_mobile",
-            "label": "Mobile Content"
-        },
-        {
-            "type": "text",
-            "id": "link_text",
-            "label": "Link Text"
-        },
-        {
-            "type": "image_picker",
-            "id": "desktop_img",
-            "label": "Desktop Image"
-        },
-        {
-            "type": "image_picker",
-            "id": "mobile_img",
-            "label": "Mobile Image"
-        }
-    ],
-    "presets": [
-        {
-            "name": "CW Hero"
-        }
-    ]
+  "name": "CW Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title"
+    },
+    {
+      "type": "range",
+      "id": "header_size",
+      "label": "Header Font Size",
+      "min": 14,
+      "max": 24,
+      "unit": "px",
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "header_mobile_size",
+      "label": "Header Font Size(mobile)",
+      "min": 12,
+      "max": 20,
+      "unit": "px",
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Header Font Color",
+      "default": "#ff0004"
+    },
+    {
+      "type": "color",
+      "id": "header_background",
+      "label": "Header Background",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_desktop",
+      "label": "Desktop Header"
+    },
+    {
+      "type": "richtext",
+      "id": "content_desktop",
+      "label": "Desktop Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_mobile",
+      "label": "Mobile Header"
+    },
+    {
+      "type": "richtext",
+      "id": "content_mobile",
+      "label": "Mobile Content"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_img",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_img",
+      "label": "Mobile Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Hero"
+    }
+  ]
 }
 {% endschema %}
