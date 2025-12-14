@@ -180,10 +180,6 @@
             display: none;
         }
 
-        .section-{{ section.id }} .hero-banner-img {
-            width: 100vw;
-        }
-
         .section-{{ section.id }} .mobile-hero {
             display: block;
             object-fit:contain;
@@ -195,9 +191,15 @@
        .section-{{ section.id }} .hero-banner {
          height: auto;
        }
-         .section-{{ section.id }} .hero-banner-content {
-            left: 25px;
-            bottom: 0;
+
+          .section-{{ section.id }} .desktop-hero {
+            display: none;
+        }
+
+        .section-{{ section.id }} .mobile-hero {
+            display: block;
+            object-fit:contain;
+            width: 100%;
         }
     }
 {% endstyle %}
