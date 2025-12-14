@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "🚀 Express Post Guaranteed by XMAS ✓",
+            "text": "🎁 Express Post Guaranteed by XMAS ✓",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
@@ -32,7 +32,7 @@
         "announcement_BxgCk9"
       ],
       "custom_css": [
-        ".announcement-bar {background-color: #228b22 !important; font-size: 10px !important;}"
+        ".announcement-bar {background-color: #228b22 !important;}"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
