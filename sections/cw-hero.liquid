@@ -110,6 +110,12 @@
         background-color: {{ section.settings.header_background }};
     }
 
+    @media screen and (max-width:1440px) {
+        .section-{{ section.id }} .hero-banner {
+            height: auto;
+        }
+    }
+
     @media screen and (max-width: 1150px) {
         .section-{{ section.id }} .hero-banner-content {
             width: 400px;
