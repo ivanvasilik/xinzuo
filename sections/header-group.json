@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "✨ Express Post Available✨🎁 Express Post Guaranteed for Christmas 🎁",
+            "text": "✨ Express Post Available✨<span>🎁 Express Post Guaranteed for Christmas 🎁",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
