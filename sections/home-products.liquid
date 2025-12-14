@@ -298,7 +298,7 @@
       <h2>{{ section.settings.heading }}</h2>
       <div class="home-grid" id="home-products">
         {% assign counter = 0 %}
-        {% assign products_to_show = section.settings.products | default: collections.all.products | sort: 'price_min' %}
+        {% assign products_to_show = section.settings.products | default: collections.all.products | sort: 'price_max' %}
         {% for product in products_to_show %}
           {% assign counter = counter | plus: 1 %}
           <div
