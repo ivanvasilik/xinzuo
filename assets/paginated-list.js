@@ -187,10 +187,45 @@ export default class PaginatedList extends Component {
       if (!nextPageItemElements) return;
     }
 
-    grid.append(...nextPageItemElements);
+    // Filter out duplicate products before appending
+    // Check both data-product-id and id attributes for duplicate detection
+    const existingProductIds = new Set(
+      Array.from(grid.querySelectorAll('.product-grid__item')).map((item) => {
+        const htmlItem = item instanceof HTMLElement ? item : null;
+        if (!htmlItem) return null;
+        // Try dataset first, then getAttribute, then id
+        return htmlItem.dataset?.productId || 
+               htmlItem.getAttribute('data-product-id') || 
+               htmlItem.id || 
+               null;
+      }).filter(Boolean)
+    );
 
-    this.#aspectRatioHelper.processNewElements();
+    const uniqueProducts = Array.from(nextPageItemElements).filter((product) => {
+      const htmlProduct = product instanceof HTMLElement ? product : null;
+      if (!htmlProduct) return true; // Include if not HTMLElement (shouldn't happen)
+      
+      // For elements from parsed documents, getAttribute works better than dataset
+      // Try getAttribute first, then dataset, then id
+      const productId = htmlProduct.getAttribute('data-product-id') || 
+                        htmlProduct.dataset?.productId || 
+                        htmlProduct.id;
+      
+      if (!productId) return true; // Include if no ID (shouldn't happen, but safe)
+      if (existingProductIds.has(productId)) {
+        return false; // Skip duplicate
+      }
+      existingProductIds.add(productId); // Track this ID
+      return true; // Include unique product
+    });
 
+    // Always append unique products (if any) and update history
+    if (uniqueProducts.length > 0) {
+      grid.append(...uniqueProducts);
+      this.#aspectRatioHelper.processNewElements();
+    }
+
+    // Always update URL and continue fetching next page, even if all products were duplicates
     history.pushState('', '', nextPage.url.toString());
 
     requestIdleCallback(() => {
@@ -220,13 +255,53 @@ export default class PaginatedList extends Component {
       if (!previousPageItemElements) return;
     }
 
+    // Filter out duplicate products before prepending
+    // Check both data-product-id and id attributes for duplicate detection
+    const existingProductIds = new Set(
+      Array.from(grid.querySelectorAll('.product-grid__item')).map((item) => {
+        const htmlItem = item instanceof HTMLElement ? item : null;
+        if (!htmlItem) return null;
+        // Try dataset first, then getAttribute, then id
+        return htmlItem.dataset?.productId || 
+               htmlItem.getAttribute('data-product-id') || 
+               htmlItem.id || 
+               null;
+      }).filter(Boolean)
+    );
+
+    const uniqueProducts = Array.from(previousPageItemElements).filter((product) => {
+      const htmlProduct = product instanceof HTMLElement ? product : null;
+      if (!htmlProduct) return true; // Include if not HTMLElement (shouldn't happen)
+      
+      // For elements from parsed documents, getAttribute works better than dataset
+      // Try getAttribute first, then dataset, then id
+      const productId = htmlProduct.getAttribute('data-product-id') || 
+                        htmlProduct.dataset?.productId || 
+                        htmlProduct.id;
+      
+      if (!productId) return true; // Include if no ID (shouldn't happen, but safe)
+      if (existingProductIds.has(productId)) {
+        return false; // Skip duplicate
+      }
+      existingProductIds.add(productId); // Track this ID
+      return true; // Include unique product
+    });
+
+    if (uniqueProducts.length === 0) {
+      // No new products to add, but still fetch next page
+      requestIdleCallback(() => {
+        this.#fetchPage('previous');
+      });
+      return;
+    }
+
     // Store the current scroll position and height of the first element
     const scrollTop = window.scrollY;
     const firstElement = grid.firstElementChild;
     const oldHeight = firstElement ? firstElement.getBoundingClientRect().top + window.scrollY : 0;
 
     // Prepend the new elements
-    grid.prepend(...previousPageItemElements);
+    grid.prepend(...uniqueProducts);
 
     this.#aspectRatioHelper.processNewElements();
 
