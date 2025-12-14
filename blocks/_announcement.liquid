@@ -27,8 +27,10 @@
     aria-hidden="{% if block_index == 0 %}false{% else %}true{% endif %}"
   >
     <p class="announcement-bar__text">
-      {{ block.settings.text }}
+      {{ block.settings.text }}<br>
+
     </p>
+    
 
     {% if block_settings.link != blank %}
       <a
@@ -135,6 +137,11 @@
       "id": "text",
       "label": "t:settings.text",
       "default": "t:text_defaults.shop_our_latest_arrivals"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "second_text",
+      "label": "t:settings.text",
     },
     {
       "type": "url",
