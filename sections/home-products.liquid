@@ -309,7 +309,7 @@
           >
             <a class="product-img" href="{{ product.url }}">
               {% if product.featured_image != blank %}
-                {{ product.tag | json}} 
+                {% comment %} {{ product | json}}  {% endcomment %}
                 <img
                   src="{{ product.featured_image | img_url: 'master' }}"
                   width="100%"
