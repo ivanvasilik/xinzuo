@@ -18,6 +18,7 @@
           "type": "_announcement",
           "settings": {
             "text": "🎁 Express Post Guaranteed by XMAS ✓",
+            "second_text": "",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
