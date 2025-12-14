@@ -32,7 +32,7 @@
         "announcement_BxgCk9"
       ],
       "custom_css": [
-        ".announcement-bar {background-color: #228b22 !important;}"
+        ".announcement-bar {background-color: #228b22 !important; font-size:10px !important;}"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
