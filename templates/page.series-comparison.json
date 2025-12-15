@@ -23,6 +23,28 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "series_xp99bz": {
+          "type": "series",
+          "settings": {
+            "series_name": "PM80 ZHEN SERIES",
+            "series_image": "shopify://shop_images/85-sakimaru-knife-zhen-series-pm8o-1933938.jpg",
+            "buy_now_link": "shopify://collections/pm8o-zhen-series",
+            "rating": 4.5,
+            "rating_value": "4.8 Stars",
+            "review_count": "114 Reviews",
+            "core_steel": "10Cr15CoMov Steel",
+            "construction": "67-Layer Damascus",
+            "hardness": "60 ± 2HRC",
+            "handle_material": "Olive Wood+Black Buffalo Horn",
+            "toughness_rating": 3.5,
+            "edge_retention_rating": 4,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 3.5,
+            "pricing_product": "zhen-pm8o-series-8-5-inch-sakimaru-knife",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $62.00"
+          }
+        },
         "series_VjpX9J": {
           "type": "series",
           "settings": {
@@ -135,6 +157,7 @@
         }
       },
       "block_order": [
+        "series_xp99bz",
         "series_VjpX9J",
         "supreme_series",
         "retro_series",
