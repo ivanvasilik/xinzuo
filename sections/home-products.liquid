@@ -344,7 +344,7 @@
             {% assign jdgm_badge = product.metafields.judgeme.badge | strip_html | strip %}
 
             {% if jdgm_badge == blank %}
-              <div style="height: 32px;"></div>
+              <div class="no-review-spacer" style="height: 32px;"></div>
             {% endif %}
             <div class="collection-price">
               <span class="prices">
