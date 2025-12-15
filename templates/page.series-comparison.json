@@ -23,6 +23,28 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "series_CBLLYe": {
+          "type": "series",
+          "settings": {
+            "series_name": "B38L ELEGANT SERIES",
+            "series_image": "shopify://shop_images/85-chef-knife-elegant-series-b38l-8505006.jpg",
+            "buy_now_link": "",
+            "rating": 4.5,
+            "rating_value": "4.8 Stars",
+            "review_count": "124 Reviews",
+            "core_steel": "German Din 1.4116 Steel",
+            "construction": "Monosteel",
+            "hardness": "57 +/- 1 HRC",
+            "handle_material": "Red Wood",
+            "toughness_rating": 4,
+            "edge_retention_rating": 2,
+            "corrosion_resistance_rating": 4,
+            "ease_to_sharpen_rating": 3,
+            "pricing_product": "",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $62.00"
+          }
+        },
         "series_pDp9XV": {
           "type": "series",
           "settings": {
@@ -179,6 +201,7 @@
         }
       },
       "block_order": [
+        "series_CBLLYe",
         "series_pDp9XV",
         "series_xp99bz",
         "series_VjpX9J",
