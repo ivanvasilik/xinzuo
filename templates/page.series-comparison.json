@@ -27,6 +27,7 @@
           "type": "series",
           "settings": {
             "series_name": "X05Z ZHEN SERIES",
+            "series_image": "shopify://shop_images/83-bunka-knife-zhen-series-x05z-7737237.jpg",
             "buy_now_link": "shopify://collections/zhen-x05z-series",
             "rating": 4.5,
             "rating_value": "4.8 Stars",
@@ -39,7 +40,7 @@
             "edge_retention_rating": 5,
             "corrosion_resistance_rating": 2.5,
             "ease_to_sharpen_rating": 1,
-            "pricing_product": "",
+            "pricing_product": "zhen-xz05-series-8-inch-bunka-knife",
             "pricing_label": "Chef knife starts from",
             "pricing": "Starts from $62.00"
           }
