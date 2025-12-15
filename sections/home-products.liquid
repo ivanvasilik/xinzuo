@@ -341,15 +341,7 @@
               {{ product.metafields.judgeme.badge }}
             </div>
             <!-- End of Judge.me Rating Widget -->
-            {% assign review_count = product.metafields.judgeme.badge
-              | split: 'data-number-of-reviews="'
-              | last
-              | split: '"'
-              | first
-            %}
-            {% if review_count == '0' or review_count == blank %}
-              <div class="no-review-spacer" style="height: 32px !important; padding-top:20px;"></div>
-            {% endif %}
+            <div class="no-review-spacer" style="height: 32px !important; padding-top:20px;"></div>
             <div class="collection-price">
               <span class="prices">
                 <span class="sale-price">{{ product.price | money }}</span>
