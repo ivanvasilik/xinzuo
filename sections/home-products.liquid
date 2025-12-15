@@ -309,7 +309,6 @@
           >
             <a class="product-img" href="{{ product.url }}">
               {% if product.featured_image != blank %}
-          
                 <img
                   src="{{ product.featured_image | img_url: 'master' }}"
                   width="100%"
@@ -342,7 +341,11 @@
               {{ product.metafields.judgeme.badge }}
             </div>
             <!-- End of Judge.me Rating Widget -->
-            {% if product.metafields.judgeme.badge == blank %} <div style="height: 32px;"></div> {%  endif %}
+            {% assign jdgm_badge = product.metafields.judgeme.badge | strip_html | strip %}
+
+            {% if jdgm_badge == blank %}
+              <div style="height: 32px;"></div>
+            {% endif %}
             <div class="collection-price">
               <span class="prices">
                 <span class="sale-price">{{ product.price | money }}</span>
