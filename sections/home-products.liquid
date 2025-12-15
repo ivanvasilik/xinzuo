@@ -341,9 +341,13 @@
               {{ product.metafields.judgeme.badge }}
             </div>
             <!-- End of Judge.me Rating Widget -->
-            {% assign jdgm_badge = product.metafields.judgeme.badge | strip_html | strip %}
-
-            {% if jdgm_badge == blank %}
+            {% assign review_count = product.metafields.judgeme.badge
+              | split: 'data-number-of-reviews="'
+              | last
+              | split: '"'
+              | first
+            %}
+            {% if review_count == '0' or review_count == blank %}
               <div class="no-review-spacer" style="height: 32px;"></div>
             {% endif %}
             <div class="collection-price">
