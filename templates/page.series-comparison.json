@@ -23,6 +23,27 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "series_VjpX9J": {
+          "type": "series",
+          "settings": {
+            "series_name": "X05Z ZHEN SERIES",
+            "buy_now_link": "shopify://collections/zhen-x05z-series",
+            "rating": 4.5,
+            "rating_value": "4.8 Stars",
+            "review_count": "130 Reviews",
+            "core_steel": "Japanese ZDP189 Composite Steel",
+            "construction": "Monosteel",
+            "hardness": "65-67HRC",
+            "handle_material": "North America Desert Ironwood + White Buffalo Horn",
+            "toughness_rating": 2.5,
+            "edge_retention_rating": 5,
+            "corrosion_resistance_rating": 2.5,
+            "ease_to_sharpen_rating": 1,
+            "pricing_product": "",
+            "pricing_label": "Chef knife starts from",
+            "pricing": "Starts from $62.00"
+          }
+        },
         "supreme_series": {
           "type": "series",
           "settings": {
@@ -113,6 +134,7 @@
         }
       },
       "block_order": [
+        "series_VjpX9J",
         "supreme_series",
         "retro_series",
         "mo_series",
