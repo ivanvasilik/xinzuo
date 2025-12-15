@@ -342,7 +342,7 @@
               {{ product.metafields.judgeme.badge }}
             </div>
             <!-- End of Judge.me Rating Widget -->
-
+            {% if product.metafields.judgeme.badge == blank %} <div style="height: 32px;"></div> {%  endif %}
             <div class="collection-price">
               <span class="prices">
                 <span class="sale-price">{{ product.price | money }}</span>
