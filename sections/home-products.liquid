@@ -339,7 +339,7 @@
               data-auto-install="false"
               style="padding: 12px;"
             >
-              {{ product.metafields.judgeme.badge }}
+              {{ product.metafields.judgeme.badge | json }}
             </div>
             <!-- End of Judge.me Rating Widget -->
             {% if product.metafields.judgeme.badge == blank %} <div style="height: 32px;"></div> {%  endif %}
