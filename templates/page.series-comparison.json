@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_eRajL8": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "supreme series",
+            "series_2_name": "lan series",
+            "comparison_text": "<h3>Supreme Series vs Lan Series</h3><p>Supreme sits at the entry point with 1.4116 steel that is tough, rust-resistant and quick to touch up — ideal for users who want a forgiving knife. Lan is the flagship series, built with 73-layer Damascus and a 14Cr14MoVNb powder steel core hardened to 62 HRC with deep freeze treatment and an olive wood handle. It trades some toughness for extreme edge retention and a very high-end look and feel.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Lan delivers razor-sharp performance that lasts significantly longer</li><li><strong>Hardness:</strong> 5 HRC difference for professional-grade hardness</li><li><strong>Construction:</strong> 73-layer Damascus vs monosteel for premium aesthetics</li><li><strong>Price:</strong> Top-tier investment vs entry-level value</li></ul><p><strong>→ Choose Supreme</strong> for simple, durable value<br/><strong>→ Choose Lan</strong> for premium, high-hardness blade that holds a razor edge and sits at the top of the range</p>"
+          }
+        },
         "comparison_note_JzWn3T": {
           "type": "comparison_note",
           "settings": {
@@ -225,6 +233,7 @@
         }
       },
       "block_order": [
+        "comparison_note_eRajL8",
         "comparison_note_JzWn3T",
         "comparison_note_AU6A6k",
         "series_CBLLYe",
