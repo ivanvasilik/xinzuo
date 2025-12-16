@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_AU6A6k": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "supreme series",
+            "series_2_name": "retro series",
+            "comparison_text": "<h3>Supreme Series vs Retro Series</h3><p>Supreme uses German 1.4116 stainless steel at 57 HRC — the softest and most forgiving option with excellent toughness, corrosion resistance, and easy sharpening. Retro upgrades to a 3-layer 10Cr15CoMoV composite at 60 HRC with red wood and black buffalo horn handles, delivering noticeably better edge retention and a more premium feel while staying tough and easy to maintain.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Retro holds sharpness significantly longer</li><li><strong>Handle upgrade:</strong> Buffalo horn accent vs plain red wood</li><li><strong>Price:</strong> Small step up for noticeable performance gain</li></ul><p><strong>→ Choose Supreme</strong> for the best value workhorse<br/><strong>→ Choose Retro</strong> for longer-lasting sharpness and premium materials without a big price jump</p>"
+          }
+        },
         "series_CBLLYe": {
           "type": "series",
           "settings": {
@@ -209,6 +217,7 @@
         }
       },
       "block_order": [
+        "comparison_note_AU6A6k",
         "series_CBLLYe",
         "series_pDp9XV",
         "series_xp99bz",
