@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_jthWXc": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "mo series",
+            "series_2_name": "retro series",
+            "comparison_text": "<h3>Retro Series vs Mo Series</h3><p>Retro and Mo both use 10Cr15CoMoV at 60 HRC, so edge retention, toughness, corrosion resistance, and sharpening feel are very similar. Retro has 3-layer composite construction with red wood and black buffalo horn handles, giving a stylish yet traditional look at mid-level pricing. Mo pushes further into premium territory with 67-layer Damascus, deep freeze treatment, and a burnt oak handle — it feels more luxurious in hand and on the cutting board.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Construction:</strong> 67-layer Damascus (Mo) vs 3-layer composite (Retro)</li><li><strong>Handle style:</strong> Burnt oak vs red wood with buffalo horn</li><li><strong>Visual appeal:</strong> Mo's Damascus pattern for premium aesthetic</li><li><strong>Price:</strong> Mo positioned as more decorative, high-end finish</li></ul><p><strong>→ Choose Retro</strong> for great all-around performance and classic styling<br/><strong>→ Choose Mo</strong> for the same steel with more luxurious Damascus finish</p>"
+          }
+        },
         "comparison_note_KBT3jM": {
           "type": "comparison_note",
           "settings": {
@@ -249,6 +257,7 @@
         }
       },
       "block_order": [
+        "comparison_note_jthWXc",
         "comparison_note_KBT3jM",
         "comparison_note_i6JB6V",
         "comparison_note_eRajL8",
