@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_i6JB6V": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "mo series",
+            "series_2_name": "lan series",
+            "comparison_text": "<h3>Mo Series vs Lan Series</h3><p>Mo features 67-layer Damascus with a 10Cr15CoMoV core at 60 HRC, giving very balanced performance and a striking burnt oak handle, positioned above Retro but below Lan in pricing. Lan raises hardness to 62 HRC with a 14Cr14MoVNb powder steel core and 73-layer Damascus, paired with olive wood and advanced heat treatment — delivering stronger edge retention and a more high-end feel while sacrificing a little toughness.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel core:</strong> Powder steel (Lan) vs 10Cr15CoMoV (Mo) for better edge holding</li><li><strong>Hardness:</strong> 2 HRC bump for professional hardness level</li><li><strong>Edge retention:</strong> Lan maintains sharpness longer between sharpening</li><li><strong>Handle wood:</strong> Olive wood vs burnt oak for different aesthetics</li></ul><p><strong>→ Choose Mo</strong> for a premium, forgiving all-rounder<br/><strong>→ Choose Lan</strong> for the flagship option with the most aggressive edge holding and luxury presentation</p>"
+          }
+        },
         "comparison_note_eRajL8": {
           "type": "comparison_note",
           "settings": {
@@ -233,6 +241,7 @@
         }
       },
       "block_order": [
+        "comparison_note_i6JB6V",
         "comparison_note_eRajL8",
         "comparison_note_JzWn3T",
         "comparison_note_AU6A6k",
