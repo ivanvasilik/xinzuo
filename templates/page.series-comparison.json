@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_JzWn3T": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "supreme series",
+            "series_2_name": "mo series",
+            "comparison_text": "<h3>Supreme Series vs Mo Series</h3><p>Supreme focuses on practicality with red wood handles and 1.4116 steel that is very tough, stain-resistant, and easy to live with for everyday home use. Mo series features 67-layer Damascus cladding over 10Cr15CoMoV at 60 HRC plus a burnt oak handle and deep freeze heat treatment, delivering stronger edge holding, more refined cutting feel, and a striking Damascus pattern.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Aesthetics:</strong> Mo's 67-layer Damascus vs Supreme's plain finish</li><li><strong>Edge holding:</strong> Mo maintains sharpness much longer</li><li><strong>Handle:</strong> Burnt oak vs red wood for different grip and style</li></ul><p><strong>→ Choose Supreme</strong> if budget and easy maintenance are priorities<br/><strong>→ Choose Mo</strong> for noticeable performance and aesthetic upgrade at upper mid-range pricing</p>"
+          }
+        },
         "comparison_note_AU6A6k": {
           "type": "comparison_note",
           "settings": {
@@ -217,6 +225,7 @@
         }
       },
       "block_order": [
+        "comparison_note_JzWn3T",
         "comparison_note_AU6A6k",
         "series_CBLLYe",
         "series_pDp9XV",
