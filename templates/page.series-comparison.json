@@ -23,6 +23,14 @@
     "series_comparison": {
       "type": "series-comparison",
       "blocks": {
+        "comparison_note_BYrAqT": {
+          "type": "comparison_note",
+          "settings": {
+            "series_1_name": "lan series",
+            "series_2_name": "retro series",
+            "comparison_text": "<h3>Retro Series vs Lan Series</h3><p>Retro offers a balanced package: 10Cr15CoMoV composite steel at 60 HRC, four-star performance across toughness, edge holding, stain resistance and sharpening, plus handsome red wood and buffalo horn handles at mid-range pricing. Lan steps up to 14Cr14MoVNb powder steel core hardened higher, wrapped in 73-layer Damascus with deep freeze treatment and olive wood handles — delivering significantly longer edge life and a more exclusive look, with slightly less toughness than Retro.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel upgrade:</strong> Powder steel core (Lan) vs standard 10Cr15CoMoV (Retro)</li><li><strong>Edge retention:</strong> Lan holds sharpness much longer (5 stars vs 4 stars)</li><li><strong>Hardness:</strong> 2 HRC difference for pro-grade performance</li><li><strong>Price:</strong> Top-tier investment vs mid-range value</li></ul><p><strong>→ Choose Retro</strong> for everyday versatility and value</p>"
+          }
+        },
         "comparison_note_jthWXc": {
           "type": "comparison_note",
           "settings": {
@@ -257,6 +265,7 @@
         }
       },
       "block_order": [
+        "comparison_note_BYrAqT",
         "comparison_note_jthWXc",
         "comparison_note_KBT3jM",
         "comparison_note_i6JB6V",
