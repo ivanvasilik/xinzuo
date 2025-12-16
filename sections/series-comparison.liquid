@@ -691,17 +691,21 @@
   <div class="mobile-comparison-selectors">
     <div class="comparison-selector-wrapper">
       <div class="comparison-selector-label">Compare 1</div>
-      <select class="comparison-select" id="compare-select-1-{{ section.id }}" data-comparison-select="1" data-all-options='[{% for block in section.blocks %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]'>
+      <select class="comparison-select" id="compare-select-1-{{ section.id }}" data-comparison-select="1" data-all-options='[{% assign first_series = true %}{% for block in section.blocks %}{% if block.type == "series" %}{% unless first_series %},{% endunless %}{% assign first_series = false %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% endif %}{% endfor %}]'>
         {% for block in section.blocks %}
-          <option value="{{ block.id }}" {% if block.settings.series_name == "SUPREME SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+          {% if block.type == "series" %}
+            <option value="{{ block.id }}" {% if block.settings.series_name == "SUPREME SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+          {% endif %}
         {% endfor %}
       </select>
     </div>
     <div class="comparison-selector-wrapper">
       <div class="comparison-selector-label">Compare 2</div>
-      <select class="comparison-select" id="compare-select-2-{{ section.id }}" data-comparison-select="2" data-all-options='[{% for block in section.blocks %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]'>
+      <select class="comparison-select" id="compare-select-2-{{ section.id }}" data-comparison-select="2" data-all-options='[{% assign first_series = true %}{% for block in section.blocks %}{% if block.type == "series" %}{% unless first_series %},{% endunless %}{% assign first_series = false %}{"value":"{{ block.id }}","text":"{{ block.settings.series_name }}"}{% endif %}{% endfor %}]'>
         {% for block in section.blocks %}
-          <option value="{{ block.id }}" {% if block.settings.series_name == "RETRO SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+          {% if block.type == "series" %}
+            <option value="{{ block.id }}" {% if block.settings.series_name == "RETRO SERIES" %}selected{% endif %}>{{ block.settings.series_name }}</option>
+          {% endif %}
         {% endfor %}
       </select>
     </div>
@@ -754,10 +758,46 @@
         <div class="series-content">
           
           <!-- Rating -->
-          <div class="series-rating">
+          <div class="series-rating" data-series-block-id="{{ block.id }}" data-collection-handle="{% if block.settings.rating_collection %}{{ block.settings.rating_collection.handle }}{% endif %}">
             <div class="series-rating-header">Customer Rating</div>
             <div class="rating-stars">
-              {% assign rating = block.settings.rating %}
+              {% comment %} Aggregate ratings from Judge.me if collection is selected {% endcomment %}
+              {% if block.settings.rating_collection %}
+                {% assign collection = block.settings.rating_collection %}
+                {% assign total_rating = 0 %}
+                {% assign total_reviews = 0 %}
+                {% assign products_with_reviews = 0 %}
+                
+                {% for product in collection.products limit: 50 %}
+                  {% assign product_rating = product.metafields.reviews.rating.value.rating %}
+                  {% assign product_review_count = product.metafields.reviews.rating_count %}
+                  
+                  {% if product_rating != blank and product_review_count != blank %}
+                    {% assign total_rating = total_rating | plus: product_rating %}
+                    {% assign total_reviews = total_reviews | plus: product_review_count %}
+                    {% assign products_with_reviews = products_with_reviews | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% if products_with_reviews > 0 %}
+                  {% assign avg_rating = total_rating | divided_by: products_with_reviews %}
+                  {% assign rating = avg_rating %}
+                  {% assign review_count = total_reviews %}
+                  {% assign rating_value = avg_rating | round: 1 | append: ' Stars' %}
+                  {% assign review_count_text = review_count | append: ' Reviews' %}
+                {% else %}
+                  {% comment %} Fallback to manual if no reviews found {% endcomment %}
+                  {% assign rating = block.settings.rating %}
+                  {% assign rating_value = block.settings.rating_value %}
+                  {% assign review_count_text = block.settings.review_count %}
+                {% endif %}
+              {% else %}
+                {% comment %} Use manual settings if no collection selected {% endcomment %}
+                {% assign rating = block.settings.rating %}
+                {% assign rating_value = block.settings.rating_value %}
+                {% assign review_count_text = block.settings.review_count %}
+              {% endif %}
+              
               {% assign rating_floor = rating | floor %}
               {% assign rating_ceil = rating | ceil %}
               {% assign has_half = rating | modulo: 1 %}
@@ -770,7 +810,7 @@
                   <span class="star empty">★</span>
                 {% endif %}
               {% endfor %}
-              <span class="rating-text">{{ block.settings.rating_value }} ({{ block.settings.review_count }} Reviews)</span>
+              <span class="rating-text">{{ rating_value }} ({{ review_count_text }})</span>
             </div>
           </div>
 
@@ -926,13 +966,28 @@
 
   <!-- Dynamic Comparison Notes -->
   {% if section.settings.show_comparison_notes %}
-    <div class="comparison-footer" id="comparison-notes-{{ section.id }}" 
-         data-supreme-retro="{{ section.settings.comparison_supreme_retro }}"
-         data-supreme-mo="{{ section.settings.comparison_supreme_mo }}"
-         data-supreme-lan="{{ section.settings.comparison_supreme_lan }}"
-         data-retro-mo="{{ section.settings.comparison_retro_mo }}"
-         data-retro-lan="{{ section.settings.comparison_retro_lan }}"
-         data-mo-lan="{{ section.settings.comparison_mo_lan }}">
+    {% comment %} Build comparison data from blocks - store as JSON in script tag for proper HTML escaping {% endcomment %}
+    <script type="application/json" id="comparison-data-{{ section.id }}">
+    {
+      "comparisons": {
+        {% assign first_comparison = true %}
+        {% for block in section.blocks %}
+          {% if block.type == 'comparison_note' %}
+            {% unless first_comparison %},{% endunless %}
+            {% assign first_comparison = false %}
+            {% assign series1_normalized = block.settings.series_1_name | upcase | strip | replace: ' SERIES', '' | replace: ' ', '-' %}
+            {% assign series2_normalized = block.settings.series_2_name | upcase | strip | replace: ' SERIES', '' | replace: ' ', '-' %}
+            {% assign comparison_key = series1_normalized | append: '-' | append: series2_normalized %}
+            {% assign comparison_key_reverse = series2_normalized | append: '-' | append: series1_normalized %}
+            "{{ comparison_key }}": {{ block.settings.comparison_text | json }},
+            "{{ comparison_key_reverse }}": {{ block.settings.comparison_text | json }}
+          {% endif %}
+        {% endfor %}
+      }
+    }
+    </script>
+    
+    <div class="comparison-footer" id="comparison-notes-{{ section.id }}">
       <div class="comparison-notes-content">
         <!-- Content will be dynamically inserted by JavaScript -->
       </div>
@@ -1006,44 +1061,8 @@
       "id": "show_comparison_notes",
       "label": "Show Comparison Notes",
       "default": true,
-      "info": "Shows dynamic notes based on which two series are being compared"
+      "info": "Shows dynamic notes based on which two series are being compared. Add comparison note blocks below to define comparison text for each series pair."
     },
-    {
-      "type": "richtext",
-      "id": "comparison_supreme_retro",
-      "label": "Supreme vs Retro Comparison",
-      "default": "<h3>Supreme Series vs Retro Series</h3><p>Supreme uses German 1.4116 stainless steel at 57 HRC — the softest and most forgiving option with excellent toughness, corrosion resistance, and easy sharpening. Retro upgrades to a 3-layer 10Cr15CoMoV composite at 60 HRC with red wood and black buffalo horn handles, delivering noticeably better edge retention and a more premium feel while staying tough and easy to maintain.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Retro holds sharpness significantly longer</li><li><strong>Handle upgrade:</strong> Buffalo horn accent vs plain red wood</li><li><strong>Price:</strong> Small step up for noticeable performance gain</li></ul><p><strong>→ Choose Supreme</strong> for the best value workhorse<br><strong>→ Choose Retro</strong> for longer-lasting sharpness and premium materials without a big price jump</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "comparison_supreme_mo",
-      "label": "Supreme vs Mo Comparison",
-      "default": "<h3>Supreme Series vs Mo Series</h3><p>Supreme focuses on practicality with red wood handles and 1.4116 steel that is very tough, stain-resistant, and easy to live with for everyday home use. Mo series features 67-layer Damascus cladding over 10Cr15CoMoV at 60 HRC plus a burnt oak handle and deep freeze heat treatment, delivering stronger edge holding, more refined cutting feel, and a striking Damascus pattern.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Aesthetics:</strong> Mo's 67-layer Damascus vs Supreme's plain finish</li><li><strong>Edge holding:</strong> Mo maintains sharpness much longer</li><li><strong>Handle:</strong> Burnt oak vs red wood for different grip and style</li></ul><p><strong>→ Choose Supreme</strong> if budget and easy maintenance are priorities<br><strong>→ Choose Mo</strong> for noticeable performance and aesthetic upgrade at upper mid-range pricing</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "comparison_supreme_lan",
-      "label": "Supreme vs Lan Comparison",
-      "default": "<h3>Supreme Series vs Lan Series</h3><p>Supreme sits at the entry point with 1.4116 steel that is tough, rust-resistant and quick to touch up — ideal for users who want a forgiving knife. Lan is the flagship series, built with 73-layer Damascus and a 14Cr14MoVNb powder steel core hardened to 62 HRC with deep freeze treatment and an olive wood handle. It trades some toughness for extreme edge retention and a very high-end look and feel.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Edge retention:</strong> Lan delivers razor-sharp performance that lasts significantly longer</li><li><strong>Hardness:</strong> 5 HRC difference for professional-grade hardness</li><li><strong>Construction:</strong> 73-layer Damascus vs monosteel for premium aesthetics</li><li><strong>Price:</strong> Top-tier investment vs entry-level value</li></ul><p><strong>→ Choose Supreme</strong> for simple, durable value<br><strong>→ Choose Lan</strong> for premium, high-hardness blade that holds a razor edge and sits at the top of the range</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "comparison_retro_mo",
-      "label": "Retro vs Mo Comparison",
-      "default": "<h3>Retro Series vs Mo Series</h3><p>Retro and Mo both use 10Cr15CoMoV at 60 HRC, so edge retention, toughness, corrosion resistance, and sharpening feel are very similar. Retro has 3-layer composite construction with red wood and black buffalo horn handles, giving a stylish yet traditional look at mid-level pricing. Mo pushes further into premium territory with 67-layer Damascus, deep freeze treatment, and a burnt oak handle — it feels more luxurious in hand and on the cutting board.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Construction:</strong> 67-layer Damascus (Mo) vs 3-layer composite (Retro)</li><li><strong>Handle style:</strong> Burnt oak vs red wood with buffalo horn</li><li><strong>Visual appeal:</strong> Mo's Damascus pattern for premium aesthetic</li><li><strong>Price:</strong> Mo positioned as more decorative, high-end finish</li></ul><p><strong>→ Choose Retro</strong> for great all-around performance and classic styling<br><strong>→ Choose Mo</strong> for the same steel with more luxurious Damascus finish</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "comparison_retro_lan",
-      "label": "Retro vs Lan Comparison",
-      "default": "<h3>Retro Series vs Lan Series</h3><p>Retro offers a balanced package: 10Cr15CoMoV composite steel at 60 HRC, four-star performance across toughness, edge holding, stain resistance and sharpening, plus handsome red wood and buffalo horn handles at mid-range pricing. Lan steps up to 14Cr14MoVNb powder steel core hardened higher, wrapped in 73-layer Damascus with deep freeze treatment and olive wood handles — delivering significantly longer edge life and a more exclusive look, with slightly less toughness than Retro.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel upgrade:</strong> Powder steel core (Lan) vs standard 10Cr15CoMoV (Retro)</li><li><strong>Edge retention:</strong> Lan holds sharpness much longer (5 stars vs 4 stars)</li><li><strong>Hardness:</strong> 2 HRC difference for pro-grade performance</li><li><strong>Price:</strong> Top-tier investment vs mid-range value</li></ul><p><strong>→ Choose Retro</strong> for everyday versatility and value<br><strong>→ Choose Lan</strong> for maximum performance and prestige at the top price point</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "comparison_mo_lan",
-      "label": "Mo vs Lan Comparison",
-      "default": "<h3>Mo Series vs Lan Series</h3><p>Mo features 67-layer Damascus with a 10Cr15CoMoV core at 60 HRC, giving very balanced performance and a striking burnt oak handle, positioned above Retro but below Lan in pricing. Lan raises hardness to 62 HRC with a 14Cr14MoVNb powder steel core and 73-layer Damascus, paired with olive wood and advanced heat treatment — delivering stronger edge retention and a more high-end feel while sacrificing a little toughness.</p><p><strong>Key Differences:</strong></p><ul><li><strong>Steel core:</strong> Powder steel (Lan) vs 10Cr15CoMoV (Mo) for better edge holding</li><li><strong>Hardness:</strong> 2 HRC bump for professional hardness level</li><li><strong>Edge retention:</strong> Lan maintains sharpness longer between sharpening</li><li><strong>Handle wood:</strong> Olive wood vs burnt oak for different aesthetics</li></ul><p><strong>→ Choose Mo</strong> for a premium, forgiving all-rounder<br><strong>→ Choose Lan</strong> for the flagship option with the most aggressive edge holding and luxury presentation</p>"
-    }
   ],
   "blocks": [
     {
@@ -1075,26 +1094,34 @@
           "content": "Rating"
         },
         {
+          "type": "collection",
+          "id": "rating_collection",
+          "label": "Collection for Reviews (Judge.me)",
+          "info": "Select the collection to aggregate reviews from. If selected, ratings will be automatically calculated from all products in this collection. Leave empty to use manual ratings below."
+        },
+        {
           "type": "range",
           "id": "rating",
-          "label": "Customer Star Rating (out of 5)",
+          "label": "Customer Star Rating (out of 5) - Manual Fallback",
           "min": 1,
           "max": 5,
           "step": 0.5,
           "default": 4.5,
-          "info": "Supports half stars (e.g., 4.5, 4.8 rounds to 4.5)"
+          "info": "Only used if no collection is selected above. Supports half stars (e.g., 4.5, 4.8 rounds to 4.5)"
         },
         {
           "type": "text",
           "id": "rating_value",
-          "label": "Rating Value (e.g., 4.8 Stars)",
-          "default": "4.8 Stars"
+          "label": "Rating Value (e.g., 4.8 Stars) - Manual Fallback",
+          "default": "4.8 Stars",
+          "info": "Only used if no collection is selected above"
         },
         {
           "type": "text",
           "id": "review_count",
-          "label": "Review Count",
-          "default": "124 Reviews"
+          "label": "Review Count - Manual Fallback",
+          "default": "124 Reviews",
+          "info": "Only used if no collection is selected above"
         },
         {
           "type": "header",
@@ -1187,6 +1214,38 @@
           "label": "Manual Pricing (Fallback)",
           "default": "Starts from $62.00",
           "info": "Only used if no product is selected above"
+        }
+      ]
+    },
+    {
+      "type": "comparison_note",
+      "name": "Comparison Note",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Series Pair"
+        },
+        {
+          "type": "text",
+          "id": "series_1_name",
+          "label": "Series 1 Name",
+          "info": "Enter the exact series name (e.g., 'SUPREME SERIES', 'X05Z ZHEN SERIES'). Order doesn't matter - 'A vs B' is the same as 'B vs A'."
+        },
+        {
+          "type": "text",
+          "id": "series_2_name",
+          "label": "Series 2 Name",
+          "info": "Enter the exact series name (e.g., 'RETRO SERIES', 'LAN SERIES'). Order doesn't matter - 'A vs B' is the same as 'B vs A'."
+        },
+        {
+          "type": "header",
+          "content": "Comparison Text"
+        },
+        {
+          "type": "richtext",
+          "id": "comparison_text",
+          "label": "Comparison Description",
+          "info": "Write the comparison text for these two series. Use HTML for formatting (headings, lists, etc.)."
         }
       ]
     }
@@ -1284,6 +1343,11 @@
       return;
     }
 
+    // Note: Judge.me ratings are aggregated server-side in Liquid from collection products (up to 50).
+    // The products.json API doesn't include metafields, so we rely on Liquid aggregation.
+    // If you need to aggregate from more than 50 products, consider using Judge.me's API
+    // or Shopify's Storefront API with proper authentication.
+
     function updateDropdownOptions() {
       const selected1 = select1.value;
       const selected2 = select2.value;
@@ -1340,39 +1404,42 @@
       const contentEl = notesContainer.querySelector('.comparison-notes-content');
       if (!contentEl) return;
 
-      // Normalize series names for comparison
-      const normalize = (name) => name.replace(/\s+SERIES$/i, '').trim().toUpperCase();
+      // Normalize series names for comparison (remove "SERIES" suffix, uppercase, replace spaces with hyphens)
+      const normalize = (name) => {
+        return name.replace(/\s+SERIES$/i, '')
+                   .trim()
+                   .toUpperCase()
+                   .replace(/\s+/g, '-');
+      };
+      
       const s1 = normalize(series1Name);
       const s2 = normalize(series2Name);
 
-      // Create comparison key (order doesn't matter)
-      let comparisonKey = '';
-      const combinations = {
-        'SUPREME-RETRO': 'supreme-retro',
-        'RETRO-SUPREME': 'supreme-retro',
-        'SUPREME-MO': 'supreme-mo',
-        'MO-SUPREME': 'supreme-mo',
-        'SUPREME-LAN': 'supreme-lan',
-        'LAN-SUPREME': 'supreme-lan',
-        'RETRO-MO': 'retro-mo',
-        'MO-RETRO': 'retro-mo',
-        'RETRO-LAN': 'retro-lan',
-        'LAN-RETRO': 'retro-lan',
-        'MO-LAN': 'mo-lan',
-        'LAN-MO': 'mo-lan'
-      };
+      // Get comparison data from JSON script tag
+      const dataScript = document.getElementById('comparison-data-' + sectionId);
+      if (!dataScript) {
+        notesContainer.style.display = 'none';
+        return;
+      }
 
-      const key = s1 + '-' + s2;
-      comparisonKey = combinations[key];
+      let comparisons = {};
+      try {
+        const data = JSON.parse(dataScript.textContent);
+        comparisons = data.comparisons || {};
+      } catch (e) {
+        console.error('Failed to parse comparison data:', e);
+        notesContainer.style.display = 'none';
+        return;
+      }
 
-      if (comparisonKey) {
-        const content = notesContainer.getAttribute('data-' + comparisonKey);
-        if (content) {
-          contentEl.innerHTML = content;
-          notesContainer.style.display = 'block';
-        } else {
-          notesContainer.style.display = 'none';
-        }
+      // Try to find matching comparison (order doesn't matter)
+      const key1 = s1 + '-' + s2;
+      const key2 = s2 + '-' + s1;
+      const content = comparisons[key1] || comparisons[key2];
+
+      if (content) {
+        contentEl.innerHTML = content;
+        notesContainer.style.display = 'block';
       } else {
         notesContainer.style.display = 'none';
       }
