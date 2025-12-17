@@ -9,34 +9,32 @@
       layout-panel-flex--column
       section-content-wrapper
       mobile-column
+      blog-post-wrapper
     "
     style="
       {% render 'layout-panel-style', settings: section.settings %}
       {% render 'spacing-style', settings: section.settings %}
     "
   >
-    {%- comment -%} Breadcrumb Navigation {%- endcomment -%}
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span class="breadcrumb-separator">›</span>
-      <a href="{{ blog.url }}">{{ blog.title }}</a>
-      <span class="breadcrumb-separator">›</span>
-      <span>{{ article.title | truncate: 50 }}</span>
-    </nav>
+    <div class="blog-post-header">
+      {%- comment -%} Breadcrumb Navigation {%- endcomment -%}
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="{{ blog.url }}">{{ blog.title }}</a>
+        <span class="breadcrumb-separator">›</span>
+        <span>{{ article.title | truncate: 50 }}</span>
+      </nav>
 
-    {%- comment -%} Back to Blog Link {%- endcomment -%}
-    <a href="{{ blog.url }}" class="back-to-blog">
-      ← Back to {{ blog.title }}
-    </a>
+      <header>
+        {%- content_for 'block', id: 'blog-post-title', type: 'text' %}
+        {%- content_for 'block', id: 'blog-post-details', type: '_blog-post-info-text' %}
+      </header>
 
-    <header>
-      {%- content_for 'block', id: 'blog-post-title', type: 'text' %}
-      {%- content_for 'block', id: 'blog-post-details', type: '_blog-post-info-text' %}
-    </header>
-
-    {%- if article.image -%}
-      {%- content_for 'block', id: 'blog-post-image', type: '_blog-post-featured-image', image: article.image %}
-    {%- endif -%}
+      {%- if article.image -%}
+        {%- content_for 'block', id: 'blog-post-image', type: '_blog-post-featured-image', image: article.image %}
+      {%- endif -%}
+    </div>
     {%- content_for 'block', id: 'blog-post-content', type: '_blog-post-content' %}
 
     {% if blog.comments_enabled? %}
@@ -170,6 +168,25 @@
 </script>
 
 {% stylesheet %}
+  /* Blog Post Wrapper - Add top spacing */
+  .blog-post-wrapper {
+    padding-top: 48px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .blog-post-wrapper {
+      padding-top: 32px;
+    }
+  }
+
+  /* Blog Post Header - Constrain and center all header elements */
+  .blog-post-header {
+    max-width: var(--normal-content-width);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
   /* Breadcrumb Styling */
   .breadcrumbs {
     display: flex;
@@ -178,10 +195,7 @@
     flex-wrap: wrap;
     font-size: 0.875rem;
     color: rgb(var(--color-foreground-rgb) / 0.65);
-    margin-bottom: 0.75rem;
-    max-width: var(--normal-content-width);
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 2.5rem;
   }
 
   .breadcrumbs a {
@@ -205,34 +219,6 @@
   @media screen and (max-width: 749px) {
     .breadcrumbs {
       font-size: 0.8125rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  /* Back to Blog Link */
-  .back-to-blog {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9375rem;
-    color: var(--color-link);
-    text-decoration: none;
-    margin-bottom: 2.5rem;
-    margin-top: 0;
-    transition: all 0.2s ease;
-    max-width: var(--normal-content-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .back-to-blog:hover {
-    color: var(--color-link-hover);
-    transform: translateX(-4px);
-  }
-
-  @media screen and (max-width: 749px) {
-    .back-to-blog {
-      font-size: 0.875rem;
       margin-bottom: 2rem;
     }
   }
