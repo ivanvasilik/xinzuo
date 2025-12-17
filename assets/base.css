@@ -317,6 +317,15 @@ p:empty {
 /* Layout */
 .content-for-layout {
   flex: 1;
+  padding-block-start: 40px;  /* Space below header */
+  padding-block-end: 60px;    /* Space above footer */
+}
+
+@media screen and (max-width: 750px) {
+  .content-for-layout {
+    padding-block-start: 24px;  /* Tighter on mobile */
+    padding-block-end: 32px;
+  }
 }
 
 /* Set up page widths & margins */
@@ -961,6 +970,10 @@ summary::-webkit-details-marker {
 }
 
 /* When header is transparent, pull the first main content section up to sit under the floating header */
+body:has(.header[transparent]) .content-for-layout {
+  padding-block-start: 0;  /* Remove top padding since section overlaps header */
+}
+
 body:has(.header[transparent]) .content-for-layout > .shopify-section:first-child {
   margin-top: calc(var(--header-group-height) * -1);
 }
