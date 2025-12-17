@@ -28,7 +28,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
+            "color": "#FFFFFF",
             "background": false,
             "background_color": "#FFA500",
             "corner_radius": 0,
@@ -86,7 +86,7 @@
       "settings": {
         "content_direction": "column",
         "gap": 48,
-        "color_scheme": "",
+        "color_scheme": "scheme-5",
         "padding-block-start": 0,
         "padding-block-end": 32
       }

@@ -57,7 +57,7 @@
     display: flex;
     gap: var(--gap-sm);
     font-size: var(--font-paragraph-size);
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    color: rgba(255, 255, 255, 0.6);
     white-space: nowrap;
     flex-wrap: wrap;
   }
@@ -65,6 +65,15 @@
   .blog-post-details > span {
     text-overflow: clip;
     overflow: hidden;
+  }
+
+  .blog-post-details > span:first-child {
+    font-weight: 600;
+    color: #C9A86A;
+  }
+
+  .reading-time {
+    position: relative;
   }
 {% endstylesheet %}
 
