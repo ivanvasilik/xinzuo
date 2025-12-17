@@ -82,7 +82,14 @@ class AnnouncementCountdown extends HTMLElement {
     }
 
     if (timeElement) {
-      timeElement.textContent = `${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}`;
+      const parts = [];
+      if (parseInt(timeRemaining.hours) > 0) {
+        parts.push(`${parseInt(timeRemaining.hours)} hrs`);
+      }
+      parts.push(`${parseInt(timeRemaining.minutes)} mins`);
+      parts.push(`${parseInt(timeRemaining.seconds)} secs`);
+      
+      timeElement.textContent = parts.join(', ');
     }
   }
 
