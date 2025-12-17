@@ -676,6 +676,7 @@ footer footer {
                 /* display:inline-grid; */
                 width:100% !important;
                 margin: auto;
+                padding: 0 80px;
                 background-color: #111;
             }
         /* } */
