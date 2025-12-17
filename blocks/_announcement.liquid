@@ -29,6 +29,10 @@
     <p class="announcement-bar__text">
       {{ block.settings.text }}{%  if block.settings.second_text != blank %}<br><br>{%  endif %}
       {{ block.settings.second_text }}
+      {% if block.settings.show_countdown %}
+        <script src="{{ 'announcement-countdown.js' | asset_url }}" defer></script>
+        <announcement-countdown></announcement-countdown>
+      {% endif %}
     </p>
     
 
@@ -125,6 +129,27 @@
   .text-block--align-right > * {
     margin-inline-start: auto;
   }
+
+  /* Countdown Timer Styles */
+  announcement-countdown {
+    display: inline-block;
+    margin-left: 0.5em;
+  }
+
+  .countdown-timer {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+  }
+
+  .countdown-time {
+    display: inline-block;
+    min-width: 6.5em;
+    text-align: left;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -142,6 +167,13 @@
       "type": "inline_richtext",
       "id": "second_text",
       "label": "t:settings.text",
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown timer",
+      "info": "Displays countdown to 12:00 PM Brisbane time",
+      "default": false
     },
     {
       "type": "url",
