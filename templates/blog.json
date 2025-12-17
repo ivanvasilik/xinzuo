@@ -11,12 +11,10 @@
   "sections": {
     "main": {
       "type": "main-blog",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "color_scheme": "",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     }
   },
