@@ -2,7 +2,7 @@
     .section-{{ section.id }} footer {
         padding: 0;
         background: linear-gradient(180deg, #23242B 0%, #191A21 100%);
-        margin-inline: -80px;
+        margin-inline: calc(-1 * var(--page-margin, 16px) * 2);
     }
 
     .section-{{ section.id }} .footer-menu {
