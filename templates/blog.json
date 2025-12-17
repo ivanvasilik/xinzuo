@@ -11,8 +11,6 @@
   "sections": {
     "main": {
       "type": "main-blog",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "color_scheme": "",
         "padding-block-start": 100,
