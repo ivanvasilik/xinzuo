@@ -87,8 +87,8 @@
         "content_direction": "column",
         "gap": 48,
         "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 100
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
