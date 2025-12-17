@@ -644,13 +644,13 @@ ul.media-gallery__grid li.product-media-container:first-child {
 }
 
 
-.section {
+/* .section {
         display:block;
         width:100% !important;
         margin: auto;
         background-color: #111;
         padding: 0 80px;
-    }
+    } */
     
     
     aside {
@@ -669,16 +669,16 @@ ul.media-gallery__grid li.product-media-container:first-child {
 footer footer {
     margin: auto;
 }
+/* 
 
-
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1100px) { */
             .section {
                 display:inline-grid;
                 width:100% !important;
                 margin: auto;
                 background-color: #111;
             }
-        }
+        /* } */
 
 @media screen and (max-width: 1025px) {
     .section {
