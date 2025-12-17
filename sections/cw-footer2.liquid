@@ -2,6 +2,7 @@
     .section-{{ section.id }} footer {
         padding: 0;
         background: linear-gradient(180deg, #23242B 0%, #191A21 100%);
+        margin-inline: calc(-1 * var(--page-margin, 0px));
     }
 
     .section-{{ section.id }} .footer-menu {
@@ -149,7 +150,6 @@
     }
 {% endstyle %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section section-{{ section.id }} color-{{ section.settings.color_scheme }}">
     <footer>
         <div class="footer-menu">

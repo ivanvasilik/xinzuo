@@ -7,6 +7,7 @@
         justify-content: space-between;
         gap: 40px; 
         margin: auto;
+        margin-inline: calc(-1 * var(--page-margin, 0px));
         max-width: none;
     }
     
@@ -60,7 +61,6 @@
     }
 {% endstyle %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section section-{{ section.id }} color-{{ section.settings.color_scheme }}">
     <div class="footer-3">
         <p>{{ section.settings.copyright }}</p>
