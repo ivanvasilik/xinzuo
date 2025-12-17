@@ -18,7 +18,7 @@
           "type": "_announcement",
           "settings": {
             "text": "🎁 Express Post Guaranteed by XMAS ✓",
-            "second_text": "Order before 12pm - 18th December",
+            "second_text": "Order by Midday (Thu 18 Dec cutoff)",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
