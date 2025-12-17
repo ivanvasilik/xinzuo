@@ -15,6 +15,20 @@
       {% render 'spacing-style', settings: section.settings %}
     "
   >
+    {%- comment -%} Breadcrumb Navigation {%- endcomment -%}
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="{{ blog.url }}">{{ blog.title }}</a>
+      <span class="breadcrumb-separator">›</span>
+      <span>{{ article.title | truncate: 50 }}</span>
+    </nav>
+
+    {%- comment -%} Back to Blog Link {%- endcomment -%}
+    <a href="{{ blog.url }}" class="back-to-blog">
+      ← Back to {{ blog.title }}
+    </a>
+
     <header>
       {%- content_for 'block', id: 'blog-post-title', type: 'text' %}
       {%- content_for 'block', id: 'blog-post-details', type: '_blog-post-info-text' %}
@@ -56,9 +70,173 @@
   </div>
 </div>
 
+{%- comment -%} SEO Meta Tags {%- endcomment -%}
+{%- liquid
+  assign article_description = article.excerpt_or_content | strip_html | truncatewords: 30
+  assign article_image = article.image | image_url: width: 1200, height: 630
+-%}
+
+{%- if article.image -%}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ article.title | escape }}">
+  <meta property="og:description" content="{{ article_description | escape }}">
+  <meta property="og:url" content="{{ shop.url }}{{ article.url }}">
+  <meta property="og:image" content="{{ article_image }}">
+  <meta property="og:image:secure_url" content="{{ article_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}">
+  {%- if article.updated_at != article.published_at -%}
+    <meta property="article:modified_time" content="{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}">
+  {%- endif -%}
+  {%- if article.author -%}
+    <meta property="article:author" content="{{ article.author }}">
+  {%- endif -%}
+  <meta property="og:site_name" content="{{ shop.name }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ article.title | escape }}">
+  <meta name="twitter:description" content="{{ article_description | escape }}">
+  <meta name="twitter:image" content="{{ article_image }}">
+  {%- if shop.twitter_account -%}
+    <meta name="twitter:site" content="@{{ shop.twitter_account }}">
+  {%- endif -%}
+{%- endif -%}
+
 <script type="application/ld+json">
-  {{ article | structured_data }}
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "description": {{ article_description | json }},
+  {%- if article.image -%}
+    "image": {
+      "@type": "ImageObject",
+      "url": {{ article_image | json }},
+      "width": 1200,
+      "height": 630
+    },
+  {%- endif -%}
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | default: shop.name | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {%- if settings.logo -%}
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ settings.logo | image_url: width: 600 | json }}
+      },
+    {%- endif -%}
+    "url": {{ shop.url | json }}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ canonical_url | json }}
+  }
+}
 </script>
+
+{%- comment -%} Breadcrumb Structured Data {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ shop.url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": {{ shop.url | append: blog.url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ canonical_url | json }}
+    }
+  ]
+}
+</script>
+
+{% stylesheet %}
+  /* Breadcrumb Styling */
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: rgb(var(--color-foreground-rgb) / 0.65);
+    margin-bottom: 2rem;
+    max-width: var(--normal-content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .breadcrumbs a {
+    color: rgb(var(--color-foreground-rgb) / 0.65);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--color-link);
+  }
+
+  .breadcrumb-separator {
+    color: rgb(var(--color-foreground-rgb) / 0.35);
+  }
+
+  .breadcrumbs span:not(.breadcrumb-separator) {
+    color: rgb(var(--color-foreground-rgb) / 0.85);
+  }
+
+  @media screen and (max-width: 749px) {
+    .breadcrumbs {
+      font-size: 0.8125rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  /* Back to Blog Link */
+  .back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-link);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    transition: all 0.2s ease;
+    max-width: var(--normal-content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .back-to-blog:hover {
+    color: var(--color-link-hover);
+    transform: translateX(-4px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .back-to-blog {
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+  }
 
 {% stylesheet %}
   .blog-post-comments-container {

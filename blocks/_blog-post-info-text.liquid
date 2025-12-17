@@ -27,8 +27,23 @@
       <span>{{- display_date | time_tag: format: 'date' -}}</span>
     {%- endif -%}
 
+    {%- comment -%} Reading Time {%- endcomment -%}
+    {%- if article.content -%}
+      {%- liquid
+        assign word_count = article.content | strip_html | number_of_words
+        assign reading_time = word_count | divided_by: 200
+        if reading_time == 0
+          assign reading_time = 1
+        endif
+      -%}
+      {%- if block_settings.show_date -%}
+        <span>•</span>
+      {%- endif -%}
+      <span class="reading-time">{{ reading_time }} min read</span>
+    {%- endif -%}
+
     {%- if block_settings.show_date and block_settings.show_author -%}
-      <span>{{ 'content.blog_details_separator' | t }}</span>
+      <span>•</span>
     {%- endif -%}
 
     {%- if block_settings.show_author -%}
