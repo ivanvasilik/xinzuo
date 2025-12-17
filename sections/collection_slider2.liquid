@@ -1,0 +1,318 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding: 0;
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .slider-header {
+        padding: 0 32px;
+    }
+
+    .section-{{ section.id }} .slider-header p {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} .slider-header span {
+        display: block;
+        margin-bottom: 64px;
+    }
+    
+    .section-{{ section.id }} .slider-header h2 {
+        max-width: 1200px;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #fff;
+        margin: 0;
+        line-height: 130%;
+    }
+
+    .section-{{ section.id }} .swiper {
+        overflow: visible;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        transition: height 0.5s ease-in-out !important;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .section-{{ section.id }} .swiper-slide h2 {
+        padding: 24px 12px 0;
+        margin: 0;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} .swiper-slide img {
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .section-{{ section.id }} .swiper-buttons {
+        display: flex;
+        margin-top: 64px;
+        padding: 0 32px 16px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div {
+        position: static;
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-{{ section.id }} .swiper-buttons div:after {
+        display: none;
+    }
+
+    .section-{{ section.id }} .swiper-buttons div[aria-disabled="true"] {
+        opacity: 0.5;
+    }
+
+    .section-{{ section.id }} .product-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+
+    .section-{{ section.id }} .product-price span.prices {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff
+    }
+        
+    .section-{{ section.id }} .product-price span.compare-price {
+        font-size: 22px;
+        text-decoration: line-through;
+        color: #828282;
+    }
+
+    .section-{{ section.id }} .product-price a {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        color: #fff;
+        border-bottom: 2px solid #444444;
+        padding: 0;
+        line-height: 250%;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .section-{{ section.id }} .jdgm-prev-badge__text {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 16px;
+        color: #c9c9cc; 
+    }
+
+    .section-{{ section.id }} .product-price a img {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 40px 0;
+        }
+        
+        .section-{{ section.id }} .slider-header span {
+            margin-bottom: 36px;
+        }
+        
+        .section-{{ section.id }} .slider-header h2 {
+            font-size: 36px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .swiper-buttons {
+            margin-top: 32px;
+        }
+
+        .section-{{ section.id }} .swiper-buttons div {
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+        }
+
+        .section-{{ section.id }} .slider-header p {
+            font-size: 16px;
+        }
+
+        .section-{{ section.id }} .swiper-slide h2 {
+            font-size: 18px;
+        }
+
+        .section-{{ section.id }} .product-price span.prices {
+            font-size: 22px;
+        }
+
+        .section-{{ section.id }} .product-price span.compare-prices {
+            font-size: 19px;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    {% if section.settings.show_header == true %}
+        <div class="slider-header">
+            <p>{{ section.settings.title }}</p>
+            <span>{{ section.settings.heading }}</span>
+        </div>
+    {% endif %}
+    <div class="collection-slider">
+        <div class="collection-swiper2">
+            <div class="swiper-wrapper">
+                {% for product in section.settings.products %}
+                    <a class="swiper-slide" href="{{ product.url }}">
+                        <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
+                        <h2>{{ product.title | strip_html | truncate: 20, "..." }}</h2>
+                        <!-- Start of Judge.me Rating Widget -->
+                        <div class="jdgm-widget jdgm-preview-badge" 
+                            data-id="{{ product.id }}" 
+                            data-auto-install="false"
+                            style="padding: 12px;"
+                        >
+                        {{ product.metafields.judgeme.badge }}
+                        </div>
+                        <!-- End of Judge.me Rating Widget -->
+                        <div class="product-price">
+                            <span class="prices">
+                                <span class="sale-price">{{ product.price | money }}</span>
+                                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                            </span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="swiper-buttons">
+            <div class="swiper-button-prev2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_4030_26868)">
+                        <path d="M15 19.5L7.5 12L15 4.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4030_26868">
+                            <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="swiper-button-next2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_4030_26872)">
+                        <path d="M9 4.5L16.5 12L9 19.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4030_26872">
+                            <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const collectionswiper2 = new Swiper('.collection-swiper2', {
+        slidesPerView: 1.3,
+        spaceBetween: 10,
+        breakpoints: {
+            768: {
+                slidesPerView: 1.6,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 2.8,
+                spaceBetween: 30,
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next2',
+            prevEl: '.swiper-button-prev2',
+        },
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Collection Slider2",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Header"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_header",
+            "label": "Display Header"
+        },
+        {
+            "type": "product_list",
+            "id": "products",
+            "label": "Products"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Top Padding",
+            "min": 10,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "default": 80
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Bottom Padding",
+            "min": 10,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "default": 80
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection Slider2"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,333 @@
+{% style %}
+    .section-{{ section.id }} {
+        background-color: #111;
+    }
+
+    .section-{{ section.id }} > div {
+        background-color: #111111;
+        padding: 64px 16px;
+    }
+
+    .section-{{ section.id }} .quick-question {
+        max-width: 1280px;
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        background-color: #292a33;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .quick-question h2 {
+        color: #fff;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        text-align: center;
+        margin: 0;
+        line-height: 135%;
+    }
+
+    .section-{{ section.id }} .quick-question .buttons {
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .quick-question button {
+        display: flex;
+        padding: 10px 16px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .section-{{ section.id }} .quick-question .quiz {
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: #ff0004;
+    }
+
+    .section-{{ section.id }} .quick-question .most {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .quick-question {
+            padding: 32px 16px;
+            gap: 32px;
+        }
+
+        .section-{{ section.id }} .quick-question h2 {
+            color: #fff;
+            text-align: center;
+            font-family: "Sen";
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 135%;
+            letter-spacing: -0.11px;
+        }
+
+        .section-{{ section.id }} .quick-question button {
+            color: #FFF;
+            text-align: center;
+            font-family: Sen;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
+            letter-spacing: 0.28px;
+            text-transform: uppercase;
+        }
+    }
+
+    .section-{{ section.id }} .question-modal {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 2;
+    }
+
+    .section-{{ section.id }} .question-modal-back {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: rgba(17, 17, 17, 0.50);
+        backdrop-filter: blur(4px);
+    }
+
+    .section-{{ section.id }} .question-modal-info {
+        width: 800px;
+        height: 400px;
+        padding: 40px 32px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: #292a33;
+        transform: translate(-50%, -50%);
+        display: none;
+        z-index: 10;
+    }
+
+    .section-{{ section.id }} .question-modal-info.active {
+        display: block;
+    }
+
+    .section-{{ section.id }} .question-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .section-{{ section.id }} .question-modal-header span {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .question-modal-header svg {
+        cursor: pointer;
+    }
+
+    .section-{{ section.id }} .question-progress {
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #828282;
+    }
+
+    .section-{{ section.id }} .question-state {
+        height: 3px;
+        background: #fff;
+    }
+
+    .section-{{ section.id }} .question-modal-info h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 135%;
+        margin: 32px 0;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} .question-answers {
+        display: flex;
+        gap: 16px;
+    }
+
+    .section-{{ section.id }} .question-answers button {
+        padding: 12px 16px;
+        border: 1px solid #828282;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+        min-width: 320px;
+        width: calc(50% - 8px);
+        text-align: left;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 850px) {
+        .question-modal-info {
+            width: calc(100% - 32px) !important;
+            top: 148px !important;
+            min-height: 480px;
+            padding: 24px 16px 32px !important;
+            transform: translate(-50%, 0) !important;
+        }
+
+        .question-modal-header span {
+            font-size: 22px !important;
+        }
+
+        .question-modal-info h2 {
+            font-size: 22px !important;
+        }
+
+        .question-answers {
+            flex-direction: column;
+        }
+
+        .question-answers button {
+            width: 100% !important;
+        }
+    }
+{% endstyle %}
+
+<section class="section-{{ section.id }}">
+    <div>
+        <div class="quick-question">
+            <h2>{{ section.settings.heading }}</h2>
+            <div class="buttons">
+                <button class="quiz" onclick="openModal()">TAKE QUICK QUIZ</button>
+                <button class="most">BEST SELLERS</button>
+            </div>
+        </div>
+        <div class="question-modal">
+            <div class="question-modal-back" onclick="closeModal()"></div>
+            {% for block in section.blocks %}
+                <div class="question-modal-info question-modal-info-{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+                    <div class="question-modal-header">
+                        <span>{{ forloop.index }}/{{ section.blocks.size }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" onclick="closeModal()">
+                            <g clip-path="url(#clip0_4592_59391)">
+                                <path d="M18.75 5.46875L5.25 19.5312" stroke="#c9c9cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18.75 19.5312L5.25 5.46875" stroke="#c9c9cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_4592_59391">
+                                    <rect width="24" height="25" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    {% liquid
+                    assign page = forloop.index
+                    assign total = section.blocks.size
+                    assign progress = page | times: 100 | divided_by: total
+                    %}
+                    <div class="question-progress">
+                        <div class="question-state" style="width: {{ progress }}%"></div>
+                    </div>
+                    <h2>{{ block.settings.question }}</h2>
+                    <div class="question-answers">
+                        <button onclick="nextModal({{ forloop.index }})">{{ block.settings.answer1 }}</button>
+                        <button onclick="nextModal({{ forloop.index }})">{{ block.settings.answer2 }}</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const closeModal = () => {
+            const modal = document.querySelector(".question-modal");
+            modal.style.display = "none";
+            const firstModal = document.querySelector(`.question-modal-info-1`);
+            const modals = document.querySelectorAll(".question-modal-info");
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            firstModal.classList.add('active');
+            document.body.style.overflow = '';
+        }
+
+        const openModal = () => {
+            const modal = document.querySelector(".question-modal");
+            modal.style.display = "block";
+            document.body.style.overflow = 'hidden';
+        }
+
+        const nextModal = (num) => {
+            if (num < {{ section.blocks.size }}) {
+                const nextModal = document.querySelector(`.question-modal-info-${num + 1}`);
+                const modals = document.querySelectorAll(".question-modal-info");
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                nextModal.classList.add('active');
+            }
+            else {
+                closeModal();
+            }
+        }
+    })
+</script>
+
+{% schema %}
+{
+    "name": "Quick Question",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "question",
+            "name": "Question",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "question",
+                    "label": "Question"
+                },
+                {
+                    "type": "text",
+                    "id": "answer1",
+                    "label": "Answer1"
+                },
+                {
+                    "type": "text",
+                    "id": "answer2",
+                    "label": "Answer2"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Quick Question"
+        }
+    ]   
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding: 48px 0;
+    }
+
+    .section-{{ section.id }} .product-static {
+        padding: 80px 0;
+        background-color: #292a33;
+    }
+
+    .section-{{ section.id }} .product-static > div {
+        width: 100%;
+        max-width: 1080px;
+        margin: auto;
+        padding: 48px 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+
+    .section-{{ section.id }} .product-static img {
+        width: 88px;
+        height: 88px;
+        margin: auto;
+        margin-bottom: 32px;
+    }
+
+    .section-{{ section.id }} .product-static h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: #fff;
+        line-height: 130%;
+        text-align: center;
+    }
+
+    .section-{{ section.id }} .product-static-div {
+        display: flex;
+        gap: 96px;
+    }
+
+    .section-{{ section.id }} .product-static-div span {
+        width: 50%;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #fff;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} .product-static a {
+        text-align: center;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        color: #ff0004;
+    }
+
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} {
+            padding: 32px 0;
+        }
+
+        .section-{{ section.id }} .product-static {
+            padding: 48px 0;
+        }
+
+        .section-{{ section.id }} .product-static > div {
+            padding: 32px 40px;
+            gap: 40px;
+        }
+
+        .section-{{ section.id }} .product-static img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .section-{{ section.id }} .product-static h2 {
+            font-size: 28px;
+        }
+
+        .section-{{ section.id }} .product-static-div {
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-static-div span {
+            width: 100%;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-static">
+        <div>
+            <div>
+                <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="Product logo">
+                <span>{{ section.settings.heading }}</span>
+            </div>
+            <div class="product-static-div">
+                <span>{{ section.settings.info1 }}</span>
+                <span>{{ section.settings.info2 }}</span>
+            </div>
+            <a href="/collections">Explore all Xinzuo series ></a>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Product Description",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "info1",
+            "label": "Info1"
+        },
+        {
+            "type": "richtext",
+            "id": "info2",
+            "label": "Info2"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Description"
+        }
+    ]
+}
+{% endschema %}

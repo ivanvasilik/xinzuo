@@ -1,0 +1,89 @@
+<style>
+    /* Target the Shopify section wrapper directly */
+    #shopify-section-{{ section.id }} {
+        position: relative;
+        z-index: 1;
+        background-color: #292a33;
+        padding: 50px 20px;
+    }
+
+    .compare-btn-section-{{ section.id }} .compare-btn-container {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: white;
+        text-align: center;
+        line-height: 135%;
+        margin: 0 0 30px 0;
+    }
+
+    .compare-btn-section-{{ section.id }} .compare-btn-container a {
+        display: inline-block;
+        padding: 12px 24px;
+        font-family: 'Sen';
+        font-weight: 600;
+        font-size: 24px;
+        text-transform: uppercase;
+        color: white;
+        background-color: #ff0004;
+        border: none;
+        border-radius: 4px;
+    }
+
+    @media screen and (max-width: 750px) {
+        #shopify-section-{{ section.id }} {
+            padding: 32px 20px;
+        }
+
+        .compare-btn-section-{{ section.id }} .compare-btn-container h2 {
+            font-size: 22px;
+            line-height: 1.2;
+            margin: 0 0 18px 0;
+        }
+
+        .compare-btn-section-{{ section.id }} .compare-btn-container a {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+    }
+</style>
+
+<div class="compare-btn-section-{{ section.id }}">
+    <div class="compare-btn-container">
+        <h2>{{ section.settings.heading }}</h2>
+        <a href="{{ section.settings.link }}">{{ section.settings.link_text }}</a>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Compare Btn",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+        },
+        {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link Text"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Compare Btn"
+        }
+    ]
+}
+{% endschema %}

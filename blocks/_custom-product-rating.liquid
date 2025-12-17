@@ -1,0 +1,242 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+  
+  # Get rating data from Judge.me metafields
+  assign rating = product.metafields.reviews.rating.value.rating
+  assign rating_count = product.metafields.reviews.rating_count
+  
+  # Fallback for preview mode or missing data
+  if request.visual_preview_mode and rating == blank
+    assign rating = 4.8
+    assign rating_count = 124
+  endif
+-%}
+
+{%- if rating != blank and rating_count != blank -%}
+  {% liquid
+    assign rating_floor = rating | floor
+    assign rating_ceil = rating | ceil
+    assign has_half = rating | modulo: 1
+  %}
+
+  <div 
+    class="custom-product-rating custom-product-rating-{{ block.id }}"
+    style="
+      --star-color: {{ block_settings.star_color | default: '#ff0004' }};
+      --star-empty-color: {{ block_settings.star_empty_color | default: 'rgba(255, 255, 255, 0.2)' }};
+      --star-size-mobile: {{ block_settings.star_size_mobile | default: 20 }}px;
+      --star-size-tablet: {{ block_settings.star_size_tablet | default: 22 }}px;
+      --star-size-desktop: {{ block_settings.star_size_desktop | default: 24 }}px;
+      --text-color: {{ block_settings.text_color | default: '#c9c9cc' }};
+      --text-hover-color: {{ block_settings.text_hover_color | default: '#fff' }};
+      --text-size-mobile: {{ block_settings.text_size_mobile | default: 14 }}px;
+      --text-size-tablet: {{ block_settings.text_size_tablet | default: 15 }}px;
+      --text-size-desktop: {{ block_settings.text_size_desktop | default: 16 }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    <div class="custom-rating-stars">
+      {% for i in (1..5) %}
+        {% if i <= rating_floor %}
+          <span class="custom-star filled">★</span>
+        {% elsif i == rating_ceil and has_half >= 0.5 %}
+          <span class="custom-star half">★</span>
+        {% else %}
+          <span class="custom-star empty">★</span>
+        {% endif %}
+      {% endfor %}
+      
+      <span class="custom-rating-value">{{ rating }} Stars</span>
+      
+      <a href="#judgeme_product_reviews" class="custom-rating-count">({{ rating_count }} reviews)</a>
+    </div>
+  </div>
+{%- endif -%}
+
+{% style %}
+  .custom-product-rating-{{ block.id }} {
+    width: 100%;
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-rating-stars {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-star {
+    color: var(--star-color);
+    font-size: var(--star-size-mobile);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-star.empty {
+    color: var(--star-empty-color);
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-star.half {
+    position: relative;
+    color: var(--star-empty-color);
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-star.half:before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: var(--star-color);
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-rating-value {
+    font-family: "Albert Sans";
+    font-size: var(--text-size-mobile) !important;
+    font-weight: 400;
+    color: var(--text-color);
+    margin-left: 4px;
+    line-height: 1.4 !important;
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-rating-count {
+    font-family: "Albert Sans";
+    font-size: var(--text-size-mobile) !important;
+    font-weight: 400;
+    color: var(--text-color);
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 2px !important;
+    margin-left: 2px;
+    line-height: 1.4 !important;
+  }
+
+  .custom-product-rating-{{ block.id }} .custom-rating-count:hover {
+    color: var(--text-hover-color);
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-product-rating-{{ block.id }} .custom-star {
+      font-size: var(--star-size-tablet);
+    }
+
+    .custom-product-rating-{{ block.id }} .custom-rating-value,
+    .custom-product-rating-{{ block.id }} .custom-rating-count {
+      font-size: var(--text-size-tablet) !important;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .custom-product-rating-{{ block.id }} .custom-star {
+      font-size: var(--star-size-desktop);
+    }
+
+    .custom-product-rating-{{ block.id }} .custom-rating-value,
+    .custom-product-rating-{{ block.id }} .custom-rating-count {
+      font-size: var(--text-size-desktop) !important;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Custom Product Rating",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Star Settings"
+    },
+    {
+      "type": "range",
+      "id": "star_size_mobile",
+      "label": "Star Size (Mobile)",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "star_size_tablet",
+      "label": "Star Size (Tablet)",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "star_size_desktop",
+      "label": "Star Size (Desktop)",
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#ff0004"
+    },
+    {
+      "type": "color",
+      "id": "star_empty_color",
+      "label": "Empty Star Color",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text Size (Mobile)",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_tablet",
+      "label": "Text Size (Tablet)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text Size (Desktop)",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#c9c9cc"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Review Link Hover Color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}

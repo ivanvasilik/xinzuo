@@ -1,0 +1,123 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+  assign section_settings = section.settings
+-%}
+
+{% if block_settings.show_detail_icons %}
+  <div class="product-detail-icons-custom" {{ block.shopify_attributes }}>
+    <div class="product-detail_info-divs">
+      {% if block_settings.detail_icon1 != blank %}
+        <div class="product-detail_info-div">
+          <img src="{{ block_settings.detail_icon1 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon 1">
+          <p>{{ block_settings.detail_info1 }}</p>
+        </div>
+      {% endif %}
+      
+      {% if block_settings.detail_icon2 != blank %}
+        <div class="product-detail_info-div">
+          <img src="{{ block_settings.detail_icon2 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon 2">
+          <p>{{ block_settings.detail_info2 }}</p>
+        </div>
+      {% endif %}
+      
+      {% if block_settings.detail_icon3 != blank %}
+        <div class="product-detail_info-div">
+          <img src="{{ block_settings.detail_icon3 | img_url: 'master' }}" width="100%" height="100%" alt="Detail Icon 3">
+          <p>{{ block_settings.detail_info3 }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .product-detail-icons-custom {
+    width: 100%;
+  }
+
+  .product-detail_info-divs {
+    display: flex;
+    gap: 16px;
+  }
+
+  .product-detail_info-div {
+    width: calc(100% / 3 - 32px / 3);
+    text-align: center;
+  }
+
+  .product-detail_info-div img {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+  }
+
+  .product-detail_info-div p {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 14px;
+    color: #c9c9cc;
+    margin: 0;
+    margin-top: 8px;
+  }
+
+  .product-detail_info-div strong {
+    font-weight: 400;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 750px) {
+    .product-detail_info-div img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Detail Icons",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_detail_icons",
+      "label": "Show Detail Icons",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon1",
+      "label": "Icon 1"
+    },
+    {
+      "type": "richtext",
+      "id": "detail_info1",
+      "label": "Icon 1 Text",
+      "info": "Use <strong> tags for bold text"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon2",
+      "label": "Icon 2"
+    },
+    {
+      "type": "richtext",
+      "id": "detail_info2",
+      "label": "Icon 2 Text",
+      "info": "Use <strong> tags for bold text"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_icon3",
+      "label": "Icon 3"
+    },
+    {
+      "type": "richtext",
+      "id": "detail_info3",
+      "label": "Icon 3 Text",
+      "info": "Use <strong> tags for bold text"
+    }
+  ]
+}
+{% endschema %}

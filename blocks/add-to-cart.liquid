@@ -1,0 +1,88 @@
+{%- doc -%}
+  This block is used to display the add to cart button.
+  Intended for product-form.liquid block.
+
+  @param {string} can_add_to_cart - Whether the product can be added to the cart
+  @param {string} add_to_cart_text - The text of the add to cart button
+{%- enddoc -%}
+
+{% liquid
+  assign class = 'add-to-cart-button ' | append: block.settings.style_class
+  assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+  
+  # Check if this is the engraving fee product (cannot be purchased directly)
+  assign engraving_product_id = 7718263914547
+  assign is_engraving_product = false
+  if closest.product.id == engraving_product_id
+    assign is_engraving_product = true
+  endif
+%}
+
+{% if is_engraving_product %}
+  <div class="engraving-not-purchasable" {{ block.shopify_attributes }}>
+    <div class="engraving-notice">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <p>Engraving can only be added from product pages or cart.</p>
+    </div>
+  </div>
+  <style>
+    .engraving-not-purchasable {
+      margin-top: 20px;
+    }
+    .engraving-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255, 0, 4, 0.08);
+      border: 1px solid rgba(255, 0, 4, 0.2);
+      border-radius: 8px;
+      color: var(--color-foreground);
+    }
+    .engraving-notice svg {
+      flex-shrink: 0;
+      color: #ff0004;
+    }
+    .engraving-notice p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+{% else %}
+  <span
+    {{ block.shopify_attributes }}
+    style="--add-to-cart-font-case: {{ settings.button_text_case }};"
+  >
+    {% render 'add-to-cart-button',
+      id: id,
+      class: class,
+      can_add_to_cart: can_add_to_cart,
+      product: closest.product,
+      add_to_cart_text: add_to_cart_text
+    %}
+  </span>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:names.add_to_cart",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style_class",
+      "label": "t:settings.style",
+      "options": [
+        { "value": "button", "label": "t:options.primary" },
+        { "value": "button-secondary", "label": "t:options.secondary" }
+      ],
+      "default": "button-secondary"
+    }
+  ]
+}
+{% endschema %}

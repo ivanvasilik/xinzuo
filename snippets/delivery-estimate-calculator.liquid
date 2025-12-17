@@ -1,0 +1,444 @@
+{% liquid
+  assign cutoff_time = settings.cutoff_time | default: '12:00'
+  assign enable_public_holidays = settings.enable_public_holidays | default: true
+  assign show_icon = settings.show_icon | default: true
+  assign background_color = settings.background_color | default: '#292a33'
+  assign border_color = settings.border_color | default: '#3a3b47'
+  assign border_radius = settings.border_radius | default: 8
+  assign text_size = settings.text_size | default: 13
+  assign free_delivery = settings.free_delivery
+  assign in_stock = settings.in_stock
+  assign delivery_content = settings.delivery_content
+  assign total_price = cart.total_price | divided_by: 100.00
+  
+  # Check if product is available (for stock badge)
+  assign is_available = false
+  if variant.available
+    assign is_available = true
+  endif
+%}
+
+<script src="{{ 'delivery-estimate.js' | asset_url }}" type="module"></script>
+
+<delivery-estimate-component
+  data-cutoff-time="{{ cutoff_time }}"
+  data-enable-holidays="{{ enable_public_holidays }}"
+  data-product-id="{{ product.id }}"
+  data-postcode-data-url="{{ 'australian_postcodes.json' | asset_url }}"
+>
+  <div
+    class="delivery-estimate-container"
+    style="
+      --delivery-bg-color: {{ background_color }};
+      --delivery-border-color: {{ border_color }};
+      --delivery-border-radius: {{ border_radius }}px;
+      --delivery-text-size: {{ text_size }}px;
+    "
+  >
+    <div class="delivery-estimate-content">
+      <div class="delivery-estimate-header">
+        <div class="delivery-estimate-badges">
+          {% if settings.free_delivery_state and free_delivery != blank %}
+            {% if total_price > settings.price %}
+              <span class="delivery-badge">
+                <span class="badge-indicator">
+                  <span class="badge-indicator-inner"></span>
+                </span>
+                FREE SHIPPING
+              </span>
+            {% else %}
+              <span class="delivery-badge">
+                <span class="badge-indicator">
+                  <span class="badge-indicator-inner"></span>
+                </span>
+                {{ free_delivery }}
+              </span>
+            {% endif %}
+          {% endif %}
+          {% if settings.in_stock_state and in_stock != blank %}
+            <span 
+              class="stock-badge{% unless is_available %} stock-badge--hidden{% endunless %}" 
+              ref="stockBadge"
+              data-available="{{ is_available }}"
+            >
+              <span class="badge-indicator">
+                <span class="badge-indicator-inner"></span>
+              </span>
+              {{ in_stock }}
+            </span>
+          {% endif %}
+        </div>
+        
+        <div class="delivery-estimate-main" ref="mainDisplay">
+          <button 
+            type="button" 
+            class="delivery-estimate-toggle" 
+            ref="toggleButton"
+            aria-label="Change delivery location"
+          >
+            <div class="delivery-estimate-text-wrapper">
+              <span class="delivery-estimate-full-text" ref="destinationText">
+                {{ delivery_content }}
+              </span>
+            </div>
+            <svg class="delivery-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 6L8 11L3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div
+          class="delivery-estimate-countdown"
+          ref="countdownBox"
+          style="display: none;"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 4V8L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span ref="countdownText"></span>
+        </div>
+      </div>
+
+      <div class="delivery-estimate-input-wrapper" ref="inputWrapper" style="display: none;">
+        <div class="delivery-estimate-input-group">
+          <input
+            type="text"
+            class="delivery-estimate-input"
+            placeholder="Suburb or postcode"
+            ref="postcodeInput"
+            aria-label="Suburb or postcode"
+            autocomplete="off"
+          />
+        </div>
+        <div
+          class="delivery-estimate-dropdown"
+          ref="dropdown"
+          style="display: none;"
+        >
+          <ul ref="dropdownList"></ul>
+        </div>
+      </div>
+
+      <div
+        class="delivery-estimate-error"
+        ref="errorContainer"
+        style="display: none;"
+      >
+        <p ref="errorMessage"></p>
+      </div>
+    </div>
+  </div>
+</delivery-estimate-component>
+
+<style>
+  .delivery-estimate-container {
+    padding: 12px 16px;
+    background-color: var(--delivery-bg-color);
+    border: 1px solid var(--delivery-border-color);
+    border-radius: var(--delivery-border-radius);
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .delivery-estimate-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .delivery-estimate-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .delivery-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-family: "Sen", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #c9c9cc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-family: "Sen", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #c9c9cc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stock-badge--hidden {
+    display: none;
+  }
+
+  .badge-indicator {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgba(16, 185, 129, 0.2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge-indicator-inner {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #10b981;
+  }
+
+  /* EXACT match to countdown box styling (but with adjustable size) */
+  .product-details .delivery-estimate-full-text,
+  .product-details .delivery-estimate-full-text * {
+    font-size: var(--delivery-text-size) !important;
+    color: #c9c9cc !important;
+    font-family: "Albert Sans", sans-serif !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+  }
+
+  .delivery-estimate-full-text {
+    margin: 0;
+    font-size: var(--delivery-text-size) !important;
+    color: #c9c9cc !important;
+    line-height: 1.5 !important;
+    font-family: "Albert Sans", sans-serif !important;
+    font-weight: 400 !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: inline;
+  }
+
+  .delivery-estimate-full-text u {
+    text-decoration: underline;
+    color: #c9c9cc !important;
+  }
+
+  /* Important text (matches countdown box strong styling) */
+  .delivery-estimate-full-text strong {
+    font-weight: 600 !important;
+    color: #ffffff !important;
+  }
+
+  .delivery-estimate-main {
+    margin-top: 8px;
+  }
+
+  .delivery-estimate-toggle {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-text-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .delivery-chevron {
+    flex-shrink: 0;
+    color: #c9c9cc;
+    transition: transform 0.2s;
+  }
+
+  .delivery-estimate-toggle.expanded .delivery-chevron {
+    transform: rotate(180deg);
+  }
+
+  .delivery-estimate-countdown {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #c9c9cc;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-countdown svg {
+    flex-shrink: 0;
+    color: #c9c9cc;
+  }
+
+  .delivery-estimate-countdown strong {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-input-wrapper {
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .delivery-estimate-input-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .delivery-estimate-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: "Albert Sans", sans-serif;
+    background-color: #1f2029;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-input::placeholder {
+    color: #6b7280;
+  }
+
+  .delivery-estimate-input:focus {
+    border-color: #ffffff;
+  }
+
+  .delivery-estimate-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #1f2029;
+    border: 1px solid #3a3b47;
+    border-radius: 4px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .delivery-estimate-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .delivery-estimate-dropdown li {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #c9c9cc;
+    font-family: "Albert Sans", sans-serif;
+    transition: background-color 0.15s;
+    border-bottom: 1px solid #2a2b33;
+  }
+
+  .delivery-estimate-dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .delivery-estimate-dropdown li:hover {
+    background-color: #2a2b33;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-dropdown li.selected {
+    background-color: #3a3b47;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-dropdown .dropdown-postcode {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .delivery-estimate-error {
+    padding: 6px 0;
+    color: #ef4444;
+    font-size: 12px;
+    font-family: "Albert Sans", sans-serif;
+  }
+
+  .delivery-estimate-error p {
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 749px) {
+    .delivery-estimate-container {
+      padding: 10px 12px;
+    }
+
+    .delivery-badge {
+      font-size: 10px;
+      padding: 3px 6px;
+      gap: 6px;
+    }
+
+    .stock-badge {
+      font-size: 10px;
+      padding: 3px 6px;
+      gap: 6px;
+    }
+
+    .badge-indicator {
+      width: 14px;
+      height: 14px;
+    }
+
+    .badge-indicator-inner {
+      width: 8px;
+      height: 8px;
+    }
+
+    .product-details .delivery-estimate-full-text,
+    .product-details .delivery-estimate-full-text * {
+      font-size: var(--delivery-text-size) !important;
+      color: #c9c9cc !important;
+    }
+
+    .product-details .delivery-estimate-full-text strong {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+
+    .product-details .delivery-estimate-full-text u {
+      color: #c9c9cc !important;
+    }
+
+    .delivery-estimate-input {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  }
+</style>

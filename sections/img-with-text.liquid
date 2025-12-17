@@ -1,0 +1,181 @@
+{% style %}
+    .section-{{ section.id }} {
+        background-color: #111111;
+    }
+
+    .section-{{ section.id }} > div {
+        padding: 80px 0 96px;
+    }
+
+    .section-{{ section.id }} .img-with-text {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        overflow: hidden;
+        background: #292a33;
+    }
+
+    .section-{{ section.id }} .image-left {
+        width: 50%;
+        padding: 16px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .section-{{ section.id }} .image-left h2 {
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .section-{{ section.id }} .image-left p {
+        margin: 0;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 16px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .image-left h2 p {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 130%;
+        color: white;
+    }
+
+    .section-{{ section.id }} .image-left a {
+        display: flex;
+        color: #fff;
+        align-items: center;
+        font-family: "Sen";
+        font-weight: 400;
+        font-size: 16px;
+        gap: 6px;
+        padding: 12px 0;
+        text-transform: uppercase;
+        border-bottom: 0.75px solid #c9c9cc;
+        width: fit-content;
+    }
+
+    .section-{{ section.id }} .image-left a img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .section-{{ section.id }} .image-right {
+        width: 50%;
+        height: 100%;
+    }
+
+    .section-{{ section.id }} .image-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} > div {
+            padding: 40px 0;
+        }
+
+        .section-{{ section.id }} .image-left {
+            gap: 24px;
+        }
+
+        .section-{{ section.id }} .image-left h2 p {
+            font-size: 36px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} > div {
+            padding: 48px 0;
+        }
+
+        .section-{{ section.id }} .img-with-text {
+            flex-direction: column-reverse;
+            gap: 0;
+        }
+
+        .section-{{ section.id }} .img-with-text .image-right {
+            width: 100%;
+            height: auto;
+        }
+
+        .section-{{ section.id }} .img-with-text .image-left {
+            width: 100%;
+            padding: 40px 32px;
+        }
+
+        .section-{{ section.id }} .img-with-text .image-left h2 {
+            margin-bottom: 12px;
+        }
+
+        .section-{{ section.id }} .img-with-text .image-left h2 p {
+            font-size: 28px;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div>
+        <div class="img-with-text">
+            <div class="image-left">
+                <div>
+                    <h2>{{ section.settings.heading }}</h2>
+                    <p>{{ section.settings.content }}</p>
+                </div>
+                <a href="{{ section.settings.url }}">{{ section.settings.button }} <img src="{{ 'ArrowUpRight.svg?v=1760533953' | file_url }}" width="100%" height="100%" alt="product"></a>
+            </div>
+            <div class="image-right">
+                <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" alt="image">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Img with text",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "Button Text"
+        },
+        {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+        },
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Img with text"
+        }
+    ]
+}
+{% endschema %}

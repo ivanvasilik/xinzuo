@@ -1,0 +1,199 @@
+
+{% liquid
+  assign block_settings = block.settings
+  assign product = closest.product
+  
+  if product == blank
+    assign product = collections.all.products.first
+  endif
+  
+  assign variant = product.selected_or_first_available_variant
+  assign inventory_quantity = variant.inventory_quantity
+  assign inventory_policy = variant.inventory_policy
+  
+  if variant.inventory_management == 'shopify'
+    assign inventory_managed = true
+  endif
+  
+  if inventory_managed
+    if inventory_quantity <= 0 and inventory_policy == 'deny'
+      assign can_add_to_cart = false
+    else
+      assign can_add_to_cart = true
+    endif
+  else
+    if variant != null
+      assign can_add_to_cart = true
+    else
+      assign can_add_to_cart = false
+    endif
+  endif
+%}
+
+<script src="{{ 'sticky-add-to-cart.js' | asset_url }}" type="module"></script>
+
+<sticky-add-to-cart-bar
+  class="sticky-add-to-cart-wrapper"
+  data-enabled="{{ block_settings.enabled }}"
+  data-product-id="{{ product.id }}"
+  {{ block.shopify_attributes }}
+>
+  <form action="{{ routes.cart_add_url }}" method="post" class="sticky-add-to-cart-form">
+    <input type="hidden" name="id" value="{{ variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    
+    <button 
+      type="submit" 
+      class="sticky-add-to-cart-button"
+      data-visible="false"
+      {% unless can_add_to_cart %}disabled{% endunless %}
+    >
+      <span class="sticky-button-text">
+        {% if can_add_to_cart %}
+          Add to Cart
+        {% else %}
+          Sold Out
+        {% endif %}
+      </span>
+      <span class="sticky-button-separator">•</span>
+      <span class="sticky-button-price">{{ variant.price | money }}</span>
+    </button>
+  </form>
+</sticky-add-to-cart-bar>
+
+{% stylesheet %}
+  /* Wrapper - no styles, just container */
+  .sticky-add-to-cart-wrapper {
+    display: contents;
+  }
+
+  /* Form container - no styles */
+  .sticky-add-to-cart-form {
+    display: contents;
+  }
+
+  /* Modern floating button - intentionally positioned with space from bottom */
+  .sticky-add-to-cart-button {
+    position: fixed;
+    bottom: 20px; /* Intentional spacing - works perfectly on all browsers including iOS Safari */
+    left: 50%;
+    transform: translateX(-50%) translateY(100px); /* Hidden by default */
+    z-index: 999;
+    
+    /* Button styling */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background-color: #ff0004;
+    border: none;
+    border-radius: 8px; /* Rounded but more square */
+    color: #ffffff !important;
+    font-family: "Sen", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    
+    /* Floating effect */
+    box-shadow: 0 4px 16px rgba(255, 0, 4, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+    /* Smooth animations - slightly slower to mask any rapid state changes */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.2s,
+                box-shadow 0.2s;
+    
+    /* Performance optimization */
+    will-change: transform;
+    
+    /* Hide on desktop */
+    display: none;
+  }
+
+  /* Show on mobile only */
+  @media screen and (max-width: 749px) {
+    .sticky-add-to-cart-button {
+      display: inline-flex;
+    }
+  }
+
+  /* Visible state - slide up into view */
+  .sticky-add-to-cart-button[data-visible="true"] {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Hover effect */
+  .sticky-add-to-cart-button:hover:not(:disabled) {
+    background-color: #dd0003;
+    box-shadow: 0 6px 20px rgba(255, 0, 4, 0.5), 0 3px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Active/pressed state */
+  .sticky-add-to-cart-button:active:not(:disabled) {
+    transform: translateX(-50%) translateY(0) scale(0.98);
+  }
+
+  /* Disabled state */
+  .sticky-add-to-cart-button:disabled {
+    background-color: #6b7280;
+    cursor: not-allowed;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Button text styling - force white color */
+  .sticky-button-text {
+    font-weight: 600;
+    color: #ffffff !important;
+  }
+
+  .sticky-button-separator {
+    opacity: 0.8;
+    font-weight: 400;
+    color: #ffffff !important;
+  }
+
+  .sticky-button-price {
+    font-weight: 700;
+    color: #ffffff !important;
+  }
+
+  /* Ensure all button content is white */
+  .sticky-add-to-cart-button * {
+    color: #ffffff !important;
+  }
+
+  /* Extra safety - hide on desktop */
+  @media screen and (min-width: 750px) {
+    .sticky-add-to-cart-button {
+      display: none !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sticky Add to Cart Bar",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows a sticky add-to-cart bar at the bottom of mobile screens when the main button is scrolled out of view."
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable sticky bar",
+      "default": true,
+      "info": "Mobile only (< 750px). Appears when main add-to-cart button is off-screen."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Add to Cart Bar",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
+

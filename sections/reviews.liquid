@@ -1,0 +1,346 @@
+{% style %}
+  .section-{{ section.id }} {
+    background-color: #111;
+  }
+
+  .section-{{ section.id }} > div {
+    background-color: #111111;
+    padding: 80px 0 64px;
+    position: relative;
+  }
+
+  .section-{{ section.id }} .home-reviews {
+    position: relative;
+    max-width: 1280px;
+    margin: auto;
+    margin-bottom: 64px;
+  }
+
+  .section-{{ section.id }} .home-reviews h2 {
+    color: #fff;
+    max-width: 900px;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
+    margin: auto;
+    padding: 0 16px;
+    line-height: 130%;
+  }
+
+  .section-{{ section.id }} .home-reviews h2 strong {
+    color: #ff0004;
+    font-weight: 600;
+  }
+
+  .section-{{ section.id }} .menu-swiper {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    overflow-x: hidden;
+    margin-top: 30vw;
+  }
+
+  .section-{{ section.id }} .menu-swiper.swiper-initialized {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-slide {
+    opacity: 0.5;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    cursor: grab;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-slide.swiper-slide-active {
+    opacity: 0.95;
+    transform: scale(1);
+    cursor: pointer;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-slide:not(.swiper-slide-active) a {
+    pointer-events: none;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-{{ section.id }} figure.menu-card {
+    background-color: #262626;
+    color: #fff;
+    font-size: 16px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.95;
+    margin: 0;
+    background-color: #292a33;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 96px;
+  }
+
+  .section-{{ section.id }} figure.menu-card h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 24px;
+    line-height: 140%;
+    color: white;
+  }
+
+  .section-{{ section.id }} figure.menu-card h5 {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 18px;
+    color: #c9c9cc;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+  }
+
+  .section-{{ section.id }} figure.menu-card .menu-card-bottom {
+    width: 100%;
+  }
+
+  .section-{{ section.id }} figure.menu-card .menu-card-bottom * {
+    text-align: end;
+  }
+
+  .section-{{ section.id }} figure.menu-card span {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+    display: block;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-pagination {
+    position: static;
+    padding-top: 64px;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+  }
+
+  .section-{{ section.id }} .menu-swiper .swiper-pagination span {
+    background: #fff;
+  }
+
+  .section-{{ section.id }} img {
+    position: absolute;
+    margin-top: -80px;
+    width: 100%;
+    min-height: 700px;
+    object-fit: cover;
+  }
+
+  .section-{{ section.id }} svg {
+    position: relative;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .section-{{ section.id }} .menu-swiper {
+      margin-top: 350px;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }} > div {
+      padding: 48px 0 40px;
+    }
+
+    .section-{{ section.id }} .home-reviews h2 {
+      font-size: 28px;
+    }
+
+    .section-{{ section.id }} figure.menu-card {
+      height:408px;
+      width: 100%;
+    }
+
+    .section-{{ section.id }} .home-reviews {
+      margin-bottom: 48px;
+    }
+
+    .section-{{ section.id }} .menu-swiper .swiper-pagination {
+      padding-top: 32px;
+    }
+
+    .section-{{ section.id }} figure.menu-card {
+      padding: 24px;
+      gap: 80px;
+      background: linear-gradient(180deg, #282A33 0%, #0C0C0C 100%);
+    }
+
+    .section-{{ section.id }} figure.menu-card h2 {
+      font-size: 19px;
+      margin-bottom: 12px;
+      color: #fff;
+      font-family: "Sen";
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 140%;
+    }
+
+    .section-{{ section.id }} figure.menu-card h5 {
+      font-size: 18px;
+      line-height: 150%;
+    }
+
+    .section-{{ section.id }} .menu-card-bottom p {
+      font-size: 16px;
+    }
+
+    .section-{{ section.id }} figure.menu-card .menu-cart-top p {
+      font-size: 18px;
+    }
+  }
+{% endstyle %}
+
+<section class="section-{{ section.id }}">
+  <div>
+    <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="Review Image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="88" height="14" viewBox="0 0 88 14" fill="none">
+      <g clip-path="url(#clip0_6018_26809)">
+        <path d="M3.872 3.38086L5.06 5.76476L7.744 6.15485L5.808 8.01863L6.292 10.6192L3.872 9.40563L1.496 10.6192L1.936 8.01863L0 6.15485L2.684 5.76476L3.872 3.38086Z" fill="white"/>
+        <path d="M23.936 3.38086L25.124 5.76476L27.808 6.15485L25.872 8.01863L26.356 10.6192L23.936 9.40563L21.56 10.6192L22 8.01863L20.064 6.15485L22.748 5.76476L23.936 3.38086Z" fill="white"/>
+        <path d="M43.9999 3.38086L45.1879 5.76476L47.8719 6.15485L45.9359 8.01863L46.3759 10.6192L43.9999 9.40563L41.6239 10.6192L42.0639 8.01863L40.1279 6.15485L42.8119 5.76476L43.9999 3.38086Z" fill="white"/>
+        <path d="M64.0639 3.38086L65.2519 5.76476L67.9359 6.15485L65.9999 8.01863L66.4399 10.6192L64.0639 9.40563L61.6439 10.6192L62.1279 8.01863L60.1919 6.15485L62.8759 5.76476L64.0639 3.38086Z" fill="white"/>
+        <path d="M84.1281 3.38086L85.3161 5.76476L88.0001 6.15485L86.0641 8.01863L86.5041 10.6192L84.1281 9.40563L81.7081 10.6192L82.1921 8.01863L80.2561 6.15485L82.9401 5.76476L84.1281 3.38086Z" fill="white"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_6018_26809">
+          <rect width="88" height="14" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+    <div class="home-reviews">
+      <span>{{ section.settings.heading }}</span>
+    </div>
+    <div class="menu-swiper swiper-container">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <figure class="menu-card">
+              <div class="menu-card-top">
+                <h2>{{ block.settings.heading }}</h2>
+                <p>{{ block.settings.content }}</p>
+              </div>
+              <div class="menu-card-bottom">
+                <span>{{ block.settings.customer }}</span>
+                <p>{{ block.settings.location }}</p>
+              </div>
+            </figure>
+          </div>
+        {% endfor %}
+      </div>
+      {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function initMenuSwipers() {
+      const sliders = document.querySelectorAll('.menu-swiper');
+
+      if (!sliders.length) return;
+
+      sliders.forEach((sliderEl) => {
+        if (sliderEl.classList.contains('swiper-initialized')) return;
+
+        const swiperInstance = new Swiper(sliderEl, {
+          slidesPerView: 1.3,
+          centeredSlides: true,
+          loop: false,
+          grabCursor: true,
+          {% comment %} pagination: {
+            el: sliderEl.querySelector('.swiper-pagination'),
+            type: 'bullets',
+            clickable: 'true',
+          }, {% endcomment %}
+        });
+
+        // Click-to-activate and follow link
+        {% comment %} sliderEl.querySelectorAll('.swiper-slide').forEach((slide, index) => {
+          slide.addEventListener('click', (e) => {
+            const isActive = slide.classList.contains('swiper-slide-active');
+            const link = slide.querySelector('a');
+
+            if (!isActive) {
+              e.preventDefault();
+              swiperInstance.slideTo(index);
+            } else if (link) {
+              window.location.href = link.href;
+            }
+          });
+        }); {% endcomment %}
+      });
+    }
+    initMenuSwipers();
+  })
+</script>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "customer",
+          "label": "Customer"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews"
+    }
+  ]
+}
+{% endschema %}

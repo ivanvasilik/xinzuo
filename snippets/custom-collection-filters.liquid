@@ -1,0 +1,1421 @@
+{% comment %}
+  Custom Collection Filters
+  Extracts filter data from product titles and creates a sidebar filtering system
+  No apps required - pure JavaScript filtering
+{% endcomment %}
+
+<div class="custom-filters-sidebar" id="custom-filters">
+  <div class="desktop-sort-wrapper">
+    <label>Sort by:</label>
+    <div class="custom-dropdown" id="desktop-sort-dropdown-custom">
+      <button class="custom-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span class="custom-dropdown__text">Best Sellers</span>
+        <svg class="custom-dropdown__arrow" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M6 8L2 4h8z"/></svg>
+      </button>
+      <ul class="custom-dropdown__menu" role="listbox" tabindex="-1">
+        <li class="custom-dropdown__option selected" data-value="best-sellers" role="option" aria-selected="true">Best Sellers</li>
+        <li class="custom-dropdown__option" data-value="price-low" role="option" aria-selected="false">Price: Low to High</li>
+        <li class="custom-dropdown__option" data-value="price-high" role="option" aria-selected="false">Price: High to Low</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="filters-header">
+    <h4>Filters</h4>
+    <button class="clear-all-btn" id="clear-all-filters" style="display: none;">Clear All</button>
+  </div>
+  
+  <div class="filter-section" id="category-filter">
+    <div class="filter-section-header">
+      <span>Category</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="category-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+  
+  <div class="filter-section" id="knife-type-filter">
+    <div class="filter-section-header">
+      <span>Knife Type</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="knife-type-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+  
+  <div class="filter-section" id="series-filter">
+    <div class="filter-section-header">
+      <span>Series</span>
+      <span class="filter-chevron">▼</span>
+    </div>
+    <div class="filter-options" id="series-options">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</div>
+
+<div class="filter-mobile-trigger">
+  <button class="mobile-filter-btn" id="open-mobile-filters">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M2.5 5H17.5M5 10H15M7.5 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span>Filters</span>
+    <span class="filter-count-badge" id="filter-count-badge" style="display: none;">0</span>
+  </button>
+  
+  <div class="custom-dropdown" id="sort-dropdown-custom">
+    <button class="custom-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="custom-dropdown__text">Best Sellers</span>
+      <svg class="custom-dropdown__arrow" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M6 8L2 4h8z"/></svg>
+    </button>
+    <ul class="custom-dropdown__menu" role="listbox" tabindex="-1">
+      <li class="custom-dropdown__option selected" data-value="best-sellers" role="option" aria-selected="true">Best Sellers</li>
+      <li class="custom-dropdown__option" data-value="price-low" role="option" aria-selected="false">Price: Low to High</li>
+      <li class="custom-dropdown__option" data-value="price-high" role="option" aria-selected="false">Price: High to Low</li>
+    </ul>
+  </div>
+  
+  <!-- Grid Toggle (Mobile Only) -->
+  <div class="grid-toggle" id="grid-toggle">
+    <button class="grid-toggle-btn active" data-view="single" aria-label="Single column view" title="Single column">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+    <button class="grid-toggle-btn" data-view="grid" aria-label="Two column grid view" title="Two column grid">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="2" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="10.5" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="filter-mobile-drawer" id="mobile-filter-drawer">
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <h3>Filters</h3>
+      <button class="drawer-close" id="close-drawer">×</button>
+    </div>
+    <div class="drawer-body" id="mobile-filters-body">
+      <!-- Filters will be cloned here -->
+    </div>
+    <div class="drawer-footer">
+      <button class="clear-filters-btn" id="mobile-clear-filters">Clear All</button>
+      <button class="apply-filters-btn" id="apply-filters">Apply Filters</button>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  /* Desktop Sidebar */
+  .custom-filters-sidebar {
+    width: 280px;
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+    max-height: calc(100vh - 140px);
+    overflow:hidden;
+    overflow-y: auto;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+  /* Desktop Sort Dropdown */
+  .desktop-sort-wrapper {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .desktop-sort-wrapper label {
+    display: block;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .desktop-sort-wrapper .sort-dropdown {
+    width: 100%;
+  }
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+
+  .filters-header h4 {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .clear-all-btn {
+    background: none;
+    border: none;
+    color: #c9c9cc;
+    font-family: "Sen", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  .clear-all-btn:hover {
+    color: #fff;
+  }
+
+  .filter-section {
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .filter-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 12px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .filter-chevron {
+    color: #c9c9cc;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .filter-section.collapsed .filter-chevron {
+    transform: rotate(-90deg);
+  }
+
+  .filter-section.collapsed .filter-options {
+    display: none;
+  }
+
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .filter-checkbox {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .filter-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .filter-option input[type="checkbox"]:checked + .filter-checkbox {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+  }
+
+  .filter-option input[type="checkbox"]:checked + .filter-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .filter-label {
+    font-family: "Albert Sans", sans-serif;
+    font-size: 14px;
+    color: #c9c9cc;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .filter-count {
+    font-family: "Sen", sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .filter-option:hover .filter-label {
+    color: #fff;
+  }
+
+  /* Mobile Filter Button & Sort Bar */
+  .filter-mobile-trigger {
+    display: none;
+    flex-wrap: nowrap; /* Keep everything on one line */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .mobile-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .filter-count-badge {
+    background-color: #ff0004;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Custom Dropdown (replaces native select for full styling control) */
+  .custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .custom-dropdown__trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 140px;
+    justify-content: space-between;
+  }
+
+  .custom-dropdown__trigger:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .custom-dropdown__trigger:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .custom-dropdown__arrow {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .custom-dropdown.open .custom-dropdown__arrow {
+    transform: rotate(180deg);
+  }
+
+  .custom-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: none;
+  }
+
+  .custom-dropdown.open .custom-dropdown__menu {
+    display: block;
+  }
+
+  .custom-dropdown__option {
+    padding: 10px 12px;
+    color: #c9c9cc;
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .custom-dropdown__option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .custom-dropdown__option.selected {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Grid Toggle (Mobile Only) */
+  .grid-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    align-items: center;
+    gap: 2px;
+    background: rgba(41, 42, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+
+  .grid-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .grid-toggle-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .grid-toggle-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .grid-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Mobile Drawer */
+  .filter-mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .filter-mobile-drawer.active {
+    display: block;
+  }
+
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .drawer-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border-radius: 16px 16px 0 0;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .filter-mobile-drawer.active .drawer-content {
+    transform: translateY(0);
+  }
+
+  .drawer-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drawer-header h3 {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+  }
+
+  .drawer-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+  }
+
+  .drawer-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 12px;
+  }
+
+  .clear-filters-btn,
+  .apply-filters-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 6px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .clear-filters-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .apply-filters-btn {
+    background-color: #ff0004;
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 749px) {
+    .custom-filters-sidebar {
+      display: none;
+    }
+
+    .filter-mobile-trigger {
+      display: flex;
+    }
+
+    .filter-mobile-trigger .custom-dropdown {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .filter-mobile-trigger .custom-dropdown__trigger {
+      width: 100%;
+      padding: 10px 10px;
+      font-size: 13px;
+    }
+    
+    .filter-mobile-trigger .custom-dropdown__menu {
+      min-width: 100%;
+    }
+
+    /* Show grid toggle on mobile */
+    .grid-toggle {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 750px) {
+    /* Hide mobile trigger completely on desktop - we have the sort dropdown in sidebar */
+    .filter-mobile-trigger {
+      display: none !important;
+    }
+  }
+
+  /* Scrollbar styling */
+  .custom-filters-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .custom-filters-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Product card title truncation - no forced height */
+  .product-grid__item a[href*="/products/"] p,
+  .product-grid__item .product-card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Keep collection title on one line on mobile */
+  .collection-list-title h2 {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 749px) {
+    .collection-list-title h2 {
+      font-size: clamp(28px, 8vw, 48px);
+    }
+  }
+{% endstyle %}
+
+{% javascript %}
+  (function() {
+    // Module-level variables
+    let globalProductsData = [];
+    let collectionHandle = '';
+    let isSorting = false; // Flag to prevent infinite loop during sorting
+    let isLoadingProducts = false; // Flag to prevent infinite loop during product loading
+    let isApplyingFilters = false; // Flag to prevent concurrent filter applications
+    let allProductsLoaded = false; // Flag to track if all products have been loaded
+
+    // ============================================
+    // GRID TOGGLE FUNCTIONALITY (Mobile Only)
+    // ============================================
+    function initGridToggle() {
+      const gridToggle = document.getElementById('grid-toggle');
+      if (!gridToggle) return;
+
+      const buttons = gridToggle.querySelectorAll('.grid-toggle-btn');
+      const productGrid = document.querySelector('.product-grid');
+      if (!productGrid) return;
+
+      // Get saved preference (default to 'grid')
+      const savedView = localStorage.getItem('collection-grid-view') || 'grid';
+      
+      // Only update button states - grid class is already applied by inline script
+      updateGridToggleButtons(savedView, buttons);
+
+      // Handle button clicks
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          setGridView(view, buttons, productGrid);
+          localStorage.setItem('collection-grid-view', view);
+        });
+      });
+    }
+    
+    function updateGridToggleButtons(view, buttons) {
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === view);
+      });
+    }
+
+    function setGridView(view, buttons, productGrid) {
+      // Update button states
+      updateGridToggleButtons(view, buttons);
+
+      // Update grid class
+      productGrid.classList.remove('mobile-view-single', 'mobile-view-grid');
+      productGrid.classList.add(`mobile-view-${view}`);
+    }
+
+    // Initialize grid toggle on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGridToggle);
+    } else {
+      initGridToggle();
+    }
+
+    // Initialize filters when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCustomFilters);
+    } else {
+      initCustomFilters();
+    }
+
+    async function initCustomFilters() {
+      // Fetch ALL products from collection via Shopify API
+      collectionHandle = window.location.pathname.split('/collections/')[1]?.split('/')[0] || 'all-products';
+      globalProductsData = await fetchAllProducts(collectionHandle);
+      
+      const visibleProducts = document.querySelectorAll('.product-grid__item');
+      if (!visibleProducts.length) return;
+
+      // Tag visible DOM products with data attributes
+      tagVisibleProducts(visibleProducts, globalProductsData);
+
+      // Extract filter data from ALL products for counts
+      const filters = extractFiltersFromData(globalProductsData);
+      
+      // Build filter UI
+      buildFilterUI(filters);
+      
+      // Set up event listeners (filtering visible products)
+      setupEventListeners(visibleProducts, filters);
+      
+      // Setup mobile drawer
+      setupMobileDrawer();
+      
+      // Watch for new products being added (infinite scroll)
+      watchForNewProducts();
+      
+      // Apply filters from URL parameters (e.g., ?filter=knives or ?filter=accessories)
+      // This also handles initial sorting
+      await applyFiltersFromUrl();
+      
+      // Note: We do NOT call sortProducts() on initial load when sort is "best-sellers"
+      // because products are already in Shopify's default order (best sellers).
+      // This prevents an unnecessary DOM reorder that causes a visual flash.
+    }
+
+    async function applyFiltersFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const filterParam = urlParams.get('filter');
+      
+      if (!filterParam) return;
+      
+      // Map URL param to category filter values (specifically target Category section)
+      const categoryMap = {
+        'knives': ['Single Knives', 'Knife Sets'],
+        'accessories': ['Accessories']
+      };
+      
+      const categoryValues = categoryMap[filterParam.toLowerCase()];
+      if (!categoryValues) return;
+      
+      // Check all corresponding checkboxes (specifically in Category section)
+      categoryValues.forEach(categoryValue => {
+        // Target specifically the Category section (#category-filter)
+        const checkbox = document.querySelector(
+          `#category-filter [data-filter-value="${categoryValue}"]`
+        );
+        
+        if (checkbox && !checkbox.checked) {
+          checkbox.checked = true;
+          
+          // Sync to mobile drawer if exists
+          const mobileCheckbox = document.querySelector(
+            `#mobile-filters-body [data-filter-value="${categoryValue}"]`
+          );
+          if (mobileCheckbox) {
+            mobileCheckbox.checked = true;
+          }
+        }
+      });
+      
+      // Trigger the filter application once after all checkboxes are set
+      await applyFiltersAndSort();
+      updateClearAllButton();
+      updateFilterCount();
+    }
+
+    function watchForNewProducts() {
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+
+      // Debounce timer to batch multiple product additions
+      let debounceTimer = null;
+
+      const observer = new MutationObserver((mutations) => {
+        // Skip if we're currently sorting or loading products (to prevent infinite loop)
+        if (isSorting || isLoadingProducts) return;
+        
+        let hasNewProducts = false;
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1 && node.classList && node.classList.contains('product-grid__item')) {
+              // New product added - tag it
+              tagVisibleProducts([node], globalProductsData);
+              hasNewProducts = true;
+            }
+          });
+        });
+              
+        // Only re-apply filters/sort if there are active filters or non-default sorting
+        if (hasNewProducts) {
+          // Clear existing debounce timer
+          clearTimeout(debounceTimer);
+          
+          // Debounce to batch multiple additions
+          debounceTimer = setTimeout(() => {
+            // Check if there are active filters or non-default sorting
+            const hasActiveFilters = document.querySelector('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked');
+            const sortValue = getSelectedSortValue();
+            const isNonDefaultSort = sortValue !== 'best-sellers';
+            
+            // Only re-apply if filters are active or sorting is non-default
+            if (hasActiveFilters || isNonDefaultSort) {
+              applyFiltersAndSort();
+            }
+            // Otherwise, just tag the products and leave them as-is (no refresh)
+          }, 100); // Small delay to batch multiple additions
+            }
+      });
+
+      observer.observe(productGrid, {
+        childList: true,
+        subtree: false // Changed to false - only watch direct children
+      });
+    }
+
+    function tagVisibleProducts(visibleProducts, allProductsData) {
+      visibleProducts.forEach((product, index) => {
+        // Get product handle from link URL
+        const link = product.querySelector('a[href*="/products/"]');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        const handle = href.split('/products/')[1]?.split('?')[0];
+        if (!handle) return;
+        
+        // Find matching product in API data by handle
+        const productData = allProductsData.find(p => p.handle === handle);
+        if (productData) {
+          if (productData.knifeType) product.dataset.knifeType = productData.knifeType;
+          if (productData.series) product.dataset.series = productData.series;
+          if (productData.category) product.dataset.category = productData.category;
+          
+          // Add price, sold-out status, and position for sorting
+          product.dataset.price = productData.price || '0';
+          product.dataset.soldOut = productData.soldOut ? 'true' : 'false';
+          product.dataset.position = productData.position || index.toString();
+        }
+      });
+    }
+
+    async function fetchAllProducts(collectionHandle) {
+      try {
+        const response = await fetch(`/collections/${collectionHandle}/products.json?limit=250`);
+        const data = await response.json();
+        
+        // Return products with analyzed data
+        return data.products.map((product, index) => {
+          const analyzed = analyzeProduct(product.title);
+          // Get price from first variant
+          const price = product.variants?.[0]?.price || '0';
+          // Check if all variants are sold out
+          const soldOut = !product.variants?.some(v => v.available);
+          
+          return {
+            title: product.title,
+            handle: product.handle,
+            price: price,
+            soldOut: soldOut,
+            position: index, // Original position in collection (usually best seller order)
+            ...analyzed
+          };
+        });
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+        return [];
+      }
+    }
+
+    function analyzeProduct(title) {
+      const result = {};
+      
+      // Extract knife type
+      const knifeTypePatterns = [
+        { pattern: /Chef Knife/i, value: 'Chef Knife' },
+        { pattern: /Santoku/i, value: 'Santoku' },
+        { pattern: /Bread Knife/i, value: 'Bread Knife' },
+        { pattern: /Carving Knife/i, value: 'Carving Knife' },
+        { pattern: /Utility Knife/i, value: 'Utility Knife' },
+        { pattern: /Pa[ir]+ng Knife/i, value: 'Paring Knife' }, // Handles both "Paring" and "Pairing"
+        { pattern: /Nakiri/i, value: 'Nakiri' },
+        { pattern: /Cleaver/i, value: 'Cleaver' },
+        { pattern: /Bunka/i, value: 'Bunka' },
+        { pattern: /Knife Set/i, value: 'Knife Sets' },
+      ];
+
+      for (const {pattern, value} of knifeTypePatterns) {
+        if (pattern.test(title)) {
+          result.knifeType = value;
+          break;
+        }
+      }
+
+      // Extract series
+      // Check for new series first (more specific patterns).
+      // Many titles use patterns like "Zhen (PM8M)" or "Elegant (B38L)",
+      // so we match on the code in parentheses as well as explicit series names.
+      if (/X05Z Zhen Series|X05Z Zhen|\(X05Z\)/i.test(title)) {
+        result.series = 'X05Z Zhen';
+      } else if (/PM8M Zhen Series|PM8M Zhen|\(PM8M\)/i.test(title)) {
+        result.series = 'PM8M Zhen';
+      } else if (/PM8O Zhen Series|PM8O Zhen|\(PM8O\)|PM80 Zhen Series|PM80 Zhen|\(PM80\)/i.test(title)) {
+        result.series = 'PM80 Zhen';
+      } else if (/B38L Elegant Series|B38L Elegant|\(B38L\)/i.test(title)) {
+        result.series = 'B38L Elegant';
+      } else if (/Supreme Series|Supreme/i.test(title)) {
+        result.series = 'Supreme';
+      } else if (/Retro Series|Retro/i.test(title)) {
+        result.series = 'Retro';
+      } else if (/MO Series/i.test(title)) {
+        result.series = 'MO';
+      } else if (/LAN Series/i.test(title)) {
+        result.series = 'LAN';
+      }
+
+      // Extract category
+      if (/Whetstone|Chopping Board|Magnetic|Holder|Scissors|Strop|Sheath|Roll|Apron/i.test(title)) {
+        result.category = 'Accessories';
+      } else if (/Knife/i.test(title)) {
+        if (/Set/i.test(title)) {
+          result.category = 'Knife Sets';
+        } else {
+          result.category = 'Single Knives';
+        }
+      }
+
+      return result;
+    }
+
+    function extractFiltersFromData(productsData) {
+      const knifeTypes = new Map();
+      const series = new Map();
+      const categories = new Map();
+
+      productsData.forEach(product => {
+        if (product.knifeType) {
+          knifeTypes.set(product.knifeType, (knifeTypes.get(product.knifeType) || 0) + 1);
+        }
+        if (product.series) {
+          series.set(product.series, (series.get(product.series) || 0) + 1);
+        }
+        if (product.category) {
+          categories.set(product.category, (categories.get(product.category) || 0) + 1);
+        }
+      });
+
+      return {
+        knifeTypes: new Map([...knifeTypes.entries()].sort()),
+        series: new Map([...series.entries()].sort()),
+        categories: new Map([...categories.entries()].sort())
+      };
+    }
+
+    function buildFilterUI(filters) {
+      // Build knife type filters
+      const knifeTypeContainer = document.getElementById('knife-type-options');
+      let index = 0;
+      filters.knifeTypes.forEach((count, type) => {
+        knifeTypeContainer.innerHTML += createFilterOption('knife-type', type, type, count, index++);
+      });
+
+      // Build series filters
+      const seriesContainer = document.getElementById('series-options');
+      index = 0;
+      filters.series.forEach((count, s) => {
+        seriesContainer.innerHTML += createFilterOption('series', s, s + ' Series', count, index++);
+      });
+
+      // Build category filters
+      const categoryContainer = document.getElementById('category-options');
+      index = 0;
+      filters.categories.forEach((count, cat) => {
+        categoryContainer.innerHTML += createFilterOption('category', cat, cat, count, index++);
+      });
+    }
+
+    function createFilterOption(type, value, label, count, index) {
+      return `
+        <label class="filter-option">
+          <input type="checkbox" data-filter-type="${type}" data-filter-value="${value}" id="${type}-${index}">
+          <span class="filter-checkbox"></span>
+          <span class="filter-label">${label}</span>
+          <span class="filter-count">(${count})</span>
+        </label>
+      `;
+    }
+
+    function setupEventListeners(products, filters) {
+      // Use only the desktop sidebar as the single source of truth
+      const checkboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]');
+      const clearAllBtn = document.getElementById('clear-all-filters');
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          applyFiltersAndSort();
+          updateClearAllButton();
+          updateFilterCount();
+        });
+      });
+
+      clearAllBtn.addEventListener('click', () => {
+        checkboxes.forEach(cb => cb.checked = false);
+        applyFiltersAndSort();
+        updateClearAllButton();
+        updateFilterCount();
+      });
+
+      // Initialize custom dropdowns
+      initCustomDropdowns();
+
+      // Collapsible sections
+      document.querySelectorAll('.filter-section-header').forEach(header => {
+        header.addEventListener('click', () => {
+          header.parentElement.classList.toggle('collapsed');
+        });
+      });
+    }
+    
+    // Custom dropdown functionality
+    function initCustomDropdowns() {
+      const dropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.custom-dropdown__trigger');
+        const menu = dropdown.querySelector('.custom-dropdown__menu');
+        const options = dropdown.querySelectorAll('.custom-dropdown__option');
+        const textEl = dropdown.querySelector('.custom-dropdown__text');
+        
+        // Toggle dropdown
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          // Close other dropdowns
+          dropdowns.forEach(d => {
+            if (d !== dropdown) d.classList.remove('open');
+          });
+          
+          dropdown.classList.toggle('open');
+          trigger.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+        });
+        
+        // Option selection
+        options.forEach(option => {
+          option.addEventListener('click', () => {
+            const value = option.dataset.value;
+            const text = option.textContent;
+            
+            // Update selected state
+            options.forEach(o => {
+              o.classList.remove('selected');
+              o.setAttribute('aria-selected', 'false');
+            });
+            option.classList.add('selected');
+            option.setAttribute('aria-selected', 'true');
+            
+            // Update trigger text
+            textEl.textContent = text;
+            
+            // Close dropdown
+            dropdown.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            
+            // Sync other dropdown
+            syncDropdowns(dropdown, value, text);
+            
+            // Apply filters and sort
+            applyFiltersAndSort();
+          });
+        });
+      });
+      
+      // Close on outside click
+      document.addEventListener('click', () => {
+        dropdowns.forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.custom-dropdown__trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      });
+      
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          dropdowns.forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.custom-dropdown__trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+    }
+    
+    function syncDropdowns(sourceDropdown, value, text) {
+      const allDropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      allDropdowns.forEach(dropdown => {
+        if (dropdown === sourceDropdown) return;
+        
+        const textEl = dropdown.querySelector('.custom-dropdown__text');
+        const options = dropdown.querySelectorAll('.custom-dropdown__option');
+        
+        textEl.textContent = text;
+        
+        options.forEach(o => {
+          const isSelected = o.dataset.value === value;
+          o.classList.toggle('selected', isSelected);
+          o.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        });
+      });
+    }
+    
+    function getSelectedSortValue() {
+      const dropdown = document.querySelector('.custom-dropdown');
+      const selectedOption = dropdown?.querySelector('.custom-dropdown__option.selected');
+      return selectedOption?.dataset.value || 'best-sellers';
+    }
+
+    async function applyFiltersAndSort() {
+      // Prevent concurrent executions
+      if (isApplyingFilters) return;
+      isApplyingFilters = true;
+      
+      try {
+        // Get current sort selection from custom dropdown
+        const sortValue = getSelectedSortValue();
+        
+        // Gather active filters
+        const activeFilters = {
+          knifeType: [],
+          series: [],
+          category: []
+        };
+
+        document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').forEach(checkbox => {
+          const type = checkbox.dataset.filterType;
+          const value = checkbox.dataset.filterValue;
+          
+          if (type === 'knife-type') activeFilters.knifeType.push(value);
+          else if (type === 'series') activeFilters.series.push(value);
+          else if (type === 'category') activeFilters.category.push(value);
+        });
+
+        const hasActiveFilters = activeFilters.knifeType.length > 0 || activeFilters.series.length > 0 || activeFilters.category.length > 0;
+        const needsAllProducts = hasActiveFilters || sortValue !== 'best-sellers';
+        
+        // Load all products if needed for filtering or non-default sorting
+        if (needsAllProducts && !allProductsLoaded) {
+          await loadAllRemainingProducts();
+        }
+        
+        // Re-query products after potential load
+        let products = document.querySelectorAll('.product-grid__item');
+        
+        // Apply filters
+        let visibleCount = 0;
+        products.forEach(product => {
+          let show = true;
+
+          if (activeFilters.knifeType.length > 0) {
+            show = show && activeFilters.knifeType.includes(product.dataset.knifeType);
+          }
+
+          if (activeFilters.series.length > 0) {
+            show = show && activeFilters.series.includes(product.dataset.series);
+          }
+
+          if (activeFilters.category.length > 0) {
+            show = show && activeFilters.category.includes(product.dataset.category);
+          }
+
+          if (show) {
+            product.style.display = '';
+            visibleCount++;
+          } else {
+            product.style.display = 'none';
+          }
+        });
+
+        // Update product count
+        const countEl = document.querySelector('[title*="product count"], .products-count-wrapper span');
+        if (countEl) {
+          countEl.textContent = `${visibleCount} items`;
+        }
+        
+        // Apply sorting
+        sortProducts();
+        
+        // Scroll to top of product grid when filters are applied
+        // This prevents the page from staying at the bottom after filtering
+        if (hasActiveFilters) {
+          // Use requestAnimationFrame to ensure DOM updates are complete
+          requestAnimationFrame(() => {
+            // Small delay to ensure sorting is complete
+            setTimeout(() => {
+              // Try to scroll to ResultsList (product grid container)
+              const resultsList = document.getElementById('ResultsList');
+              if (resultsList) {
+                const rect = resultsList.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = rect.top + scrollTop - 100; // 100px offset from top
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              } else {
+                // Fallback: scroll to product grid or collection wrapper
+                const productGrid = document.querySelector('.product-grid, .collection-wrapper, .main-collection-grid');
+                if (productGrid) {
+                  const rect = productGrid.getBoundingClientRect();
+                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                  const targetY = rect.top + scrollTop - 100; // 100px offset from top
+                  window.scrollTo({ top: targetY, behavior: 'smooth' });
+                } else {
+                  // Last resort: scroll to top of page
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }
+            }, 50); // Small delay to ensure DOM updates are complete
+          });
+        }
+      } finally {
+        isApplyingFilters = false;
+      }
+    }
+
+    function sortProducts() {
+      // Get current sort selection from custom dropdown
+      const sortValue = getSelectedSortValue();
+      
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+      
+      const products = Array.from(productGrid.querySelectorAll('.product-grid__item'));
+      if (products.length === 0) return;
+      
+      // Create a copy for sorting comparison
+      const originalOrder = [...products];
+      
+      // Sort products
+      products.sort((a, b) => {
+        // First: Always put sold-out products at the end
+        const aIsSoldOut = a.dataset.soldOut === 'true';
+        const bIsSoldOut = b.dataset.soldOut === 'true';
+        
+        if (aIsSoldOut && !bIsSoldOut) return 1;
+        if (!aIsSoldOut && bIsSoldOut) return -1;
+        
+        // If both have same availability, sort by selected criteria
+        const aPrice = parseFloat(a.dataset.price) || 0;
+        const bPrice = parseFloat(b.dataset.price) || 0;
+        const aPosition = parseInt(a.dataset.position) || 0;
+        const bPosition = parseInt(b.dataset.position) || 0;
+        
+        switch (sortValue) {
+          case 'price-low':
+            return aPrice - bPrice;
+          case 'price-high':
+            return bPrice - aPrice;
+          case 'best-sellers':
+          default:
+            // Use original position (Shopify default order which is usually best sellers)
+            return aPosition - bPosition;
+        }
+      });
+      
+      // Check if order actually changed - if not, skip DOM manipulation
+      const orderChanged = products.some((product, index) => product !== originalOrder[index]);
+      if (!orderChanged) return;
+      
+      // Set flag to prevent MutationObserver from triggering during reorder
+      isSorting = true;
+      
+      // Reorder DOM
+      products.forEach(product => {
+        productGrid.appendChild(product);
+      });
+      
+      // Reset flag after a small delay to ensure DOM updates complete
+      setTimeout(() => {
+        isSorting = false;
+      }, 100);
+    }
+
+    async function loadAllRemainingProducts() {
+      // Prevent multiple simultaneous loads
+      if (allProductsLoaded || isLoadingProducts) return;
+      
+      const productGrid = document.querySelector('.product-grid, ul[class*="grid"]');
+      if (!productGrid) return;
+
+      // Set flag to prevent MutationObserver from triggering
+      isLoadingProducts = true;
+
+      try {
+        // Use the globalProductsData length for accurate total count
+        const totalProducts = globalProductsData.length;
+        const productsPerPage = 24;
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
+        const currentCount = document.querySelectorAll('.product-grid__item').length;
+        const currentPage = Math.ceil(currentCount / productsPerPage);
+
+        // Load remaining pages via AJAX
+        for (let page = currentPage + 1; page <= totalPages; page++) {
+          try {
+            const response = await fetch(`/collections/${collectionHandle}?page=${page}`);
+            if (!response.ok) continue;
+            
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newProducts = doc.querySelectorAll('.product-grid__item');
+            
+            // If no new products found on this page, we've loaded all
+            if (newProducts.length === 0) break;
+            
+            // Append new products to grid
+            newProducts.forEach(product => {
+              // Check if product already exists (by product ID)
+              const productId = product.dataset.productId;
+              const exists = productGrid.querySelector(`[data-product-id="${productId}"]`);
+              
+              if (!exists) {
+                productGrid.appendChild(product);
+                // Tag with filter data
+                tagVisibleProducts([product], globalProductsData);
+              }
+            });
+          } catch (error) {
+            console.error(`Failed to load page ${page}:`, error);
+            // Continue with next page even if one fails
+          }
+        }
+        
+        // Mark all products as loaded
+        allProductsLoaded = true;
+      } finally {
+        isLoadingProducts = false;
+      }
+    }
+
+    function updateClearAllButton() {
+      const anyChecked = document.querySelector('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked');
+      const clearBtn = document.getElementById('clear-all-filters');
+      clearBtn.style.display = anyChecked ? 'block' : 'none';
+    }
+
+    function updateFilterCount() {
+      const checkedCount = document.querySelectorAll('.custom-filters-sidebar .filter-option input[type="checkbox"]:checked').length;
+      const badge = document.getElementById('filter-count-badge');
+      
+      if (checkedCount > 0) {
+        badge.textContent = checkedCount;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function setupMobileDrawer() {
+      const openBtn = document.getElementById('open-mobile-filters');
+      const closeBtn = document.getElementById('close-drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      const drawer = document.getElementById('mobile-filter-drawer');
+      const applyBtn = document.getElementById('apply-filters');
+      const mobileClearBtn = document.getElementById('mobile-clear-filters');
+      const mobileFiltersBody = document.getElementById('mobile-filters-body');
+
+      if (!openBtn) return;
+
+      // Clone filters to mobile drawer
+      const desktopFilters = document.querySelectorAll('.filter-section');
+      desktopFilters.forEach(section => {
+        const clone = section.cloneNode(true);
+        mobileFiltersBody.appendChild(clone);
+      });
+
+      // Sync checkboxes between desktop and mobile
+      const syncCheckboxes = () => {
+        const desktopCheckboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input');
+        const mobileCheckboxes = document.querySelectorAll('.drawer-body .filter-option input');
+        
+        desktopCheckboxes.forEach((desktopCb, index) => {
+          if (mobileCheckboxes[index]) {
+            mobileCheckboxes[index].checked = desktopCb.checked;
+          }
+        });
+      };
+
+      openBtn.addEventListener('click', () => {
+        syncCheckboxes();
+        drawer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      const closeDrawer = () => {
+        drawer.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+
+      applyBtn.addEventListener('click', () => {
+        // Sync mobile selections back to desktop
+        const mobileCheckboxes = document.querySelectorAll('.drawer-body .filter-option input');
+        const desktopCheckboxes = document.querySelectorAll('.custom-filters-sidebar .filter-option input');
+        
+        mobileCheckboxes.forEach((mobileCb, index) => {
+          if (desktopCheckboxes[index]) {
+            desktopCheckboxes[index].checked = mobileCb.checked;
+          }
+        });
+
+        applyFiltersAndSort();
+        updateClearAllButton();
+        updateFilterCount();
+        closeDrawer();
+      });
+
+      mobileClearBtn.addEventListener('click', () => {
+        document.querySelectorAll('.drawer-body .filter-option input').forEach(cb => cb.checked = false);
+      });
+    }
+  })();
+{% endjavascript %}
+

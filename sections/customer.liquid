@@ -1,0 +1,307 @@
+{% style %}
+    .section-{{ section.id }} {
+        background-color: #111;
+    }
+
+    .section-{{ section.id }} .customers {
+        position: relative;
+        background-color: black;
+        padding: 50px 0;
+    }
+
+    .section-{{ section.id }} .customers h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 48px;
+        color: white;
+        text-align: center;
+        line-height: 135%;
+        padding: 0 16px;
+        margin-bottom: 40px;
+    }
+
+    .section-{{ section.id }} .swiper-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .swiper-wrapper {
+        transition-timing-function: linear !important;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        width: auto !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+    }
+    
+    .section-{{ section.id }} .swiper-slide img {
+        pointer-events: auto;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .section-{{ section.id }} .customer-imgs {
+        width: 100%;
+        height: 80px;
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .customer-imgs img {
+        width: auto;
+        height: 60px;
+        max-width: 200px;
+        display: block;
+        object-fit: contain;
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .customers {
+            padding: 40px 20px;
+        }
+
+        .section-{{ section.id }} .customers h2 {
+            padding: 0 16px;
+            color: #FFF;
+            text-align: center;
+            font-family: var(--Primary-Font-Family-Heading, Sen);
+            font-size: var(--Mobile-Font-Size-H3, 22px);
+            font-style: normal;
+            font-weight: var(--Primary-Font-Weight-Semibold, 600);
+            line-height: 135%;
+            letter-spacing: -0.11px;
+            margin-bottom: 30px;
+        }
+
+        .section-{{ section.id }} .customer-imgs {
+            height: 55px;
+        }
+
+        .section-{{ section.id }} .customer-imgs img {
+            height: 55px;
+            max-width: 150px;
+        }
+    }
+{% endstyle %}
+
+<section class="section-{{ section.id }}">
+    <div class="customers">
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="customer-imgs">
+            <div class="swiper swiper-container mySwiper_u" >    
+                <div class="swiper-wrapper">
+                    {%- for block in section.blocks -%}
+                        {%- if block.settings.image != blank -%}
+                            <div class="swiper-slide">
+                                {% liquid
+                                    assign image = block.settings.image
+                                    assign alt_text = image.alt | default: 'Customer logo'
+                                    assign widths = '150, 200, 300, 400'
+                                    assign sizes = '(min-width: 750px) 200px, 150px'
+                                    assign loading = 'lazy'
+                                    if forloop.index <= 3
+                                        assign loading = 'eager'
+                                    endif
+                                %}
+                                {{ image | image_url: width: 400 | image_tag: 
+                                    widths: widths,
+                                    sizes: sizes,
+                                    loading: loading,
+                                    alt: alt_text,
+                                    width: 200,
+                                    height: 60,
+                                    class: 'customer-logo',
+                                    style: 'max-width: 200px; height: 60px; object-fit: contain;'
+                                }}
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function() {
+        'use strict';
+        
+        // Wait for Swiper library to load
+        function initCustomerCarousel() {
+            if (typeof Swiper === 'undefined') {
+                // Retry after a short delay if Swiper not loaded yet
+                setTimeout(initCustomerCarousel, 100);
+                return;
+            }
+            
+            var swiperContainer = document.querySelector('.section-{{ section.id }} .mySwiper_u');
+            if (!swiperContainer) return;
+
+            var swiper = new Swiper(swiperContainer, {
+            slidesPerView: 'auto',
+            spaceBetween: 30,
+            loop: true,
+            speed: 5000,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+                stopOnLastSlide: false,
+                reverseDirection: false,
+            },
+            freeMode: {
+                enabled: true,
+                momentum: false,
+            },
+            grabCursor: false,
+            allowTouchMove: false,
+            simulateTouch: false,
+            preventClicks: false,
+            preventClicksPropagation: false,
+            preventInteractionOnTransition: true,
+            watchSlidesProgress: true,
+            observer: true,
+            observeParents: true,
+            breakpoints: {
+                320: {
+                    spaceBetween: 20
+                },
+                750: {
+                    spaceBetween: 30
+                },
+                1024: {
+                    spaceBetween: 40
+                }
+            },
+            // Prevent autoplay from stopping on any interaction
+            on: {
+                autoplayStop: function() {
+                    // Immediately restart if autoplay stops for any reason
+                    if (swiper && swiper.autoplay) {
+                        swiper.autoplay.start();
+                    }
+                },
+                touchStart: function() {
+                    // Prevent touch from stopping autoplay
+                    if (swiper && swiper.autoplay) {
+                        swiper.autoplay.start();
+                    }
+                },
+                click: function() {
+                    // Prevent clicks from stopping autoplay
+                    if (swiper && swiper.autoplay) {
+                        swiper.autoplay.start();
+                    }
+                }
+            }
+        });
+
+            // Ensure autoplay keeps running
+            function ensureAutoplay() {
+                if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                    swiper.autoplay.start();
+                }
+            }
+
+            // Prevent clicks on slides/images from stopping autoplay
+            var slides = swiperContainer.querySelectorAll('.swiper-slide');
+            var clickHandlers = [];
+            
+            slides.forEach(function(slide) {
+                var clickHandler = function(e) {
+                    if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                        swiper.autoplay.start();
+                    }
+                };
+                slide.addEventListener('click', clickHandler, true);
+                clickHandlers.push({ element: slide, handler: clickHandler });
+                
+                var images = slide.querySelectorAll('img');
+                images.forEach(function(img) {
+                    var imgClickHandler = function(e) {
+                        if (swiper && swiper.autoplay && !swiper.autoplay.running) {
+                            swiper.autoplay.start();
+                        }
+                    };
+                    img.addEventListener('click', imgClickHandler, true);
+                    clickHandlers.push({ element: img, handler: imgClickHandler });
+                });
+            });
+
+            // Visibility change handler
+            var visibilityHandler = function() {
+                if (!document.hidden) {
+                    ensureAutoplay();
+                }
+            };
+            document.addEventListener('visibilitychange', visibilityHandler);
+
+            // Periodic check with cleanup
+            var autoplayInterval = setInterval(ensureAutoplay, 3000);
+
+            // Focus handler
+            var focusHandler = function() {
+                ensureAutoplay();
+            };
+            window.addEventListener('focus', focusHandler);
+
+            // Cleanup on section removal (for Section Rendering API)
+            var observer = new MutationObserver(function() {
+                if (!document.contains(swiperContainer)) {
+                    clearInterval(autoplayInterval);
+                    clickHandlers.forEach(function(item) {
+                        item.element.removeEventListener('click', item.handler, true);
+                    });
+                    document.removeEventListener('visibilitychange', visibilityHandler);
+                    window.removeEventListener('focus', focusHandler);
+                    if (swiper && swiper.destroy) {
+                        swiper.destroy(true, true);
+                    }
+                    observer.disconnect();
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
+
+        // Initialize when DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCustomerCarousel);
+        } else {
+            initCustomerCarousel();
+        }
+    })();
+</script>
+
+{% schema %}
+{
+    "name": "Customers",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Trusted by Leading Brands"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Customer",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Customers"
+        }
+    ]
+}
+{% endschema %}

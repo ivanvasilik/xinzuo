@@ -1,0 +1,286 @@
+{% style %}
+    .section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .section-{{ section.id }} .product-info6 {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .section-{{ section.id }} .product-info6-header {
+        width: 100%;
+        max-width: 1080px;
+        padding: 0 32px;
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .product-info6-header div {
+        max-width: 640px;
+        {% if section.settings.header_type == "center" %}
+            margin: auto;
+        {% endif %}
+    }
+
+    .section-{{ section.id }} .product-info6-header p {
+        font-family: "Sen";
+        font-weight: 500;
+        font-size: 18px;
+        color: #fff;
+        margin: 0;
+        {% if section.settings.header_type == "center" %}
+            text-align: center;
+        {% endif %}
+    }
+
+    .section-{{ section.id }} .product-info6-header h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 64px;
+        color: #fff;
+        line-height: 125%;
+        margin: 0;
+        {% if section.settings.header_type == "center" %}
+            text-align: center;
+        {% else %}
+            margin-bottom: 48px;
+        {% endif %}
+    }
+
+    .section-{{ section.id }} .product-info6-header span {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+    }
+
+    .section-{{ section.id }} .product-info6-divs {
+        display: flex;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .product-info6-div > div {
+        padding: 32px;
+        padding-bottom: 128px;
+        display: flex;
+        flex-direction: column;
+        gap: 47px;
+    }
+
+    .section-{{ section.id }} .product-info6-div.right > div {
+        padding: 32px;
+        padding-top: 128px;
+    }
+
+    .section-{{ section.id }} .product-info6-div span {
+        width: 100%;
+        max-width: 480px;
+        margin: auto;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 18px;
+        color: #c9c9cc;
+        line-height: 150%;
+    }
+
+    .section-{{ section.id }} .product-info6-div h2 {
+        color: #fff;
+        margin: 0;
+        line-height: 130%;
+    }
+
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .product-info6-header h2 {
+            font-size: 40px;
+        }
+
+        .section-{{ section.id }} .product-info6-div h2 {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .product-info6-divs {
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .section-{{ section.id }} .product-info6-div.left {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .section-{{ section.id }} .product-info6-div.right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-{{ section.id }} .product-info6-div.left div {
+            margin-right: 32px;
+        }
+
+        .section-{{ section.id }} .product-info6-div.right div {
+            margin-left: 32px;
+        }
+
+        .section-{{ section.id }} .product-info6-div div {
+            padding: 40px 32px;
+            margin-top: -100px;
+            background-color: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
+    <div class="product-info6">
+        <div class="product-info6-header">
+            <div>
+                <p>{{ section.settings.heading_title }}</p>
+                <span>{{ section.settings.heading_content }}</span>
+                <span>{{ section.settings.heading_footer }}</span>
+            </div>
+        </div>
+        <div class="product-info6-divs">
+            <div class="product-info6-div left">
+                <div>
+                    <span>{{ section.settings.left_title }}</span>
+                    <span>{{ section.settings.left_content }}</span>
+                </div>
+                <img src="{{ section.settings.left_img | img_url: 'master' }}" width="100%" height="100%" alt="">
+            </div>
+            <div class="product-info6-div right">
+                <img src="{{ section.settings.right_img | img_url: 'master' }}" width="100%" height="100%" alt="">
+                <div>
+                    <span>{{ section.settings.right_title }}</span>
+                    <span>{{ section.settings.right_content }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Product Info6",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
+        {
+            "type": "text",
+            "id": "heading_title",
+            "label": "Header Title"
+        },
+        {
+            "type": "richtext",
+            "id": "heading_content",
+            "label": "Header Content",
+        },
+        {
+            "type": "select",
+            "id": "header_type",
+            "label": "Header Position",
+            "options": [
+                {
+                    "label": "Left",
+                    "value": "left"
+                },
+                {
+                    "label": "Center",
+                    "value": "center"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "heading_footer",
+            "label": "Header Footer"
+        },
+        {
+            "type": "image_picker",
+            "id": "left_img",
+            "label": "Left Image"
+        },
+        {
+            "type": "richtext",
+            "id": "left_title",
+            "label": "Left Title"
+        },
+        {
+            "type": "richtext",
+            "id": "left_content",
+            "label": "Left Content"
+        },
+        {
+            "type": "image_picker",
+            "id": "right_img",
+            "label": "Right Image"
+        },
+        {
+            "type": "richtext",
+            "id": "right_title",
+            "label": "Right Title"
+        },
+        {
+            "type": "richtext",
+            "id": "right_content",
+            "label": "Right Content"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding Top",
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 80
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding Bottom",
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 80
+        },
+    ],
+    "presets": [
+        {
+            "name": "Product Info6"
+        }
+    ]
+}
+{% endschema %}

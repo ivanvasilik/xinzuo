@@ -1,0 +1,394 @@
+{% style %}
+   .section-{{ section.id }} {
+       background-color: #111;
+   }
+
+   .section-{{ section.id }} .hero-banner {
+       /* background: radial-gradient(59.22% 45.55% at 100% 107.77%, #151515 0%, rgba(21, 21, 21, 0.00) 100%), linear-gradient(114deg, #252525 0.16%, rgba(37, 37, 37, 0.00) 26.55%, rgba(32, 32, 32, 0.00) 79.33%, #171717 105.71%), linear-gradient(250deg, #1E1E1E 0.63%, #222428 14.81%, #252527 36.15%, #252527 99.37%); */
+       display: flex;
+       justify-content: center;
+       background: #232325;
+       height: calc(100vh - 77px);
+       margin: auto;
+       position: relative;
+   }
+
+   .section-{{ section.id }} .hero-banner-content {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       width: 500px;
+       position: absolute;
+       top: 0;
+       right: 54%;
+       height: 100%;
+       z-index: 1;
+   }
+
+   .section-{{ section.id }} .hero-banner-content span {
+       width: 450px;
+   }
+
+   .section-{{ section.id }} .hero-banner-content h2 {
+       color: #fff;
+       font-family: "Sen";
+       font-size: 80px;
+       font-weight: 600;
+       line-height: 120%;
+       margin: 0;
+   }
+
+   .section-{{ section.id }} .hero-banner-content span {
+       font-size: 18px;
+       font-weight: 400;
+       color: #c9c9cc;
+   }
+
+   .section-{{ section.id }} .hero-banner-content p {
+       padding: 10px 0;
+   }
+
+   .section-{{ section.id }} .hero-cta-button {
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 12px 24px;
+       background-color: #ff0004;
+       border: none;
+       border-radius: 4px;
+       font-family: "Sen";
+       font-weight: 600;
+       font-size: 14px;
+       letter-spacing: 0.5px;
+       color: #fff !important;
+       text-decoration: none;
+       transition: all 0.3s ease;
+       margin-top: 16px;
+       width: auto;
+       max-width: fit-content;
+   }
+
+   .section-{{ section.id }} .hero-cta-button span {
+       color: #fff !important;
+       width: auto !important;
+   }
+
+   .section-{{ section.id }} .hero-cta-button svg {
+       width: 18px;
+       height: 18px;
+       color: #fff !important;
+   }
+
+   .section-{{ section.id }} .hero-cta-button:hover {
+       background-color: #cc0003;
+       transform: translateY(-2px);
+   }
+
+   .section-{{ section.id }} .hero-cta-button:active {
+       background-color: #aa0002;
+       transform: translateY(0);
+   }
+
+   .section-{{ section.id }} .hero-banner-img img {
+       height: 100%;
+   }
+
+   .section-{{ section.id }} .mobile-hero {
+       width: 100vw;
+       object-fit: cover;
+       display: none;
+   }
+
+   .section-{{ section.id }} .middle-desktop-hero {
+     display:none;
+   }
+
+   .section-{{ section.id }} .header-title {
+       text-align: center;
+       color: {{ section.settings.header_color }};
+       margin: 0;
+       padding: 5px 0;
+       font-family: "Sen";
+       font-size: {{ section.settings.header_size }}px;
+       margin: auto;
+       background-color: {{ section.settings.header_background }};
+   }
+
+   @media screen and (max-width:1440px) {
+       .section-{{ section.id }} .hero-banner {
+           height: auto;
+       }
+   }
+
+   @media screen and (max-width: 1150px) {
+       .section-{{ section.id }} .hero-banner-content {
+           width: 400px;
+           right: unset;
+           left: 50px;
+       }
+
+       .section-{{ section.id }} .hero-banner-content h2:nth-child(odd) {
+           font-size: 40px;
+       }
+
+       .section-{{ section.id }} .hero-banner-content h2:nth-child(even) {
+           font-size: 40px;
+       }
+
+       .section-{{ section.id }} .hero-banner-content span {
+           font-size: 16px;
+           width: 250px;
+       }
+
+       .section-{{ section.id }} .hero-cta-button {
+           font-size: 13px;
+           padding: 10px 18px;
+       }
+
+       .section-{{ section.id }} .hero-cta-button svg {
+           width: 16px;
+           height: 16px;
+       }
+   }
+
+   @media screen and (max-width: 1000px) {
+       .section-{{ section.id }} .hero-banner-content {
+           justify-content: flex-end;
+           width: calc(100% - 100px);
+       }
+
+       .section-{{ section.id }} .hero-cta-button {
+           margin-bottom: 60px;
+           width: fit-content;
+           max-width: max-content;
+       }
+   }
+
+    @media screen and (max-width: 850px) {
+
+       .section-{{ section.id }} .desktop-hero {
+         display: none;
+       }
+
+       .section-{{ section.id }} .middle-desktop-hero {
+         display:block;
+       }
+
+     .section-{{ section.id }} .hero-banner {
+         justify-content: flex-end;
+         height: 65vh;
+       }
+
+    }
+
+   @media screen and (max-width: 760px) {
+
+       .section-{{ section.id }} .hero-banner-content {
+           left: 25px;
+       }
+
+       .section-{{ section.id }} .hero-cta-button {
+           width: fit-content;
+           max-width: fit-content;
+       }
+
+       .section-{{ section.id }} .header-title {
+           font-size: {{ section.settings.header_mobile_size }}px;
+       }
+   }
+
+   @media screen and (max-width: 600px) {
+    .section-{{ section.id }} .hero-banner {
+         height: 55vh;
+       }
+   }
+
+   @media screen and (max-width: 480px) {
+      .section-{{ section.id }} .hero-banner {
+        height: auto;
+      }
+
+      .section-{{ section.id }} .middle-desktop-hero {
+         display:none;
+       }
+
+       .section-{{ section.id }} .mobile-hero {
+           display: block;
+           object-fit:contain;
+       }
+   }
+{% endstyle %}
+
+<section class="section-{{ section.id }}">
+  <div>
+    {% if section.settings.header_title != blank %}
+      <p class="header-title">{{ section.settings.header_title }}</p>
+    {% endif %}
+    <div class="hero-banner">
+      <div class="hero-banner-content">
+        <span class="desktop">{{ section.settings.heading_desktop }}</span>
+        <span class="mobile">{{ section.settings.heading_mobile }}</span>
+        <span class="desktop">{{ section.settings.content_desktop }}</span>
+        <span class="mobile">{{ section.settings.content_mobile }}</span>
+        <a href="/collections/all-products" class="hero-cta-button">
+          <span>SHOP ALL</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <g clip-path="url(#clip0_hero_cta)">
+                <path d="M5 15L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.875 5H15V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_hero_cta">
+                    <rect width="20" height="20" fill="white"/>
+                </clipPath>
+            </defs>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-banner-img">
+        <img
+          srcset="
+            {{ section.settings.desktop_img | image_url: width: 800 }} 800w,
+            {{ section.settings.desktop_img | image_url: width: 1200 }} 1200w,
+            {{ section.settings.desktop_img | image_url: width: 1600 }} 1600w,
+            {{ section.settings.desktop_img | image_url: width: 2000 }} 2000w
+          "
+          sizes="100vw"
+          src="{{ section.settings.desktop_img | image_url: width: 1600 }}"
+          alt="Desktop hero"
+          width="100%"
+          height="auto"
+          fetchpriority="high"
+          decoding="async"
+          class="desktop-hero"
+        >
+        <img
+          srcset="
+            {{ section.settings.middle_desktop_img | image_url: width: 800 }} 800w,
+            {{ section.settings.middle_desktop_img | image_url: width: 1200 }} 1200w,
+            {{ section.settings.middle_desktop_img | image_url: width: 1600 }} 1600w,
+            {{ section.settings.middle_desktop_img | image_url: width: 2000 }} 2000w
+          "
+          sizes="100vw"
+          src="{{ section.settings.middle_desktop_img | image_url: width: 1600 }}"
+          alt="Middle Desktop hero"
+          width="100%"
+          height="auto"
+          fetchpriority="high"
+          decoding="async"
+          class="middle-desktop-hero"
+        >
+        <img
+          srcset="
+            {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
+            {{ section.settings.mobile_img | image_url: width: 800 }} 800w,
+            {{ section.settings.mobile_img | image_url: width: 1200 }} 1200w
+          "
+          sizes="100vw"
+          src="{{ section.settings.mobile_img | image_url: width: 800 }}"
+          alt="Mobile hero"
+          width="100%"
+          height="auto"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="mobile-hero"
+        >
+        {% comment %}
+          <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
+          <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero">
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CW Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title"
+    },
+    {
+      "type": "range",
+      "id": "header_size",
+      "label": "Header Font Size",
+      "min": 14,
+      "max": 24,
+      "unit": "px",
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "header_mobile_size",
+      "label": "Header Font Size(mobile)",
+      "min": 12,
+      "max": 20,
+      "unit": "px",
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Header Font Color",
+      "default": "#ff0004"
+    },
+    {
+      "type": "color",
+      "id": "header_background",
+      "label": "Header Background",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_desktop",
+      "label": "Desktop Header"
+    },
+    {
+      "type": "richtext",
+      "id": "content_desktop",
+      "label": "Desktop Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_mobile",
+      "label": "Mobile Header"
+    },
+    {
+      "type": "richtext",
+      "id": "content_mobile",
+      "label": "Mobile Content"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_img",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "middle_desktop_img",
+      "label": "Middle Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_img",
+      "label": "Mobile Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Hero"
+    }
+  ]
+}
+{% endschema %}

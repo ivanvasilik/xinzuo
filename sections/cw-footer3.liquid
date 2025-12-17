@@ -1,0 +1,107 @@
+{% style %}
+    .section-{{ section.id }} .footer-3 {
+        padding: 40px 64px 16px;
+        background: linear-gradient(180deg, #191A21 0%, #0C0C0C 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px; 
+        margin: auto;
+    }
+
+    .section-{{ section.id }} .footer-3 p {
+        margin: 0;
+        color: #c9c9cc;
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    .section-{{ section.id }} .footer-payments {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .section-{{ section.id }} .footer-payments img {
+        width: 35px;
+        height: 24px;
+    }
+
+    @media screen and (max-width: 900px) {
+        .section-{{ section.id }} .footer-3 {
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            padding: 32px 32px 16px;
+        }
+
+        .section-{{ section.id }} .footer-3 p {
+            text-align: center;
+        }
+
+        .section-{{ section.id }} .footer-payments {
+            gap: 20px;
+        }
+
+        .section-{{ section.id }} .footer-payments img {
+            width: 30px;
+            height: 20px;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section-{{ section.id }} color-{{ section.settings.color_scheme }}">
+    <div class="footer-3">
+        <p>{{ section.settings.copyright }}</p>
+        <div class="footer-payments">
+            {% for block in section.blocks %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="payment-{{ block.id }}">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Custom Footer3",
+    "tag": "footer",
+    "blocks": [
+        {
+            "type": "icon",
+            "name": "Icon",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Payment Icon"
+                }
+            ]
+        }
+    ],
+    "settings": [
+        {
+            "type": "text",
+            "id": "copyright",
+            "label": "Copyright"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Footer3",
+            "blocks": {
+                "menu": {
+                    "type": "group"
+                }
+            }
+        }
+    ]
+}
+{% endschema %}

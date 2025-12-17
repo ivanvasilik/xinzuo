@@ -1,0 +1,774 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Sharp</p><p>Strong</p><p>Timeless</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_8iHdpq": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Every slice feels precise, every detail crafted with care.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_MXdgiP": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/John_Smith.svg",
+            "width": 156,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "shopify://collections/all-products",
+            "open_in_new_tab": false,
+            "style_class": "link",
+            "btn_icon": "below",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "text_8iHdpq",
+        "icon_MXdgiP",
+        "button_H9gpTf"
+      ],
+      "disabled": true,
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/hero-background-desktop.png",
+        "image_2": "shopify://shop_images/IMG_5941_1.png",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": false,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 72
+      }
+    },
+    "cw_hero_BD9KK7": {
+      "type": "cw-hero",
+      "name": "CW Hero",
+      "settings": {
+        "header_title": "",
+        "header_size": 16,
+        "header_mobile_size": 14,
+        "header_color": "#ff0004",
+        "header_background": "#000000",
+        "heading_desktop": "<h2>Xinzuo & Hezhen Knives</h2>",
+        "content_desktop": "<p>Hand-Forged Damascus Steel Kitchen Knives. Professional Quality, Shipped from Australia.</p>",
+        "heading_mobile": "<h2>Xinzuo & Hezhen Knives</h2>",
+        "content_mobile": "<p>Hand-Forged Damascus Steel Kitchen Knives. Professional Quality, Shipped from Australia.</p>",
+        "link_text": "Shop Now",
+        "desktop_img": "shopify://shop_images/BLACK_FRIDAY_UP_TO_20_OFF_STOREWIDE_c6d276e0-482c-4275-aec5-b3ab13a2a4a9.png",
+        "middle_desktop_img": "shopify://shop_images/800.png",
+        "mobile_img": "shopify://shop_images/IMG_5941_1.png"
+      }
+    },
+    "customer_GD7Dyr": {
+      "type": "customer",
+      "blocks": {
+        "block_KAUNd9": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/f53f9cd53d7fc70618cab554523609b88c7ed00f.png"
+          }
+        },
+        "block_kkUVp8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/865d5b6dd731c632c70035599bac742bd57f776f.png"
+          }
+        },
+        "block_k6iwgF": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/15f4ed50e1938c2559ac2dd27cd7c0f9786dcc1f.png"
+          }
+        },
+        "block_XLReiW": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/6c6567de95b59e7cad654cfde3982a3a01ed0ee5.png"
+          }
+        },
+        "block_PfwktR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/2c42065ef798de4da3e515f69fce5eaefb325ddf.png"
+          }
+        },
+        "block_etEYMz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/eddc385d765d4ef44e77c064ab6cdbd654948d14.png"
+          }
+        },
+        "block_VHaRwb": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/c5a07ccdf50b366e30c52ec33a16eda3d270acb9.png"
+          }
+        },
+        "block_qVjXXN": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/f53f9cd53d7fc70618cab554523609b88c7ed00f.png"
+          }
+        },
+        "block_Pq7HW4": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/865d5b6dd731c632c70035599bac742bd57f776f.png"
+          }
+        },
+        "block_U6KYNQ": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/15f4ed50e1938c2559ac2dd27cd7c0f9786dcc1f.png"
+          }
+        },
+        "block_6bKPj4": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/6c6567de95b59e7cad654cfde3982a3a01ed0ee5.png"
+          }
+        },
+        "block_AeTVpz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/2c42065ef798de4da3e515f69fce5eaefb325ddf.png"
+          }
+        },
+        "block_PJW7yM": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/eddc385d765d4ef44e77c064ab6cdbd654948d14.png"
+          }
+        },
+        "block_ghRDXx": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/c5a07ccdf50b366e30c52ec33a16eda3d270acb9.png"
+          }
+        }
+      },
+      "block_order": [
+        "block_KAUNd9",
+        "block_kkUVp8",
+        "block_k6iwgF",
+        "block_XLReiW",
+        "block_PfwktR",
+        "block_etEYMz",
+        "block_VHaRwb",
+        "block_qVjXXN",
+        "block_Pq7HW4",
+        "block_U6KYNQ",
+        "block_6bKPj4",
+        "block_AeTVpz",
+        "block_PJW7yM",
+        "block_ghRDXx"
+      ],
+      "name": "Customers",
+      "settings": {
+        "heading": "Trusted by Michelin Star Chefs Worldwide."
+      }
+    },
+    "home_products_3iCime": {
+      "type": "home-products",
+      "name": "Home Products",
+      "settings": {
+        "heading": "Featured Products",
+        "products": [
+          "zhen-xz05-series-8-inch-chef-knife",
+          "hezhen-supreme-series-8-chef-knife",
+          "yu-series-8-inch-chef-knife",
+          "hezhen-retro-series-8-5-inch-chef-knife",
+          "xinzuo-mo-chef-knife-8-5-inch",
+          "xinzuo-lan-chef-knife-8-5-inch",
+          "hezhen-zhen-series-8-5-inch-bunka-knife",
+          "hezhen-elegant-series-8-5-inch-chef-knife",
+          "zhen-pm8o-series-8-5-inch-sakimaru-knife"
+        ],
+        "color_scheme": "scheme-5"
+      }
+    },
+    "compare_btn_QMrR93": {
+      "type": "compare_btn",
+      "custom_css": [],
+      "name": "Compare Btn",
+      "settings": {
+        "heading": "Find the perfect knife",
+        "link": "shopify://pages/series-comparison",
+        "link_text": "Compare Now"
+      }
+    },
+    "home_slider_g9dVGe": {
+      "type": "home-slider",
+      "blocks": {
+        "block_aKEQHW": {
+          "type": "block",
+          "settings": {
+            "collection_name": "SUPREME SERIES",
+            "collection": "hezhen-supreme-series-knives"
+          }
+        },
+        "block_zBNGEX": {
+          "type": "block",
+          "settings": {
+            "collection_name": "RETRO SERIES",
+            "collection": "hezhen-retro-series-knives"
+          }
+        },
+        "block_rjVjr6": {
+          "type": "block",
+          "settings": {
+            "collection_name": "MO SERIES",
+            "collection": "xinzuo-mo-series-knives"
+          }
+        },
+        "block_zj8Rr9": {
+          "type": "block",
+          "settings": {
+            "collection_name": "LAN SERIES",
+            "collection": "xinzuo-lan-series-knives"
+          }
+        }
+      },
+      "block_order": [
+        "block_aKEQHW",
+        "block_zBNGEX",
+        "block_rjVjr6",
+        "block_zj8Rr9"
+      ],
+      "disabled": true,
+      "name": "Home Slider",
+      "settings": {
+        "heading": "Meet Xinzuo",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "quick_question_XyWDMB": {
+      "type": "quick-question",
+      "blocks": {
+        "question_yND3FQ": {
+          "type": "question",
+          "settings": {
+            "question": "Are you buying for yourself or as a gift?",
+            "answer1": "For myself",
+            "answer2": "For a gift"
+          }
+        },
+        "question_8WCU9U": {
+          "type": "question",
+          "settings": {
+            "question": "Question2",
+            "answer1": "Answer1",
+            "answer2": "Answer2"
+          }
+        },
+        "question_DB3B3e": {
+          "type": "question",
+          "settings": {
+            "question": "Are you buying for yourself or as a gift?",
+            "answer1": "For myself",
+            "answer2": "For a gift"
+          }
+        }
+      },
+      "block_order": [
+        "question_yND3FQ",
+        "question_8WCU9U",
+        "question_DB3B3e"
+      ],
+      "disabled": true,
+      "name": "Quick Question",
+      "settings": {
+        "heading": "Can’t decide which knife fits your style?"
+      }
+    },
+    "reviews_UMDUhc": {
+      "type": "reviews",
+      "blocks": {
+        "block_L8cEcn": {
+          "type": "block",
+          "settings": {
+            "heading": "Quality Control",
+            "content": "<p>Xinzuo stands out as one of the select few brands that have impressed me with their quality control and precise heat treatment of their knives.</p>",
+            "customer": "Chef Panko",
+            "location": "— YouTube Kitchen Knife Reviewer"
+          }
+        },
+        "block_Ljni9A": {
+          "type": "block",
+          "settings": {
+            "heading": "The Chef’s Perfect Edge",
+            "content": "<p>I’ve been cooking for years, and good knives make all the difference. With Xinzuo, every slice feels smooth, precise, and controlled. </p>",
+            "customer": "Chef Daniel Richter",
+            "location": "— Head Chef, Bellevue Kitchen & Bar Hamburg, Germany"
+          }
+        },
+        "block_HigAQt": {
+          "type": "block",
+          "settings": {
+            "heading": "Precision in Every Cut",
+            "content": "<p>From fine herbs to tough meats, Xinzuo knives cut flawlessly. The craftsmanship inspires confidence with every slice.</p>",
+            "customer": "Chef Adrian Korrin",
+            "location": "— Head Chef, Salti Restaurant & Bar Daydream Island, QLD"
+          }
+        }
+      },
+      "block_order": [
+        "block_L8cEcn",
+        "block_Ljni9A",
+        "block_HigAQt"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "heading": "<h2>Chefs Love Them. </h2><h2><strong>You Will Too.</strong></h2>",
+        "img": "shopify://shop_images/Rectangle_457.png"
+      }
+    },
+    "section_er3F6d": {
+      "type": "section",
+      "blocks": {
+        "text_C44Tze": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>FAQs</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_KdnW4B": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_pcXW9Y": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "You've got four main series. What's the actual difference?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_7EtcXB": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><strong>Supreme (The Workhorse):</strong> Your durable, reliable first great knife.</p><p><strong>Retro (The Upgrade):</strong> A big step up. Stays seriously sharp, for longer.</p><p><strong>Mo (The Stunner):</strong> All the sharpness of the Upgrade, in a beautiful Damascus finish.</p><p><strong>LAN (The Pro):</strong> Our absolute best. Elite steel for an edge that just doesn't quit.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_7EtcXB"
+              ]
+            },
+            "accordion_row_6tQbnh": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Is the wavy 'Damascus' pattern on the Mo and LAN series real?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_g7yrea": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Oh, 100%. That’s not a cheap laser-etch you’ll see on knock-offs. </p><p>It’s the real, beautiful result of folding 67+ layers of steel over that high-performance core. It looks incredible, and it even helps food slide right off the blade. This is the real deal.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_g7yrea"
+              ]
+            },
+            "accordion_row_BCTefQ": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "So... can I put my knife in the dishwasher?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_4yTDmM": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>That's the one hard \"no.\" A dishwasher's high heat and harsh soap are brutal on a sharp blade and a beautiful handle.</p><p><strong>The simple fix:</strong> Just give it a 10-second hand wash with warm, soapy water right after use. Done.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_4yTDmM"
+              ]
+            },
+            "accordion_row_wRmVEU": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Aren't these just 'Made in China' knives?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_HxKVBr": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yep. They’re made in Yangjiang, the \"Capital of Knives.\"</p><p>Here’s a fun fact: Yangjiang has been mastering this craft for over 1,400 years. That’s centuries before the famous hubs in Germany and Japan even got started.</p><p>So we take world-class steel, send it to the city with the longest history of making world-class blades, and skip the legacy-brand markups. It’s not just a good knife; it's a smart one.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_HxKVBr"
+              ]
+            },
+            "accordion_row_4Tg8BV": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What's the warranty? What if I don't like it?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_e7gcyQ": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Easy. If it's not love at first slice, send it back within 30 days for a full refund.</p><p>You're also covered by a lifetime warranty against manufacturing defects. And as a 100% Aussie company, you’re always protected by Australian Consumer Law. We’ve got your back.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_e7gcyQ"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_pcXW9Y",
+            "accordion_row_6tQbnh",
+            "accordion_row_BCTefQ",
+            "accordion_row_wRmVEU",
+            "accordion_row_4Tg8BV"
+          ]
+        },
+        "text_XaMgEF": {
+          "type": "text",
+          "name": "t:names.text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_C44Tze",
+        "accordion_KdnW4B",
+        "text_XaMgEF"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "img_with_text_geRLJH": {
+      "type": "img-with-text",
+      "disabled": true,
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "shopify://collections",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "modal_P7YjyA": {
+      "type": "modal",
+      "disabled": true,
+      "name": "Home Modal",
+      "settings": {
+        "image": "shopify://shop_images/03_417c0b77-d62a-487d-b054-951dbbed115d.png",
+        "heading": "ENJOY 10% OFF ON FIRST ORDER",
+        "content": "Sign up today and instantly receive your exclusive discount coupon by email.",
+        "input": "Enter email, receive code instantly",
+        "button": "SAVE 10% NOW"
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "cw_hero_BD9KK7",
+    "customer_GD7Dyr",
+    "home_products_3iCime",
+    "compare_btn_QMrR93",
+    "home_slider_g9dVGe",
+    "quick_question_XyWDMB",
+    "reviews_UMDUhc",
+    "section_er3F6d",
+    "img_with_text_geRLJH",
+    "modal_P7YjyA"
+  ]
+}

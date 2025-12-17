@@ -1,0 +1,218 @@
+{% style %}
+    .home-modal {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        z-index: 100;
+    }
+
+    .home-modal-back {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(17, 17, 17, 0.50);
+        backdrop-filter: blur(4px);
+    }
+
+    .home-modal-info {
+        width: 800px;
+        height: 440px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        background-color: #151515;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .home-modal-info img {
+        width: 50%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .home-modal-content {
+        width: 50%;
+        padding: 48px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .home-modal-content .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .home-modal-content div {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .home-modal-content h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff;
+        text-align: center;
+        line-height: 135%;
+        margin: 0;
+    }
+
+    .home-modal-content p {
+        font-family: "Albert Sans";
+        font-weight: 400;
+        font-size: 16px;
+        color: #c9c9cc;
+        text-align: center;
+        margin: 0;
+    }
+
+    .home-modal-content input {
+        width: 100%;
+        padding: 10px 16px;
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        color: white;
+    }
+
+    .home-modal-content input::placeholder {
+        color: #c9c9cc;
+    }
+
+    .home-modal-content div button {
+        width: 100%;
+        padding: 10px 16px;
+        background-color: #ff0004;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    @media screen and (max-width: 850px) {
+        .home-modal-info {
+            width: 345px;
+            height: auto;
+            flex-direction: column;
+        }
+
+        .home-modal-info img {
+            width: 100%;
+            height: 240px;
+        }
+
+        .home-modal-content {
+            padding: 32px 24px;
+            gap: 32px;
+            width: 100%;
+        }
+
+        .home-modal-content div {
+            gap: 12px;
+        }
+
+        .home-modal-content h2 {
+            font-size: 22px;
+            padding: 0 50px;
+        }
+    }
+{% endstyle %}
+
+<div class="home-modal">
+    <div class="home-modal-back" onclick="closeHomeModal()"></div>
+    <div class="home-modal-info">
+        <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="">
+        <div class="home-modal-content">
+            <button class="closebtn" onclick="closeHomeModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <g clip-path="url(#clip0_4592_3780)">
+                        <path d="M15.625 4.375L4.375 15.625" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.625 4.375L4.375 15.625" stroke="black" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.625 15.625L4.375 4.375" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.625 15.625L4.375 4.375" stroke="black" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_4592_3780">
+                            <rect width="20" height="20" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </button>
+            <div>
+                <h2>{{ section.settings.heading }}</h2>
+                <p>{{ section.settings.content }}</p>
+            </div>
+            <div>
+                <input placeholder="{{ section.settings.input }}">
+                <button onclick="closeHomeModal()">{{ section.settings.button }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const closeHomeModal = () => {
+        const homeModal = document.querySelector(".home-modal");
+        homeModal.style.display = "none";
+        document.body.style.overflow = '';
+    }
+
+    setTimeout(() => {
+        const homeModal = document.querySelector(".home-modal");
+        homeModal.style.display = "block";
+        document.body.style.overflow = 'hidden';
+    }, 5000)
+</script>
+
+{% schema %}
+{
+    "name": "Home Modal",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Header"
+        },
+        {
+            "type": "text",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+            "type": "text",
+            "id": "input",
+            "label": "Input text"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "Button text"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Home Modal"
+        }
+    ]
+}
+{% endschema %}

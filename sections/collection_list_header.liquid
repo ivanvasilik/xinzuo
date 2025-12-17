@@ -1,0 +1,139 @@
+{% style %}
+    .section-{{ section.id }} .collection-list-header {
+        padding: 32px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .section-{{ section.id }} .collection-list-title {
+        padding: 0 32px;
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+        gap: 32px;
+    }
+
+    .section-{{ section.id }} .collection-list-title h2 {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 80px;
+        color: #fff;
+        margin: 0;
+    }
+
+    .section-{{ section.id }} .collection-list-title p {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #fff;
+        margin: 0;
+    }
+
+    {% if section.settings.width == "full" %}
+        .section-{{ section.id }} {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    {% endif %}
+
+    @media screen and (max-width: 1025px) {
+        .section-{{ section.id }} .collection-list-title h2 {
+            font-size: 60px;
+        }
+
+        .section-{{ section.id }} .collection-list-title p {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .section-{{ section.id }} .collection-list-title h2 {
+            font-size: 40px;
+        }
+
+        .section-{{ section.id }} .collection-list-title p {
+            font-size: 16px;
+        }
+    }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="section-{{ section.id }} section color-{{ section.settings.color_scheme }}">
+    <div class="collection-list-header">
+        <div class="collection-list-title">
+            {% comment %} Use section heading if set, otherwise fall back to collection title {% endcomment %}
+            {% assign display_heading = section.settings.heading %}
+            {% if display_heading == blank %}
+              {% assign display_heading = collection.title %}
+            {% endif %}
+            {% comment %} Title mapping for better display names {% endcomment %}
+            {% case collection.handle %}
+              {% when 'chopping-boards' %}
+                {% assign display_heading = 'CHOPPING BOARDS' %}
+              {% when 'knife-holders' %}
+                {% assign display_heading = 'KNIFE HOLDERS' %}
+              {% when 'knife-sharpening-tools' %}
+                {% assign display_heading = 'SHARPENING TOOLS' %}
+              {% when 'kitchen-scissors' %}
+                {% assign display_heading = 'KITCHEN SCISSORS' %}
+              {% when 'chef-knife-roll-bags' %}
+                {% assign display_heading = 'KNIFE ROLL BAGS' %}
+              {% when 'wood-knife-sheaths' %}
+                {% assign display_heading = 'KNIFE SHEATHS' %}
+              {% when 'chef-aprons' %}
+                {% assign display_heading = 'CHEF APRONS' %}
+            {% endcase %}
+            <h2>{{ display_heading }}</h2>
+            <span>{{ section.settings.title }}</span>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Collection List Header",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "label": "Page",
+                    "value": "page"
+                },
+                {
+                    "label": "Full",
+                    "value": "full"
+                }
+            ],
+            "default": "page"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Header Title"
+        },
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Header content"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:settings.color_scheme",
+            "default": "scheme-1"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Collection List Header"
+        }
+    ]
+}
+{% endschema %}

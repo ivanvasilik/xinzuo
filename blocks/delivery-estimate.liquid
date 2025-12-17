@@ -1,0 +1,154 @@
+{% liquid
+  assign block_settings = block.settings
+  assign product_resource = closest.product
+  assign selected_variant = product_resource.selected_or_first_available_variant
+%}
+
+<div
+  class="delivery-estimate-block"
+  {{ block.shopify_attributes }}
+>
+  {% render 'delivery-estimate-calculator', settings: block_settings, product: product_resource, variant: selected_variant %}
+</div>
+
+{% stylesheet %}
+  .delivery-estimate-block {
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Delivery Estimate",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Delivery Settings"
+    },
+    {
+      "type": "text",
+      "id": "cutoff_time",
+      "label": "Order cutoff time (24h format)",
+      "default": "12:00",
+      "info": "Orders placed before this time are eligible for next-day delivery"
+    },
+    {
+      "type": "range",
+      "id": "price",
+      "label": "Free Shipping",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "free_delivery_state",
+      "label": "Free Delivery State",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "free_delivery",
+      "label": "Free Delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "in_stock_state",
+      "label": "In Stock State",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "in_stock",
+      "label": "In Stock"
+    },
+    {
+      "type": "text",
+      "id": "delivery_content",
+      "label": "Delivery Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_public_holidays",
+      "label": "Account for public holidays",
+      "default": true,
+      "info": "Automatically skip Australian public holidays when calculating delivery dates"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show delivery icon",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#292a33"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#3a3b47"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Delivery estimate text size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13,
+      "info": "Size of the delivery estimate text below badges"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Delivery Estimate",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

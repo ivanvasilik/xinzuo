@@ -1,0 +1,706 @@
+
+
+<cart-items-component
+  class="cart-items-component section-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div
+    class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}"
+  >
+    <div
+      class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
+      style="{% render 'spacing-style', settings: section.settings %}"
+    >
+      <div class="cart-page__title">
+        {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
+      </div>
+      {%- liquid 
+        # Use section settings with fallback to global theme settings
+        assign shipping_value = settings.shipping_value
+        assign express_value = settings.express_value
+        assign enable_express = section.settings.enable_express_shipping | default: true
+        assign total_price = cart.total_price | divided_by: 100.00
+        assign message2 = ""
+        
+        # Calculate progress based on current stage
+        if total_price < shipping_value
+          # Stage 1: Working toward free shipping
+          assign balance = shipping_value | minus: total_price
+          assign balance_txt = balance | times: 100.00 | money
+          assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+          # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
+          assign state_value = total_price | times: 100 | divided_by: shipping_value
+          assign progress_value = 100
+        elsif total_price < express_value and enable_express
+          # Stage 2: Working toward express shipping (only if express is enabled)
+          assign balance = express_value | minus: total_price
+          assign balance_txt = balance | times: 100.00 | money
+          assign message = settings.express_message
+          assign message2 = "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+          # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
+          assign remaining_range = express_value | minus: shipping_value
+          assign progress_in_range = total_price | minus: shipping_value
+          assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
+          assign progress_value = 100
+        else
+          # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
+          if enable_express and total_price >= express_value
+            assign message = settings.complete_message
+          else
+            assign message = section.settings.progress_message_stage2 | default: settings.express_message | default: "Free Delivery Unlocked!"
+          endif
+          assign state_value = 100
+          assign progress_value = 100
+        endif
+      -%}
+
+      {%- unless cart.empty? -%}
+      <div class="drawer-progress-bar__wrapper">
+        <p id="native-free-shipping-cta">{{ message }}</p>
+        <span class="progress-bar">
+          <span>$0</span>
+          <div style="position: relative">
+            <div id="native-free-shipping-progress-bar" data-stage="{% if total_price < shipping_value %}1{% elsif total_price < express_value %}2{% else %}3{% endif %}">
+              <div class="progress_state_base" style="width: {% if total_price >= shipping_value %}100{% else %}{{ state_value }}{% endif %}%;"></div>
+              {% if total_price >= shipping_value and enable_express %}
+                <div class="progress_state_express" style="width: {{ state_value }}%;"></div>
+              {% endif %}
+            </div>
+            {% comment %} <progress id="native-free-shipping-progress-bar" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
+            <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
+            {% comment %} <span style="transform: translate(-50%);left: {{ progress_value }}%;{% if total_price > shipping_value %}color: #fff;{% endif %}">FREE DELIVERY</span> {% endcomment %}
+          </div>
+          {% comment %} <span style="text-align: center;">EXPRESS DELIVERY</span> {% endcomment %}
+        </span>
+        {% if message2 != blank %}
+          <p style="padding-top: 10px;">{{ message2 }}</p>
+        {% endif %}
+      </div>
+      {%- endunless -%}
+
+      <div class="cart-page__items">
+        {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
+      </div>
+
+      {% comment %} {% unless cart.empty? %}
+        <div class="cart-slider">
+          <h2>{{ section.settings.heading }}</h2>
+          <div class="cart-swiper">
+            <div class="swiper-wrapper">
+              {% for product in section.settings.products %}
+                <a class="swiper-slide" href="{{ product.url }}">
+                  <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection slider {{ forloop.index }}">
+                  {% assign collection = product.collections | first %}
+                  <h2>{{- collection.title -}}&nbsp;-&nbsp;{{- product.title -}}</h2>
+                  <div class="product-reviews"></div>
+                  <div class="product-price">
+                      <span class="prices">
+                          <span class="sale-price">{{ product.price | money }}</span>
+                          <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                      </span>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="cart-swiper-buttons">
+              <div class="cart-swiper-button-prev">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <g clip-path="url(#clip0_4030_26868)">
+                          <path d="M15 19.5L7.5 12L15 4.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      <defs>
+                          <clipPath id="clip0_4030_26868">
+                              <rect width="24" height="24" fill="white"/>
+                          </clipPath>
+                      </defs>
+                  </svg>
+              </div>
+              <div class="cart-swiper-button-next">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <g clip-path="url(#clip0_4030_26872)">
+                          <path d="M9 4.5L16.5 12L9 19.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      <defs>
+                          <clipPath id="clip0_4030_26872">
+                              <rect width="24" height="24" fill="white"/>
+                          </clipPath>
+                      </defs>
+                  </svg>
+              </div>
+          </div>
+        </div>
+      {% endunless %} {% endcomment %}
+
+      {%- unless cart.empty? -%}
+        <div class="cart-page__summary">
+          {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
+        </div>
+      {%- endunless -%}
+      
+      <div class="cart-page__more-blocks">
+        {%- content_for 'blocks' -%}
+      </div>
+    </div>
+  </div>
+</cart-items-component>
+
+{% style %}
+    .section-{{ section.id }} .cart-slider {
+        overflow: hidden;
+    }
+
+    .section-{{ section.id }} .cart-slider > h2 {
+      font-family: "Sen";
+      font-weight: 600;
+      font-size: 36px;
+      color: #c9c9cc;
+      margin: 32px 0;
+    }
+
+    .section-{{ section.id }} .cart-swiper {
+        overflow: visible;
+    }
+
+    .section-{{ section.id }} .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        transition: height 0.5s ease-in-out !important;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .section-{{ section.id }} .swiper-slide h2 {
+        padding-top: 24px;
+        margin: 0;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .section-{{ section.id }} .swiper-slide img {
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .section-{{ section.id }} .cart-swiper-buttons {
+        display: flex;
+        margin-top: 64px;
+        padding: 0 32px 16px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .section-{{ section.id }} .cart-swiper-buttons div {
+        position: static;
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-{{ section.id }} .cart-swiper-buttons div:after {
+        display: none;
+    }
+
+    .section-{{ section.id }} .cart-swiper-buttons div[aria-disabled="true"] {
+        opacity: 0.5;
+    }
+
+    .section-{{ section.id }} .product-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .section-{{ section.id }} .product-price span.prices {
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 36px;
+        color: #fff
+    }
+        
+    .section-{{ section.id }} .product-price span.compare-price {
+        font-size: 22px;
+        text-decoration: line-through;
+        color: #828282;
+    }
+
+    .section-{{ section.id }} .product-price a {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        font-family: "Sen";
+        font-weight: 600;
+        font-size: 16px;
+        color: #fff;
+        border-bottom: 2px solid #444444;
+        padding: 0;
+        line-height: 250%;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .progress-bar div span {
+      position: absolute;
+      top: 25px;
+      line-height: 1;
+      text-align: center;
+      font-family: "Sen";
+      font-weight: 500;
+      font-size: 14px;
+      color: #c9c9cc;
+    }
+
+    #native-free-shipping-progress-bar {
+      width: 660px;
+      height: 12px;
+      border-radius: 12px;
+      margin: 5px 0;
+      position: relative;
+      overflow: hidden;
+      /* Smooth rendering */
+      -webkit-font-smoothing: antialiased;
+      transform: translateZ(0);
+    }
+
+    /* Stage 1: Gray background with animated stripes */
+    #native-free-shipping-progress-bar[data-stage="1"] {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.1) 10px,
+        rgba(255, 255, 255, 0.1) 20px
+      );
+      background-color: rgba(255, 255, 255, 0.08);
+      background-size: 28px 28px;
+      animation: progress-stripes 1s linear infinite;
+    }
+
+    /* Stage 2 & 3: Red stays solid */
+    #native-free-shipping-progress-bar[data-stage="2"],
+    #native-free-shipping-progress-bar[data-stage="3"] {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    @keyframes progress-stripes {
+      0% { background-position: 0 0; }
+      100% { background-position: 28px 0; }
+    }
+
+    /* Base layer (red - free shipping tier) */
+    .progress_state_base {
+      background: {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }};
+      height: 100%;
+      border-radius: 12px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: 100%;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Add stripes to red when it's full and working toward express (Stage 2) */
+    #native-free-shipping-progress-bar[data-stage="2"] .progress_state_base {
+      background: repeating-linear-gradient(
+        45deg,
+        {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }},
+        {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }} 10px,
+        color-mix(in srgb, {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }} 85%, white) 10px,
+        color-mix(in srgb, {{ section.settings.progress_bar_color | default: settings.progress_color | default: '#ff0004' }} 85%, white) 20px
+      );
+      background-size: 28px 28px;
+      animation: progress-stripes 1s linear infinite;
+    }
+
+    /* Express layer (gold - express shipping tier) */
+    .progress_state_express {
+      background: {{ section.settings.express_bar_color | default: settings.express_progress_color | default: '#FFA500' }};
+      height: 100%;
+      border-radius: 12px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: 100%;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Shine effect on express layer */
+      overflow: hidden;
+    }
+
+    .progress_state_express::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: progress-shine 2s infinite;
+    }
+
+    @keyframes progress-shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Hide dot - no longer needed */
+    .shipping-value {
+      display: none;
+    }
+
+    @media screen and (max-width: 1300px) {
+      .section-{{ section.id }} .cart-slider > h2 {
+        font-size: 22px;
+      }
+
+      .progress-bar > div {
+        width: calc(100% - 100px);
+      }
+
+      #native-free-shipping-progress-bar {
+        width: 100% !important;
+      }
+    }
+
+    @media screen and (max-width: 1025px) {
+      .section-{{ section.id }} .slider-header span {
+        margin-bottom: 36px;
+      }
+      
+      .section-{{ section.id }} .slider-header h2 {
+        font-size: 36px;
+      }
+
+      .section-{{ section.id }} .swiper-slide h2 {
+        font-size: 16px;
+      }
+
+      .section-{{ section.id }} .product-price span.prices {
+        font-size: 16px;
+      }
+
+      .section-{{ section.id }} .product-price span.compare-price {
+        font-size: 14px;
+      }
+      
+      .progress-bar div span {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      .progress-bar span {
+        display: none;
+      }
+
+      .progress-bar > div {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 750px) {
+      .section-{{ section.id }} .cart-swiper-buttons {
+        margin-top: 32px;
+      }
+
+      .section-{{ section.id }} .cart-swiper-buttons div {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+      }
+
+      .section-{{ section.id }} .slider-header p {
+        font-size: 16px;
+      }
+
+      .section-{{ section.id }} .swiper-slide h2 {
+        font-size: 18px;
+      }
+
+      .section-{{ section.id }} .product-price span.prices {
+        font-size: 22px;
+      }
+
+      .section-{{ section.id }} .product-price span.compare-prices {
+        font-size: 19px;
+      }
+    }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = document.querySelector(".cart-swiper");
+    const cartswiper = new Swiper('.cart-swiper', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 2.5,
+          spaceBetween: 20,
+        },
+        1025: {
+          slidesPerView: 3.5,
+          spaceBetween: 30,
+        },
+      },
+      navigation: {
+        nextEl: '.cart-swiper-button-next',
+        prevEl: '.cart-swiper-button-prev',
+      },
+    });
+  })
+</script>
+
+{% stylesheet %}
+  .cart-page {
+    --cart-font-size--2xs: var(--font-size--2xs);
+    --cart-font-size--xs: var(--font-size--xs);
+    --cart-font-size--sm: var(--font-size--sm);
+    --cart-font-size--md: var(--font-size--md);
+    --cart-font-size--2xl: var(--font-size--2xl);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 var(--padding-5xl);
+  }
+
+  .cart-page--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-page--empty .cart-page__title,
+  .cart-page--empty .cart-page__more-blocks {
+    margin-top: var(--margin-6xl);
+  }
+
+  .cart-page__more-blocks {
+    width: 100%;
+  }
+
+  .cart-page--empty .cart-title {
+    text-align: center;
+  }
+
+  .cart-page__main {
+    grid-column: 1;
+  }
+
+  .cart-page__summary {
+    padding-top: var(--padding-xl);
+  }
+
+  @media screen and (min-width: 750px) {
+    .cart-page {
+      grid-template-columns: 1fr min(50vw, var(--sidebar-width));
+      grid-template-rows: min-content min-content 1fr;
+    }
+
+    .cart-page__summary {
+      display: grid;
+      height: 100%;
+      grid-column: 2;
+      grid-row: 1 / -1;
+      align-self: stretch;
+      padding-top: 0;
+
+      /* needed to support blurred effect from hero section */
+      position: relative;
+    }
+
+    .section--page-width .cart-page:has(.cart__container--extend) {
+      grid-column: 2 / 4;
+      grid-template-columns: 1fr minmax(var(--sidebar-width), 440px);
+    }
+
+    .cart__container--extend {
+      height: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .cart-page {
+      grid-template-columns: 1fr var(--sidebar-width);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.cart",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text"
+    },
+    {
+      "type": "icon"
+    },
+    {
+      "type": "image"
+    },
+    {
+      "type": "button"
+    },
+    {
+      "type": "video"
+    },
+    {
+      "type": "group"
+    },
+    {
+      "type": "spacer"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Recommend Products"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Free Shipping Progress Bar"
+    },
+    {
+      "type": "range",
+      "id": "free_shipping_threshold",
+      "label": "Free Shipping Threshold",
+      "info": "Cart total needed for free standard shipping",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "unit": "$",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "express_shipping_threshold",
+      "label": "Free Express Shipping Threshold",
+      "info": "Cart total needed for free express shipping",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "unit": "$",
+      "default": 200
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage1",
+      "label": "Message: Working toward free shipping",
+      "info": "Use {PRICE} placeholder for remaining amount",
+      "default": "<p>Add {PRICE} more to unlock Free Delivery.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage2",
+      "label": "Message: Free shipping unlocked",
+      "default": "<p>🎉 Free Delivery Unlocked!</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage2_secondary",
+      "label": "Message: Working toward express shipping",
+      "info": "Use {PRICE} placeholder for remaining amount",
+      "default": "<p>Add {PRICE} more to unlock Free Express Delivery.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "progress_message_stage3",
+      "label": "Message: Express shipping unlocked",
+      "default": "<p>🚀 Free Express Delivery Unlocked!</p>"
+    },
+      {
+        "type": "color",
+        "id": "progress_bar_color",
+        "label": "Free Shipping Progress Color",
+        "default": "#ff0004"
+      },
+      {
+        "type": "color",
+        "id": "express_bar_color",
+        "label": "Express Shipping Progress Color",
+        "info": "Color for the second tier (fills over red when working toward express)",
+        "default": "#FFA500"
+      },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show Progress Bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_express_shipping",
+      "label": "Enable Express Shipping Goal",
+      "info": "Show the second tier for free express shipping",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

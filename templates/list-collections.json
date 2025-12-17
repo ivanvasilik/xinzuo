@@ -1,0 +1,658 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_list_Wfgh3m": {
+      "type": "main-collection-list",
+      "blocks": {
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "collection_card_gap": 8,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_7YgBPU": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_7YgBPU"
+          ]
+        }
+      },
+      "disabled": true,
+      "name": "Collection list",
+      "settings": {
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 1,
+        "mobile_columns": "1",
+        "columns_gap": 12,
+        "bento_gap": 8,
+        "rows_gap": 24,
+        "max_collections": 4,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "collection_list_header_gy3FLh": {
+      "type": "collection_list_header",
+      "name": "Collection List Header",
+      "settings": {
+        "width": "full",
+        "heading": "KNIVES",
+        "title": "",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_list_slider_tLmmrb": {
+      "type": "collection_list_slider",
+      "blocks": {
+        "block_N8NbLP": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_588.png",
+            "description": "<p><strong>Master Craftsmanship</strong> – Every Xinzuo knife is forged with a balance of tradition and modern innovation, refined through years of dedication to the art of bladesmithing.</p>"
+          }
+        },
+        "block_aew4jN": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Step_9_Handle_Polishing.png",
+            "description": "<p><strong>Relentless Precision</strong> – From blade geometry to hand-polished edges, each detail is engineered for accuracy, ensuring consistent performance with every cut.</p>"
+          }
+        },
+        "block_dWkdxp": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_588.png",
+            "description": "<p><strong>Master Craftsmanship</strong> – Every Xinzuo knife is forged with a balance of tradition and modern innovation, refined through years of dedication to the art of bladesmithing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_N8NbLP",
+        "block_aew4jN",
+        "block_dWkdxp"
+      ],
+      "name": "Collection List Slider",
+      "settings": {
+        "heading": "Discover the difference",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "cw_collection_list_z96PNK": {
+      "type": "cw-collection-list",
+      "blocks": {
+        "block_kJJye3": {
+          "type": "block",
+          "settings": {
+            "collection": "hezhen-supreme-series-knives",
+            "image": "shopify://shop_images/04.png",
+            "image_position": "left",
+            "first_block_header": "Hardness",
+            "first_block_content": "56–58 HRC",
+            "first_block_footer": "easy sharpening",
+            "second_block_header": "German 1.4116 steel",
+            "second_block_content": "Premium Steel",
+            "second_block_footer": "proven durability",
+            "third_block_header": "Design",
+            "third_block_content": "Full Tang",
+            "third_block_footer": "comfort grip",
+            "description": "<p>The Supreme Series Chef Knife is a versatile all-rounder, perfect for chopping, slicing, dicing, mincing, and preparing ingredients for everyday cooking.<br/>Balanced design with German steel ensures durability, easy sharpening, and dependable, reliable daily performance.</p>"
+          }
+        },
+        "block_f3DkPp": {
+          "type": "block",
+          "settings": {
+            "collection": "hezhen-retro-series-knives",
+            "image": "shopify://shop_images/03_723e214b-431d-4f52-9786-ea1992de1b98.png",
+            "image_position": "right",
+            "first_block_header": "Hardness",
+            "first_block_content": "58-60 HRC",
+            "first_block_footer": "sharper cutting",
+            "second_block_header": "Core",
+            "second_block_content": "10Cr15CoMoV",
+            "second_block_footer": "higher edge retention",
+            "third_block_header": "Design",
+            "third_block_content": "Retro-style",
+            "third_block_footer": "redwood with buffalo horn",
+            "description": "<p>The Retro Series Chef Knife delivers sharpness and Damascus beauty, excelling at slicing, chopping, dicing, and mincing with refined precision.<br/>Premium Damascus steel core provides long-lasting edge retention, excellent balance, and a comfortable, artistic handle grip.</p>"
+          }
+        },
+        "block_JTa8cV": {
+          "type": "block",
+          "settings": {
+            "collection": "xinzuo-mo-series-knives",
+            "image": "shopify://shop_images/03_e826fa8a-301c-4ff6-9f20-92db5084672c.png",
+            "image_position": "left",
+            "first_block_header": "Hardness",
+            "first_block_content": "60-62 HRC",
+            "first_block_footer": "high performance",
+            "second_block_header": "Damascus",
+            "second_block_content": "67 Layers",
+            "second_block_footer": "Strength & Beauty",
+            "third_block_header": "Handle",
+            "third_block_content": "Burnt White Oak",
+            "third_block_footer": "comfort and refined grip",
+            "description": "<p>The Mo Series Chef Knife blends 67-layer Damascus craftsmanship with precision, perfect for mastering slicing, chopping, and dicing tasks.<br/>Refined oak and G10 handle pairs with premium Damascus edge for balance, sharpness, and durability.</p>"
+          }
+        },
+        "block_QJTmc6": {
+          "type": "block",
+          "settings": {
+            "collection": "xinzuo-lan-series-knives",
+            "image": "shopify://shop_images/03_d662372f-4811-40f9-b3a7-d11f31542a4a.png",
+            "image_position": "right",
+            "first_block_header": "Hardness",
+            "first_block_content": "62–64 HRC",
+            "first_block_footer": "extremely hard and sharp",
+            "second_block_header": "Layers",
+            "second_block_content": "73 Damascus",
+            "second_block_footer": "superior edge retention",
+            "third_block_header": "Handle",
+            "third_block_content": "Olive Wood",
+            "third_block_footer": "luxury craftsmanship",
+            "description": "<p>The Lan Series Chef Knife embodies luxury and performance, featuring powdered Damascus steel for hardness, effortless slicing, and edge retention.<br/>Olive wood handle with copper rivets elevates comfort, artistry, and precision for passionate chefs and collectors.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_kJJye3",
+        "block_f3DkPp",
+        "block_JTa8cV",
+        "block_QJTmc6"
+      ],
+      "name": "Custom Collection List",
+      "settings": {
+        "width": "full",
+        "heading": "Explore Every Series",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_slider_cDE76D": {
+      "type": "collection_slider",
+      "name": "Collection Slider",
+      "settings": {
+        "title": "THIN. SHARP. POWERFUL",
+        "heading": "<h2>The knives, <br/>People love most</h2>",
+        "show_header": true,
+        "products": [
+          "xinzuo-lan-carving-knife-10-inch",
+          "xinzuo-mo-series-10-inch-carving-knife",
+          "hezhen-supreme-paring-knife-4-inch",
+          "hezhen-supreme-utility-knife-5-inch",
+          "hezhen-retro-series-4-inch-paring-knife",
+          "xinzuo-lan-santoku-knife-7-inch",
+          "products-hezhen-supreme-santoku-knife-7-inch"
+        ],
+        "color_scheme": "scheme-5",
+        "padding_top": 105,
+        "padding_bottom": 65
+      }
+    },
+    "complete_collection_GfJjwE": {
+      "type": "complete_collection",
+      "blocks": {
+        "block_pwGXfJ": {
+          "type": "block",
+          "settings": {
+            "title": "XINZUO-X06",
+            "content": "Utility, Chef, and Santoku Knife Set",
+            "image": "shopify://shop_images/02_f0218d90-dacc-402b-aa19-e7c219e7fde1.png",
+            "image_position": "right"
+          }
+        },
+        "block_8kHkeq": {
+          "type": "block",
+          "settings": {
+            "title": "XINZUO-B37",
+            "content": "Utility, Chef and Santoku  Knife Set",
+            "image": "shopify://shop_images/02_5c85fa05-0cea-4772-ad34-e79b4a33b2a5.png",
+            "image_position": "left"
+          }
+        }
+      },
+      "block_order": [
+        "block_pwGXfJ",
+        "block_8kHkeq"
+      ],
+      "name": "Collection Complete",
+      "settings": {
+        "heading": "<h2>Complete</h2><h2>the Collection</h2>",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "collection_slider2_etxd4G": {
+      "type": "collection_slider2",
+      "name": "Collection Slider2",
+      "settings": {
+        "title": "",
+        "heading": "",
+        "show_header": false,
+        "products": [
+          "hezhen-retro-series-7-inch-nakiri-knife",
+          "xinzuo-mo-series-6-8-inch-nakiri-knife",
+          "hezhen-retro-series-7-inch-santoku-knife",
+          "xinzuo-mo-santoku-knife-7-5-inch",
+          "xinzuo-supreme-series-8-bread-knife",
+          "xinzuo-mo-series-8-inch-bread-knife",
+          "hezhen-supreme-carving-knife-8-inch",
+          "hezhen-supreme-series-8-chef-knife",
+          "hezhen-supreme-granton-edge-chef-knife-8-inch",
+          "hezhen-retro-series-8-5-inch-bread-knife",
+          "xinzuo-lan-bread-knife-8-5-inch",
+          "xinzuo-mo-chef-knife-8-5-inch",
+          "xinzuo-lan-chef-knife-8-5-inch"
+        ],
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_N6Wm3B": {
+      "type": "section",
+      "blocks": {
+        "text_YwxVhL": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>FAQs</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_hkY3yD": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_mWM8r4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What makes Xinzuo knives stand apart from other kitchen knife brands?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_JVh3WE": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_JVh3WE"
+              ]
+            },
+            "accordion_row_LQAnKa": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are Xinzuo knives designed for professional chefs as well as home kitchens?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_z8XFyz": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_z8XFyz"
+              ]
+            },
+            "accordion_row_cTynQc": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How should I properly care for my Xinzuo knife collection?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_YYddiL": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_YYddiL"
+              ]
+            },
+            "accordion_row_ADw9Wx": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do Xinzuo products include a warranty, and what does it cover?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_RJnKdU": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_RJnKdU"
+              ]
+            },
+            "accordion_row_CG3xan": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How long does delivery of Xinzuo knives usually take?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_cnyMq9": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Xinzuo knives combine premium steel, precision forging, and ergonomic design. Each blade is carefully crafted to deliver durability, sharpness, and balance, creating a superior cutting experience for both chefs and home cooks.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_cnyMq9"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_mWM8r4",
+            "accordion_row_LQAnKa",
+            "accordion_row_cTynQc",
+            "accordion_row_ADw9Wx",
+            "accordion_row_CG3xan"
+          ]
+        },
+        "text_y6XCNt": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>still have any question, <a href=\"/pages/contact\" title=\"Contact\">Contact Us</a></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YwxVhL",
+        "accordion_hkY3yD",
+        "text_y6XCNt"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "img_with_text_QbKcBp": {
+      "type": "img-with-text",
+      "name": "Img with text",
+      "settings": {
+        "heading": "<p>Experience Precision</p><p>in Every Cut</p>",
+        "content": "<p>The perfect balance of sharpness, comfort, and design.</p>",
+        "button": "Step Into Excellence",
+        "url": "shopify://collections",
+        "img": "shopify://shop_images/Rectangle_267.png",
+        "color_scheme": "scheme-5"
+      }
+    }
+  },
+  "order": [
+    "collection_list_Wfgh3m",
+    "collection_list_header_gy3FLh",
+    "collection_list_slider_tLmmrb",
+    "cw_collection_list_z96PNK",
+    "collection_slider_cDE76D",
+    "complete_collection_GfJjwE",
+    "collection_slider2_etxd4G",
+    "section_N6Wm3B",
+    "img_with_text_QbKcBp"
+  ]
+}

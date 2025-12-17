@@ -1,0 +1,37 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+-%}
+
+<div class="product-detail-content-custom" {{ block.shopify_attributes }}>
+  <span>{{ block_settings.detail_content }}</span>
+</div>
+
+{% stylesheet %}
+  .product-detail-content-custom {
+    width: 100%;
+  }
+
+  .product-detail-content-custom span {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
+    color: #c9c9cc;
+    display: block;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Detail Content",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "detail_content",
+      "label": "Content Text",
+      "info": "Description text that appears above the detail icons"
+    }
+  ]
+}
+{% endschema %}

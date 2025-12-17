@@ -1,0 +1,65 @@
+{%- liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+-%}
+
+<div class="product-price-custom" {{ block.shopify_attributes }}>
+  <div class="product-details-prices">
+    <h2>{{ product.price | money }}</h2>
+    {% if product.price < product.compare_at_price %}
+      <h4>{{ product.compare_at_price | money }}</h4>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .product-price-custom {
+    width: 100%;
+  }
+
+  .product-details-prices {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .product-details-prices h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 135%;
+    color: #fff;
+    margin: 0;
+  }
+
+  .product-details-prices h4 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 7px;
+    margin-top: 0;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 1.5px;
+    color: #c9c9cc;
+    opacity: 0.4;
+  }
+
+  @media screen and (max-width: 750px) {
+    .product-details-prices h2 {
+      font-size: 22px;
+    }
+
+    .product-details-prices h4 {
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Price",
+  "tag": null,
+  "settings": []
+}
+{% endschema %}

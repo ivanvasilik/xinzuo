@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "cw_footer_jT79BV": {
+      "type": "cw-footer",
+      "blocks": {
+        "email_signup_9FpxJy": {
+          "type": "email-signup",
+          "name": "t:names.email_signup",
+          "settings": {
+            "width": "custom",
+            "custom_width": 50,
+            "inherit_color_scheme": true,
+            "heading": "",
+            "heading_preset": "h3",
+            "color_scheme": "",
+            "border_style": "all",
+            "border_width": 1,
+            "border_radius": 6,
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "display_type": "text",
+            "label": "UNLOCK ACCESS",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 40,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "email_signup_9FpxJy"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "heading": "Want First Dibs?",
+        "content": "Get 10% off your first order, plus exclusive deals and early access to new launches.",
+        "color_scheme": "scheme-5"
+      }
+    },
+    "cw_footer2_JnDUrJ": {
+      "type": "cw-footer2",
+      "blocks": {
+        "menu_V9FDgA": {
+          "type": "menu",
+          "name": "t:names.menu",
+          "settings": {
+            "menu": "explore-shop",
+            "heading": "",
+            "menu_spacing": 12,
+            "show_as_accordion": false,
+            "accordion_icon": "caret",
+            "accordion_dividers": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading_preset": "h3",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "menu_6Jy6wB": {
+          "type": "menu",
+          "name": "t:names.menu",
+          "settings": {
+            "menu": "support-trust",
+            "heading": "",
+            "menu_spacing": 12,
+            "show_as_accordion": false,
+            "accordion_icon": "caret",
+            "accordion_dividers": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading_preset": "h3",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "menu_V9FDgA",
+        "menu_6Jy6wB"
+      ],
+      "name": "Custom Footer2",
+      "settings": {
+        "logo": "shopify://shop_images/Frame_34_b6db4d70-0787-488f-a884-534d1e629ae9.png",
+        "group-heading": "Purpose built, professionally honed.",
+        "group-content": "Pro-grade knives. Crafted for real kitchens. Exceptional steel. Honest pricing.",
+        "contact_us": "Contact Us",
+        "phone-icon": "shopify://shop_images/Phone_7c4cb859-c5e2-45b0-87a2-b25915dac8a2.png",
+        "phone-number": "+ 123 456 789 0",
+        "email-icon": "shopify://shop_images/EnvelopeSimple_cb3feb81-d572-45a5-aad4-7cf04535a6a0.png",
+        "email-number": "support@xinzuo.com.au",
+        "color_scheme": "scheme-5",
+        "facebook": "https://facebook.com/xinzuoau",
+        "insta": "https://www.instagram.com/xinzuoau",
+        "youtube": "",
+        "xcom": ""
+      }
+    },
+    "cw_footer3_4VR8Dg": {
+      "type": "cw-footer3",
+      "blocks": {
+        "icon_kgVBhV": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Visa.png"
+          }
+        },
+        "icon_cM7XnC": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Mastercard.png"
+          }
+        },
+        "icon_NzteHH": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ApplePay.png"
+          }
+        },
+        "icon_emJtVf": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/GooglePay.png"
+          }
+        },
+        "icon_KeiwfT": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ShopPay.png"
+          }
+        },
+        "icon_cKyHzE": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Stripe.png"
+          }
+        },
+        "icon_DeqNWT": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Amex.png"
+          }
+        }
+      },
+      "block_order": [
+        "icon_kgVBhV",
+        "icon_cM7XnC",
+        "icon_NzteHH",
+        "icon_emJtVf",
+        "icon_KeiwfT",
+        "icon_cKyHzE",
+        "icon_DeqNWT"
+      ],
+      "name": "Custom Footer3",
+      "settings": {
+        "copyright": "© 2025 Xinzuo. All rights reserved. Enjoy Life with Ingenuity, our promise to you.",
+        "color_scheme": "scheme-5"
+      }
+    }
+  },
+  "order": [
+    "cw_footer_jT79BV",
+    "cw_footer2_JnDUrJ",
+    "cw_footer3_4VR8Dg"
+  ]
+}

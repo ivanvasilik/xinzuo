@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-section": {
+      "type": "main-cart",
+      "blocks": {
+        "cart-page-title": {
+          "type": "_cart-title",
+          "static": true,
+          "settings": {
+            "title": "Your Cart",
+            "show_count": true,
+            "type_preset": "h2",
+            "alignment": "left",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cart-page-items": {
+          "type": "_cart-products",
+          "static": true,
+          "settings": {
+            "gap": 24,
+            "image_ratio": "portrait",
+            "dividers": true,
+            "vendor": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cart-page-summary": {
+          "type": "_cart-summary",
+          "static": true,
+          "settings": {
+            "extend_summary": true,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "heading": "You might also like",
+        "section_width": "page-width",
+        "products": [],
+        "color_scheme": "scheme-5",
+        "padding-block-start": 64,
+        "padding-block-end": 64,
+        "free_shipping_threshold": 100,
+        "express_shipping_threshold": 250,
+        "progress_message_stage1": "<p>Add &lcub;PRICE&rcub; more to unlock Free Delivery.</p>",
+        "progress_message_stage2": "<p>🎉 Free Delivery Unlocked!</p>",
+        "progress_message_stage2_secondary": "<p>Add &lcub;PRICE&rcub; more to unlock Free Express Delivery.</p>",
+        "progress_message_stage3": "<p>🚀 Free Express Delivery Unlocked!</p>",
+        "progress_bar_color": "#ff0004",
+        "express_bar_color": "#ffa500",
+        "show_progress_bar": true,
+        "enable_express_shipping": true
+      }
+    }
+  },
+  "order": [
+    "cart-section"
+  ]
+}

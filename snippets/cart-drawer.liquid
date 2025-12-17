@@ -1,0 +1,697 @@
+{%- doc -%}
+  Renders the cart drawer, a slide-out panel that displays the contents of the cart. It includes the cart icon that acts as a trigger.
+
+  @param {object} [settings] - An object containing theme settings.
+
+  @param {boolean} [settings.auto_open_cart_drawer] - If `true`, the cart drawer opens automatically after an item is
+  added.
+  @param {string} [settings.drawer_color_scheme] - The color scheme for the drawer.
+{%- enddoc -%}
+
+<script
+  src="{{ 'cart-drawer.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% style %}
+  .drawer-recommend {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .drawer-recommend h2 {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+    margin: 0;
+  }
+
+  .drawer-product {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+  }
+
+  .drawer-product img {
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .drawer-product-info {
+    width: 100%;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .drawer-product-info p {
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .drawer-product-info span {
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #c9c9cc;
+  }
+
+  .cart-drawer-footer {
+    padding: 8px 24px;
+    box-shadow: 0 8px 24px 0 #000;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cart-drawer-total {
+    align-items: center;
+    justify-content: space-between;
+    /* padding-top: 16px; */
+  }
+
+  .cart-drawer-total div {
+    display: flex;
+    justify-content: space-between;
+  }
+   
+  .calculated {
+    font-size: 14px !important;
+  }
+
+  .cart-drawer-total p {
+    font-family: "Sen";
+    font-weight: 400;
+    font-size: 16px;
+    color: #c9c9cc;
+    margin: 0;
+  }
+
+  .cart-total-price span {
+    color: white !important;  
+  }
+
+  .cart-drawer-total span {
+    display: flex;
+    align-items: center;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 16px;
+    color: #c9c9cc;
+  }
+
+  .cart-total-price p {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .cart-total-price span {
+    font-size: 18px;
+  }
+
+  .cart-drawer-footer .cart__checkout-button {
+    background-color: #ff0004;
+    color: white;
+    height: 45px;
+    font-family: "Sen";
+  }
+  
+  .cart-drawer-cart a {
+    display: block;
+    width: 100%;
+    font-family: "Sen";
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 12px;
+  }
+
+  .cart-drawer-cart div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    font-family: "Albert Sans";
+    font-weight: 400;
+    font-size: 16px;
+    color: #c9c9cc;
+  }
+{% endstyle %}
+
+<cart-drawer-component
+  class="cart-drawer"
+  {{ block.shopify_attributes }}
+  {% if settings.auto_open_cart_drawer %}
+    auto-open
+  {% endif %}
+>
+  <button
+    class="button header-actions__action button-unstyled"
+    on:click="/open"
+    aria-label="{{ 'accessibility.open_cart_drawer' | t }} {{ 'accessibility.cart_count' | t}}: {{ cart.item_count }}"
+  >
+    {% render 'cart-icon-component' %}
+  </button>
+
+  <dialog
+    ref="dialog"
+    class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}"
+    scroll-lock
+  >
+    <div class="cart-drawer__inner">
+      <cart-items-component
+        class="cart-items-component"
+        data-section-id="{{ section.id }}"
+      >
+        {%- if cart.empty? -%}
+          <div class="cart-drawer__header">
+            <button
+              ref="closeButton"
+              on:click="cart-drawer-component/close"
+              class="button close-button cart-drawer__close-button button-unstyled"
+              aria-label="{{ 'actions.close_dialog' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-close.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+
+          <div
+            class="cart-drawer__content motion-reduce"
+            aria-label="{{ 'accessibility.cart' | t }}"
+          >
+            <span class="cart-drawer__heading h3 cart-drawer__heading--empty">
+              {{ 'content.your_cart_is_empty' | t }}
+            </span>
+
+            <div class="cart-drawer__items">
+              {% render 'cart-products' %}
+            </div>
+          </div>
+        {%- else -%}
+          <div
+            class="cart-drawer__header"
+            id="cart-drawer-header"
+          >
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="cart-drawer__heading h3">
+                Your Cart
+                {% render 'cart-bubble' %}
+              </span>
+
+              <button
+                ref="closeButton"
+                on:click="cart-drawer-component/close"
+                class="button close-button cart-drawer__close-button button-unstyled"
+                aria-label="{{ 'actions.close_dialog' | t }}" 
+                style="position: static;"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </div>
+            {%- liquid 
+              assign total_price = cart.total_price | divided_by: 100.00
+              assign shipping_value = settings.shipping_value
+              assign express_value = settings.express_value
+              assign enable_express = settings.enable_express_tier | default: true
+              assign message2 = ""
+              
+              # Calculate progress based on current stage
+              if total_price < shipping_value
+                # Stage 1: Working toward free shipping
+                assign balance = settings.shipping_value | minus: total_price
+                assign balance_txt = balance | times: 100.00 | money
+                assign message = settings.shipping_message | replace: '{PRICE}', balance_txt
+                # Progress bar fills from 0-100% as cart goes from $0 to shipping_value
+                assign state_value = total_price | times: 100 | divided_by: shipping_value
+                assign progress_value = 100
+              elsif total_price < express_value and enable_express
+                # Stage 2: Working toward express shipping (only if enabled)
+                assign balance = settings.express_value | minus: total_price
+                assign balance_txt = balance | times: 100.00 | money
+                assign message = settings.express_message
+                assign message2 = settings.express_secondary_message | default: "Add {PRICE} more to unlock Free Express Shipping." | replace: '{PRICE}', balance_txt
+                # Progress bar fills from 0-100% as cart goes from shipping_value to express_value
+                assign remaining_range = express_value | minus: shipping_value
+                assign progress_in_range = total_price | minus: shipping_value
+                assign state_value = progress_in_range | times: 100 | divided_by: remaining_range
+                assign progress_value = 100
+              else
+                # Stage 3: Express shipping unlocked OR express disabled and free shipping reached
+                if enable_express and total_price >= express_value
+                  assign message = settings.complete_message
+                else
+                  assign message = settings.express_message
+                endif
+                assign state_value = 100
+                assign progress_value = 100
+              endif
+            -%}
+            
+            <p id="native-free-shipping-cta">{{ message }}</p>
+            <span class="progress-bar-cart" style="position: relative">
+              <div class="progress_bar" data-stage="{% if total_price < shipping_value %}1{% elsif total_price < express_value %}2{% else %}3{% endif %}">
+                <div class="progress_state_base" style="width: {% if total_price >= shipping_value %}100{% else %}{{ state_value }}{% endif %}%;"></div>
+                {% if total_price >= shipping_value and enable_express %}
+                  <div class="progress_state_express" style="width: {{ state_value }}%;"></div>
+                {% endif %}
+              </div>
+              {% comment %} <progress class="progress-cart" value="{{ total_price }}" max="{{ settings.express_value }}"></progress> {% endcomment %}
+              <div class="shipping-value" style="left: {{ progress_value }}%;"></div>
+            </span>
+            {% if message2 != blank %}
+              <p>{{ message2 }}</p>
+            {% endif %}
+          </div>
+          
+          <div
+            class="cart-drawer__content motion-reduce"
+            aria-label="{{ 'accessibility.cart' | t }}"
+            style="--header-height: 60px;"
+          >
+            <scroll-hint
+              class="cart-drawer__items"
+            >
+              {% render 'cart-products' type: "drawer" %}
+              {% comment %} {% if settings.drawer_recommend != blank %}
+                <div class="drawer-recommend">
+                  <h2>You might also like</h2>
+                  {% for product in settings.drawer_recommend %}
+                    <div class="drawer-product" onclick="location.href='{{ product.url }}'">
+                      <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Cart Recommend {{ product.title }}">
+                      <div class="drawer-product-info">
+                        <div>
+                          <p>{{ product.title }}</p>
+                          <span>{{ product.description | strip_html | truncate: 25, "..." }}</span>
+                        </div>
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <g clip-path="url(#clip0_4235_58801)">
+                              <path d="M4 12L12 4" stroke="#c9c9cc" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5.5 4H12V10.5" stroke="#c9c9cc" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_4235_58801">
+                                <rect width="16" height="16" fill="white"/>
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %} {% endcomment %}
+            </scroll-hint>
+
+            <!-- Container for third-party app blocks (Essential Upsell, etc.) -->
+            <!-- data-skip-subtree-update prevents morph.js from removing app-injected content -->
+            <div class="cart-drawer-app-blocks" data-skip-subtree-update data-skip-node-update></div>
+
+            <div class="cart-drawer-footer">
+              <div class="cart-drawer-total">
+                {% assign fee_price = 0 %}
+                {% for item in cart.items %}
+                  {% if item.variant_id == 43781283217459 or item.variant_id == 43781283250227 %}
+                    {% assign fee_price = fee_price | plus: item.original_line_price %}
+                  {% endif %}
+                {% endfor %}
+                <div>
+                  <p>Subtotal Amount</p>
+                  <span>
+                    {{ cart.original_total_price | minus: fee_price | money }}
+                  </span>
+                </div>
+                {% if fee_price != 0 %}
+                  <div>
+                    <p>Engraving Fee:</p>
+                    <span>{{ fee_price | money }}</span>
+                  </div>
+                {% endif %}
+                {% if cart.total_discount > 0 %}
+                  <div>
+                    <p>Discount</p>
+                    <span>- {{ cart.total_discount | money }}</span>
+                  </div>
+                {% endif %}
+                <div>
+                  <p>Delivery Charges</p>
+                  {% assign total_price = cart.total_price | divided_by: 100.00 %}
+                  {% if total_price > settings.shipping_value and total_price < settings.express_value %}
+                    <span>Free</span>
+                  {% elsif total_price > settings.express_value %}
+                    <span>Free Express</span>
+                  {% else %}
+                    <span class="calculated">Calculated at checkout</span>
+                  {% endif %}
+                </div>
+                <div class="cart-total-price">
+                  <p>Total Amount</p>
+                  <span>{{ cart.total_price | money }}</span>
+                </div>
+              </div>
+              <div class="cart__ctas">
+                <button
+                  type="submit"
+                  id="checkout"
+                  class="cart__checkout-button button"
+                  name="checkout"
+                  {% if cart == empty %}
+                    disabled
+                  {% endif %}
+                  form="cart-form"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                    <g clip-path="url(#clip0_4235_58871)">
+                      <path d="M16.75 6.875H4.25C3.90482 6.875 3.625 7.15482 3.625 7.5V16.25C3.625 16.5952 3.90482 16.875 4.25 16.875H16.75C17.0952 16.875 17.375 16.5952 17.375 16.25V7.5C17.375 7.15482 17.0952 6.875 16.75 6.875Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M10.5 12.8125C11.0178 12.8125 11.4375 12.3928 11.4375 11.875C11.4375 11.3572 11.0178 10.9375 10.5 10.9375C9.98223 10.9375 9.5625 11.3572 9.5625 11.875C9.5625 12.3928 9.98223 12.8125 10.5 12.8125Z" fill="#fff"/>
+                      <path d="M7.375 6.875V4.375C7.375 3.5462 7.70424 2.75134 8.29029 2.16529C8.87634 1.57924 9.6712 1.25 10.5 1.25C11.3288 1.25 12.1237 1.57924 12.7097 2.16529C13.2958 2.75134 13.625 3.5462 13.625 4.375V6.875" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4235_58871">
+                        <rect width="20" height="20" fill="white" transform="translate(0.5)"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  SECURE CHECKOUT
+                </button>
+              </div>
+              <div class="cart-drawer-cart mobile:hidden">
+                <a href="/cart">GO TO CART</a>
+                {% comment %} <button on:click="cart-drawer-component/close" class="desktop:hidden" style="width: 100%; padding: 10px 0; font-family: 'Sen'">KEEP SHOPPING</button> {% endcomment %}
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                    <g clip-path="url(#clip0_4235_58871)">
+                      <path d="M16.75 6.875H4.25C3.90482 6.875 3.625 7.15482 3.625 7.5V16.25C3.625 16.5952 3.90482 16.875 4.25 16.875H16.75C17.0952 16.875 17.375 16.5952 17.375 16.25V7.5C17.375 7.15482 17.0952 6.875 16.75 6.875Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M10.5 12.8125C11.0178 12.8125 11.4375 12.3928 11.4375 11.875C11.4375 11.3572 11.0178 10.9375 10.5 10.9375C9.98223 10.9375 9.5625 11.3572 9.5625 11.875C9.5625 12.3928 9.98223 12.8125 10.5 12.8125Z" fill="#fff"/>
+                      <path d="M7.375 6.875V4.375C7.375 3.5462 7.70424 2.75134 8.29029 2.16529C8.87634 1.57924 9.6712 1.25 10.5 1.25C11.3288 1.25 12.1237 1.57924 12.7097 2.16529C13.2958 2.75134 13.625 3.5462 13.625 4.375V6.875" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4235_58871">
+                        <rect width="20" height="20" fill="white" transform="translate(0.5)"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  <span>Secure checkout powered by Shopify</span>
+                </div>
+              </div>
+            </div>
+            {% comment %} <div
+              class="cart-drawer__summary"
+            >
+              {% render 'cart-summary' %}
+            </div> {% endcomment %}
+          </div>
+        {%- endif -%}
+      </cart-items-component>
+    </div>
+  </dialog>
+</cart-drawer-component>
+
+{% style %}
+  .progress_bar {
+    width: 100%;
+    height: 12px;
+    border-radius: 12px;
+    margin: 5px 0;
+    position: relative;
+    overflow: hidden;
+    /* Smooth rendering */
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
+  }
+
+  /* Stage 1: Gray background with animated stripes */
+  .progress_bar[data-stage="1"] {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    background-color: rgba(255, 255, 255, 0.08);
+    background-size: 28px 28px;
+    animation: progress-stripes 1s linear infinite;
+  }
+
+  /* Stage 2: Red stays solid, no stripes (will animate via base layer) */
+  .progress_bar[data-stage="2"],
+  .progress_bar[data-stage="3"] {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes progress-stripes {
+    0% { background-position: 0 0; }
+    100% { background-position: 28px 0; }
+  }
+
+  /* Base layer (red - free shipping tier) */
+  .progress_state_base {
+    background: {{ settings.progress_color | default: '#ff0004' }};
+    height: 100%;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Add stripes to red when it's full and working toward express (Stage 2) */
+  .progress_bar[data-stage="2"] .progress_state_base {
+    background: repeating-linear-gradient(
+      45deg,
+      {{ settings.progress_color | default: '#ff0004' }},
+      {{ settings.progress_color | default: '#ff0004' }} 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 10px,
+      color-mix(in srgb, {{ settings.progress_color | default: '#ff0004' }} 85%, white) 20px
+    );
+    background-size: 28px 28px;
+    animation: progress-stripes 1s linear infinite;
+  }
+
+  /* Express layer (gold - express shipping tier) */
+  .progress_state_express {
+    background: {{ settings.express_progress_color | default: '#FFA500' }};
+    height: 100%;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Shine effect on express layer */
+    overflow: hidden;
+  }
+
+  .progress_state_express::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: progress-shine 2s infinite;
+  }
+
+  @keyframes progress-shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Hide dot - no longer needed */
+  .shipping-value {
+    display: none;
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .cart-items-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-drawer__heading .cart-bubble {
+    width: fit-content;
+    border-radius: var(--style-border-radius-buttons-primary);
+    aspect-ratio: auto;
+    padding: var(--cart-padding);
+  }
+
+  .cart-drawer__heading .cart-bubble[data-maintain-ratio] {
+    aspect-ratio: 1;
+    min-width: 26px;
+  }
+
+  .cart-drawer__header {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--cart-drawer-padding);
+    border-bottom: var(--style-border-width) solid none;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    @media screen and (min-width: 750px) {
+      padding: var(--cart-drawer-padding-desktop);
+    }
+  }
+
+  .cart-drawer__dialog {
+    overflow: hidden;
+  }
+
+  .cart-drawer__inner {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .cart-drawer__content {
+    height: calc(100% - var(--header-height));
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-drawer__summary {
+    background-color: var(--color-background);
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  /* Hide engraving product from Essential Upsell recommendations */
+  /* Target by product ID, variant ID, or common patterns */
+  [data-product-id="7718263914547"],
+  [data-variant-id="43781283217459"],
+  [data-variant-id="43781283250227"],
+  [href*="engraving-fee"],
+  [href*="/products/engraving"],
+  .eu-upsell-item[data-product-id="7718263914547"] {
+    display: none !important;
+  }
+{% endstylesheet %}
+
+<script>
+  // Hide engraving product from any upsell/recommendation widgets (including Essential Upsell)
+  (function() {
+    const ENGRAVING_PRODUCT_ID = '7718263914547';
+    const ENGRAVING_VARIANTS = ['43781283217459', '43781283250227'];
+    const ENGRAVING_KEYWORDS = ['engraving', 'engraving-fee', 'one line', 'two line'];
+    const ENGRAVING_PRICE = '$19.00';
+
+    function hideEngravingUpsells() {
+      // Method 1: Standard upsell selectors
+      const standardSelectors = [
+        '[data-product-id]',
+        '[data-variant-id]',
+        '.eu-upsell-item',
+        '.upsell-product',
+        '.product-upsell'
+      ];
+
+      standardSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          const productId = el.dataset?.productId || el.getAttribute('data-product-id');
+          const variantId = el.dataset?.variantId || el.getAttribute('data-variant-id');
+          const href = el.getAttribute('href') || '';
+
+          if (productId === ENGRAVING_PRODUCT_ID || ENGRAVING_VARIANTS.includes(variantId) || href.includes('engraving-fee')) {
+            const container = el.closest('[class*="upsell"]') || el.closest('[class*="recommend"]') || el;
+            container.style.display = 'none';
+          }
+        });
+      });
+
+      // Method 2: Essential Upsell specific - find items containing engraving-related text
+      // Essential Upsell uses dynamic class names like x1ghz6dp
+      const euElements = document.querySelectorAll('[class*="x1ghz6dp"]');
+      euElements.forEach(el => {
+        // Check if this element or its children contain the engraving variant
+        const text = el.textContent || '';
+        const hasEngravingText = text.includes('One Line') && text.includes('$19.00');
+        const hasEngravingVariant = el.querySelector('option[value="43781283217459"], option[value="43781283250227"]');
+        
+        if (hasEngravingText || hasEngravingVariant) {
+          // Find the specific upsell item container (not the whole carousel)
+          // Walk up to find the item that contains only engraving
+          let itemContainer = el;
+          
+          // Check if this is an individual item (not the whole container)
+          // by checking if the text is relatively short (single item) vs the whole widget
+          if (text.length < 200 && hasEngravingText) {
+            // This is likely an individual item - hide it
+            while (itemContainer && !itemContainer.classList?.contains('x1heor9')) {
+              itemContainer = itemContainer.parentElement;
+            }
+            if (itemContainer && itemContainer.textContent.includes('One Line') && 
+                !itemContainer.textContent.includes('Chef Knife') && 
+                !itemContainer.textContent.includes('Santoku')) {
+              itemContainer.style.display = 'none';
+            }
+          }
+        }
+      });
+
+      // Method 3: Hide by looking for specific price and variant combination
+      document.querySelectorAll('select').forEach(select => {
+        const options = select.querySelectorAll('option');
+        options.forEach(opt => {
+          if (opt.value === '43781283217459' || opt.value === '43781283250227' || 
+              opt.textContent.includes('One Line') || opt.textContent.includes('Two Line')) {
+            // Find the parent upsell card and hide it
+            let card = select.closest('[class*="x1heor9"]') || select.closest('[class*="upsell"]');
+            if (card) {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    }
+
+    // Run on load
+    hideEngravingUpsells();
+
+    // Observe for dynamically added content
+    const observer = new MutationObserver((mutations) => {
+      let shouldCheck = false;
+      mutations.forEach(m => {
+        if (m.addedNodes.length > 0) shouldCheck = true;
+      });
+      if (shouldCheck) {
+        setTimeout(hideEngravingUpsells, 100);
+        setTimeout(hideEngravingUpsells, 500); // Run again after app fully loads
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also run after cart updates
+    document.addEventListener('cart:update', () => {
+      setTimeout(hideEngravingUpsells, 300);
+      setTimeout(hideEngravingUpsells, 800);
+    });
+  })();
+</script>
