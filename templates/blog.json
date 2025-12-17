@@ -12,7 +12,7 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "color_scheme": "scheme-5",
+        "color_scheme": "",
         "padding-block-start": 100,
         "padding-block-end": 100
       }
