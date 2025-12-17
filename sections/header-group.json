@@ -32,6 +32,7 @@
       "block_order": [
         "announcement_BxgCk9"
       ],
+      "disabled": true,
       "custom_css": [
         ".announcement-bar {background-color: #228b22 !important;}"
       ],

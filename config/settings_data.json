@@ -139,7 +139,7 @@
       },
       "12657775114333427046": {
         "type": "shopify://apps/essential-countdown-timer/blocks/app_embed/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       }
     },
