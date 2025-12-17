@@ -19,6 +19,7 @@
           "settings": {
             "text": "🎁 Express Post Guaranteed by XMAS ✓",
             "second_text": "",
+            "show_countdown": true,
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
