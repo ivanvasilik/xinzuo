@@ -1,12 +1,17 @@
 {% style %}
     .section-{{ section.id }} .footer-3 {
-        padding: 40px 64px 16px;
+        padding: 40px 0 16px;
         background: linear-gradient(180deg, #191A21 0%, #0C0C0C 100%);
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 40px; 
         margin: auto;
+        max-width: none;
+    }
+    
+    .section-{{ section.id }} .footer-3 > * {
+        padding-inline: 64px;
     }
 
     .section-{{ section.id }} .footer-3 p {
@@ -33,7 +38,11 @@
             flex-direction: column;
             justify-content: center;
             gap: 24px;
-            padding: 32px 32px 16px;
+            padding: 32px 0 16px;
+        }
+        
+        .section-{{ section.id }} .footer-3 > * {
+            padding-inline: 32px;
         }
 
         .section-{{ section.id }} .footer-3 p {

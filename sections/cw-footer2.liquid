@@ -1,13 +1,13 @@
 {% style %}
     .section-{{ section.id }} footer {
-        padding: 0 64px;
+        padding: 0;
         background: linear-gradient(180deg, #23242B 0%, #191A21 100%);
     }
 
     .section-{{ section.id }} .footer-menu {
         display: flex;
         justify-content: space-between;
-        padding: 48px 0;
+        padding: 48px 64px;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -94,12 +94,12 @@
 
     @media screen and (max-width: 750px) {
         .section-{{ section.id }} footer {
-            padding: 0 32px;
+            padding: 0;
         }
 
         .section-{{ section.id }} .footer-menu {
             display: block;
-            padding: 32px 0;
+            padding: 32px;
         }
 
         .section-{{ section.id }} .footer-left {
