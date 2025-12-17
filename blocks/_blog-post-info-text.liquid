@@ -37,7 +37,7 @@
         endif
       -%}
       {%- if block_settings.show_date -%}
-        <span>•</span>
+        {% comment %} <span>•</span> {% endcomment %}
       {%- endif -%}
       <span class="reading-time">{{ reading_time }} min read</span>
     {%- endif -%}
