@@ -63,13 +63,11 @@ class AnnouncementCountdown extends HTMLElement {
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    const centiseconds = Math.floor((diff % 1000) / 10);
 
     return {
       hours: String(hours).padStart(2, '0'),
       minutes: String(minutes).padStart(2, '0'),
-      seconds: String(seconds).padStart(2, '0'),
-      centiseconds: String(centiseconds).padStart(2, '0')
+      seconds: String(seconds).padStart(2, '0')
     };
   }
 
@@ -84,7 +82,7 @@ class AnnouncementCountdown extends HTMLElement {
     }
 
     if (timeElement) {
-      timeElement.textContent = `${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}:${timeRemaining.centiseconds}`;
+      timeElement.textContent = `${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}`;
     }
   }
 
@@ -92,14 +90,14 @@ class AnnouncementCountdown extends HTMLElement {
     // Update immediately
     this.updateDisplay();
 
-    // Update every 10ms for smooth centisecond animation
+    // Update every 1 second - minimal performance impact
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
     
     this.intervalId = setInterval(() => {
       this.updateDisplay();
-    }, 10);
+    }, 1000);
   }
 }
 
