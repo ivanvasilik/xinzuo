@@ -118,6 +118,9 @@
     --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
     max-width: 1400px;
     margin: 0 auto;
+    background: #0C0C0C;
+    margin-inline: calc(-1 * var(--page-margin, 16px) * 2);
+    padding-inline: calc(var(--page-margin, 16px) * 2);
   }
 
   /* Blog Header
@@ -143,7 +146,7 @@
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin: 0 0 16px 0;
-    color: rgb(var(--color-foreground-rgb));
+    color: #FFFFFF;
   }
 
   @media screen and (max-width: 749px) {
@@ -155,7 +158,7 @@
   .blog-description {
     font-size: 1.25rem;
     line-height: 1.6;
-    color: rgb(var(--color-foreground-rgb) / 0.7);
+    color: rgba(255, 255, 255, 0.7);
     max-width: 600px;
     margin: 0 auto;
   }
