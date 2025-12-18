@@ -18,9 +18,9 @@
           "type": "_announcement",
           "disabled": true,
           "settings": {
-            "text": "",
+            "text": "🎁 Express Post Guaranteed by XMAS ✓",
             "second_text": "",
-            "show_countdown": false,
+            "show_countdown": true,
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "1rem",
@@ -34,7 +34,6 @@
       "block_order": [
         "announcement_BxgCk9"
       ],
-      "disabled": true,
       "custom_css": [
         ".announcement-bar {background-color: #228b22 !important;}"
       ],
