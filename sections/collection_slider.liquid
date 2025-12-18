@@ -238,6 +238,7 @@
 </section>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
     const collectionswiper = new Swiper('.collection-swiper', {
         slidesPerView: 1.3,
         spaceBetween: 10,
@@ -256,6 +257,7 @@
             prevEl: '.swiper-button-prev',
         },
     });
+  });
 </script>
 
 {% schema %}

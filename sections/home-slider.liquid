@@ -437,23 +437,25 @@
 </section>
 
 <script>
-  const homeswiper = new Swiper('.home-swiper', {
-    slidesPerView: 1.3,
-    spaceBetween: 10,
-    breakpoints: {
-      768: {
-        slidesPerView: 1.6,
-        spaceBetween: 20,
+  document.addEventListener('DOMContentLoaded', function() {
+    const homeswiper = new Swiper('.home-swiper', {
+      slidesPerView: 1.3,
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 1.6,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 2.6,
+          spaceBetween: 30,
+        },
       },
-      1024: {
-        slidesPerView: 2.6,
-        spaceBetween: 30,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+    });
   });
 
   const homeslider = (num) => {
