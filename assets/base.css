@@ -1218,6 +1218,9 @@ results-list[initialized] {
 .text-block > *:last-child,
 .text-block > *:has(+ *:last-child:empty) {
   margin-block-end: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
 /* This is to deal with the margin applied to the p when custom styles are enabled. The p isn't the first child anymore due to the style tag */
