@@ -89,7 +89,7 @@ class AnnouncementCountdown extends HTMLElement {
       parts.push(`${parseInt(timeRemaining.minutes)} mins`);
       parts.push(`${parseInt(timeRemaining.seconds)} secs`);
       
-      timeElement.textContent = parts.join(', ');
+      timeElement.textContent = parts.join(' : ');
     }
   }
 
