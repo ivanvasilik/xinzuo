@@ -1,0 +1,124 @@
+{% comment %}
+  Third-Party Script Deferral - Loads heavy scripts after user interaction
+  Significantly improves LCP, TBT, and PageSpeed scores
+{% endcomment %}
+
+<script>
+(function() {
+  'use strict';
+
+  var scriptsLoaded = false;
+  var userInteracted = false;
+
+  var thirdPartyPatterns = [
+    'klaviyo',
+    'facebook',
+    'fbevents',
+    'connect.facebook',
+    'googletagmanager',
+    'gtm.js',
+    'google-analytics',
+    'analytics.js',
+    'gtag',
+    'hotjar',
+    'tiktok',
+    'snapchat',
+    'pinterest',
+    'twitter',
+    'intercom',
+    'zendesk',
+    'tawk',
+    'crisp',
+    'drift'
+  ];
+
+  var queuedScripts = [];
+  var originalCreateElement = document.createElement;
+
+  function shouldDefer(src) {
+    if (!src) return false;
+    var srcLower = src.toLowerCase();
+    for (var i = 0; i < thirdPartyPatterns.length; i++) {
+      if (srcLower.indexOf(thirdPartyPatterns[i]) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  document.createElement = function(tagName) {
+    var element = originalCreateElement.call(document, tagName);
+
+    if (tagName.toLowerCase() === 'script') {
+      var originalSetAttribute = element.setAttribute.bind(element);
+      var originalSrc = '';
+
+      Object.defineProperty(element, 'src', {
+        get: function() { return originalSrc; },
+        set: function(value) {
+          originalSrc = value;
+          if (!scriptsLoaded && shouldDefer(value)) {
+            queuedScripts.push({ type: 'src', value: value, element: element });
+            return;
+          }
+          originalSetAttribute('src', value);
+        }
+      });
+    }
+
+    return element;
+  };
+
+  function loadQueuedScripts() {
+    if (scriptsLoaded) return;
+    scriptsLoaded = true;
+
+    document.createElement = originalCreateElement;
+
+    queuedScripts.forEach(function(item) {
+      var script = document.createElement('script');
+      script.src = item.value;
+      script.async = true;
+      document.head.appendChild(script);
+    });
+
+    queuedScripts = [];
+  }
+
+  function onUserInteraction() {
+    if (userInteracted) return;
+    userInteracted = true;
+
+    removeListeners();
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadQueuedScripts, { timeout: 2000 });
+    } else {
+      setTimeout(loadQueuedScripts, 50);
+    }
+  }
+
+  var events = ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'];
+
+  function addListeners() {
+    events.forEach(function(event) {
+      window.addEventListener(event, onUserInteraction, { passive: true, once: true });
+    });
+  }
+
+  function removeListeners() {
+    events.forEach(function(event) {
+      window.removeEventListener(event, onUserInteraction);
+    });
+  }
+
+  addListeners();
+
+  setTimeout(function() {
+    if (!scriptsLoaded) {
+      loadQueuedScripts();
+    }
+  }, 8000);
+
+})();
+</script>

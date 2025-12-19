@@ -21,6 +21,12 @@
     >
 
     {%- render 'meta-tags' -%}
+
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
@@ -31,20 +37,19 @@
       {%- render 'theme-editor' -%}
     {% endif %}
 
+    {% unless request.design_mode %}
+      {%- render 'defer-third-party' -%}
+    {% endunless %}
+
     {{ content_for_header }}
 
-    {%- comment -%} Swiper CSS - non-render-blocking with preload {%- endcomment -%}
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
-
-    {%- comment -%} Swiper JS - deferred to not block rendering {%- endcomment -%}
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
-    {%- comment -%} Google Fonts - already using preload pattern with display=swap {%- endcomment -%}
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap"></noscript>
 
-    {%- comment -%} Judge.me CSS - non-render-blocking {%- endcomment -%}
     <link rel="preload" href="{{ 'judge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ 'judge.css' | asset_url }}"></noscript>
 
