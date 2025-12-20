@@ -12,13 +12,15 @@
       >
     {%- endif -%}
 
-    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    {% comment %} View transition render blocker - disabled for performance {% endcomment %}
+    {% if request.design_mode %}
     <link
       rel="expect"
       href="#MainContent"
       blocking="render"
       id="view-transition-render-blocker"
     >
+    {% endif %}
 
     {%- render 'meta-tags' -%}
 
@@ -26,7 +28,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="preload" href="https://xinzuo.com.au/cdn/fonts/inter/inter_n4.b2a3f24c19b4de56e8871f609e73ca7f6d2e2bb9.woff2" as="font" type="font/woff2" crossorigin>
 
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
@@ -125,12 +126,7 @@
       {% sections 'header-group' %}
     </div>
 
-    <script
-      src="{{ 'critical.js' | asset_url }}"
-      type="module"
-      async
-      blocking="render"
-    ></script>
+    <script src="{{ 'critical.js' | asset_url }}" type="module" defer></script>
 
     <main
       id="MainContent"
