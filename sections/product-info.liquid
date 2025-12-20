@@ -243,7 +243,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <section class="section-{{ section.id }} section section--page-width color-{{ section.settings.color_scheme }}">
   <div class="product-info">
-    <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="product-image">
+    <img src="{{ section.settings.image | image_url: width: 800 }}" width="100%" height="100%" alt="product-image">
     <div>
       {% if section.settings.header_type == 'left' %}
         {% if section.settings.heading != blank %}
@@ -255,7 +255,7 @@
               {% if block.type == 'icon' %}
                 <div class="product-info-icon">
                   <img
-                    src="{{ block.settings.image | img_url: 'master' }}"
+                    src="{{ block.settings.image | image_url: width: 800 }}"
                     width="100%"
                     height="100%"
                     alt="block image"

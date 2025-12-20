@@ -154,7 +154,7 @@
     <footer>
         <div class="footer-menu">
             <div class="footer-left">
-                <img src="{{ section.settings.logo | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="Footer Logo">
+                <img src="{{ section.settings.logo | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="Footer Logo">
                 <p>{{ section.settings.group-heading }}</p>
                 <p>{{ section.settings.group-content }}</p>
             </div>
@@ -166,12 +166,12 @@
                     <span class="menu-title">{{ section.settings.contact_us }}</span>
 {% comment %}
                     <div class="menu-item">
-                        <img src="{{ section.settings.phone-icon | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="Phone">
+                        <img src="{{ section.settings.phone-icon | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="Phone">
                         <p>{{ section.settings.phone-number }}</p>
                     </div>
 {% endcomment %}
                     <div class="menu-item">
-                        <img src="{{ section.settings.email-icon | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="Email">
+                        <img src="{{ section.settings.email-icon | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="Email">
                         <p>{{ section.settings.email-number }}</p>
                     </div>
                     <ul class="social-links">

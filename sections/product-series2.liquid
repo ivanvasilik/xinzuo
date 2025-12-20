@@ -170,9 +170,9 @@
         </div>
         <div class="product-series-grid">
             {% for block in section.blocks %}
-                <div class="product-series-block" {% if block.settings.image_type == "background" and block.settings.image != blank %}style="background-image: url({{ block.settings.image | img_url: 'master' }});background-size: 100% 100%;justify-content: flex-end"{% endif %}>
+                <div class="product-series-block" {% if block.settings.image_type == "background" and block.settings.image != blank %}style="background-image: url({{ block.settings.image | image_url: width: 800 }});background-size: 100% 100%;justify-content: flex-end"{% endif %}>
                     {% if block.settings.image != blank and block.settings.image_type != "background" %}
-                        <img src="{{ block.settings.image | img_url: 'master' }}" width="100%" height="100%" alt="" {% if block.settings.image_type == "icon" %}class="icon"{% endif %}>
+                        <img src="{{ block.settings.image | image_url: width: 800 }}" width="100%" height="100%" alt="" {% if block.settings.image_type == "icon" %}class="icon"{% endif %}>
                     {% endif %}
                     {% if forloop.index == 2 %}
                         <span>Up to</span>
@@ -196,7 +196,7 @@
             {% endfor %}
         </div>
         <div class="product-series-footer">
-            <img src="{{ section.settings.footer_img | img_url: 'master' }}" width="100%" height="100%" alt="">
+            <img src="{{ section.settings.footer_img | image_url: width: 800 }}" width="100%" height="100%" alt="">
             <span>{{ section.settings.footer_content }}</span>
             <a href="/collections">Shop the {{ product.title }} ›</a>
         </div>

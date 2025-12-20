@@ -310,7 +310,9 @@
             <a class="product-img" href="{{ product.url }}">
               {% if product.featured_image != blank %}
                 <img
-                  src="{{ product.featured_image | img_url: 'master' }}"
+                  srcset="{{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 500 }} 500w, {{ product.featured_image | image_url: width: 700 }} 700w"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  src="{{ product.featured_image | image_url: width: 500 }}"
                   width="100%"
                   height="100%"
                   alt="product-{{ product.id }}"

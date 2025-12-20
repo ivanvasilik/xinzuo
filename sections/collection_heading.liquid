@@ -60,11 +60,11 @@
     <div class="collection-header">
         {% if collection.featured_image != blank %}
             <div class="collection-image">
-                <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Collection Image">
+                <img srcset="{{ collection.featured_image | image_url: width: 600 }} 600w, {{ collection.featured_image | image_url: width: 1000 }} 1000w" sizes="(max-width: 750px) 100vw, 50vw" src="{{ collection.featured_image | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="Collection Image">
             </div>
         {% elsif collection.products.first.featured_image != blank %}
             <div class="collection-image">
-                <img src="{{ collection.products.first.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="Collection Image">
+                <img srcset="{{ collection.products.first.featured_image | image_url: width: 600 }} 600w, {{ collection.products.first.featured_image | image_url: width: 1000 }} 1000w" sizes="(max-width: 750px) 100vw, 50vw" src="{{ collection.products.first.featured_image | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="Collection Image">
             </div>
         {% endif %}
         <div class="collection-title">

@@ -297,8 +297,8 @@
           class="mobile-hero"
         >
         {% comment %}
-          <img src="{{ section.settings.desktop_img | img_url: 'master' }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
-          <img src="{{ section.settings.mobile_img | img_url: 'master' }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero">
+          <img src="{{ section.settings.desktop_img | image_url: width: 800 }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
+          <img src="{{ section.settings.mobile_img | image_url: width: 800 }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero">
         {% endcomment %}
       </div>
     </div>

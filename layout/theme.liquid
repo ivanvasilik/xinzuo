@@ -12,13 +12,15 @@
       >
     {%- endif -%}
 
-    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    {% comment %} View transition render blocker - disabled for performance {% endcomment %}
+    {% if request.design_mode %}
     <link
       rel="expect"
       href="#MainContent"
       blocking="render"
       id="view-transition-render-blocker"
     >
+    {% endif %}
 
     {%- render 'meta-tags' -%}
 
@@ -26,6 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap"></noscript>
 
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
@@ -47,8 +51,6 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Sen:wght@400;500;600;700&display=swap"></noscript>
 
     <link rel="preload" href="{{ 'judge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ 'judge.css' | asset_url }}"></noscript>
@@ -124,12 +126,7 @@
       {% sections 'header-group' %}
     </div>
 
-    <script
-      src="{{ 'critical.js' | asset_url }}"
-      type="module"
-      async
-      blocking="render"
-    ></script>
+    <script src="{{ 'critical.js' | asset_url }}" type="module" defer></script>
 
     <main
       id="MainContent"

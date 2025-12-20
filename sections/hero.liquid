@@ -220,7 +220,7 @@
           render 'overlay', settings: section.settings
         endif
       %}
-      <img src="{{ section.settings.image_1 | img_url: 'master' }}" width="100%" height="100%" alt="Desktop background" style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="{{ section.settings.image_1 | image_url: width: 800 }}" width="100%" height="100%" alt="Desktop background" style="width: 100%; height: 100%; object-fit: cover;">
       {% comment %} {{ media }} {% endcomment %}
     </div>
     {% if section.settings.image_2 != blank %}
@@ -233,7 +233,7 @@
             render 'overlay', settings: section.settings
           endif
         %}
-        <img src="{{ section.settings.image_2 | img_url: 'master' }}" width="100%" height="100%" alt="Mobile background" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="{{ section.settings.image_2 | image_url: width: 800 }}" width="100%" height="100%" alt="Mobile background" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
     {% endif %}
     <div
