@@ -421,7 +421,7 @@
                     {% for product in collection.products %}
                         <div class="swiper-slide swiper-slide-{{ forloop.index }}">
                             <a href="{{ product.url }}" class="relative-product">
-                                <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="product slider {{ forloop.index }}">
+                                <img src="{{ product.featured_image | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="product slider {{ forloop.index }}">
                                 {% if product.compare_at_price and product.compare_at_price > product.price %}
                                     {% assign discount = product.compare_at_price | minus: product.price %}
                                     {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
@@ -506,14 +506,14 @@
                 <div>
                     <div class="product-info4-div">
                         <div></div>
-                        <img src="{{ section.settings.footer-img1 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        <img src="{{ section.settings.footer-img1 | image_url: width: 800 }}" width="100%" height="100%" alt="">
                         <span>{{ section.settings.footer_content1 }}</span>
                     </div>
                 </div>
                 <div>
                     <div class="product-info4-div">
                         <div></div>
-                        <img src="{{ section.settings.footer-img2 | img_url: 'master' }}" width="100%" height="100%" alt="">
+                        <img src="{{ section.settings.footer-img2 | image_url: width: 800 }}" width="100%" height="100%" alt="">
                         <span>{{ section.settings.footer_content2 }}</span>
                     </div>
                 </div>

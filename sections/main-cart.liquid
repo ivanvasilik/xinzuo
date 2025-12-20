@@ -90,7 +90,7 @@
             <div class="swiper-wrapper">
               {% for product in section.settings.products %}
                 <a class="swiper-slide" href="{{ product.url }}">
-                  <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" loading="lazy" alt="collection slider {{ forloop.index }}">
+                  <img src="{{ product.featured_image | image_url: width: 800 }}" width="100%" height="100%" loading="lazy" alt="collection slider {{ forloop.index }}">
                   {% assign collection = product.collections | first %}
                   <h2>{{- collection.title -}}&nbsp;-&nbsp;{{- product.title -}}</h2>
                   <div class="product-reviews"></div>
