@@ -145,7 +145,7 @@
                       {% assign collection = collections[collection_handle] %}
                       <a href="{{ collection.url }}">
                         <div class="menu-img-mobile">
-                          <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="collection-{{ collection.id }}">
+                          <img src="{{ collection.featured_image | image_url: width: 400 }}" width="100%" height="100%" loading="lazy" alt="collection-{{ collection.id }}">
                           {% assign sum = 0 %}
                           {% for product in collection.products %}
                             {% if product.compare_at_price and product.compare_at_price > product.price %}
@@ -349,7 +349,7 @@
                                         %} {% endcomment %}
                                         {% if product.featured_image != blank %}
                                           <a href="{{ product.url }}">
-                                            <img src="{{ product.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ product.title | escape }}" class="header-drawer-img">
+                                            <img src="{{ product.featured_image | image_url: width: 400 }}" width="100%" height="100%" loading="lazy" alt="{{ product.title | escape }}" class="header-drawer-img">
                                           </a>
                                         {% endif %}
                                         <ul
@@ -494,7 +494,7 @@
                                         %} {% endcomment %}
                                         {% if collection.featured_image != blank %}
                                           <a href="{{ collection.url }}">
-                                            <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ collection.title | escape }}" class="header-drawer-img">
+                                            <img src="{{ collection.featured_image | image_url: width: 400 }}" width="100%" height="100%" loading="lazy" alt="{{ collection.title | escape }}" class="header-drawer-img">
                                           </a>
                                         {% endif %}
                                         <ul
@@ -640,10 +640,10 @@
                                       %}
                                       {% if collection != blank %}
                                         {% if collection.featured_image != blank %}
-                                          <img src="{{ collection.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ collection.title | escape }}" class="header-drawer-img">
+                                          <img src="{{ collection.featured_image | image_url: width: 400 }}" width="100%" height="100%" loading="lazy" alt="{{ collection.title | escape }}" class="header-drawer-img">
                                         {% else %}
                                           {% assign firstimage = collection.products.first %}
-                                          <img src="{{ firstimage.featured_image | img_url: 'master' }}" width="100%" height="100%" alt="{{ firstimage.title | escape }}" class="header-drawer-img">
+                                          <img src="{{ firstimage.featured_image | image_url: width: 400 }}" width="100%" height="100%" loading="lazy" alt="{{ firstimage.title | escape }}" class="header-drawer-img">
                                         {% endif %}
                                         <ul
                                           class="menu-drawer__menu menu-drawer__menu--grandchildlist details-content{% if render_link_image %} menu-drawer__menu--grid{% endif %}"
