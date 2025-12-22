@@ -413,7 +413,7 @@ p:empty {
   content: '';
   position: absolute;
   inset: 0;
-  background: #282931;
+  background:rgb(18, 19, 20);
   z-index: var(--layer-section-background);
 }
 
