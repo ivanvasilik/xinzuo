@@ -4,8 +4,8 @@
   @param {section} section - The section object
   @param {string} children - The children of the section
 {%- enddoc -%}
-{% if faq != "faq" %}
-  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% if faq == "faq" %}
+  <div class="section-background color-{{ section.settings.color_scheme }}" style="background:black;"></div>
 {% endif %}
 <div
   class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
