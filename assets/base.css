@@ -409,13 +409,13 @@ p:empty {
   position: relative;
 }
 
-/* .shopify-section:not(.header-section) .section-background {
+.shopify-section:not(.header-section) .section-background {
   content: '';
   position: absolute;
   inset: 0;
   background: black;
   z-index: var(--layer-section-background);
-} */
+}
 
 /* For page-width sections, all content goes in the center column */
 .section--page-width > * {
