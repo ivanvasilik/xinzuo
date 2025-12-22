@@ -7,6 +7,9 @@
 {% if faq == "faq" %}
   <div class="section-background color-{{ section.settings.color_scheme }}" style="background:black;"></div>
 {% endif %}
+{% if faq != "faq" %}
+  <div class="section-background color-{{ section.settings.color_scheme }}" style="background:black;"></div>
+{% endif %}
 <div
   class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
   data-testid="ui-test-section"
