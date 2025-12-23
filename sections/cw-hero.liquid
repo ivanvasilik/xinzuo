@@ -91,16 +91,8 @@
 
    .section-{{ section.id }} .hero-banner-img img {
        height: 100%;
-   }
-
-   .section-{{ section.id }} .mobile-hero {
-       width: 100vw;
+       width: 100%;
        object-fit: cover;
-       display: none;
-   }
-
-   .section-{{ section.id }} .middle-desktop-hero {
-     display:none;
    }
 
    .section-{{ section.id }} .header-title {
@@ -165,20 +157,10 @@
    }
 
     @media screen and (max-width: 850px) {
-
-       .section-{{ section.id }} .desktop-hero {
-         display: none;
-       }
-
-       .section-{{ section.id }} .middle-desktop-hero {
-         display:block;
-       }
-
      .section-{{ section.id }} .hero-banner {
          justify-content: flex-end;
          height: 65vh;
        }
-
     }
 
    @media screen and (max-width: 760px) {
@@ -207,15 +189,6 @@
       .section-{{ section.id }} .hero-banner {
         height: auto;
       }
-
-      .section-{{ section.id }} .middle-desktop-hero {
-         display:none;
-       }
-
-       .section-{{ section.id }} .mobile-hero {
-           display: block;
-           object-fit:contain;
-       }
    }
 {% endstyle %}
 
@@ -246,60 +219,41 @@
         </a>
       </div>
       <div class="hero-banner-img">
-        <img
-          srcset="
-            {{ section.settings.desktop_img | image_url: width: 800 }} 800w,
-            {{ section.settings.desktop_img | image_url: width: 1200 }} 1200w,
-            {{ section.settings.desktop_img | image_url: width: 1600 }} 1600w,
-            {{ section.settings.desktop_img | image_url: width: 2000 }} 2000w
-          "
-          sizes="100vw"
-          src="{{ section.settings.desktop_img | image_url: width: 1600 }}"
-          alt="Desktop hero"
-          width="100%"
-          height="auto"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          class="desktop-hero"
-        >
-        <img
-          srcset="
-            {{ section.settings.middle_desktop_img | image_url: width: 800 }} 800w,
-            {{ section.settings.middle_desktop_img | image_url: width: 1200 }} 1200w,
-            {{ section.settings.middle_desktop_img | image_url: width: 1600 }} 1600w,
-            {{ section.settings.middle_desktop_img | image_url: width: 2000 }} 2000w
-          "
-          sizes="100vw"
-          src="{{ section.settings.middle_desktop_img | image_url: width: 1600 }}"
-          alt="Middle Desktop hero"
-          width="100%"
-          height="auto"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          class="middle-desktop-hero"
-        >
-        <img
-          srcset="
-            {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
-            {{ section.settings.mobile_img | image_url: width: 800 }} 800w,
-            {{ section.settings.mobile_img | image_url: width: 1200 }} 1200w
-          "
-          sizes="100vw"
-          src="{{ section.settings.mobile_img | image_url: width: 800 }}"
-          alt="Mobile hero"
-          width="100%"
-          height="auto"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          class="mobile-hero"
-        >
-        {% comment %}
-          <img src="{{ section.settings.desktop_img | image_url: width: 800 }}" width="100%" height="100%" alt="Desktop hero" class="desktop-hero">
-          <img src="{{ section.settings.mobile_img | image_url: width: 800 }}" width="100%" height="100%" alt="Mobile hero" class="mobile-hero">
-        {% endcomment %}
+        <picture>
+          <source
+            media="(max-width: 480px)"
+            srcset="
+              {{ section.settings.mobile_img | image_url: width: 400 }} 400w,
+              {{ section.settings.mobile_img | image_url: width: 600 }} 600w,
+              {{ section.settings.mobile_img | image_url: width: 800 }} 800w
+            "
+            sizes="100vw"
+          >
+          <source
+            media="(max-width: 850px)"
+            srcset="
+              {{ section.settings.middle_desktop_img | image_url: width: 600 }} 600w,
+              {{ section.settings.middle_desktop_img | image_url: width: 900 }} 900w,
+              {{ section.settings.middle_desktop_img | image_url: width: 1200 }} 1200w
+            "
+            sizes="100vw"
+          >
+          <img
+            srcset="
+              {{ section.settings.desktop_img | image_url: width: 1000 }} 1000w,
+              {{ section.settings.desktop_img | image_url: width: 1400 }} 1400w,
+              {{ section.settings.desktop_img | image_url: width: 1800 }} 1800w
+            "
+            sizes="100vw"
+            src="{{ section.settings.desktop_img | image_url: width: 1400 }}"
+            alt="{{ section.settings.desktop_img.alt | default: 'Hero banner' }}"
+            width="{{ section.settings.desktop_img.width | default: 1400 }}"
+            height="{{ section.settings.desktop_img.height | default: 800 }}"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
       </div>
     </div>
   </div>
