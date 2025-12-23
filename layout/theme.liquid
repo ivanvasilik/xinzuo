@@ -47,13 +47,19 @@
 
     {{ content_for_header }}
 
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+    {% comment %} Swiper: Only load on pages that need it (product, cart, collection pages) {% endcomment %}
+    {% if template.name == 'product' or template.name == 'cart' or template.name == 'collection' %}
+      <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+    {% endif %}
 
 
-    <link rel="preload" href="{{ 'judge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ 'judge.css' | asset_url }}"></noscript>
+    {% comment %} Judge.me CSS: Only load on product pages {% endcomment %}
+    {% if template.name == 'product' %}
+      <link rel="preload" href="{{ 'judge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="{{ 'judge.css' | asset_url }}"></noscript>
+    {% endif %}
 
     {% comment %} Critical CSS: Prevent layout shift on product pages {% endcomment %}
     {% if request.path contains '/products/' %}
