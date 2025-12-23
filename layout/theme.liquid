@@ -36,10 +36,18 @@
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
 
-    {% comment %} Critical CSS for homepage hero - reduces LCP {% endcomment %}
-    {% if template.name == 'index' %}
+    {% comment %} Critical CSS - allows first paint before full CSS loads {% endcomment %}
     <style>
-      /* Critical hero styles - inline for fastest paint */
+      /* Base critical styles for all pages */
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; display: flex; flex-direction: column; min-height: 100svh; background: #111; color: #fff; font-family: 'Albert Sans', sans-serif; }
+      img, picture { display: block; max-width: 100%; }
+      img { width: 100%; height: auto; }
+      .content-for-layout { flex: 1; }
+      #header-group { position: relative; z-index: 100; }
+      {% if template.name == 'index' %}
+      /* Homepage hero critical styles */
       .hero-banner {
         display: flex;
         justify-content: center;
@@ -48,6 +56,7 @@
         margin: auto;
         position: relative;
       }
+      .hero-banner-img { width: 100%; }
       .hero-banner-img img {
         height: 100%;
         width: 100%;
@@ -76,8 +85,8 @@
       @media (max-width: 480px) {
         .hero-banner { height: auto; }
       }
+      {% endif %}
     </style>
-    {% endif %}
 
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}

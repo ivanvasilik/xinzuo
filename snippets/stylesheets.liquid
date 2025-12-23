@@ -1,2 +1,4 @@
+{% comment %} Non-render-blocking CSS loading - critical CSS is inline in theme.liquid {% endcomment %}
 {{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
-{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+<link rel="preload" href="{{ 'base.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>{{ 'base.css' | asset_url | stylesheet_tag }}</noscript>
