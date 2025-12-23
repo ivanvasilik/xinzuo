@@ -338,7 +338,6 @@
     }
 
     .header__row {
-      background-color: #292a33 !important;
       /* Slower transition for "out" animation */
       transition: color var(--animation-values-slow), border-color var(--animation-values-slow),
         background-color var(--animation-values-slow);
@@ -382,7 +381,9 @@
   .header-section {
     position: relative;
   }
-
+header .header__row{
+  background-color: #292a33 !important;
+}
   #header-group:has(#header-component[sticky]) {
     display: contents;
   }
