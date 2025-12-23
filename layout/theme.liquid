@@ -33,6 +33,50 @@
 
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
+
+    {% comment %} Critical CSS for homepage hero - reduces LCP {% endcomment %}
+    {% if template.name == 'index' %}
+    <style>
+      /* Critical hero styles - inline for fastest paint */
+      .hero-banner {
+        display: flex;
+        justify-content: center;
+        background: #232325;
+        height: calc(100vh - 77px);
+        margin: auto;
+        position: relative;
+      }
+      .hero-banner-img img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      .hero-banner-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 500px;
+        position: absolute;
+        top: 0;
+        right: 54%;
+        height: 100%;
+        z-index: 1;
+      }
+      @media (max-width: 1440px) {
+        .hero-banner { height: auto; }
+      }
+      @media (max-width: 850px) {
+        .hero-banner { justify-content: flex-end; height: 65vh; }
+      }
+      @media (max-width: 600px) {
+        .hero-banner { height: 55vh; }
+      }
+      @media (max-width: 480px) {
+        .hero-banner { height: auto; }
+      }
+    </style>
+    {% endif %}
+
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
