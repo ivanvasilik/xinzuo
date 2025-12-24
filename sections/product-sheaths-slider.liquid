@@ -3,136 +3,127 @@
 %}
 
 {% if sheath_collection != blank %}
-<div class="sheaths-container">
+<div class="sheaths-container" data-sheaths>
   <section class="sheaths-section">
     <div class="sheaths-outer">
-      
+      {% if section.settings.heading != blank %}
+        <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
 
-        {% if section.settings.heading != blank %}
-          <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
-        {% endif %}
-
-        <div class="swiper sheaths-swiper" data-sheaths-swiper>
-          <div class="swiper-wrapper">
-            {% for p in sheath_collection.products %}
-              <div class="swiper-slide sheaths-slide">
-                  <a class="sheaths-card" href="{{ p.url }}">
-                    <div class="sheaths-card__media">
-                      {% if p.featured_image %}
-                        {{ p.featured_image
-                          | image_url: width: 900
-                          | image_tag:
-                            loading: 'lazy',
-                            class: 'sheaths-card__img',
-                            alt: p.featured_image.alt | escape
-                        }}
-                      {% endif %}
-                    </div>
-                    <div class="sheaths-card__meta">
-                      <div class="sheaths-card__title">{{ p.title }}</div>
-                      <div class="sheaths-card__price">{{ p.price | money }}</div>
-                    </div>
-                  </a>
-              </div>
-            {% endfor %}
-          </div>
-
+      <div class="swiper sheaths-swiper" data-sheaths-swiper>
+        <div class="swiper-wrapper">
+          {% for p in sheath_collection.products %}
+            <div class="swiper-slide sheaths-slide">
+              <a class="sheaths-card" href="{{ p.url }}">
+                <div class="sheaths-card__media">
+                  {% if p.featured_image %}
+                    {{ p.featured_image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'sheaths-card__img',
+                        alt: p.featured_image.alt | escape
+                    }}
+                  {% endif %}
+                </div>
+                <div class="sheaths-card__meta">
+                  <div class="sheaths-card__title">{{ p.title }}</div>
+                  <div class="sheaths-card__price">{{ p.price | money }}</div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
       </div>
+
     </div>
   </section>
 </div>
 
-  <style>
-    .sheaths-container {
-        width: 100%;
-        background-color: #000000;
-    }
-    .sheaths-outer{
-      max-width:1440px;
-      margin:0 auto;
-      width:100%;
-      background-color: #000000;
-    }
-    .sheaths-heading{
-      margin: 0 0 1.25rem;
-      text-align: left;
-      font-family: var(--font-heading-family, inherit);
-      font-weight: var(--font-heading-weight, 700);
-      letter-spacing: 1.94px;
-      line-height: 1.1;
-      font-size: 32px;
-      color: white;
-    }
+<style>
+  .sheaths-container {
+    width: 100%;
+    background-color: #000;
+  }
+  .sheaths-outer{
+    max-width:1440px;
+    margin:0 auto;
+    width:100%;
+    background-color:#000;
+  }
+  .sheaths-heading{
+    margin:0 0 1.25rem;
+    text-align:left;
+    font-family:var(--font-heading-family, inherit);
+    font-weight:var(--font-heading-weight, 700);
+    letter-spacing:1.94px;
+    line-height:1.1;
+    font-size:32px;
+    color:#fff;
+  }
 
-    .sheaths-swiper{
-      overflow: visible;
-    }
+  .sheaths-swiper{
+    overflow: visible;
+  }
+  .sheaths-swiper .swiper-wrapper{
+    align-items: stretch;
+  }
 
-    .sheaths-swiper .swiper-wrapper{
-      align-items: stretch;
-    }
-
+  .sheaths-slide{
+    height:auto;
+    width:78%;
+  }
+  @media (min-width:480px){
+    .sheaths-slide{ width:48%; }
+  }
+  @media (min-width:750px){
+    .sheaths-slide{ width:32%; }
+  }
+  @media (min-width:990px){
+    .sheaths-slide{ width:24%; }
+  }
+  @media (min-width:1200px){
     .sheaths-slide{
-      height: auto;
-      width: 78%;
+      width: calc((100% - (16px * 4)) / 5);
+    }
+  }
+
+  .sheaths-card{ display:block; text-decoration:none; color:inherit; }
+  .sheaths-card__media{ overflow:hidden; background:rgba(0,0,0,0.03); }
+  .sheaths-card__img{ width:100%; height:auto; display:block; background-color:#000; }
+  .sheaths-card__meta{ padding-top:.75rem; }
+  .sheaths-card__title{ font-size:1rem; line-height:1.2; margin-bottom:.35rem; color:#fff; }
+  .sheaths-card__price{ opacity:.85; font-size:.95rem; color:#fff; }
+</style>
+
+<script>
+  (function () {
+    const root = document.querySelector('[data-sheaths]');
+    if (!root) return;
+
+    const el = root.querySelector('[data-sheaths-swiper]');
+    if (!el) return;
+
+    // Prevent double-init (Shopify sections can re-render)
+    if (el.dataset.initialized === 'true') return;
+    el.dataset.initialized = 'true';
+
+    // Ensure Swiper exists
+    if (typeof Swiper === 'undefined') {
+      console.warn('Swiper is not loaded');
+      return;
     }
 
-    @media (min-width: 480px){
-      .sheaths-slide{ width: 48%; }
-    }
-    @media (min-width: 750px){
-      .sheaths-slide{ width: 32%; }
-    }
-    @media (min-width: 990px){
-      .sheaths-slide{ width: 24%; }
-    }
-
-    @media (min-width: 1200px){
-      .sheaths-slide{
-        width: calc((100% - (16px * 4)) / 5);
-      }
-    }
-
-    .sheaths-swiper{
-      --sheaths-gap: 16px;
-    }
-    .sheaths-swiper .swiper-slide{
-      margin-right: var(--sheaths-gap);
-    }
-    .sheaths-swiper .swiper-slide:last-child{
-      margin-right: 0;
-    }
-
-    .sheaths-card{ display:block; text-decoration:none; color:inherit; }
-    .sheaths-card__media{ overflow:hidden; background:rgba(0,0,0,0.03); }
-    .sheaths-card__img{ width:100%; height:auto; display:block; background-color: black}
-    .sheaths-card__meta{ padding-top:.75rem; }
-    .sheaths-card__title{ font-size:1rem; line-height:1.2; margin-bottom:.35rem; color: white; }
-    .sheaths-card__price{ opacity:.85; font-size:.95rem; color: white; }
-  </style>
-
-  <script>
-    (function () {
-      const root = document.querySelector('[data-sheaths]');
-      if (!root) return;
-
-      const el = root.querySelector('[data-sheaths-swiper]');
-      if (!el) return;
-
-      if (el.dataset.initialized === 'true') return;
-      el.dataset.initialized = 'true';
-
-      new Swiper(el, {
-        // no arrows, no pagination
-        loop: false,
-        watchOverflow: true,
-        slidesPerView: 'auto',
-        spaceBetween: 16,
-        freeMode: true,
-        grabCursor: true
-      });
-    })();
-  </script>
+    new Swiper(el, {
+      loop: false,
+      watchOverflow: true,
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      freeMode: { enabled: true, sticky: false },
+      grabCursor: true
+    });
+  })();
+</script>
 {% endif %}
 
 {% schema %}
@@ -144,10 +135,10 @@
       "id": "heading",
       "label": "Heading",
       "default": "Sheaths"
-    },
+    }
   ],
   "presets": [
     { "name": "Sheaths slider" }
-  ],
+  ]
 }
 {% endschema %}
