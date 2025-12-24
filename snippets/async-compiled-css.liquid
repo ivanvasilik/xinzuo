@@ -1,0 +1,18 @@
+{% comment %}
+  Make Shopify compiled styles.css non-render-blocking
+  Uses media="print" trick to defer CSS loading - critical CSS handles above-fold content
+{% endcomment %}
+<script>
+(function() {
+  // Convert render-blocking stylesheets to async loading
+  var sheets = document.querySelectorAll('link[rel="stylesheet"][href*="compiled_assets/styles.css"]');
+  sheets.forEach(function(link) {
+    if (link.media === 'print') return; // Already converted
+    link.media = 'print';
+    link.onload = function() {
+      this.media = 'all';
+      this.onload = null;
+    };
+  });
+})();
+</script>

@@ -42,18 +42,95 @@
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
 
-    {% comment %} Critical CSS - allows first paint before full CSS loads {% endcomment %}
+    {% comment %} Comprehensive Critical CSS - enables async styles.css loading {% endcomment %}
     <style>
-      /* Base critical styles for all pages */
+      /* === BASE RESET === */
       *, *::before, *::after { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-      body { margin: 0; display: flex; flex-direction: column; min-height: 100svh; background: #111; color: #fff; font-family: 'Albert Sans', sans-serif; }
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100svh;
+        background: #111;
+        color: #fff;
+        font-family: 'Albert Sans', sans-serif;
+        --header-height: 77px;
+        --color-foreground: #fff;
+        --color-background: #111;
+        --padding-sm: 0.7rem;
+        --padding-lg: 1rem;
+        --gap-xl: 1.25rem;
+      }
       img, picture { display: block; max-width: 100%; }
       img { width: 100%; height: auto; }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; }
+
+      /* === LAYOUT === */
       .content-for-layout { flex: 1; }
       #header-group { position: relative; z-index: 100; }
+      .section { padding: 0; }
+      .section--full-width-margin { width: 100%; }
+      .shopify-section { display: block; }
+
+      /* === HEADER CRITICAL STYLES === */
+      .header-section { position: relative; }
+      .header { display: block; }
+      .header__row {
+        position: relative;
+        background-color: #292a33;
+      }
+      .header__columns {
+        display: grid;
+        grid-template-areas: 'left center right';
+        grid-template-columns: 1fr auto 1fr;
+        gap: var(--gap-xl);
+        height: 77px;
+        padding: var(--padding-sm) var(--padding-lg);
+        align-items: center;
+      }
+      .header__column { display: flex; align-items: center; }
+      .header__column--left { grid-area: left; gap: var(--gap-xl); }
+      .header__column--center { grid-area: center; justify-content: center; }
+      .header__column--right { grid-area: right; justify-content: flex-end; gap: var(--gap-xl); }
+
+      /* Header logo */
+      .header-logo { display: flex; align-items: center; }
+      .header-logo__image { max-height: 50px; width: auto; }
+
+      /* Header icons/actions */
+      .header-actions { display: flex; align-items: center; gap: 0.5rem; }
+      .header-actions__action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+      }
+      .header__icon--menu { display: none; }
+
+      /* Mobile header */
+      @media (max-width: 749px) {
+        .header__columns {
+          grid-template-columns: 44px 44px 1fr 44px 44px;
+          grid-template-areas: 'leftA leftB center rightA rightB';
+          padding: 0 0.25rem;
+        }
+        .header__column { display: contents; }
+        .header-logo { grid-area: center; justify-content: center; }
+        .header__icon--menu { display: flex; grid-area: leftA; }
+        header-actions { grid-area: rightB; }
+        header-menu { display: none; }
+        .mobile\:hidden, .desktop\:visible { display: none !important; }
+      }
+
       {% if template.name == 'index' %}
-      /* Homepage hero critical styles */
+      /* === HOMEPAGE HERO CRITICAL STYLES === */
       .hero-banner {
         display: flex;
         justify-content: center;
@@ -78,19 +155,46 @@
         right: 54%;
         height: 100%;
         z-index: 1;
+        color: #fff;
       }
-      @media (max-width: 1440px) {
-        .hero-banner { height: auto; }
+      .hero-banner-content span { font-size: 18px; color: #c9c9cc; }
+      .hero-banner-content .mobile { display: none; }
+      .hero-banner-content .desktop { display: block; }
+      .hero-cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background-color: #ff0004;
+        border: none;
+        border-radius: 4px;
+        font-family: 'Sen', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        color: #fff;
+        margin-top: 16px;
+        width: fit-content;
+      }
+
+      /* Hero responsive */
+      @media (max-width: 1440px) { .hero-banner { height: auto; } }
+      @media (max-width: 1150px) {
+        .hero-banner-content { width: 400px; right: unset; left: 50px; }
+      }
+      @media (max-width: 1000px) {
+        .hero-banner-content { justify-content: flex-end; width: calc(100% - 100px); }
+        .hero-cta-button { margin-bottom: 60px; }
       }
       @media (max-width: 850px) {
         .hero-banner { justify-content: flex-end; height: 65vh; }
       }
-      @media (max-width: 600px) {
-        .hero-banner { height: 55vh; }
+      @media (max-width: 760px) {
+        .hero-banner-content { left: 25px; }
+        .hero-banner-content .desktop { display: none; }
+        .hero-banner-content .mobile { display: block; }
       }
-      @media (max-width: 480px) {
-        .hero-banner { height: auto; }
-      }
+      @media (max-width: 600px) { .hero-banner { height: 55vh; } }
+      @media (max-width: 480px) { .hero-banner { height: auto; } }
       {% endif %}
     </style>
 
@@ -107,6 +211,9 @@
     {% endunless %}
 
     {{ content_for_header }}
+
+    {% comment %} Make styles.css non-render-blocking - critical CSS above handles above-fold content {% endcomment %}
+    {%- render 'async-compiled-css' -%}
 
     {% comment %} Swiper: Only load on pages that need it (product, cart, collection pages) {% endcomment %}
     {% if template.name == 'product' or template.name == 'cart' or template.name == 'collection' %}
