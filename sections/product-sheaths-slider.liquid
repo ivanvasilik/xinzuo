@@ -77,15 +77,13 @@
 
     /* Swiper container */
     .sheaths-swiper{
-      overflow: visible; /* allow nice edge overflow */
+      overflow: visible;
     }
 
-    /* Gap between cards */
     .sheaths-swiper .swiper-wrapper{
       align-items: stretch;
     }
 
-    /* Base: mobile sizes (nice swipe) */
     .sheaths-slide{
       height: auto;
       width: 78%;
@@ -101,14 +99,12 @@
       .sheaths-slide{ width: 24%; }
     }
 
-    /* Desktop: ALWAYS 5 columns width (even if only 2-4 products) */
     @media (min-width: 1200px){
       .sheaths-slide{
         width: calc((100% - (16px * 4)) / 5);
       }
     }
 
-    /* Add spacing between slides (Swiper uses margins via CSS var) */
     .sheaths-swiper{
       --sheaths-gap: 16px;
     }
