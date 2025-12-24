@@ -34,6 +34,11 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
+    {% comment %} Preload LCP hero image for mobile - reduces resource load delay {% endcomment %}
+    {% if template.name == 'index' %}
+      <link rel="preload" as="image" fetchpriority="high" href="https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=800" media="(max-width: 480px)">
+    {% endif %}
+
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
 
