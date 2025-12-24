@@ -114,14 +114,12 @@
                                 assign widths = '150, 200, 300, 400'
                                 assign sizes = '(min-width: 750px) 200px, 150px'
                                 assign loading = 'lazy'
-                                if forloop.index <= 3
-                                    assign loading = 'eager'
-                                endif
                             %}
                             {{ image | image_url: width: 400 | image_tag:
                                 widths: widths,
                                 sizes: sizes,
                                 loading: loading,
+                                fetchpriority: 'low',
                                 alt: alt_text,
                                 width: 200,
                                 height: 60,
@@ -143,6 +141,7 @@
                                 widths: '150, 200, 300, 400',
                                 sizes: '(min-width: 750px) 200px, 150px',
                                 loading: 'lazy',
+                                fetchpriority: 'low',
                                 alt: alt_text,
                                 width: 200,
                                 height: 60,
