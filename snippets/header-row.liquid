@@ -64,12 +64,12 @@
               {{ menu }}
             {% when 'localization' %}
               {{ localization }}
-            {% when 'search' %}
-              {{ search }}
             {% when 'mobile_search' %}
               {{ mobile_search }}
             {% when 'actions' %}
               {{ actions }}
+            {% comment %} {% when 'search' %}
+              {{ search }} {% endcomment %}
           {% endcase %}
         {% endunless %}
       {% endfor %}
