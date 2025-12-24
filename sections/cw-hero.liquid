@@ -29,6 +29,14 @@
        width: 450px;
    }
 
+   /* Hide mobile content on desktop, show desktop content */
+   .section-{{ section.id }} .hero-banner-content .mobile {
+       display: none;
+   }
+   .section-{{ section.id }} .hero-banner-content .desktop {
+       display: block;
+   }
+
    .section-{{ section.id }} .hero-banner-content h2 {
        color: #fff;
        font-family: "Sen";
@@ -167,6 +175,14 @@
 
        .section-{{ section.id }} .hero-banner-content {
            left: 25px;
+       }
+
+       /* Swap visibility: hide desktop, show mobile */
+       .section-{{ section.id }} .hero-banner-content .desktop {
+           display: none;
+       }
+       .section-{{ section.id }} .hero-banner-content .mobile {
+           display: block;
        }
 
        .section-{{ section.id }} .hero-cta-button {
