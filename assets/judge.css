@@ -50,10 +50,6 @@ header .header-actions__action .svg-wrapper img {
     height: 20px;
 }
 
-.svg-wrapper {
-    width:20px;
-}
-
 header .header__column--right .search-action {
     order: 1;
 }
