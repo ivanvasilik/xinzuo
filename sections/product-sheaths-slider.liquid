@@ -1,9 +1,19 @@
+{% comment %}
+  Sheaths slider (Horizon) - uses product.metafields.custom.sheaths (Collection)
+  - Hide section if metafield empty
+  - Show max 5 products
+  - Swiper slider, NO arrows/pagination
+  - Outer max-width 1440px
+  - Inner max-width 750px + padding 1.5rem
+  - Desktop: each slide takes 1/5 width (even if fewer than 5 products)
+{% endcomment %}
+
 {% liquid
   assign sheath_collection = product.metafields.custom.sheaths.value
 %}
 
 {% if sheath_collection != blank %}
-  <section class="sheaths-section">
+  <section class="sheaths-section" data-sheaths>
     <div class="sheaths-outer">
       <div class="sheaths-inner">
 
@@ -11,36 +21,34 @@
           <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
         {% endif %}
 
-        <div class="sheaths-track" role="region" aria-label="{{ section.settings.heading | escape }}">
-          {% for p in sheath_collection.products limit: 5 %}
-            <div class="sheaths-item">
-              {% if section.settings.use_theme_card %}
-                {%- comment -%}
-                  IMPORTANT: Enable only if your Horizon theme has this snippet name.
-                  If you get a snippet error, turn this OFF and use fallback.
-                {%- endcomment -%}
-                {% render 'card-product', product: p %}
-              {% else %}
-                <a class="sheaths-card" href="{{ p.url }}">
-                  <div class="sheaths-card__media">
-                    {% if p.featured_image %}
-                      {{ p.featured_image
-                        | image_url: width: 900
-                        | image_tag:
-                          loading: 'lazy',
-                          class: 'sheaths-card__img',
-                          alt: p.featured_image.alt | escape
-                      }}
-                    {% endif %}
-                  </div>
-                  <div class="sheaths-card__meta">
-                    <div class="sheaths-card__title">{{ p.title }}</div>
-                    <div class="sheaths-card__price">{{ p.price | money }}</div>
-                  </div>
-                </a>
-              {% endif %}
-            </div>
-          {% endfor %}
+        <div class="swiper sheaths-swiper" data-sheaths-swiper>
+          <div class="swiper-wrapper">
+            {% for p in sheath_collection.products limit: 5 %}
+              <div class="swiper-slide sheaths-slide">
+                {% if section.settings.use_theme_card %}
+                  {% render 'card-product', product: p %}
+                {% else %}
+                  <a class="sheaths-card" href="{{ p.url }}">
+                    <div class="sheaths-card__media">
+                      {% if p.featured_image %}
+                        {{ p.featured_image
+                          | image_url: width: 900
+                          | image_tag:
+                            loading: 'lazy',
+                            class: 'sheaths-card__img',
+                            alt: p.featured_image.alt | escape
+                        }}
+                      {% endif %}
+                    </div>
+                    <div class="sheaths-card__meta">
+                      <div class="sheaths-card__title">{{ p.title }}</div>
+                      <div class="sheaths-card__price">{{ p.price | money }}</div>
+                    </div>
+                  </a>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
 
       </div>
@@ -48,6 +56,7 @@
   </section>
 
   <style>
+    /* Layout rules you requested */
     .sheaths-outer{
       max-width:1440px;
       margin:0 auto;
@@ -59,37 +68,63 @@
       padding-left:1.5rem;
       padding-right:1.5rem;
     }
+
+    /* Make it match "top section" better (centered heading + theme-like typography) */
     .sheaths-heading{
-      margin:0 0 1rem;
+      margin: 0 0 1.25rem;
+      text-align: center;
+      font-family: var(--font-heading-family, inherit);
+      font-weight: var(--font-heading-weight, 700);
+      letter-spacing: var(--font-heading-letter-spacing, normal);
+      line-height: 1.1;
+      font-size: clamp(28px, 4vw, 52px);
     }
 
-    /* simple horizontal "slider" */
-    .sheaths-track{
-      display:flex;
-      gap:16px;
-      overflow-x:auto;
-      overflow-y:hidden;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:8px;
-    }
-    .sheaths-track::-webkit-scrollbar{ height:8px; }
-    .sheaths-item{
-      scroll-snap-align:start;
-      flex:0 0 75%;
+    /* Swiper container */
+    .sheaths-swiper{
+      overflow: visible; /* allow nice edge overflow */
     }
 
+    /* Gap between cards */
+    .sheaths-swiper .swiper-wrapper{
+      align-items: stretch;
+    }
+
+    /* Base: mobile sizes (nice swipe) */
+    .sheaths-slide{
+      height: auto;
+      width: 78%;
+    }
+
+    @media (min-width: 480px){
+      .sheaths-slide{ width: 48%; }
+    }
     @media (min-width: 750px){
-      .sheaths-item{ flex-basis: 32%; }
+      .sheaths-slide{ width: 32%; }
     }
     @media (min-width: 990px){
-      .sheaths-item{ flex-basis: 24%; }
-    }
-    @media (min-width: 1200px){
-      .sheaths-item{ flex-basis: 19%; } /* fits ~5 */
+      .sheaths-slide{ width: 24%; }
     }
 
-    /* fallback card style */
+    /* Desktop: ALWAYS 5 columns width (even if only 2-4 products) */
+    @media (min-width: 1200px){
+      .sheaths-slide{
+        width: calc((100% - (16px * 4)) / 5);
+      }
+    }
+
+    /* Add spacing between slides (Swiper uses margins via CSS var) */
+    .sheaths-swiper{
+      --sheaths-gap: 16px;
+    }
+    .sheaths-swiper .swiper-slide{
+      margin-right: var(--sheaths-gap);
+    }
+    .sheaths-swiper .swiper-slide:last-child{
+      margin-right: 0;
+    }
+
+    /* Fallback card styling (only if not using theme card) */
     .sheaths-card{ display:block; text-decoration:none; color:inherit; }
     .sheaths-card__media{ border-radius:12px; overflow:hidden; background:rgba(0,0,0,0.03); }
     .sheaths-card__img{ width:100%; height:auto; display:block; }
@@ -97,11 +132,38 @@
     .sheaths-card__title{ font-size:1rem; line-height:1.2; margin-bottom:.35rem; }
     .sheaths-card__price{ opacity:.85; font-size:.95rem; }
   </style>
+
+  <!-- Swiper CDN (remove these two lines if Horizon already loads Swiper) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    (function () {
+      const root = document.querySelector('[data-sheaths]');
+      if (!root) return;
+
+      const el = root.querySelector('[data-sheaths-swiper]');
+      if (!el) return;
+
+      if (el.dataset.initialized === 'true') return;
+      el.dataset.initialized = 'true';
+
+      new Swiper(el, {
+        // no arrows, no pagination
+        loop: false,
+        watchOverflow: true,
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+        freeMode: true,
+        grabCursor: true
+      });
+    })();
+  </script>
 {% endif %}
 
 {% schema %}
 {
-  "name": "Sheaths simple",
+  "name": "Sheaths slider",
   "settings": [
     {
       "type": "text",
@@ -117,7 +179,7 @@
     }
   ],
   "presets": [
-    { "name": "Sheaths simple" }
+    { "name": "Sheaths slider" }
   ],
 }
 {% endschema %}
