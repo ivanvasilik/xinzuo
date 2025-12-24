@@ -677,6 +677,7 @@ p:empty {
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
   pointer-events: none;
+    width:20px !important;
 }
 
 .svg-wrapper--smaller {
@@ -690,7 +691,6 @@ p:empty {
 }
 
 .svg-wrapper > svg {
-  width:20px;
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
 }
