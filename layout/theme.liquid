@@ -1,4 +1,4 @@
-{% comment %} Theme Version: 3.0.3 - Async CSS Performance {% endcomment %}
+{% comment %} Theme Version: 3.0.2 - Performance Optimization {% endcomment %}
 <!doctype html>
 <html
   class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
@@ -102,11 +102,6 @@
     {% endunless %}
 
     {{ content_for_header }}
-
-    {% comment %} Make Shopify compiled CSS non-render-blocking {% endcomment %}
-    {% unless request.design_mode %}
-      {%- render 'async-compiled-css' -%}
-    {% endunless %}
 
     {% comment %} Swiper: Only load on pages that need it (product, cart, collection pages) {% endcomment %}
     {% if template.name == 'product' or template.name == 'cart' or template.name == 'collection' %}
