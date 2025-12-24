@@ -892,6 +892,14 @@
         "padding-block-end": 0
       }
     },
+    "product_sheaths_slider_Hp7mRY": {
+      "type": "product-sheaths-slider",
+      "name": "Sheaths simple",
+      "settings": {
+        "heading": "Sheaths",
+        "use_theme_card": false
+      }
+    },
     "product_info_mmnV94": {
       "type": "product-info",
       "blocks": {
@@ -1496,6 +1504,7 @@
   },
   "order": [
     "main",
+    "product_sheaths_slider_Hp7mRY",
     "product_info_mmnV94",
     "product_info2_8biKrj",
     "product_info3_Gx89LP",
