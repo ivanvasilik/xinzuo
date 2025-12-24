@@ -210,10 +210,25 @@
       {%- render 'defer-third-party' -%}
     {% endunless %}
 
-    {{ content_for_header }}
+    {% comment %} Intercept styles.css BEFORE Shopify adds it - must run before content_for_header {% endcomment %}
+    <script>
+    (function(){
+      var mo = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+          m.addedNodes.forEach(function(node) {
+            if (node.tagName === 'LINK' && node.rel === 'stylesheet' && node.href && node.href.indexOf('compiled_assets/styles.css') > -1) {
+              node.media = 'print';
+              node.onload = function() { this.media = 'all'; };
+            }
+          });
+        });
+      });
+      mo.observe(document.head, { childList: true });
+      window.addEventListener('load', function() { mo.disconnect(); });
+    })();
+    </script>
 
-    {% comment %} Make styles.css non-render-blocking - critical CSS above handles above-fold content {% endcomment %}
-    {%- render 'async-compiled-css' -%}
+    {{ content_for_header }}
 
     {% comment %} Swiper: Only load on pages that need it (product, cart, collection pages) {% endcomment %}
     {% if template.name == 'product' or template.name == 'cart' or template.name == 'collection' %}
