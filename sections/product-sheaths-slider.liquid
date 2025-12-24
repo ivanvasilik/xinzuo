@@ -1,0 +1,128 @@
+{% comment %}
+  Horizon - Sheaths (collection metafield) simple horizontal scroll
+  Metafield: product.metafields.custom.sheaths (type: Collection)
+{% endcomment %}
+
+{% liquid
+  assign sheath_collection = product.metafields.custom.sheaths.value
+%}
+
+{% if sheath_collection != blank %}
+  <section class="sheaths-section">
+    <div class="sheaths-outer">
+      <div class="sheaths-inner">
+
+        {% if section.settings.heading != blank %}
+          <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        <div class="sheaths-track" role="region" aria-label="{{ section.settings.heading | escape }}">
+          {% for p in sheath_collection.products limit: 5 %}
+            <div class="sheaths-item">
+              {% if section.settings.use_theme_card %}
+                {%- comment -%}
+                  IMPORTANT: Enable only if your Horizon theme has this snippet name.
+                  If you get a snippet error, turn this OFF and use fallback.
+                {%- endcomment -%}
+                {% render 'card-product', product: p %}
+              {% else %}
+                <a class="sheaths-card" href="{{ p.url }}">
+                  <div class="sheaths-card__media">
+                    {% if p.featured_image %}
+                      {{ p.featured_image
+                        | image_url: width: 900
+                        | image_tag:
+                          loading: 'lazy',
+                          class: 'sheaths-card__img',
+                          alt: p.featured_image.alt | escape
+                      }}
+                    {% endif %}
+                  </div>
+                  <div class="sheaths-card__meta">
+                    <div class="sheaths-card__title">{{ p.title }}</div>
+                    <div class="sheaths-card__price">{{ p.price | money }}</div>
+                  </div>
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .sheaths-outer{
+      max-width:1440px;
+      margin:0 auto;
+      width:100%;
+    }
+    .sheaths-inner{
+      max-width:750px;
+      margin:0 auto;
+      padding-left:1.5rem;
+      padding-right:1.5rem;
+    }
+    .sheaths-heading{
+      margin:0 0 1rem;
+    }
+
+    /* simple horizontal "slider" */
+    .sheaths-track{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:8px;
+    }
+    .sheaths-track::-webkit-scrollbar{ height:8px; }
+    .sheaths-item{
+      scroll-snap-align:start;
+      flex:0 0 75%;
+    }
+
+    @media (min-width: 750px){
+      .sheaths-item{ flex-basis: 32%; }
+    }
+    @media (min-width: 990px){
+      .sheaths-item{ flex-basis: 24%; }
+    }
+    @media (min-width: 1200px){
+      .sheaths-item{ flex-basis: 19%; } /* fits ~5 */
+    }
+
+    /* fallback card style */
+    .sheaths-card{ display:block; text-decoration:none; color:inherit; }
+    .sheaths-card__media{ border-radius:12px; overflow:hidden; background:rgba(0,0,0,0.03); }
+    .sheaths-card__img{ width:100%; height:auto; display:block; }
+    .sheaths-card__meta{ padding-top:.75rem; }
+    .sheaths-card__title{ font-size:1rem; line-height:1.2; margin-bottom:.35rem; }
+    .sheaths-card__price{ opacity:.85; font-size:.95rem; }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sheaths (Horizon simple)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sheaths"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_card",
+      "label": "Use theme product card snippet (card-product)",
+      "default": false
+    }
+  ],
+  "presets": [
+    { "name": "Sheaths (Horizon simple)" }
+  ],
+}
+{% endschema %}
