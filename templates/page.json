@@ -58,6 +58,7 @@
     },
     "home_products_a8Rg8q": {
       "type": "home-products",
+      "disabled": true,
       "name": "Home Products",
       "settings": {
         "heading": "Best Sellers",
