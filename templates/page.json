@@ -55,19 +55,9 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
-    },
-    "home_products_a8Rg8q": {
-      "type": "home-products",
-      "name": "Home Products",
-      "settings": {
-        "heading": "Best Sellers",
-        "products": [],
-        "color_scheme": ""
-      }
     }
   },
   "order": [
-    "main",
-    "home_products_a8Rg8q"
+    "main"
   ]
 }
