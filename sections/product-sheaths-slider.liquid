@@ -1,8 +1,8 @@
 {% liquid
-  assign sheath_collection = product.metafields.custom.sheaths.value
+  assign sheath_products = product.metafields.custom.sheaths.value
 %}
 
-{% if sheath_collection != blank %}
+{% if sheath_products != blank %}
 <div class="sheaths-container" data-sheaths>
   <section class="sheaths-section">
     <div class="sheaths-outer">
