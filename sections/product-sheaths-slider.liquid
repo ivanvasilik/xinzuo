@@ -83,7 +83,7 @@
     width:78%;
   }
   
-  @media (min-width:480px){
+  {% comment %} @media (min-width:480px){
     .sheaths-slide{ width:48%; }
   }
 
@@ -92,15 +92,11 @@
     .sheaths-slide{ width:32%; }
   }
   
-  @media (min-width:990px){
-    .sheaths-slide{ width:24%; }
-  }
-
   @media (min-width:1200px){
     .sheaths-slide{
       width: calc((100% - (16px * 4)) / 5);
     }
-  }
+  } {% endcomment %}
 
   @media (max-width: 1440px){
     .sheaths-container{ padding-left: 2.5rem; padding-right: 2.5rem }
