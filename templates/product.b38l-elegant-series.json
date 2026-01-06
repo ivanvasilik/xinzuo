@@ -1076,13 +1076,6 @@
         "footer_content2": ""
       }
     },
-    "product_sheaths_slider_mRPQUq": {
-      "type": "product-sheaths-slider",
-      "name": "Sheaths slider",
-      "settings": {
-        "heading": "Sheath"
-      }
-    },
     "1761703971f48000a9": {
       "type": "_blocks",
       "blocks": {
@@ -1509,7 +1502,6 @@
     "product_info2_eVwTgB",
     "product_info2_GjRq8Y",
     "product_info4_nYeXEB",
-    "product_sheaths_slider_mRPQUq",
     "1761703971f48000a9",
     "product_description_t4ATaB",
     "collection_slider_MqNLGx",
