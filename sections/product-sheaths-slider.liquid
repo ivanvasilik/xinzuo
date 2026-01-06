@@ -3,24 +3,23 @@
 %}
 
 {% if sheath_products != blank %}
-<div class="sheaths-container" data-sheaths>
-  <section class="sheaths-section">
-    <div class="sheaths-outer">
-      {% if section.settings.heading != blank %}
-        <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
-      {% endif %}
-      <div class="sheaths-info">
-          {% for p in sheath_products %}
+  <div class="sheaths-container" data-sheaths>
+    <section class="sheaths-section">
+      <div class="sheaths-outer">
+        {% if section.settings.heading != blank %}
+          <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% for p in sheath_products %}
+          <div class="sheaths-info">
             <div class="swiper-slide sheaths-slide">
               <a class="sheaths-card" href="{{ p.url }}">
                 <div class="sheaths-card__media">
                   {% if p.featured_image %}
-                    {{ p.featured_image
+                    {{
+                      p.featured_image
                       | image_url: width: 900
-                      | image_tag:
-                        loading: 'lazy',
-                        class: 'sheaths-card__img',
-                        alt: p.featured_image.alt | escape
+                      | image_tag: loading: 'lazy', class: 'sheaths-card__img', alt: p.featured_image.alt
+                      | escape
                     }}
                   {% endif %}
                 </div>
@@ -30,75 +29,77 @@
                 </div>
               </a>
             </div>
-          {% endfor %}
+            <div>
+              <h2>{{ p.Description }}</h2>
+            </div>
+          </div>
+        {% endfor %}
       </div>
+    </section>
+  </div>
 
-    </div>
-  </section>
-</div>
+  <style>
+      .sheaths-container {
+        width: 100%;
+        background-color: #000;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        overflow: hidden;
+      }
 
-<style>
-  .sheaths-container {
-    width: 100%;
-    background-color: #000;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    overflow: hidden;
-  }
+      .sheaths-info {
+        display:flex;
+        flex-direction: row;
+        gap: 10%;
+    }
 
-  .sheaths-info {
-    display:flex;
-    flex-direction: row;
-}
+      .sheaths-outer{
+        max-width:1440px;
+        margin:0 auto;
+        width:100%;
+        background-color:#000;
+      }
 
-  .sheaths-outer{
-    max-width:1440px;
-    margin:0 auto;
-    width:100%;
-    background-color:#000;
-  }
-  
-  .sheaths-heading{
-    margin: 0 0 1.25rem;
-    padding: 10px 0;
-    text-align: left;
-    font-family: var(--font-heading-family, inherit);
-    font-weight: var(--font-heading-weight, 700);
-    letter-spacing: 1.94px;
-    line-height: 1.1;
-    font-size: 30px;
-    color: #fff;
-  }
+      .sheaths-heading{
+        margin: 0 0 1.25rem;
+        padding: 10px 0;
+        text-align: left;
+        font-family: var(--font-heading-family, inherit);
+        font-weight: var(--font-heading-weight, 700);
+        letter-spacing: 1.94px;
+        line-height: 1.1;
+        font-size: 30px;
+        color: #fff;
+      }
 
 
-  .sheaths-swiper{
-    overflow: visible;
-  }
-  .sheaths-swiper .swiper-wrapper{
-    align-items: stretch;
-  }
+      .sheaths-swiper{
+        overflow: visible;
+      }
+      .sheaths-swiper .swiper-wrapper{
+        align-items: stretch;
+      }
 
-  .sheaths-slide{
-    height:auto;
-    width:38%;
-  }
+      .sheaths-slide{
+        height:auto;
+        width:38%;
+      }
 
-  @media (max-width: 1440px){
-    .sheaths-container{ padding-left: 2.5rem; padding-right: 2.5rem }
-  }
+      @media (max-width: 1440px){
+        .sheaths-container{ padding-left: 2.5rem; padding-right: 2.5rem }
+      }
 
-  @media (max-width: 750px){
-    .sheaths-container{ padding-left: 1.5rem; padding-right: 1.5rem }
-  }
+      @media (max-width: 750px){
+        .sheaths-container{ padding-left: 1.5rem; padding-right: 1.5rem }
+      }
 
-  .sheaths-card{ display:block; text-decoration:none; color:inherit; }
-  .sheaths-card__media{ overflow:hidden; background:rgba(0,0,0,0.03); }
-  .sheaths-card__img{ width:100%; height:auto; display:block; background-color:#000; }
-  .sheaths-card__meta{ padding-top:.75rem; }
-  .sheaths-card__title{ font-size:25px; line-height:1.2; margin-bottom:.35rem; color:#fff; }
-  .sheaths-card__price{ font-size:20px; opacity:.85;  color:#fff; }
-</style>
-
+      .sheaths-card{ display:block; text-decoration:none; color:inherit; }
+      .sheaths-card__media{ overflow:hidden; background:rgba(0,0,0,0.03); }
+      .sheaths-card__img{ width:100%; height:auto; display:block; background-color:#000; }
+      .sheaths-card__meta{ padding-top:.75rem; }
+      .sheaths-card__title{ font-size:25px; line-height:1.2; margin-bottom:.35rem; color:#fff; }
+      .sheaths-card__price{ font-size:20px; opacity:.85;  color:#fff; }
+  </style>
 {% endif %}
 
 {% schema %}
@@ -112,8 +113,6 @@
       "default": "Sheaths"
     }
   ],
-  "presets": [
-    { "name": "Sheaths slider" }
-  ]
+  "presets": [{ "name": "Sheaths slider" }]
 }
 {% endschema %}
