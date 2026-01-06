@@ -1,5 +1,5 @@
 {% liquid
-  assign sheath_collection = product.metafields.custom.sheaths
+  assign sheath_collection = product.metafields.custom.sheaths.value
 %}
 
 {% if sheath_collection != blank %}
