@@ -1,0 +1,174 @@
+{% liquid
+  assign sheath_collection = product.metafields.custom.sheaths.value
+%}
+
+{% if sheath_collection != blank %}
+<div class="sheaths-container" data-sheaths>
+  <section class="sheaths-section">
+    <div class="sheaths-outer">
+      {% if section.settings.heading != blank %}
+        <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      <div class="swiper sheaths-swiper" data-sheaths-swiper>
+        <div class="swiper-wrapper">
+          {% for p in sheath_collection.products %}
+            <div class="swiper-slide sheaths-slide">
+              <a class="sheaths-card" href="{{ p.url }}">
+                <div class="sheaths-card__media">
+                  {% if p.featured_image %}
+                    {{ p.featured_image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'sheaths-card__img',
+                        alt: p.featured_image.alt | escape
+                    }}
+                  {% endif %}
+                </div>
+                <div class="sheaths-card__meta">
+                  <div class="sheaths-card__title">{{ p.title }}</div>
+                  <div class="sheaths-card__price">{{ p.price | money }}</div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<style>
+  .sheaths-container {
+    width: 100%;
+    background-color: #000;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .sheaths-outer{
+    max-width:1440px;
+    margin:0 auto;
+    width:100%;
+    background-color:#000;
+  }
+  .sheaths-heading{
+    margin:0 0 1.25rem;
+    text-align:left;
+    font-family:var(--font-heading-family, inherit);
+    font-weight:var(--font-heading-weight, 700);
+    letter-spacing:1.94px;
+    line-height:1.1;
+    font-size:32px;
+    color:#fff;
+  }
+
+  .swiper-backface-hidden .swiper-slide {
+    width: 25%;
+  }
+
+  .sheaths-swiper{
+    overflow: visible;
+  }
+  .sheaths-swiper .swiper-wrapper{
+    align-items: stretch;
+  }
+
+  .sheaths-slide{
+    height:auto;
+    width:78%;
+  }
+  
+  @media (min-width:480px){
+    .sheaths-slide{ width:48%; }
+  }
+
+  @media (max-width: 650px) {
+    .swiper-backface-hidden .swiper-slide {
+      width: 35%;
+    }
+  }
+
+   @media (max-width: 480px) {
+    .swiper-backface-hidden .swiper-slide {
+      width: 65%;
+    }
+  }
+  
+  @media (min-width:750px){
+    .sheaths-slide{ width:32%; }
+  }
+  
+  @media (min-width:990px){
+    .sheaths-slide{ width:24%; }
+  }
+
+  @media (min-width:1200px){
+    .sheaths-slide{
+      width: calc((100% - (16px * 4)) / 5);
+    }
+  }
+
+  @media (max-width: 1440px){
+    .sheaths-container{ padding-left: 2.5rem; padding-right: 2.5rem }
+  }
+
+  @media (max-width: 750px){
+    .sheaths-container{ padding-left: 1.5rem; padding-right: 1.5rem }
+  }
+
+  .sheaths-card{ display:block; text-decoration:none; color:inherit; }
+  .sheaths-card__media{ overflow:hidden; background:rgba(0,0,0,0.03); }
+  .sheaths-card__img{ width:100%; height:auto; display:block; background-color:#000; }
+  .sheaths-card__meta{ padding-top:.75rem; }
+  .sheaths-card__title{ font-size:1rem; line-height:1.2; margin-bottom:.35rem; color:#fff; }
+  .sheaths-card__price{ opacity:.85; font-size:.95rem; color:#fff; }
+</style>
+
+<script>
+  (function () {
+    const root = document.querySelector('[data-sheaths]');
+    if (!root) return;
+
+    const el = root.querySelector('[data-sheaths-swiper]');
+    if (!el) return;
+
+    if (el.dataset.initialized === 'true') return;
+    el.dataset.initialized = 'true';
+
+    if (typeof Swiper === 'undefined') {
+      console.warn('Swiper is not loaded');
+      return;
+    }
+
+    new Swiper(el, {
+      loop: false,
+      watchOverflow: true,
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      freeMode: { enabled: true, sticky: false },
+      grabCursor: true
+    });
+  })();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sheaths slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sheaths"
+    }
+  ],
+  "presets": [
+    { "name": "Sheaths slider" }
+  ]
+}
+{% endschema %}
