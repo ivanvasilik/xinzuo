@@ -97,32 +97,6 @@
   .sheaths-card__price{ font-size:20px; opacity:.85;  color:#fff; }
 </style>
 
-<script>
-  (function () {
-    const root = document.querySelector('[data-sheaths]');
-    if (!root) return;
-
-    const el = root.querySelector('[data-sheaths-swiper]');
-    if (!el) return;
-
-    if (el.dataset.initialized === 'true') return;
-    el.dataset.initialized = 'true';
-
-    if (typeof Swiper === 'undefined') {
-      console.warn('Swiper is not loaded');
-      return;
-    }
-
-    new Swiper(el, {
-      loop: false,
-      watchOverflow: true,
-      slidesPerView: 'auto',
-      spaceBetween: 16,
-      freeMode: { enabled: true, sticky: false },
-      grabCursor: true
-    });
-  })();
-</script>
 {% endif %}
 
 {% schema %}
