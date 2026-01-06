@@ -10,8 +10,6 @@
         <h2 class="sheaths-heading">{{ section.settings.heading }}</h2>
       {% endif %}
 
-      <div class="swiper sheaths-swiper" data-sheaths-swiper>
-        <div class="swiper-wrapper">
           {% for p in sheath_products %}
             <div class="swiper-slide sheaths-slide">
               <a class="sheaths-card" href="{{ p.url }}">
@@ -33,8 +31,7 @@
               </a>
             </div>
           {% endfor %}
-        </div>
-      </div>
+      
 
     </div>
   </section>
