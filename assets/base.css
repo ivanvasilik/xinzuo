@@ -394,6 +394,10 @@ p:empty {
   min-height: var(--section-min-height, 'auto');
 }
 
+.go3416486521.go3416486521.go3416486521 {
+  width: -webkit-fill-available;
+}
+
 
 /* Place all direct children in the center column by default */
 .section > * {
