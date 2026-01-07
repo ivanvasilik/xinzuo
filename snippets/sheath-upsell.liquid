@@ -7,52 +7,53 @@
     <h4 class="sheath-upsell__heading">
       {{ 'Add Sheath' }}
     </h4>
-    <div class="sheat-all-list"></div>
-    {% for p in sheath_products %}
-    <div class="sheath-upsell__list">
-        <div class="sheath-upsell__item">
-          <div class="sheath-upsell__media">
-            {% if p.featured_image %}
-              {{
-                p.featured_image
-                | image_url: width: 180
-                | image_tag:
-                  loading: 'lazy',
-                  class: 'sheath-upsell__img',
-                  alt: p.featured_image.alt
-              }}
-            {% endif %}
-          </div>
-
-          <div class="sheath-upsell__info">
-            <div class="sheath-upsell__title">
-              {{ p.title }}
+    <div class="sheat-all-list">
+        {% for p in sheath_products %}
+        <div class="sheath-upsell__list">
+            <div class="sheath-upsell__item">
+              <div class="sheath-upsell__media">
+                {% if p.featured_image %}
+                  {{
+                    p.featured_image
+                    | image_url: width: 180
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'sheath-upsell__img',
+                      alt: p.featured_image.alt
+                  }}
+                {% endif %}
+              </div>
+    
+              <div class="sheath-upsell__info">
+                <div class="sheath-upsell__title">
+                  {{ p.title }}
+                </div>
+                <div class="sheath-upsell__price">
+                  {{ p.price | money }}
+                </div>
+              </div>
+    
             </div>
-            <div class="sheath-upsell__price">
-              {{ p.price | money }}
+            <div class="sheath-upsell__action">
+              <button
+                type="button"
+                class="sheath-upsell__button sheath-add-to-cart-btn"
+                data-variant-id="{{ p.selected_or_first_available_variant.id }}"
+              >
+                <span class="sheath-add-to-cart-text">
+                  <span class="sheath-add-to-cart-text__content">Add</span>
+                </span>
+                <span aria-hidden="true" class="sheath-add-to-cart-text--added">
+                  <span class="svg-wrapper">
+                    {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                  </span>
+                  <span>Added</span>
+                </span>
+              </button>
             </div>
           </div>
-
-        </div>
-        <div class="sheath-upsell__action">
-          <button
-            type="button"
-            class="sheath-upsell__button sheath-add-to-cart-btn"
-            data-variant-id="{{ p.selected_or_first_available_variant.id }}"
-          >
-            <span class="sheath-add-to-cart-text">
-              <span class="sheath-add-to-cart-text__content">Add</span>
-            </span>
-            <span aria-hidden="true" class="sheath-add-to-cart-text--added">
-              <span class="svg-wrapper">
-                {{- 'icon-checkmark.svg' | inline_asset_content -}}
-              </span>
-              <span>Added</span>
-            </span>
-          </button>
-        </div>
-      </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
   </div>
 
   {% style %}
