@@ -7,7 +7,7 @@
     <h4 class="sheath-upsell__heading">
       {{ 'Add Sheath' }}
     </h4>
-
+    <div class="sheat-all-list"></div>
     {% for p in sheath_products %}
     <div class="sheath-upsell__list">
         <div class="sheath-upsell__item">
@@ -77,6 +77,12 @@
       display: flex;
       flex-direction: row;
       justify-content:space-between;
+      gap: 10px;
+    }
+
+    .sheat-all-list {
+      display: flex;
+      flex-direction: column;
       gap: 10px;
     }
 
