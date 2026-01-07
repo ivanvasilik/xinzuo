@@ -59,6 +59,16 @@
             font-size: 16px;
         }
     }
+
+    @media screen and (max-width: 450px) {
+        .section-{{ section.id }} .collection-list-title h2 {
+            font-size: 32px;
+        }
+
+        .section-{{ section.id }} .collection-list-title p {
+            font-size: 16px;
+        }
+    }
 {% endstyle %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
