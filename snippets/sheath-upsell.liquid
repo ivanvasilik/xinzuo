@@ -8,8 +8,8 @@
       {{ 'Add Sheath' }}
     </h4>
 
+    {% for p in sheath_products %}
     <div class="sheath-upsell__list">
-      {% for p in sheath_products %}
         <div class="sheath-upsell__item">
           <div class="sheath-upsell__media">
             {% if p.featured_image %}
@@ -33,26 +33,26 @@
             </div>
           </div>
 
-          <div class="sheath-upsell__action">
-            <button
-              type="button"
-              class="sheath-upsell__button sheath-add-to-cart-btn"
-              data-variant-id="{{ p.selected_or_first_available_variant.id }}"
-            >
-              <span class="sheath-add-to-cart-text">
-                <span class="sheath-add-to-cart-text__content">Add</span>
-              </span>
-              <span aria-hidden="true" class="sheath-add-to-cart-text--added">
-                <span class="svg-wrapper">
-                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
-                </span>
-                <span>Added</span>
-              </span>
-            </button>
-          </div>
         </div>
-      {% endfor %}
-    </div>
+        <div class="sheath-upsell__action">
+          <button
+            type="button"
+            class="sheath-upsell__button sheath-add-to-cart-btn"
+            data-variant-id="{{ p.selected_or_first_available_variant.id }}"
+          >
+            <span class="sheath-add-to-cart-text">
+              <span class="sheath-add-to-cart-text__content">Add</span>
+            </span>
+            <span aria-hidden="true" class="sheath-add-to-cart-text--added">
+              <span class="svg-wrapper">
+                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+              </span>
+              <span>Added</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 
   {% style %}
@@ -75,7 +75,8 @@
 
     .sheath-upsell__list {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content:space-between;
       gap: 10px;
     }
 
