@@ -1,0 +1,340 @@
+{% liquid
+  assign sheath_products = product.metafields.custom.sheaths.value
+%}
+
+{% if sheath_products != blank %}
+  <div class="sheath-upsell">
+    <h4 class="sheath-upsell__heading">
+      {{ 'Add Sheath' }}
+    </h4>
+
+    <div class="sheath-upsell__list">
+      {% for p in sheath_products %}
+        <div class="sheath-upsell__item">
+          <div class="sheath-upsell__media">
+            {% if p.featured_image %}
+              {{
+                p.featured_image
+                | image_url: width: 180
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'sheath-upsell__img',
+                  alt: p.featured_image.alt
+              }}
+            {% endif %}
+          </div>
+
+          <div class="sheath-upsell__info">
+            <div class="sheath-upsell__title">
+              {{ p.title }}
+            </div>
+            <div class="sheath-upsell__price">
+              {{ p.price | money }}
+            </div>
+          </div>
+
+          <div class="sheath-upsell__action">
+            <button
+              type="button"
+              class="sheath-upsell__button sheath-add-to-cart-btn"
+              data-variant-id="{{ p.selected_or_first_available_variant.id }}"
+            >
+              <span class="sheath-add-to-cart-text">
+                <span class="sheath-add-to-cart-text__content">Add</span>
+              </span>
+              <span aria-hidden="true" class="sheath-add-to-cart-text--added">
+                <span class="svg-wrapper">
+                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                </span>
+                <span>Added</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% style %}
+    .sheath-upsell {
+      margin-top: 16px;
+      padding: 16px 16px 12px;
+      background-color: #292a33;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .sheath-upsell__heading {
+      margin: 0 0 12px;
+      font-family: "Sen", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #c9c9cc;
+      text-transform: none;
+    }
+
+    .sheath-upsell__list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sheath-upsell__item {
+      display: flex;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .sheath-upsell__media {
+      width: 64px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .sheath-upsell__img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sheath-upsell__info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sheath-upsell__title {
+      font-family: "Albert Sans", sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+
+    .sheath-upsell__price {
+      font-family: "Sen", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .sheath-upsell__action {
+      margin-left: 4px;
+    }
+
+    .sheath-upsell__button {
+      position: relative;
+      min-width: 72px;
+      padding-inline: 14px;
+      padding-block: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: "Sen", sans-serif;
+      background-color: transparent;
+      color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+    }
+
+    .sheath-upsell__button:hover {
+      background-color: transparent;
+      color: #ffffff;
+    }
+
+    .sheath-upsell__button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .sheath-upsell__button.sheath-added {
+      background-color: transparent;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .sheath-add-to-cart-text {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      animation-duration: 0.2s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+      transition: opacity 0.2s ease;
+    }
+
+    .sheath-added .sheath-add-to-cart-text {
+      animation-name: sheath-slide-out;
+    }
+
+    .sheath-add-to-cart-text--added {
+      position: absolute;
+      inset: 0;
+      animation-duration: 0.2s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .sheath-added .sheath-add-to-cart-text--added {
+      animation-name: sheath-slide-in;
+    }
+
+    .sheath-add-to-cart-text--added .svg-wrapper {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes sheath-slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(0.5em);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sheath-slide-out {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-1em);
+        opacity: 0;
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      .sheath-upsell {
+        margin-top: 12px;
+        padding: 12px;
+      }
+
+      .sheath-upsell__item {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 8px;
+      }
+
+      .sheath-upsell__action {
+        grid-column: 2 / 3;
+        justify-self: flex-start;
+      }
+    }
+  {% endstyle %}
+
+  <script>
+    (function() {
+      const sheathButtons = document.querySelectorAll('.sheath-add-to-cart-btn');
+      
+      // Check if mobile (same breakpoint as CSS)
+      const isMobile = () => window.innerWidth <= 749;
+      
+      sheathButtons.forEach(button => {
+        button.addEventListener('click', async function(e) {
+          e.preventDefault();
+          
+          const variantId = this.dataset.variantId;
+          if (!variantId) return;
+
+          // Disable button during request
+          this.disabled = true;
+
+          try {
+            // Add to cart via AJAX
+            const response = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                id: variantId,
+                quantity: 1
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error('Failed to add to cart');
+            }
+
+            // Trigger animation
+            this.classList.add('sheath-added');
+            this.disabled = false; // Re-enable button after successful add
+
+            // Get updated cart data
+            const cart = await fetch('/cart.js').then(r => r.json());
+            
+            // Refresh cart drawer sections
+            const sectionsRes = await fetch('/?sections=cart-drawer,cart-icon-bubble');
+            const sections = await sectionsRes.json();
+            
+            // Dispatch cart update event
+            document.dispatchEvent(
+              new CustomEvent('cart:update', { 
+                detail: { 
+                  data: { 
+                    sections,
+                    itemCount: cart.item_count
+                  } 
+                } 
+              })
+            );
+
+            // Dispatch CartAddEvent (if available)
+            if (typeof CartAddEvent !== 'undefined') {
+              document.dispatchEvent(
+                new CartAddEvent({}, variantId, {
+                  source: 'sheath-upsell',
+                  itemCount: cart.item_count,
+                  productId: variantId,
+                  sections: [],
+                })
+              );
+            }
+
+            // Reset button text after 5.5 seconds
+            setTimeout(() => {
+              this.classList.remove('sheath-added');
+            }, 5500);
+
+            // On mobile: Open cart drawer, on desktop: Redirect to cart
+            if (isMobile()) {
+              // Find and open cart drawer
+              const cartDrawer = document.querySelector('cart-drawer-component');
+              if (cartDrawer && typeof cartDrawer.open === 'function') {
+                setTimeout(() => {
+                  cartDrawer.open();
+                }, 500); // Small delay to let animation show
+              }
+            } else {
+              // Desktop: Redirect to cart page after animation
+              setTimeout(() => {
+                window.location.href = '/cart';
+              }, 2000);
+            }
+
+          } catch (error) {
+            console.error('Error adding sheath to cart:', error);
+            this.disabled = false;
+            this.classList.remove('sheath-added');
+          }
+        });
+      });
+    })();
+  </script>
+{% endif %}
+
+
