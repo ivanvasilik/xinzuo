@@ -26,7 +26,8 @@
     
               <div class="sheath-upsell__info">
                 <div class="sheath-upsell__title">
-                  {{ p.title }}
+                  {% comment %} {{ p.title }} {% endcomment %}
+                   {{ 'Add Matching Knife Sheath' }}
                 </div>
                 <div class="sheath-upsell__price">
                   {{ p.price | money }}
