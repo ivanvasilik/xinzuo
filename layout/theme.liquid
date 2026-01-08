@@ -107,9 +107,14 @@
       .header__column--center { grid-area: center; justify-content: center; }
       .header__column--right { grid-area: right; justify-content: flex-end; gap: var(--gap-xl); }
 
-      /* Header logo */
-      .header-logo { display: flex; align-items: center; }
+      /* Header logo - hidden on desktop since menu has logo item */
+      .header-logo { display: none !important; }
       .header-logo__image { max-height: 50px; width: auto; }
+
+      /* Show header logo only on mobile where menu is hidden */
+      @media (max-width: 749px) {
+        .header-logo { display: flex !important; align-items: center; }
+      }
 
       /* Header icons/actions */
       .header-actions { display: flex; align-items: center; gap: 0.5rem; }
