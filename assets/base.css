@@ -474,6 +474,10 @@ p:empty {
   height: 100%;
 }
 
+.jdgm-medals-wrapper .jdgm-medal-wrapper {
+  margin: 0 3px;
+}
+
 /* Utility */
 
 .hidden {
