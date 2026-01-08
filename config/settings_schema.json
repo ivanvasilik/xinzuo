@@ -1907,6 +1907,23 @@
         "id": "dot_color",
         "label": "Progress Dot Color",
         "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Cart Recommended Products"
+      },
+      {
+        "type": "product_list",
+        "id": "cart_recommended_products",
+        "label": "Recommended Products",
+        "info": "Products to show in the recommended slider in cart drawer and cart page"
+      },
+      {
+        "type": "text",
+        "id": "cart_recommended_heading",
+        "label": "Recommended Products Heading",
+        "default": "You might also like",
+        "info": "Heading text for the recommended products slider"
       }
     ]
   },
