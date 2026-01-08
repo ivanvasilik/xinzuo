@@ -1,14 +1,31 @@
-{% comment %} Theme Version: 3.0.2 - Performance Optimization {% endcomment %}
+{% comment %} Theme Version: 3.0.3 - Performance Optimization {% endcomment %}
 <!doctype html>
 <html
   class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
   lang="{{ request.locale.iso_code }}"
 >
   <head>
-    {% comment %} Google Fonts - MUST be first for fastest FCP {% endcomment %}
+    {% comment %} LCP hero image preload - MUST be first for fastest LCP {% endcomment %}
+    {% if template.name == 'index' %}
+      <link
+        rel="preload"
+        as="image"
+        fetchpriority="high"
+        href="https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=800"
+        imagesrcset="
+          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=400 400w,
+          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=600 600w,
+          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=800 800w
+        "
+        imagesizes="100vw"
+        media="(max-width: 480px)"
+      >
+    {% endif %}
+
+    {% comment %} Google Fonts preconnect and async load {% endcomment %}
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap"></noscript>
 
     {%- if settings.favicon != blank -%}
@@ -33,23 +50,6 @@
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    {% comment %} Preload LCP hero image for mobile - reduces resource load delay {% endcomment %}
-    {% if template.name == 'index' %}
-      <link
-        rel="preload"
-        as="image"
-        fetchpriority="high"
-        href="https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=800"
-        imagesrcset="
-          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=400 400w,
-          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=600 600w,
-          https://xinzuo.com.au/cdn/shop/files/IMG_5941_1.png?v=1760704595&width=800 800w
-        "
-        imagesizes="100vw"
-        media="(max-width: 480px)"
-      >
-    {% endif %}
 
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
