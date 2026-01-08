@@ -216,6 +216,7 @@
 
     {% unless request.design_mode %}
       {%- render 'defer-third-party' -%}
+      {%- render 'async-compiled-css' -%}
     {% endunless %}
 
     {{ content_for_header }}

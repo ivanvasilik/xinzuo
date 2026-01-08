@@ -1,18 +1,39 @@
 {% comment %}
   Make Shopify compiled styles.css non-render-blocking
-  Uses media="print" trick to defer CSS loading - critical CSS handles above-fold content
+  Runs immediately inline to intercept before browser blocks on the stylesheet
 {% endcomment %}
 <script>
 (function() {
-  // Convert render-blocking stylesheets to async loading
-  var sheets = document.querySelectorAll('link[rel="stylesheet"][href*="compiled_assets/styles.css"]');
-  sheets.forEach(function(link) {
-    if (link.media === 'print') return; // Already converted
-    link.media = 'print';
-    link.onload = function() {
-      this.media = 'all';
-      this.onload = null;
-    };
+  // MutationObserver to intercept stylesheets before they block render
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeName === 'LINK' &&
+            node.rel === 'stylesheet' &&
+            node.href &&
+            node.href.includes('compiled_assets/styles.css')) {
+          // Convert to async loading
+          node.media = 'print';
+          node.onload = function() { this.media = 'all'; };
+        }
+      });
+    });
+  });
+
+  // Start observing immediately
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  // Also handle any already-loaded stylesheets
+  document.querySelectorAll('link[rel="stylesheet"][href*="compiled_assets/styles.css"]').forEach(function(link) {
+    if (link.media !== 'print') {
+      link.media = 'print';
+      link.onload = function() { this.media = 'all'; };
+    }
+  });
+
+  // Disconnect after DOMContentLoaded to save resources
+  document.addEventListener('DOMContentLoaded', function() {
+    observer.disconnect();
   });
 })();
 </script>
