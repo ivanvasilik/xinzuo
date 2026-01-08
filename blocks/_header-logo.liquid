@@ -50,7 +50,7 @@
     assign inverse_logo_style = '--header-logo-image-width: ' | append: inverse_logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: inverse_logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
   %}
 
-  {% comment %} <span
+  <span
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
   >
@@ -61,7 +61,7 @@
       text_fallback: shop.name,
       style: logo_style
     %}
-  </span> {% endcomment %}
+  </span>
 
   {% if use_inverse_logo %}
     <span
