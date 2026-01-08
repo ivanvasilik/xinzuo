@@ -72,6 +72,17 @@
     "shipping_message": "<p>Add {PRICE} more to unlock Free Delivery.</p>",
     "express_message": "<p>Free Delivery Unlocked!</p>",
     "complete_message": "<p>Free Express Delivery Unlocked!</p>",
+    "cart_recommended_products": [
+      "xinzuo-hezhen-end-grain-chopping-board-xl",
+      "xinzuo-leather-strop-knife-sharpening-paddle",
+      "hezhen-50cm-magnetic-knife-holder-knife-strip",
+      "xinzuo-premium-whetstone-set",
+      "xinzuo-16-1-inch-cutting-board",
+      "xinzuo-premium-leather-vintage-knife-roll-bag-copy",
+      "hezhen-double-sided-freestanding-magnetic-knife-holder",
+      "hezhen-40cm-magnetic-knife-holder-knife-strip",
+      "xinzuo-w-series-whetstone-sharpening-stone"
+    ],
     "drawer_color_scheme": "scheme-5",
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
@@ -131,16 +142,6 @@
           "button_vertical_position": "lowest",
           "greeting_message": ""
         }
-      },
-      "1787840288555608609": {
-        "type": "shopify://apps/live-product-options/blocks/app-embed/88bfdf40-5e27-4962-a966-70c8d1e87757",
-        "disabled": true,
-        "settings": {}
-      },
-      "12657775114333427046": {
-        "type": "shopify://apps/essential-countdown-timer/blocks/app_embed/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
-        "disabled": false,
-        "settings": {}
       }
     },
     "color_schemes": {
