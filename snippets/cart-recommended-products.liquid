@@ -1,0 +1,778 @@
+{%- comment -%}
+  Cart Recommended Products Slider
+  Displays a Swiper slider with recommended products in cart drawer and cart page
+  
+  @param {product_list} recommended_products - List of products to display
+  @param {string} heading - Heading text for the slider
+  @param {string} context - Context: 'drawer' or 'page'
+{%- endcomment -%}
+
+{%  style %}
+  @media (max-width:480px) {
+    .swiper-slide {
+      width: 35% !important;
+    }
+  }
+{% endstyle %}
+
+{%- if recommended_products != blank and recommended_products.size > 0 -%}
+  <div class="cart-recommended-products cart-recommended-products--{{ context }}" data-cart-recommended-slider>
+    {%- if heading != blank -%}
+      <h2 class="cart-recommended-products__heading">{{ heading }}</h2>
+    {%- else -%}
+      <h2 class="cart-recommended-products__heading">You might also like</h2>
+    {%- endif -%}
+    
+    <div class="cart-recommended-products__swiper swiper">
+      {%- if recommended_products.size > 1 -%}
+        <button 
+          class="cart-recommended-products__button cart-recommended-products__button--prev" 
+          aria-label="Previous products"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <g clip-path="url(#clip0_cart_prev)">
+              <path d="M15 19.5L7.5 12L15 4.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_cart_prev">
+                <rect width="24" height="24" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <button 
+          class="cart-recommended-products__button cart-recommended-products__button--next" 
+          aria-label="Next products"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <g clip-path="url(#clip0_cart_next)">
+              <path d="M9 4.5L16.5 12L9 19.5" stroke="#c9c9cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_cart_next">
+                <rect width="24" height="24" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      {%- endif -%}
+      <div class="swiper-wrapper">
+        {%- for product in recommended_products -%}
+          {%- liquid
+            assign variant_to_use = product.selected_or_first_available_variant
+          -%}
+          <div class="swiper-slide">
+            <div class="cart-recommended-product">
+              <a href="{{ product.url }}" class="cart-recommended-product__link">
+                <div class="cart-recommended-product__image">
+                  {%- if product.featured_image -%}
+                    {{
+                      product.featured_image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        width: product.featured_image.width,
+                        height: product.featured_image.height,
+                        alt: product.featured_image.alt | escape
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+                  {%- endif -%}
+                </div>
+                <div class="cart-recommended-product__info">
+                  <h3 class="cart-recommended-product__title">
+                    {%- if product.title.size > 28 -%}
+                      {{ product.title | truncate: 28, '...' }}
+                    {%- else -%}
+                      {{ product.title }}
+                    {%- endif -%}
+                  </h3>
+                  <div class="cart-recommended-product__price-row">
+                    <div class="cart-recommended-product__price">
+                      {%- if product.compare_at_price > product.price -%}
+                        <span class="cart-recommended-product__price--sale">{{ product.price | money }}</span>
+                        <span class="cart-recommended-product__price--compare">{{ product.compare_at_price | money }}</span>
+                      {%- else -%}
+                        <span class="cart-recommended-product__price--regular">{{ product.price | money }}</span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="cart-recommended-product__add-btn"
+                    data-product-id="{{ product.id }}"
+                    data-variant-id="{{ variant_to_use.id }}"
+                    data-product-title="{{ product.title | escape }}"
+                    {% unless variant_to_use.available %}disabled{% endunless %}
+                    aria-label="Add {{ product.title }} to cart"
+                  >
+                    <span class="cart-recommended-product__add-btn-text">Add</span>
+                    <span class="cart-recommended-product__add-btn-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 3.5V12.5M3.5 8H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Wait for Swiper to be available
+      if (typeof Swiper === 'undefined') {
+        // Swiper should be loaded from CDN, but if not, wait a bit
+        setTimeout(arguments.callee, 100);
+        return;
+      }
+
+      const sliderContainer = document.querySelector('[data-cart-recommended-slider]');
+      if (!sliderContainer) return;
+
+      const swiperEl = sliderContainer.querySelector('.swiper');
+      if (!swiperEl) return;
+
+      // Check if already initialized
+      if (swiperEl.swiper) return;
+
+      const isDrawer = sliderContainer.classList.contains('cart-recommended-products--drawer');
+      
+      // Position navigation buttons at center of product images
+      const positionButtons = () => {
+        const firstSlide = sliderContainer.querySelector('.swiper-slide');
+        const swiperContainer = sliderContainer.querySelector('.cart-recommended-products__swiper');
+        if (firstSlide && swiperContainer) {
+          const productImage = firstSlide.querySelector('.cart-recommended-product__image');
+          if (productImage) {
+            const imageRect = productImage.getBoundingClientRect();
+            const swiperRect = swiperContainer.getBoundingClientRect();
+            const imageCenter = imageRect.top - swiperRect.top + (imageRect.height / 2);
+            const swiperHeight = swiperRect.height;
+            const percentage = (imageCenter / swiperHeight) * 100;
+            
+            const prevBtn = sliderContainer.querySelector('.cart-recommended-products__button--prev');
+            const nextBtn = sliderContainer.querySelector('.cart-recommended-products__button--next');
+            
+            if (prevBtn) prevBtn.style.top = `${percentage}%`;
+            if (nextBtn) nextBtn.style.top = `${percentage}%`;
+          }
+        }
+      };
+      
+      // Position buttons after images load and Swiper initializes
+      const initButtons = () => {
+        // Wait for Swiper to initialize and layout to complete
+        setTimeout(() => {
+          positionButtons();
+        }, 100);
+      };
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initButtons);
+      } else {
+        initButtons();
+      }
+      
+      // Reposition on window resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(positionButtons, 100);
+      });
+      
+      const swiper = new Swiper(swiperEl, {
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+        freeMode: false,
+        watchOverflow: true,
+        resistance: true,
+        resistanceRatio: 0,
+        preventClicks: false,
+        preventClicksPropagation: false,
+        // Touch/Swipe settings for mobile
+        touchEventsTarget: 'container',
+        touchRatio: 1,
+        touchAngle: 45,
+        simulateTouch: true,
+        allowTouchMove: true,
+        grabCursor: true,
+        threshold: 5,
+        longSwipes: true,
+        longSwipesRatio: 0.5,
+        longSwipesMs: 300,
+        followFinger: true,
+        navigation: {
+          nextEl: sliderContainer.querySelector('.cart-recommended-products__button--next'),
+          prevEl: sliderContainer.querySelector('.cart-recommended-products__button--prev'),
+          disabledClass: 'cart-recommended-products__button--disabled',
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 2.3,
+            spaceBetween: 12,
+          },
+          480: {
+            slidesPerView: 2.3,
+            spaceBetween: 16,
+          },
+          768: {
+            slidesPerView: isDrawer ? 2 : 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: isDrawer ? 2 : 3,
+            spaceBetween: 24,
+          },
+        },
+        on: {
+          reachEnd: function() {
+            // Prevent scrolling past the last slide
+            this.allowSlideNext = false;
+          },
+          fromEdge: function() {
+            // Re-enable navigation when not at edge
+            this.allowSlideNext = true;
+            this.allowSlidePrev = true;
+          },
+          slideChange: function() {
+            // Update navigation button states
+            const isEnd = this.isEnd;
+            const isBeginning = this.isBeginning;
+            const nextBtn = sliderContainer.querySelector('.cart-recommended-products__button--next');
+            const prevBtn = sliderContainer.querySelector('.cart-recommended-products__button--prev');
+            
+            if (nextBtn) {
+              nextBtn.setAttribute('aria-disabled', isEnd ? 'true' : 'false');
+              nextBtn.disabled = isEnd;
+            }
+            if (prevBtn) {
+              prevBtn.setAttribute('aria-disabled', isBeginning ? 'true' : 'false');
+              prevBtn.disabled = isBeginning;
+            }
+          }
+        },
+        on: {
+          init: function() {
+            // Position buttons after Swiper initializes
+            setTimeout(positionButtons, 50);
+          }
+        }
+      });
+
+      // Handle Add to Cart buttons
+      const addButtons = sliderContainer.querySelectorAll('.cart-recommended-product__add-btn');
+      
+      addButtons.forEach(button => {
+        button.addEventListener('click', async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // If button is disabled (product unavailable), do nothing
+          if (button.disabled) {
+            return;
+          }
+          
+          const variantId = button.dataset.variantId;
+          
+          // Add to cart via AJAX
+          const originalText = button.querySelector('.cart-recommended-product__add-btn-text').textContent;
+          button.disabled = true;
+          button.querySelector('.cart-recommended-product__add-btn-text').textContent = 'Adding...';
+          button.classList.add('cart-recommended-product__add-btn--adding');
+          
+          try {
+            const response = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                items: [{
+                  id: parseInt(variantId),
+                  quantity: 1
+                }]
+              })
+            });
+            
+            if (!response.ok) {
+              throw new Error('Failed to add to cart');
+            }
+            
+            // Success - update button state
+            button.querySelector('.cart-recommended-product__add-btn-text').textContent = 'Added ✓';
+            button.classList.remove('cart-recommended-product__add-btn--adding');
+            button.classList.add('cart-recommended-product__add-btn--added');
+            
+            // Get updated cart data
+            const cartResponse = await fetch('/cart.js');
+            const cart = await cartResponse.json();
+            
+            // Dispatch cart update event (for cart drawer updates)
+            document.dispatchEvent(new CustomEvent('cart:update', {
+              bubbles: true,
+              detail: {
+                data: {
+                  itemCount: cart.item_count,
+                  source: 'cart-recommended-products'
+                }
+              }
+            }));
+            
+            // Dispatch CartAddEvent if available (theme's event system)
+            if (typeof CartAddEvent !== 'undefined') {
+              document.dispatchEvent(new CartAddEvent({}, variantId, {
+                source: 'cart-recommended-products',
+                itemCount: cart.item_count,
+                productId: parseInt(button.dataset.productId),
+                sections: [],
+              }));
+            }
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              button.querySelector('.cart-recommended-product__add-btn-text').textContent = originalText;
+              button.classList.remove('cart-recommended-product__add-btn--added');
+              button.disabled = false;
+            }, 2000);
+            
+          } catch (error) {
+            console.error('Error adding product to cart:', error);
+            button.querySelector('.cart-recommended-product__add-btn-text').textContent = 'Error';
+            button.classList.remove('cart-recommended-product__add-btn--adding');
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              button.querySelector('.cart-recommended-product__add-btn-text').textContent = originalText;
+              button.disabled = false;
+            }, 2000);
+          }
+        });
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  .cart-recommended-products {
+    width: 100%;
+    padding: 24px 0;
+    margin-top: 24px;
+  }
+
+  .cart-recommended-products--drawer {
+    padding: 16px 0;
+    margin-top: 0;
+  }
+
+  .cart-recommended-products__heading {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 0 20px 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .cart-recommended-products__swiper {
+    overflow: hidden;
+    padding: 0 24px;
+    position: relative;
+    width: 100%;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Center buttons on product image area */
+  .cart-recommended-products__swiper .cart-recommended-products__button {
+    position: absolute;
+    /* Position at center of image: image is square (aspect-ratio: 1) 
+       Image typically takes ~60-70% of slide height, so center is at ~30-35% from top */
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 10;
+    margin: 0;
+  }
+
+  .cart-recommended-products__swiper .cart-recommended-products__button--prev {
+    left: 0;
+  }
+
+  .cart-recommended-products__swiper .cart-recommended-products__button--next {
+    right: 0;
+  }
+
+  .cart-recommended-products__swiper .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+    margin-right: 0;
+    box-sizing: border-box;
+    touch-action: pan-y;
+  }
+
+  .cart-recommended-products__swiper .swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+    height: auto; 
+    margin-right: 19px;
+  }
+
+  /* Mobile: Show 2.3 products with proper spacing */
+  @media screen and (max-width: 767px) {
+    .cart-recommended-products__swiper {
+      padding: 0 16px;
+    }
+    
+    .cart-recommended-products__swiper .swiper-slide {
+      width: calc((100% - 12px) / 2.3);
+      min-width: calc((100% - 12px) / 2.3);
+      max-width: calc((100% - 12px) / 2.3);
+    }
+    
+    .cart-recommended-products__heading {
+      font-size: 18px;
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+    
+    .cart-recommended-products__swiper .cart-recommended-products__button {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+    }
+    
+    .cart-recommended-products__swiper .cart-recommended-products__button svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .cart-recommended-product__image {
+      aspect-ratio: 1;
+    }
+    
+    .cart-recommended-product__title {
+      font-size: 13px;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      margin-bottom: 6px;
+    }
+    
+    .cart-recommended-product__price-row {
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    
+    .cart-recommended-product__price--regular,
+    .cart-recommended-product__price--sale {
+      font-size: 14px;
+    }
+    
+    .cart-recommended-product__price--compare {
+      font-size: 11px;
+    }
+    
+    .cart-recommended-product__add-btn {
+      padding: 6px 10px;
+      font-size: 11px;
+      gap: 3px;
+      margin-top: 4px;
+    }
+    
+    .cart-recommended-product__add-btn-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  /* Tablet: Show 2 products in drawer, 3 on page */
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .cart-recommended-products__swiper {
+      padding-right: 20px;
+    }
+    
+    .cart-recommended-products--drawer .cart-recommended-products__swiper .swiper-slide {
+      width: calc((100% - 20px) / 2);
+      min-width: calc((100% - 20px) / 2);
+    }
+    
+    .cart-recommended-products--page .cart-recommended-products__swiper .swiper-slide {
+      width: calc((100% - 40px) / 3);
+      min-width: calc((100% - 40px) / 3);
+    }
+  }
+
+  /* Desktop: Show 2 in drawer, 3 on page */
+  @media screen and (min-width: 1024px) {
+    .cart-recommended-products__swiper {
+      padding-right: 24px;
+    }
+    
+    .cart-recommended-products--drawer .cart-recommended-products__swiper .swiper-slide {
+      width: calc((100% - 24px) / 2);
+      min-width: calc((100% - 24px) / 2);
+    }
+    
+    .cart-recommended-products--page .cart-recommended-products__swiper .swiper-slide {
+      width: calc((100% - 48px) / 3);
+      min-width: calc((100% - 48px) / 3);
+    }
+  }
+
+  .cart-recommended-products--page .cart-recommended-products__swiper {
+    padding: 0;
+  }
+
+  .cart-recommended-product {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    position: relative;
+  }
+
+  .cart-recommended-product__link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .cart-recommended-product:hover .cart-recommended-product__link {
+    transform: translateY(-2px);
+  }
+
+  .cart-recommended-product__image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 12px;
+  }
+
+  .cart-recommended-product__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cart-recommended-product__info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cart-recommended-product__title {
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cart-recommended-product__price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .cart-recommended-product__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+  }
+
+  .cart-recommended-product__price--regular,
+  .cart-recommended-product__price--sale {
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .cart-recommended-product__price--compare {
+    font-size: 14px;
+    color: #828282;
+    text-decoration: line-through;
+  }
+
+  .cart-recommended-product__add-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #ff0004;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  .cart-recommended-product__add-btn:hover:not(:disabled):not(.cart-recommended-product__add-btn--added) {
+    background-color: #e00004;
+    transform: translateY(-1px);
+  }
+
+  .cart-recommended-product__add-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .cart-recommended-product__add-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #666;
+  }
+
+  .cart-recommended-product__add-btn--adding {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  .cart-recommended-product__add-btn--added {
+    background-color: #4caf50;
+    cursor: default;
+  }
+
+  .cart-recommended-product__add-btn--added:hover {
+    background-color: #4caf50;
+    transform: none;
+  }
+
+  .cart-recommended-product__add-btn-text {
+    display: inline-block;
+  }
+
+  .cart-recommended-product__add-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  .cart-recommended-product__add-btn-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cart-recommended-product__add-btn--added .cart-recommended-product__add-btn-icon {
+    display: none;
+  }
+
+  .cart-recommended-products__button {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    background: rgba(27, 26, 26, 0.56);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .cart-recommended-products__button:hover:not([aria-disabled="true"]):not(.cart-recommended-products__button--disabled) {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .cart-recommended-products__button[aria-disabled="true"],
+  .cart-recommended-products__button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .cart-recommended-products__button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-recommended-products__button svg path {
+    stroke: #c9c9cc;
+    transition: stroke 0.2s ease;
+  }
+
+  .cart-recommended-products__button:hover:not([aria-disabled="true"]):not(.cart-recommended-products__button--disabled) svg path {
+    stroke: #fff;
+  }
+
+  /* Drawer specific styles */
+  .cart-recommended-products--drawer {
+    border-top: none;
+    margin-top: 0;
+    padding: 16px 0;
+  }
+
+  .cart-recommended-products--drawer .cart-recommended-products__heading {
+    font-size: 20px;
+    padding: 0 var(--cart-drawer-padding, 24px);
+    margin-bottom: 16px;
+  }
+
+  .cart-recommended-products--drawer .cart-recommended-products__swiper {
+    padding: 0 var(--cart-drawer-padding, 24px);
+  }
+
+  /* Page specific styles */
+  .cart-recommended-products--page .cart-recommended-products__heading {
+    font-size: 36px;
+    color: #c9c9cc;
+    margin-bottom: 32px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cart-recommended-products__heading {
+      font-size: 20px;
+      padding: 0 16px;
+    }
+
+    .cart-recommended-products__swiper {
+      padding: 0 16px;
+    }
+
+    .cart-recommended-products__navigation {
+      padding: 0 16px;
+    }
+
+    .cart-recommended-products--page .cart-recommended-products__heading {
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
+
+    .cart-recommended-products__button {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+    }
+
+    .cart-recommended-products__button svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+{% endstylesheet %}
