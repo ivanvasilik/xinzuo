@@ -7,13 +7,6 @@
   @param {string} context - Context: 'drawer' or 'page'
 {%- endcomment -%}
 
-{%  style %}
-  @media (max-width:480px) {
-    .swiper-slide {
-      width: 35% !important;
-    }
-  }
-{% endstyle %}
 
 {%- if recommended_products != blank and recommended_products.size > 0 -%}
   <div class="cart-recommended-products cart-recommended-products--{{ context }}" data-cart-recommended-slider>
@@ -366,6 +359,8 @@
     margin-top: 24px;
   }
 
+  
+
   .cart-recommended-products--drawer {
     padding: 16px 0;
     margin-top: 0;
@@ -429,6 +424,12 @@
     .cart-recommended-products__swiper {
       padding: 0 16px;
     }
+
+    @media (max-width:480px) {
+    .cart-recommended-products__swiper .swiper-slide {
+      width: 35% !important;
+    }
+  }
     
     .cart-recommended-products__swiper .swiper-slide {
       width: calc((100% - 12px) / 2.3);
