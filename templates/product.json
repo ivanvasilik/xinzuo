@@ -805,6 +805,7 @@
     },
     "product_info4_nYeXEB": {
       "type": "product-info4",
+      "disabled": true,
       "name": "Product Info4",
       "settings": {
         "width": "page",
