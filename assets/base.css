@@ -475,7 +475,7 @@ p:empty {
 }
 
 .jdgm-medals-wrapper .jdgm-medal-wrapper {
-  margin: 0 3px;
+  margin: 0 3px !important;
 }
 
 /* Utility */
