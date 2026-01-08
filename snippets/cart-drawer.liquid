@@ -15,55 +15,6 @@
 ></script>
 
 {% style %}
-  .drawer-recommend {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    margin-top: 50px;
-  }
-
-  .drawer-recommend h2 {
-    font-family: "Sen";
-    font-weight: 600;
-    font-size: 22px;
-    color: white;
-    margin: 0;
-  }
-
-  .drawer-product {
-    display: flex;
-    gap: 20px;
-    cursor: pointer;
-  }
-
-  .drawer-product img {
-    width: 120px;
-    height: 100px;
-    object-fit: cover;
-  }
-
-  .drawer-product-info {
-    width: 100%;
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .drawer-product-info p {
-    font-family: "Sen";
-    font-weight: 600;
-    font-size: 16px;
-    color: #fff;
-  }
-
-  .drawer-product-info span {
-    font-family: "Albert Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #c9c9cc;
-  }
-
   .cart-drawer-footer {
     padding: 8px 24px;
     box-shadow: 0 8px 24px 0 #000;
@@ -286,46 +237,30 @@
             aria-label="{{ 'accessibility.cart' | t }}"
             style="--header-height: 60px;"
           >
+            <!-- Scrollable cart items section -->
             <scroll-hint
-              class="cart-drawer__items"
+              class="cart-drawer__items cart-drawer__items--scrollable"
             >
               {% render 'cart-products' type: "drawer" %}
-              {% comment %} {% if settings.drawer_recommend != blank %}
-                <div class="drawer-recommend">
-                  <h2>You might also like</h2>
-                  {% for product in settings.drawer_recommend %}
-                    <div class="drawer-product" onclick="location.href='{{ product.url }}'">
-                      <img src="{{ product.featured_image | image_url: width: 300 }}" width="100%" height="100%" loading="lazy" alt="Cart Recommend {{ product.title }}">
-                      <div class="drawer-product-info">
-                        <div>
-                          <p>{{ product.title }}</p>
-                          <span>{{ product.description | strip_html | truncate: 25, "..." }}</span>
-                        </div>
-                        <div>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <g clip-path="url(#clip0_4235_58801)">
-                              <path d="M4 12L12 4" stroke="#c9c9cc" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M5.5 4H12V10.5" stroke="#c9c9cc" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_4235_58801">
-                                <rect width="16" height="16" fill="white"/>
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
-              {% endif %} {% endcomment %}
             </scroll-hint>
 
             <!-- Container for third-party app blocks (Essential Upsell, etc.) -->
             <!-- data-skip-subtree-update prevents morph.js from removing app-injected content -->
             <div class="cart-drawer-app-blocks" data-skip-subtree-update data-skip-node-update></div>
 
-            <div class="cart-drawer-footer">
+            <!-- Fixed recommended products section (above footer) -->
+            {%- if settings.cart_recommended_products != blank -%}
+              <div class="cart-drawer__recommended-fixed">
+                {% render 'cart-recommended-products', 
+                  recommended_products: settings.cart_recommended_products,
+                  heading: settings.cart_recommended_heading,
+                  context: 'drawer'
+                %}
+              </div>
+            {%- endif -%}
+
+            <!-- Fixed footer with subtotal and checkout -->
+            <div class="cart-drawer-footer cart-drawer-footer--fixed">
               <div class="cart-drawer-total">
                 {% assign fee_price = 0 %}
                 {% for item in cart.items %}
@@ -573,6 +508,55 @@
     height: calc(100% - var(--header-height));
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cart-drawer__items--scrollable {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    
+    /* Firefox scrollbar - Xinzuo style */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  /* Webkit scrollbar styling - Xinzuo style (Chrome, Safari, Edge) */
+  .cart-drawer__items--scrollable::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .cart-drawer__items--scrollable::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .cart-drawer__items--scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.2s ease;
+  }
+
+  .cart-drawer__items--scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cart-drawer__recommended-fixed {
+    flex: 0 0 auto;
+    background-color: var(--color-background);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 40vh;
+    overflow: hidden;
+  }
+
+  .cart-drawer-footer--fixed {
+    flex: 0 0 auto;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--color-background);
+    z-index: 2;
   }
 
   .cart-drawer__summary {
