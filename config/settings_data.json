@@ -142,6 +142,11 @@
           "button_vertical_position": "lowest",
           "greeting_message": ""
         }
+      },
+      "4096659318022801403": {
+        "type": "shopify://apps/moosedesk-helpdesk/blocks/md-help-form-widget/93b7f24a-a2e1-418d-ba5c-fd925adb43e1",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
