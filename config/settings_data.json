@@ -143,8 +143,8 @@
           "greeting_message": ""
         }
       },
-      "4096659318022801403": {
-        "type": "shopify://apps/moosedesk-helpdesk/blocks/md-help-form-widget/93b7f24a-a2e1-418d-ba5c-fd925adb43e1",
+      "10511528934874838373": {
+        "type": "shopify://apps/rep-ai-chatgpt-concierge/blocks/chat-embed/732ae1ba-1247-4e6b-87c9-e0cacafee2a5",
         "disabled": false,
         "settings": {}
       }
