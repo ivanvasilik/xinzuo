@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.rep.show()
     });
 
-    rep.on('open', () => {
+    rep.on('show', () => {
         console.log('Rep is open');
         document.querySelector("#hide-chat").setAttribute("chatvisible", true);
 
     });
 
-    rep.on('close', () => {
+    rep.on('hide', () => {
         console.log('Rep is closed');
         document.querySelector("#hide-chat").setAttribute("chatvisible", false);
     });
