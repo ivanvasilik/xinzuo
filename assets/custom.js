@@ -16,8 +16,4 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#hide-chat").setAttribute("chatvisible", true);
         // window.rep.show()
     });
-
-    rep.on('close', () => {
-        console.log('closed -------')
-    });
 })
