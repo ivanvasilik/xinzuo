@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#hide-chat").addEventListener("click", () => {
-        console.log("sdfdsfsd");
-    });
-
+    // document.querySelector("#hide-chat").addEventListener("click", () => {
+    //     console.log("sdfdsfsd");
+    // });
+    console.log("==========loaded")
     
    
 });
+
+
 
 const hideChat = () => {
     console.log("===========")
