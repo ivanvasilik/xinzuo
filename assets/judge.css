@@ -680,7 +680,7 @@ footer footer {
             }
         }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 950px) {
     .section {
         padding: 0 40px;
     }
