@@ -7,6 +7,7 @@
     color:white;
     position: fixed;
     bottom: 65px;
+    cursor:pointer;
     right: 0;
     z-index: 999999999;
     position: absolute;
@@ -16,6 +17,7 @@
     transform: translate(90%, 0);
     padding: 10px;
 }
+
 
 #hide-chat:hover {
     transform: translate(80%, 0px);
