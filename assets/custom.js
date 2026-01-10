@@ -1,7 +1,7 @@
 const hideChat = (item) => {
-    console.log(item, item.chatVisible);
+    console.log(item, item.chatvisible);
     
-    if(item.chatVisible) {
+    if(item.chatvisible) {
         window.rep.hide()
     } else {
         window.rep.show()
@@ -11,17 +11,17 @@ const hideChat = (item) => {
 document.addEventListener("DOMContentLoaded", () => {
     rep.on('load', () => {
         console.log('Rep loaded');
-        document.querySelector("#hide-chat").setAttribute("chatVisible", "true");
+        document.querySelector("#hide-chat").setAttribute("chatvisible", "true");
     });
 
     rep.on('open', () => {
         console.log('Rep is open');
-        document.querySelector("#hide-chat").setAttribute("chatVisible", "true");
+        document.querySelector("#hide-chat").setAttribute("chatvisible", "true");
 
     });
 
     rep.on('close', () => {
         console.log('Rep is closed');
-        document.querySelector("#hide-chat").setAttribute("chatVisible", "false");
+        document.querySelector("#hide-chat").setAttribute("chatvisible", "false");
     });
 })
