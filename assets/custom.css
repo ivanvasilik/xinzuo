@@ -4,5 +4,18 @@
 
 #hide-chat {
     transition: 0.5s;
-
+    width: 130px;
+    height: 13px;
+    background: #ffffff;
+    position: fixed;
+    bottom: 65px;
+    right: 0;
+    z-index: 999999999;
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transform: translate(50%, 0);
+    padding: 10px;
+    border: 1px solid red;
 }
