@@ -1,6 +1,3 @@
-#hide-chat:hover {
-    transform: translate(30%, 0px);
-}
 
 #hide-chat {
     transition: 0.5s;
@@ -15,7 +12,11 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    transform: translate(50%, 0);
+    transform: translate(70%, 0);
     padding: 10px;
     border: 1px solid red;
+}
+
+#hide-chat:hover {
+    transform: translate(30%, 0px);
 }
