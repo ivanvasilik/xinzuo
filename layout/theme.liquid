@@ -118,6 +118,8 @@
         window.addEventListener('resize', imageThumbnail());
       </script>
     {% endif %}
+
+    <script src="{{ 'custom.js | asset_url' }}" defer></script>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
