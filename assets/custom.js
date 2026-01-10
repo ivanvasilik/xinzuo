@@ -3,10 +3,10 @@ const hideChat = (item) => {
     console.log('flag', flag)
 
     if(flag) {
-        window.rep.hide()
-        item.setAttribute("chatVisible", "true");
-    } else {
         window.rep.show()
         item.setAttribute("chatVisible", "false");
+    } else {
+        window.rep.hide()
+        item.setAttribute("chatVisible", "true");
     }
 }
