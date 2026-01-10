@@ -1,5 +1,5 @@
 const hideChat = (item) => {
-    console.log(item);
+    console.log(item, item.chatVisible);
     
     if(item.chatVisible) {
         window.rep.hide()
