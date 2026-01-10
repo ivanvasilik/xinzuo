@@ -1,5 +1,5 @@
 #hide-chat:hover {
-    transform: transition(70%, 0px);
+    transform: translate(30%, 0px);
 }
 
 #hide-chat {
