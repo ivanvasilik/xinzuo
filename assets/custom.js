@@ -9,17 +9,17 @@ const hideChat = (item) => {
 document.addEventListener("DOMContentLoaded", () => {
     rep.on('load', () => {
         console.log('Rep loaded');
-        item.setAttribute("chatVisible", "true");
+        document.querySelector("#hide-chat").setAttribute("chatVisible", "true");
     });
 
     rep.on('open', () => {
         console.log('Rep is open');
-        item.setAttribute("chatVisible", "true");
+        document.querySelector("#hide-chat").setAttribute("chatVisible", "true");
 
     });
 
     rep.on('close', () => {
         console.log('Rep is closed');
-        item.setAttribute("chatVisible", "false");
+        document.querySelector("#hide-chat").setAttribute("chatVisible", "false");
     });
 })
