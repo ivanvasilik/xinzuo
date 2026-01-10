@@ -1,9 +1,10 @@
 
 #hide-chat {
     transition: 0.5s;
-    width: 130px;
+    width: 200px;
     height: 13px;
-    background: #ffffff;
+    background:rgb(230, 211, 49);
+    color:white;
     position: fixed;
     bottom: 65px;
     right: 0;
