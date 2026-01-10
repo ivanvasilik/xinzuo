@@ -1,5 +1,5 @@
 document.DOMcontentLoaded(() => {
-    document.querySelector("#repWebClientContainer").click() => {
+    document.querySelector("#hide-chat").click() => {
         console.log('sdfdsfsd');
         
     }
