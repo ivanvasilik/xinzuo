@@ -1,6 +1,5 @@
-document.DOMcontentLoaded(() => {
-    document.querySelector("#hide-chat").click() => {
-        console.log('sdfdsfsd');
-        
-    }
-})
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#hide-chat").addEventListener("click", () => {
+        console.log("sdfdsfsd");
+    });
+});
