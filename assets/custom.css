@@ -14,9 +14,8 @@
     align-items: center;
     transform: translate(90%, 0);
     padding: 10px;
-    border: 1px solid red;
 }
 
 #hide-chat:hover {
-    transform: translate(50%, 0px);
+    transform: translate(70%, 0px);
 }
