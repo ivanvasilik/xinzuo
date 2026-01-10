@@ -1,0 +1,8 @@
+#hide-chat:hover {
+    transform: transition(0, 0);
+    transition: 0.5s;
+}
+
+#hide-chat {
+
+}
