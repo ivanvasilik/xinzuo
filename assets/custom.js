@@ -1,8 +1,5 @@
 const hideChat = (item) => {
-    let flag = !item.chatVisible;
-    console.log('flag', flag)
-
-    if(flag) {
+    if(item.chatVisible) {
         window.rep.hide()
     } else {
         window.rep.show()
@@ -17,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     rep.on('open', () => {
         console.log('Rep is open');
-        item.setAttribute("chatVisible", "false");
+        item.setAttribute("chatVisible", "true");
 
     });
 
     rep.on('close', () => {
         console.log('Rep is closed');
-        item.setAttribute("chatVisible", "true");
+        item.setAttribute("chatVisible", "false");
     });
 })
