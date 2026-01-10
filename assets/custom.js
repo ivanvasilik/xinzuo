@@ -1,19 +1,34 @@
 const hideChat = (item) => {
-    console.log(item.getAttribute("chatvisible") === 'true');
+    const hideChatElement = document.querySelector("#hide-chat");
+    const eyeIcon = hideChatElement.querySelector(".chat-icon-eye");
+    const eyeSlashIcon = hideChatElement.querySelector(".chat-icon-eye-slash");
     
     if(item.getAttribute("chatvisible") === 'true') {
-        document.querySelector("#hide-chat").setAttribute("chatvisible", false);
-        window.rep.hide()
+        hideChatElement.setAttribute("chatvisible", "false");
+        window.rep.hide();
+        // Show eye-slash icon, hide eye icon
+        if (eyeIcon) eyeIcon.style.display = 'none';
+        if (eyeSlashIcon) eyeSlashIcon.style.display = 'block';
     } else {
-        window.rep.show()
-        document.querySelector("#hide-chat").setAttribute("chatvisible", true);
+        window.rep.show();
+        hideChatElement.setAttribute("chatvisible", "true");
+        // Show eye icon, hide eye-slash icon
+        if (eyeIcon) eyeIcon.style.display = 'block';
+        if (eyeSlashIcon) eyeSlashIcon.style.display = 'none';
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     rep.on('load', () => {
         console.log('Rep loaded');
-        document.querySelector("#hide-chat").setAttribute("chatvisible", true);
-        // window.rep.show()
+        const hideChatElement = document.querySelector("#hide-chat");
+        if (hideChatElement) {
+            hideChatElement.setAttribute("chatvisible", "true");
+            // Ensure eye icon is visible on load
+            const eyeIcon = hideChatElement.querySelector(".chat-icon-eye");
+            const eyeSlashIcon = hideChatElement.querySelector(".chat-icon-eye-slash");
+            if (eyeIcon) eyeIcon.style.display = 'block';
+            if (eyeSlashIcon) eyeSlashIcon.style.display = 'none';
+        }
     });
 })
