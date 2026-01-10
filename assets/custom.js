@@ -1,14 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // document.querySelector("#hide-chat").addEventListener("click", () => {
-    //     console.log("sdfdsfsd");
-    // });
-    console.log("==========loaded")
     
+    document.addEventListener("mousemove", (e) => {
+    const btn = document.getElementById("edge-button");
+    const triggerZone = window.innerWidth - 30; // px from right edge
+
+    if (e.clientX > triggerZone) {
+        btn.style.right = "0px"; // show
+    } else {
+        btn.style.right = "-120px"; // hide
+    }
+});
    
 });
 
 
 
-const hideChat = () => {
-    window.rep.hide()
-}
+// const hideChat = () => {
+//     window.rep.hide()
+// }
