@@ -9,10 +9,11 @@ const hideChat = (item) => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // rep.on('load', () => {
-    //     console.log('Rep loaded');
-    //     document.querySelector("#hide-chat").setAttribute("chatvisible", true);
-    // });
+    rep.on('load', () => {
+        console.log('Rep loaded');
+        document.querySelector("#hide-chat").setAttribute("chatvisible", true);
+        window.rep.show()
+    });
 
     rep.on('open', () => {
         console.log('Rep is open');
