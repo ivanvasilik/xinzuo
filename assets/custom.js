@@ -1,4 +1,6 @@
 const hideChat = (item) => {
+    console.log(item);
+    
     if(item.chatVisible) {
         window.rep.hide()
     } else {
