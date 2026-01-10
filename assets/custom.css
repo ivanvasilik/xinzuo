@@ -1,20 +1,49 @@
 
 #hide-chat {
     transition: 0.5s;
-    width: 200px;
-    height: 30px;
-    background:#c9a962;
-    color:white;
+    width: 20px;
+    height: 20px;
+    background: #c9a962;
     position: fixed;
     bottom: 65px;
-    cursor:pointer;
     right: 0;
     z-index: 999999999;
-    position: absolute;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    transform: translate(90%, 0);
-    padding: 10px;
+    justify-content: center;
+    /* transform: translate(90%, 0); */
+    padding: 0;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
+/* #hide-chat:hover {
+    transform: translate(70%, 0px);
+} */
+
+#hide-chat .chat-icon {
+    width: 15px;
+    height: 22px;
+    stroke: #ffffff !important;
+    fill: none !important;
+    transition: opacity 0.3s;
+    flex-shrink: 0;
+    display: block;
+}
+
+#hide-chat .chat-icon-eye {
+    display: block;
+}
+
+#hide-chat .chat-icon-eye-slash {
+    display: none;
+}
+
+#hide-chat[chatvisible="false"] .chat-icon-eye {
+    display: none;
+}
+
+#hide-chat[chatvisible="false"] .chat-icon-eye-slash {
+    display: block;
+}
