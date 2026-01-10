@@ -1,5 +1,5 @@
 const hideChat = (item) => {
-    let flag = !!item.chatVisible;
+    let flag = !item.chatVisible;
     console.log('flag', flag)
 
     if(flag) {
