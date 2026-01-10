@@ -2,9 +2,11 @@ const hideChat = (item) => {
     console.log(item.getAttribute("chatvisible") === 'true');
     
     if(item.getAttribute("chatvisible") === 'true') {
+        document.querySelector("#hide-chat").setAttribute("chatvisible", false);
         window.rep.hide()
     } else {
         window.rep.show()
+        document.querySelector("#hide-chat").setAttribute("chatvisible", true);
     }
 }
 
@@ -13,16 +15,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('Rep loaded');
         document.querySelector("#hide-chat").setAttribute("chatvisible", true);
         window.rep.show()
-    });
-
-    rep.on('show', () => {
-        console.log('Rep is open');
-        document.querySelector("#hide-chat").setAttribute("chatvisible", true);
-
-    });
-
-    rep.on('hide', () => {
-        console.log('Rep is closed');
-        document.querySelector("#hide-chat").setAttribute("chatvisible", false);
     });
 })
