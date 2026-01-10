@@ -10,6 +10,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const hideChat = () => {
-    document.querySelector("#repWebClientContainer").style.display = "none";
     window.rep.hide()
 }
