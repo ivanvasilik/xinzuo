@@ -12,11 +12,11 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    transform: translate(70%, 0);
+    transform: translate(90%, 0);
     padding: 10px;
     border: 1px solid red;
 }
 
 #hide-chat:hover {
-    transform: translate(30%, 0px);
+    transform: translate(50%, 0px);
 }
