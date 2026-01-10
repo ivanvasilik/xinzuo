@@ -2,7 +2,7 @@
 #hide-chat {
     transition: 0.5s;
     width: 200px;
-    height: 13px;
+    height: 30px;
     background:rgb(230, 211, 49);
     color:white;
     position: fixed;
