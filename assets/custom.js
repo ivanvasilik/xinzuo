@@ -18,6 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     rep.on('close', () => {
-
+        console.log('closed -------')
     });
 })
