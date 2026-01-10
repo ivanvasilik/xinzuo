@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     document.addEventListener("mousemove", (e) => {
-    const btn = document.getElementById("edge-button");
+    const btn = document.getElementById("hide-chat");
     const triggerZone = window.innerWidth - 30; // px from right edge
 
     if (e.clientX > triggerZone) {
