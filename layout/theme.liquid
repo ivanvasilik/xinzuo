@@ -14,12 +14,12 @@
 
     {% comment %} View transition render blocker - disabled for performance {% endcomment %}
     {% if request.design_mode %}
-    <link
-      rel="expect"
-      href="#MainContent"
-      blocking="render"
-      id="view-transition-render-blocker"
-    >
+      <link
+        rel="expect"
+        href="#MainContent"
+        blocking="render"
+        id="view-transition-render-blocker"
+      >
     {% endif %}
 
     {%- render 'meta-tags' -%}
@@ -28,8 +28,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap"></noscript>
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      fetchpriority="high"
+    >
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Sen:wght@400;600;700&display=swap"
+    ></noscript>
 
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
@@ -47,10 +57,14 @@
 
     {{ content_for_header }}
 
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
-
 
     <link rel="preload" href="{{ 'judge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ 'judge.css' | asset_url }}"></noscript>
@@ -65,59 +79,104 @@
           .hidden--mobile {
             display: none !important;
           }
-          
+
           /* Override grid layout for thumbnails on mobile - force flow layout */
-          slideshow-component:has(slideshow-controls[pagination-position="left"]),
-          slideshow-component:has(slideshow-controls[pagination-position="right"]) {
+          slideshow-component:has(slideshow-controls[pagination-position='left']),
+          slideshow-component:has(slideshow-controls[pagination-position='right']) {
             display: block !important;
             grid-template: none !important;
           }
-          
+
           /* Force thumbnails to center position styling on mobile */
-          slideshow-controls[thumbnails][pagination-position="left"],
-          slideshow-controls[thumbnails][pagination-position="right"] {
+          slideshow-controls[thumbnails][pagination-position='left'],
+          slideshow-controls[thumbnails][pagination-position='right'] {
             order: 0 !important;
             display: block !important;
             height: auto !important;
             min-height: 0 !important;
           }
-          
+
           /* Force thumbnail container to horizontal scroll on mobile */
-          slideshow-controls[thumbnails][pagination-position="left"] .slideshow-controls__thumbnails-container,
-          slideshow-controls[thumbnails][pagination-position="right"] .slideshow-controls__thumbnails-container {
+          slideshow-controls[thumbnails][pagination-position='left'] .slideshow-controls__thumbnails-container,
+          slideshow-controls[thumbnails][pagination-position='right'] .slideshow-controls__thumbnails-container {
             overflow: auto hidden !important;
           }
-          
+
           /* Force thumbnails to horizontal layout on mobile */
-          slideshow-controls[thumbnails][pagination-position="left"] .slideshow-controls__thumbnails,
-          slideshow-controls[thumbnails][pagination-position="right"] .slideshow-controls__thumbnails {
+          slideshow-controls[thumbnails][pagination-position='left'] .slideshow-controls__thumbnails,
+          slideshow-controls[thumbnails][pagination-position='right'] .slideshow-controls__thumbnails {
             flex-direction: row !important;
             padding-inline: var(--slideshow-thumbnails-padding-inline, var(--padding-sm)) !important;
             padding-block: var(--slideshow-thumbnails-padding-block, var(--padding-sm)) !important;
           }
         }
       </style>
-      
+
       <script>
         const imageThumbnail = () => {
-            const thumbnail = document.querySelector("slideshow-controls");
-            if (thumbnail) {
-                if (window.innerWidth > 750) {
-                    thumbnail.setAttribute("pagination-position", "left");
-                }
-                else {
-                    thumbnail.setAttribute("pagination-position", "center");
-                }
+          const thumbnail = document.querySelector('slideshow-controls');
+          if (thumbnail) {
+            if (window.innerWidth > 750) {
+              thumbnail.setAttribute('pagination-position', 'left');
+            } else {
+              thumbnail.setAttribute('pagination-position', 'center');
             }
-        }
+          }
+        };
 
         window.addEventListener('DOMContentLoaded', () => {
-            imageThumbnail();
+          imageThumbnail();
         });
 
         window.addEventListener('resize', imageThumbnail());
       </script>
     {% endif %}
+
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}">
+
+    <script type="text/javascript">
+      var __assign =
+        (this && this.__assign) ||
+        function () {
+          return (__assign =
+            Object.assign ||
+            function (n) {
+              for (var i, o = 1, d = arguments.length; o < d; o++)
+                for (var l in (i = arguments[o])) Object.prototype.hasOwnProperty.call(i, l) && (n[l] = i[l]);
+              return n;
+            }).apply(this, arguments);
+        };
+      !(function () {
+        var n, i, o, d;
+        if (
+          !(null === (n = null === window || void 0 === window ? void 0 : window.rep) || void 0 === n ? void 0 : n.on)
+        ) {
+          var l = __assign(
+              {},
+              null !==
+                (o =
+                  null === (i = null === window || void 0 === window ? void 0 : window.rep) || void 0 === i
+                    ? void 0
+                    : i.events) && void 0 !== o
+                ? o
+                : {}
+            ),
+            r = __assign(
+              {},
+              null !== (d = null === window || void 0 === window ? void 0 : window.rep) && void 0 !== d ? d : {}
+            );
+          (r.events = l),
+            (r.on = function (n, i) {
+              switch (n) {
+                case 'load':
+                  (null == l ? void 0 : l[n]) ? Array.isArray(null == l ? void 0 : l[n]) && l[n].push(i) : (l[n] = [i]);
+              }
+            }),
+            (window.rep = r);
+        }
+      })();
+    </script>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
@@ -149,5 +208,39 @@
 
     {% comment %} Cart engraving modal - must be at body level to appear above cart drawer dialog {% endcomment %}
     {% render 'cart-engraving-modal' %}
+
+    <div style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;pointer-events: none;">
+      <div id="hide-chat" onclick="hideChat(this)" chatvisible="true" style="pointer-events: auto;">
+        <svg
+          class="chat-icon chat-icon-eye"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          width="28"
+          height="28"
+          style="display: none;"
+        >
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+        <svg
+          class="chat-icon chat-icon-eye-slash"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          width="28"
+          height="28"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </div>
+    </div>
   </body>
 </html>
